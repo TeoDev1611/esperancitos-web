@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import AppScreensShowcase from '../components/AppScreensShowcase.astro';
+import DownloadSection from '../components/DownloadSection.astro';
+import FeedbackSection from '../components/FeedbackSection.astro';
+import CollaborationSection from '../components/CollaborationSection.astro';
+import SupportSection from '../components/SupportSection.astro';
+import DocsSection from '../components/DocsSection.astro';
+---
+
+<Layout
+  title="Esperancitos • La App Estudiantil Todo-en-Uno para la ESPE"
+  description="Mira tu malla curricular y calcula en qué año te gradúas, revisa tu horario con el aula de cada clase y entra a tu Moodle escaneando un código QR. Gratis, sin anuncios y funciona sin internet."
+  keywords="app ESPE gratis, malla curricular sin internet, horario con aulas ESPE, entrar a Moodle con QR, calculadora de notas universitarias Ecuador"
+>
+  <!-- 1. Hero Principal con Mockup Interactivo -->
+  <Hero />
+
+  <!-- 2. Vistas de la App & Capturas de Pantalla -->
+  <AppScreensShowcase />
+
+  <!-- 3. Todas las Funciones Detalladas -->
+  <Features />
+
+  <!-- 4. Centro Oficial de Descargas (APK Android) -->
+  <DownloadSection />
+
+  <!-- 5. Reportes de errores y sugerencias de funciones -->
+  <FeedbackSection />
+
+  <!-- 6. Tablón de avisos: se buscan colaboradores para la versión de iPhone -->
+  <CollaborationSection />
+
+  <!-- 7. Apoyo para publicar en Google Play (Deuna & QR) -->
+  <SupportSection />
+
+  <!-- 8. Documentación, Guías de Login & FAQ -->
+  <DocsSection />
+</Layout>

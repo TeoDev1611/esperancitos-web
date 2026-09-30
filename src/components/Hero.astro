@@ -1,0 +1,1556 @@
+---
+// Hero.astro - Héroe Cinético Estilo Apple con Recreación Real de la App en HTML/CSS
+---
+
+<section class="hero-section" id="hero-section">
+  <!-- Malla de cuadrícula que se enciende en 0.0s -->
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+
+  <div class="container hero-container">
+    <div class="hero-text-col">
+      <!-- Badge de Proyecto Estudiantil -->
+      <div class="hero-badge-row">
+        <span class="badge-app green hero-badge">
+          <span class="pulse-circle"></span>
+          Hecha por estudiantes, para estudiantes
+        </span>
+      </div>
+
+      <!-- Titular Gigante por 3 líneas controladas -->
+      <h1 class="hero-headline" id="hero-headline">
+        <span class="hero-line hero-line-1">La App Estudiantil</span>
+        <span class="hero-line hero-line-2"><span class="highlight-neon">Todo-en-Uno</span></span>
+        <span class="hero-line hero-line-3">que la ESPE merecía.</span>
+      </h1>
+
+      <!-- Párrafo Descriptivo con Información Completa -->
+      <p class="hero-description">
+        Mira tu <strong>malla curricular</strong> y calcula en qué año te gradúas, revisa tu <strong>horario con el aula de cada clase</strong> y entra a tu <strong>Moodle</strong> escaneando un código QR, sin escribir tu contraseña. Todo funciona <strong>sin internet</strong> y se queda en tu celular.
+      </p>
+
+      <!-- Botones de Acción (Descarga Dominante y Apoyo Ámbar) -->
+      <div class="hero-actions-group">
+        <a href="/downloads/esperancitos-v1.0.0-arm64.apk" download class="btn-app btn-app-primary btn-hero-cta" id="hero-download-btn" aria-label="Descargar la app para Android">
+          <svg class="hero-download-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <div class="btn-cta-labels">
+            <span class="cta-title">Descargar la app</span>
+            <span class="cta-subtitle">Gratis · 31 MB · Android 8 o superior</span>
+          </div>
+        </a>
+
+        <button type="button" class="btn-app btn-app-amber btn-hero-support" id="hero-support-btn" data-open-support aria-label="Ayudar a que la app llegue a Google Play">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+            <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+            <line x1="6" y1="2" x2="6" y2="4"></line>
+            <line x1="10" y1="2" x2="10" y2="4"></line>
+            <line x1="14" y1="2" x2="14" y2="4"></line>
+          </svg>
+          <span>Ayudar a la app</span>
+        </button>
+      </div>
+
+      <!-- Fila Compacta de Chips de Confianza (Sin cajas gigantes) -->
+      <div class="hero-features-chips">
+        <div class="feature-chip" title="La malla y el horario quedan guardados en tu celular">
+          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          <div class="chip-info">
+            <strong>Funciona sin internet</strong>
+            <span>Úsala en el aula o en el bus</span>
+          </div>
+        </div>
+
+        <div class="feature-chip" title="Entras a Moodle con un código QR, sin escribir tu contraseña">
+          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <div class="chip-info">
+            <strong>Tu contraseña no se guarda</strong>
+            <span>Entras a Moodle con un QR</span>
+          </div>
+        </div>
+
+        <div class="feature-chip" title="24 carreras de la ESPE ya cargadas en la app">
+          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+          <div class="chip-info">
+            <strong>24 carreras</strong>
+            <span>Tu malla ya está cargada</span>
+          </div>
+        </div>
+
+        <div class="feature-chip" title="Sin publicidad y pesa solo 31 MB">
+          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <div class="chip-info">
+            <strong>Sin anuncios</strong>
+            <span>Pesa poco y no te molesta</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna Visual: Marco de Teléfono Limpio con Recreación Real de la App -->
+    <div class="hero-device-col">
+      <div class="hero-ambient-glow" aria-hidden="true"></div>
+      <div class="phone-perspective-stage" id="phone-stage">
+        
+        <!-- Segmented Control de Vistas Rápidas con SVGs finos -->
+        <div class="phone-segmented-control" role="tablist" aria-label="Vistas interactivas de la app">
+          <button class="seg-btn active" role="tab" aria-selected="true" data-view="home">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>En Vivo</span>
+          </button>
+          <button class="seg-btn" role="tab" aria-selected="false" data-view="malla">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+            <span>Malla</span>
+          </button>
+          <button class="seg-btn" role="tab" aria-selected="false" data-view="horario">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>Horario</span>
+          </button>
+        </div>
+
+        <!-- Marco Físico de Teléfono Android con Bordes Brutalistas -->
+        <div class="phone-chassis" id="phone-tilt-target">
+          <!-- Altavoz y cámara frontal sutil -->
+          <div class="phone-dynamic-island" aria-hidden="true">
+            <div class="phone-camera-dot"></div>
+          </div>
+
+          <!-- Pantalla del Celular -->
+          <div class="phone-screen-content">
+            
+            <!-- VISTA 1: UI REAL DE LA APP (Home Dashboard) -->
+            <div class="screen-layer active" id="layer-home">
+              <div class="app-ui-canvas">
+                <!-- Barra superior de la app -->
+                <div class="app-topbar">
+                  <div class="user-greeting">
+                    <span class="user-title">¡Hola, Esperancito!</span>
+                    <span class="user-campus">Campus Sangolquí · 2026-1</span>
+                  </div>
+                  <div class="app-topbar-icons">
+                    <span class="app-example-tag">EJEMPLO</span>
+                    <span class="app-status-pill">SIN CONEXIÓN</span>
+                  </div>
+                </div>
+
+                <!-- Tarjeta Emblemática: Clase en curso con barra de progreso -->
+                <div class="app-live-class-card" id="hero-live-card">
+                  <div class="card-time-row">
+                    <div class="time-meta">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="clock-icon" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                      <span class="time-text">09:15 - 11:15</span>
+                    </div>
+                    <!-- Chip con cuenta regresiva -->
+                    <span class="countdown-chip" id="countdown-chip">119 MIN RESTANTES</span>
+                  </div>
+
+                  <!-- Barra de progreso de clase en curso -->
+                  <div class="class-progress-track">
+                    <div class="class-progress-bar" id="hero-class-bar"></div>
+                  </div>
+
+                  <div class="class-subject-info">
+                    <h3 class="subject-title">ESTRUCTURAS DE DATOS Y ALGORITMOS</h3>
+                    <span class="subject-nrc">NRC: 14205</span>
+                  </div>
+
+                  <div class="class-location-row">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="pin-icon" aria-hidden="true">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span class="location-text">Aula A-204 · Bloque A (Sangolquí)</span>
+                  </div>
+
+                  <div class="class-card-actions">
+                    <span class="mini-btn-view">Ver aula</span>
+                    <span class="mini-btn-join">Unirse a clase</span>
+                  </div>
+                </div>
+
+                <!-- Grid de Métricas de la App: PROMEDIO y TAREAS -->
+                <div class="app-metrics-grid">
+                  <div class="app-metric-box metric-promedio">
+                    <span class="metric-label">PROMEDIO</span>
+                    <div class="metric-value-row">
+                      <span class="metric-num">17.85</span>
+                      <span class="metric-scale">/20</span>
+                    </div>
+                    <span class="metric-status">Tu promedio general</span>
+                  </div>
+
+                  <div class="app-metric-box metric-tareas">
+                    <span class="metric-label">TAREAS</span>
+                    <div class="metric-value-row">
+                      <span class="metric-num">3</span>
+                      <span class="metric-unit">activas</span>
+                    </div>
+                    <span class="metric-status">Próxima entrega hoy</span>
+                  </div>
+                </div>
+
+                <!-- Bottom Navigation Bar de la App con SVGs finos -->
+                <div class="app-bottom-nav">
+                  <div class="bottom-nav-item active">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span>INICIO</span>
+                  </div>
+                  <div class="bottom-nav-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                      <line x1="16" x2="16" y1="2" y2="6"></line>
+                      <line x1="8" x2="8" y1="2" y2="6"></line>
+                      <line x1="3" x2="21" y1="10" y2="10"></line>
+                    </svg>
+                    <span>HORARIO</span>
+                  </div>
+                  <div class="bottom-nav-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="m9 11 3 3L22 4"></path>
+                      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                    </svg>
+                    <span>TAREAS</span>
+                  </div>
+                  <div class="bottom-nav-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span>MENSAJES</span>
+                  </div>
+                  <div class="bottom-nav-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+                      <path d="M6 6h10"></path>
+                      <path d="M6 10h10"></path>
+                    </svg>
+                    <span>MALLA</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VISTA 2: Captura Real Malla Curricular -->
+            <div class="screen-layer" id="layer-malla">
+              <picture>
+                <source srcset="/images/mockup-malla.webp" type="image/webp" />
+                <img src="/images/mockup-malla.jpg" alt="Malla curricular de la carrera con materias aprobadas, en curso y pendientes en Esperancitos" class="screen-layer-img" loading="eager" width="640" height="1147" />
+              </picture>
+            </div>
+
+            <!-- VISTA 3: Captura Real Horario Semanal -->
+            <div class="screen-layer" id="layer-horario">
+              <picture>
+                <source srcset="/images/mockup-horario.webp" type="image/webp" />
+                <img src="/images/mockup-horario.jpg" alt="Horario semanal con el aula, el bloque y el docente de cada clase en Esperancitos" class="screen-layer-img" loading="lazy" width="640" height="1147" />
+              </picture>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3 TARJETAS FLOTANTES EN CASCADA CON SVGS FINOS -->
+        
+        <!-- Tarjeta 1: Graduación con contador animado -->
+        <div class="float-wrapper float-wrap-grad">
+          <div class="floating-story-card card-grad" id="card-grad">
+            <div class="f-icon-box amber">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+            <div class="f-info">
+              <span class="f-title">Graduación: 2029</span>
+              <div class="f-progress-track">
+                <div class="f-progress-fill" id="grad-progress-fill"></div>
+              </div>
+              <span class="f-sub"><span id="grad-counter">44.2</span>% completado</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Banner 9 SSB con Auto-reintento x2 -->
+        <div class="float-wrapper float-wrap-banner">
+          <div class="floating-story-card card-banner" id="card-banner">
+            <div class="f-icon-box green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <div class="f-info">
+              <span class="f-title">Aula A-204 · Bloque A</span>
+              <div class="banner-retry-status" id="banner-retry-status">
+                <span class="status-pill-retry" id="retry-badge">Intento 2 OK</span>
+                <span class="status-text-retry" id="retry-text">Sincronizado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: Login QR Moodle con línea de escaneo láser -->
+        <div class="float-wrapper float-wrap-moodle">
+          <div class="floating-story-card card-moodle" id="card-moodle">
+            <div class="qr-mini-thumb">
+              <div class="mini-laser-line"></div>
+              <img src="/images/qr-donacion-thumb.png" alt="Vista previa del código QR de Moodle" width="32" height="32" class="mini-qr-img" />
+            </div>
+            <div class="f-info">
+              <span class="f-title">Login QR Moodle</span>
+              <span class="f-sub green">Sin escribir tu contraseña</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    padding: 70px 0 90px 0;
+    overflow: hidden;
+    min-height: calc(100vh - 110px);
+    display: flex;
+    align-items: center;
+  }
+
+  /* Cuadrícula sutil que se enciende progresivamente */
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(0, 255, 135, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 255, 135, 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: center center;
+    opacity: 0;
+    animation: grid-glow 1.2s var(--ease-apple) forwards;
+    pointer-events: none;
+  }
+
+  @keyframes grid-glow {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .hero-container {
+    display: grid;
+    /* La columna visual recibe más ancho que antes (0.85fr -> 0.94fr) porque las
+       tarjetas flotantes necesitan canal real a los lados del teléfono. */
+    grid-template-columns: 1.06fr 0.94fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Columna de Texto */
+  .hero-text-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-badge-row {
+    margin-bottom: 20px;
+  }
+
+  /* Titular Gigante estilo Apple (Sin palabras pegadas) */
+  .hero-headline {
+    font-size: clamp(2.4rem, 4.8vw, 4.1rem);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    word-spacing: 0.04em;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-badge-row {
+    margin-bottom: 20px;
+  }
+
+  /* Fade de opacidad puro: no toca `transform`, así el `both` (que mantiene el
+     fotograma final) no bloquea los :hover de estos elementos. */
+  @keyframes hero-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  html.js-anim .hero-badge-row {
+    opacity: 0;
+    animation: hero-fade 650ms var(--ease-apple) 60ms both;
+  }
+
+  .hero-line {
+    display: block;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  html.js-anim .hero-line {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(6px);
+    animation: text-reveal 700ms var(--ease-apple) forwards;
+  }
+
+  html.js-anim .hero-line-1 { animation-delay: 180ms; }
+  html.js-anim .hero-line-2 { animation-delay: 340ms; }
+  html.js-anim .hero-line-3 { animation-delay: 500ms; }
+
+  @keyframes text-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  .hero-description {
+    font-size: 1.12rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 36px;
+    max-width: 580px;
+  }
+
+  html.js-anim .hero-description {
+    animation: hero-fade-up 700ms var(--ease-apple) 650ms both;
+  }
+
+  .hero-description strong {
+    color: var(--text-primary);
+  }
+
+  /* Grupo de Acciones */
+  .hero-actions-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  html.js-anim .hero-actions-group {
+    animation: hero-fade-up 750ms var(--ease-spring) 800ms both;
+  }
+
+  .btn-hero-cta {
+    padding: 13px 26px;
+    gap: 14px;
+    box-shadow: var(--shadow-hard), 0 0 16px rgba(0, 255, 135, 0.22);
+    animation: download-pulse 2.8s ease-in-out 2500ms infinite;
+  }
+
+  @keyframes download-pulse {
+    0%, 100% { transform: scale(1); box-shadow: var(--shadow-hard), 0 0 16px rgba(0, 255, 135, 0.22); }
+    50% { transform: scale(1.025); box-shadow: 6px 6px 0px #000000, 0 0 24px rgba(0, 255, 135, 0.4); }
+  }
+
+  /* El pulso infinito controla el transform, así que hay que cederle el paso
+     al hover/active/focus: si no, el botón principal "ignora" el puntero. */
+  .btn-hero-cta:hover,
+  .btn-hero-cta:focus-visible,
+  .btn-hero-cta:active,
+  .btn-hero-cta.is-static {
+    animation: none;
+  }
+
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .btn-cta-labels {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.15;
+  }
+
+  .cta-title {
+    font-size: 1.05rem;
+    font-weight: 900;
+  }
+
+  .cta-subtitle {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    opacity: 0.88;
+  }
+
+  .btn-hero-support {
+    padding: 14px 22px;
+    font-size: 0.92rem;
+  }
+
+  /* Fila compacta de Chips */
+  .hero-features-chips {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 580px;
+    border-top: 1.5px solid var(--border-app);
+    padding-top: 24px;
+  }
+
+  html.js-anim .hero-features-chips .feature-chip {
+    opacity: 0;
+    animation: hero-fade 560ms var(--ease-apple) both;
+  }
+
+  html.js-anim .hero-features-chips .feature-chip:nth-child(1) { animation-delay: 920ms; }
+  html.js-anim .hero-features-chips .feature-chip:nth-child(2) { animation-delay: 1000ms; }
+  html.js-anim .hero-features-chips .feature-chip:nth-child(3) { animation-delay: 1080ms; }
+  html.js-anim .hero-features-chips .feature-chip:nth-child(4) { animation-delay: 1160ms; }
+
+  .feature-chip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-md);
+    box-shadow: 2px 2px 0px #000000;
+    transition: transform var(--duration-hover) var(--ease-apple),
+                border-color var(--duration-hover) ease;
+  }
+
+  .feature-chip:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+  }
+
+  .chip-svg {
+    color: var(--accent-primary);
+    flex-shrink: 0;
+  }
+
+  .chip-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+  }
+
+  .chip-info strong {
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    font-weight: 800;
+  }
+
+  .chip-info span {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+  }
+
+  /* Columna Visual / Teléfono.
+     Es flex + wrap porque las tarjetas flotantes también viven aquí: en pantallas
+     anchas se posicionan de forma absoluta alrededor del teléfono y, cuando no
+     hay canal suficiente, pasan a fluir en una fila ordenada debajo de él en
+     lugar de amontonarse encima de la pantalla. */
+  .hero-device-col {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    gap: 14px;
+    position: relative;
+  }
+
+  .hero-ambient-glow {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(0, 255, 135, 0.15) 0%, rgba(255, 219, 121, 0.06) 45%, transparent 70%);
+    filter: blur(45px);
+    pointer-events: none;
+    z-index: 1;
+    animation: ambient-breathe 7s ease-in-out infinite alternate;
+  }
+
+  @keyframes ambient-breathe {
+    0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+  }
+
+  .phone-perspective-stage {
+    position: relative;
+    width: 320px;
+    max-width: 100%;
+    perspective: 1200px;
+    z-index: 2;
+  }
+
+  html.js-anim .phone-perspective-stage {
+    animation: stage-entrance 850ms var(--ease-spring) 280ms both;
+  }
+
+  @keyframes stage-entrance {
+    0% {
+      opacity: 0;
+      transform: translateY(35px) scale(0.94);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Segmented control para alternar vista */
+  .phone-segmented-control {
+    display: flex;
+    background: var(--bg-surface);
+    border: 2px solid var(--border-bold);
+    border-radius: var(--radius-md);
+    padding: 4px;
+    box-shadow: var(--shadow-hard-sm);
+    margin-bottom: 16px;
+    gap: 4px;
+  }
+
+  .seg-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    padding: 7px 4px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 180ms ease;
+  }
+
+  .seg-btn svg {
+    flex-shrink: 0;
+  }
+
+  .seg-btn.active {
+    background: var(--accent-primary);
+    color: var(--on-primary);
+    box-shadow: 2px 2px 0px #000000;
+  }
+
+  /* Chasis del teléfono */
+  .phone-chassis {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 18.5;
+    background: #000000;
+    border: 9px solid #161A23;
+    border-radius: 40px;
+    box-shadow: 
+      0 25px 60px -15px rgba(0, 0, 0, 0.9),
+      6px 6px 0px #000000,
+      0 0 0 2px var(--accent-primary);
+    overflow: hidden;
+    transition: transform 180ms var(--ease-apple), box-shadow 180ms ease;
+    transform-style: preserve-3d;
+  }
+
+  .phone-dynamic-island {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 18px;
+    background: #000000;
+    border-radius: 20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+  }
+
+  .phone-camera-dot {
+    width: 6px;
+    height: 6px;
+    background: #111A24;
+    border-radius: 50%;
+    border: 1px solid #1F2E3D;
+  }
+
+  .phone-screen-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: var(--bg-primary);
+  }
+
+  .screen-layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms var(--ease-apple);
+    overflow: hidden;
+  }
+
+  .screen-layer.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .screen-layer-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* El <picture> debe llenar la capa para que la imagen conserve el encuadre */
+  .screen-layer picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ==========================================================================
+     RECREACIÓN EXACTA DE LA APP EN HTML/CSS (.app-ui-canvas)
+     ========================================================================== */
+  .app-ui-canvas {
+    width: 100%;
+    height: 100%;
+    padding: 34px 12px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--bg-primary);
+    box-sizing: border-box;
+  }
+
+  .app-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .user-greeting {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .user-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .user-campus {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  .app-status-pill {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 800;
+    background: rgba(0, 255, 135, 0.15);
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+    padding: 2px 6px;
+    border-radius: var(--radius-pill);
+  }
+
+  .app-example-tag {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 800;
+    color: var(--accent-amber);
+    background: rgba(255, 219, 121, 0.15);
+    border: 1px solid var(--accent-amber);
+    padding: 2px 5px;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+
+  /* Tarjeta de clase en curso: pieza central de la recreación de la UI */
+  .app-live-class-card {
+    background: var(--bg-surface-elevated);
+    border: 2px solid var(--accent-primary);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    box-shadow: 3px 3px 0px var(--accent-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transform: scale(0.96);
+  }
+
+  /* La recreación de la UI de la app se "arma" sola con delays en cascada.
+     Antes esto vivía en animation-delay fijos incrustados en el shorthand; ahora
+     el retardo fluye por --arm-delay, así que cada pieza comparte un único
+     keyframe y basta con cambiar la variable. El estado base NO está oculto y
+     sólo se oculta cuando JS añade .js-anim: sin JS el panel se ve completo. */
+  html.js-anim .app-ui-canvas .app-topbar,
+  html.js-anim .app-ui-canvas .app-live-class-card,
+  html.js-anim .app-ui-canvas .app-metrics-grid,
+  html.js-anim .app-ui-canvas .app-bottom-nav {
+    opacity: 0;
+    animation: arm-ui-piece 620ms var(--ease-apple) both;
+    animation-delay: var(--arm-delay, 0ms);
+  }
+
+  html.js-anim .app-live-class-card {
+    --arm-delay: 420ms;
+    transition: transform 620ms var(--ease-apple);
+  }
+
+  html.js-anim .app-live-class-card.revealed {
+    transform: scale(1);
+  }
+
+  /* Sin JS la escala inicial nunca podría animarse hasta 1, así que el panel se
+     muestra completo desde el principio */
+  html:not(.js-anim) .app-ui-canvas .app-live-class-card {
+    transform: none !important;
+  }
+
+  html.js-anim .app-ui-canvas .app-topbar { --arm-delay: 320ms; }
+  html.js-anim .app-ui-canvas .app-metrics-grid { --arm-delay: 600ms; }
+  html.js-anim .app-ui-canvas .app-bottom-nav { --arm-delay: 720ms; }
+
+  @keyframes arm-ui-piece {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .card-time-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .time-meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--accent-primary);
+    font-weight: 800;
+    font-size: 0.74rem;
+  }
+
+  .countdown-chip {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 800;
+    background: var(--accent-primary);
+    color: var(--on-primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #000000;
+  }
+
+  /* Pulso breve mientras corre la cuenta regresiva; se apaga al asentarse */
+  .countdown-chip.is-ticking {
+    animation: countdown-pulse 360ms ease-in-out 7 alternate;
+  }
+
+  @keyframes countdown-pulse {
+    from { opacity: 1; }
+    to { opacity: 0.45; }
+  }
+
+  /* Estado intermedio ámbar del reintento de Banner (antes se forzaba con
+     estilos inline desde JS, lo que impedía que CSS pudiera retomarlo) */
+  .status-pill-retry.is-retrying {
+    background: rgba(255, 219, 121, 0.15);
+    color: var(--accent-amber);
+    border-color: var(--accent-amber);
+  }
+
+  .class-progress-track {
+    width: 100%;
+    height: 5px;
+    background: var(--bg-surface-container);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .class-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--accent-primary);
+    border-radius: 3px;
+    animation: fill-class-bar 1.5s var(--ease-apple) 700ms forwards;
+  }
+
+  @keyframes fill-class-bar {
+    to { width: 62%; }
+  }
+
+  .class-subject-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .subject-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .subject-nrc {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  .class-location-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+  }
+
+  .pin-icon {
+    color: var(--accent-primary);
+  }
+
+  .class-card-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 2px;
+  }
+
+  .mini-btn-view, .mini-btn-join {
+    flex: 1;
+    text-align: center;
+    padding: 4px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    border-radius: 6px;
+    border: 1px solid #000;
+    box-shadow: 1.5px 1.5px 0px #000;
+  }
+
+  .mini-btn-view {
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+  }
+
+  .mini-btn-join {
+    background: var(--accent-primary);
+    color: var(--on-primary);
+  }
+
+  /* Grid de Métricas de la App */
+  .app-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .app-metric-box {
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    box-shadow: 2px 2px 0px #000000;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .metric-promedio {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 2px 2px 0px #ffffff;
+  }
+
+  .metric-label {
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .metric-value-row {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+  }
+
+  .metric-num {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--text-primary);
+  }
+
+  .metric-scale, .metric-unit {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+
+  .metric-status {
+    font-size: 0.58rem;
+    color: var(--accent-primary);
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  /* Bottom Navigation Bar */
+  .app-bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    background: var(--bg-surface);
+    border-top: 1.5px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    padding: 6px 4px 4px 4px;
+    margin-top: 6px;
+  }
+
+  .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: var(--text-muted);
+    flex: 1;
+  }
+
+  .bottom-nav-item span {
+    font-size: 0.54rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+
+  .bottom-nav-item.active {
+    color: var(--accent-primary);
+  }
+
+  /* ==========================================================================
+     3 TARJETAS FLOTANTES
+     Base: fluyen dentro de .hero-device-col (fila ordenada debajo del teléfono).
+     El posicionamiento absoluto alrededor del teléfono se activa solo cuando hay
+     canal real, en @media (min-width: 1200px).
+     ========================================================================== */
+  .float-wrapper {
+    position: static;
+    z-index: 25;
+  }
+
+  .floating-story-card {
+    /* En modo flujo el nowrap podía desbordar en pantallas muy estrechas */
+    max-width: 100%;
+  }
+
+  @keyframes gentle-bob {
+    0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    100% { transform: translate3d(0, -10px, 0) rotate(1.1deg); }
+  }
+
+  @keyframes gentle-bob-rev {
+    0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    100% { transform: translate3d(0, -11px, 0) rotate(-1.3deg); }
+  }
+
+  @keyframes gentle-bob-plain {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(0, -8px, 0); }
+  }
+
+  /* --- Layout flotante: solo con canal suficiente (>115px por lado) --------- */
+  @media (min-width: 1200px) {
+    .container.hero-container {
+      max-width: 1280px;
+    }
+
+    .hero-device-col {
+      display: block;
+    }
+
+    .float-wrapper {
+      position: absolute;
+    }
+
+    /* El vaivén vive SOLO en el wrapper. Antes estaba repartido entre el wrapper
+       (bob infinito) y la tarjeta (card-spring-in con fill: both), y esa
+       animación con fill-mode se quedaba "congelada" en su fotograma final
+       controlando el transform: el :hover de la tarjeta nunca se veía. */
+    .float-wrap-grad {
+      top: 12%;
+      left: -58px;
+      animation: gentle-bob 4.2s ease-in-out infinite alternate;
+    }
+
+    .float-wrap-banner {
+      top: 42%;
+      right: -52px;
+      animation: gentle-bob-rev 4.8s ease-in-out infinite alternate;
+    }
+
+    /* Centrada abajo: el vaivén en diagonal de las otras dos hacía que esta
+       tarjeta chocara con el teléfono, así que se queda en el eje vertical. */
+    .float-wrap-moodle {
+      top: auto;
+      bottom: 64px;
+      left: 50%;
+      margin-left: -86px;
+      animation: gentle-bob-plain 3.9s ease-in-out infinite alternate;
+    }
+  }
+
+  @media (min-width: 961px) and (max-width: 1199px) {
+    /* El canal es demasiado estrecho para flotar: las tarjetas se reparten en
+       una fila ordenada debajo del teléfono, sin taparlo. */
+    .float-wrapper {
+      flex: 0 1 auto;
+    }
+  }
+
+  .floating-story-card {
+    background: var(--bg-surface-elevated);
+    border: 2px solid var(--border-bold);
+    border-radius: var(--radius-md);
+    padding: 8px 12px;
+    box-shadow: 4px 4px 0px #000000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    transition: transform var(--duration-hover) var(--ease-apple),
+                box-shadow var(--duration-hover) var(--ease-apple),
+                border-color var(--duration-hover) ease;
+  }
+
+  /* Entrada de las tarjetas: se anima una sola propiedad (opacity) para no
+     competir con el transform del vaivén del wrapper ni con el :hover. */
+  html.js-anim .floating-story-card {
+    opacity: 0;
+    animation: card-fade-in 700ms var(--ease-apple) both;
+  }
+
+  html.js-anim .float-wrap-grad .floating-story-card { animation-delay: 900ms; }
+  html.js-anim .float-wrap-banner .floating-story-card { animation-delay: 1050ms; }
+  html.js-anim .float-wrap-moodle .floating-story-card { animation-delay: 1200ms; }
+
+  @keyframes card-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .card-grad {
+    border-color: var(--accent-amber);
+    box-shadow: 3px 3px 0px var(--accent-amber);
+  }
+
+  .card-banner {
+    border-color: var(--border-app);
+  }
+
+  .card-moodle {
+    border-color: var(--accent-primary);
+  }
+
+  .floating-story-card:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 6px 6px 0px #000000;
+  }
+
+  .card-grad:hover { box-shadow: 6px 6px 0px var(--accent-amber); }
+  .card-moodle:hover { box-shadow: 6px 6px 0px var(--accent-primary); }
+
+  .f-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid #000;
+    box-shadow: 1.5px 1.5px 0px #000;
+    line-height: 1;
+  }
+
+  /* Faltaban por completo: los iconos heredaban el color del texto y se veían
+     blancos en vez de ámbar/verde. */
+  .f-icon-box.amber {
+    background: rgba(255, 219, 121, 0.16);
+    color: var(--accent-amber);
+  }
+
+  .f-icon-box.green {
+    background: rgba(0, 255, 135, 0.16);
+    color: var(--accent-primary);
+  }
+
+  .f-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.2;
+  }
+
+  .f-title {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .f-sub {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .f-sub.green {
+    color: var(--accent-primary);
+  }
+
+  .f-progress-track {
+    width: 80px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin: 3px 0;
+    overflow: hidden;
+  }
+
+  .f-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--accent-amber);
+    border-radius: 2px;
+    transition: width 1.2s var(--ease-apple);
+  }
+
+  .banner-retry-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+  }
+
+  .status-pill-retry {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 800;
+    background: rgba(0, 255, 135, 0.15);
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+
+  .status-text-retry {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  .qr-mini-thumb {
+    position: relative;
+    background: #ffffff;
+    padding: 2px;
+    border-radius: 4px;
+    border: 1px solid #000;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .mini-laser-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-primary);
+    box-shadow: 0 0 6px var(--accent-primary), 0 0 12px rgba(0, 255, 135, 0.7);
+    animation: mini-laser 1.8s ease-in-out infinite alternate;
+    z-index: 2;
+  }
+
+  @keyframes mini-laser {
+    from { top: 0%; }
+    to { top: 90%; }
+  }
+
+  .mini-qr-img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ==========================================================================
+     RESPONSIVE
+     ========================================================================== */
+
+  @media (max-width: 960px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 50px;
+    }
+
+    .hero-text-col {
+      align-items: center;
+    }
+
+    .hero-description {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions-group {
+      justify-content: center;
+    }
+
+    .hero-features-chips {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    /* Una sola columna: no queda canal a los lados, así que las tarjetas ya no
+       pueden flotar. En vez de taparse entre ellas se reparten en fila debajo
+       del teléfono, manteniendo el vaivén para conservar el dinamismo. */
+    .hero-device-col {
+      align-content: flex-start;
+      gap: 12px;
+    }
+
+    .float-wrapper {
+      animation: gentle-bob-plain 4.2s ease-in-out infinite alternate;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .hero-headline {
+      font-size: 2.25rem;
+    }
+
+    .hero-features-chips {
+      grid-template-columns: 1fr;
+    }
+
+    .floating-story-card {
+      padding: 7px 10px;
+      gap: 8px;
+    }
+
+    .phone-perspective-stage {
+      width: 290px;
+    }
+  }
+</style>
+
+<script>
+  // Control de Tabs en la maqueta del teléfono
+  const segBtns = document.querySelectorAll<HTMLButtonElement>('.phone-segmented-control .seg-btn');
+  const layers = document.querySelectorAll<HTMLElement>('.screen-layer');
+
+  const selectView = (btn: HTMLButtonElement, moveFocus = false) => {
+    segBtns.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    layers.forEach(l => l.classList.remove('active'));
+
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    if (moveFocus) btn.focus();
+
+    const targetView = btn.getAttribute('data-view');
+    const targetLayer = document.getElementById(`layer-${targetView}`);
+    if (targetLayer) {
+      targetLayer.classList.add('active');
+    }
+  };
+
+  segBtns.forEach(btn => {
+    btn.addEventListener('click', () => selectView(btn));
+
+    // Navegación por teclado dentro del tablist
+    btn.addEventListener('keydown', (event: KeyboardEvent) => {
+      const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+      if (!keys.includes(event.key)) return;
+      event.preventDefault();
+
+      const list = Array.from(segBtns);
+      const current = list.indexOf(btn);
+      let next = current;
+
+      if (event.key === 'ArrowRight') next = (current + 1) % list.length;
+      if (event.key === 'ArrowLeft') next = (current - 1 + list.length) % list.length;
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = list.length - 1;
+
+      selectView(list[next], true);
+    });
+  });
+
+  // El botón "Apoyar Proyecto" del héroe abre el modal global a través del
+  // atributo data-open-support (ver SupportModal.astro). Antes había aquí un
+  // listener propio que, junto al de Header.astro, llamaba a showModal() dos
+  // veces y provocaba un InvalidStateError.
+
+  // 3D Tilt Sutil en Desktop (Solo si no hay prefers-reduced-motion)
+  const tiltTarget = document.getElementById('phone-tilt-target');
+  const stage = document.getElementById('phone-stage');
+
+  if (tiltTarget && stage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.matchMedia('(min-width: 960px)').matches) {
+    stage.addEventListener('mousemove', (e) => {
+      const rect = stage.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Inclinación máxima de solo 6 grados para suavidad estilo Apple
+      const rotateX = ((y - centerY) / centerY) * -6;
+      const rotateY = ((x - centerX) / centerX) * 6;
+
+      tiltTarget.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale(1.01)`;
+    });
+
+    stage.addEventListener('mouseleave', () => {
+      tiltTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    });
+  }
+
+  // Animaciones de historia del Héroe
+  // 1. Contador de porcentaje de graduación 0 a 44.2%
+  const gradCounter = document.getElementById('grad-counter');
+  const gradFill = document.getElementById('grad-progress-fill');
+
+  function startGradAnimation() {
+    if (gradFill) {
+      gradFill.style.width = '44.2%';
+    }
+    if (gradCounter) {
+      // requestAnimationFrame en lugar de setInterval: se detiene solo cuando
+      // la pestaña no está visible y no acumula deriva entre pasos.
+      const target = 44.2;
+      const duration = 1100;
+      const start = performance.now();
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1);
+        // Curva de salida suave para que el número "frene" como estilo Apple
+        const eased = 1 - Math.pow(1 - progress, 3);
+        gradCounter.textContent = (target * eased).toFixed(1);
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          gradCounter.textContent = target.toFixed(1);
+        }
+      };
+      requestAnimationFrame(tick);
+    }
+  }
+
+  // 2. Chip de minutos restantes: empieza arriba y baja una sola vez hasta 119
+  const chip = document.getElementById('countdown-chip');
+  function startChipCountdown() {
+    if (!chip) return;
+    const target = 119;
+    let val = 125;
+    chip.classList.add('is-ticking');
+
+    const timer = setInterval(() => {
+      val -= 1;
+      if (val <= target) {
+        val = target;
+        clearInterval(timer);
+        chip.classList.remove('is-ticking');
+      }
+      chip.textContent = `${val} MIN RESTANTES`;
+    }, 150);
+  }
+
+  // 3. Banner Auto-reintento: simula transición de "Intento 1..." a "Intento 2 OK"
+  const retryBadge = document.getElementById('retry-badge');
+  const retryText = document.getElementById('retry-text');
+  function startBannerSimulation() {
+    if (!retryBadge || !retryText) return;
+    retryBadge.textContent = 'Intento 1...';
+    retryBadge.classList.add('is-retrying');
+    retryText.textContent = 'Conectando';
+
+    setTimeout(() => {
+      retryBadge.textContent = 'Intento 2 OK';
+      retryBadge.classList.remove('is-retrying');
+      retryText.textContent = 'Sincronizado';
+    }, 1400);
+  }
+
+  // Ejecución sincronizada o salto inmediato si el usuario prefiere reducción de movimiento
+  const heroLiveCard = document.getElementById('hero-live-card');
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (gradFill) gradFill.style.width = '44.2%';
+    if (gradCounter) gradCounter.textContent = '44.2';
+    if (chip) chip.textContent = '119 MIN RESTANTES';
+    document.getElementById('hero-download-btn')?.classList.add('is-static');
+    heroLiveCard?.classList.add('revealed');
+  } else {
+    // Orquestación fluida
+    setTimeout(startChipCountdown, 800);
+    setTimeout(startGradAnimation, 1100);
+    setTimeout(startBannerSimulation, 1400);
+    // La tarjeta de clase en curso escala de 0.96 a 1 en sincronía con su fundido
+    setTimeout(() => heroLiveCard?.classList.add('revealed'), 460);
+  }
+</script>

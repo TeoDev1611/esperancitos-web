@@ -1,0 +1,337 @@
+---
+// CollaborationSection.astro - Tablón de avisos: se buscan colaboradores
+import { COLLABORATION_CONFIG } from '../config/collaboration';
+
+const { isOpen, contactEmail, responseTime, closedMessage, intro, roles } = COLLABORATION_CONFIG;
+
+const icons: Record<string, string> = {
+  apple:
+    '<path d="M12 6.5c-1.4 0-2.6-.8-3.3-.8-1.6 0-3.6 1.3-3.6 4.2 0 3.4 2.5 7.6 4.4 7.6.8 0 1.4-.6 2.6-.6s1.7.6 2.6.6c1.9 0 4.2-3.9 4.2-7.3 0-2.7-1.9-4-3.3-4.1-1-.1-2 .7-2.9.7z"></path><path d="M14.4 3.2c.7-.9 1.1-2.1 1-3.2-1 .1-2.2.7-2.9 1.6-.6.8-1.1 2-1 3.1 1.1.1 2.2-.6 2.9-1.5z"></path>',
+  design:
+    '<circle cx="13.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="14.5" r="2.5"></circle><circle cx="8.5" cy="7.5" r="2.5"></circle><circle cx="6.5" cy="15.5" r="2.5"></circle><path d="M12 22a10 10 0 1 1 0-20"></path>',
+  test: '<path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>',
+  code: '<rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>',
+};
+
+const priorityLabel: Record<string, string> = {
+  alta: 'Lo necesitamos ya',
+  media: 'Nos ayudaría mucho',
+  abierta: 'Siempre bienvenido',
+};
+---
+
+<section class="collab-section scroll-reveal" id="colaborar">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <span class="section-kicker">Colaboradores</span>
+      <h2>Buscamos ayuda para llevar la app al iPhone</h2>
+      <p>{intro}</p>
+    </div>
+
+    {isOpen ? (
+      <>
+        <div class="collab-grid">
+          {roles.map((role) => (
+            <article class:list={['collab-card', 'card-app', `priority-${role.priority}`, 'reveal-init']}>
+              <div class="collab-top">
+                <div class="collab-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" set:html={icons[role.icon]} />
+                </div>
+                <span class:list={['collab-priority', role.priority]}>{priorityLabel[role.priority]}</span>
+              </div>
+
+              <h3>{role.title}</h3>
+              <p class="collab-summary">{role.summary}</p>
+
+              <span class="collab-needs-title">Qué necesitamos</span>
+              <ul class="collab-needs">
+                {role.needs.map((need) => <li>{need}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <div class="collab-cta card-app reveal-init">
+          <div class="collab-cta-text">
+            <h3>¿Te interesa alguno de estos puestos?</h3>
+            <p>
+              Escríbeme contándome cuál te llama la atención y qué experiencia tienes. No hace falta un currículum: con un correo corto es suficiente.
+            </p>
+            <p class="collab-response">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>{responseTime}</span>
+            </p>
+          </div>
+
+          <a
+            href={`mailto:${contactEmail}?subject=${encodeURIComponent('Quiero colaborar con Esperancitos')}`}
+            class="btn-app btn-app-primary btn-collab-mail"
+            aria-label={`Escribir un correo a ${contactEmail} para colaborar`}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m2 7 10 6 10-6"></path>
+            </svg>
+            <span>Escribir a {contactEmail}</span>
+          </a>
+        </div>
+      </>
+    ) : (
+      <div class="collab-closed card-app reveal-init">
+        <div class="closed-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 8v4"></path>
+            <path d="M12 16h.01"></path>
+          </svg>
+        </div>
+        <p>{closedMessage}</p>
+        <a href={`mailto:${contactEmail}`} class="btn-app btn-app-surface">
+          <span>Escribir a {contactEmail}</span>
+        </a>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .collab-section {
+    padding: 80px 0 100px 0;
+    position: relative;
+    border-top: 2px solid var(--border-app);
+  }
+
+  .collab-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-bottom: 30px;
+  }
+
+  .collab-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 26px;
+    background: var(--bg-surface);
+  }
+
+  .collab-card.priority-alta {
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-hard-green);
+  }
+
+  .collab-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .collab-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: var(--radius-md);
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0px #000;
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
+  }
+
+  .collab-card.priority-alta .collab-icon {
+    background: var(--accent-primary);
+    color: var(--on-primary);
+  }
+
+  .collab-priority {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-app);
+    background: var(--bg-surface-elevated);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .collab-priority.alta {
+    background: rgba(0, 255, 135, 0.14);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+  }
+
+  .collab-priority.media {
+    background: rgba(255, 219, 121, 0.14);
+    border-color: var(--accent-amber);
+    color: var(--accent-amber);
+  }
+
+  .collab-card h3 {
+    font-size: 1.22rem;
+    line-height: 1.25;
+  }
+
+  .collab-summary {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .collab-needs-title {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    margin-top: 4px;
+  }
+
+  .collab-needs {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .collab-needs li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  .collab-needs li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 7px;
+    width: 7px;
+    height: 7px;
+    background: var(--accent-primary);
+    border-radius: 2px;
+  }
+
+  /* Bloque de contacto */
+  .collab-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 30px 32px;
+    background: var(--bg-surface-elevated);
+    border-color: var(--accent-primary);
+  }
+
+  .collab-cta-text {
+    min-width: 0;
+  }
+
+  .collab-cta-text h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .collab-cta-text p {
+    font-size: 0.94rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 10px;
+    max-width: 560px;
+  }
+
+  .collab-response {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0 !important;
+  }
+
+  .collab-response svg {
+    color: var(--accent-primary);
+    flex-shrink: 0;
+  }
+
+  .btn-collab-mail {
+    flex-shrink: 0;
+    text-transform: none;
+    font-size: 0.9rem;
+    padding: 14px 22px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  /* Estado cerrado */
+  .collab-closed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    padding: 36px 28px;
+    background: var(--bg-surface-elevated);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .closed-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 219, 121, 0.14);
+    border: 2px solid var(--accent-amber);
+    color: var(--accent-amber);
+  }
+
+  .collab-closed p {
+    font-size: 0.96rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .collab-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .collab-cta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 26px 22px;
+    }
+
+    .btn-collab-mail {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .collab-card {
+      padding: 22px 18px;
+    }
+
+    .collab-cta-text h3 {
+      font-size: 1.14rem;
+    }
+  }
+</style>

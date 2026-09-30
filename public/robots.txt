@@ -1,0 +1,15 @@
+# robots.txt — Esperancitos
+# Recuerda mantener sincronizado el dominio con src/config/site.ts
+
+User-agent: *
+Allow: /
+
+# Rutas de compilación que no deben indexarse
+Disallow: /_astro/
+
+# Rastreadores de IA sin aporte de tráfico: se les permite el acceso, la web es
+# de interés público para la comunidad estudiantil.
+User-agent: GPTBot
+Allow: /
+
+Sitemap: https://esperancitos.app/sitemap.xml

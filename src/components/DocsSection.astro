@@ -1,0 +1,450 @@
+---
+// DocsSection.astro - Guías de Sincronización y Acordeón FAQ con Animación Suave
+// Las preguntas viven en src/config/faq.ts porque también alimentan el JSON-LD
+// FAQPage del <head>; así la UI y los datos estructurados nunca se contradicen.
+import { FAQ_ENTRIES } from '../config/faq';
+---
+
+<section class="docs-section scroll-reveal" id="docs">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <span class="section-kicker">Guías y Ayuda</span>
+      <h2>Aprende a usarla en un par de minutos</h2>
+      <p>
+        Aquí están los pasos para conectar tu horario y tu Moodle, y las respuestas a las dudas más comunes.
+      </p>
+    </div>
+
+    <!-- Rejilla de Guías Paso a Paso -->
+    <div class="guides-grid">
+      
+      <!-- Guía 01: Moodle QR -->
+      <div class="guide-box card-app reveal-init">
+        <div class="guide-top-bar">
+          <span class="badge-app green">GUÍA 01</span>
+          <span class="guide-time">~2 MIN</span>
+        </div>
+        
+        <h3>Cómo conectar tu Moodle con un código QR</h3>
+        <p class="guide-lead">
+          Para que nadie pueda robarte la contraseña, Esperancitos no la pide ni la guarda. En su lugar usas el código QR oficial de Moodle, así:
+        </p>
+
+        <ol class="guide-step-list">
+          <li class="guide-step">
+            <span class="step-num-pill">1</span>
+            <div class="step-text">
+              <strong>Abre tu Moodle:</strong> entra a <code>micampus.espe.edu.ec</code> desde tu laptop o desde el navegador del celular.
+            </div>
+          </li>
+          <li class="guide-step">
+            <span class="step-num-pill">2</span>
+            <div class="step-text">
+              <strong>Entra a tu perfil:</strong> haz clic en tu nombre o tu foto, en la esquina de arriba a la derecha, y elige <em>"Perfil"</em>.
+            </div>
+          </li>
+          <li class="guide-step">
+            <span class="step-num-pill">3</span>
+            <div class="step-text">
+              <strong>Busca el código QR:</strong> en <em>"Detalles del usuario"</em> haz clic en <em>"Ver código QR para la app móvil"</em>.
+            </div>
+          </li>
+          <li class="guide-step">
+            <span class="step-num-pill">4</span>
+            <div class="step-text">
+              <strong>Escanéalo con la app:</strong> en la pantalla de inicio de Esperancitos toca <em>"Escanear QR de Moodle"</em> y apunta la cámara al código.
+            </div>
+          </li>
+        </ol>
+
+        <div class="guide-result-banner card-app">
+          <div class="result-icon-check">✓</div>
+          <div class="result-text">
+            <strong>Y listo:</strong> tus cursos, tareas y notas aparecen en la app. No tuviste que escribir ninguna contraseña.
+          </div>
+        </div>
+      </div>
+
+      <!-- Guía 02: Banner 9 SSB -->
+      <div class="guide-box card-app reveal-init">
+        <div class="guide-top-bar">
+          <span class="badge-app amber">GUÍA 02</span>
+          <span class="guide-time">~1 MIN</span>
+        </div>
+
+        <h3>Cómo traer tu horario y tus notas</h3>
+        <p class="guide-lead">
+          Para ver tus aulas, tus profesores y las notas de todos tus semestres:
+        </p>
+
+        <ol class="guide-step-list">
+          <li class="guide-step">
+            <span class="step-num-pill amber">1</span>
+            <div class="step-text">
+              <strong>Entra a Horario o Notas:</strong> dentro de la app, toca <em>"Conectar con la ESPE"</em>.
+            </div>
+          </li>
+          <li class="guide-step">
+            <span class="step-num-pill amber">2</span>
+            <div class="step-text">
+              <strong>Inicia sesión como siempre:</strong> se abre la página oficial de la universidad (miESPE o Microsoft 365) y entras con tu cuenta normal.
+            </div>
+          </li>
+          <li class="guide-step">
+            <span class="step-num-pill amber">3</span>
+            <div class="step-text">
+              <strong>Si se cae, no te preocupes:</strong> cuando el servidor de la universidad tarda o falla, la app lo intenta de nuevo sola, sin que tengas que hacer nada.
+            </div>
+          </li>
+          <li class="guide-step">
+            <span class="step-num-pill amber">4</span>
+            <div class="step-text">
+              <strong>Ya lo tienes:</strong> desde ese momento puedes ver tu horario sin internet, o guardarlo como imagen con el botón <em>"Guardar como imagen"</em>.
+            </div>
+          </li>
+        </ol>
+
+        <div class="guide-result-banner card-app amber-accent">
+          <div class="result-icon-check amber">✓</div>
+          <div class="result-text">
+            <strong>Y listo:</strong> tu horario y tus notas se quedan guardados en tu celular para consultarlos cuando quieras, incluso sin señal.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sección de Preguntas Frecuentes (FAQ) en Acordeón -->
+    <div class="faq-wrapper" id="faq">
+      <div class="faq-header-box">
+        <span class="badge-app green">DUDAS FRECUENTES</span>
+        <h3 class="faq-title">Preguntas Frecuentes</h3>
+      </div>
+
+      <div class="faq-accordion-list">
+        {FAQ_ENTRIES.map((entry, index) => (
+          <details class="faq-accordion-item card-app">
+            <summary class="faq-question">
+              <span>{entry.question}</span>
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                <Fragment set:html={entry.answer} />
+                {entry.bullets && entry.bullets.map((bullet) => (
+                  <>
+                    <br />• <Fragment set:html={bullet} />
+                  </>
+                ))}
+              </p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .docs-section {
+    padding: 90px 0 100px 0;
+    border-top: 2px solid var(--border-app);
+    background: rgba(16, 26, 35, 0.2);
+  }
+
+  /* Tres columnas sólo cuando hay ancho de sobra: con dos guías de 4 pasos cada
+     una, el texto se estrella mucho antes de los 920px */
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-bottom: 75px;
+  }
+
+  @media (max-width: 860px) {
+    .guides-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .guide-box {
+      padding: 24px;
+    }
+
+    .guide-box h3 {
+      font-size: 1.3rem;
+    }
+  }
+
+  .guide-box {
+    padding: 32px;
+    background: var(--bg-surface);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .guide-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .guide-time {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--text-muted);
+  }
+
+  .guide-box h3 {
+    font-size: 1.48rem;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+
+  .guide-lead {
+    font-size: 0.96rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+
+  .guide-step-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+
+  .guide-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .step-num-pill {
+    width: 26px;
+    height: 26px;
+    border-radius: var(--radius-sm);
+    background: rgba(0, 255, 135, 0.15);
+    color: var(--accent-primary);
+    border: 1.5px solid var(--accent-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-weight: 900;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-num-pill.amber {
+    background: rgba(255, 219, 121, 0.15);
+    color: var(--accent-amber);
+    border-color: var(--accent-amber);
+  }
+
+  .step-text strong {
+    color: var(--text-primary);
+  }
+
+  .step-text code {
+    font-family: var(--font-mono);
+    color: var(--accent-primary);
+    background: rgba(0, 255, 135, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+  }
+
+  .guide-result-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: rgba(0, 255, 135, 0.08);
+    border-color: var(--accent-primary);
+  }
+
+  .guide-result-banner.amber-accent {
+    background: rgba(255, 219, 121, 0.08);
+    border-color: var(--accent-amber);
+  }
+
+  .result-icon-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    color: var(--on-primary);
+    font-weight: 900;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .result-icon-check.amber {
+    background: var(--accent-amber);
+    color: var(--on-amber);
+  }
+
+  .result-text {
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  /* FAQ Accordion */
+  .faq-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .faq-header-box {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .faq-title {
+    font-size: 2rem;
+    margin-top: 10px;
+  }
+
+  .faq-accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .faq-accordion-item {
+    background: var(--bg-surface);
+    padding: 0;
+    overflow: hidden;
+    transition: border-color var(--duration-hover) ease,
+                box-shadow var(--duration-hover) var(--ease-apple);
+  }
+
+  .faq-accordion-item[open] {
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-hard-green-sm);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    font-family: var(--font-sans);
+    font-size: 1.06rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: color var(--duration-hover) ease,
+                background-color var(--duration-hover) ease;
+  }
+
+  .faq-question:hover {
+    color: var(--accent-primary);
+    background: rgba(0, 255, 135, 0.04);
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-toggle-icon {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    transition: transform 280ms var(--ease-spring);
+    line-height: 1;
+  }
+
+  .faq-accordion-item[open] .faq-toggle-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 0 24px 22px 24px;
+    color: var(--text-secondary);
+    font-size: 0.96rem;
+    line-height: 1.65;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 16px;
+    animation: accordion-fade-in 340ms var(--ease-apple);
+  }
+
+  /* Apertura/cierre suave del <details>: se apoya en interpolate-size cuando el
+     navegador lo soporta (Chromium 129+) y degrada a apertura instantánea en el
+     resto, sin romper nada. */
+  .faq-accordion-item::details-content {
+    block-size: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: block-size 340ms var(--ease-apple),
+                opacity 240ms ease,
+                content-visibility 340ms allow-discrete;
+  }
+
+  .faq-accordion-item[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+
+  @supports (interpolate-size: allow-keywords) {
+    .faq-accordion-item {
+      interpolate-size: allow-keywords;
+    }
+  }
+
+  @keyframes accordion-fade-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .faq-answer strong {
+    color: var(--text-primary);
+  }
+
+  /* En pantallas estrechas el icono no debe empujar el texto */
+  @media (max-width: 560px) {
+    .faq-question {
+      padding: 16px 18px;
+      font-size: 0.98rem;
+    }
+
+    .faq-answer {
+      padding: 0 18px 18px 18px;
+    }
+  }
+</style>
+
+<script>
+  // Acordeón exclusivo: al abrir una pregunta se cierran las demás, para que la
+  // sección no quede con cinco respuestas abiertas a la vez.
+  const faqItems = document.querySelectorAll<HTMLDetailsElement>('.faq-accordion-item');
+
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      faqItems.forEach(other => {
+        if (other !== item && other.open) other.open = false;
+      });
+    });
+  });
+</script>

@@ -1,0 +1,965 @@
+---
+// AppScreensShowcase.astro - Conoce la interfaz por dentro con Tabs Segmented Control y Desbloqueo de Materias
+---
+
+<section class="screens-section scroll-reveal" id="vistas">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <span class="section-kicker">Cómo se ve por dentro</span>
+      <h2>Así se ve la app por dentro</h2>
+      <p>
+        Diseñada con bordes sólidos, alto contraste para verla bajo el sol del campus Sangolquí y micro-animaciones táctiles.
+      </p>
+    </div>
+
+    <div class="showcase-container card-app reveal-init">
+      <!-- Selector de pantalla estilo Segmented Control de iOS con 4 Vistas Clave -->
+      <div class="segmented-control-wrapper">
+        <div class="segmented-control" role="tablist" aria-label="Selector de pantalla de la app">
+          <button class="seg-tab-btn active" role="tab" aria-selected="true" data-tab="malla-screen" id="tab-btn-malla">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+              <path d="M6 6h10"></path>
+              <path d="M6 10h10"></path>
+            </svg>
+            <span>Mi Malla Curricular</span>
+          </button>
+          <button class="seg-tab-btn" role="tab" aria-selected="false" data-tab="horario-screen" id="tab-btn-horario">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>Horario & Aulas</span>
+          </button>
+          <button class="seg-tab-btn" role="tab" aria-selected="false" data-tab="moodle-screen" id="tab-btn-moodle">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Campus Moodle QR</span>
+          </button>
+          <button class="seg-tab-btn" role="tab" aria-selected="false" data-tab="historial-screen" id="tab-btn-historial">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+            <span>Historial & Notas</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Pila de paneles: todos comparten celda de grid para poder fundirse -->
+      <div class="screens-stack">
+        <!-- Pantalla 1: Malla Curricular -->
+        <div class="screen-panel active" id="malla-screen" role="tabpanel" aria-labelledby="tab-btn-malla">
+        <div class="screen-layout-grid">
+          
+          <!-- Mockup Interactivo de Malla con Desbloqueo en Cascada -->
+          <div class="device-mockup-frame">
+            <div class="mockup-header-bar">
+              <span class="m-pill">24 carreras</span>
+              <span class="m-status-text">44.2% listo</span>
+            </div>
+
+            <!-- Visual Real o Demo Interactiva de Cascada -->
+            <div class="mockup-img-holder">
+              <picture>
+                <source srcset="/images/mockup-malla.webp" type="image/webp" />
+                <img src="/images/mockup-malla.jpg" alt="Malla curricular de la carrera con el progreso de créditos y el año estimado de graduación" class="mockup-view-img" width="640" height="1147" loading="lazy" />
+              </picture>
+              
+              <!-- Overlay interactivo demostrativo de materias en cascada (desbloqueo gris a verde) -->
+              <div class="malla-cascade-demo" id="malla-cascade-box" aria-hidden="true">
+                <div class="cascade-badge">DEMO DE DESBLOQUEO EN CASCADA</div>
+                <div class="cascade-grid">
+                  <div class="subject-node unlocked node-1">
+                    <span class="node-code">MAT101</span>
+                    <span class="node-name">Cálculo I</span>
+                    <span class="node-state">✓ Aprobada</span>
+                  </div>
+                  <div class="subject-node unlocked node-2">
+                    <span class="node-code">FIS102</span>
+                    <span class="node-name">Física Clásica</span>
+                    <span class="node-state">✓ Aprobada</span>
+                  </div>
+                  <div class="subject-node pending node-3" id="cascade-node-3">
+                    <span class="node-code">ED201</span>
+                    <span class="node-name">Est. Datos</span>
+                    <span class="node-state" id="state-node-3">Desbloqueando...</span>
+                  </div>
+                  <div class="subject-node pending node-4" id="cascade-node-4">
+                    <span class="node-code">RED301</span>
+                    <span class="node-name">Redes I</span>
+                    <span class="node-state" id="state-node-4">Bloqueada</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido y Características de la Malla -->
+          <div class="screen-info-content">
+            <div class="info-tag-row">
+              <span class="badge-app green">Funciona sin internet</span>
+            </div>
+
+            <h3>Tu malla, con las materias que se van destapando solas</h3>
+            <p class="screen-lead-text">
+              Olvídate de revisar PDFs confusos. Esperancitos carga tu carrera con un solo toque y te guía semestre a semestre.
+            </p>
+
+            <div class="feature-checklist">
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle green">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Resumen que puedes encoger:</strong>
+                  <p>Te dice en qué año te graduarías y cuántos créditos llevas. Si te estorba, lo encoges a una barrita con un toque.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle green">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Ver la malla a pantalla completa:</strong>
+                  <p>Un botón oculta la cabecera y te deja toda la pantalla para recorrer tus semestres sin distracciones.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle green">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Las materias se destapan solas:</strong>
+                  <p>Cuando marcas una materia como aprobada, las que venían después se habilitan al instante.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle amber">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Ojo con las materias que te frenan:</strong>
+                  <p>Te marca en ámbar las materias encadenadas que, si las dejas para después, te retrasan la graduación.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pantalla 2: Horario Semanal -->
+      <div class="screen-panel" id="horario-screen" role="tabpanel" aria-labelledby="tab-btn-horario">
+        <div class="screen-layout-grid">
+          
+          <div class="device-mockup-frame">
+            <div class="mockup-header-bar">
+              <span class="m-pill amber">Tu horario</span>
+              <span class="m-status-text">Esta semana</span>
+            </div>
+
+            <div class="mockup-img-holder">
+              <picture>
+                <source srcset="/images/mockup-horario.webp" type="image/webp" />
+                <img src="/images/mockup-horario.jpg" alt="Horario semanal de la ESPE con el aula, el bloque y el docente de cada asignatura" class="mockup-view-img" width="640" height="1147" loading="lazy" />
+              </picture>
+            </div>
+          </div>
+
+          <div class="screen-info-content">
+            <div class="info-tag-row">
+              <span class="badge-app amber">Conectado con la ESPE</span>
+            </div>
+
+            <h3>Tu horario de la semana, con el aula de cada clase</h3>
+            <p class="screen-lead-text">
+              Consulta en segundos en qué aula tienes clase hoy sin tener que iniciar sesión cada vez en el navegador.
+            </p>
+
+            <div class="feature-checklist">
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle amber">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Sabes en qué aula te toca:</strong>
+                  <p>El aula de cada clase (A-204, C-112…), el nombre del profesor y el NRC de la materia.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle amber">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Guarda tu horario como imagen:</strong>
+                  <p>Con un toque lo conviertes en una imagen en buena calidad para compartirla o ponerla de fondo de pantalla.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle amber">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Si el sistema falla, insiste solo:</strong>
+                  <p>Cuando la página de la universidad tarda o se cae, la app lo intenta otra vez por su cuenta antes de darte un error.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle amber">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Te avisa antes de cada clase:</strong>
+                  <p>Eliges con cuántos minutos de anticipación quieres el recordatorio y no vuelves a llegar tarde.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pantalla 3: Campus Virtual Moodle -->
+      <div class="screen-panel" id="moodle-screen" role="tabpanel" aria-labelledby="tab-btn-moodle">
+        <div class="screen-layout-grid">
+          <div class="device-mockup-frame">
+            <div class="mockup-header-bar">
+              <span class="m-pill green">Moodle</span>
+              <span class="m-status-text">Sin contraseña</span>
+            </div>
+            <div class="mockup-img-holder moodle-qr-demo-holder">
+              <div class="moodle-qr-visual card-app">
+                <div class="qr-laser-scanner">
+                  <div class="laser-beam"></div>
+                  <img src="/images/qr-donacion.jpg" alt="Demostración de código QR Moodle" class="qr-big-sample" width="180" height="180" loading="lazy" />
+                </div>
+                <span class="qr-hint-text">Apunta la cámara al código QR de tu perfil de Moodle</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="screen-info-content">
+            <div class="info-tag-row">
+              <span class="badge-app green">Sin escribir tu contraseña</span>
+            </div>
+
+            <h3>Entra a tu Moodle escaneando un código QR</h3>
+            <p class="screen-lead-text">
+              Conéctate escaneando el código QR de Moodle Mobile en un segundo. Cero riesgo de escribir o guardar tu contraseña en la app.
+            </p>
+
+            <div class="feature-checklist">
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle green">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Tu cuenta no corre riesgo:</strong>
+                  <p>Entras con el código QR oficial de Moodle, así que nunca escribes ni guardas tu contraseña.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle green">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Nunca se te olvida una entrega:</strong>
+                  <p>Tus tareas aparecen ordenadas por lo que vence primero, con la fecha límite a la vista.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle green">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Mira tus notas al día:</strong>
+                  <p>Las calificaciones de tareas y foros se ven directo en tu celular.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle green">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Sirve para todas las sedes:</strong>
+                  <p>Matriz Sangolquí (Presencial), Posgrados y Modalidad en Línea.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pantalla 4: Historial Académico & Promedios -->
+      <div class="screen-panel" id="historial-screen" role="tabpanel" aria-labelledby="tab-btn-historial">
+        <div class="screen-layout-grid">
+          <div class="device-mockup-frame">
+            <div class="mockup-header-bar">
+              <span class="m-pill amber">Tus notas</span>
+              <span class="m-status-text">Consolidado</span>
+            </div>
+            <div class="mockup-img-holder historial-demo-holder">
+              <div class="historial-card-sample card-app">
+                <span class="hist-label">TU PROMEDIO GENERAL</span>
+                <div class="hist-score-row">
+                  <span class="hist-score">17.85</span>
+                  <span class="hist-total">/ 20.00</span>
+                </div>
+                <div class="hist-meta-box">
+                  <div class="hist-meta-item">
+                    <span class="hm-val">112</span>
+                    <span class="hm-lbl">Créditos Aprobados</span>
+                  </div>
+                  <div class="hist-meta-item">
+                    <span class="hm-val">245</span>
+                    <span class="hm-lbl">Créditos Totales</span>
+                  </div>
+                </div>
+                <div class="hist-badge-row">
+                  <span class="badge-app green">Notas de la ESPE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="screen-info-content">
+            <div class="info-tag-row">
+              <span class="badge-app amber">Todos tus semestres</span>
+            </div>
+
+            <h3>Tus notas de todos los semestres y tu promedio</h3>
+            <p class="screen-lead-text">
+              Extracción consolidada de tu récord oficial de notas directamente desde las bases de datos de Banner ESPE.
+            </p>
+
+            <div class="feature-checklist">
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle amber">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Tu promedio se calcula solo:</strong>
+                  <p>La app hace la cuenta con el peso de cada materia y te muestra tu promedio general actualizado.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle amber">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Cuánto llevas y cuánto te falta:</strong>
+                  <p>Lleva la cuenta de los créditos que ya aprobaste frente al total de tu carrera.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle amber">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Semestre por semestre:</strong>
+                  <p>Consulta tus materias pasadas, las convalidadas y todas tus notas registradas.</p>
+                </div>
+              </div>
+
+              <div class="check-item card-app reveal-init">
+                <div class="check-icon-circle amber">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="check-desc">
+                  <strong>Funciona sin señal:</strong>
+                  <p>Tus notas y tu avance quedan guardados en tu celular para consultarlos al instante.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .screens-section {
+    padding: 80px 0 100px 0;
+    position: relative;
+  }
+
+  .showcase-container {
+    padding: 40px;
+    background: var(--bg-surface);
+  }
+
+  /* Segmented Control iOS Style */
+  .segmented-control-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .segmented-control {
+    display: inline-flex;
+    background: var(--bg-surface-elevated);
+    border: 2px solid var(--border-app);
+    border-radius: var(--radius-pill);
+    padding: 5px;
+    box-shadow: var(--shadow-hard-sm);
+    gap: 6px;
+  }
+
+  .seg-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 0.95rem;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid transparent;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--duration-hover) var(--ease-apple);
+  }
+
+  .seg-tab-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .seg-tab-btn.active {
+    background: var(--accent-primary);
+    color: var(--on-primary);
+    border-color: #000000;
+    box-shadow: 2px 2px 0px #000000;
+  }
+
+  /* Paneles de Contenido.
+     Antes se alternaba display:none/block, por lo que la transición de
+     opacity/transform declarada aquí NO se reproducía nunca (no se puede
+     transicionar desde display:none). Ahora los paneles se apilan en la misma
+     celda de grid y se alterna visibility: el fundido sí ocurre. */
+  .screens-stack {
+    display: grid;
+  }
+
+  .screen-panel {
+    grid-area: 1 / 1;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 320ms var(--ease-apple),
+                transform 360ms var(--ease-spring),
+                visibility 0s linear 320ms;
+  }
+
+  .screen-panel.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 380ms var(--ease-apple) 60ms,
+                transform 420ms var(--ease-spring) 60ms,
+                visibility 0s linear 0s;
+  }
+
+  .screen-layout-grid {
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: 50px;
+    align-items: center;
+  }
+
+  /* Marco del Teléfono en Showcase */
+  .device-mockup-frame {
+    width: 310px;
+    max-width: 100%;
+    margin: 0 auto;
+    background: #000000;
+    border-radius: 36px;
+    border: 8px solid #1A2230;
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.7),
+      6px 6px 0px #000000,
+      0 0 0 2px var(--accent-primary);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .mockup-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px 8px 16px;
+    background: #000000;
+    font-size: 0.68rem;
+    font-weight: 800;
+  }
+
+  .m-pill {
+    background: rgba(0, 255, 135, 0.15);
+    color: var(--accent-primary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+  }
+
+  .m-pill.amber {
+    background: rgba(255, 219, 121, 0.15);
+    color: var(--accent-amber);
+  }
+
+  .m-status-text {
+    color: var(--text-muted);
+  }
+
+  .mockup-img-holder {
+    position: relative;
+    background: #0B0F14;
+    aspect-ratio: 9 / 18;
+    overflow: hidden;
+  }
+
+  /* El <picture> debe ocupar toda la capa para conservar el encuadre */
+  .mockup-img-holder picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mockup-view-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Overlay de materias que se desbloquean en cascada */
+  .malla-cascade-demo {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    background: rgba(22, 26, 35, 0.95);
+    border: 2px solid var(--accent-primary);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    box-shadow: 3px 3px 0px #000;
+  }
+
+  .cascade-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .cascade-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .subject-node {
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid var(--border-app);
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    transition: all 400ms var(--ease-apple);
+  }
+
+  .subject-node .node-code {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 800;
+  }
+
+  .subject-node .node-name {
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  .subject-node .node-state {
+    font-size: 0.58rem;
+    margin-top: 2px;
+  }
+
+  .subject-node.unlocked {
+    background: rgba(0, 255, 135, 0.12);
+    border-color: var(--accent-primary);
+    color: var(--text-primary);
+  }
+  .subject-node.unlocked .node-code,
+  .subject-node.unlocked .node-state {
+    color: var(--accent-primary);
+  }
+
+  .subject-node.pending {
+    background: var(--bg-surface-elevated);
+    border-color: var(--border-app);
+    color: var(--text-muted);
+  }
+
+  /* Columna de Información */
+  .screen-info-content h3 {
+    font-size: 1.9rem;
+    margin: 14px 0 12px 0;
+    line-height: 1.22;
+  }
+
+  .screen-lead-text {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .feature-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--border-app);
+  }
+
+  .check-icon-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0px #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .check-icon-circle.green {
+    background: var(--accent-primary);
+    color: var(--on-primary);
+  }
+
+  .check-icon-circle.amber {
+    background: var(--accent-amber);
+    color: var(--on-amber);
+  }
+
+  .check-desc strong {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .check-desc p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Estilos de demos para Moodle y Historial */
+  .moodle-qr-demo-holder, .historial-demo-holder {
+    background: #0B0F14;
+    padding: 30px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 480px;
+  }
+
+  .moodle-qr-visual {
+    background: var(--bg-surface-elevated);
+    border: 2px solid var(--accent-primary);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .qr-laser-scanner {
+    position: relative;
+    background: #ffffff;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid #000000;
+    overflow: hidden;
+    display: inline-flex;
+  }
+
+  .laser-beam {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-primary);
+    box-shadow: 0 0 10px var(--accent-primary);
+    animation: scanner-sweep 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes scanner-sweep {
+    0% { top: 0%; }
+    100% { top: 96%; }
+  }
+
+  .qr-hint-text {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    max-width: 200px;
+    line-height: 1.4;
+  }
+
+  .historial-card-sample {
+    width: 100%;
+    background: var(--bg-surface-elevated);
+    border: 2px solid var(--border-app);
+    border-radius: var(--radius-md);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hist-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--accent-amber);
+    margin-bottom: 12px;
+  }
+
+  .hist-score-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .hist-score {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .hist-total {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+
+  .hist-meta-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    margin-bottom: 18px;
+  }
+
+  .hist-meta-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hm-val {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--accent-primary);
+  }
+
+  .hm-lbl {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+
+  @media (max-width: 960px) {
+    .screen-layout-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 40px;
+    }
+
+    .feature-checklist {
+      text-align: left;
+    }
+
+    .showcase-container {
+      padding: 24px 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .segmented-control {
+      flex-wrap: wrap;
+      justify-content: center;
+      border-radius: var(--radius-md);
+    }
+
+    .seg-tab-btn {
+      padding: 8px 14px;
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+<script>
+  // Tabs interactivas con crossfade
+  const tabButtons = document.querySelectorAll<HTMLButtonElement>('.seg-tab-btn');
+  const panels = document.querySelectorAll<HTMLElement>('.screen-panel');
+
+  type RevealHelper = (root: ParentNode, stagger?: number) => void;
+  const revealWithin = (window as unknown as { esperancitosRevealWithin?: RevealHelper })
+    .esperancitosRevealWithin;
+
+  const activatePanel = (panel: HTMLElement) => {
+    panels.forEach(p => p.classList.remove('active'));
+    panel.classList.add('active');
+
+    // El MutationObserver global también escucha este cambio, pero se invoca
+    // aquí directamente para no depender de que esté registrado.
+    revealWithin?.(panel, 70);
+  };
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      const targetId = btn.getAttribute('data-tab');
+      const targetPanel = targetId ? document.getElementById(targetId) : null;
+      if (targetPanel) activatePanel(targetPanel);
+    });
+
+    // Navegación por teclado dentro del tablist (flechas / Home / End)
+    btn.addEventListener('keydown', (event: KeyboardEvent) => {
+      const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+      if (!keys.includes(event.key)) return;
+      event.preventDefault();
+
+      const list = Array.from(tabButtons);
+      const current = list.indexOf(btn);
+      let next = current;
+
+      if (event.key === 'ArrowRight') next = (current + 1) % list.length;
+      if (event.key === 'ArrowLeft') next = (current - 1 + list.length) % list.length;
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = list.length - 1;
+
+      list[next].focus();
+      list[next].click();
+    });
+  });
+
+  // Animación al entrar en vista: materias que pasan de gris a verde en cascada.
+  // Se ejecuta UNA sola vez: antes se rearmaba cada vez que el bloque volvía a
+  // entrar en el viewport, así que la demostración se reiniciaba sin parar.
+  const cascadeNode3 = document.getElementById('cascade-node-3');
+  const stateNode3 = document.getElementById('state-node-3');
+  const cascadeBox = document.getElementById('malla-cascade-box');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (cascadeBox && cascadeNode3 && stateNode3) {
+    const openCascadeNode = () => {
+      cascadeNode3.classList.remove('pending');
+      cascadeNode3.classList.add('unlocked');
+      stateNode3.textContent = '✓ Desbloqueada';
+    };
+
+    if (prefersReducedMotion.matches) {
+      // Sin animación: el resultado final se muestra de inmediato
+      openCascadeNode();
+    } else {
+      let cascadePlayed = false;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !cascadePlayed) {
+            cascadePlayed = true;
+            window.setTimeout(openCascadeNode, 800);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      observer.observe(cascadeBox);
+    }
+  }
+</script>

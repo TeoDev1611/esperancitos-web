@@ -1,0 +1,631 @@
+/* Tipografías oficiales servidas desde este mismo dominio.
+   Antes se cargaban con @import desde fonts.googleapis.com, lo que bloqueaba el
+   renderizado, añadía una conexión externa y filtraba la visita a Google.
+   El archivo se genera con: python tools/fetch_fonts.py */
+@import './fonts.css';
+
+:root {
+  /* ==========================================================================
+     ADN VISUAL DE LA APP (Valores reales extraídos de lib/core/theme)
+     ========================================================================== */
+  --bg-primary: #0B0F14;
+  --bg-surface: #161A23;
+  --bg-surface-elevated: #1E2230;
+  --bg-surface-container: #272A31;
+  --bg-surface-subtle: #191C22;
+
+  /* Bordes brutalistas */
+  --border-app: #2A3142;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-bold: #000000;
+  --border-highlight: #00FF87;
+
+  /* Acento Primario: Verde Esmeralda Neón de la App */
+  --accent-primary: #00FF87;
+  --accent-primary-hover: #059669;
+  --accent-primary-dark: #007138;
+  --on-primary: #00210C;
+
+  /* Acento Secundario / Alertas / Ruta Crítica: Ámbar Oro Neón */
+  --accent-amber: #FFDB79;
+  --accent-amber-hover: #F59E0B;
+  --on-amber: #2A1C00;
+
+  /* Alertas críticas */
+  --accent-critical: #FFB4AB;
+  --accent-cyan: #38BDF8;
+
+  /* Tipografía y Contrastes (WCAG AA Compliant) */
+  --text-primary: #FFFAF7;   /* Blanco puro nítido */
+  --text-secondary: #E1E2EB; /* Claro y sumamente legible (Contraste > 12:1) */
+  --text-muted: #94A3B8;     /* Gris neutro legible (Contraste > 5.5:1) */
+
+  /* Sombras Brutalistas Duras (Box-Shadows sin blur) */
+  --shadow-hard: 4px 4px 0px #000000;
+  --shadow-hard-sm: 2px 2px 0px #000000;
+  --shadow-hard-lg: 6px 6px 0px #000000;
+  --shadow-hard-green: 4px 4px 0px #00FF87;
+  --shadow-hard-green-sm: 2px 2px 0px #00FF87;
+  --shadow-hard-amber: 4px 4px 0px #FFDB79;
+  --shadow-hard-white: 3px 3px 0px #FFFFFF;
+
+  /* Radios */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+
+  /* Tipografías */
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Curvas y Duraciones Estilo Apple */
+  --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-enter: 700ms;
+  --duration-hover: 220ms;
+  --duration-sink: 100ms;
+}
+
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--bg-primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  /* Fondo técnico con cuadrícula sutil de malla curricular */
+  background-image: 
+    linear-gradient(to right, rgba(42, 49, 66, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(42, 49, 66, 0.25) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center top;
+}
+
+/* Enlaces limpios */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Scrollbar Neo-Brutalist */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-surface-elevated);
+  border: 2px solid var(--bg-primary);
+  border-radius: var(--radius-sm);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Accesibilidad: Focus visible de alto contraste */
+:focus-visible {
+  outline: 3px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+/* Tipografía de Encabezados y Texto: Evitar palabras pegadas */
+h1 {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  word-spacing: 0.04em;
+  color: var(--text-primary);
+}
+
+h2 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  word-spacing: 0.03em;
+  text-wrap: balance;
+  color: var(--text-primary);
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  word-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+p, span, li, button, a, label {
+  letter-spacing: 0;
+}
+
+/* Kicker elegante para títulos de sección (sin sobrecargar de cajas/badges) */
+.section-kicker {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin-bottom: 12px;
+}
+
+.section-kicker.amber {
+  color: var(--accent-amber);
+}
+
+/* Contenedor central fluido */
+.container {
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* ==========================================================================
+   COMPONENTES CENTRALES DEL SISTEMA DE DISEÑO
+   ========================================================================== */
+
+/* 1. La tarjeta insignia (.card-app) */
+.card-app {
+  background: var(--bg-surface);
+  border: 2px solid var(--border-app);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-hard);
+  position: relative;
+  transition: transform var(--duration-hover) var(--ease-apple),
+              box-shadow var(--duration-hover) var(--ease-apple),
+              border-color var(--duration-hover) ease;
+}
+
+.card-app:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0px #000000;
+  border-color: var(--accent-primary);
+}
+
+.card-app.live {
+  background: var(--bg-surface-elevated);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-hard-green);
+}
+
+.card-app.live:hover {
+  box-shadow: 6px 6px 0px var(--accent-primary);
+}
+
+.card-app.amber-accent {
+  border-color: var(--accent-amber);
+  box-shadow: var(--shadow-hard-amber);
+}
+
+/* 2. Botón Primario y Variantes con Efecto "Hundimiento" Táctil */
+.btn-app {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 24px;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-bold);
+  box-shadow: var(--shadow-hard);
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition: transform var(--duration-sink) var(--ease-apple),
+              box-shadow var(--duration-sink) var(--ease-apple),
+              background-color var(--duration-hover) ease,
+              border-color var(--duration-hover) ease;
+  position: relative;
+}
+
+.btn-app:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.btn-app:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px #000000;
+}
+
+/* Botón Primario Verde Sólido de la App */
+.btn-app-primary {
+  background: var(--accent-primary);
+  color: var(--on-primary);
+  border-color: #000000;
+}
+.btn-app-primary:hover {
+  background: #34D399;
+}
+
+/* Botón Ámbar (Apoyo / Donaciones) */
+.btn-app-amber {
+  background: var(--accent-amber);
+  color: var(--on-amber);
+  border-color: #000000;
+}
+.btn-app-amber:hover {
+  background: #FCD34D;
+}
+
+/* Botón Superficie / Secundario */
+.btn-app-surface {
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-app);
+}
+.btn-app-surface:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+/* 3. Etiquetas y Badges Pequeños en MAYÚSCULAS con Letter-Spacing */
+.badge-app {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-elevated);
+  border: 1.5px solid var(--border-app);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-hard-sm);
+  white-space: nowrap;
+}
+
+.badge-app.green {
+  background: rgba(0, 255, 135, 0.12);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.badge-app.amber {
+  background: rgba(255, 219, 121, 0.12);
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+}
+
+/* Chip en vivo animado */
+.chip-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--accent-primary);
+  color: var(--on-primary);
+  border-radius: var(--radius-sm);
+  border: 1.5px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.pulse-circle {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--on-primary);
+  animation: pulse-ring 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+/* 4. Encabezados de Sección */
+.section-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 55px auto;
+}
+
+.section-header .badge-app {
+  margin-bottom: 16px;
+}
+
+.section-header h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 14px;
+}
+
+.section-header p {
+  color: var(--text-secondary);
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+
+/* 5. Destacados en Texto */
+.highlight-neon {
+  color: var(--accent-primary);
+}
+
+.highlight-amber {
+  color: var(--accent-amber);
+}
+
+/* ==========================================================================
+   ANIMACIONES ESTILO APPLE & SCROLL-DRIVEN
+   ========================================================================== */
+
+/* Entrada con mejora progresiva (Visible por defecto en CSS base; animado solo si JS activó js-anim) */
+.reveal-init {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+html.js-anim .reveal-init {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(4px);
+  transition: opacity 700ms var(--ease-apple),
+              transform 700ms var(--ease-spring),
+              filter 700ms var(--ease-apple);
+  will-change: opacity, transform, filter;
+}
+
+html.js-anim .reveal-init.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Variantes de entrada para evitar que todos los bloques suban igual */
+html.js-anim .reveal-init.reveal-left  { transform: translateX(-28px) translateY(0); }
+html.js-anim .reveal-init.reveal-right { transform: translateX(28px) translateY(0); }
+html.js-anim .reveal-init.reveal-left.revealed,
+html.js-anim .reveal-init.reveal-right.revealed { transform: translateX(0) translateY(0); }
+
+/* Aplicado a <section> completas: refuerza la entrada de sus hijos .reveal-init */
+html.js-anim .scroll-reveal .reveal-init {
+  opacity: 0;
+  transform: translateY(34px);
+  filter: blur(4px);
+}
+
+html.js-anim .reveal-init.revealed,
+html.js-anim .scroll-reveal .reveal-init.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* --------------------------------------------------------------------------
+   CASCADA ESCALONADA (Staggered Delays)
+   IMPORTANTE: el retardo se declara SOLO en el estado .reveal-init (antes de
+   revelarse). Al retirarse esa regla en .revealed, el elemento recupera un
+   transition-delay de 0ms y sus transiciones de hover (:hover en .card-app,
+   .bento-card, .feature-chip, etc.) responden de inmediato en vez de quedar
+   frenadas por un delay heredado que nunca se limpiaba.
+   -------------------------------------------------------------------------- */
+html.js-anim .bento-grid .reveal-init:nth-child(1) { transition-delay: 0ms; }
+html.js-anim .bento-grid .reveal-init:nth-child(2) { transition-delay: 90ms; }
+html.js-anim .bento-grid .reveal-init:nth-child(3) { transition-delay: 180ms; }
+html.js-anim .bento-grid .reveal-init:nth-child(4) { transition-delay: 0ms; }
+html.js-anim .bento-grid .reveal-init:nth-child(5) { transition-delay: 90ms; }
+html.js-anim .bento-grid .reveal-init:nth-child(6) { transition-delay: 180ms; }
+
+html.js-anim .feature-checklist .reveal-init:nth-child(1) { transition-delay: 0ms; }
+html.js-anim .feature-checklist .reveal-init:nth-child(2) { transition-delay: 70ms; }
+html.js-anim .feature-checklist .reveal-init:nth-child(3) { transition-delay: 140ms; }
+html.js-anim .feature-checklist .reveal-init:nth-child(4) { transition-delay: 210ms; }
+
+html.js-anim .guides-grid .reveal-init:nth-child(1) { transition-delay: 0ms; }
+html.js-anim .guides-grid .reveal-init:nth-child(2) { transition-delay: 120ms; }
+
+html.js-anim .steps-grid .reveal-init:nth-child(1) { transition-delay: 0ms; }
+html.js-anim .steps-grid .reveal-init:nth-child(2) { transition-delay: 90ms; }
+html.js-anim .steps-grid .reveal-init:nth-child(3) { transition-delay: 180ms; }
+
+/* --------------------------------------------------------------------------
+   BOTÓN DE COPIADO (compartido por SupportSection y el modal de donación)
+   Definido en la hoja global para que SupportSection.astro pueda aplicarlo a
+   sus botones con :global() y evitar la especificidad extra que Astro añade a
+   los estilos con scope. Si no, esos botones perdían todas estas reglas.
+   -------------------------------------------------------------------------- */
+.btn-app-copy {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-app);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  box-shadow: 1.5px 1.5px 0px #000;
+  cursor: pointer;
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: background-color 150ms ease,
+              border-color 150ms ease,
+              color 150ms ease,
+              transform 150ms var(--ease-apple),
+              box-shadow 150ms var(--ease-apple);
+}
+
+.btn-app-copy:not(.copied):hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0px #000;
+}
+
+.btn-app-copy:active {
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+.btn-app-copy.copied {
+  background: var(--accent-primary);
+  color: var(--on-primary);
+  border-color: #000;
+  transform: scale(1.05);
+}
+
+/* --------------------------------------------------------------------------
+   MODAL NATIVO <dialog> — entrada animada y backdrop desvanecido
+   -------------------------------------------------------------------------- */
+dialog {
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  max-width: calc(100vw - 32px);
+}
+
+dialog::backdrop {
+  background: rgba(11, 15, 20, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: backdrop-fade-in 260ms ease both;
+}
+
+dialog[open] > * {
+  animation: dialog-pop-in 380ms var(--ease-spring) both;
+}
+
+dialog.is-closing > * {
+  animation: dialog-pop-out 180ms var(--ease-apple) both;
+}
+
+dialog.is-closing::backdrop {
+  animation: backdrop-fade-out 180ms ease both;
+}
+
+@keyframes backdrop-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes backdrop-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes dialog-pop-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes dialog-pop-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(10px) scale(0.98); }
+}
+
+/* --------------------------------------------------------------------------
+   ENLACE DE SALTO AL CONTENIDO
+   -------------------------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -80px;
+  z-index: 200;
+  padding: 12px 18px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  background: var(--accent-primary);
+  color: var(--on-primary);
+  border: 2px solid #000;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-hard);
+  transition: top 180ms var(--ease-apple);
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ==========================================================================
+   RESPETO ESTRICTO A prefers-reduced-motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-init,
+  html.js-anim .reveal-init,
+  html.js-anim .scroll-reveal .reveal-init {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  .scroll-reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .btn-app:hover,
+  .btn-app:active,
+  .card-app:hover,
+  .feature-chip:hover {
+    transform: none !important;
+  }
+
+  .btn-hero-cta,
+  .download-bounce-icon,
+  .pulse-circle,
+  .qr-laser-scanner,
+  .laser-beam,
+  .mini-laser-line,
+  .hero-ambient-glow,
+  .hero-grid-bg {
+    animation: none !important;
+  }
+}

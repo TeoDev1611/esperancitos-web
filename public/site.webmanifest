@@ -1,0 +1,68 @@
+{
+  "name": "Esperancitos — App Estudiantil ESPE",
+  "short_name": "Esperancitos",
+  "description": "Malla curricular offline, horario semanal con aulas desde Banner 9 SSB y Campus Virtual Moodle vía QR seguro. La app todo-en-uno para estudiantes de la ESPE.",
+  "lang": "es-EC",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B0F14",
+  "theme_color": "#0B0F14",
+  "categories": ["education", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/mockup-malla.webp",
+      "sizes": "640x1147",
+      "type": "image/webp",
+      "label": "Malla curricular con cálculo de graduación"
+    },
+    {
+      "src": "/images/mockup-horario.webp",
+      "sizes": "640x1147",
+      "type": "image/webp",
+      "label": "Horario semanal con aulas y bloques"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Descargar APK",
+      "short_name": "Descargar",
+      "url": "/#descargar",
+      "description": "Ir al centro de descargas del APK para Android"
+    },
+    {
+      "name": "Reportar un error",
+      "short_name": "Comentarios",
+      "url": "/#comentarios",
+      "description": "Enviar un reporte de bug o una sugerencia"
+    }
+  ]
+}

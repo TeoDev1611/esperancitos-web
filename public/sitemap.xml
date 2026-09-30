@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap de Esperancitos.
+  Mantén el dominio sincronizado con src/config/site.ts y public/robots.txt.
+  Si añades páginas nuevas, agrégalas aquí como un <url> más.
+-->
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
+  <url>
+    <loc>https://esperancitos.app/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://esperancitos.app/images/mockup-malla.webp</image:loc>
+      <image:title>Malla curricular interactiva de Esperancitos para estudiantes de la ESPE</image:title>
+      <image:caption>Malla curricular sin internet con cálculo de créditos y año estimado de graduación.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://esperancitos.app/images/mockup-horario.webp</image:loc>
+      <image:title>Horario semanal con aulas en Esperancitos</image:title>
+      <image:caption>Horario semanal con el aula, el bloque, el docente y el NRC de cada asignatura.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://esperancitos.app/privacidad</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+</urlset>

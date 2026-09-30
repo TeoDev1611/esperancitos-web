@@ -1,0 +1,372 @@
+---
+// BaseLayout.astro - Shell común: <head> con SEO, header, footer y modal global.
+// Es la plantilla que usan TODAS las páginas. Si necesitas cambiar el <head>
+// (metadatos, datos estructurados, iconos), este es el archivo.
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SupportModal from '../components/SupportModal.astro';
+import { SITE, absoluteUrl } from '../config/site';
+import { FAQ_ENTRIES } from '../config/faq';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Ruta de imagen para OG/Twitter; por defecto la del sitio */
+  image?: string;
+  /** Palabras clave específicas de la página (se suman a las globales) */
+  keywords?: string;
+  /** Tipo de página para Open Graph */
+  ogType?: 'website' | 'article';
+  /** Si es false, no se emite el JSON-LD de la home (SoftwareApplication + FAQ) */
+  includeAppSchema?: boolean;
+  /** Si es true, se pide a los buscadores que no indexen la página */
+  noindex?: boolean;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  image = SITE.ogImage.path,
+  keywords,
+  ogType = 'website',
+  includeAppSchema = true,
+  noindex = false,
+} = Astro.props;
+
+// Astro.site viene de `site` en astro.config.mjs; si no está, se usa SITE.url
+const siteOrigin = Astro.site ? Astro.site.origin : SITE.url;
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin).toString();
+const ogImageURL = new URL(image, siteOrigin).toString();
+const isHome = Astro.url.pathname === '/';
+const fullTitle = isHome ? title : `${title} | ${SITE.name}`;
+const metaKeywords = keywords ? `${keywords}, ${SITE.keywords}` : SITE.keywords;
+const ogImageIsJpeg = /\.jpe?g$/i.test(image);
+
+const apkUrl = absoluteUrl(SITE.primaryApkPath);
+const screenshots = [
+  absoluteUrl('/images/mockup-malla.webp'),
+  absoluteUrl('/images/mockup-horario.webp'),
+];
+
+// ---------------------------------------------------------------------------
+// DATOS ESTRUCTURADOS (JSON-LD)
+// ---------------------------------------------------------------------------
+const softwareApp = {
+  '@context': 'https://schema.org',
+  '@type': ['SoftwareApplication', 'MobileApplication'],
+  name: SITE.name,
+  alternateName: 'Esperancitos ESPE',
+  applicationCategory: 'EducationApplication',
+  applicationSubCategory: 'Student Information System',
+  operatingSystem: `Android ${SITE.minAndroid}+`,
+  softwareVersion: SITE.version,
+  softwareHelp: { '@type': 'CreativeWork', url: `${siteOrigin}/#docs` },
+  fileSize: SITE.fileSize,
+  downloadUrl: apkUrl,
+  installUrl: apkUrl,
+  datePublished: SITE.releaseDate,
+  dateModified: SITE.releaseDate,
+  inLanguage: SITE.lang,
+  isAccessibleForFree: true,
+  description: SITE.description,
+  url: siteOrigin,
+  image: ogImageURL,
+  screenshot: screenshots,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+  },
+  author: {
+    '@type': 'Person',
+    name: SITE.author.name,
+    ...(SITE.author.url ? { url: SITE.author.url } : {}),
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: siteOrigin,
+  },
+  featureList: [
+    'Malla curricular interactiva 100% offline con 24 carreras de la ESPE',
+    'Cálculo estimado del año de graduación y créditos aprobados',
+    'Desbloqueo automático de prerrequisitos y filtro de ruta crítica',
+    'Horario semanal con aulas, bloques, docentes y NRC',
+    'Exportación del horario a imagen de alta definición',
+    'Acceso al Campus Virtual Moodle mediante código QR, sin contraseñas',
+    'Historial académico de todos los semestres y promedio general',
+    'Simulador de notas con metas de 14, 16 y 18 puntos',
+    'Compartir checklists entre estudiantes por código QR sin internet',
+    'Recordatorios locales antes de cada clase y resumen matutino',
+    'Widget de pantalla de inicio con la próxima clase',
+    'Sin anuncios, sin telemetría y con los datos cifrados en el dispositivo',
+  ],
+  keywords: SITE.keywords,
+};
+
+const faqPage = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ_ENTRIES.map((entry) => ({
+    '@type': 'Question',
+    name: entry.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: entry.plainAnswer,
+    },
+  })),
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  alternateName: 'Esperancitos ESPE',
+  url: siteOrigin,
+  inLanguage: SITE.lang,
+  description: SITE.description,
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: siteOrigin,
+    logo: {
+      '@type': 'ImageObject',
+      url: absoluteUrl('/icon-512.png'),
+    },
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteOrigin },
+  ],
+};
+
+// En la home se emiten los cuatro bloques; en páginas internas solo WebSite
+const jsonLdData = includeAppSchema
+  ? isHome
+    ? [softwareApp, website, faqPage, breadcrumb]
+    : [softwareApp, website]
+  : [website];
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- ===================================================================
+         SEO BÁSICO
+         =================================================================== -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={metaKeywords} />
+    <link rel="canonical" href={canonicalURL} />
+
+    {noindex ? (
+      <meta name="robots" content="noindex, follow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
+    <meta name="author" content={SITE.author.name} />
+    <meta name="application-name" content={SITE.name} />
+    <meta name="theme-color" content="#0B0F14" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Geolocalización / mercado objetivo (Ecuador) -->
+    <meta name="geo.region" content="EC-P" />
+    <meta name="geo.placename" content="Sangolquí" />
+    <meta name="content-language" content={SITE.lang} />
+
+    <!-- ===================================================================
+         ICONOS
+         =================================================================== -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/favicon.svg" color="#00FF87" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- ===================================================================
+         OPEN GRAPH (Facebook, WhatsApp, LinkedIn, Discord)
+         =================================================================== -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:secure_url" content={ogImageURL} />
+    <meta property="og:image:type" content={ogImageIsJpeg ? 'image/jpeg' : 'image/webp'} />
+    <meta property="og:image:width" content={String(SITE.ogImage.width)} />
+    <meta property="og:image:height" content={String(SITE.ogImage.height)} />
+    <meta property="og:image:alt" content={SITE.ogImage.alt} />
+
+    <!-- ===================================================================
+         TWITTER / X CARD
+         =================================================================== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={SITE.ogImage.alt} />
+
+    <!-- ===================================================================
+         DATOS ESTRUCTURADOS (Schema.org)
+         =================================================================== -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdData)} />
+
+    <!-- Progressive Enhancement: Activar animaciones vivas cuando JS está presente -->
+    <script is:inline>
+      (function() {
+        try {
+          var isReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var isPrint = window.matchMedia && window.matchMedia('print').matches;
+          if (!isReduced && !isPrint) {
+            document.documentElement.classList.add('js-anim');
+          }
+        } catch(e) {}
+      })();
+    </script>
+
+    <!-- Reglas estrictas para PDF / Impresión -->
+    <style is:inline>
+      @media print {
+        *, *::before, *::after {
+          opacity: 1 !important;
+          visibility: visible !important;
+          transform: none !important;
+          filter: none !important;
+          animation: none !important;
+          transition: none !important;
+        }
+        .hero-line, .reveal-init {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    
+    <!-- Modal Global de Apoyo al Proyecto -->
+    <SupportModal />
+
+    <script>
+      // Scroll suave para enlaces internos.
+      // Acepta tanto "#seccion" (mismo documento) como "/#seccion", que es la
+      // forma que usan el header y el footer para que funcionen también desde
+      // páginas internas como /privacidad. Se excluyen los CTA de descarga,
+      // que apuntan directamente a un archivo .apk.
+      document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(anchor => {
+        const rawHref = anchor.getAttribute('href');
+        if (!rawHref) return;
+
+        const hash = rawHref.startsWith('/#') ? rawHref.slice(1) : rawHref;
+        if (hash.length < 2) return;
+
+        anchor.addEventListener('click', function (e) {
+          const target = document.querySelector(hash);
+          // Si la sección no está en esta página, se deja navegar normalmente
+          if (!target) return;
+
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Se conserva la ruta actual: en la home queda "/#seccion"
+          history.pushState(null, '', `${location.pathname}${hash}`);
+        });
+      });
+
+      // =====================================================================
+      // SCROLL REVEAL
+      // Los elementos .reveal-init que están dentro de un panel oculto (p. ej.
+      // las pestañas de "Cómo se ve") nacen con opacity:0 y su
+      // IntersectionObserver jamás se dispara, así que quedaban invisibles para
+      // siempre. revealWithin() resuelve ese caso cuando el panel se muestra.
+      // =====================================================================
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.05,
+      };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      function revealWithin(root: ParentNode, stagger = 70) {
+        const pending = Array.from(root.querySelectorAll<HTMLElement>('.reveal-init:not(.revealed)'));
+
+        if (prefersReducedMotion.matches) {
+          pending.forEach(el => el.classList.add('revealed'));
+          return;
+        }
+
+        pending.forEach((el, index) => {
+          window.setTimeout(() => {
+            el.classList.add('revealed');
+            revealObserver.unobserve(el);
+          }, index * stagger);
+        });
+      }
+
+      // Expuesto para que los componentes puedan revelar al mostrar pestañas
+      (window as any).esperancitosRevealWithin = revealWithin;
+
+      document.querySelectorAll('.reveal-init').forEach(el => {
+        revealObserver.observe(el);
+      });
+
+      // Vigila cambios de pestaña/panel para revelar su contenido rezagado
+      const panelContainers = document.querySelectorAll<HTMLElement>('.screens-stack');
+      if (panelContainers.length > 0) {
+        const panelObserver = new MutationObserver(() => {
+          panelContainers.forEach(stack => {
+            const active = stack.querySelector<HTMLElement>('.screen-panel.active');
+            if (active) revealWithin(active, 70);
+          });
+        });
+
+        panelContainers.forEach(stack => {
+          panelObserver.observe(stack, {
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class'],
+          });
+        });
+      }
+
+      // Si el usuario cambia su preferencia de movimiento en vivo, mostrar todo
+      const handleMotionChange = (event: MediaQueryListEvent) => {
+        if (event.matches) {
+          document.querySelectorAll('.reveal-init').forEach(el => el.classList.add('revealed'));
+        }
+      };
+      if (typeof prefersReducedMotion.addEventListener === 'function') {
+        prefersReducedMotion.addEventListener('change', handleMotionChange);
+      }
+    </script>
+  </body>
+</html>

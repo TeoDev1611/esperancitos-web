@@ -1,0 +1,31 @@
+---
+// Layout.astro - Plantilla de la página de inicio.
+// La estructura común (head, header, footer, modal) vive en BaseLayout.astro.
+import BaseLayout from './BaseLayout.astro';
+import { SITE } from '../config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  keywords?: string;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  image,
+  keywords,
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={image}
+  keywords={keywords}
+  ogType="website"
+  includeAppSchema={true}
+>
+  <slot />
+</BaseLayout>

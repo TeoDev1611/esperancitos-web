@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Esperancitos">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0B0F14" stroke="#00FF87" stroke-width="4" />
+  <!-- Birrete: rombo superior + base + borla -->
+  <path d="M32 14 54 26 32 38 10 26z" fill="#00FF87" />
+  <path d="M19 31.5v9.2c0 3.6 5.8 6.3 13 6.3s13-2.7 13-6.3v-9.2l-13 7z" fill="#FFFAF7" />
+  <path d="M52 27.5v9" stroke="#FFDB79" stroke-width="3.4" stroke-linecap="round" />
+  <circle cx="52" cy="39.5" r="3.4" fill="#FFDB79" />
+</svg>

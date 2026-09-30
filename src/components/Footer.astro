@@ -1,0 +1,320 @@
+---
+// Footer.astro - Pie de página limpio con llamado a apoyar y aviso de independencia
+---
+
+<footer class="site-footer">
+  <div class="container">
+    
+    <!-- Banner de Apoyo antes del footer -->
+    <div class="pre-footer-support-banner card-app amber-accent">
+      <div class="pre-footer-text">
+        <span class="badge-app amber">META: GOOGLE PLAY</span>
+        <h3>Ayúdanos a llegar a la Play Store</h3>
+        <p>La cuenta de desarrollador cuesta 25 dólares, una sola vez. Con tu aporte dejamos las descargas por enlace y la app pasa a la tienda oficial.</p>
+      </div>
+      <a href="/#apoyar" class="btn-app btn-app-amber btn-footer-cta" data-open-support>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+          <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+          <line x1="6" y1="2" x2="6" y2="4"></line>
+          <line x1="10" y1="2" x2="10" y2="4"></line>
+          <line x1="14" y1="2" x2="14" y2="4"></line>
+        </svg>
+        <span>Ayudar al proyecto</span>
+      </a>
+    </div>
+
+    <!-- Navegación Principal del Footer -->
+    <div class="footer-main-grid">
+      <div class="footer-brand-col">
+        <div class="footer-brand-row">
+          <img src="/logo_esperancitos.jpg" alt="Logo Esperancitos" class="footer-logo-img" width="46" height="46" />
+          <div class="footer-brand-titles">
+            <span class="f-brand-name">ESPERANCITOS</span>
+            <span class="f-brand-sub">Gratis · Versión 1.0.0</span>
+          </div>
+        </div>
+        <p class="footer-description">
+          La app que reúne todo lo que un estudiante de la ESPE necesita: tu malla, tu horario con aulas y tu Moodle, funcionando incluso sin internet.
+        </p>
+      </div>
+
+      <div class="footer-links-layout">
+        <!-- Columna 1: Navegación -->
+        <div class="footer-link-group">
+          <h4>Explorar</h4>
+          <a href="/#funciones">Qué puede hacer</a>
+          <a href="/#vistas">Cómo se ve</a>
+          <a href="/#descargar">Descargar la app</a>
+          <a href="/#docs">Guías y dudas</a>
+        </div>
+
+        <!-- Columna 2: Recursos y soporte -->
+        <div class="footer-link-group">
+          <h4>Ayuda</h4>
+          <a href="/#descargar">Descargar para Android</a>
+          <a href="/#comentarios">Reportar un error</a>
+          <a href="/#comentarios">Sugerir una idea</a>
+          <a href="/#apoyar">Ayudar a llegar a Play Store</a>
+        </div>
+
+        <!-- Columna 3: Comunidad y legal -->
+        <div class="footer-link-group">
+          <h4>Comunidad</h4>
+          <a href="/#colaborar" class="f-community-info f-feedback-link">Buscamos colaboradores para iPhone</a>
+          <span class="f-community-info">Desarrollado en Sangolquí, Ecuador.</span>
+          <a href="/privacidad" class="f-community-info f-feedback-link">Política de Privacidad</a>
+          <a href="/#apoyar" class="f-support-link" data-open-support>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+              <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+              <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+              <line x1="6" y1="2" x2="6" y2="4"></line>
+              <line x1="10" y1="2" x2="10" y2="4"></line>
+              <line x1="14" y1="2" x2="14" y2="4"></line>
+            </svg>
+            <span>Ayudar al proyecto</span>
+          </a>
+        </div>      </div>
+    </div>
+
+    <!-- Aviso Legal de Independencia y Copyright -->
+    <div class="footer-legal-area">
+      <p class="legal-disclaimer">
+        <strong>Aviso:</strong> Esperancitos es un proyecto independiente, hecho por y para estudiantes. No es una app oficial de la Universidad de las Fuerzas Armadas ESPE ni cuenta con su respaldo. Los nombres y marcas pertenecen a sus respectivos dueños.
+      </p>
+
+      <div class="footer-credits-row">
+        <span>Hecho con <span class="footer-heart" role="img" aria-label="amor">❤️</span> en la ESPE · © {new Date().getFullYear()} Esperancitos</span>
+        <a href="/#main-header" class="btn-app btn-app-surface btn-back-top" aria-label="Volver al inicio de la página">
+          <span>↑ Arriba</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #080B10;
+    border-top: 2px solid var(--border-app);
+    padding: 60px 0 35px 0;
+    position: relative;
+  }
+
+  /* Pre-Footer Support Callout */
+  .pre-footer-support-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px;
+    background: var(--bg-surface-elevated);
+    margin-bottom: 50px;
+    gap: 24px;
+  }
+
+  .pre-footer-text h3 {
+    font-size: 1.35rem;
+    margin: 6px 0 4px 0;
+  }
+
+  .pre-footer-text p {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+  }
+
+  .btn-footer-cta {
+    padding: 12px 20px;
+    font-size: 0.88rem;
+    white-space: nowrap;
+  }
+
+  /* Grid Principal */
+  .footer-main-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 2fr;
+    gap: 50px;
+    margin-bottom: 45px;
+  }
+
+  @media (max-width: 900px) {
+    .pre-footer-support-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .footer-main-grid {
+      grid-template-columns: 1fr;
+      gap: 34px;
+    }
+    .footer-description {
+      max-width: none;
+    }
+  }
+
+  /* En tablet los tres bloques de enlaces aún caben; por debajo pasan a dos
+     columnas antes de apilarse, para no dejar una columna larguísima */
+  @media (max-width: 700px) {
+    .footer-links-layout {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 26px 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-links-layout {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .footer-credits-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+
+  .footer-brand-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .footer-logo-img {
+    width: 46px;
+    height: 46px;
+    border-radius: var(--radius-md);
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0px var(--accent-primary);
+    object-fit: cover;
+  }
+
+  .footer-brand-titles {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .f-brand-name {
+    font-family: var(--font-sans);
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--text-primary);
+  }
+
+  .f-brand-sub {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-description {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: 360px;
+  }
+
+  /* Layout de Enlaces */
+  .footer-links-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .footer-link-group h4 {
+    font-size: 0.98rem;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+  }
+
+  .footer-link-group a {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 8px;
+    transition: color var(--duration-hover) ease;
+  }
+
+  .footer-link-group a:hover {
+    color: var(--accent-primary);
+  }
+
+  .f-community-info {
+    display: block;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+
+  .f-support-link {
+    display: inline-block;
+    color: var(--accent-amber) !important;
+    font-weight: 800;
+    margin-top: 6px;
+  }
+  .f-support-link:hover {
+    color: #FFE5A3 !important;
+  }
+
+  .f-feedback-link {
+    display: inline-block;
+    color: var(--accent-primary);
+    font-weight: 700;
+    transition: color var(--duration-hover) ease;
+  }
+
+  .f-feedback-link:hover {
+    color: #34D399;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Área Legal */
+  .footer-legal-area {
+    border-top: 1.5px solid var(--border-app);
+    padding-top: 28px;
+  }
+
+  .legal-disclaimer {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 960px;
+  }
+
+  .legal-disclaimer strong {
+    color: var(--text-secondary);
+  }
+
+  .footer-credits-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .btn-back-top {
+    padding: 4px 12px;
+    font-size: 0.78rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .footer-heart {
+    display: inline-block;
+    line-height: 1;
+    animation: heart-beat 2.6s ease-in-out infinite;
+  }
+
+  @keyframes heart-beat {
+    0%, 100% { transform: scale(1); }
+    12% { transform: scale(1.18); }
+    24% { transform: scale(1); }
+    36% { transform: scale(1.12); }
+    48% { transform: scale(1); }
+  }
+</style>

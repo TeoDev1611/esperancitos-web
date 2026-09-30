@@ -1,0 +1,781 @@
+---
+// Features.astro - Bento Grid Asimétrico con las 6 Funciones Completas y Mini Visuales HTML/CSS
+---
+
+<section class="features-section scroll-reveal" id="funciones">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <span class="section-kicker">Lo que puedes hacer</span>
+      <h2>Todo lo que necesitas para tu semestre, en un solo lugar</h2>
+      <p>
+        Nació de problemas reales: horarios que no cargan, mallas en PDF imposibles de leer y contraseñas que se bloquean. Aquí está la solución a cada uno.
+      </p>
+    </div>
+
+    <!-- Bento Grid Asimétrico estilo Apple -->
+    <div class="bento-grid">
+      
+      <!-- BENTO 1: Malla Curricular Inteligente (PROTAGONISTA GRANDE - 2 Columnas) -->
+      <article class="bento-card bento-hero-span card-app reveal-init">
+        <div class="bento-card-header">
+          <div class="bento-icon-wrapper green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+              <path d="M6 6h10"></path>
+              <path d="M6 10h10"></path>
+            </svg>
+          </div>
+          <div class="bento-title-group">
+            <span class="badge-app green">Sin internet · 24 carreras</span>
+            <h3>Tu malla curricular, clara y sin PDFs</h3>
+          </div>
+        </div>
+
+        <p class="bento-desc">
+          Mira tu plan de estudios completo, marca lo que ya aprobaste y deja que la app te diga qué te falta y cuándo te gradúas. Sin conectarte a nada.
+        </p>
+
+        <!-- Mini Visual HTML/CSS: Progreso de Carrera y Materias Desbloqueables -->
+        <div class="mini-visual-malla" aria-hidden="true">
+          <div class="m-visual-top">
+            <span class="m-grad-est">Te gradúas: 2029</span>
+            <span class="m-grad-pct">44.2% listo</span>
+          </div>
+          <div class="m-visual-track">
+            <div class="m-visual-fill"></div>
+          </div>
+          <div class="m-visual-chips">
+            <span class="m-chip unlocked">✓ MAT101</span>
+            <span class="m-chip unlocked">✓ FIS102</span>
+            <span class="m-chip active">ED201</span>
+            <span class="m-chip locked">RED301</span>
+            <span class="m-chip critical">NO TE DEMORES</span>
+          </div>
+        </div>
+
+        <details class="bento-details">
+          <summary>Ver todos los detalles</summary>
+          <ul class="feature-bullets">
+            <li>
+              <strong>Tu carrera ya viene cargada:</strong> las 24 carreras de la ESPE con sus materias y créditos, listas para usar desde el primer día.
+            </li>
+            <li>
+              <strong>Se destapan solas:</strong> cuando marcas una materia como aprobada, las que dependían de ella se habilitan al instante.
+            </li>
+            <li>
+              <strong>¿Cuándo me gradúo?:</strong> la app mira cuántos créditos llevas y a qué ritmo avanzas, y te da un año estimado.
+            </li>
+            <li>
+              <strong>Ojo con las trabas:</strong> te marca en ámbar las materias que frenan tu carrera, para que las metas primero en la matrícula.
+            </li>
+            <li>
+              <strong>Se ve como tú quieras:</strong> puedes verla en cuadrícula o en lista, y agrandarla a pantalla completa para recorrerla sin estorbar.
+            </li>
+          </ul>
+        </details>
+
+        <div class="bento-chips-row">
+          <span class="chip-app">24 carreras</span>
+          <span class="chip-app">Materias que frenan</span>
+          <span class="chip-app">Pantalla completa</span>
+          <span class="chip-app">Sin internet</span>
+        </div>
+      </article>
+
+      <!-- BENTO 2: Horario Semanal y Banner 9 (MEDIANA) -->
+      <article class="bento-card card-app reveal-init">
+        <div class="bento-card-header">
+          <div class="bento-icon-wrapper amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <div class="bento-title-group">
+            <span class="badge-app amber">Desde el sistema de la ESPE</span>
+            <h3>Tu horario con el aula de cada clase</h3>
+          </div>
+        </div>
+
+        <p class="bento-desc">
+          Entra con tu cuenta de la universidad y la app te trae tu horario con el aula, el bloque, el profesor y el NRC. Si el servidor se cae, reintenta solo.
+        </p>
+
+        <!-- Mini Visual: Alerta de Aula en vivo -->
+        <div class="mini-visual-banner" aria-hidden="true">
+          <div class="b-alert-header">
+            <span class="b-pill-amber">119 MIN RESTANTES</span>
+            <span class="b-status-ok">Ya sincronizó</span>
+          </div>
+          <div class="b-class-row">
+            <span class="b-room">Aula A-204 · Bloque A</span>
+            <span class="b-nrc">NRC 14205</span>
+          </div>
+        </div>
+
+        <details class="bento-details">
+          <summary>Ver todos los detalles</summary>
+          <ul class="feature-bullets">
+            <li>
+              <strong>Todo sobre cada clase:</strong> el aula exacta, el bloque, el nombre del profesor, el NRC y el campus.
+            </li>
+            <li>
+              <strong>Si el servidor falla, insiste solo:</strong> la app reintenta la conexión automáticamente antes de darte un error.
+            </li>
+            <li>
+              <strong>Guarda tu horario como imagen:</strong> con un toque lo conviertes en una foto en buena calidad para compartirla o ponerla de fondo de pantalla.
+            </li>
+            <li>
+              <strong>Te avisa antes de clase:</strong> puedes elegir cuántos minutos antes quieres el recordatorio de cada clase.
+            </li>
+          </ul>
+        </details>
+
+        <div class="bento-chips-row">
+          <span class="chip-app">Aulas y bloques</span>
+          <span class="chip-app">Guardar como imagen</span>
+          <span class="chip-app">Recordatorios</span>
+          <span class="chip-app">Reintenta solo</span>
+        </div>
+      </article>
+
+      <!-- BENTO 3: Campus Virtual Moodle Seguro -->
+      <article class="bento-card card-app reveal-init">
+        <div class="bento-card-header">
+          <div class="bento-icon-wrapper green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+              <path d="M7 7h.01"></path>
+              <path d="M17 7h.01"></path>
+              <path d="M7 17h.01"></path>
+              <path d="M17 17h.01"></path>
+            </svg>
+          </div>
+          <div class="bento-title-group">
+            <span class="badge-app green">Entras con un código QR</span>
+            <h3>Tu Moodle sin escribir la contraseña</h3>
+          </div>
+        </div>
+
+        <p class="bento-desc">
+          Abres tu Moodle en el navegador, generas el código QR de tu perfil y lo escaneas con la app. Así de simple, y tu contraseña nunca pasa por aquí.
+        </p>
+
+        <!-- Mini Visual: Escaneo de Token HMAC -->
+        <div class="mini-visual-moodle" aria-hidden="true">
+          <div class="hmac-scanner-row">
+            <span class="hmac-tag">CONECTADO</span>
+            <span class="hmac-badge">Sin contraseña</span>
+          </div>
+          <span class="hmac-state">Sincronizado con micampus.espe.edu.ec</span>
+        </div>
+
+        <details class="bento-details">
+          <summary>Ver todos los detalles</summary>
+          <ul class="feature-bullets">
+            <li>
+              <strong>Tu cuenta no corre riesgo:</strong> entras con el código QR oficial de Moodle, así que nunca escribes ni guardas tu clave.
+            </li>
+            <li>
+              <strong>Nunca se te olvida una entrega:</strong> tus tareas aparecen ordenadas por lo que vence primero.
+            </li>
+            <li>
+              <strong>Mira tus notas al día:</strong> las calificaciones de tareas y foros se ven directo en tu celular.
+            </li>
+            <li>
+              <strong>Sirve para todas las sedes:</strong> Matriz Sangolquí, Posgrados y Modalidad en Línea.
+            </li>
+          </ul>
+        </details>
+
+        <div class="bento-chips-row">
+          <span class="chip-app">Entrar con QR</span>
+          <span class="chip-app">Tareas y notas</span>
+          <span class="chip-app">Todas las sedes</span>
+          <span class="chip-app">Sin contraseña</span>
+        </div>
+      </article>
+
+      <!-- BENTO 4: Historial Académico y Promedios -->
+      <article class="bento-card card-app reveal-init">
+        <div class="bento-card-header">
+          <div class="bento-icon-wrapper amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+          </div>
+          <div class="bento-title-group">
+            <span class="badge-app amber">Todos tus semestres</span>
+            <h3>Tus notas y tu promedio, siempre a mano</h3>
+          </div>
+        </div>
+
+        <p class="bento-desc">
+          Revisa las notas de todos tus semestres anteriores y mira cómo va tu promedio general, sin tener que entrar al sistema cada vez.
+        </p>
+
+        <!-- Mini Visual: Promedio ponderado -->
+        <div class="mini-visual-average" aria-hidden="true">
+          <span class="avg-label">TU PROMEDIO GENERAL</span>
+          <div class="avg-val-row">
+            <span class="avg-num">17.85</span>
+            <span class="avg-max">/ 20</span>
+          </div>
+        </div>
+
+        <details class="bento-details">
+          <summary>Ver todos los detalles</summary>
+          <ul class="feature-bullets">
+            <li>
+              <strong>Tu promedio se calcula solo:</strong> la app hace la cuenta con el peso de cada materia, en tiempo real.
+            </li>
+            <li>
+              <strong>Cuánto llevas y cuánto te falta:</strong> sigue tus créditos aprobados frente al total de tu carrera.
+            </li>
+            <li>
+              <strong>Semestre por semestre:</strong> consulta tus materias pasadas, las convalidadas y todas tus notas registradas.
+            </li>
+          </ul>
+        </details>
+
+        <div class="bento-chips-row">
+          <span class="chip-app">Notas de cada semestre</span>
+          <span class="chip-app">Créditos que llevas</span>
+          <span class="chip-app">Tu promedio</span>
+        </div>
+      </article>
+
+      <!-- BENTO 5: Compartir Datos Cara a Cara vía QR -->
+      <article class="bento-card card-app reveal-init">
+        <div class="bento-card-header">
+          <div class="bento-icon-wrapper green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="bento-title-group">
+            <span class="badge-app green">Sin internet</span>
+            <h3>Pásale tus datos a un compañero por QR</h3>
+          </div>
+        </div>
+
+        <p class="bento-desc">
+          ¿Tu amigo quiere tu lista de materias aprobadas? Generas un código QR en tu pantalla, él lo escanea y ya. Sin internet, sin cables, sin escribir nada.
+        </p>
+
+        <!-- Mini Visual: Conexión P2P -->
+        <div class="mini-visual-p2p" aria-hidden="true">
+          <span class="p2p-node">Tu celular</span>
+          <span class="p2p-arrow">⇄ QR SIN INTERNET ⇄</span>
+          <span class="p2p-node">El suyo</span>
+        </div>
+
+        <details class="bento-details">
+          <summary>Ver todos los detalles</summary>
+          <ul class="feature-bullets">
+            <li>
+              <strong>Funciona sin señal:</strong> sirve en un aula sin wifi ni datos, en un laboratorio o en modo avión.
+            </li>
+            <li>
+              <strong>Se pasa en un segundo:</strong> el código se lee al instante con la cámara y la información llega completa.
+            </li>
+            <li>
+              <strong>Útil para el grupo:</strong> comparte con tus compañeros de carrera el avance de la malla o una lista de repaso.
+            </li>
+          </ul>
+        </details>
+
+        <div class="bento-chips-row">
+          <span class="chip-app">Sin internet</span>
+          <span class="chip-app">Listas de materias</span>
+          <span class="chip-app">Se escanea al instante</span>
+        </div>
+      </article>
+
+      <!-- BENTO 6: Privacidad Absoluta y APK Ligero -->
+      <article class="bento-card card-app reveal-init">
+        <div class="bento-card-header">
+          <div class="bento-icon-wrapper green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div class="bento-title-group">
+            <span class="badge-app green">Sin anuncios ni rastreo</span>
+            <h3>Tus datos son solo tuyos</h3>
+          </div>
+        </div>
+
+        <p class="bento-desc">
+          No hay servidores nuestros de por medio, no vendemos nada ni te mostramos publicidad. Tu información viaja directo entre tu celular y los servidores de la universidad.
+        </p>
+
+        <!-- Mini Visual: Peso reducido R8 -->
+        <div class="mini-visual-r8" aria-hidden="true">
+          <span class="r8-old">Antes: ~60 MB</span>
+          <span class="r8-arrow">➔</span>
+          <span class="r8-new">Ahora: 31 MB</span>
+        </div>
+
+        <details class="bento-details">
+          <summary>Ver todos los detalles</summary>
+          <ul class="feature-bullets">
+            <li>
+              <strong>Tu clave queda cifrada en el celular:</strong> se guarda protegida por el propio sistema de seguridad de Android, nunca en internet.
+            </li>
+            <li>
+              <strong>Abre al instante y no gasta datos:</strong> todo se guarda dentro de la app, así que consultar tu horario no consume tu plan.
+            </li>
+            <li>
+              <strong>Pesa la mitad que antes:</strong> pasó de unos 60 MB a 31 MB para que no te ocupe espacio en el teléfono.
+            </li>
+            <li>
+              <strong>Sin intermediarios:</strong> tu celular habla directo con la ESPE y lo que descarga se queda en tu dispositivo.
+            </li>
+          </ul>
+        </details>
+
+        <div class="bento-chips-row">
+          <span class="chip-app">Datos cifrados</span>
+          <span class="chip-app">Todo en tu celular</span>
+          <span class="chip-app">Pesa solo 31 MB</span>
+          <span class="chip-app">Cero publicidad</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .features-section {
+    padding: 90px 0 100px 0;
+    position: relative;
+    background: rgba(16, 26, 35, 0.25);
+    border-top: 2px solid var(--border-app);
+    border-bottom: 2px solid var(--border-app);
+  }
+
+  /* Bento Grid Asimétrico */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+
+  /* Tarjeta protagonista en el Bento Grid */
+  .bento-hero-span {
+    grid-column: span 2;
+  }
+
+  @media (max-width: 1140px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .bento-hero-span {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 740px) {
+    .bento-grid {
+      grid-template-columns: 1fr;
+    }
+    .bento-hero-span {
+      grid-column: span 1;
+    }
+
+    .bento-card {
+      padding: 22px;
+    }
+
+    .bento-title-group h3 {
+      font-size: 1.2rem;
+    }
+  }
+
+  .bento-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 28px;
+    background: var(--bg-surface);
+  }
+
+  .bento-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .bento-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0px #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .bento-icon-wrapper.green {
+    background: var(--accent-primary);
+    color: var(--on-primary);
+  }
+
+  .bento-icon-wrapper.amber {
+    background: var(--accent-amber);
+    color: var(--on-amber);
+  }
+
+  .bento-title-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .bento-title-group h3 {
+    font-size: 1.38rem;
+    line-height: 1.2;
+  }
+
+  .bento-desc {
+    color: var(--text-secondary);
+    font-size: 0.96rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+
+  /* Mini Visuales en HTML/CSS dentro de cada tarjeta */
+  .mini-visual-malla {
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 0px #000;
+  }
+
+  .m-visual-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.76rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .m-grad-est { color: var(--accent-amber); }
+  .m-grad-pct { color: var(--accent-primary); font-family: var(--font-mono); }
+
+  .m-visual-track {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-surface-container);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .m-visual-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--accent-primary);
+    border-radius: 3px;
+    transition: width 1.2s var(--ease-apple);
+  }
+
+  /* Al revelarse la tarjeta (o de inmediato si no hay JS/reduced-motion), la
+     barra crece hasta el 44.2% real: antes aparecía ya llena y estática,
+     contradiciendo el contador animado que la acompaña. */
+  .bento-card.revealed .m-visual-fill {
+    width: 44.2%;
+  }
+
+  html:not(.js-anim) .m-visual-fill {
+    width: 44.2%;
+  }
+
+  .m-visual-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .m-chip {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-app);
+  }
+
+  .m-chip.unlocked {
+    background: rgba(0, 255, 135, 0.15);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+  }
+  .m-chip.active {
+    background: var(--accent-primary);
+    color: var(--on-primary);
+    border-color: #000;
+  }
+  .m-chip.locked {
+    background: var(--bg-surface);
+    color: var(--text-muted);
+  }
+  .m-chip.critical {
+    background: rgba(255, 219, 121, 0.15);
+    border-color: var(--accent-amber);
+    color: var(--accent-amber);
+  }
+
+  /* Mini visual Horario */
+  .mini-visual-banner {
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    box-shadow: 2px 2px 0px #000;
+  }
+  .b-alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  .b-pill-amber {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 800;
+    background: var(--accent-amber);
+    color: var(--on-amber);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  .b-status-ok {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+  }
+  .b-class-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+  }
+
+  /* Mini visual Moodle */
+  .mini-visual-moodle {
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    box-shadow: 2px 2px 0px #000;
+  }
+  .hmac-scanner-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+  }
+  .hmac-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+  }
+  .hmac-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .hmac-state {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+  }
+
+  /* Mini visual Promedio */
+  .mini-visual-average {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-md);
+    padding: 8px 14px;
+    margin-bottom: 18px;
+    box-shadow: 2px 2px 0px #000;
+  }
+  .avg-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .avg-val-row {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+  }
+  .avg-num {
+    font-family: var(--font-sans);
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--accent-amber);
+  }
+  .avg-max {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  /* Mini visual P2P */
+  .mini-visual-p2p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-md);
+    padding: 8px 12px;
+    margin-bottom: 18px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 800;
+    box-shadow: 2px 2px 0px #000;
+  }
+  .p2p-node {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .p2p-arrow {
+    color: var(--accent-primary);
+    font-size: 0.64rem;
+  }
+
+  /* Mini visual R8 */
+  .mini-visual-r8 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-md);
+    padding: 8px 12px;
+    margin-bottom: 18px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 800;
+    box-shadow: 2px 2px 0px #000;
+  }
+  .r8-old { color: var(--text-muted); text-decoration: line-through; }
+  .r8-arrow { color: var(--accent-primary); }
+  .r8-new { color: var(--accent-primary); }
+
+  /* Acordeón "Ver todos los detalles" */
+  .bento-details {
+    margin-bottom: 18px;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    transition: background var(--duration-hover) ease, border-color var(--duration-hover) ease;
+  }
+
+  .bento-details[open] {
+    background: rgba(0, 0, 0, 0.35);
+    border-color: var(--accent-primary);
+  }
+
+  .bento-details summary {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .bento-details summary:hover {
+    text-decoration: underline;
+  }
+
+  .bento-details summary::before {
+    content: "▸";
+    font-size: 0.85rem;
+    transition: transform 180ms ease;
+  }
+
+  .bento-details[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  /* Bullets de características */
+  .feature-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    flex-grow: 1;
+  }
+
+  .feature-bullets li {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .feature-bullets li::before {
+    content: "■";
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+    font-size: 0.75rem;
+    top: 2px;
+  }
+
+  .feature-bullets li strong {
+    color: var(--text-primary);
+  }
+
+  /* Fila de Chips inferiores */
+  .bento-chips-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 16px;
+  }
+
+  .chip-app {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+  }
+</style>
