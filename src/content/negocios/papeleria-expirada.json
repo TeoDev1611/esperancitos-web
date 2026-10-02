@@ -1,0 +1,16 @@
+{
+  "id": "papeleria-expirada",
+  "name": "Bazar Estudiantil Antiguo (Ejemplo Expirado)",
+  "category": "papeleria",
+  "description": "Papelería general y materiales de dibujo.",
+  "address": "Calle Pichincha 120",
+  "zone": "Centro",
+  "updatedAt": "2026-06-01T10:00:00-05:00",
+  "validUntil": "2026-08-31T23:59:59-05:00",
+  "ejemplo": true,
+  "consentimiento": {
+    "otorgado": true,
+    "fecha": "2026-05-30"
+  },
+  "notas": "Negocio con validUntil vencido para probar exclusión automática al momento del build"
+}

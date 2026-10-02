@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#101319;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-container": "#007138", "inverse-on-surface": "#2e3037", "surface-container-high": "#272a31", "secondary": "#c6c6c7", "surface-dark": "#161a23", "primary-fixed": "#60ff98", "on-tertiary-container": "#795f01", "surface-container": "#1d2026", "tertiary": "#fffaf7", "on-tertiary": "#3d2f00", "on-secondary-fixed": "#1a1c1c", "surface": "#101319", "on-surface-variant": "#b9cbb9", "surface-container-low": "#191c22", "on-tertiary-fixed-variant": "#584400", "on-primary-fixed": "#00210c", "text-muted": "#8f9cae", "surface-container-lowest": "#0b0e14", "on-tertiary-fixed": "#241a00", "accent-emerald-dark": "#059669", "surface-bright": "#363940", "on-error-container": "#ffdad6", "secondary-fixed-dim": "#c6c6c7", "on-error": "#690005", "primary": "#f1ffef", "surface-dim": "#101319", "on-surface": "#e1e2eb", "on-primary": "#003919", "surface-variant": "#32353c", "surface-container-highest": "#32353c", "surface-elevated": "#1e2230", "tertiary-fixed": "#ffe08d", "secondary-fixed": "#e2e2e2", "error": "#ffb4ab", "surface-tint": "#00e478", "secondary-container": "#454747", "background": "#101319", "primary-container": "#00ff87", "outline-variant": "#3b4b3d", "on-secondary-container": "#b4b5b5", "outline": "#849585", "inverse-surface": "#e1e2eb", "primary-fixed-dim": "#00e478", "on-background": "#e1e2eb", "tertiary-fixed-dim": "#e5c364", "on-secondary-fixed-variant": "#454747", "border-dark": "#2a3142", "tertiary-container": "#ffdb79", "on-primary-fixed-variant": "#005227", "error-container": "#93000a", "inverse-primary": "#006d36", "on-secondary": "#2f3131" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "1rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "gutter-desktop": "1.5rem", "margin-desktop": "2rem", "space-lg": "1.5rem", "gutter": "1rem", "margin": "1rem" }, fontFamily: { "headline-md": ["Outfit"], "display-xl": ["Outfit"], "label-md": ["Outfit"], "body-sm": ["Outfit"], "headline-lg-mobile": ["Outfit"], "body-lg": ["Outfit"], "label-sm": ["Outfit"], "display-xl-mobile": ["Outfit"], "headline-lg": ["Outfit"], "body-md": ["Outfit"], "label-lg": ["Outfit"] }, fontSize: { "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "display-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-lg": ["17px", { "lineHeight": "24px", "fontWeight": "500" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }], "display-xl-mobile": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "700" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-fixed"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl pt-safe shadow-[0_1px_12px_rgba(0,0,0,0.45)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-xs min-w-0"><button aria-label="Regresar" class="w-11 h-11 -ml-2 flex items-center justify-center text-on-surface hover:text-primary-container active:scale-95 transition-transform duration-150" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><img alt="Logo minimalista moderno para la app estudiantil Esperancitos ESPE con un birrete de graduación geométrico y ondas de sincronización digital en verde esmeralda institucional y blanco.. Brand logo. - Primary color: #059669 - Font: outfit - Mode: dark - Roundness: rounded-md" class="h-7 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1WRyBRJvU4fC5Uc2_qDnPfUSDit7nCWNGTvHzOs_8UXGXHtbru0aKPjAEEw2P_HF-zWK73sQLGiqMQZbmWQSMd7m7yZpcHzYwyb1pvVfFwXxQGted2PNB0JJhtBcj6-j4AwPIF8hxfZAo8_K1PPiNX6Qnd8BsHmQyQdXfspj-pbjrwdIbfsz1Khc49ae7T80uyUB6zKuDD1iesA8LMqfHxhk1xhHFzqwoPHw54s-rJJ"/><h1 class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface truncate">Configuracion</h1></div><div class="flex items-center gap-space-xs shrink-0"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-primary-container/30" src="https://lh3.googleusercontent.com/aida/AEtjO1X5RvjfD1K5Z_NLIPb12PvjR4U7L3hA_En2ZUfKqvO5Z0WSkYvBIkTF30Y_nOgRWY02wuBdnwqNtUHbXVv-AoLdUyBZ0Jen-RUmPgxXxmohlvCAIWpHNwmM3HjSX8F-fCBKWmoESKjMXOBhXdaw02Ui3zCgGDFunFFc0c2oEULqSJXKUlYhfoscqV5ZpSufAwT7RewsfZGm2wRoxkD3kUs-mFdkGSIrmy8emvxkLTY9"/></div></div></header><main class="flex-1 flex flex-col relative w-full px-gutter pt-16 pb-safe bg-surface min-h-[calc(100vh-4rem)]"><div class="flex flex-col w-full pb-10">
+<!-- Profile & Header Banner -->
+<div class="relative w-full rounded-xl overflow-hidden bg-surface-dark p-space-md mb-space-lg shadow-sm">
+<div class="flex items-center gap-space-md relative z-10">
+<div class="relative">
+<img class="w-16 h-16 rounded-xl object-cover" data-alt="Portrait of an energetic Ecuadorian engineering college student from ESPE wearing a stylish dark tech jacket, confident warm smile, studio neon emerald lighting rim accents, dark minimalist brutalist background, hyper-realistic, crisp detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_pEoxMdwL8v3H0gXPUNy0-cUuydVq59c3CFXFfz9bM_bqu26vBh70OLl5tlRlY-Gy1ACr0cwi5o1vUCHbvNe8g2B9Vr20aYIm8840hzEl4oWhtZH1s1_n_H296IqS5H3r9CB_uRuuAWIoU6BTLl1RCO7riI_LgmTAc_jEQRgPuBaLHdANYTksLw0G9HOjbWpIsdtZG0LpcflXiLYuBzvALOd6uUvP3Tx_7QMqpIZU44kkf-JVK_E8"/>
+<span class="absolute -bottom-1 -right-1 w-4 h-4 bg-primary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-on-primary-fixed" style="font-variation-settings: 'FILL' 1;">check</span>
+</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-tertiary truncate">Ajustes</h2>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-fixed font-label-sm text-label-sm uppercase tracking-wider">L1</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary truncate">Preferencias y sincronización ESPE</p>
+<span class="font-label-sm text-label-sm text-primary-container mt-1 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+          Matrícula Activa 2025-A
+        </span>
+</div>
+</div>
+</div>
+<!-- SECCIÓN 1: SINCRONIZACIÓN UNIVERSITARIA -->
+<div class="flex flex-col gap-space-sm mb-space-lg">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px]">sync</span>
+<h3 class="font-label-lg text-label-lg uppercase tracking-wider text-tertiary">Sincronización Universitaria</h3>
+</div>
+<span class="font-label-sm text-label-sm text-primary-container bg-surface-elevated px-2 py-0.5 rounded-full">Automática</span>
+</div>
+<!-- Background Sync Card -->
+<div class="bg-surface-dark rounded-xl p-space-md flex items-center justify-between shadow-sm">
+<div class="flex flex-col pr-space-md min-w-0">
+<span class="font-headline-md text-headline-md text-tertiary text-base font-semibold">Sincronización en segundo plano</span>
+<span class="font-body-sm text-body-sm text-secondary">Actualizar horario y tareas automáticamente</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" id="toggle-bg-sync" type="checkbox"/>
+<div class="w-12 h-7 bg-surface-elevated peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:bg-tertiary after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Sync Frequency Card -->
+<div class="bg-surface-dark rounded-xl p-space-md flex items-center justify-between shadow-sm">
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-headline-md text-tertiary text-base font-semibold">Frecuencia de sincronización</span>
+<span class="font-body-sm text-body-sm text-secondary">Optimiza datos móviles y batería</span>
+</div>
+<div class="relative shrink-0">
+<select class="bg-surface-elevated font-label-lg text-label-lg text-primary-container py-2 px-3 rounded-lg appearance-none cursor-pointer focus:outline-none pr-8" id="sync-frequency">
+<option value="1">Cada 1 hora</option>
+<option value="3">Cada 3 horas</option>
+<option selected="" value="6">Cada 6 horas</option>
+<option value="12">Cada 12 horas</option>
+</select>
+<span class="material-symbols-outlined text-[18px] text-primary-container absolute right-2 top-2.5 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Sync Action Button Banner -->
+<div class="bg-surface-elevated rounded-xl p-space-md flex flex-col gap-space-sm shadow-sm">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px] text-primary-container">schedule</span>
+<span>Última sinc: Hace 12 min</span>
+</div>
+<span class="text-primary-container font-label-sm text-label-sm uppercase tracking-wider font-bold">Banner &amp; Moodle OK</span>
+</div>
+<button class="w-full bg-primary-container text-on-primary-fixed font-label-lg text-label-lg py-3 px-space-md rounded-xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform duration-100" id="btn-sync-now">
+<span class="material-symbols-outlined text-[20px] transition-transform duration-500" id="sync-icon">sync</span>
+<span>Sincronizar ahora con Banner y Moodle</span>
+</button>
+</div>
+</div>
+<!-- SECCIÓN 2: NOTIFICACIONES Y ALERTAS -->
+<div class="flex flex-col gap-space-sm mb-space-lg">
+<div class="flex items-center gap-space-xs px-1">
+<span class="material-symbols-outlined text-primary-container text-[20px]">notifications_active</span>
+<h3 class="font-label-lg text-label-lg uppercase tracking-wider text-tertiary">Notificaciones y Alertas</h3>
+</div>
+<!-- Class Reminder Switch -->
+<div class="bg-surface-dark rounded-xl p-space-md flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-md min-w-0 pr-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-elevated flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container text-[20px]">meeting_room</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-headline-md text-tertiary text-base font-semibold">Recordatorio de clases</span>
+<span class="font-body-sm text-body-sm text-secondary">Avisar 15 minutos antes con aula</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-12 h-7 bg-surface-elevated peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:bg-tertiary after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Urgent Submissions Switch -->
+<div class="bg-surface-dark rounded-xl p-space-md flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-md min-w-0 pr-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-elevated flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container text-[20px]">assignment_late</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-headline-md text-tertiary text-base font-semibold">Alertas de entregas urgentes</span>
+<span class="font-body-sm text-body-sm text-secondary">Avisos a las 24h y 3h antes del cierre</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-12 h-7 bg-surface-elevated peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:bg-tertiary after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Haptics and Sound Switch -->
+<div class="bg-surface-dark rounded-xl p-space-md flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-md min-w-0 pr-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-elevated flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container text-[20px]">vibration</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-headline-md text-tertiary text-base font-semibold">Sonido y vibración háptica</span>
+<span class="font-body-sm text-body-sm text-secondary">Pulsos táctiles en cambios de aula</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-12 h-7 bg-surface-elevated peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:bg-tertiary after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+<!-- SECCIÓN 3: DATOS Y ALMACENAMIENTO -->
+<div class="flex flex-col gap-space-sm mb-space-lg">
+<div class="flex items-center gap-space-xs px-1">
+<span class="material-symbols-outlined text-primary-container text-[20px]">storage</span>
+<h3 class="font-label-lg text-label-lg uppercase tracking-wider text-tertiary">Datos y Almacenamiento</h3>
+</div>
+<!-- Cache Visual Card -->
+<div class="bg-surface-dark rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-headline-md text-tertiary text-base font-semibold">Caché de documentos y guías</span>
+<span class="font-body-sm text-body-sm text-secondary">Sílabos, PDFs y tareas descargadas</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary-container font-bold" id="cache-size">42 MB</span>
+</div>
+<!-- Linear visual gauge -->
+<div class="w-full bg-surface-elevated rounded-full h-2 overflow-hidden flex">
+<div class="bg-primary-container h-full rounded-full transition-all duration-300" id="cache-bar" style="width: 32%;"></div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-secondary">
+<span>32% del espacio de la app</span>
+<span>Máx 150 MB</span>
+</div>
+</div>
+<!-- Storage Action Buttons -->
+<div class="grid grid-cols-1 gap-space-sm">
+<button class="w-full bg-surface-dark hover:bg-surface-elevated text-tertiary font-label-lg text-label-lg py-3 px-space-md rounded-xl flex items-center justify-between active:scale-98 transition-all" id="btn-clear-cache">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary-container text-[20px]">delete_sweep</span>
+<span>Limpiar caché local</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-secondary">chevron_right</span>
+</button>
+<button class="w-full bg-surface-dark hover:bg-surface-elevated text-tertiary font-label-lg text-label-lg py-3 px-space-md rounded-xl flex items-center justify-between active:scale-98 transition-all" id="btn-export-calendar">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary-container text-[20px]">calendar_month</span>
+<span>Exportar horario a Calendario (.ics)</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-secondary">download</span>
+</button>
+</div>
+</div>
+<!-- ESPE CAMPUS SANGOLQUÍ VISUAL COMPACT CARD -->
+<div class="bg-surface-dark rounded-xl p-space-md mb-space-lg flex items-center gap-space-md shadow-sm">
+<img class="w-16 h-16 rounded-lg object-cover shrink-0" data-alt="Futuristic architectural view of modern university campus library and laboratory complex of Universidad de las Fuerzas Armadas ESPE Sangolqui at dusk, dark tech brutalist architecture, neon ambient green lighting, sleek glass facade, ultra realistic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbxkE3uMMjyAFk4kmYrp0j5QP5vp7oEYSN06qCL86RjRaTDRPBEO22iNBwD7A1EAHR8i6l31Je9ZKTkFp37PNYYKpHm9G8LJaYTdHiqJybHkPxsjf0ExEDKSarLKfpZRRpetIaDIE2SmpgRSTWnCKA_ENVnWKmNt43TLQDZOtJueNZzNsbpH_sY1nu31Olhb-Xwja_O6hlV8CcEVVfKYlr1U632ziztprni0hlzuyIYeU90YDOP1mm"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary-container font-bold">Campus Sangolquí</span>
+<span class="font-headline-md text-headline-md text-tertiary text-base font-semibold">Red WiFi ESPE-Alumnos</span>
+<span class="font-body-sm text-body-sm text-secondary">Conectado y autenticado</span>
+</div>
+</div>
+<!-- SECCIÓN 4: ACERCA DE Y SOPORTE -->
+<div class="flex flex-col gap-space-sm mb-space-lg">
+<div class="flex items-center gap-space-xs px-1">
+<span class="material-symbols-outlined text-primary-container text-[20px]">info</span>
+<h3 class="font-label-lg text-label-lg uppercase tracking-wider text-tertiary">Acerca de y Soporte</h3>
+</div>
+<div class="bg-surface-dark rounded-xl overflow-hidden shadow-sm flex flex-col">
+<!-- Item 1: Estado de servicios -->
+<a class="p-space-md flex items-center justify-between hover:bg-surface-elevated transition-colors" href="javascript:void(0)">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-primary-container text-[20px]">dns</span>
+<span class="font-body-lg text-body-lg text-tertiary font-medium">Estado de servicios ESPE</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded-full bg-on-primary-container text-primary font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+            Operativo
+          </span>
+<span class="material-symbols-outlined text-[18px] text-secondary">chevron_right</span>
+</div>
+</a>
+<div class="h-[1px] bg-surface-elevated w-full"></div>
+<!-- Item 2: Términos y privacidad -->
+<a class="p-space-md flex items-center justify-between hover:bg-surface-elevated transition-colors" href="javascript:void(0)">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-primary-container text-[20px]">policy</span>
+<span class="font-body-lg text-body-lg text-tertiary font-medium">Términos y privacidad estudiantil</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-secondary">chevron_right</span>
+</a>
+<div class="h-[1px] bg-surface-elevated w-full"></div>
+<!-- Item 3: Reportar un error -->
+<a class="p-space-md flex items-center justify-between hover:bg-surface-elevated transition-colors" href="javascript:void(0)">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-primary-container text-[20px]">bug_report</span>
+<span class="font-body-lg text-body-lg text-tertiary font-medium">Reportar un error o sugerir función</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-secondary">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- SECCIÓN 5: ZONA DE PELIGRO / CIERRE DE SESIÓN -->
+<div class="flex flex-col gap-space-sm mb-space-xl">
+<div class="bg-surface-dark rounded-xl p-space-md flex flex-col gap-space-md shadow-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-error text-[22px] shrink-0 mt-0.5">lock_reset</span>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-headline-md text-tertiary text-base font-semibold">Seguridad de la sesión</span>
+<span class="font-body-sm text-body-sm text-secondary">Al cerrar sesión se removerán credenciales y tokens guardados en este teléfono.</span>
+</div>
+</div>
+<button class="w-full bg-surface-elevated hover:bg-error/20 text-tertiary font-label-lg text-label-lg py-3 px-space-md rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-all" id="btn-logout">
+<span class="material-symbols-outlined text-error text-[20px]">logout</span>
+<span class="font-bold">Cerrar Sesión Estudiantil</span>
+</button>
+</div>
+</div>
+<!-- FOOTER & BUILD INDICATOR -->
+<div class="flex flex-col items-center justify-center text-center gap-1 pb-4">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-tertiary font-bold">Esperancitos ESPE</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">
+      v1.4.0 (Build 240) • Sangolquí, Ecuador
+    </p>
+<p class="font-label-sm text-label-sm text-secondary opacity-60 mt-0.5">
+      Diseñado para el ritmo militar y tecnológico
+    </p>
+</div>
+</div>
+<script>
+  // Toast micro-interaction
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-surface-elevated text-tertiary px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2 z-50 transition-opacity duration-300 font-label-lg text-label-lg';
+    toast.innerHTML = `<span class="material-symbols-outlined text-primary-container text-[20px]">check_circle</span> <span>${message}</span>`;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 300);
+    }, 2400);
+  }
+
+  // Sincronizar Ahora interaction
+  const syncBtn = document.getElementById('btn-sync-now');
+  const syncIcon = document.getElementById('sync-icon');
+  if (syncBtn && syncIcon) {
+    syncBtn.addEventListener('click', () => {
+      syncIcon.classList.add('animate-spin');
+      syncBtn.setAttribute('disabled', 'true');
+      syncBtn.classList.add('opacity-75');
+      setTimeout(() => {
+        syncIcon.classList.remove('animate-spin');
+        syncBtn.removeAttribute('disabled');
+        syncBtn.classList.remove('opacity-75');
+        showToast('¡Banner y Moodle sincronizados exitosamente!');
+      }, 1400);
+    });
+  }
+
+  // Limpiar Caché interaction
+  const clearCacheBtn = document.getElementById('btn-clear-cache');
+  const cacheSizeText = document.getElementById('cache-size');
+  const cacheBar = document.getElementById('cache-bar');
+  if (clearCacheBtn && cacheSizeText && cacheBar) {
+    clearCacheBtn.addEventListener('click', () => {
+      cacheSizeText.textContent = '0 MB';
+      cacheBar.style.width = '2%';
+      showToast('Caché de documentos liberada (42 MB)');
+    });
+  }
+
+  // Exportar Calendario interaction
+  const exportCalBtn = document.getElementById('btn-export-calendar');
+  if (exportCalBtn) {
+    exportCalBtn.addEventListener('click', () => {
+      showToast('Archivo horario_espe_2025.ics generado');
+    });
+  }
+
+  // Logout safe interaction
+  const logoutBtn = document.getElementById('btn-logout');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      const confirmLogout = window.confirm('¿Confirmas el cierre de sesión? Tus guías sin conexión se desvincularán.');
+      if (confirmLogout) {
+        showToast('Cerrando sesión de forma segura...');
+      }
+    });
+  }
+</script></main></body></html>

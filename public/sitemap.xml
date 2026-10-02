@@ -26,9 +26,23 @@
   </url>
 
   <url>
+    <loc>https://esperancitos.app/avisos</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://esperancitos.app/negocios</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://esperancitos.app/privacidad</loc>
-    <lastmod>2026-09-30</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 </urlset>

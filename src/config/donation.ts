@@ -17,6 +17,12 @@
 
 export const DEUNA_LINK_READY = false;
 
+export interface DonationGoal {
+  label: string;
+  detail: string;
+  status: 'en curso' | 'listo';
+}
+
 export const DONATION_CONFIG = {
   // Si sigues usando valores de ejemplo, la interfaz muestra el aviso de borrador
   isPlaceholder: true,
@@ -50,7 +56,7 @@ export const DONATION_CONFIG = {
       detail: 'Mantener la página en línea para que puedas descargar la app',
       status: 'en curso',
     },
-  ],
+  ] as DonationGoal[],
 
   // Checksum SHA-256 opcional para verificación de integridad del APK
   apkSha256: '', // Dejar vacío si no se publica el checksum

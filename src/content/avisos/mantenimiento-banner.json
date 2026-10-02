@@ -1,0 +1,16 @@
+{
+  "id": "mantenimiento-banner",
+  "type": "mantenimiento",
+  "title": "Ventana técnica en servicios de consulta",
+  "body": "Este fin de semana se realizará mantenimiento preventivo en enlaces de consulta. Las funciones locales de la app seguirán activas sin conexión.",
+  "link": {
+    "url": "https://esperancitos.app/#docs",
+    "label": "Ver guía"
+  },
+  "campus": ["presencial"],
+  "publishedAt": "2026-10-02T07:30:00-05:00",
+  "expiresAt": "2026-10-20T23:59:59-05:00",
+  "pinned": false,
+  "ejemplo": true,
+  "notas": "Aviso técnico de ejemplo con enlace https"
+}

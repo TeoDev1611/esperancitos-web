@@ -1,0 +1,439 @@
+---
+// avisos.astro - Tablón público de avisos comunitarios de Esperancitos
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { buildApiPayloads } from '../lib/community-payloads.ts';
+import type { PublicAvisoItem } from '../lib/community-contract.ts';
+
+// Cargar avisos vigentes desde el generador determinista
+// Si INCLUDE_EXAMPLES está activo o estamos en dev, se muestran también los avisos de ejemplo vigentes
+const includeExamples =
+  import.meta.env.DEV ||
+  process.env.INCLUDE_EXAMPLES === 'true' ||
+  process.env.PUBLIC_API_INCLUDE_EXAMPLES === 'true';
+
+const payloads = buildApiPayloads({ includeExamples });
+const avisos: PublicAvisoItem[] = payloads.parsed.avisos.items;
+
+const typeConfig: Record<
+  string,
+  { label: string; icon: string; className: string }
+> = {
+  info: { label: 'Información', icon: 'ℹ️', className: 'info' },
+  evento: { label: 'Evento', icon: '📅', className: 'evento' },
+  mantenimiento: { label: 'Mantenimiento', icon: '🛠️', className: 'mantenimiento' },
+  importante: { label: 'Importante', icon: '⚠️', className: 'importante' },
+};
+
+function formatDate(isoString: string): string {
+  try {
+    const d = new Date(isoString);
+    return new Intl.DateTimeFormat('es-EC', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'America/Guayaquil',
+    }).format(d);
+  } catch {
+    return isoString;
+  }
+}
+---
+
+<BaseLayout
+  title="Avisos de la Comunidad"
+  description="Tablón de avisos, eventos y novedades de la comunidad estudiantil de Esperancitos para la ESPE."
+  keywords="avisos ESPE, eventos politécnicos, comunidad Esperancitos, novedades estudiantes"
+  includeAppSchema={false}
+>
+  <section class="community-page">
+    <div class="container community-container">
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Avisos</span>
+      </nav>
+
+      <header class="page-header reveal-init">
+        <span class="section-kicker">Comunidad Esperancitos</span>
+        <h1>Avisos de la Comunidad</h1>
+        <p class="page-lead">
+          Novedades, eventos y avisos de interés compartidos por y para estudiantes politécnicos.
+        </p>
+
+        <!-- AVISO LEGAL OBLIGATORIO SEGÚN CONTRATO -->
+        <div class="notice-disclaimer-box card-app">
+          <div class="disclaimer-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <strong>Aviso de la comunidad Esperancitos. No es un aviso oficial de la ESPE.</strong>
+          </div>
+          <p class="disclaimer-text">
+            Este espacio es gestionado de forma independiente por estudiantes. Para comunicados oficiales y resoluciones institucionales consulta siempre los canales oficiales de la ESPE.
+          </p>
+        </div>
+      </header>
+
+      <!-- Lista de avisos -->
+      {avisos.length === 0 ? (
+        <div class="empty-state card-app reveal-init">
+          <div class="empty-icon-wrap" aria-hidden="true">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </div>
+          <h3>No hay avisos vigentes en este momento</h3>
+          <p>
+            Cuando se publiquen anuncios para la comunidad aparecerán aquí y se sincronizarán automáticamente con la aplicación de Esperancitos.
+          </p>
+          <a href="/" class="btn-app btn-app-primary">
+            <span>Volver al inicio</span>
+          </a>
+        </div>
+      ) : (
+        <div class="avisos-grid">
+          {avisos.map((aviso) => {
+            const conf = typeConfig[aviso.type] || {
+              label: aviso.type,
+              icon: '📢',
+              className: 'info',
+            };
+            return (
+              <article class:list={['card-app', 'aviso-card', { live: aviso.pinned }]} id={aviso.id}>
+                <div class="aviso-meta-top">
+                  <div class="meta-badges">
+                    <span class:list={['badge-type', `badge-${conf.className}`]}>
+                      <span aria-hidden="true">{conf.icon}</span>
+                      <span>{conf.label}</span>
+                    </span>
+
+                    {aviso.pinned && (
+                      <span class="badge-pinned" title="Aviso fijado en la parte superior">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <line x1="12" y1="17" x2="12" y2="22"></line>
+                          <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"></path>
+                        </svg>
+                        <span>Fijado</span>
+                      </span>
+                    )}
+
+                    {aviso.campus && aviso.campus.length > 0 && (
+                      <span class="badge-campus">
+                        {aviso.campus.join(', ')}
+                      </span>
+                    )}
+                  </div>
+
+                  <time datetime={aviso.publishedAt} class="aviso-date">
+                    {formatDate(aviso.publishedAt)}
+                  </time>
+                </div>
+
+                <h2 class="aviso-title">{aviso.title}</h2>
+                <p class="aviso-body">{aviso.body}</p>
+
+                {aviso.link && (
+                  <div class="aviso-link-wrapper">
+                    <a
+                      href={aviso.link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="btn-app btn-app-surface btn-aviso-link"
+                    >
+                      <span>{aviso.link.label}</span>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                      </svg>
+                    </a>
+                  </div>
+                )}
+
+                <footer class="aviso-card-footer">
+                  <span class="disclaimer-micro">
+                    Aviso de la comunidad Esperancitos. No es un aviso oficial de la ESPE.
+                  </span>
+                </footer>
+              </article>
+            );
+          })}
+        </div>
+      )}
+
+      <div class="community-page-footer reveal-init">
+        <a href="/" class="btn-app btn-app-surface">
+          <span>← Volver al inicio</span>
+        </a>
+        <a href="/negocios" class="btn-app btn-app-primary">
+          <span>Ver Directorio de Negocios →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .community-page {
+    padding: 50px 0 90px 0;
+    border-top: 2px solid var(--border-app);
+  }
+
+  .community-container {
+    max-width: 960px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .breadcrumb a {
+    color: var(--accent-primary);
+    font-weight: 700;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .page-header {
+    margin-bottom: 38px;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin-bottom: 12px;
+  }
+
+  .page-lead {
+    font-size: 1.08rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  /* Cuadro de advertencia obligatoria */
+  .notice-disclaimer-box {
+    background: rgba(255, 219, 121, 0.08);
+    border-color: var(--accent-amber);
+    padding: 16px 20px;
+    margin-top: 18px;
+  }
+
+  .disclaimer-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-amber);
+    font-size: 0.95rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .disclaimer-badge svg {
+    flex-shrink: 0;
+  }
+
+  .disclaimer-text {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Grid de avisos */
+  .avisos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-bottom: 44px;
+  }
+
+  .aviso-card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 28px;
+    transition: transform var(--duration-hover) var(--ease-apple),
+                box-shadow var(--duration-hover) var(--ease-apple);
+  }
+
+  .aviso-meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  .meta-badges {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .badge-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border-app);
+    background: var(--bg-surface-elevated);
+  }
+
+  .badge-info {
+    color: var(--accent-cyan);
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(56, 189, 248, 0.1);
+  }
+
+  .badge-evento {
+    color: var(--accent-primary);
+    border-color: rgba(0, 255, 135, 0.4);
+    background: rgba(0, 255, 135, 0.1);
+  }
+
+  .badge-mantenimiento {
+    color: var(--accent-amber);
+    border-color: rgba(255, 219, 121, 0.4);
+    background: rgba(255, 219, 121, 0.1);
+  }
+
+  .badge-importante {
+    color: var(--accent-critical);
+    border-color: rgba(255, 180, 171, 0.4);
+    background: rgba(255, 180, 171, 0.1);
+  }
+
+  .badge-pinned {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    background: rgba(0, 255, 135, 0.14);
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+  }
+
+  .badge-campus {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    background: var(--bg-surface-subtle);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    text-transform: capitalize;
+  }
+
+  .aviso-date {
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+
+  .aviso-title {
+    font-size: 1.35rem;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+  }
+
+  .aviso-body {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+
+  .aviso-link-wrapper {
+    margin-bottom: 18px;
+  }
+
+  .btn-aviso-link {
+    padding: 8px 16px;
+    font-size: 0.84rem;
+    text-transform: none;
+  }
+
+  .aviso-card-footer {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 12px;
+    margin-top: auto;
+  }
+
+  .disclaimer-micro {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+  }
+
+  /* Estado vacío */
+  .empty-state {
+    text-align: center;
+    padding: 50px 24px;
+    margin-bottom: 40px;
+  }
+
+  .empty-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--bg-surface-elevated);
+    border: 2px solid var(--border-app);
+    color: var(--accent-primary);
+    margin-bottom: 18px;
+  }
+
+  .empty-state h3 {
+    font-size: 1.35rem;
+    margin-bottom: 10px;
+  }
+
+  .empty-state p {
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto 24px auto;
+    font-size: 0.96rem;
+  }
+
+  .community-page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    border-top: 1.5px solid var(--border-app);
+    padding-top: 28px;
+  }
+
+  @media (max-width: 640px) {
+    .aviso-card {
+      padding: 18px 20px;
+    }
+    .aviso-meta-top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

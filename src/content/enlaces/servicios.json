@@ -1,0 +1,17 @@
+{
+  "id": "servicios-universitarios",
+  "title": "Servicios Universitarios",
+  "order": 2,
+  "items": [
+    {
+      "id": "biblioteca-virtual-espe",
+      "title": "Biblioteca Virtual ESPE",
+      "url": "https://biblioteca.espe.edu.ec",
+      "description": "Bases de datos científicas, catálogo en línea y repositorio de tesis",
+      "updatedAt": "2026-10-01T08:00:00-05:00",
+      "ejemplo": true
+    }
+  ],
+  "ejemplo": true,
+  "notas": "Grupo de enlaces de servicios estudiantiles de ejemplo"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "bienvenida-semestre",
+  "type": "info",
+  "title": "Bienvenida al período académico Octubre 2026",
+  "body": "Te damos la bienvenida al nuevo ciclo en la ESPE. Recuerda verificar tus asignaturas inscritas y aulas asignadas en tu horario.",
+  "campus": ["presencial", "virtual"],
+  "publishedAt": "2026-10-01T08:00:00-05:00",
+  "expiresAt": "2026-12-31T23:59:59-05:00",
+  "pinned": true,
+  "minBuild": 8,
+  "ejemplo": true,
+  "notas": "Aviso de ejemplo fijado para inicio de semestre"
+}

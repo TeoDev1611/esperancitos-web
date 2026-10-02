@@ -1,0 +1,26 @@
+{
+  "id": "rincon-politecnico",
+  "name": "El Rincón Politécnico (Ejemplo)",
+  "category": "comida",
+  "description": "Almuerzos universitarios completos, desayunos y jugos naturales. Menú económico para estudiantes.",
+  "address": "Calle Atahualpa y Av. Los Shyris",
+  "zone": "Sector San Rafael",
+  "hours": "Lunes a Viernes 08:00 - 16:00",
+  "contact": {
+    "whatsapp": "+593987654321",
+    "web": "https://elrincon.test"
+  },
+  "updatedAt": "2026-10-01T10:00:00-05:00",
+  "validUntil": "2026-12-31T23:59:59-05:00",
+  "ejemplo": true,
+  "consentimiento": {
+    "otorgado": true,
+    "fecha": "2026-09-29",
+    "medio": "correo"
+  },
+  "contactoDueno": {
+    "nombre": "María Gómez",
+    "correo": "maria@elrincon.test"
+  },
+  "notas": "Ejemplo gastronómico sin logo y con web"
+}

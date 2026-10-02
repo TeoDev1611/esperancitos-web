@@ -3,7 +3,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../config/site';
 
-const lastUpdate = '1 de octubre de 2026';
+const lastUpdate = '2 de octubre de 2026';
 const contactEmail = SITE.social.email;
 
 const sections = [
@@ -11,7 +11,7 @@ const sections = [
     id: 'resumen',
     title: 'En una frase',
     body: [
-      'Esperancitos no tiene servidores propios. Tus datos académicos y tu sesión viven únicamente en tu celular, y las conexiones van directo desde tu teléfono a los servidores oficiales de la ESPE.',
+      'Esperancitos no tiene servidores que guarden tus datos. Tus datos académicos y tu sesión viven únicamente en tu celular, y las conexiones van directo desde tu teléfono a los servidores oficiales de la ESPE.',
     ],
   },
   {
@@ -19,6 +19,24 @@ const sections = [
     title: 'Aviso legal',
     body: [
       'Esperancitos es un proyecto independiente y no está afiliado a la Universidad de las Fuerzas Armadas ESPE. Los nombres y marcas pertenecen a sus dueños. Se ofrece gratis y "tal cual", sin garantías. La información (horarios, fechas de entrega, notas, malla) puede estar retrasada o ser incorrecta: verifícala siempre en miESPE y en Moodle. Usa únicamente tu propia cuenta; eres responsable de lo que se haga desde ella y de cumplir los reglamentos de la ESPE. La app puede dejar de funcionar si la universidad cambia o restringe sus sistemas. Los aportes son voluntarios y la universidad no participa en ellos.',
+    ],
+  },
+  {
+    id: 'avisos-actualizaciones',
+    title: 'Avisos y actualizaciones',
+    body: [
+      'La app puede consultar periódicamente archivos públicos de este sitio para mostrar avisos de la comunidad, negocios, enlaces y novedades de versión. La app no envía datos personales ni identificadores. Como en cualquier sitio web, el servicio de alojamiento puede registrar la dirección IP y la hora de la consulta. Puedes desactivar esta función en Ajustes.',
+    ],
+  },
+  {
+    id: 'negocios-directorio',
+    title: 'Directorio de negocios y postulaciones',
+    body: [
+      `Mostramos únicamente datos de contacto del negocio y con permiso de su dueño. Para pedir cambios o retirar un listado escribe a ${contactEmail}.`,
+    ],
+    items: [
+      '<strong>Formularios externos de postulación:</strong> si postulas un negocio a través de un formulario externo (como Google Forms o Tally), ese servicio de terceros procesa las respuestas conforme a su propia política de privacidad. En la postulación se solicitan exclusivamente datos públicos del negocio (nombre comercial, categoría, descripción, dirección, zona, teléfono o WhatsApp público, redes y horarios) y la confirmación del permiso del dueño para figurar en la app. No se piden contraseñas, datos bancarios ni datos personales sensibles.',
+      '<strong>Sin intermediación económica:</strong> Esperancitos no gestiona compras, cobros ni entregas. Las relaciones comerciales se dan exclusivamente entre el estudiante y el negocio.',
     ],
   },
   {
@@ -34,7 +52,7 @@ const sections = [
     id: 'que-no-hacemos',
     title: 'Lo que esta app NO hace',
     items: [
-      '<strong>No tiene servidores intermediarios:</strong> no existe ninguna máquina nuestra de por medio capturando lo que consultas.',
+      '<strong>No tiene servidores intermediarios:</strong> no existe ninguna máquina nuestra de por medio capturando lo que consultas ni guardando tus datos.',
       '<strong>Nunca conoce, intercepta, guarda ni transmite tu contraseña institucional (miESPE / Microsoft 365 / Banner):</strong> el inicio de sesión se realiza directamente en el navegador del sistema mediante el portal oficial de Microsoft 365 / miESPE. La app únicamente recibe y almacena las cookies de sesión temporal necesarias para consultar tu horario.',
       '<strong>No pide ni guarda tu contraseña de Moodle:</strong> el acceso se realiza mediante el código QR oficial de Moodle (token de sesión), por lo que tu contraseña nunca pasa por la app.',
       '<strong>No recopila estadísticas de uso ni telemetría:</strong> la app no reporta qué pantallas abres ni cuánto tiempo la usas.',
@@ -61,7 +79,7 @@ const sections = [
     items: [
       '<strong>Servidores de la ESPE:</strong> al sincronizar, tu teléfono se conecta directamente a los sistemas institucionales (miESPE y el Campus Virtual). Su tratamiento de datos se rige por las políticas de la universidad.',
       '<strong>Deuna:</strong> si decides aportar al proyecto, el enlace y el código QR te llevan a la plataforma de Deuna. Ese pago lo procesa Deuna bajo sus propias condiciones; nosotros no vemos ni almacenamos datos de tu tarjeta o cuenta.',
-      '<strong>Formularios de comentarios:</strong> si reportas un error o envías una sugerencia, los datos que escribas se guardan en el proveedor del formulario que se indique en esa sección.',
+      '<strong>Formularios de comentarios y postulaciones:</strong> si reportas un error, envías una sugerencia o postulas un negocio, los datos que escribas se guardan en el proveedor del formulario que se indique en esa sección.',
     ],
   },
   {
@@ -70,7 +88,7 @@ const sections = [
     items: [
       '<strong>Cámara:</strong> solo se usa mientras escaneas un código QR (el de Moodle o el de un compañero). No graba ni transmite nada.',
       '<strong>Notificaciones:</strong> para avisarte antes de cada clase y enviarte el resumen de la mañana. Puedes desactivarlas cuando quieras.',
-      '<strong>Internet:</strong> para sincronizar con la universidad. El resto de la app funciona sin conexión.',
+      '<strong>Internet:</strong> para sincronizar con la universidad y recibir avisos y novedades públicas. El resto de la app funciona sin conexión.',
     ],
   },
   {
@@ -110,7 +128,7 @@ const sections = [
 
 <BaseLayout
   title="Política de Privacidad"
-  description="Esperancitos no tiene servidores propios: tus datos se guardan en el sandbox privado de tu celular y tu sesión cifrada en el almacenamiento seguro. Política de privacidad de la app."
+  description="Esperancitos no tiene servidores que guarden tus datos: tus datos se guardan en el sandbox privado de tu celular y tu sesión cifrada en el almacenamiento seguro. Política de privacidad de la app."
   keywords="privacidad Esperancitos, datos app ESPE, seguridad malla curricular, política de privacidad"
   includeAppSchema={false}
 >
