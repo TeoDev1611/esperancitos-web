@@ -38,7 +38,27 @@ const raw: Array<Omit<FaqEntry, 'plainAnswer'>> = [
   {
     question: '¿Se guardan mis credenciales en algún servidor externo o en la nube?',
     answer:
-      '<strong>No.</strong> Esperancitos no tiene servidores propios que guarden tus datos. La conexión va directo de tu celular a las páginas oficiales de la ESPE, y lo que se descarga se queda cifrado dentro de tu teléfono, protegido por el propio sistema de seguridad de Android.',
+      '<strong>No.</strong> Esperancitos no tiene servidores propios que guarden tus datos. La conexión va directo de tu celular a las páginas oficiales de la ESPE. Tus credenciales de sesión (tokens de Moodle y cookies de Banner) se almacenan cifradas en el almacenamiento seguro de tu dispositivo (Android Keystore con cifrado por hardware AES y Keychain en iOS), y tu información académica se guarda localmente (Drift SQLite) en el sandbox privado y aislado de la app.',
+  },
+  {
+    question: '¿Dónde escribo mi contraseña?',
+    answer:
+      'Para Moodle no la escribes: entras con el código QR oficial. Para el horario y las notas, el inicio de sesión se realiza directamente en el navegador del sistema mediante el portal oficial de Microsoft 365 / miESPE. Esperancitos nunca conoce, intercepta, guarda ni transmite tu contraseña institucional; únicamente recibe y almacena las cookies de sesión temporal necesarias para consultar tu horario, cifradas en el almacenamiento seguro del sistema.',
+  },
+  {
+    question: '¿Quién es responsable de lo que hago con mi cuenta?',
+    answer:
+      'Tú. Esperancitos usa únicamente tu propia cuenta y el reglamento de tecnologías de la ESPE hace al estudiante responsable de las acciones realizadas desde ella. Verifica siempre tu información en miESPE y Moodle.',
+  },
+  {
+    question: '¿Qué pasa si la ESPE cambia o bloquea sus sistemas?',
+    answer:
+      'La app puede dejar de funcionar total o parcialmente. Es un proyecto independiente y no hay garantía de disponibilidad. Tus datos descargados siguen en tu teléfono hasta que cierres sesión o desinstales.',
+  },
+  {
+    question: '¿Cómo y cada cuánto consulta la app en segundo plano?',
+    answer:
+      'La vigilancia de mensajes en Moodle se ejecuta cada 15 minutos; la verificación de tareas y notas pendientes se realiza cada 6 horas (con límite mínimo de 1 hora entre consultas); y la sincronización de horario de Banner es configurable por el usuario (6h, 12h, 24h o apagado manual). Todos los servicios en segundo plano aplican suspensión y reintento exponencial (backoff) ante pérdidas de conectividad o errores de red.',
   },
   {
     question: '¿Cómo funciona el cálculo del año estimado de graduación en la Malla?',

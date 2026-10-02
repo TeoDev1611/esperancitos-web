@@ -15,11 +15,14 @@
 //   2. qrImage   -> reemplaza public/images/qr-donacion.jpg por tu QR real.
 // ============================================================================
 
+export const DEUNA_LINK_READY = false;
+
 export const DONATION_CONFIG = {
   // Si sigues usando valores de ejemplo, la interfaz muestra el aviso de borrador
   isPlaceholder: true,
 
   // --- Deuna ------------------------------------------------------------------
+  deunaLinkReady: DEUNA_LINK_READY,
   deunaLink: 'https://deuna.app/tu-enlace-de-cobro', // <-- REEMPLAZAR
   deunaHolder: 'Mateo (Dev Esperancitos)',
 

@@ -21,6 +21,22 @@ const secondarySha = SITE.apkChecksums[secondaryFile] ?? '';
         </p>
       </div>
 
+      <!-- Aviso Legal antes de la descarga -->
+      <div class="download-legal-notice reveal-init" role="note">
+        <div class="notice-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <div class="notice-body">
+          <p>
+            <strong>Aviso legal.</strong> Esperancitos es un proyecto independiente y no está afiliado a la Universidad de las Fuerzas Armadas ESPE. Los nombres y marcas pertenecen a sus dueños. Se ofrece gratis y "tal cual", sin garantías. La información (horarios, fechas de entrega, notas, malla) puede estar retrasada o ser incorrecta: verifícala siempre en miESPE y en Moodle. Usa únicamente tu propia cuenta; eres responsable de lo que se haga desde ella y de cumplir los reglamentos de la ESPE. La app puede dejar de funcionar si la universidad cambia o restringe sus sistemas. Los aportes son voluntarios y la universidad no participa en ellos.
+          </p>
+        </div>
+      </div>
+
       <!-- Tarjeta Principal Dominante -->
       <div class="apk-primary-showcase card-app live">
         <div class="apk-identity">
@@ -417,6 +433,31 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     color: var(--text-muted);
     text-align: center;
     line-height: 1.35;
+  }
+
+  /* Aviso Legal previo a la descarga */
+  .download-legal-notice {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--border-app);
+    border-left: 4px solid var(--accent-amber);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .download-legal-notice .notice-body p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .download-legal-notice .notice-body strong {
+    color: var(--text-primary);
   }
 
   /* Aviso de instalación + verificación */

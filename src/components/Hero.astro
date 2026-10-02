@@ -23,6 +23,16 @@
         <span class="hero-line hero-line-3">que la ESPE merecía.</span>
       </h1>
 
+      <!-- Aviso de Proyecto Independiente (Visible sin scroll en móvil) -->
+      <div class="hero-independent-notice" role="note">
+        <svg class="notice-inline-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span>Proyecto independiente hecho por estudiantes. No es una app oficial de la ESPE ni cuenta con su respaldo ni autorización.</span>
+      </div>
+
       <!-- Párrafo Descriptivo con Información Completa -->
       <p class="hero-description">
         Mira tu <strong>malla curricular</strong> y calcula en qué año te gradúas, revisa tu <strong>horario con el aula de cada clase</strong> y entra a tu <strong>Moodle</strong> escaneando un código QR, sin escribir tu contraseña. Todo funciona <strong>sin internet</strong> y se queda en tu celular.
@@ -77,13 +87,13 @@
           </div>
         </div>
 
-        <div class="feature-chip" title="24 carreras de la ESPE ya cargadas en la app">
+        <div class="feature-chip" title="22 carreras de la ESPE ya cargadas en la app">
           <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
             <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
           </svg>
           <div class="chip-info">
-            <strong>24 carreras</strong>
+            <strong>22 carreras</strong>
             <span>Tu malla ya está cargada</span>
           </div>
         </div>
@@ -438,6 +448,34 @@
       transform: translateY(0);
       filter: blur(0);
     }
+  }
+
+  .hero-independent-notice {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--text-primary);
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--border-app);
+    border-left: 3.5px solid var(--accent-amber);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 22px;
+    max-width: 580px;
+    text-align: left;
+  }
+
+  .hero-independent-notice .notice-inline-icon {
+    color: var(--accent-amber);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  html.js-anim .hero-independent-notice {
+    animation: hero-fade-up 700ms var(--ease-apple) 600ms both;
   }
 
   .hero-description {
@@ -1348,6 +1386,11 @@
       align-items: center;
     }
 
+    .hero-independent-notice {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .hero-description {
       margin-left: auto;
       margin-right: auto;
@@ -1379,6 +1422,11 @@
   @media (max-width: 580px) {
     .hero-headline {
       font-size: 2.25rem;
+    }
+
+    .hero-independent-notice {
+      font-size: 0.88rem;
+      padding: 8px 12px;
     }
 
     .hero-features-chips {

@@ -1,9 +1,9 @@
 ---
 // SupportSection.astro - Sección de Apoyo al Proyecto (Deuna + QR)
-import { DONATION_CONFIG } from '../config/donation';
+import { DONATION_CONFIG, DEUNA_LINK_READY } from '../config/donation';
 
 const { deunaLink, deunaHolder, qrImage, goals } = DONATION_CONFIG;
-const hasDeunaLink = deunaLink.trim().length > 0;
+const hasDeunaLink = DEUNA_LINK_READY && deunaLink.trim().length > 0 && !deunaLink.includes('tu-enlace-de-cobro');
 ---
 
 <section class="support-section scroll-reveal" id="apoyar">
@@ -95,6 +95,10 @@ const hasDeunaLink = deunaLink.trim().length > 0;
                     </button>
                   </div>
                 </div>
+
+                <p class="deuna-voluntary-notice">
+                  Aporte voluntario. No es el pago de un servicio y la ESPE no participa.
+                </p>
               </div>
             </div>
           </div>
@@ -130,6 +134,10 @@ const hasDeunaLink = deunaLink.trim().length > 0;
             <p class="qr-supported-apps">
               Ábrelo con la app de <strong>Deuna</strong><br/>
               o con cualquier app de banco del Ecuador
+            </p>
+
+            <p class="qr-voluntary-notice">
+              Aporte voluntario. No es el pago de un servicio y la ESPE no participa.
             </p>
           </div>
         </div>
@@ -377,6 +385,19 @@ const hasDeunaLink = deunaLink.trim().length > 0;
   .row-value {
     font-weight: 700;
     color: var(--text-primary);
+  }
+
+  .deuna-voluntary-notice,
+  .qr-voluntary-notice {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    margin-top: 12px;
+    text-align: center;
   }
 
   /* Botón de Copiado Táctil.

@@ -3,7 +3,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../config/site';
 
-const lastUpdate = '30 de septiembre de 2026';
+const lastUpdate = '1 de octubre de 2026';
 const contactEmail = SITE.social.email;
 
 const sections = [
@@ -15,12 +15,19 @@ const sections = [
     ],
   },
   {
+    id: 'aviso-legal',
+    title: 'Aviso legal',
+    body: [
+      'Esperancitos es un proyecto independiente y no está afiliado a la Universidad de las Fuerzas Armadas ESPE. Los nombres y marcas pertenecen a sus dueños. Se ofrece gratis y "tal cual", sin garantías. La información (horarios, fechas de entrega, notas, malla) puede estar retrasada o ser incorrecta: verifícala siempre en miESPE y en Moodle. Usa únicamente tu propia cuenta; eres responsable de lo que se haga desde ella y de cumplir los reglamentos de la ESPE. La app puede dejar de funcionar si la universidad cambia o restringe sus sistemas. Los aportes son voluntarios y la universidad no participa en ellos.',
+    ],
+  },
+  {
     id: 'que-datos',
     title: 'Qué datos maneja la app',
     items: [
-      '<strong>Tu horario, tus notas, tus tareas y tu avance en la malla:</strong> se descargan de los sistemas de la universidad y se guardan dentro de tu teléfono, en una base de datos local cifrada.',
-      '<strong>Los datos de tu sesión con la ESPE:</strong> se guardan cifrados en el almacenamiento seguro de Android, protegidos por el sistema de seguridad del propio teléfono.',
-      '<strong>Tu carrera y tus preferencias:</strong> qué malla elegiste, tus recordatorios, el modo de ahorro de datos. Todo eso se queda en el dispositivo.',
+      '<strong>Tu horario, tus notas, tus tareas y tu avance en la malla:</strong> se descargan directamente de los sistemas de la universidad y se guardan en una base de datos local (Drift SQLite), resguardada de forma nativa dentro del sandbox privado y aislado de la aplicación en el dispositivo (sin SQLCipher propio, protegida por el aislamiento estricto del sistema).',
+      '<strong>Las credenciales de tu sesión con la ESPE (tokens de Moodle y cookies de Banner):</strong> se almacenan cifradas mediante el almacenamiento seguro del sistema operativo (Android Keystore con cifrado por hardware AES y Keychain en iOS).',
+      '<strong>Tu carrera y tus preferencias:</strong> qué malla elegiste (entre las 22 carreras de grado oficiales de la ESPE), tus recordatorios y la frecuencia de sincronización de horario. Todo se queda en el dispositivo.',
     ],
   },
   {
@@ -28,10 +35,24 @@ const sections = [
     title: 'Lo que esta app NO hace',
     items: [
       '<strong>No tiene servidores intermediarios:</strong> no existe ninguna máquina nuestra de por medio capturando lo que consultas.',
-      '<strong>No pide ni guarda tu contraseña de Moodle:</strong> el acceso se hace con el código QR oficial de Moodle, así que tu clave nunca pasa por la app.',
+      '<strong>Nunca conoce, intercepta, guarda ni transmite tu contraseña institucional (miESPE / Microsoft 365 / Banner):</strong> el inicio de sesión se realiza directamente en el navegador del sistema mediante el portal oficial de Microsoft 365 / miESPE. La app únicamente recibe y almacena las cookies de sesión temporal necesarias para consultar tu horario.',
+      '<strong>No pide ni guarda tu contraseña de Moodle:</strong> el acceso se realiza mediante el código QR oficial de Moodle (token de sesión), por lo que tu contraseña nunca pasa por la app.',
       '<strong>No recopila estadísticas de uso ni telemetría:</strong> la app no reporta qué pantallas abres ni cuánto tiempo la usas.',
       '<strong>No muestra publicidad</strong> ni comparte información con terceros con fines comerciales.',
       '<strong>No vende ni cede tus datos</strong> a nadie, porque no los tenemos.',
+    ],
+  },
+  {
+    id: 'segundo-plano',
+    title: 'Consultas en segundo plano',
+    body: [
+      'Para mantener tus recordatorios y tareas al día sin agotar tu batería ni sobrecargar los sistemas de la universidad, Esperancitos programa consultas automáticas con frecuencias diferenciadas:',
+    ],
+    items: [
+      '<strong>Mensajes en Moodle:</strong> la vigilancia de mensajes se ejecuta cada 15 minutos en segundo plano.',
+      '<strong>Tareas y notas pendientes:</strong> la verificación se realiza cada 6 horas (con límite mínimo de 1 hora entre consultas).',
+      '<strong>Horario y aulas de Banner:</strong> la sincronización periódica es configurable por el usuario (intervalos de 6h, 12h, 24h o apagado manual).',
+      '<strong>Gestión de red y reintentos:</strong> todos los servicios en segundo plano aplican suspensión y reintento exponencial (backoff) ante pérdidas de conectividad o errores de red.',
     ],
   },
   {
@@ -60,7 +81,7 @@ const sections = [
     ],
     items: [
       'Dentro de la app puedes cerrar sesión y borrar los datos descargados.',
-      'Si desinstalas la aplicación, Android elimina junto con ella la base de datos local y las credenciales cifradas.',
+      'Si desinstalas la aplicación, el sistema operativo elimina junto con ella la base de datos local y las credenciales cifradas del almacenamiento seguro.',
     ],
   },
   {
@@ -81,7 +102,7 @@ const sections = [
     id: 'cambios',
     title: 'Cambios en esta política',
     body: [
-      'Si en el futuro la app incorpora algún servicio que requiera enviar datos fuera del teléfono, se avisará aquí y dentro de la aplicación antes de activarlo. La fecha de la última revisión aparece al inicio de esta página.',
+      'Si en el futuro la app incorpora algún servicio que requiera enviar datos fuera del teléfono, se avisará aquí y dentro de la aplicación antes de activarlo. Si la app incorpora funciones que envíen información a los sistemas de la universidad (por ejemplo, entregar tareas), se avisará aquí y dentro de la app antes de activarlas. La fecha de la última revisión aparece al inicio de esta página.',
     ],
   },
 ];
@@ -89,7 +110,7 @@ const sections = [
 
 <BaseLayout
   title="Política de Privacidad"
-  description="Esperancitos no tiene servidores propios: tu horario, tus notas y tu sesión se quedan cifrados en tu celular. Aquí explicamos qué datos maneja la app y cuáles no."
+  description="Esperancitos no tiene servidores propios: tus datos se guardan en el sandbox privado de tu celular y tu sesión cifrada en el almacenamiento seguro. Política de privacidad de la app."
   keywords="privacidad Esperancitos, datos app ESPE, seguridad malla curricular, política de privacidad"
   includeAppSchema={false}
 >
