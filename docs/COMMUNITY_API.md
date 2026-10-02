@@ -285,3 +285,18 @@ Para verificar tipos en TypeScript y componentes Astro:
 ```sh
 npm run astro -- check
 ```
+
+---
+
+## 7. Cláusula de Privacidad y Aviso Legal (App Móvil y Web)
+
+### 📢 Avisos, Comunidad y Actualizaciones en la App Móvil
+1. **Archivos Públicos y Estáticos:**  
+   La aplicación móvil consulta periódicamente archivos estáticos en formato JSON alojados en `https://esperancitos.vercel.app/api/v1/` (`manifest.json`, `avisos.json`, `negocios.json`, `enlaces.json`, `update.json`).
+2. **Cero Datos Personales:**  
+   La aplicación **no envía** ningún dato del usuario, identificadores de dispositivo, cookies, credenciales institucionales de Moodle ni tokens de Banner. La cabecera HTTP enviada es transparente (`User-Agent: Esperancitos/<versión>`).
+3. **Dirección IP:**  
+   Al tratarse de una conexión HTTPS estándar a través de CDN/Vercel, el servidor de alojamiento únicamente registra la dirección IP técnica de la conexión para la entrega del contenido estático, tal como ocurre al visitar cualquier página web en un navegador.
+4. **Control Total del Usuario:**  
+   El estudiante puede desactivar estas consultas en cualquier momento desde **Ajustes > Comunidad y Avisos > Novedades y comunidad**. Al desactivarlo, la app suspende de forma inmediata y absoluta toda petición de red hacia el servidor de la comunidad.
+

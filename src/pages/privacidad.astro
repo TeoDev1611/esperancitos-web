@@ -22,10 +22,14 @@ const sections = [
     ],
   },
   {
-    id: 'avisos-actualizaciones',
-    title: 'Avisos y actualizaciones',
-    body: [
-      'La app puede consultar periódicamente archivos públicos de este sitio para mostrar avisos de la comunidad, negocios, enlaces y novedades de versión. La app no envía datos personales ni identificadores. Como en cualquier sitio web, el servicio de alojamiento puede registrar la dirección IP y la hora de la consulta. Puedes desactivar esta función en Ajustes.',
+    id: 'avisos-comunidad-actualizaciones',
+    title: '📢 Avisos, Comunidad y Actualizaciones en la App Móvil',
+    ordered: true,
+    items: [
+      '<strong>Archivos Públicos y Estáticos:</strong> La aplicación móvil consulta periódicamente archivos estáticos en formato JSON alojados en <code>https://esperancitos.vercel.app/api/v1/</code> (<code>manifest.json</code>, <code>avisos.json</code>, <code>negocios.json</code>, <code>enlaces.json</code>, <code>update.json</code>).',
+      '<strong>Cero Datos Personales:</strong> La aplicación <strong>no envía</strong> ningún dato del usuario, identificadores de dispositivo, cookies, credenciales institucionales de Moodle ni tokens de Banner. La cabecera HTTP enviada es transparente (<code>User-Agent: Esperancitos/&lt;versión&gt;</code>).',
+      '<strong>Dirección IP:</strong> Al tratarse de una conexión HTTPS estándar a través de CDN/Vercel, el servidor de alojamiento únicamente registra la dirección IP técnica de la conexión para la entrega del contenido estático, tal como ocurre al visitar cualquier página web en un navegador.',
+      '<strong>Control Total del Usuario:</strong> El estudiante puede desactivar estas consultas en cualquier momento desde <strong>Ajustes &gt; Comunidad y Avisos &gt; Novedades y comunidad</strong>. Al desactivarlo, la app suspende de forma inmediata y absoluta toda petición de red hacia el servidor de la comunidad.',
     ],
   },
   {
@@ -173,9 +177,15 @@ const sections = [
             <h2>{section.title}</h2>
             {section.body && section.body.map((paragraph) => <p>{paragraph}</p>)}
             {section.items && (
-              <ul class="legal-list">
-                {section.items.map((item) => <li><Fragment set:html={item} /></li>)}
-              </ul>
+              section.ordered ? (
+                <ol class="legal-list legal-list-ordered">
+                  {section.items.map((item) => <li><Fragment set:html={item} /></li>)}
+                </ol>
+              ) : (
+                <ul class="legal-list">
+                  {section.items.map((item) => <li><Fragment set:html={item} /></li>)}
+                </ul>
+              )
             )}
           </section>
         ))}
@@ -369,6 +379,47 @@ const sections = [
     height: 8px;
     background: var(--accent-primary);
     border-radius: 2px;
+  }
+
+  .legal-list-ordered {
+    counter-reset: legal-item;
+  }
+
+  .legal-list-ordered li {
+    padding-left: 38px;
+  }
+
+  .legal-list-ordered li::before {
+    content: counter(legal-item);
+    counter-increment: legal-item;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 24px;
+    height: 24px;
+    background: var(--bg-surface-elevated);
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .legal-section code,
+  .legal-list code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--bg-surface-elevated, #1E2230);
+    color: var(--accent-primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-app, #2A3142);
+    word-break: break-all;
   }
 
   .legal-list li strong,
