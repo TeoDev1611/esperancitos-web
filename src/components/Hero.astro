@@ -1,5 +1,6 @@
 ---
 // Hero.astro - Héroe Cinético Estilo Apple con Recreación Real de la App en HTML/CSS
+import { SITE } from '../config/site';
 ---
 
 <section class="hero-section" id="hero-section">
@@ -40,7 +41,7 @@
 
       <!-- Botones de Acción (Descarga Dominante y Apoyo Ámbar) -->
       <div class="hero-actions-group">
-        <a href="/downloads/esperancitos-v1.0.0-arm64.apk" download class="btn-app btn-app-primary btn-hero-cta" id="hero-download-btn" aria-label="Descargar la app para Android">
+        <a href={SITE.primaryApkPath} download class="btn-app btn-app-primary btn-hero-cta" id="hero-download-btn" aria-label="Descargar la app para Android">
           <svg class="hero-download-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
@@ -48,7 +49,7 @@
           </svg>
           <div class="btn-cta-labels">
             <span class="cta-title">Descargar la app</span>
-            <span class="cta-subtitle">Gratis · 31 MB · Android 8 o superior</span>
+            <span class="cta-subtitle">Gratis · {SITE.fileSize} · Android {SITE.minAndroid} o superior</span>
           </div>
         </a>
 

@@ -47,12 +47,13 @@ export const SITE = {
 
   /** Versión publicada del APK. */
   version: '1.0.0',
-  releaseDate: '2026-09-30',
-  fileSize: '30.8MB',
+  build: 4,
+  releaseDate: '2026-10-03',
+  fileSize: '35.8 MB',
   minAndroid: '8.0',
 
   /** APK principal de descarga (el que enlazan los CTA). */
-  primaryApkPath: '/downloads/esperancitos-v1.0.0-arm64.apk',
+  primaryApkPath: '/downloads/esperancitos-v1.0.0-arm64-v8a.apk',
 
   /**
    * Huellas SHA-256 de los APK publicados. Se muestran en la sección de
@@ -64,10 +65,18 @@ export const SITE = {
    *   Linux   : sha256sum archivo.apk
    */
   apkChecksums: {
+    'esperancitos-v1.0.0-arm64-v8a.apk':
+      'e9a8a14fce3ecb23921f1289e918e70889786eb6f153b7dfa4dc6a9caa727861',
+    'esperancitos-v1.0.0-armeabi-v7a.apk':
+      '620a060758fd094838725491ef3c451d9175ca52ab6f1c53d67fb819e9087004',
+    'esperancitos-v1.0.0-universal.apk':
+      '6b47bf8fe58008c5378ab477e730c73b2acaf991d3ca4c7af22bee4f31e057d3',
+    'esperancitos-v1.0.0-x86_64.apk':
+      '649c041ff85e4e35cf6d685b18b882bb2642f4dd60e409be98b4b269cd98ffab',
     'esperancitos-v1.0.0-arm64.apk':
-      'b311a1ee815a0e033d589a2d42524fd87851b187d1105e862d8ffd4b7c4b5b09',
+      'e9a8a14fce3ecb23921f1289e918e70889786eb6f153b7dfa4dc6a9caa727861',
     'esperancitos-v1.0.0-arm32.apk':
-      'b91df92ada6666dec2a9732a99fa7c7b3ec2290bf78e59a2e555a620ec3a901a',
+      '620a060758fd094838725491ef3c451d9175ca52ab6f1c53d67fb819e9087004',
   } as Record<string, string>,
 
   /** Páginas legales del sitio. */

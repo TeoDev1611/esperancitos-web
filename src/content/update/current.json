@@ -1,16 +1,22 @@
 {
   "id": "current",
-  "latestVersion": "1.1.0",
-  "latestBuild": 12,
-  "minSupportedBuild": 8,
-  "publishedAt": "2026-10-02T10:00:00-05:00",
+  "latestVersion": "1.0.0",
+  "latestBuild": 4,
+  "minSupportedBuild": 1,
+  "publishedAt": "2026-10-03T22:15:00Z",
   "notes": [
-    "Sincronización mejorada de horarios y aulas de clase",
-    "Consulta sin conexión de avisos y novedades de la comunidad",
-    "Directorio de servicios y negocios estudiantiles verificados",
-    "Ajuste de mallas curriculares y cálculo de créditos aprobados"
+    "🪪 Carnet digital inmersivo a toda pantalla con zoom y sin textos duplicados.",
+    "🏢 Visualización de aulas en 3 formatos (Conciso, Descriptivo, Híbrido) con 1-Tap Toggle.",
+    "⏰ Horario Banner con indicador 'EN VIVO', tiempo restante y auto-scroll semanal.",
+    "📝 Tareas Moodle con filtros por estado, contador regresivo crítico y adjuntos directos.",
+    "📊 Calculadora de notas con desglose ponderado oficial ESPE (42/60 pts) y simulador rápido.",
+    "🗺️ Malla curricular con búsqueda instantánea e inspector visual de prerrequisitos en ámbar.",
+    "⚙️ Ajustes con gestión de almacenamiento offline transparente y marcas de sincronización.",
+    "📳 Micro-interacciones hápticas en navegación y contraste WCAG AAA en OLED.",
+    "📜 Historial académico con acordeón suave por períodos y buscador en vivo.",
+    "📂 Materiales de clase con insignias 'En dispositivo' / 'En la nube' y apertura en 1-Tap.",
+    "🏠 Dashboard proactivo con tarjeta 'Mañana tu primera clase' y badges urgentes de tareas.",
+    "💬 Mensajería Moodle clasificada (Docentes vs Compañeros) y auto-scroll al último mensaje."
   ],
-  "downloadPage": "https://esperancitos.app/#descargar",
-  "ejemplo": true,
-  "notas": "Versión candidata de ejemplo para validación de API v1"
+  "downloadPage": "https://esperancitos.vercel.app/#descargar"
 }

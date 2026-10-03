@@ -2,10 +2,15 @@
 // DownloadSection.astro - Centro de descargas con verificación de integridad
 import { SITE } from '../config/site';
 
-const primaryFile = 'esperancitos-v1.0.0-arm64.apk';
-const secondaryFile = 'esperancitos-v1.0.0-arm32.apk';
+const primaryFile = 'esperancitos-v1.0.0-arm64-v8a.apk';
+const secondaryFile = 'esperancitos-v1.0.0-armeabi-v7a.apk';
+const universalFile = 'esperancitos-v1.0.0-universal.apk';
+const x86File = 'esperancitos-v1.0.0-x86_64.apk';
+
 const primarySha = SITE.apkChecksums[primaryFile] ?? '';
 const secondarySha = SITE.apkChecksums[secondaryFile] ?? '';
+const universalSha = SITE.apkChecksums[universalFile] ?? '';
+const x86Sha = SITE.apkChecksums[x86File] ?? '';
 ---
 
 <section class="download-section scroll-reveal" id="descargar">
@@ -17,7 +22,7 @@ const secondarySha = SITE.apkChecksums[secondaryFile] ?? '';
         <span class="badge-app green">GRATIS · SIN ANUNCIOS · SE INSTALA EN 1 MINUTO</span>
         <h2>Descarga Esperancitos para Android</h2>
         <p>
-          La app se instala directo desde aquí, sin pasar por ninguna tienda. Elige la opción recomendada y listo.
+          La app se instala directo desde aquí, sin pasar por ninguna tienda. Elige la opción recomendada para tu celular y listo.
         </p>
       </div>
 
@@ -42,13 +47,13 @@ const secondarySha = SITE.apkChecksums[secondaryFile] ?? '';
         <div class="apk-identity">
           <div class="apk-logo-frame">
             <img src="/logo_esperancitos.jpg" alt="Logo de Esperancitos" class="apk-logo-img" width="68" height="68" />
-            <span class="apk-release-tag">v1.0.0</span>
+            <span class="apk-release-tag">v1.0.0 (Build 4)</span>
           </div>
 
           <div class="apk-details">
             <div class="apk-title-row">
-              <h3>Descarga la app</h3>
-              <span class="chip-live">Recomendada</span>
+              <h3>Descarga Esperancitos</h3>
+              <span class="chip-live">Recomendada (ARM64)</span>
             </div>
             
             <div class="apk-specs-grid">
@@ -63,7 +68,7 @@ const secondarySha = SITE.apkChecksums[secondaryFile] ?? '';
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
-                <span>Pesa solo <strong>31 MB</strong></span>
+                <span>Pesa <strong>35.8 MB</strong> (Arquitectura `arm64-v8a`)</span>
               </div>
               <div class="spec-pill">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -77,7 +82,7 @@ const secondarySha = SITE.apkChecksums[secondaryFile] ?? '';
         </div>
 
         <div class="apk-action-area">
-          <a href="/downloads/esperancitos-v1.0.0-arm64.apk" download class="btn-app btn-app-primary btn-download-main" id="primary-apk-download-btn">
+          <a href={`/downloads/${primaryFile}`} download class="btn-app btn-app-primary btn-download-main" id="primary-apk-download-btn">
             <svg class="download-bounce-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
@@ -85,7 +90,7 @@ const secondarySha = SITE.apkChecksums[secondaryFile] ?? '';
             </svg>
             <div class="btn-text-block">
               <span class="btn-main-label">DESCARGAR AHORA</span>
-              <small class="btn-sub-label">Descarga directa, sin registrarte</small>
+              <small class="btn-sub-label">v1.0.0 · ARM64-v8a (35.8 MB) · Descarga directa</small>
             </div>
           </a>
         </div>
@@ -105,15 +110,35 @@ const secondarySha = SITE.apkChecksums[secondaryFile] ?? '';
 
       <!-- Variantes Secundarias por Arquitectura -->
       <div class="secondary-architectures">
-        <span class="secondary-title">¿Tu celular es antiguo o no sabes cuál elegir?</span>
+        <span class="secondary-title">¿Tu celular es antiguo o buscas otra arquitectura?</span>
         <div class="arch-pills-row">
-          <a href={`/downloads/${secondaryFile}`} download class="btn-app btn-app-surface btn-arch-pill" title="Para celulares de más de 5 años o de gama baja">
+          <a href={`/downloads/${secondaryFile}`} download class="btn-app btn-app-surface btn-arch-pill" title="Para celulares de más de 5 años o de gama baja (ARMv7 32-bit)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect>
               <path d="M12 18h.01"></path>
             </svg>
-            <span>Celular antiguo o de gama baja</span>
-            <span class="arch-size">26.9 MB</span>
+            <span>Celular antiguo (ARMv7 32-bit)</span>
+            <span class="arch-size">32.4 MB</span>
+          </a>
+
+          <a href={`/downloads/${universalFile}`} download class="btn-app btn-app-surface btn-arch-pill" title="Universal: compatible con cualquier procesador o dispositivo Android">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span>Universal (Todo-en-uno)</span>
+            <span class="arch-size">94.2 MB</span>
+          </a>
+
+          <a href={`/downloads/${x86File}`} download class="btn-app btn-app-surface btn-arch-pill" title="Para emuladores en PC (Windows Subsystem for Android, BlueStacks, LDPlayer)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span>Emulador / PC (x86_64)</span>
+            <span class="arch-size">38.3 MB</span>
           </a>
         </div>
       </div>
@@ -130,12 +155,12 @@ const secondarySha = SITE.apkChecksums[secondaryFile] ?? '';
         <div class="notice-body">
           <h4>Por ahora se instala así (pronto estará en Play Store)</h4>
           <p>
-            Estamos juntando los <strong>25 dólares</strong> que cuesta la cuenta de desarrollador de Google Play. Mientras tanto, la app se descarga desde aquí. Como no viene de la tienda, el sistema te pedirá autorizar la instalación y puede mostrar un aviso de <strong>Google Play Protect</strong>. Le pasa a cualquier aplicación descargada directamente, no significa que el archivo tenga un virus. Si quieres comprobarlo tú mismo, estas son las huellas digitales de los archivos publicados aquí:
+            Estamos juntando los <strong>25 dólares</strong> que cuesta la cuenta de desarrollador de Google Play. Mientras tanto, la app se descarga directamente desde aquí. Como no proviene de la tienda oficial, el sistema te pedirá autorizar la instalación y puede mostrar un aviso preventivo de <strong>Google Play Protect</strong>. Es el comportamiento habitual de Android para cualquier APK directo. Si deseas verificar la autenticidad e integridad del paquete antes de instalarlo, aquí tienes las huellas criptográficas SHA-256 oficiales:
           </p>
 
           {primarySha && (
             <div class="hash-row">
-              <span class="hash-label">Recomendada · {primaryFile}</span>
+              <span class="hash-label">Recomendada · ARM64-v8a</span>
               <code class="hash-value">{primarySha}</code>
               <button type="button" class="btn-app-copy" data-copy={primarySha} aria-label="Copiar la huella SHA-256 del APK recomendado">
                 <span>Copiar</span>
@@ -145,9 +170,29 @@ const secondarySha = SITE.apkChecksums[secondaryFile] ?? '';
 
           {secondarySha && (
             <div class="hash-row">
-              <span class="hash-label">Gama baja · {secondaryFile}</span>
+              <span class="hash-label">Gama baja · ARMeabi-v7a</span>
               <code class="hash-value">{secondarySha}</code>
               <button type="button" class="btn-app-copy" data-copy={secondarySha} aria-label="Copiar la huella SHA-256 del APK para celulares antiguos">
+                <span>Copiar</span>
+              </button>
+            </div>
+          )}
+
+          {universalSha && (
+            <div class="hash-row">
+              <span class="hash-label">Universal · Multi-Arch</span>
+              <code class="hash-value">{universalSha}</code>
+              <button type="button" class="btn-app-copy" data-copy={universalSha} aria-label="Copiar la huella SHA-256 del APK universal">
+                <span>Copiar</span>
+              </button>
+            </div>
+          )}
+
+          {x86Sha && (
+            <div class="hash-row">
+              <span class="hash-label">Emulador · x86_64</span>
+              <code class="hash-value">{x86Sha}</code>
+              <button type="button" class="btn-app-copy" data-copy={x86Sha} aria-label="Copiar la huella SHA-256 del APK x86_64">
                 <span>Copiar</span>
               </button>
             </div>
@@ -196,6 +241,192 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
               <p>Elige tu carrera, conecta tu horario y tu Moodle, y empieza a planificar tus semestres. ¡Ya está!</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Ficha Técnica y Changelog Oficial de la Versión 1.0.0 -->
+      <div class="version-release-block reveal-init" id="novedades-v1">
+        <div class="release-banner-card card-app">
+          <div class="release-header-row">
+            <div class="release-badge-group">
+              <span class="badge-app green">NOVEDADES · VERSIÓN 1.0.0</span>
+              <span class="release-build-pill">Build 4 · 03 Octubre 2026</span>
+            </div>
+            <span class="release-status-chip">★ Versión Definitiva para el Campus</span>
+          </div>
+
+          <h3 class="release-main-title">🎉 ¡Llegó Esperancitos v1.0.0! La versión definitiva para el campus politécnico</h3>
+          <p class="release-intro">
+            Diseñada por y para politécnicos de la Universidad de las Fuerzas Armadas ESPE. Todo lo que necesitas para tu vida universitaria en un solo lugar, 100% privado, offline y sin servidores intermediarios.
+          </p>
+
+          <!-- Lo más destacado en grid neo-brutalista -->
+          <div class="release-highlights-grid">
+            <div class="highlight-item">
+              <div class="highlight-icon">🪪</div>
+              <div class="highlight-content">
+                <strong>Carnet Digital Inmersivo</strong>
+                <span>Muestra tu carnet al instante para el guardia y los torniquetes, con zoom nítido y sin pantallas intermedias.</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🏢</div>
+              <div class="highlight-content">
+                <strong>Aulas Inteligentes</strong>
+                <span>Códigos oficiales concisos (A-110, G-201) o con detalle de piso y bloque con un solo toque.</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">⏰</div>
+              <div class="highlight-content">
+                <strong>Horario "En Vivo"</strong>
+                <span>Tu clase actual destacada en esmeralda con barra de tiempo restante y auto-scroll al día de hoy.</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">📝</div>
+              <div class="highlight-content">
+                <strong>Entregas Moodle Bajo Control</strong>
+                <span>Filtros rápidos, cuentas regresivas para entregas críticas y descarga directa de guías adjuntas.</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">📊</div>
+              <div class="highlight-content">
+                <strong>Calculadora Ponderada Oficial</strong>
+                <span>Conoce con cuántos puntos pasas según el reglamento oficial ESPE (33.34% / 33.33% / 33.33%).</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🗺️</div>
+              <div class="highlight-content">
+                <strong>Malla Curricular Interactiva</strong>
+                <span>Navega tu carrera, descubre qué materias te desbloquean los prerrequisitos y mide tu avance.</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🏠</div>
+              <div class="highlight-content">
+                <strong>Dashboard Proactivo</strong>
+                <span>Antes de ir a dormir, entérate a qué hora y en qué aula es tu primera clase de mañana.</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🛡️</div>
+              <div class="highlight-content">
+                <strong>100% Privado y Offline</strong>
+                <span>Sin servidores de terceros. Comunicación directa entre tu celular y la ESPE (Banner y Moodle).</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ficha Técnica Oficial -->
+          <div class="tech-sheet-block">
+            <h4 class="tech-sheet-title">📱 Ficha Técnica para la Descarga</h4>
+            <div class="specs-table-wrapper">
+              <table class="specs-table">
+                <tbody>
+                  <tr>
+                    <th>Versión Actual</th>
+                    <td><code>v1.0.0</code> (Build 4) · Publicada el 3 de Octubre de 2026</td>
+                  </tr>
+                  <tr>
+                    <th>Sistema Operativo</th>
+                    <td>Android 8.0 (API 26) o superior</td>
+                  </tr>
+                  <tr>
+                    <th>Compatibilidad</th>
+                    <td>Teléfonos y Tablets (Arquitecturas <code>arm64-v8a</code>, <code>armeabi-v7a</code>, <code>x86_64</code>, <code>Universal</code>)</td>
+                  </tr>
+                  <tr>
+                    <th>Tamaño del Paquete</th>
+                    <td>~32 - 38 MB por arquitectura (Universal ~94 MB) · Optimizado con R8 / ProGuard</td>
+                  </tr>
+                  <tr>
+                    <th>Licencia</th>
+                    <td>MIT · Código Abierto Estudiantil · 100% Gratuito y Libre de Anuncios</td>
+                  </tr>
+                  <tr>
+                    <th>Desarrollador</th>
+                    <td>Comunidad Estudiantil de la Universidad de las Fuerzas Armadas ESPE</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Changelog Completo Acordeón -->
+          <details class="changelog-details card-app">
+            <summary class="changelog-summary">
+              <span>📋 Ver lista completa de novedades y cambios técnicos (v1.0.0)</span>
+              <span class="changelog-badge-count">15 novedades</span>
+            </summary>
+            <div class="changelog-list-body">
+              <ul class="changelog-items">
+                <li>
+                  <span class="change-tag new">Comunidad</span>
+                  <div><strong>Nuevo Módulo de Comunidad:</strong> Directorio de negocios estudiantiles, enlaces rápidos y cartelera de avisos mediante API estática JSON v1.</div>
+                </li>
+                <li>
+                  <span class="change-tag feature">Aulas</span>
+                  <div><strong>Control de Visualización de Aulas:</strong> Selector de formato de aula (Conciso, Descriptivo, Híbrido) con vista previa en vivo en Ajustes.</div>
+                </li>
+                <li>
+                  <span class="change-tag storage">Offline</span>
+                  <div><strong>Gestión de Almacenamiento Offline Transparente:</strong> Inspección precisa de archivos Moodle y caché temporal de comunidad con limpieza segura que protege notas, credenciales y horarios.</div>
+                </li>
+                <li>
+                  <span class="change-tag sync">Sincronización</span>
+                  <div><strong>Marcas de Tiempo de Sincronización Relativa y Exacta:</strong> Indicador dual para Banner y Moodle con estado de actividad y tiempo transcurrido inteligente.</div>
+                </li>
+                <li>
+                  <span class="change-tag storage">Archivos</span>
+                  <div><strong>Persistencia de Materiales y Descargas:</strong> Nuevo historial de archivos descargados con soporte para compartir y abrir offline en 1-Tap.</div>
+                </li>
+                <li>
+                  <span class="change-tag perf">120 FPS</span>
+                  <div><strong>Optimización de Rendimiento 120 FPS:</strong> Reciclado inteligente de widgets en el listado de tareas con <code>SliverList.builder</code>.</div>
+                </li>
+                <li>
+                  <span class="change-tag os">Android 15</span>
+                  <div><strong>Compatibilidad Android 15 Edge-to-Edge:</strong> Modales y botones de acción blindados contra la barra de gestos del sistema operativo.</div>
+                </li>
+                <li>
+                  <span class="change-tag chat">Moodle Chat</span>
+                  <div><strong>Mejoras en Chat Moodle:</strong> Ajuste nativo de teclado sin saltos de doble padding y auto-scroll inteligente.</div>
+                </li>
+                <li>
+                  <span class="change-tag haptic">Háptica</span>
+                  <div><strong>Respuesta Háptica y Micro-Interacciones:</strong> Sistema global <code>AppHaptics</code> conmutador en Ajustes, retroalimentación táctil precisa en navegación de pestañas y filtros.</div>
+                </li>
+                <li>
+                  <span class="change-tag a11y">Accesibilidad</span>
+                  <div><strong>Contraste Accesible WCAG AAA en Modo OLED y Slate:</strong> Textos secundarios y alertas críticas calibrados para superar la relación 7.0:1 sobre negro puro (<code>#000000</code>).</div>
+                </li>
+                <li>
+                  <span class="change-tag acad">Historial</span>
+                  <div><strong>Historial Académico con Acordeón y Búsqueda en Vivo:</strong> Plegado suave con <code>AnimatedCrossFade</code>, búsqueda en tiempo real por asignatura o código y filtros de estado.</div>
+                </li>
+                <li>
+                  <span class="change-tag files">Materiales</span>
+                  <div><strong>Gestión Offline Transparente de Archivos Moodle:</strong> Badges <code>[ ✓ EN DISPOSITIVO ]</code> y <code>[ ☁ EN LA NUBE ]</code>, cálculo visible de pesos y selector de visor nativo.</div>
+                </li>
+                <li>
+                  <span class="change-tag dash">Dashboard</span>
+                  <div><strong>Dashboard Proactivo con Anticipación de Clases:</strong> Tarjeta <em>"Mañana tu primera clase"</em> cuando concluye la jornada o en días libres, y badge pulsante neón (<code>CIERRA HOY</code>, <code>QUIZ HOY</code>) para tareas críticas.</div>
+                </li>
+                <li>
+                  <span class="change-tag moodle">Mensajería</span>
+                  <div><strong>Mensajería Moodle Clara y Organizada:</strong> Separación instantánea de Docentes vs Compañeros vs Grupos con insignias de rol institucional y auto-scroll inteligente al último mensaje.</div>
+                </li>
+                <li>
+                  <span class="change-tag nav">Navegación</span>
+                  <div><strong>Navegación Ergonómica:</strong> Función "Tap active tab to scroll to top" en la barra de navegación inferior.</div>
+                </li>
+              </ul>
+            </div>
+          </details>
+
         </div>
       </div>
 
@@ -856,6 +1087,306 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     .arch-pills-row .btn-arch-pill {
       width: 100%;
       justify-content: center;
+    }
+  }
+
+  /* Bloque de Novedades y Ficha Técnica v1.0.0 */
+  .version-release-block {
+    margin-top: 50px;
+    border-top: 1.5px solid var(--border-app);
+    padding-top: 40px;
+  }
+
+  .release-banner-card {
+    background: var(--bg-surface-elevated);
+    border: 2px solid var(--border-app);
+    padding: 32px;
+  }
+
+  .release-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .release-badge-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .release-build-pill {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .release-status-chip {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    background: rgba(0, 255, 135, 0.1);
+    border: 1px solid rgba(0, 255, 135, 0.35);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+  }
+
+  .release-main-title {
+    font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+    line-height: 1.3;
+    margin: 0 0 10px 0;
+    color: var(--text-primary);
+  }
+
+  .release-intro {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 26px;
+  }
+
+  /* Grid de lo más destacado */
+  .release-highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .highlight-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    box-shadow: 2px 2px 0px #000;
+    transition: transform 200ms var(--ease-spring), border-color 200ms ease;
+  }
+
+  .highlight-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+  }
+
+  .highlight-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .highlight-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .highlight-content strong {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+  }
+
+  .highlight-content span {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  /* Ficha Técnica */
+  .tech-sheet-block {
+    margin-bottom: 30px;
+    border-top: 1.5px solid var(--border-app);
+    padding-top: 24px;
+  }
+
+  .tech-sheet-title {
+    font-size: 1.15rem;
+    margin-bottom: 14px;
+    color: var(--text-primary);
+  }
+
+  .specs-table-wrapper {
+    overflow-x: auto;
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+    box-shadow: 3px 3px 0px #000;
+  }
+
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    text-align: left;
+  }
+
+  .specs-table th,
+  .specs-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-app);
+  }
+
+  .specs-table tr:last-child th,
+  .specs-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .specs-table th {
+    width: 28%;
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .specs-table td {
+    color: var(--text-secondary);
+  }
+
+  .specs-table td code {
+    background: rgba(0, 255, 135, 0.1);
+    color: var(--accent-primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+
+  /* Changelog Acordeón */
+  .changelog-details {
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .changelog-summary {
+    padding: 14px 18px;
+    font-weight: 800;
+    font-size: 0.92rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    user-select: none;
+  }
+
+  .changelog-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .changelog-summary:hover {
+    color: var(--accent-primary);
+  }
+
+  .changelog-badge-count {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-app);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    color: var(--accent-amber);
+  }
+
+  .changelog-list-body {
+    padding: 16px 20px 22px 20px;
+    border-top: 1px solid var(--border-app);
+  }
+
+  .changelog-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .changelog-items li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  .change-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    border: 1px solid transparent;
+  }
+
+  .change-tag.new {
+    background: rgba(0, 255, 135, 0.15);
+    color: var(--accent-primary);
+    border-color: rgba(0, 255, 135, 0.35);
+  }
+
+  .change-tag.feature,
+  .change-tag.chat,
+  .change-tag.moodle {
+    background: rgba(79, 142, 247, 0.15);
+    color: #79aeff;
+    border-color: rgba(79, 142, 247, 0.35);
+  }
+
+  .change-tag.storage,
+  .change-tag.files {
+    background: rgba(255, 219, 121, 0.15);
+    color: var(--accent-amber);
+    border-color: rgba(255, 219, 121, 0.35);
+  }
+
+  .change-tag.perf,
+  .change-tag.os,
+  .change-tag.sync {
+    background: rgba(167, 139, 250, 0.15);
+    color: #c4b5fd;
+    border-color: rgba(167, 139, 250, 0.35);
+  }
+
+  .change-tag.haptic,
+  .change-tag.a11y,
+  .change-tag.dash,
+  .change-tag.acad,
+  .change-tag.nav {
+    background: rgba(244, 114, 182, 0.15);
+    color: #f472b6;
+    border-color: rgba(244, 114, 182, 0.35);
+  }
+
+  @media (max-width: 768px) {
+    .release-highlights-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .specs-table th {
+      width: 38%;
     }
   }
 </style>
