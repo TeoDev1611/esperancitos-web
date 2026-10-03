@@ -256,6 +256,15 @@ p, span, li, button, a, label {
   position: relative;
 }
 
+.btn-app svg {
+  transition: transform 220ms var(--ease-spring);
+  flex-shrink: 0;
+}
+
+.btn-app:hover svg {
+  transform: scale(1.1);
+}
+
 .btn-app:hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0px #000000;

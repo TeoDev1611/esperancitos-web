@@ -1,0 +1,26 @@
+{
+  "id": "papeleria-politecnica",
+  "name": "Papelería y Suministros El Politécnico",
+  "category": "papeleria",
+  "description": "Calculadoras científicas, cuadernos universitarios, tablas periódicas y material de dibujo técnico.",
+  "address": "Av. General Rumiñahui frente a la Puerta 2",
+  "zone": "Frente a Puerta 2",
+  "hours": "Lunes a Viernes 07:30 - 18:30",
+  "contact": {
+    "whatsapp": "+593984567890",
+    "phone": "022894567"
+  },
+  "verifiedAt": "2026-10-02T10:00:00-05:00",
+  "updatedAt": "2026-10-02T10:00:00-05:00",
+  "validUntil": "2027-12-31T23:59:59-05:00",
+  "consentimiento": {
+    "otorgado": true,
+    "fecha": "2026-10-02",
+    "medio": "presencial"
+  },
+  "contactoDueno": {
+    "nombre": "Carlos Morales",
+    "telefono": "0984567890"
+  },
+  "notas": "Papelería verificada para estudiantes de ingeniería"
+}

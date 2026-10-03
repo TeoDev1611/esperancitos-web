@@ -579,12 +579,13 @@ const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
     font-size: 0.84rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all var(--duration-hover) ease;
+    transition: all var(--duration-hover) var(--ease-apple);
   }
 
   .cat-chip:hover {
     border-color: var(--accent-primary);
     color: var(--text-primary);
+    transform: translateY(-2px);
   }
 
   .cat-chip.active {
@@ -613,8 +614,15 @@ const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
     display: flex;
     flex-direction: column;
     padding: 22px;
-    transition: transform var(--duration-hover) var(--ease-apple),
-                box-shadow var(--duration-hover) var(--ease-apple);
+    transition: transform var(--duration-hover) var(--ease-spring),
+                box-shadow var(--duration-hover) var(--ease-apple),
+                border-color var(--duration-hover) ease;
+  }
+
+  .negocio-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0px #000000, 0 8px 24px rgba(0, 0, 0, 0.35);
+    border-color: rgba(0, 255, 135, 0.4);
   }
 
   .card-head {
@@ -633,6 +641,11 @@ const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
     object-fit: cover;
     flex-shrink: 0;
     background: #000;
+    transition: transform 240ms var(--ease-spring);
+  }
+
+  .negocio-card:hover .negocio-logo {
+    transform: scale(1.08) rotate(-2deg);
   }
 
   .negocio-logo-placeholder {
@@ -750,13 +763,15 @@ const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
     color: var(--text-secondary);
     font-size: 0.78rem;
     font-weight: 700;
-    transition: all var(--duration-hover) ease;
+    transition: all var(--duration-hover) var(--ease-spring);
     text-decoration: none;
   }
 
   .contact-btn:hover {
     border-color: var(--accent-primary);
     color: var(--text-primary);
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 0px #000;
   }
 
   .contact-btn.contact-wa {

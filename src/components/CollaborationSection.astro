@@ -118,11 +118,23 @@ const priorityLabel: Record<string, string> = {
     gap: 10px;
     padding: 26px;
     background: var(--bg-surface);
+    transition: transform 260ms var(--ease-spring),
+                box-shadow 260ms var(--ease-apple),
+                border-color 260ms ease;
+  }
+
+  .collab-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0px #000000, 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 
   .collab-card.priority-alta {
     border-color: var(--accent-primary);
     box-shadow: var(--shadow-hard-green);
+  }
+
+  .collab-card.priority-alta:hover {
+    box-shadow: 6px 6px 0px var(--accent-primary), 0 8px 24px rgba(0, 255, 135, 0.2);
   }
 
   .collab-top {
@@ -145,6 +157,11 @@ const priorityLabel: Record<string, string> = {
     box-shadow: 2px 2px 0px #000;
     background: var(--bg-surface-elevated);
     color: var(--text-primary);
+    transition: transform 220ms var(--ease-spring);
+  }
+
+  .collab-card:hover .collab-icon {
+    transform: scale(1.12) rotate(4deg);
   }
 
   .collab-card.priority-alta .collab-icon {

@@ -62,7 +62,7 @@
           <!-- Mockup Interactivo de Malla con Desbloqueo en Cascada -->
           <div class="device-mockup-frame">
             <div class="mockup-header-bar">
-              <span class="m-pill">22 carreras</span>
+              <span class="m-pill">23 carreras</span>
               <span class="m-status-text">44.2% listo</span>
             </div>
 
@@ -473,8 +473,22 @@
     transition: all var(--duration-hover) var(--ease-apple);
   }
 
+  .seg-tab-btn svg {
+    transition: transform 200ms var(--ease-spring);
+    flex-shrink: 0;
+  }
+
   .seg-tab-btn:hover {
     color: var(--text-primary);
+  }
+
+  .seg-tab-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+  }
+
+  .seg-tab-btn:hover svg {
+    transform: scale(1.15);
   }
 
   .seg-tab-btn.active {
@@ -535,6 +549,16 @@
       0 0 0 2px var(--accent-primary);
     overflow: hidden;
     position: relative;
+    transition: transform 280ms var(--ease-apple), box-shadow 280ms ease;
+  }
+
+  .device-mockup-frame:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 26px 50px rgba(0, 0, 0, 0.8),
+      7px 7px 0px #000000,
+      0 0 0 2px var(--accent-primary),
+      0 0 20px rgba(0, 255, 135, 0.15);
   }
 
   .mockup-header-bar {
@@ -682,6 +706,16 @@
     padding: 16px 20px;
     background: var(--bg-surface-elevated);
     border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-md);
+    transition: transform 240ms var(--ease-spring),
+                border-color 240ms ease,
+                box-shadow 240ms var(--ease-apple);
+  }
+
+  .check-item:hover {
+    transform: translateY(-3px) translateX(2px);
+    border-color: rgba(0, 255, 135, 0.35);
+    box-shadow: 4px 4px 0px #000000, 0 6px 18px rgba(0, 0, 0, 0.35);
   }
 
   .check-icon-circle {
@@ -695,6 +729,11 @@
     justify-content: center;
     flex-shrink: 0;
     margin-top: 2px;
+    transition: transform 220ms var(--ease-spring);
+  }
+
+  .check-item:hover .check-icon-circle {
+    transform: scale(1.15) rotate(4deg);
   }
 
   .check-icon-circle.green {

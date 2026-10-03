@@ -132,18 +132,37 @@ Construir un cliente móvil independiente, offline-first y privado para estudian
 * [x] Reglas ProGuard/R8 complementarias para `flutter_local_notifications` y `home_widget`.
 * [x] 8 pruebas unitarias adicionales (`sync_failure_reproduction_test.dart` y `sync_orchestrator_test.dart`) alcanzando 234 tests con 100% de éxito.
 
+### FASE 15 — Rediseño Web: Bento Grid de Funcionalidades, Mockups Vectoriales y Micro-Animaciones — [✅ COMPLETADA]
+* [x] Eliminación completa de banners gigantes de texto y bloques `<details>` colapsados en la sección de características de la web.
+* [x] Reestructuración estética en cuadrícula Bento de 8 tarjetas de alto impacto visual y equilibrio simétrico.
+* [x] Mockups vectoriales SVG interactivos y auténticos: Carnet estudiantil digital con código de barras variable y QR, reloj LED digital de cuenta regresiva, ecualizador de audio con ondas dinámicas, slider track de anticipación, comparador de horarios P2P, HomeWidget nativo Android con efecto glassmorphism y marco de smartphone.
+* [x] Anonimización rigurosa de toda la interfaz: eliminación total de nombres personales reales ("Mateo H.", "Sebas", etc.) en favor de denominaciones académicas universales ("ESTUDIANTE ESPE", "ING. MECÁNICA", "Tu Horario", "Compañero de Clase").
+* [x] Sistema integral de micro-animaciones táctiles y fluidas a través de toda la web:
+  - Hero: Feature chips con elevación y rotación de icono, flecha de descarga con deslizamiento dinámico, progreso de clase con destello *specular shimmer beam*.
+  - Vistas: Segmented tab controls con micro-escala de icono, tarjetas de beneficios con elevación y rotación de check.
+  - Descargas: Elevación de tarjetas APK con rotación de logo, rebote acelerado en hover de flecha, rotación elástica en círculos de pasos de instalación.
+  - Apoyo: Elevación de metas y tarjetas de Deuna y QR con realces de acento.
+  - Guías y FAQ: Elevación de cajas, deslizamiento de pasos con escala de píldoras y apertura animada.
+  - Comunidad (Avisos y Negocios): Elevación de chips de filtro y tarjetas comerciales con pop de logo.
+  - Global y Footer: Micro-escala elástica en iconos de botones (`.btn-app:hover svg`), deslizamiento de enlaces y elevación en botón volver arriba.
+* [x] Respeto estricto de accesibilidad (`@media (prefers-reduced-motion: reduce)`) con desactivación elegante de todas las animaciones.
+
 ---
 
 ## 🧪 Estrategia y Cobertura de Pruebas Automatizadas
 
-1. **Total de Pruebas Automatizadas:** 234 pruebas aprobadas al 100% en 34 archivos de prueba (`flutter test`).
-2. **Áreas Cubiertas:**
+1. **Total de Pruebas Automatizadas:** 361 pruebas unitarias y de widgets aprobadas al 100% en 57 archivos de prueba (`flutter test`).
+2. **Entorno de Calidad:**
+   - **Versión de la App:** v1.0.0-beta.2.
+   - **Base de Datos Local:** Drift SQLite v7 con soporte multi-cuenta y recurrencia por ocurrencia.
+   - **Funcionalidades Mayores:** 20 features consolidadas (Malla 23 carreras, Horario y aulas, Moodle offline, Alarmas de tareas, Widgets nativos, Compartición P2P, Calculadora de notas, etc.).
+3. **Áreas Cubiertas:**
    - Dominio y lógica pura (Banner parser, Moodle sync, Grade calculator, Curriculum calculator, Detección de horario y materias cursando, Area conocimiento, Timezone, ICS, Task Alarm scheduler y settings).
    - Orquestación y concurrencia de sincronización (`SyncOrchestrator`, detección de sesiones caducadas, protección anti-vaciado y post-sync hooks).
-   - Persistencia y migraciones Drift (SQLite v1 a v6, reemplazo atómico transaccional, índices B-Tree, transacciones y cascadas).
+   - Persistencia y migraciones Drift (SQLite v1 a v7, reemplazo atómico transaccional, índices B-Tree, transacciones y cascadas).
    - Diagnóstico y telemetría de red con enmascaramiento de credenciales (`ConnectionLogger`).
    - Integración visual y anti-desbordamiento (`test/visual/features_visual_integration_test.dart`, `test/unit/task_alarm_widget_test.dart` y `test/widget_test.dart`).
    - Caching, concurrencia I/O de mallas, explorador de materiales y compartición P2P de datos vía QR.
-3. **Análisis Estático:** 0 errores y 0 advertencias con `flutter analyze`.
+4. **Análisis Estático:** 0 errores y 0 advertencias con `flutter analyze`.
 
 

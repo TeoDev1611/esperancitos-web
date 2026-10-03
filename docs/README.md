@@ -106,6 +106,7 @@ Para profundizar en la arquitectura, integración de APIs, auditoría técnica y
 * [AUDIT.md](AUDIT.md): Auditoría completa de código, seguridad, rendimiento y compilación.
 * [ROADMAP.md](ROADMAP.md): Catálogo de 14 funcionalidades propuestas y estado de implementación.
 * [PLAN.md](PLAN.md): Plan de implementación original y desglose de fases.
+* [REDESIGN_AND_ANIMATIONS.md](REDESIGN_AND_ANIMATIONS.md): Rediseño Bento Grid, mockups vectoriales interactivos y catálogo de micro-animaciones.
 * [WALKTHROUGH.md](WALKTHROUGH.md): Bitácora técnica y resumen funcional de las fases implementadas.
 * [CONTRIBUTING.md](CONTRIBUTING.md): Guía de contribución, estilo de código y ejecución de tests.
 * [Export de Estado Actual](export/2026-09-24/): Snapshot completo de estado, changelog, TODOs, árbol de dependencias y configuración.

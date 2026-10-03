@@ -31,7 +31,7 @@
           <img src="/logo_esperancitos.jpg" alt="Logo Esperancitos" class="footer-logo-img" width="46" height="46" />
           <div class="footer-brand-titles">
             <span class="f-brand-name">ESPERANCITOS</span>
-            <span class="f-brand-sub">Gratis · Versión 1.0.0</span>
+            <span class="f-brand-sub">Gratis · Versión 1.0.0-beta.2</span>
           </div>
         </div>
         <p class="footer-description">
@@ -114,6 +114,13 @@
     background: var(--bg-surface-elevated);
     margin-bottom: 50px;
     gap: 24px;
+    transition: transform 260ms var(--ease-spring),
+                box-shadow 260ms var(--ease-apple);
+  }
+
+  .pre-footer-support-banner:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 0px var(--accent-amber);
   }
 
   .pre-footer-text h3 {
@@ -233,15 +240,16 @@
   }
 
   .footer-link-group a {
-    display: block;
+    display: inline-block;
     color: var(--text-muted);
     font-size: 0.88rem;
     margin-bottom: 8px;
-    transition: color var(--duration-hover) ease;
+    transition: color var(--duration-hover) ease, transform 180ms var(--ease-apple);
   }
 
   .footer-link-group a:hover {
     color: var(--accent-primary);
+    transform: translateX(4px);
   }
 
   .f-community-info {
@@ -257,22 +265,25 @@
     color: var(--accent-amber) !important;
     font-weight: 800;
     margin-top: 6px;
+    transition: transform 200ms var(--ease-spring), color var(--duration-hover) ease;
   }
   .f-support-link:hover {
     color: #FFE5A3 !important;
+    transform: translateX(3px);
   }
 
   .f-feedback-link {
     display: inline-block;
     color: var(--accent-primary);
     font-weight: 700;
-    transition: color var(--duration-hover) ease;
+    transition: color var(--duration-hover) ease, transform 180ms var(--ease-apple);
   }
 
   .f-feedback-link:hover {
     color: #34D399;
     text-decoration: underline;
     text-underline-offset: 3px;
+    transform: translateX(3px);
   }
 
   /* Área Legal */
@@ -302,9 +313,20 @@
   }
 
   .btn-back-top {
-    padding: 4px 12px;
+    padding: 6px 14px;
     font-size: 0.78rem;
     border-radius: var(--radius-sm);
+    transition: transform 220ms var(--ease-spring),
+                border-color 220ms ease,
+                color 220ms ease,
+                box-shadow 220ms var(--ease-apple);
+  }
+
+  .btn-back-top:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    box-shadow: 2px 2px 0px var(--accent-primary);
   }
 
   .footer-heart {

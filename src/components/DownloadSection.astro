@@ -239,6 +239,14 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     gap: 30px;
     background: var(--bg-surface-elevated);
     margin-bottom: 30px;
+    transition: transform 260ms var(--ease-spring),
+                box-shadow 260ms var(--ease-apple),
+                border-color 260ms ease;
+  }
+
+  .apk-primary-showcase:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0px #000000, 0 12px 30px rgba(0, 255, 135, 0.16);
   }
 
   .apk-identity {
@@ -259,6 +267,11 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     border: 2.5px solid #000;
     box-shadow: 3px 3px 0px #000;
     object-fit: cover;
+    transition: transform 240ms var(--ease-spring);
+  }
+
+  .apk-primary-showcase:hover .apk-logo-img {
+    transform: scale(1.06) rotate(-2deg);
   }
 
   .apk-release-tag {
@@ -305,6 +318,11 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     gap: 8px;
     font-size: 0.88rem;
     color: var(--text-muted);
+    transition: transform 180ms var(--ease-apple);
+  }
+
+  .spec-pill:hover {
+    transform: translateX(3px);
   }
 
   .spec-pill strong {
@@ -314,6 +332,11 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
   .spec-pill svg {
     color: var(--accent-primary);
     flex-shrink: 0;
+    transition: transform 180ms var(--ease-spring);
+  }
+
+  .spec-pill:hover svg {
+    transform: scale(1.15);
   }
 
   .apk-action-area {
@@ -329,6 +352,16 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
 
   .download-bounce-icon {
     animation: download-bounce 2s ease-in-out infinite;
+    transition: transform 200ms var(--ease-spring);
+  }
+
+  .btn-download-main:hover .download-bounce-icon {
+    animation: download-bounce-fast 0.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes download-bounce-fast {
+    from { transform: translateY(0); }
+    to { transform: translateY(5px); }
   }
 
   @keyframes download-bounce {
@@ -385,6 +418,22 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     font-size: 0.85rem;
     gap: 10px;
     text-transform: none;
+    transition: transform 220ms var(--ease-spring),
+                border-color 220ms ease,
+                box-shadow 220ms var(--ease-apple);
+  }
+
+  .btn-arch-pill:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+  }
+
+  .btn-arch-pill svg {
+    transition: transform 220ms var(--ease-spring);
+  }
+
+  .btn-arch-pill:hover svg {
+    transform: scale(1.15);
   }
 
   .arch-size {
@@ -678,9 +727,15 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: border-color 300ms var(--ease-apple),
-                box-shadow 300ms var(--ease-apple),
-                transform 300ms var(--ease-apple);
+    transition: border-color 240ms var(--ease-apple),
+                box-shadow 240ms var(--ease-apple),
+                transform 240ms var(--ease-spring);
+  }
+
+  .step-box:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-primary);
+    box-shadow: 4px 4px 0px #000, 0 8px 24px rgba(0, 255, 135, 0.18);
   }
 
   .step-box.illuminated {
@@ -708,10 +763,15 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     font-size: 1.15rem;
     color: var(--text-primary);
     margin-bottom: 16px;
-    transition: background-color 300ms ease,
-                color 300ms ease,
-                transform 300ms var(--ease-apple),
-                box-shadow 300ms ease;
+    transition: background-color 240ms ease,
+                color 240ms ease,
+                transform 240ms var(--ease-spring),
+                box-shadow 240ms ease;
+  }
+
+  .step-box:hover .step-number-circle {
+    transform: scale(1.15) rotate(-4deg);
+    border-color: var(--accent-primary);
   }
 
   .step-box.illuminated .step-number-circle {

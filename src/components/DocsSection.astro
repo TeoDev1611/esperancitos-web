@@ -182,6 +182,14 @@ import { FAQ_ENTRIES } from '../config/faq';
     background: var(--bg-surface);
     display: flex;
     flex-direction: column;
+    transition: transform 260ms var(--ease-spring),
+                box-shadow 260ms var(--ease-apple),
+                border-color 260ms ease;
+  }
+
+  .guide-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0px #000000, 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 
   .guide-top-bar {
@@ -227,6 +235,11 @@ import { FAQ_ENTRIES } from '../config/faq';
     font-size: 0.92rem;
     color: var(--text-secondary);
     line-height: 1.5;
+    transition: transform 200ms var(--ease-apple);
+  }
+
+  .guide-step:hover {
+    transform: translateX(4px);
   }
 
   .step-num-pill {
@@ -244,6 +257,11 @@ import { FAQ_ENTRIES } from '../config/faq';
     font-size: 0.8rem;
     flex-shrink: 0;
     margin-top: 2px;
+    transition: transform 220ms var(--ease-spring);
+  }
+
+  .guide-step:hover .step-num-pill {
+    transform: scale(1.15) rotate(-3deg);
   }
 
   .step-num-pill.amber {
@@ -272,6 +290,12 @@ import { FAQ_ENTRIES } from '../config/faq';
     padding: 14px 18px;
     background: rgba(0, 255, 135, 0.08);
     border-color: var(--accent-primary);
+    transition: transform 220ms var(--ease-spring), box-shadow 220ms ease;
+  }
+
+  .guide-result-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 0px #000;
   }
 
   .guide-result-banner.amber-accent {
@@ -291,6 +315,11 @@ import { FAQ_ENTRIES } from '../config/faq';
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: transform 220ms var(--ease-spring);
+  }
+
+  .guide-result-banner:hover .result-icon-check {
+    transform: scale(1.18) rotate(6deg);
   }
 
   .result-icon-check.amber {
@@ -331,7 +360,13 @@ import { FAQ_ENTRIES } from '../config/faq';
     padding: 0;
     overflow: hidden;
     transition: border-color var(--duration-hover) ease,
-                box-shadow var(--duration-hover) var(--ease-apple);
+                box-shadow var(--duration-hover) var(--ease-apple),
+                transform 220ms var(--ease-spring);
+  }
+
+  .faq-accordion-item:hover:not([open]) {
+    transform: translateY(-2px);
+    border-color: rgba(0, 255, 135, 0.3);
   }
 
   .faq-accordion-item[open] {

@@ -1,21 +1,21 @@
 ---
-// Features.astro - Bento Grid Asimétrico con las 6 Funciones Completas y Mini Visuales HTML/CSS
+// Features.astro - Bento Grid Visual de Alto Impacto con Mockups Reales de Interfaz
 ---
 
 <section class="features-section scroll-reveal" id="funciones">
   <div class="container">
     <div class="section-header reveal-init">
       <span class="section-kicker">Lo que puedes hacer</span>
-      <h2>Todo lo que necesitas para tu semestre, en un solo lugar</h2>
+      <h2>Todo lo que necesitas para tu semestre, en grande</h2>
       <p>
-        Nació de problemas reales: horarios que no cargan, mallas en PDF imposibles de leer y contraseñas que se bloquean. Aquí está la solución a cada uno.
+        Nació de problemas reales en la ESPE: horarios que no abren, notas al filo del abismo y tareas olvidadas a medianoche. Diseñada con interfaces visuales que te ahorran tiempo cada día.
       </p>
     </div>
 
-    <!-- Bento Grid Asimétrico estilo Apple -->
+    <!-- Bento Grid Asimétrico con Diseños UI Ricos -->
     <div class="bento-grid">
       
-      <!-- BENTO 1: Malla Curricular Inteligente (PROTAGONISTA GRANDE - 2 Columnas) -->
+      <!-- BENTO 1: Malla Curricular Inteligente (PROTAGONISTA - 2 Columnas) -->
       <article class="bento-card bento-hero-span card-app reveal-init">
         <div class="bento-card-header">
           <div class="bento-icon-wrapper green">
@@ -26,63 +26,92 @@
             </svg>
           </div>
           <div class="bento-title-group">
-            <span class="badge-app green">Sin internet · 22 carreras</span>
-            <h3>Tu malla curricular, clara y sin PDFs</h3>
+            <span class="badge-app green">Sin internet · 23 carreras oficiales</span>
+            <h3>Tu malla curricular visual con proyección de graduación</h3>
           </div>
         </div>
 
         <p class="bento-desc">
-          Mira tu plan de estudios completo, marca lo que ya aprobaste y deja que la app te diga qué te falta y cuándo te gradúas. Sin conectarte a nada.
+          Las 23 carreras oficiales de la ESPE ya vienen cargadas. Marca lo aprobado y la app calcula tu fecha estimada de graduación y te alerta en ámbar la ruta crítica de materias que te pueden atrasar.
         </p>
 
-        <!-- Mini Visual HTML/CSS: Progreso de Carrera y Materias Desbloqueables -->
-        <div class="mini-visual-malla" aria-hidden="true">
-          <div class="m-visual-top">
-            <span class="m-grad-est">Te gradúas: 2029</span>
-            <span class="m-grad-pct">44.2% listo</span>
+        <!-- Mockup Visual Rico: Dashboard de Avance y Grafo de Materias -->
+        <div class="bento-ui-mockup mockup-malla-board" aria-hidden="true">
+          <div class="malla-kpi-row">
+            <div class="malla-kpi-card">
+              <span class="kpi-label">AÑO ESTIMADO</span>
+              <div class="kpi-val-group">
+                <span class="kpi-num text-amber">2029</span>
+                <span class="kpi-badge-live">Octubre</span>
+              </div>
+              <span class="kpi-sub">Ritmo: 24 créditos / semestre</span>
+            </div>
+
+            <div class="malla-kpi-card right">
+              <span class="kpi-label">AVANCE DE CRÉDITOS</span>
+              <div class="kpi-val-group">
+                <span class="kpi-num text-green">44.2%</span>
+                <span class="kpi-sub-fraction">106 / 240</span>
+              </div>
+              <div class="malla-glow-track">
+                <div class="malla-glow-bar" style="width: 44.2%;"></div>
+              </div>
+            </div>
           </div>
-          <div class="m-visual-track">
-            <div class="m-visual-fill"></div>
+
+          <!-- Alerta de Ruta Crítica -->
+          <div class="malla-critical-banner">
+            <div class="critical-icon-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <div class="critical-content">
+              <div class="critical-title">RUTA CRÍTICA DETECTADA: ECUACIONES DIFERENCIALES</div>
+              <div class="critical-desc">Esta materia encadena 4 materias clave posteriores. Si no la pasas, retrasas tu titulación.</div>
+            </div>
+            <span class="critical-urgency-tag">MÁXIMA PRIORIDAD</span>
           </div>
-          <div class="m-visual-chips">
-            <span class="m-chip unlocked">✓ MAT101</span>
-            <span class="m-chip unlocked">✓ FIS102</span>
-            <span class="m-chip active">ED201</span>
-            <span class="m-chip locked">RED301</span>
-            <span class="m-chip critical">NO TE DEMORES</span>
+
+          <!-- Grafo Visual de Materias Encadenadas -->
+          <div class="malla-chain-graph">
+            <div class="graph-node passed">
+              <span class="node-status-icon">✓</span>
+              <span class="node-title">Cálculo I</span>
+              <span class="node-cr">4 CR</span>
+            </div>
+            <div class="graph-connector passed"></div>
+            <div class="graph-node passed">
+              <span class="node-status-icon">✓</span>
+              <span class="node-title">Cálculo II</span>
+              <span class="node-cr">4 CR</span>
+            </div>
+            <div class="graph-connector warning"></div>
+            <div class="graph-node warning-active">
+              <span class="node-status-icon">⚠️</span>
+              <span class="node-title">Ec. Diferenciales</span>
+              <span class="node-cr">4 CR</span>
+            </div>
+            <div class="graph-connector locked"></div>
+            <div class="graph-node locked">
+              <span class="node-status-icon">🔒</span>
+              <span class="node-title">Métodos Numéricos</span>
+              <span class="node-cr">3 CR</span>
+            </div>
           </div>
         </div>
 
-        <details class="bento-details">
-          <summary>Ver todos los detalles</summary>
-          <ul class="feature-bullets">
-            <li>
-              <strong>Tu carrera ya viene cargada:</strong> las 22 carreras de la ESPE con sus materias y créditos, listas para usar desde el primer día.
-            </li>
-            <li>
-              <strong>Se destapan solas:</strong> cuando marcas una materia como aprobada, las que dependían de ella se habilitan al instante.
-            </li>
-            <li>
-              <strong>¿Cuándo me gradúo?:</strong> la app mira cuántos créditos llevas y a qué ritmo avanzas, y te da un año estimado.
-            </li>
-            <li>
-              <strong>Ojo con las trabas:</strong> te marca en ámbar las materias que frenan tu carrera, para que las metas primero en la matrícula.
-            </li>
-            <li>
-              <strong>Se ve como tú quieras:</strong> puedes verla en cuadrícula o en lista, y agrandarla a pantalla completa para recorrerla sin estorbar.
-            </li>
-          </ul>
-        </details>
-
         <div class="bento-chips-row">
-          <span class="chip-app">22 carreras</span>
-          <span class="chip-app">Materias que frenan</span>
-          <span class="chip-app">Pantalla completa</span>
-          <span class="chip-app">Sin internet</span>
+          <span class="chip-app">23 Carreras ESPE</span>
+          <span class="chip-app">Proyección de Graduación</span>
+          <span class="chip-app">Alerta de Ruta Crítica</span>
+          <span class="chip-app">100% Offline</span>
         </div>
       </article>
 
-      <!-- BENTO 2: Horario Semanal y Banner 9 (MEDIANA) -->
+      <!-- BENTO 2: HomeWidget de Android & Atajos a Teams (1 Columna) -->
       <article class="bento-card card-app reveal-init">
         <div class="bento-card-header">
           <div class="bento-icon-wrapper amber">
@@ -94,54 +123,376 @@
             </svg>
           </div>
           <div class="bento-title-group">
-            <span class="badge-app amber">Desde el sistema de la ESPE</span>
-            <h3>Tu horario con el aula de cada clase</h3>
+            <span class="badge-app amber">HomeWidget Android</span>
+            <h3>Mira tu aula sin abrir la app</h3>
           </div>
         </div>
 
         <p class="bento-desc">
-          Entra con tu cuenta de la universidad y la app te trae tu horario con el aula, el bloque, el profesor y el NRC. Si el servidor se cae, reintenta solo.
+          Widget nativo para la pantalla de inicio de tu celular. Te muestra el aula, bloque, materia y cuenta regresiva. Si es virtual, detecta Teams o Zoom en 1 clic.
         </p>
 
-        <!-- Mini Visual: Alerta de Aula en vivo -->
-        <div class="mini-visual-banner" aria-hidden="true">
-          <div class="b-alert-header">
-            <span class="b-pill-amber">119 MIN RESTANTES</span>
-            <span class="b-status-ok">Ya sincronizó</span>
+        <!-- Mockup Visual Rico: Widget Flotante estilo Android 14 -->
+        <div class="bento-ui-mockup widget-showcase-container" aria-hidden="true">
+          <div class="android-phone-header">
+            <span class="phone-time">09:42</span>
+            <div class="phone-icons-row">
+              <span class="icon-wifi">📶</span>
+              <span class="icon-battery">88%</span>
+            </div>
           </div>
-          <div class="b-class-row">
-            <span class="b-room">Aula A-204 · Bloque A</span>
-            <span class="b-nrc">NRC 14205</span>
+
+          <div class="android-widget-card">
+            <div class="widget-accent-stripe"></div>
+            <div class="widget-inner-body">
+              <div class="widget-meta-top">
+                <span class="widget-pill-live">
+                  <span class="live-dot-pulse"></span>
+                  EN 18 MINUTOS
+                </span>
+                <span class="widget-nrc-code">NRC 14205</span>
+              </div>
+              <div class="widget-room-hero">Aula A-204</div>
+              <div class="widget-subject-name">Sistemas Operativos · Bloque Central</div>
+
+              <div class="widget-teams-btn">
+                <div class="teams-logo-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect width="24" height="24" rx="4" fill="#4f52b2"/>
+                    <path d="M12 9v6m-3-4.5h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="teams-text-group">
+                  <span class="teams-main">Unirse a Microsoft Teams</span>
+                  <span class="teams-url-hint">teams.microsoft.com/meet/14205</span>
+                </div>
+                <span class="teams-action-arrow">➔</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <details class="bento-details">
-          <summary>Ver todos los detalles</summary>
-          <ul class="feature-bullets">
-            <li>
-              <strong>Todo sobre cada clase:</strong> el aula exacta, el bloque, el nombre del profesor, el NRC y el campus.
-            </li>
-            <li>
-              <strong>Si el servidor falla, insiste solo:</strong> la app reintenta la conexión automáticamente antes de darte un error.
-            </li>
-            <li>
-              <strong>Guarda tu horario como imagen:</strong> con un toque lo conviertes en una foto en buena calidad para compartirla o ponerla de fondo de pantalla.
-            </li>
-            <li>
-              <strong>Te avisa antes de clase:</strong> puedes elegir cuántos minutos antes quieres el recordatorio de cada clase.
-            </li>
-          </ul>
-        </details>
-
         <div class="bento-chips-row">
-          <span class="chip-app">Aulas y bloques</span>
-          <span class="chip-app">Guardar como imagen</span>
-          <span class="chip-app">Recordatorios</span>
-          <span class="chip-app">Reintenta solo</span>
+          <span class="chip-app">Widget Android</span>
+          <span class="chip-app">Atajo Teams/Zoom</span>
+          <span class="chip-app">Cuenta Regresiva</span>
+          <span class="chip-app">Aulas y Bloques</span>
         </div>
       </article>
 
-      <!-- BENTO 3: Campus Virtual Moodle Seguro -->
+      <!-- BENTO 3: Carnet Digital Vertical con Flip 3D (1 Columna) -->
+      <article class="bento-card card-app reveal-init">
+        <div class="bento-card-header">
+          <div class="bento-icon-wrapper green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+              <circle cx="9" cy="10" r="2"></circle>
+              <line x1="15" y1="8" x2="17" y2="8"></line>
+              <line x1="15" y1="12" x2="17" y2="12"></line>
+              <line x1="7" y1="16" x2="17" y2="16"></line>
+            </svg>
+          </div>
+          <div class="bento-title-group">
+            <span class="badge-app green">Sin Conexión · Flip 3D</span>
+            <h3>Carnet digital para entrar al campus</h3>
+          </div>
+        </div>
+
+        <p class="bento-desc">
+          Genera tu credencial digital vertical en alta resolución con giro de anverso y reverso. Preséntalo a los guardias en las garitas sin conexión.
+        </p>
+
+        <!-- Mockup Visual Rico: Carnet Estudiantil Interactivo con Giro 3D -->
+        <div class="bento-ui-mockup carnet-showcase-container" id="carnet-container">
+          <div class="carnet-card-flipper" id="carnet-flipper">
+            <!-- Anverso del Carnet -->
+            <div class="carnet-side carnet-front">
+              <div class="carnet-top-brand">
+                <div class="carnet-logo-group">
+                  <span class="carnet-star">★</span>
+                  <span class="carnet-espe-logo">ESPE</span>
+                </div>
+                <span class="carnet-campus-name">CAMPUS SANGOLQUÍ</span>
+              </div>
+              <div class="carnet-body-grid">
+                <div class="carnet-photo-box">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="student-avatar-svg" aria-hidden="true">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span class="photo-active-dot"></span>
+                </div>
+                <div class="carnet-data-box">
+                  <div class="student-name">ESTUDIANTE ESPE</div>
+                  <div class="student-career">ING. MECÁNICA</div>
+                  <div class="student-id">L00412890</div>
+                </div>
+              </div>
+              <div class="carnet-barcode-row">
+                <!-- Barcode SVG realista de alta densidad -->
+                <svg class="carnet-svg-barcode" width="140" height="24" viewBox="0 0 140 24" fill="currentColor" aria-hidden="true">
+                  <rect x="0" y="0" width="3" height="24"></rect>
+                  <rect x="5" y="0" width="1.5" height="24"></rect>
+                  <rect x="8" y="0" width="4" height="24"></rect>
+                  <rect x="14" y="0" width="1" height="24"></rect>
+                  <rect x="17" y="0" width="2.5" height="24"></rect>
+                  <rect x="22" y="0" width="3" height="24"></rect>
+                  <rect x="27" y="0" width="1" height="24"></rect>
+                  <rect x="30" y="0" width="4" height="24"></rect>
+                  <rect x="36" y="0" width="2" height="24"></rect>
+                  <rect x="40" y="0" width="1.5" height="24"></rect>
+                  <rect x="43" y="0" width="3.5" height="24"></rect>
+                  <rect x="49" y="0" width="1" height="24"></rect>
+                  <rect x="52" y="0" width="2" height="24"></rect>
+                  <rect x="56" y="0" width="4" height="24"></rect>
+                  <rect x="62" y="0" width="1.5" height="24"></rect>
+                  <rect x="65" y="0" width="3" height="24"></rect>
+                  <rect x="70" y="0" width="2" height="24"></rect>
+                  <rect x="74" y="0" width="1" height="24"></rect>
+                  <rect x="77" y="0" width="3.5" height="24"></rect>
+                  <rect x="83" y="0" width="2" height="24"></rect>
+                  <rect x="87" y="0" width="4" height="24"></rect>
+                  <rect x="93" y="0" width="1" height="24"></rect>
+                  <rect x="96" y="0" width="2.5" height="24"></rect>
+                  <rect x="101" y="0" width="3" height="24"></rect>
+                  <rect x="106" y="0" width="1.5" height="24"></rect>
+                  <rect x="110" y="0" width="4" height="24"></rect>
+                  <rect x="116" y="0" width="2" height="24"></rect>
+                  <rect x="120" y="0" width="1" height="24"></rect>
+                  <rect x="123" y="0" width="3" height="24"></rect>
+                  <rect x="128" y="0" width="2" height="24"></rect>
+                  <rect x="132" y="0" width="4" height="24"></rect>
+                  <rect x="138" y="0" width="2" height="24"></rect>
+                </svg>
+                <span class="carnet-valid-tag">2026-1</span>
+              </div>
+            </div>
+
+            <!-- Reverso del Carnet -->
+            <div class="carnet-side carnet-back">
+              <div class="carnet-back-header">ACCESO A GARITAS INSTITUCIONALES</div>
+              <div class="carnet-qr-frame">
+                <!-- QR SVG Vectorial Real -->
+                <svg class="carnet-svg-qr" width="64" height="64" viewBox="0 0 24 24" fill="#000" aria-hidden="true">
+                  <path d="M2 2h7v7H2V2zm2 2v3h3V4H4zm11-2h7v7h-7V2zm2 2v3h3V4h-3zM2 15h7v7H2v-7zm2 2v3h3v-3H4zm8-13h2v2h-2V4zm0 4h2v2h-2V8zm4 0h2v2h-2V8zm-2 4h2v2h-2v-2zm-2 2h2v2h-2v-2zm4 0h2v2h-2v-2zm2-2h2v2h-2v-2zm0 4h2v2h-2v-2zm-6 2h2v2h-2v-2zm4 0h2v2h-2v-2zm2 2h2v2h-2v-2z"></path>
+                </svg>
+              </div>
+              <div class="carnet-emergency-note">Cédula: 1729384710 · Seguro Activo</div>
+            </div>
+          </div>
+
+          <div class="carnet-flip-ctrl">
+            <button type="button" class="btn-flip-carnet" id="btn-flip-carnet" aria-label="Girar carnet estudiantil">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m3 12 4-4 4 4"></path>
+                <path d="M7 8v8a4 4 0 0 0 4 4h9"></path>
+                <path d="m21 12-4 4-4-4"></path>
+                <path d="M17 16V8a4 4 0 0 0-4-4H4"></path>
+              </svg>
+              <span>Toca para ver el reverso (QR institucional)</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bento-chips-row">
+          <span class="chip-app">Carnet Vertical</span>
+          <span class="chip-app">Giro 3D</span>
+          <span class="chip-app">QR de Garita</span>
+          <span class="chip-app">100% Offline</span>
+        </div>
+      </article>
+
+      <!-- BENTO 4: Calculadora Oficial ESPE 35/35/30 (2 Columnas) -->
+      <article class="bento-card bento-hero-span card-app reveal-init">
+        <div class="bento-card-header">
+          <div class="bento-icon-wrapper amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+          </div>
+          <div class="bento-title-group">
+            <span class="badge-app amber">Reglamento Oficial ESPE</span>
+            <h3>Calculadora interactiva: ¿cuánto necesitas para el 14.0?</h3>
+          </div>
+        </div>
+
+        <p class="bento-desc">
+          Aplica la fórmula ponderada exacta de la ESPE: 35% Parcial 1 + 35% Parcial 2 + 30% Examen Final. Mueve los valores y descubre al décimo qué nota requieres exactamente para aprobar sin irte a supletorio.
+        </p>
+
+        <!-- Mockup Visual Rico: Simulador de Notas con Sliders y Medidor -->
+        <div class="bento-ui-mockup calc-interactive-simulator" aria-hidden="true">
+          <div class="calc-top-header">
+            <div class="calc-grade-display">
+              <span class="calc-big-val text-amber">14.85</span>
+              <span class="calc-max-val">/ 20.00</span>
+              <span class="calc-verdict-badge approved">✓ APROBADO</span>
+            </div>
+            <div class="calc-target-selector">
+              <span class="target-chip active">Meta 14.0 (Aprobar)</span>
+              <span class="target-chip">Meta 16.0 (Beca)</span>
+            </div>
+          </div>
+
+          <div class="calc-sliders-container">
+            <!-- Slider Parcial 1 -->
+            <div class="calc-slider-card">
+              <div class="slider-info-row">
+                <span class="slider-name">PARCIAL 1 (Ponderación 35%)</span>
+                <span class="slider-value-pill text-green">15.50 / 20</span>
+              </div>
+              <div class="slider-track-visual">
+                <div class="slider-fill-visual green-gradient" style="width: 77.5%;"></div>
+                <div class="slider-thumb-dot" style="left: 77.5%;"></div>
+              </div>
+              <span class="slider-contrib-text">Aporta 5.43 pts a tu nota final</span>
+            </div>
+
+            <!-- Slider Parcial 2 -->
+            <div class="calc-slider-card">
+              <div class="slider-info-row">
+                <span class="slider-name">PARCIAL 2 (Ponderación 35%)</span>
+                <span class="slider-value-pill text-green">14.20 / 20</span>
+              </div>
+              <div class="slider-track-visual">
+                <div class="slider-fill-visual green-gradient" style="width: 71%;"></div>
+                <div class="slider-thumb-dot" style="left: 71%;"></div>
+              </div>
+              <span class="slider-contrib-text">Aporta 4.97 pts a tu nota final</span>
+            </div>
+
+            <!-- Meta Examen Final -->
+            <div class="calc-slider-card target-needed-card">
+              <div class="slider-info-row">
+                <span class="slider-name-target">EXAMEN FINAL REQUERIDO (30%)</span>
+                <span class="slider-target-result text-amber">MÍNIMO 12.00 / 20</span>
+              </div>
+              <div class="slider-track-visual target">
+                <div class="slider-fill-visual amber-gradient" style="width: 60%;"></div>
+                <div class="slider-thumb-dot amber" style="left: 60%;"></div>
+              </div>
+              <span class="slider-contrib-text amber">Necesitas 3.60 pts ponderados para asegurar el 14.0 final</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-chips-row">
+          <span class="chip-app">Fórmula 35/35/30</span>
+          <span class="chip-app">Meta 14.0/20</span>
+          <span class="chip-app">Simulador en Vivo</span>
+          <span class="chip-app">Historial SQLite v7</span>
+        </div>
+      </article>
+
+      <!-- BENTO 5: Amigos QR y Horas Libres Comunes (2 Columnas) -->
+      <article class="bento-card bento-hero-span card-app reveal-init">
+        <div class="bento-card-header">
+          <div class="bento-icon-wrapper green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="bento-title-group">
+            <span class="badge-app green">P2P Gzip · Sin Internet</span>
+            <h3>¿A qué hora coincidimos libres para almorzar o estudiar?</h3>
+          </div>
+        </div>
+
+        <p class="bento-desc">
+          Pasa tu horario escaneando un código QR comprimido de pantalla a cámara, sin internet. La app compara automáticamente los horarios de tus compañeros y resalta los huecos libres exactos en común.
+        </p>
+
+        <!-- Mockup Visual Rico: Comparador de Cronogramas con Bloque Libre Resaltado -->
+        <div class="bento-ui-mockup friends-timeline-mockup" aria-hidden="true">
+          <div class="friends-match-hero-bar">
+            <div class="match-sparkle-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <div class="match-hero-text">
+              <span class="match-title-strong">¡COINCIDENCIA ENCONTRADA: 2 HORAS LIBRES JUNTOS!</span>
+              <span class="match-time-sub">Martes y Jueves · 10:00 AM – 12:00 PM (Ambos tienen hueco)</span>
+            </div>
+            <span class="match-plan-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                <line x1="6" y1="1" x2="6" y2="4"></line>
+                <line x1="10" y1="1" x2="10" y2="4"></line>
+                <line x1="14" y1="1" x2="14" y2="4"></line>
+              </svg>
+              Almorzar en Sangolquí
+            </span>
+          </div>
+
+          <div class="timeline-comparison-grid">
+            <!-- Columna Usuario -->
+            <div class="timeline-column">
+              <div class="timeline-user-tag">
+                <span class="user-avatar-mini">T</span>
+                <span>Tu Horario</span>
+              </div>
+              <div class="timeline-slots">
+                <div class="slot-item busy">
+                  <span class="slot-hour">07:00 - 09:00</span>
+                  <span class="slot-class">Cálculo Vectorial (A-201)</span>
+                </div>
+                <div class="slot-item free-match">
+                  <span class="slot-hour">10:00 - 12:00</span>
+                  <span class="slot-class-free">★ HORA LIBRE (DISPONIBLE)</span>
+                </div>
+                <div class="slot-item busy">
+                  <span class="slot-hour">12:00 - 14:00</span>
+                  <span class="slot-class">Física II (Lab B)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conector Central P2P -->
+            <div class="timeline-sync-bridge">
+              <div class="sync-line"></div>
+              <div class="sync-badge">QR P2P</div>
+              <div class="sync-line"></div>
+            </div>
+
+            <!-- Columna Amigo -->
+            <div class="timeline-column">
+              <div class="timeline-user-tag">
+                <span class="user-avatar-mini">C</span>
+                <span>Compañero de Clase</span>
+              </div>
+              <div class="timeline-slots">
+                <div class="slot-item busy">
+                  <span class="slot-hour">07:00 - 09:00</span>
+                  <span class="slot-class">Programación Avanzada</span>
+                </div>
+                <div class="slot-item free-match">
+                  <span class="slot-hour">10:00 - 12:00</span>
+                  <span class="slot-class-free">★ HORA LIBRE (DISPONIBLE)</span>
+                </div>
+                <div class="slot-item busy">
+                  <span class="slot-hour">12:00 - 14:00</span>
+                  <span class="slot-class">Estadística Descriptiva</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-chips-row">
+          <span class="chip-app">Horas Libres con Amigos</span>
+          <span class="chip-app">QR Comprimido Gzip</span>
+          <span class="chip-app">Sin Servidores</span>
+          <span class="chip-app">Agenda 3-en-1</span>
+        </div>
+      </article>
+
+      <!-- BENTO 6: Moodle con QR, Alarma Sonora & Subida de Tareas (1 Columna) -->
       <article class="bento-card card-app reveal-init">
         <div class="bento-card-header">
           <div class="bento-icon-wrapper green">
@@ -154,151 +505,168 @@
             </svg>
           </div>
           <div class="bento-title-group">
-            <span class="badge-app green">Entras con un código QR</span>
-            <h3>Tu Moodle sin escribir la contraseña</h3>
+            <span class="badge-app green">Sin Contraseñas · Multi-Campus</span>
+            <h3>Moodle con alarma y subida de tareas</h3>
           </div>
         </div>
 
         <p class="bento-desc">
-          Abres tu Moodle en el navegador, generas el código QR de tu perfil y lo escaneas con la app. Así de simple, y tu contraseña nunca pasa por aquí.
+          Entras con el código QR oficial de Moodle. Si una tarea vence a medianoche, una alarma con sonido en bucle te despierta y puedes entregar tu archivo directamente desde la app.
         </p>
 
-        <!-- Mini Visual: Escaneo de Token HMAC -->
-        <div class="mini-visual-moodle" aria-hidden="true">
-          <div class="hmac-scanner-row">
-            <span class="hmac-tag">CONECTADO</span>
-            <span class="hmac-badge">Sin contraseña</span>
+        <!-- Mockup Visual Rico: Alerta de Entrega con Cuenta Regresiva y Subida Nativa -->
+        <div class="bento-ui-mockup moodle-task-mockup" aria-hidden="true">
+          <div class="moodle-alarm-card">
+            <div class="alarm-header-line">
+              <span class="alarm-pulse-dot"></span>
+              <span class="alarm-tag-text">ALARMA SONORA ACTIVA</span>
+            </div>
+            
+            <div class="countdown-clock-bar">
+              <div class="countdown-box">
+                <span class="c-num">02</span>
+                <span class="c-lbl">HORAS</span>
+              </div>
+              <span class="c-sep">:</span>
+              <div class="countdown-box">
+                <span class="c-num">14</span>
+                <span class="c-lbl">MIN</span>
+              </div>
+              <span class="c-sep">:</span>
+              <div class="countdown-box">
+                <span class="c-num">38</span>
+                <span class="c-lbl">SEG</span>
+              </div>
+            </div>
+
+            <div class="alarm-task-title">Laboratorio 3 de Sistemas</div>
+            <div class="alarm-due-pill">Cierra hoy a las 23:59</div>
+
+            <!-- Ecualizador de Audio Visual Animado -->
+            <div class="audio-wave-row">
+              <div class="audio-wave-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                <span>Bucle sonoro + vibración</span>
+              </div>
+              <div class="audio-bars-container">
+                <span class="wave-bar b1"></span>
+                <span class="wave-bar b2"></span>
+                <span class="wave-bar b3"></span>
+                <span class="wave-bar b4"></span>
+              </div>
+            </div>
           </div>
-          <span class="hmac-state">Sincronizado con micampus.espe.edu.ec</span>
+
+          <!-- Componente de Subida Nativa -->
+          <div class="moodle-upload-box">
+            <div class="upload-icon-pill">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+            </div>
+            <div class="upload-file-info">
+              <span class="upload-filename">informe_lab3_final.pdf</span>
+              <span class="upload-status-text">✓ Verificado con upload.php</span>
+            </div>
+            <span class="upload-btn-fake">Entregar</span>
+          </div>
         </div>
 
-        <details class="bento-details">
-          <summary>Ver todos los detalles</summary>
-          <ul class="feature-bullets">
-            <li>
-              <strong>Sin escribir tu contraseña:</strong> entras con el código QR oficial de Moodle, así que nunca escribes ni guardas tu clave.
-            </li>
-            <li>
-              <strong>Te ayuda a no olvidar una entrega:</strong> tus tareas aparecen ordenadas por lo que vence primero.
-            </li>
-            <li>
-              <strong>Mira tus notas al día:</strong> las calificaciones de tareas y foros se ven directo en tu celular.
-            </li>
-            <li>
-              <strong>Sirve para todas las sedes:</strong> Matriz Sangolquí, Posgrados y Modalidad en Línea.
-            </li>
-          </ul>
-        </details>
-
         <div class="bento-chips-row">
-          <span class="chip-app">Entrar con QR</span>
-          <span class="chip-app">Tareas y notas</span>
-          <span class="chip-app">Todas las sedes</span>
-          <span class="chip-app">Sin contraseña</span>
+          <span class="chip-app">Login con QR</span>
+          <span class="chip-app">Alarma en Bucle</span>
+          <span class="chip-app">Entrega Nativa</span>
+          <span class="chip-app">4 Campus Moodle</span>
         </div>
       </article>
 
-      <!-- BENTO 4: Historial Académico y Promedios -->
-      <article class="bento-card card-app reveal-init">
+      <!-- BENTO 7: Gestor Offline de Archivos & Exportador a Wallpaper HD (2 Columnas) -->
+      <article class="bento-card bento-hero-span card-app reveal-init">
         <div class="bento-card-header">
           <div class="bento-icon-wrapper amber">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
           </div>
           <div class="bento-title-group">
-            <span class="badge-app amber">Todos tus semestres</span>
-            <h3>Tus notas y tu promedio, siempre a mano</h3>
+            <span class="badge-app amber">Descargas Offline · Wallpaper HD</span>
+            <h3>Guarda tus PDFs y pon tu horario de fondo de pantalla</h3>
           </div>
         </div>
 
         <p class="bento-desc">
-          Revisa las notas de todos tus semestres anteriores y mira cómo va tu promedio general, sin tener que entrar al sistema cada vez.
+          Descarga sílabos, diapositivas y guías de materia para leerlas en el bus sin gastar tus datos. Además, genera una imagen HD de tu horario lista para la pantalla de bloqueo o expórtala a Google Calendar.
         </p>
 
-        <!-- Mini Visual: Promedio ponderado -->
-        <div class="mini-visual-average" aria-hidden="true">
-          <span class="avg-label">TU PROMEDIO GENERAL</span>
-          <div class="avg-val-row">
-            <span class="avg-num">17.85</span>
-            <span class="avg-max">/ 20</span>
+        <!-- Mockup Visual Rico: Visor de Archivos Offline y Preview Wallpaper -->
+        <div class="bento-ui-mockup files-wallpaper-mockup" aria-hidden="true">
+          <div class="files-preview-col">
+            <div class="col-kicker-title">ARCHIVOS MOODLE EN TU CELULAR</div>
+            <div class="offline-file-item">
+              <span class="file-type-icon pdf">PDF</span>
+              <div class="file-text">
+                <span class="file-name">Guia_Lab_Circuitos_P1.pdf</span>
+                <span class="file-size">1.8 MB · Guardado en SQLite Drift</span>
+              </div>
+              <span class="file-state-chip">✓ Offline</span>
+            </div>
+
+            <div class="offline-file-item">
+              <span class="file-type-icon doc">DOC</span>
+              <div class="file-text">
+                <span class="file-name">Silabo_Oficial_Ecuaciones_2026.docx</span>
+                <span class="file-size">840 KB · Disponible sin internet</span>
+              </div>
+              <span class="file-state-chip">✓ Offline</span>
+            </div>
+          </div>
+
+          <div class="wallpaper-preview-col">
+            <div class="col-kicker-title">FONDO DE PANTALLA HD</div>
+            <div class="wallpaper-phone-frame">
+              <div class="wp-phone-notch"></div>
+              <div class="wp-phone-clock">08:00 AM</div>
+              <div class="wp-schedule-table">
+                <div class="wp-sched-row">
+                  <span class="wp-day">LUN</span>
+                  <span class="wp-subject">Aula A-204 · Cálculo</span>
+                </div>
+                <div class="wp-sched-row">
+                  <span class="wp-day">MAR</span>
+                  <span class="wp-subject">Aula C-110 · Física II</span>
+                </div>
+                <div class="wp-sched-row">
+                  <span class="wp-day">MIE</span>
+                  <span class="wp-subject">LAB-3 · Sistemas</span>
+                </div>
+              </div>
+              <div class="wp-download-pill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                1080 × 2400 HD & Calendario .ICS
+              </div>
+            </div>
           </div>
         </div>
 
-        <details class="bento-details">
-          <summary>Ver todos los detalles</summary>
-          <ul class="feature-bullets">
-            <li>
-              <strong>Tu promedio se calcula solo (es un estimado informativo):</strong> la app hace la cuenta con el peso de cada materia, en tiempo real.
-            </li>
-            <li>
-              <strong>Cuánto llevas y cuánto te falta:</strong> sigue tus créditos aprobados frente al total de tu carrera.
-            </li>
-            <li>
-              <strong>Semestre por semestre:</strong> consulta tus materias pasadas, las convalidadas y todas tus notas registradas.
-            </li>
-          </ul>
-        </details>
-
         <div class="bento-chips-row">
-          <span class="chip-app">Notas de cada semestre</span>
-          <span class="chip-app">Créditos que llevas</span>
-          <span class="chip-app">Tu promedio</span>
+          <span class="chip-app">PDFs sin Internet</span>
+          <span class="chip-app">Fondo de Pantalla HD</span>
+          <span class="chip-app">Calendario RFC 5545 .ics</span>
+          <span class="chip-app">Cero Consumo de Datos</span>
         </div>
       </article>
 
-      <!-- BENTO 5: Compartir Datos Cara a Cara vía QR -->
-      <article class="bento-card card-app reveal-init">
-        <div class="bento-card-header">
-          <div class="bento-icon-wrapper green">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          </div>
-          <div class="bento-title-group">
-            <span class="badge-app green">Sin internet</span>
-            <h3>Pásale tus datos a un compañero por QR</h3>
-          </div>
-        </div>
-
-        <p class="bento-desc">
-          ¿Tu amigo quiere tu lista de materias aprobadas? Generas un código QR en tu pantalla, él lo escanea y ya. Sin internet, sin cables, sin escribir nada.
-        </p>
-
-        <!-- Mini Visual: Conexión P2P -->
-        <div class="mini-visual-p2p" aria-hidden="true">
-          <span class="p2p-node">Tu celular</span>
-          <span class="p2p-arrow">⇄ QR SIN INTERNET ⇄</span>
-          <span class="p2p-node">El suyo</span>
-        </div>
-
-        <details class="bento-details">
-          <summary>Ver todos los detalles</summary>
-          <ul class="feature-bullets">
-            <li>
-              <strong>Funciona sin señal:</strong> sirve en un aula sin wifi ni datos, en un laboratorio o en modo avión.
-            </li>
-            <li>
-              <strong>Se pasa en un segundo:</strong> el código se lee al instante con la cámara y la información llega completa.
-            </li>
-            <li>
-              <strong>Útil para el grupo:</strong> comparte con tus compañeros de carrera el avance de la malla o una lista de repaso.
-            </li>
-          </ul>
-        </details>
-
-        <div class="bento-chips-row">
-          <span class="chip-app">Sin internet</span>
-          <span class="chip-app">Listas de materias</span>
-          <span class="chip-app">Se escanea al instante</span>
-        </div>
-      </article>
-
-      <!-- BENTO 6: Privacidad Absoluta y APK Ligero -->
+      <!-- BENTO 8: Estabilidad Blindada: 361 Tests · Drift SQLite v7 (1 Columna) -->
       <article class="bento-card card-app reveal-init">
         <div class="bento-card-header">
           <div class="bento-icon-wrapper green">
@@ -307,45 +675,57 @@
             </svg>
           </div>
           <div class="bento-title-group">
-            <span class="badge-app green">Sin anuncios ni rastreo</span>
-            <h3>Tus datos son solo tuyos</h3>
+            <span class="badge-app green">361 Tests · Drift SQLite v7</span>
+            <h3>Estabilidad blindada y modo OLED</h3>
           </div>
         </div>
 
         <p class="bento-desc">
-          No hay servidores nuestros de por medio, no vendemos nada ni te mostramos publicidad. Tu información viaja directo entre tu celular y los servidores de la universidad.
+          Sin servidores intermedios, sin rastreadores y respaldada por 361 tests automáticos. Persistencia en SQLite local, modo ultra-oscuro y solo 31 MB.
         </p>
 
-        <!-- Mini Visual: Peso reducido R8 -->
-        <div class="mini-visual-r8" aria-hidden="true">
-          <span class="r8-old">Antes: ~60 MB</span>
-          <span class="r8-arrow">➔</span>
-          <span class="r8-new">Ahora: 31 MB</span>
+        <!-- Mockup Visual Rico: Panel de Calidad de Software con Instrumentos -->
+        <div class="bento-ui-mockup tech-specs-mockup" aria-hidden="true">
+          <div class="bench-hero-gauge">
+            <div class="gauge-ring-box">
+              <span class="gauge-pct text-green">100%</span>
+              <span class="gauge-label">CALIDAD</span>
+            </div>
+            <div class="gauge-meta-text">
+              <strong class="text-white">361 de 361 Tests Aprobados</strong>
+              <span>57 archivos de pruebas unitarias y de widgets</span>
+            </div>
+          </div>
+
+          <div class="tech-spec-line">
+            <span class="led-dot green"></span>
+            <div class="spec-label">Flutter Analyze</div>
+            <strong class="spec-val text-green">0 Advertencias</strong>
+          </div>
+
+          <div class="tech-spec-line">
+            <span class="led-dot amber"></span>
+            <div class="spec-label">Base de Datos Local</div>
+            <strong class="spec-val text-amber">Drift SQLite v7</strong>
+          </div>
+
+          <div class="tech-spec-line">
+            <span class="led-dot blue"></span>
+            <div class="spec-label">Tamaño del APK</div>
+            <strong class="spec-val text-white">31 MB Ligeros</strong>
+          </div>
+
+          <div class="oled-theme-preview-box">
+            <span class="oled-circle-sample"></span>
+            <span class="oled-desc-text">Temas Neo-Brutalistas: Oscuro Slate & Negro OLED puro</span>
+          </div>
         </div>
 
-        <details class="bento-details">
-          <summary>Ver todos los detalles</summary>
-          <ul class="feature-bullets">
-            <li>
-              <strong>Tu sesión queda protegida en el celular:</strong> se guarda cifrada en el almacenamiento seguro de Android, nunca en internet. Tu contraseña no se guarda.
-            </li>
-            <li>
-              <strong>Abre al instante y no gasta datos:</strong> todo se guarda dentro de la app, así que consultar tu horario no consume tu plan.
-            </li>
-            <li>
-              <strong>Pesa la mitad que antes:</strong> pasó de unos 60 MB a 31 MB para que no te ocupe espacio en el teléfono.
-            </li>
-            <li>
-              <strong>Sin intermediarios:</strong> tu celular habla directo con la ESPE y lo que descarga se queda en tu dispositivo.
-            </li>
-          </ul>
-        </details>
-
         <div class="bento-chips-row">
-          <span class="chip-app">Datos cifrados</span>
-          <span class="chip-app">Todo en tu celular</span>
-          <span class="chip-app">Pesa solo 31 MB</span>
-          <span class="chip-app">Cero publicidad</span>
+          <span class="chip-app">361 Tests al 100%</span>
+          <span class="chip-app">Drift SQLite v7</span>
+          <span class="chip-app">Modo OLED</span>
+          <span class="chip-app">31 MB Ligeros</span>
         </div>
       </article>
 
@@ -353,20 +733,37 @@
   </div>
 </section>
 
+<!-- Script para el giro 3D táctil del Carnet Estudiantil -->
+<script>
+  function setupCarnetFlip() {
+    const btnFlip = document.getElementById('btn-flip-carnet');
+    const flipper = document.getElementById('carnet-flipper');
+    if (!btnFlip || !flipper) return;
+
+    btnFlip.addEventListener('click', () => {
+      flipper.classList.toggle('is-flipped');
+    });
+  }
+
+  // Ejecución en carga inicial y soporte para transiciones de Astro
+  setupCarnetFlip();
+  document.addEventListener('astro:page-load', setupCarnetFlip);
+</script>
+
 <style>
   .features-section {
-    padding: 90px 0 100px 0;
+    padding: 100px 0 110px 0;
     position: relative;
     background: rgba(16, 26, 35, 0.25);
     border-top: 2px solid var(--border-app);
     border-bottom: 2px solid var(--border-app);
   }
 
-  /* Bento Grid Asimétrico */
+  /* Bento Grid Asimétrico Espacioso */
   .bento-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 26px;
+    gap: 28px;
   }
 
   /* Tarjeta protagonista en el Bento Grid */
@@ -377,16 +774,23 @@
   @media (max-width: 1140px) {
     .bento-grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
     }
     .bento-hero-span {
       grid-column: span 2;
     }
   }
 
-  @media (max-width: 740px) {
+  @media (max-width: 760px) {
+    .features-section {
+      padding: 70px 0 80px 0;
+    }
+
     .bento-grid {
       grid-template-columns: 1fr;
+      gap: 20px;
     }
+
     .bento-hero-span {
       grid-column: span 1;
     }
@@ -396,7 +800,7 @@
     }
 
     .bento-title-group h3 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
     }
   }
 
@@ -404,15 +808,47 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 28px;
+    padding: 32px 30px;
     background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--border-app);
+    position: relative;
+    overflow: hidden;
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), border-color 320ms ease, box-shadow 320ms ease;
+  }
+
+  /* Rayo de luz superior al pasar el cursor */
+  .bento-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    transition: left 0.75s ease;
+  }
+
+  .bento-card:hover::before {
+    left: 100%;
+  }
+
+  .bento-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(34, 197, 94, 0.55);
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.6), 0 0 24px rgba(34, 197, 94, 0.12);
+  }
+
+  .bento-card:hover .bento-icon-wrapper {
+    transform: scale(1.08) rotate(-4deg);
+    box-shadow: 3px 3px 0px #000, 0 0 14px rgba(34, 197, 94, 0.45);
   }
 
   .bento-card-header {
     display: flex;
     align-items: flex-start;
     gap: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   .bento-icon-wrapper {
@@ -445,318 +881,1335 @@
   }
 
   .bento-title-group h3 {
-    font-size: 1.38rem;
-    line-height: 1.2;
+    font-size: 1.42rem;
+    line-height: 1.25;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
   }
 
   .bento-desc {
     color: var(--text-secondary);
-    font-size: 0.96rem;
+    font-size: 0.95rem;
     line-height: 1.55;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
 
-  /* Mini Visuales en HTML/CSS dentro de cada tarjeta */
-  .mini-visual-malla {
+  /* Contenedores Genéricos de Mockups Visuales */
+  .bento-ui-mockup {
     background: var(--bg-surface-elevated);
     border: 1.5px solid var(--border-app);
     border-radius: var(--radius-md);
-    padding: 12px 14px;
-    margin-bottom: 20px;
-    box-shadow: 2px 2px 0px #000;
+    padding: 18px 20px;
+    margin-bottom: 22px;
+    box-shadow: 3px 3px 0px #000;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  .m-visual-top {
+  /* Colores Globales de Texto */
+  .text-green { color: var(--accent-primary); }
+  .text-amber { color: var(--accent-amber); }
+  .text-white { color: #fff; }
+
+  /* -------------------------------------------------------------
+     1. MOCKUP: DASHBOARD DE MALLA CURRICULAR Y RUTA CRÍTICA
+     ------------------------------------------------------------- */
+  .mockup-malla-board {
+    background: linear-gradient(180deg, #101c26 0%, #0a131b 100%);
+    padding: 20px;
+  }
+
+  .malla-kpi-row {
     display: flex;
     justify-content: space-between;
-    font-size: 0.76rem;
-    font-weight: 800;
-    margin-bottom: 6px;
-  }
-  .m-grad-est { color: var(--accent-amber); }
-  .m-grad-pct { color: var(--accent-primary); font-family: var(--font-mono); }
-
-  .m-visual-track {
-    width: 100%;
-    height: 6px;
-    background: var(--bg-surface-container);
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 10px;
+    align-items: flex-end;
+    margin-bottom: 14px;
+    gap: 16px;
   }
 
-  .m-visual-fill {
-    width: 0%;
-    height: 100%;
-    background: var(--accent-primary);
-    border-radius: 3px;
-    transition: width 1.2s var(--ease-apple);
-  }
-
-  /* Al revelarse la tarjeta (o de inmediato si no hay JS/reduced-motion), la
-     barra crece hasta el 44.2% real: antes aparecía ya llena y estática,
-     contradiciendo el contador animado que la acompaña. */
-  .bento-card.revealed .m-visual-fill {
-    width: 44.2%;
-  }
-
-  html:not(.js-anim) .m-visual-fill {
-    width: 44.2%;
-  }
-
-  .m-visual-chips {
+  .malla-kpi-card {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    flex-direction: column;
   }
 
-  .m-chip {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 800;
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid var(--border-app);
+  .malla-kpi-card.right {
+    align-items: flex-end;
+    min-width: 180px;
   }
 
-  .m-chip.unlocked {
-    background: rgba(0, 255, 135, 0.15);
-    border-color: var(--accent-primary);
-    color: var(--accent-primary);
-  }
-  .m-chip.active {
-    background: var(--accent-primary);
-    color: var(--on-primary);
-    border-color: #000;
-  }
-  .m-chip.locked {
-    background: var(--bg-surface);
-    color: var(--text-muted);
-  }
-  .m-chip.critical {
-    background: rgba(255, 219, 121, 0.15);
-    border-color: var(--accent-amber);
-    color: var(--accent-amber);
-  }
-
-  /* Mini visual Horario */
-  .mini-visual-banner {
-    background: var(--bg-surface-elevated);
-    border: 1.5px solid var(--border-app);
-    border-radius: var(--radius-md);
-    padding: 10px 14px;
-    margin-bottom: 18px;
-    box-shadow: 2px 2px 0px #000;
-  }
-  .b-alert-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4px;
-  }
-  .b-pill-amber {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    font-weight: 800;
-    background: var(--accent-amber);
-    color: var(--on-amber);
-    padding: 1px 6px;
-    border-radius: 3px;
-  }
-  .b-status-ok {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    font-weight: 800;
-    color: var(--accent-primary);
-  }
-  .b-class-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.78rem;
-    color: var(--text-secondary);
-  }
-
-  /* Mini visual Moodle */
-  .mini-visual-moodle {
-    background: var(--bg-surface-elevated);
-    border: 1.5px solid var(--border-app);
-    border-radius: var(--radius-md);
-    padding: 10px 14px;
-    margin-bottom: 18px;
-    box-shadow: 2px 2px 0px #000;
-  }
-  .hmac-scanner-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 3px;
-  }
-  .hmac-tag {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 800;
-    color: var(--accent-primary);
-  }
-  .hmac-badge {
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--text-muted);
-  }
-  .hmac-state {
-    font-size: 0.72rem;
-    color: var(--text-secondary);
-  }
-
-  /* Mini visual Promedio */
-  .mini-visual-average {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--bg-surface-elevated);
-    border: 1.5px solid var(--border-app);
-    border-radius: var(--radius-md);
-    padding: 8px 14px;
-    margin-bottom: 18px;
-    box-shadow: 2px 2px 0px #000;
-  }
-  .avg-label {
-    font-size: 0.68rem;
+  .kpi-label {
+    font-size: 0.7rem;
     font-weight: 800;
     color: var(--text-muted);
     letter-spacing: 0.05em;
   }
-  .avg-val-row {
+
+  .kpi-val-group {
     display: flex;
     align-items: baseline;
-    gap: 3px;
-  }
-  .avg-num {
-    font-family: var(--font-sans);
-    font-size: 1.3rem;
-    font-weight: 900;
-    color: var(--accent-amber);
-  }
-  .avg-max {
-    font-size: 0.72rem;
-    color: var(--text-muted);
+    gap: 8px;
+    margin: 4px 0;
   }
 
-  /* Mini visual P2P */
-  .mini-visual-p2p {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--bg-surface-elevated);
-    border: 1.5px solid var(--border-app);
-    border-radius: var(--radius-md);
-    padding: 8px 12px;
-    margin-bottom: 18px;
+  .kpi-num {
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+    font-family: var(--font-sans);
+    letter-spacing: -0.03em;
+  }
+
+  .kpi-badge-live {
     font-family: var(--font-mono);
     font-size: 0.68rem;
     font-weight: 800;
-    box-shadow: 2px 2px 0px #000;
-  }
-  .p2p-node {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-app);
+    background: rgba(255, 219, 121, 0.15);
+    color: var(--accent-amber);
     padding: 2px 6px;
     border-radius: 4px;
-  }
-  .p2p-arrow {
-    color: var(--accent-primary);
-    font-size: 0.64rem;
+    border: 1px solid rgba(255, 219, 121, 0.3);
   }
 
-  /* Mini visual R8 */
-  .mini-visual-r8 {
+  .kpi-sub-fraction {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .kpi-sub {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+  }
+
+  .malla-glow-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+
+  .malla-glow-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981 0%, var(--accent-primary) 100%);
+    box-shadow: 0 0 10px rgba(0, 255, 135, 0.4);
+    border-radius: 4px;
+  }
+
+  .malla-critical-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 219, 121, 0.09);
+    border: 1.5px solid rgba(255, 219, 121, 0.35);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin-bottom: 16px;
+  }
+
+  .critical-icon-badge {
+    color: var(--accent-amber);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .critical-content {
+    flex-grow: 1;
+  }
+
+  .critical-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--accent-amber);
+    letter-spacing: 0.02em;
+  }
+
+  .critical-desc {
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+    line-height: 1.35;
+    margin-top: 2px;
+  }
+
+  .critical-urgency-tag {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 800;
+    background: var(--accent-amber);
+    color: #000;
+    padding: 2px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  /* Grafo de materias */
+  .malla-chain-graph {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .graph-node {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.76rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .graph-node.passed {
+    border-color: rgba(34, 197, 94, 0.4);
+    color: var(--text-primary);
+  }
+  .graph-node.passed .node-status-icon { color: var(--accent-primary); }
+
+  .graph-node.warning-active {
+    border-color: var(--accent-amber);
+    background: rgba(255, 219, 121, 0.12);
+    color: var(--accent-amber);
+    box-shadow: 0 0 10px rgba(255, 219, 121, 0.2);
+  }
+
+  .graph-node.locked {
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
+
+  .node-cr {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+  }
+
+  .graph-connector {
+    width: 14px;
+    height: 2px;
+    background: var(--border-app);
+    flex-shrink: 0;
+  }
+  .graph-connector.passed { background: var(--accent-primary); }
+  .graph-connector.warning { background: var(--accent-amber); }
+
+  /* -------------------------------------------------------------
+     2. MOCKUP: ANDROID HOMEWIDGET & TEAMS
+     ------------------------------------------------------------- */
+  .widget-showcase-container {
+    background: linear-gradient(180deg, #13212c 0%, #0c151c 100%);
+    padding: 16px;
+  }
+
+  .android-phone-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--bg-surface-elevated);
-    border: 1.5px solid var(--border-app);
-    border-radius: var(--radius-md);
-    padding: 8px 12px;
-    margin-bottom: 18px;
     font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 800;
-    box-shadow: 2px 2px 0px #000;
-  }
-  .r8-old { color: var(--text-muted); text-decoration: line-through; }
-  .r8-arrow { color: var(--accent-primary); }
-  .r8-new { color: var(--accent-primary); }
-
-  /* Acordeón "Ver todos los detalles" */
-  .bento-details {
-    margin-bottom: 18px;
-    background: var(--bg-surface-elevated);
-    border: 1px solid var(--border-app);
-    border-radius: var(--radius-sm);
-    padding: 8px 12px;
-    transition: background var(--duration-hover) ease, border-color var(--duration-hover) ease;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    padding: 0 4px;
   }
 
-  .bento-details[open] {
-    background: rgba(0, 0, 0, 0.35);
-    border-color: var(--accent-primary);
-  }
-
-  .bento-details summary {
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: var(--accent-primary);
-    cursor: pointer;
-    user-select: none;
-    outline: none;
+  .phone-icons-row {
     display: flex;
     align-items: center;
     gap: 6px;
   }
 
-  .bento-details summary:hover {
-    text-decoration: underline;
-  }
-
-  .bento-details summary::before {
-    content: "▸";
-    font-size: 0.85rem;
-    transition: transform 180ms ease;
-  }
-
-  .bento-details[open] summary::before {
-    transform: rotate(90deg);
-  }
-
-  /* Bullets de características */
-  .feature-bullets {
-    list-style: none;
+  .android-widget-card {
+    background: rgba(22, 36, 48, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-md);
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 12px;
-    margin-bottom: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+
+  .widget-accent-stripe {
+    width: 6px;
+    background: var(--accent-amber);
+    flex-shrink: 0;
+  }
+
+  .widget-inner-body {
+    padding: 14px 16px;
     flex-grow: 1;
   }
 
-  .feature-bullets li {
-    font-size: 0.88rem;
+  .widget-meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .widget-pill-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 800;
+    color: var(--accent-amber);
+    background: rgba(255, 219, 121, 0.15);
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+
+  .live-dot-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-amber);
+    box-shadow: 0 0 6px var(--accent-amber);
+  }
+
+  .widget-nrc-code {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
     color: var(--text-muted);
-    line-height: 1.45;
-    padding-left: 20px;
-    position: relative;
   }
 
-  .feature-bullets li::before {
-    content: "■";
-    position: absolute;
-    left: 0;
-    color: var(--accent-primary);
-    font-size: 0.75rem;
-    top: 2px;
+  .widget-room-hero {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
   }
 
-  .feature-bullets li strong {
+  .widget-subject-name {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    margin-bottom: 12px;
+  }
+
+  .widget-teams-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(79, 82, 178, 0.18);
+    border: 1px solid rgba(123, 131, 235, 0.35);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    transition: background 180ms ease;
+  }
+
+  .teams-logo-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .teams-text-group {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .teams-main {
+    font-size: 0.78rem;
+    font-weight: 800;
     color: var(--text-primary);
+  }
+
+  .teams-url-hint {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .teams-action-arrow {
+    color: #7b83eb;
+    font-weight: 800;
+  }
+
+  /* -------------------------------------------------------------
+     3. MOCKUP: CARNET DIGITAL VERTICAL CON FLIP 3D
+     ------------------------------------------------------------- */
+  .carnet-showcase-container {
+    perspective: 1000px;
+    background: #0d1720;
+    padding: 16px;
+    align-items: center;
+  }
+
+  .carnet-card-flipper {
+    width: 100%;
+    max-width: 250px;
+    height: 175px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .carnet-card-flipper.is-flipped {
+    transform: rotateY(180deg);
+  }
+
+  .carnet-side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .carnet-front {
+    background: linear-gradient(135deg, #0d3b24 0%, #061f12 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .carnet-back {
+    background: linear-gradient(135deg, #162430 0%, #0a1118 100%);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .carnet-top-brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 6px;
+  }
+
+  .carnet-logo-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .carnet-star {
+    color: var(--accent-amber);
+    font-size: 0.8rem;
+  }
+
+  .carnet-espe-logo {
+    font-weight: 900;
+    color: var(--accent-primary);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  .carnet-campus-name {
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .carnet-body-grid {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .carnet-photo-box {
+    width: 48px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid var(--accent-primary);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: var(--accent-primary);
+  }
+
+  .photo-active-dot {
+    position: absolute;
+    bottom: -3px;
+    right: -3px;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    border: 1.5px solid #000;
+  }
+
+  .carnet-data-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .student-name {
+    font-size: 0.88rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  .student-career {
+    font-size: 0.66rem;
+    color: var(--accent-amber);
+    font-weight: 700;
+    margin: 2px 0;
+  }
+
+  .student-id {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .carnet-barcode-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 6px;
+  }
+
+  .carnet-svg-barcode {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .carnet-valid-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+  }
+
+  .carnet-back-header {
+    font-size: 0.66rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .carnet-qr-frame {
+    background: #fff;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .carnet-emergency-note {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+  }
+
+  .carnet-flip-ctrl {
+    margin-top: 14px;
+    width: 100%;
+  }
+
+  .btn-flip-carnet {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    color: var(--accent-primary);
+    font-size: 0.76rem;
+    font-weight: 800;
+    padding: 7px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 160ms ease, border-color 160ms ease;
+  }
+
+  .btn-flip-carnet:hover {
+    background: var(--bg-surface-elevated);
+    border-color: var(--accent-primary);
+  }
+
+  /* -------------------------------------------------------------
+     4. MOCKUP: CALCULADORA INTERACTIVA 35 / 35 / 30
+     ------------------------------------------------------------- */
+  .calc-interactive-simulator {
+    background: linear-gradient(180deg, #111e29 0%, #0a1219 100%);
+    padding: 22px;
+  }
+
+  .calc-top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+  }
+
+  .calc-grade-display {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .calc-big-val {
+    font-size: 2.3rem;
+    font-weight: 900;
+    font-family: var(--font-sans);
+    line-height: 1;
+  }
+
+  .calc-max-val {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .calc-verdict-badge.approved {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 800;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    margin-left: 8px;
+  }
+
+  .calc-target-selector {
+    display: flex;
+    gap: 8px;
+  }
+
+  .target-chip {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    color: var(--text-muted);
+  }
+  .target-chip.active {
+    background: rgba(255, 219, 121, 0.12);
+    border-color: var(--accent-amber);
+    color: var(--accent-amber);
+  }
+
+  .calc-sliders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .calc-slider-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+  }
+
+  .calc-slider-card.target-needed-card {
+    border-color: rgba(255, 219, 121, 0.4);
+    background: rgba(255, 219, 121, 0.06);
+  }
+
+  .slider-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .slider-name {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .slider-name-target {
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--accent-amber);
+  }
+
+  .slider-value-pill {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  .slider-target-result {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 900;
+  }
+
+  .slider-track-visual {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+
+  .slider-fill-visual.green-gradient {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981 0%, var(--accent-primary) 100%);
+    border-radius: 3px;
+  }
+
+  .slider-fill-visual.amber-gradient {
+    height: 100%;
+    background: linear-gradient(90deg, #f59e0b 0%, var(--accent-amber) 100%);
+    border-radius: 3px;
+  }
+
+  .slider-thumb-dot {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: var(--accent-primary);
+    border: 2px solid #000;
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--accent-primary);
+  }
+
+  .slider-thumb-dot.amber {
+    background: var(--accent-amber);
+    box-shadow: 0 0 6px var(--accent-amber);
+  }
+
+  .slider-contrib-text {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  /* -------------------------------------------------------------
+     5. MOCKUP: CRONOGRAMA DE AMIGOS Y HORAS LIBRES
+     ------------------------------------------------------------- */
+  .friends-timeline-mockup {
+    background: linear-gradient(180deg, #101c26 0%, #0a121a 100%);
+    padding: 20px;
+  }
+
+  .friends-match-hero-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(34, 197, 94, 0.14);
+    border: 1.5px solid var(--accent-primary);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 16px rgba(0, 255, 135, 0.2);
+  }
+
+  .match-sparkle-icon {
+    color: var(--accent-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .match-hero-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .match-title-strong {
+    font-size: 0.88rem;
+    font-weight: 900;
+    color: var(--accent-primary);
+    letter-spacing: 0.02em;
+  }
+
+  .match-time-sub {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .match-plan-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 800;
+    background: var(--accent-primary);
+    color: #000;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+
+  .timeline-comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+
+  @media (max-width: 600px) {
+    .timeline-comparison-grid {
+      grid-template-columns: 1fr;
+    }
+    .timeline-sync-bridge {
+      display: none;
+    }
+  }
+
+  .timeline-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .timeline-user-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    padding-left: 2px;
+  }
+
+  .user-avatar-mini {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-app);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+  }
+
+  .timeline-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .slot-item {
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    font-size: 0.72rem;
+  }
+
+  .slot-item.busy {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    color: var(--text-muted);
+  }
+
+  .slot-item.free-match {
+    background: rgba(34, 197, 94, 0.16);
+    border: 1.5px solid var(--accent-primary);
+    color: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(0, 255, 135, 0.25);
+  }
+
+  .slot-hour {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 700;
+    opacity: 0.8;
+  }
+
+  .slot-class {
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+
+  .slot-class-free {
+    font-weight: 900;
+    letter-spacing: 0.02em;
+  }
+
+  .timeline-sync-bridge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .sync-line {
+    width: 2px;
+    height: 24px;
+    background: rgba(34, 197, 94, 0.3);
+  }
+
+  .sync-badge {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 800;
+    background: var(--bg-surface);
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* -------------------------------------------------------------
+     6. MOCKUP: MOODLE ALARMA Y SUBIDA NATIVA
+     ------------------------------------------------------------- */
+  .moodle-task-mockup {
+    background: #0f1922;
+    padding: 16px;
+  }
+
+  .moodle-alarm-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .alarm-header-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .alarm-pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: #ff5252;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ff5252;
+  }
+
+  .alarm-tag-text {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 800;
+    color: #ff5252;
+  }
+
+  .countdown-clock-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-bottom: 10px;
+  }
+
+  .countdown-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .c-num {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--accent-amber);
+    line-height: 1;
+  }
+
+  .c-lbl {
+    font-size: 0.55rem;
+    font-weight: 800;
+    color: var(--text-muted);
+  }
+
+  .c-sep {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--text-muted);
+    line-height: 1;
+  }
+
+  .alarm-task-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+
+  .alarm-due-pill {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .audio-wave-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 8px;
+  }
+
+  .audio-wave-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+  }
+
+  .audio-bars-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 16px;
+  }
+
+  .wave-bar {
+    width: 3px;
+    background: var(--accent-primary);
+    border-radius: 2px;
+  }
+
+  @keyframes audioEqualizer {
+    0%, 100% { height: 4px; }
+    50% { height: 16px; }
+  }
+
+  .wave-bar.b1 { animation: audioEqualizer 0.8s ease-in-out infinite; }
+  .wave-bar.b2 { animation: audioEqualizer 1.1s ease-in-out infinite 0.2s; }
+  .wave-bar.b3 { animation: audioEqualizer 0.7s ease-in-out infinite 0.4s; }
+  .wave-bar.b4 { animation: audioEqualizer 0.9s ease-in-out infinite 0.1s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wave-bar { animation: none !important; height: 10px !important; }
+  }
+
+  .moodle-upload-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px dashed rgba(34, 197, 94, 0.4);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+  }
+
+  .upload-icon-pill {
+    color: var(--accent-primary);
+    display: flex;
+    align-items: center;
+  }
+
+  .upload-file-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .upload-filename {
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .upload-status-text {
+    font-size: 0.65rem;
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+  }
+
+  .upload-btn-fake {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 800;
+    background: var(--accent-primary);
+    color: #000;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  /* -------------------------------------------------------------
+     7. MOCKUP: ARCHIVOS OFFLINE & WALLPAPER HD
+     ------------------------------------------------------------- */
+  .files-wallpaper-mockup {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 16px;
+    background: linear-gradient(180deg, #121e28 0%, #0b131a 100%);
+    padding: 18px 20px;
+  }
+
+  @media (max-width: 700px) {
+    .files-wallpaper-mockup {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .col-kicker-title {
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  .offline-file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+
+  .file-type-icon {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 800;
+    padding: 2px 5px;
+    border-radius: 3px;
+  }
+  .file-type-icon.pdf { background: #ff4757; color: #fff; }
+  .file-type-icon.doc { background: #2e86de; color: #fff; }
+
+  .file-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .file-name {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .file-size {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+  }
+
+  .file-state-chip {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+  }
+
+  .wallpaper-phone-frame {
+    background: #000;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  }
+
+  .wp-phone-notch {
+    width: 32px;
+    height: 4px;
+    background: #252525;
+    border-radius: 2px;
+    margin-bottom: 6px;
+  }
+
+  .wp-phone-clock {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 6px;
+  }
+
+  .wp-schedule-table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+
+  .wp-sched-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 2px;
+  }
+
+  .wp-day {
+    font-family: var(--font-mono);
+    font-weight: 800;
+    color: var(--accent-primary);
+  }
+
+  .wp-subject {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+  }
+
+  .wp-download-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 800;
+    color: var(--accent-amber);
+    background: rgba(255, 219, 121, 0.12);
+    border: 1px solid rgba(255, 219, 121, 0.3);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  /* -------------------------------------------------------------
+     8. MOCKUP: PANEL DE CALIDAD DE SOFTWARE
+     ------------------------------------------------------------- */
+  .tech-specs-mockup {
+    background: #0a1118;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bench-hero-gauge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    margin-bottom: 4px;
+  }
+
+  .gauge-ring-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2.5px solid var(--accent-primary);
+    box-shadow: 0 0 10px rgba(0, 255, 135, 0.3);
+    flex-shrink: 0;
+  }
+
+  .gauge-pct {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .gauge-label {
+    font-size: 0.5rem;
+    font-weight: 800;
+    color: var(--text-muted);
+  }
+
+  .gauge-meta-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .gauge-meta-text strong {
+    font-size: 0.82rem;
+    line-height: 1.2;
+  }
+
+  .gauge-meta-text span {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .tech-spec-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 8px;
+  }
+
+  .led-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+  .led-dot.green { background: var(--accent-primary); box-shadow: 0 0 8px var(--accent-primary); }
+  .led-dot.amber { background: var(--accent-amber); box-shadow: 0 0 8px var(--accent-amber); }
+  .led-dot.blue { background: #38bdf8; box-shadow: 0 0 8px #38bdf8; }
+
+  .spec-label {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    flex-grow: 1;
+  }
+
+  .spec-val {
+    font-family: var(--font-mono);
+    font-size: 0.84rem;
+  }
+
+  .oled-theme-preview-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    margin-top: 4px;
+  }
+
+  .oled-circle-sample {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #000;
+    border: 1.5px solid var(--accent-primary);
+  }
+
+  .oled-desc-text {
+    font-size: 0.7rem;
+    color: var(--text-muted);
   }
 
   /* Fila de Chips inferiores */
@@ -766,6 +2219,7 @@
     gap: 6px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 16px;
+    margin-top: auto;
   }
 
   .chip-app {
@@ -777,5 +2231,225 @@
     border: 1px solid var(--border-app);
     border-radius: var(--radius-sm);
     color: var(--text-secondary);
+  }
+
+  /* ==========================================================================
+     MICRO-ANIMACIONES Y EFECTOS VISUALES EN LAS TARJETAS
+     ========================================================================== */
+
+  /* 1. Malla: Brillo que recorre la barra de progreso */
+  @keyframes shimmerTrack {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .malla-glow-bar {
+    background: linear-gradient(90deg, #10b981 0%, var(--accent-primary) 50%, #34d399 100%);
+    background-size: 200% 100%;
+    animation: shimmerTrack 4s linear infinite;
+  }
+
+  /* Nodo de ruta crítica pulsante */
+  @keyframes warningPulse {
+    0%, 100% {
+      box-shadow: 0 0 6px rgba(255, 219, 121, 0.25);
+      border-color: var(--accent-amber);
+    }
+    50% {
+      box-shadow: 0 0 16px rgba(255, 219, 121, 0.65);
+      border-color: #ffe082;
+      transform: scale(1.02);
+    }
+  }
+
+  .graph-node.warning-active {
+    animation: warningPulse 2.4s ease-in-out infinite;
+  }
+
+  /* 2. HomeWidget: Punto de baliza en vivo y reacción del botón */
+  @keyframes liveBeaconPulse {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.8;
+      box-shadow: 0 0 0 0 rgba(255, 219, 121, 0.8);
+    }
+    70% {
+      transform: scale(1.1);
+      opacity: 1;
+      box-shadow: 0 0 0 6px rgba(255, 219, 121, 0);
+    }
+    100% {
+      transform: scale(0.9);
+      opacity: 0.8;
+      box-shadow: 0 0 0 0 rgba(255, 219, 121, 0);
+    }
+  }
+
+  .live-dot-pulse {
+    animation: liveBeaconPulse 1.8s infinite;
+  }
+
+  .widget-teams-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(79, 82, 178, 0.32);
+    border-color: rgba(123, 131, 235, 0.6);
+    box-shadow: 0 6px 16px rgba(79, 82, 178, 0.35);
+  }
+
+  .widget-teams-btn:hover .teams-action-arrow {
+    transform: translateX(4px);
+  }
+
+  .teams-action-arrow {
+    transition: transform 200ms ease;
+  }
+
+  /* 3. Carnet: Reflejo holográfico sutil */
+  .carnet-front {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .carnet-front::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      60deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(0, 255, 135, 0.12) 55%,
+      transparent 65%
+    );
+    transform: rotate(25deg);
+    pointer-events: none;
+    animation: holoReflect 6s ease-in-out infinite;
+  }
+
+  @keyframes holoReflect {
+    0%, 70% { opacity: 0; transform: translateX(-80%) rotate(25deg); }
+    80% { opacity: 1; }
+    95%, 100% { opacity: 0; transform: translateX(80%) rotate(25deg); }
+  }
+
+  .carnet-card-flipper:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .carnet-card-flipper.is-flipped:hover {
+    transform: rotateY(180deg) translateY(-4px) scale(1.02);
+  }
+
+  /* 4. Calculadora: Brillo en la nota meta requerida */
+  @keyframes targetGlow {
+    0%, 100% {
+      box-shadow: 0 0 6px var(--accent-amber);
+    }
+    50% {
+      box-shadow: 0 0 16px var(--accent-amber), 0 0 24px rgba(255, 219, 121, 0.4);
+    }
+  }
+
+  .slider-thumb-dot.amber {
+    animation: targetGlow 2.5s ease-in-out infinite;
+  }
+
+  .calc-slider-card:hover .slider-thumb-dot {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+
+  .slider-thumb-dot {
+    transition: transform 200ms ease;
+  }
+
+  /* 5. Amigos QR: Pulso de señal en el conector P2P */
+  @keyframes p2pBeamPulse {
+    0%, 100% {
+      background: rgba(34, 197, 94, 0.3);
+      box-shadow: none;
+    }
+    50% {
+      background: var(--accent-primary);
+      box-shadow: 0 0 10px var(--accent-primary);
+    }
+  }
+
+  .sync-line {
+    animation: p2pBeamPulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes freeSlotGlow {
+    0%, 100% {
+      box-shadow: 0 0 12px rgba(0, 255, 135, 0.15);
+      border-color: var(--accent-primary);
+    }
+    50% {
+      box-shadow: 0 0 24px rgba(0, 255, 135, 0.35);
+      border-color: #38ef7d;
+    }
+  }
+
+  .friends-match-hero-bar {
+    animation: freeSlotGlow 3s ease-in-out infinite;
+  }
+
+  /* 6. Moodle: Punto de alarma pulsante */
+  @keyframes alarmDotPulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 6px #ff5252;
+    }
+    50% {
+      transform: scale(1.3);
+      box-shadow: 0 0 16px #ff5252;
+    }
+  }
+
+  .alarm-pulse-dot {
+    animation: alarmDotPulse 1.2s ease-in-out infinite;
+  }
+
+  /* 7. Wallpaper: Elevación suave en el botón */
+  .wp-download-pill {
+    transition: transform 200ms ease, background 200ms ease, box-shadow 200ms ease;
+  }
+
+  .wp-download-pill:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 219, 121, 0.22);
+    box-shadow: 0 4px 12px rgba(255, 219, 121, 0.25);
+  }
+
+  /* 8. Panel de Calidad: Aro de 100% que respira */
+  @keyframes ringBreathe {
+    0%, 100% {
+      box-shadow: 0 0 8px rgba(0, 255, 135, 0.25);
+      border-color: var(--accent-primary);
+    }
+    50% {
+      box-shadow: 0 0 18px rgba(0, 255, 135, 0.55);
+      border-color: #38ef7d;
+    }
+  }
+
+  .gauge-ring-box {
+    animation: ringBreathe 3s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bento-card:hover { transform: none !important; }
+    .malla-glow-bar { animation: none !important; }
+    .graph-node.warning-active { animation: none !important; }
+    .live-dot-pulse { animation: none !important; }
+    .carnet-front::after { display: none !important; }
+    .slider-thumb-dot.amber { animation: none !important; }
+    .sync-line { animation: none !important; }
+    .friends-match-hero-bar { animation: none !important; }
+    .alarm-pulse-dot { animation: none !important; }
+    .gauge-ring-box { animation: none !important; }
+    .wave-bar { animation: none !important; }
   }
 </style>

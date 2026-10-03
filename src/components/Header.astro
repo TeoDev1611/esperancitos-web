@@ -18,7 +18,7 @@ const tickerLoops = [0, 1, 2];
         <span class="ticker-sep">•</span>
         <span class="ticker-item">TU HORARIO CON EL AULA DE CADA CLASE</span>
         <span class="ticker-sep">•</span>
-        <span class="ticker-item">22 MALLAS CURRICULARES SIN INTERNET</span>
+        <span class="ticker-item">23 MALLAS CURRICULARES SIN INTERNET</span>
         <span class="ticker-sep">•</span>
         <span class="ticker-item">ENTRA A MOODLE CON UN CÓDIGO QR</span>
         <span class="ticker-sep">•</span>
@@ -40,11 +40,11 @@ const tickerLoops = [0, 1, 2];
       </div>
       <div class="brand-text">
         <span class="brand-name">ESPERANCITOS</span>
-        <span class="brand-tag">Gratis · v1.0.0</span>
+        <span class="brand-tag">Gratis · v1.0.0-beta.2</span>
       </div>
     </a>
 
-    <!-- Navegación de Escritorio con indicador deslizante (sin enlace Apoyar duplicado) -->
+    <!-- Navegación de Escritorio con indicador deslizante -->
     <nav class="desktop-nav" id="desktop-nav" aria-label="Navegación principal">
       <div class="nav-slider-pill" id="nav-slider-pill" aria-hidden="true"></div>
       <a href="/#funciones" class="nav-link" data-nav="funciones">
@@ -61,15 +61,6 @@ const tickerLoops = [0, 1, 2];
       </a>
       <a href="/#docs" class="nav-link" data-nav="docs">
         <span>Guías</span>
-      </a>
-      <a href="/#colaborar" class="nav-link" data-nav="colaborar">
-        <span>Colaborar</span>
-      </a>
-      <a href="/#comentarios" class="nav-link" data-nav="comentarios">
-        <span>Sugerencias</span>
-      </a>
-      <a href="/#descargar" class="nav-link" data-nav="descargar">
-        <span>Descargar</span>
       </a>
     </nav>
 
@@ -250,6 +241,12 @@ const tickerLoops = [0, 1, 2];
     background: var(--accent-primary);
     border-radius: 50%;
     display: inline-block;
+    animation: tickerDotGlow 2.4s ease-in-out infinite;
+  }
+
+  @keyframes tickerDotGlow {
+    0%, 100% { opacity: 0.6; box-shadow: 0 0 2px var(--accent-primary); }
+    50% { opacity: 1; box-shadow: 0 0 8px var(--accent-primary); }
   }
 
   .ticker-sep {
@@ -335,6 +332,13 @@ const tickerLoops = [0, 1, 2];
     background: var(--accent-primary);
     border: 2px solid #000000;
     border-radius: 50%;
+    animation: liveIndicatorPulse 2.4s infinite;
+  }
+
+  @keyframes liveIndicatorPulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 135, 0.7); }
+    70% { box-shadow: 0 0 0 5px rgba(0, 255, 135, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 135, 0); }
   }
 
   .brand-text {
@@ -394,9 +398,9 @@ const tickerLoops = [0, 1, 2];
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 9px;
+    padding: 7px 13px;
     font-family: var(--font-sans);
-    font-size: 0.84rem;
+    font-size: 0.88rem;
     font-weight: 700;
     color: var(--text-secondary);
     border-radius: var(--radius-pill);
@@ -578,9 +582,9 @@ const tickerLoops = [0, 1, 2];
     border-color: rgba(255, 219, 121, 0.3);
   }
 
-  /* Con 8 enlaces en la navegación, el header necesita más espacio:
-     por debajo de 1220px se activa el menú móvil para evitar desbordes */
-  @media (max-width: 1220px) {
+  /* Con 5 enlaces en la navegación, el header tiene suficiente espacio y holgura:
+     por debajo de 1024px se activa el menú móvil para evitar desbordes */
+  @media (max-width: 1024px) {
     .desktop-nav {
       display: none;
     }

@@ -87,13 +87,13 @@
           </div>
         </div>
 
-        <div class="feature-chip" title="22 carreras de la ESPE ya cargadas en la app">
+        <div class="feature-chip" title="23 carreras de la ESPE ya cargadas en la app">
           <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
             <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
           </svg>
           <div class="chip-info">
-            <strong>22 carreras</strong>
+            <strong>23 carreras</strong>
             <span>Tu malla ya está cargada</span>
           </div>
         </div>
@@ -512,6 +512,16 @@
     gap: 14px;
     box-shadow: var(--shadow-hard), 0 0 16px rgba(0, 255, 135, 0.22);
     animation: download-pulse 2.8s ease-in-out 2500ms infinite;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-hero-cta .hero-download-icon {
+    transition: transform 220ms var(--ease-spring);
+  }
+
+  .btn-hero-cta:hover .hero-download-icon {
+    transform: translateY(3px);
   }
 
   @keyframes download-pulse {
@@ -563,7 +573,15 @@
     font-size: 0.92rem;
   }
 
-  /* Fila compacta de Chips */
+  .btn-hero-support svg {
+    transition: transform 220ms var(--ease-spring);
+  }
+
+  .btn-hero-support:hover svg {
+    transform: scale(1.15) rotate(-6deg);
+  }
+
+  /* Fila compacta de Chips con micro-animaciones táctiles */
   .hero-features-chips {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -593,18 +611,26 @@
     border: 1.5px solid var(--border-app);
     border-radius: var(--radius-md);
     box-shadow: 2px 2px 0px #000000;
-    transition: transform var(--duration-hover) var(--ease-apple),
-                border-color var(--duration-hover) ease;
+    transition: transform 220ms var(--ease-spring),
+                box-shadow 220ms var(--ease-apple),
+                border-color 220ms ease;
   }
 
   .feature-chip:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     border-color: var(--accent-primary);
+    box-shadow: 3px 3px 0px rgba(0, 255, 135, 0.4), 0 6px 16px rgba(0, 0, 0, 0.4);
   }
 
   .chip-svg {
     color: var(--accent-primary);
     flex-shrink: 0;
+    transition: transform 240ms var(--ease-spring), color 240ms ease;
+  }
+
+  .feature-chip:hover .chip-svg {
+    transform: scale(1.18) rotate(4deg);
+    color: #00ff87;
   }
 
   .chip-info {
@@ -713,6 +739,15 @@
 
   .seg-btn svg {
     flex-shrink: 0;
+    transition: transform 180ms var(--ease-spring);
+  }
+
+  .seg-btn:hover:not(.active) svg {
+    transform: scale(1.15);
+  }
+
+  .seg-btn:hover:not(.active) {
+    color: var(--text-primary);
   }
 
   .seg-btn.active {
@@ -966,7 +1001,25 @@
     height: 100%;
     background: var(--accent-primary);
     border-radius: 3px;
+    position: relative;
+    overflow: hidden;
     animation: fill-class-bar 1.5s var(--ease-apple) 700ms forwards;
+  }
+
+  .class-progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+    animation: shimmer-pass 3.2s ease-in-out infinite 2.2s;
+  }
+
+  @keyframes shimmer-pass {
+    0% { left: -100%; }
+    50%, 100% { left: 160%; }
   }
 
   @keyframes fill-class-bar {
