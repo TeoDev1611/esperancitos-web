@@ -1,0 +1,15 @@
+{
+  "id": "comunidad-emprendimientos",
+  "title": "Emprendimientos y Negocios",
+  "order": 4,
+  "items": [
+    {
+      "id": "subir-negocio-gratis",
+      "title": "Subir mi negocio a Esperancitos",
+      "url": "https://esperancitos.app/negocios",
+      "description": "Registra tu emprendimiento, copias o comida gratis en el directorio de la app y web",
+      "updatedAt": "2026-10-02T10:00:00-05:00"
+    }
+  ],
+  "notas": "Acceso directo para postulaciones gratuitas de negocios de estudiantes y locales"
+}

@@ -8,18 +8,22 @@
       "title": "Portal miESPE",
       "url": "https://miespe.espe.edu.ec",
       "description": "Portal institucional para consultar horarios, notas y trámites estudiantiles",
-      "updatedAt": "2026-10-01T08:00:00-05:00",
-      "ejemplo": true
+      "updatedAt": "2026-10-02T10:00:00-05:00"
     },
     {
       "id": "campus-virtual-moodle",
       "title": "Campus Virtual Moodle",
       "url": "https://micampus.espe.edu.ec",
       "description": "Aulas virtuales de asignaturas, tareas y foros académicos",
-      "updatedAt": "2026-10-01T08:00:00-05:00",
-      "ejemplo": true
+      "updatedAt": "2026-10-02T10:00:00-05:00"
+    },
+    {
+      "id": "mesa-de-ayuda-tic",
+      "title": "Mesa de Ayuda TIC",
+      "url": "https://help-desk.espe.edu.ec",
+      "description": "Soporte técnico para cuentas de correo, aulas virtuales y miESPE",
+      "updatedAt": "2026-10-02T10:00:00-05:00"
     }
   ],
-  "ejemplo": true,
-  "notas": "Grupo de enlaces institucionales académicos de ejemplo"
+  "notas": "Grupo de enlaces institucionales académicos de la ESPE"
 }

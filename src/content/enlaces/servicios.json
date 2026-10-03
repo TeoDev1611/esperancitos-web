@@ -1,17 +1,22 @@
 {
   "id": "servicios-universitarios",
-  "title": "Servicios Universitarios",
-  "order": 2,
+  "title": "Servicios y Bienestar",
+  "order": 3,
   "items": [
     {
       "id": "biblioteca-virtual-espe",
       "title": "Biblioteca Virtual ESPE",
       "url": "https://biblioteca.espe.edu.ec",
       "description": "Bases de datos científicas, catálogo en línea y repositorio de tesis",
-      "updatedAt": "2026-10-01T08:00:00-05:00",
-      "ejemplo": true
+      "updatedAt": "2026-10-02T10:00:00-05:00"
+    },
+    {
+      "id": "bienestar-estudiantil-ube",
+      "title": "Bienestar Universitario (UBUN)",
+      "url": "https://ube.espe.edu.ec",
+      "description": "Información sobre becas, atención médica, psicológica y seguro estudiantil",
+      "updatedAt": "2026-10-02T10:00:00-05:00"
     }
   ],
-  "ejemplo": true,
-  "notas": "Grupo de enlaces de servicios estudiantiles de ejemplo"
+  "notas": "Grupo de servicios estudiantiles y bienestar de la ESPE"
 }

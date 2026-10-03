@@ -1,0 +1,22 @@
+{
+  "id": "centro-de-idiomas-espe",
+  "title": "Centro de Idiomas (Inglés)",
+  "order": 2,
+  "items": [
+    {
+      "id": "portal-idiomas-espe",
+      "title": "Portal de Idiomas ESPE",
+      "url": "https://idiomas.espe.edu.ec",
+      "description": "Cronogramas, matrículas de inglés, suficiencia y exámenes de ubicación",
+      "updatedAt": "2026-10-02T10:00:00-05:00"
+    },
+    {
+      "id": "moodle-idiomas",
+      "title": "Campus Virtual de Idiomas",
+      "url": "https://micampus.espe.edu.ec",
+      "description": "Aulas virtuales de inglés, tareas, evaluaciones y material de estudio",
+      "updatedAt": "2026-10-02T10:00:00-05:00"
+    }
+  ],
+  "notas": "Enlaces oficiales para suficiencia de inglés y lenguas en la ESPE"
+}
