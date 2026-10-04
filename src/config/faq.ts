@@ -33,22 +33,22 @@ const raw: Array<Omit<FaqEntry, 'plainAnswer'>> = [
   {
     question: '¿Es una app oficial de la Universidad de las Fuerzas Armadas ESPE?',
     answer:
-      '<strong>No.</strong> Esperancitos la hice yo, un estudiante, por mi cuenta y para ayudar a mis compañeros. No es una app oficial ni tiene el respaldo de la universidad.',
+      '<strong>No.</strong> Pilas! la hice yo, un estudiante politécnico por mi cuenta y para ayudar a mis compañeros. No es una app oficial ni tiene el respaldo de la universidad.',
   },
   {
     question: '¿Se guardan mis credenciales en algún servidor externo o en la nube?',
     answer:
-      '<strong>No.</strong> Esperancitos no tiene servidores propios que guarden tus datos. La conexión va directo de tu celular a las páginas oficiales de la ESPE. Tus credenciales de sesión (tokens de Moodle y cookies de Banner) se almacenan cifradas en el almacenamiento seguro de tu dispositivo (Android Keystore con cifrado por hardware AES y Keychain en iOS), y tu información académica se guarda localmente (Drift SQLite) en el sandbox privado y aislado de la app.',
+      '<strong>No.</strong> Pilas! no tiene servidores propios que guarden tus datos. La conexión va directo de tu celular a las páginas oficiales de la ESPE. Tus credenciales de sesión (tokens de Moodle y cookies de Banner) se almacenan cifradas en el almacenamiento seguro de tu dispositivo (Android Keystore con cifrado por hardware AES y Keychain en iOS), y tu información académica se guarda localmente (Drift SQLite) en el sandbox privado y aislado de la app.',
   },
   {
     question: '¿Dónde escribo mi contraseña?',
     answer:
-      'Para Moodle no la escribes: entras con el código QR oficial. Para el horario y las notas, el inicio de sesión se realiza directamente en el navegador del sistema mediante el portal oficial de Microsoft 365 / miESPE. Esperancitos nunca conoce, intercepta, guarda ni transmite tu contraseña institucional; únicamente recibe y almacena las cookies de sesión temporal necesarias para consultar tu horario, cifradas en el almacenamiento seguro del sistema.',
+      'Para Moodle no la escribes: entras con el código QR oficial. Para el horario y las notas, el inicio de sesión se realiza directamente en el navegador del sistema mediante el portal oficial de Microsoft 365 / miESPE. Pilas! nunca conoce, intercepta, guarda ni transmite tu contraseña institucional; únicamente recibe y almacena las cookies de sesión temporal necesarias para consultar tu horario, cifradas en el almacenamiento seguro del sistema.',
   },
   {
     question: '¿Quién es responsable de lo que hago con mi cuenta?',
     answer:
-      'Tú. Esperancitos usa únicamente tu propia cuenta y el reglamento de tecnologías de la ESPE hace al estudiante responsable de las acciones realizadas desde ella. Verifica siempre tu información en miESPE y Moodle.',
+      'Tú. Pilas! usa únicamente tu propia cuenta y el reglamento de tecnologías de la ESPE hace al estudiante responsable de las acciones realizadas desde ella. Verifica siempre tu información en miESPE y Moodle.',
   },
   {
     question: '¿Qué pasa si la ESPE cambia o bloquea sus sistemas?',
@@ -68,7 +68,7 @@ const raw: Array<Omit<FaqEntry, 'plainAnswer'>> = [
   {
     question: '¿Cómo conecto mi Moodle sin escribir mi contraseña?',
     answer:
-      'Se usa el código QR oficial de Moodle: entras a <code>micampus.espe.edu.ec</code>, abres tu perfil y generas el <em>código QR para la app móvil</em>. Desde Esperancitos tocas <em>Escanear QR de Moodle</em> y listo. Tu contraseña nunca pasa por la aplicación.',
+      'Se usa el código QR oficial de Moodle: entras a <code>micampus.espe.edu.ec</code>, abres tu perfil y generas el <em>código QR para la app móvil</em>. Desde Pilas! tocas <em>Escanear QR de Moodle</em> y listo. Tu contraseña nunca pasa por la aplicación.',
   },
   {
     question: '¿Qué hago si la pantalla de la Malla se ve recortada en mi teléfono?',

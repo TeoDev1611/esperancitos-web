@@ -11,17 +11,21 @@
 export const SITE = {
   /** URL canónica de producción, sin barra final. */
   url: 'https://esperancitos.app',
-  name: 'Esperancitos',
+  name: 'Pilas!',
   locale: 'es_EC',
   lang: 'es-EC',
 
   /** Título y descripción por defecto de la home (se indexan tal cual). */
-  title: 'Esperancitos • La App Estudiantil Todo-en-Uno para la ESPE',
+  title: 'Pilas! • ¡Ponte pilas! La App Politécnica Todo-en-Uno para la ESPE',
   description:
-    'Mira tu malla curricular y calcula en qué año te gradúas, revisa tu horario con el aula de cada clase y entra a tu Moodle escaneando un código QR. Gratis, sin anuncios y funciona sin internet.',
+    '¡Ponte pilas, ñaño! Mira tu malla curricular sin internet, revisa tu horario con el aula exacta de cada clase y entra a tu Moodle escaneando un código QR en un segundo. 100% gratis y sin anuncios.',
 
   /** Palabras clave orientadas a búsquedas reales de estudiantes de la ESPE. */
   keywords: [
+    'Pilas!',
+    'app Pilas',
+    'ponte pilas',
+    'pilas ñaño',
     'Esperancitos',
     'app ESPE',
     'malla curricular ESPE',
@@ -42,7 +46,7 @@ export const SITE = {
     path: '/images/og-esperancitos.jpg',
     width: 1200,
     height: 630,
-    alt: 'Esperancitos: malla curricular, horario con aulas y Moodle por QR para estudiantes de la ESPE',
+    alt: 'Pilas!: ¡Ponte pilas, ñaño! Malla curricular, horario con aulas y Moodle por QR para la ESPE',
   },
 
   /** Versión publicada del APK. */

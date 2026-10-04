@@ -41,7 +41,7 @@ export const COLLABORATION_CONFIG = {
 
   /** Mensaje general de la sección */
   intro:
-    'Esperancitos hoy solo existe para Android y lo mantiene una sola persona. Para dar el salto a iPhone necesitamos manos: si sabes programar para iOS o tienes un Mac, puedes ser parte del proyecto.',
+    'Pilas! hoy solo existe para Android y lo mantiene una sola persona. Para dar el salto a iPhone necesitamos manos: si sabes programar para iOS o tienes un Mac, ¡ponte pilas y sé parte del proyecto!',
 
   /** Puestos abiertos */
   roles: <CollaboratorRole[]>[
