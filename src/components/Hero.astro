@@ -19,7 +19,9 @@ import { SITE } from '../config/site';
 
       <!-- Titular Gigante por 3 líneas controladas -->
       <h1 class="hero-headline" id="hero-headline">
-        <span class="hero-line hero-line-1">¡Ponte pilas, ñaño!</span>
+        <span class="hero-line hero-line-1" aria-label="¡Ponte pilas politécnico, ñaño, ñaña, socio, socia, mijin, mija!">
+          ¡Ponte pilas, <span class="ecuador-rotator" id="hero-ecuador-rotator"><span class="rotator-word" id="hero-rotator-word">ñaño</span><span class="rotator-cursor" aria-hidden="true">|</span></span>!
+        </span>
         <span class="hero-line hero-line-2"><span class="highlight-neon">Pilas!</span> para la ESPE</span>
         <span class="hero-line hero-line-3">Tu vida universitaria todo-en-uno.</span>
       </h1>
@@ -159,7 +161,7 @@ import { SITE } from '../config/site';
                 <!-- Barra superior de la app -->
                 <div class="app-topbar">
                   <div class="user-greeting">
-                    <span class="user-title">¡Pilas, ñaño!</span>
+                    <span class="user-title">¡Pilas, <span id="app-rotator-word">ñaño</span>!</span>
                     <span class="user-campus">Campus Sangolquí · 2026-1</span>
                   </div>
                   <div class="app-topbar-icons">
@@ -448,6 +450,45 @@ import { SITE } from '../config/site';
       opacity: 1;
       transform: translateY(0);
       filter: blur(0);
+    }
+  }
+
+  /* Animación Typewriter Ecuatoriana e Inclusiva */
+  .ecuador-rotator {
+    display: inline-flex;
+    align-items: baseline;
+    color: var(--accent-amber);
+    text-shadow: 0 0 24px rgba(255, 179, 0, 0.4);
+    min-width: 4.8ch;
+    position: relative;
+    border-bottom: 2px dashed rgba(255, 179, 0, 0.45);
+    padding-bottom: 2px;
+  }
+
+  .rotator-word {
+    display: inline-block;
+  }
+
+  .rotator-cursor {
+    display: inline-block;
+    color: var(--accent-emerald);
+    font-weight: 300;
+    margin-left: 2px;
+    animation: cursor-blink 0.9s steps(2, start) infinite;
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rotator-cursor {
+      display: none;
+    }
+    .ecuador-rotator {
+      border-bottom: none;
+      min-width: auto;
     }
   }
 
@@ -1654,5 +1695,58 @@ import { SITE } from '../config/site';
     setTimeout(startBannerSimulation, 1400);
     // La tarjeta de clase en curso escala de 0.96 a 1 en sincronía con su fundido
     setTimeout(() => heroLiveCard?.classList.add('revealed'), 460);
+  }
+
+  // 4. Animación Typewriter Ecuatoriana e Inclusiva (ñaño -> ñaña -> socio -> socia -> mijin -> mija -> panas)
+  const heroRotatorWord = document.getElementById('hero-rotator-word');
+  const appRotatorWord = document.getElementById('app-rotator-word');
+  const ecuadorianWords = ['ñaño', 'ñaña', 'socio', 'socia', 'mijin', 'mija', 'panas'];
+
+  if (heroRotatorWord) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      heroRotatorWord.textContent = 'ñañ@s';
+      if (appRotatorWord) appRotatorWord.textContent = 'ñañ@s';
+    } else {
+      let wordIdx = 0;
+      let charIdx = ecuadorianWords[0].length;
+      let isDeleting = false;
+
+      const typeStep = () => {
+        const currentTarget = ecuadorianWords[wordIdx];
+
+        if (isDeleting) {
+          charIdx--;
+          const partial = currentTarget.substring(0, charIdx);
+          heroRotatorWord.textContent = partial;
+          if (appRotatorWord) appRotatorWord.textContent = partial;
+
+          if (charIdx <= 0) {
+            isDeleting = false;
+            wordIdx = (wordIdx + 1) % ecuadorianWords.length;
+            setTimeout(typeStep, 320);
+            return;
+          }
+          setTimeout(typeStep, 60);
+        } else {
+          charIdx++;
+          const partial = currentTarget.substring(0, charIdx);
+          heroRotatorWord.textContent = partial;
+          if (appRotatorWord) appRotatorWord.textContent = partial;
+
+          if (charIdx >= currentTarget.length) {
+            isDeleting = true;
+            setTimeout(typeStep, 2100);
+            return;
+          }
+          setTimeout(typeStep, 95);
+        }
+      };
+
+      // Inicia después de 2.4s para que el usuario disfrute la vista inicial
+      setTimeout(() => {
+        isDeleting = true;
+        typeStep();
+      }, 2400);
+    }
   }
 </script>

@@ -18,14 +18,18 @@ export const SITE = {
   /** Título y descripción por defecto de la home (se indexan tal cual). */
   title: 'Pilas! • ¡Ponte pilas! La App Politécnica Todo-en-Uno para la ESPE',
   description:
-    '¡Ponte pilas, ñaño! Mira tu malla curricular sin internet, revisa tu horario con el aula exacta de cada clase y entra a tu Moodle escaneando un código QR en un segundo. 100% gratis y sin anuncios.',
+    '¡Ponte pilas, ñañ@s! Mira tu malla curricular sin internet, revisa tu horario con el aula exacta de cada clase y entra a tu Moodle escaneando un código QR en un segundo. 100% gratis y sin anuncios.',
 
   /** Palabras clave orientadas a búsquedas reales de estudiantes de la ESPE. */
   keywords: [
     'Pilas!',
     'app Pilas',
     'ponte pilas',
+    'pilas ñañ@s',
     'pilas ñaño',
+    'pilas ñaña',
+    'mijin',
+    'socio',
     'Esperancitos',
     'app ESPE',
     'malla curricular ESPE',
@@ -46,7 +50,7 @@ export const SITE = {
     path: '/images/og-esperancitos.jpg',
     width: 1200,
     height: 630,
-    alt: 'Pilas!: ¡Ponte pilas, ñaño! Malla curricular, horario con aulas y Moodle por QR para la ESPE',
+    alt: 'Pilas!: ¡Ponte pilas, ñañ@s! Malla curricular, horario con aulas y Moodle por QR para la ESPE',
   },
 
   /** Versión publicada del APK. */
