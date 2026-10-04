@@ -18,7 +18,7 @@ export const SITE = {
   /** Título y descripción por defecto de la home (se indexan tal cual). */
   title: 'Pilas! • ¡Ponte pilas! La App Politécnica Todo-en-Uno para la ESPE',
   description:
-    '¡Ponte pilas, ñañ@s! Mira tu malla curricular sin internet, revisa tu horario con el aula exacta de cada clase y entra a tu Moodle escaneando un código QR en un segundo. 100% gratis y sin anuncios.',
+    '¡Ponte pilas, ñañ@s! Mira tu malla curricular sin internet, revisa tu horario con el aula exacta de cada clase y entra a tu Moodle escaneando un código QR en un segundo. Descarga gratuita y sin publicidad invasiva.',
 
   /** Palabras clave orientadas a búsquedas reales de estudiantes de la ESPE. */
   keywords: [

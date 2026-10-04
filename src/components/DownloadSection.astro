@@ -1,35 +1,46 @@
 ---
 // DownloadSection.astro - Centro de descargas con verificación de integridad
-import { SITE } from '../config/site';
+import { SITE } from "../config/site";
 
-const primaryFile = 'esperancitos-v1.0.0-arm64-v8a.apk';
-const secondaryFile = 'esperancitos-v1.0.0-armeabi-v7a.apk';
-const universalFile = 'esperancitos-v1.0.0-universal.apk';
-const x86File = 'esperancitos-v1.0.0-x86_64.apk';
+const primaryFile = "esperancitos-v1.0.0-arm64-v8a.apk";
+const secondaryFile = "esperancitos-v1.0.0-armeabi-v7a.apk";
+const universalFile = "esperancitos-v1.0.0-universal.apk";
+const x86File = "esperancitos-v1.0.0-x86_64.apk";
 
-const primarySha = SITE.apkChecksums[primaryFile] ?? '';
-const secondarySha = SITE.apkChecksums[secondaryFile] ?? '';
-const universalSha = SITE.apkChecksums[universalFile] ?? '';
-const x86Sha = SITE.apkChecksums[x86File] ?? '';
+const primarySha = SITE.apkChecksums[primaryFile] ?? "";
+const secondarySha = SITE.apkChecksums[secondaryFile] ?? "";
+const universalSha = SITE.apkChecksums[universalFile] ?? "";
+const x86Sha = SITE.apkChecksums[x86File] ?? "";
 ---
 
 <section class="download-section scroll-reveal" id="descargar">
   <div class="container">
     <div class="download-card card-app reveal-init">
-      
       <!-- Encabezado de la Sección -->
       <div class="download-header">
-        <span class="badge-app green">¡PONTE PILAS! · 100% GRATIS · SIN ANUNCIOS</span>
+        <span class="badge-app green"
+          >¡PONTE PILAS! · DESCARGA GRATUITA · SIN PUBLICIDAD INVASIVA</span
+        >
         <h2>Descarga Pilas! para Android</h2>
         <p>
-          ¡Pilas, ñañ@s! La app se instala directo desde aquí, sin pasar por tiendas. Elige la opción recomendada para tu celular y listo.
+          ¡Pilas, ñañ@s! La app se instala directo desde aquí, sin pasar por
+          tiendas. Elige la opción recomendada para tu celular y listo.
         </p>
       </div>
 
       <!-- Aviso Legal antes de la descarga -->
       <div class="download-legal-notice reveal-init" role="note">
         <div class="notice-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="12" y1="8" x2="12" y2="12"></line>
             <line x1="12" y1="16" x2="12.01" y2="16"></line>
@@ -37,7 +48,15 @@ const x86Sha = SITE.apkChecksums[x86File] ?? '';
         </div>
         <div class="notice-body">
           <p>
-            <strong>Aviso legal.</strong> Pilas! es un proyecto independiente y no está afiliado a la Universidad de las Fuerzas Armadas ESPE. Los nombres y marcas pertenecen a sus dueños. Se ofrece gratis y "tal cual", sin garantías. La información (horarios, fechas de entrega, notas, malla) puede estar retrasada o ser incorrecta: verifícala siempre en miESPE y en Moodle. Usa únicamente tu propia cuenta; eres responsable de lo que se haga desde ella y de cumplir los reglamentos de la ESPE. La app puede dejar de funcionar si la universidad cambia o restringe sus sistemas. Los aportes son voluntarios y la universidad no participa en ellos.
+            <strong>Aviso legal.</strong> Pilas! es un proyecto independiente y no
+            está afiliado a la Universidad de las Fuerzas Armadas ESPE. Los nombres
+            y marcas pertenecen a sus dueños. Se ofrece gratis y "tal cual", sin garantías.
+            La información (horarios, fechas de entrega, notas, malla) puede estar
+            retrasada o ser incorrecta: verifícala siempre en miESPE y en Moodle.
+            Usa únicamente tu propia cuenta; eres responsable de lo que se haga desde
+            ella y de cumplir los reglamentos de la ESPE. La app puede dejar de funcionar
+            si la universidad cambia o restringe sus sistemas. Los aportes son voluntarios
+            y la universidad no participa en ellos.
           </p>
         </div>
       </div>
@@ -46,7 +65,13 @@ const x86Sha = SITE.apkChecksums[x86File] ?? '';
       <div class="apk-primary-showcase card-app live">
         <div class="apk-identity">
           <div class="apk-logo-frame">
-            <img src="/logo_esperancitos.jpg" alt="Logo de Pilas!" class="apk-logo-img" width="68" height="68" />
+            <img
+              src="/logo_esperancitos.jpg"
+              alt="Logo de Pilas!"
+              class="apk-logo-img"
+              width="68"
+              height="68"
+            />
             <span class="apk-release-tag">v1.0.0 (Build 4)</span>
           </div>
 
@@ -55,24 +80,61 @@ const x86Sha = SITE.apkChecksums[x86File] ?? '';
               <h3>Descarga Pilas!</h3>
               <span class="chip-live">Recomendada (ARM64)</span>
             </div>
-            
+
             <div class="apk-specs-grid">
               <div class="spec-pill">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
                   <rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect>
                   <path d="M12 18h.01"></path>
                 </svg>
-                <span>Funciona en <strong>casi cualquier celular Android</strong> (del 2019 en adelante)</span>
+                <span
+                  >Funciona en <strong>casi cualquier celular Android</strong> (del
+                  2019 en adelante)</span
+                >
               </div>
               <div class="spec-pill">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
+                  ></polygon>
                 </svg>
-                <span>Pesa <strong>35.8 MB</strong> (Arquitectura `arm64-v8a`)</span>
+                <span
+                  >Pesa <strong>35.8 MB</strong> (Arquitectura `arm64-v8a`)</span
+                >
               </div>
               <div class="spec-pill">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2"
+                  ></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
                 <span>Necesitas <strong>Android 8.0 o superior</strong></span>
@@ -82,15 +144,33 @@ const x86Sha = SITE.apkChecksums[x86File] ?? '';
         </div>
 
         <div class="apk-action-area">
-          <a href={`/downloads/${primaryFile}`} download class="btn-app btn-app-primary btn-download-main" id="primary-apk-download-btn">
-            <svg class="download-bounce-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <a
+            href={`/downloads/${primaryFile}`}
+            download
+            class="btn-app btn-app-primary btn-download-main"
+            id="primary-apk-download-btn"
+          >
+            <svg
+              class="download-bounce-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
               <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
             <div class="btn-text-block">
               <span class="btn-main-label">DESCARGAR AHORA</span>
-              <small class="btn-sub-label">v1.0.0 · ARM64-v8a (35.8 MB) · Descarga directa</small>
+              <small class="btn-sub-label"
+                >v1.0.0 · ARM64-v8a (35.8 MB) · Descarga directa</small
+              >
             </div>
           </a>
         </div>
@@ -99,21 +179,50 @@ const x86Sha = SITE.apkChecksums[x86File] ?? '';
       <!-- Capturas de la app: es lo que más ayuda a decidir la descarga -->
       <div class="download-preview-row reveal-init">
         <figure class="preview-item">
-          <img src="/images/mockup-malla.webp" alt="Pantalla de la malla curricular con el progreso de créditos y el año estimado de graduación" width="640" height="1147" loading="lazy" />
+          <img
+            src="/images/mockup-malla.webp"
+            alt="Pantalla de la malla curricular con el progreso de créditos y el año estimado de graduación"
+            width="640"
+            height="1147"
+            loading="lazy"
+          />
           <figcaption>Tu malla con cálculo de graduación</figcaption>
         </figure>
         <figure class="preview-item">
-          <img src="/images/mockup-horario.webp" alt="Pantalla del horario semanal con el aula y el bloque de cada clase" width="640" height="1147" loading="lazy" />
+          <img
+            src="/images/mockup-horario.webp"
+            alt="Pantalla del horario semanal con el aula y el bloque de cada clase"
+            width="640"
+            height="1147"
+            loading="lazy"
+          />
           <figcaption>Tu horario con el aula de cada clase</figcaption>
         </figure>
       </div>
 
       <!-- Variantes Secundarias por Arquitectura -->
       <div class="secondary-architectures">
-        <span class="secondary-title">¿Tu celular es antiguo o buscas otra arquitectura?</span>
+        <span class="secondary-title"
+          >¿Tu celular es antiguo o buscas otra arquitectura?</span
+        >
         <div class="arch-pills-row">
-          <a href={`/downloads/${secondaryFile}`} download class="btn-app btn-app-surface btn-arch-pill" title="Para celulares de más de 5 años o de gama baja (ARMv7 32-bit)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <a
+            href={`/downloads/${secondaryFile}`}
+            download
+            class="btn-app btn-app-surface btn-arch-pill"
+            title="Para celulares de más de 5 años o de gama baja (ARMv7 32-bit)"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
               <rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect>
               <path d="M12 18h.01"></path>
             </svg>
@@ -121,18 +230,50 @@ const x86Sha = SITE.apkChecksums[x86File] ?? '';
             <span class="arch-size">32.4 MB</span>
           </a>
 
-          <a href={`/downloads/${universalFile}`} download class="btn-app btn-app-surface btn-arch-pill" title="Universal: compatible con cualquier procesador o dispositivo Android">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <a
+            href={`/downloads/${universalFile}`}
+            download
+            class="btn-app btn-app-surface btn-arch-pill"
+            title="Universal: compatible con cualquier procesador o dispositivo Android"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
               <circle cx="12" cy="12" r="10"></circle>
               <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              <path
+                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+              ></path>
             </svg>
             <span>Universal (Todo-en-uno)</span>
             <span class="arch-size">94.2 MB</span>
           </a>
 
-          <a href={`/downloads/${x86File}`} download class="btn-app btn-app-surface btn-arch-pill" title="Para emuladores en PC (Windows Subsystem for Android, BlueStacks, LDPlayer)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <a
+            href={`/downloads/${x86File}`}
+            download
+            class="btn-app btn-app-surface btn-arch-pill"
+            title="Para emuladores en PC (Windows Subsystem for Android, BlueStacks, LDPlayer)"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
               <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
               <line x1="8" y1="21" x2="16" y2="21"></line>
               <line x1="12" y1="17" x2="12" y2="21"></line>
@@ -146,7 +287,16 @@ const x86Sha = SITE.apkChecksums[x86File] ?? '';
       <!-- Aviso de instalación fuera de la tienda + verificación de integridad -->
       <div class="install-notice reveal-init">
         <div class="notice-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             <path d="M12 8v4"></path>
             <path d="M12 16h.01"></path>
@@ -155,53 +305,91 @@ const x86Sha = SITE.apkChecksums[x86File] ?? '';
         <div class="notice-body">
           <h4>Por ahora se instala así (pronto estará en Play Store)</h4>
           <p>
-            Estamos juntando los <strong>25 dólares</strong> que cuesta la cuenta de desarrollador de Google Play. Mientras tanto, la app se descarga directamente desde aquí. Como no proviene de la tienda oficial, el sistema te pedirá autorizar la instalación y puede mostrar un aviso preventivo de <strong>Google Play Protect</strong>. Es el comportamiento habitual de Android para cualquier APK directo. Si deseas verificar la autenticidad e integridad del paquete antes de instalarlo, aquí tienes las huellas criptográficas SHA-256 oficiales:
+            Estamos juntando los <strong>25 dólares</strong> que cuesta la cuenta
+            de desarrollador de Google Play. Mientras tanto, la app se descarga directamente
+            desde aquí. Como no proviene de la tienda oficial, el sistema te pedirá
+            autorizar la instalación y puede mostrar un aviso preventivo de <strong
+              >Google Play Protect</strong
+            >. Es el comportamiento habitual de Android para cualquier APK
+            directo. Si deseas verificar la autenticidad e integridad del
+            paquete antes de instalarlo, aquí tienes las huellas criptográficas
+            SHA-256 oficiales:
           </p>
 
-          {primarySha && (
-            <div class="hash-row">
-              <span class="hash-label">Recomendada · ARM64-v8a</span>
-              <code class="hash-value">{primarySha}</code>
-              <button type="button" class="btn-app-copy" data-copy={primarySha} aria-label="Copiar la huella SHA-256 del APK recomendado">
-                <span>Copiar</span>
-              </button>
-            </div>
-          )}
+          {
+            primarySha && (
+              <div class="hash-row">
+                <span class="hash-label">Recomendada · ARM64-v8a</span>
+                <code class="hash-value">{primarySha}</code>
+                <button
+                  type="button"
+                  class="btn-app-copy"
+                  data-copy={primarySha}
+                  aria-label="Copiar la huella SHA-256 del APK recomendado"
+                >
+                  <span>Copiar</span>
+                </button>
+              </div>
+            )
+          }
 
-          {secondarySha && (
-            <div class="hash-row">
-              <span class="hash-label">Gama baja · ARMeabi-v7a</span>
-              <code class="hash-value">{secondarySha}</code>
-              <button type="button" class="btn-app-copy" data-copy={secondarySha} aria-label="Copiar la huella SHA-256 del APK para celulares antiguos">
-                <span>Copiar</span>
-              </button>
-            </div>
-          )}
+          {
+            secondarySha && (
+              <div class="hash-row">
+                <span class="hash-label">Gama baja · ARMeabi-v7a</span>
+                <code class="hash-value">{secondarySha}</code>
+                <button
+                  type="button"
+                  class="btn-app-copy"
+                  data-copy={secondarySha}
+                  aria-label="Copiar la huella SHA-256 del APK para celulares antiguos"
+                >
+                  <span>Copiar</span>
+                </button>
+              </div>
+            )
+          }
 
-          {universalSha && (
-            <div class="hash-row">
-              <span class="hash-label">Universal · Multi-Arch</span>
-              <code class="hash-value">{universalSha}</code>
-              <button type="button" class="btn-app-copy" data-copy={universalSha} aria-label="Copiar la huella SHA-256 del APK universal">
-                <span>Copiar</span>
-              </button>
-            </div>
-          )}
+          {
+            universalSha && (
+              <div class="hash-row">
+                <span class="hash-label">Universal · Multi-Arch</span>
+                <code class="hash-value">{universalSha}</code>
+                <button
+                  type="button"
+                  class="btn-app-copy"
+                  data-copy={universalSha}
+                  aria-label="Copiar la huella SHA-256 del APK universal"
+                >
+                  <span>Copiar</span>
+                </button>
+              </div>
+            )
+          }
 
-          {x86Sha && (
-            <div class="hash-row">
-              <span class="hash-label">Emulador · x86_64</span>
-              <code class="hash-value">{x86Sha}</code>
-              <button type="button" class="btn-app-copy" data-copy={x86Sha} aria-label="Copiar la huella SHA-256 del APK x86_64">
-                <span>Copiar</span>
-              </button>
-            </div>
-          )}
+          {
+            x86Sha && (
+              <div class="hash-row">
+                <span class="hash-label">Emulador · x86_64</span>
+                <code class="hash-value">{x86Sha}</code>
+                <button
+                  type="button"
+                  class="btn-app-copy"
+                  data-copy={x86Sha}
+                  aria-label="Copiar la huella SHA-256 del APK x86_64"
+                >
+                  <span>Copiar</span>
+                </button>
+              </div>
+            )
+          }
 
           <details class="hash-help">
             <summary>¿Cómo verifico la huella en mi computadora?</summary>
             <p>
-              Descarga el archivo y ejecuta uno de estos comandos en la carpeta de descargas. El resultado debe coincidir exactamente con el texto de arriba:
+              Descarga el archivo y ejecuta uno de estos comandos en la carpeta
+              de descargas. El resultado debe coincidir exactamente con el texto
+              de arriba:
             </p>
             <pre><code>Windows (PowerShell):  Get-FileHash .\{primaryFile} -Algorithm SHA256
 macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
@@ -211,8 +399,10 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
 
       <!-- 3 Pasos de Instalación Conectados por una Línea Dinámica -->
       <div class="install-guide-block" id="install-guide-track">
-        <h3 class="steps-heading">Instalarla te toma 3 pasos y menos de un minuto</h3>
-        
+        <h3 class="steps-heading">
+          Instalarla te toma 3 pasos y menos de un minuto
+        </h3>
+
         <div class="steps-container">
           <!-- Línea conectora animada al scroll -->
           <div class="steps-connecting-line" aria-hidden="true">
@@ -224,21 +414,32 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
             <div class="step-box card-app" id="step-box-1">
               <div class="step-number-circle">1</div>
               <h4>Descarga el archivo</h4>
-              <p>Toca el botón de arriba. El archivo se guarda en la carpeta <em>Descargas</em> de tu celular.</p>
+              <p>
+                Toca el botón de arriba. El archivo se guarda en la carpeta <em
+                  >Descargas</em
+                > de tu celular.
+              </p>
             </div>
 
             <!-- Paso 2 -->
             <div class="step-box card-app" id="step-box-2">
               <div class="step-number-circle">2</div>
               <h4>Dale permiso</h4>
-              <p>Abre el archivo descargado. Android te va a preguntar si confías en el origen: marca <em>"Permitir desde esta fuente"</em>. Es normal, pasa con cualquier app que no venga de la tienda.</p>
+              <p>
+                Abre el archivo descargado. Android te va a preguntar si confías
+                en el origen: marca <em>"Permitir desde esta fuente"</em>. Es
+                normal, pasa con cualquier app que no venga de la tienda.
+              </p>
             </div>
 
             <!-- Paso 3 -->
             <div class="step-box card-app" id="step-box-3">
               <div class="step-number-circle">3</div>
               <h4>¡Ponte pilas y úsala!</h4>
-              <p>Elige tu carrera, conecta tu horario y tu Moodle, y ponte pilas con tus materias. ¡Ya está, ñañ@s!</p>
+              <p>
+                Elige tu carrera, conecta tu horario y tu Moodle, y ponte pilas
+                con tus materias. ¡Ya está, ñañ@s!
+              </p>
             </div>
           </div>
         </div>
@@ -252,12 +453,19 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
               <span class="badge-app green">NOVEDADES · VERSIÓN 1.0.0</span>
               <span class="release-build-pill">Build 4 · 03 Octubre 2026</span>
             </div>
-            <span class="release-status-chip">★ Versión Definitiva para el Campus</span>
+            <span class="release-status-chip"
+              >★ Versión Definitiva para el Campus</span
+            >
           </div>
 
-          <h3 class="release-main-title">🎉 ¡Pilas, ñañ@s! Llegó Pilas! v1.0.0: La versión definitiva para el campus politécnico</h3>
+          <h3 class="release-main-title">
+            🎉 ¡Pilas, ñañ@s! Llegó Pilas! v1.0.0: La versión definitiva para la
+            ESPE
+          </h3>
           <p class="release-intro">
-            Diseñada por y para politécnicos de la Universidad de las Fuerzas Armadas ESPE. Todo lo que necesitas para tu vida universitaria en un solo lugar, 100% privado, offline y sin servidores intermediarios.
+            Diseñada por y para politécnicos de la Universidad de las Fuerzas
+            Armadas ESPE. Todo lo que necesitas para tu vida universitaria en un
+            solo lugar, 100% privado, offline y sin servidores intermediarios.
           </p>
 
           <!-- Lo más destacado en grid neo-brutalista -->
@@ -266,56 +474,80 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
               <div class="highlight-icon">🪪</div>
               <div class="highlight-content">
                 <strong>Carnet Digital Inmersivo</strong>
-                <span>Muestra tu carnet al instante para el guardia y los torniquetes, con zoom nítido y sin pantallas intermedias.</span>
+                <span
+                  >Muestra tu carnet al instante para el guardia y los
+                  torniquetes, con zoom nítido y sin pantallas intermedias.</span
+                >
               </div>
             </div>
             <div class="highlight-item">
               <div class="highlight-icon">🏢</div>
               <div class="highlight-content">
                 <strong>Aulas Inteligentes</strong>
-                <span>Códigos oficiales concisos (A-110, G-201) o con detalle de piso y bloque con un solo toque.</span>
+                <span
+                  >Códigos oficiales concisos (A-110, G-201) o con detalle de
+                  piso y bloque con un solo toque.</span
+                >
               </div>
             </div>
             <div class="highlight-item">
               <div class="highlight-icon">⏰</div>
               <div class="highlight-content">
                 <strong>Horario "En Vivo"</strong>
-                <span>Tu clase actual destacada en esmeralda con barra de tiempo restante y auto-scroll al día de hoy.</span>
+                <span
+                  >Tu clase actual destacada en esmeralda con barra de tiempo
+                  restante y auto-scroll al día de hoy.</span
+                >
               </div>
             </div>
             <div class="highlight-item">
               <div class="highlight-icon">📝</div>
               <div class="highlight-content">
                 <strong>Entregas Moodle Bajo Control</strong>
-                <span>Filtros rápidos, cuentas regresivas para entregas críticas y descarga directa de guías adjuntas.</span>
+                <span
+                  >Filtros rápidos, cuentas regresivas para entregas críticas y
+                  descarga directa de guías adjuntas.</span
+                >
               </div>
             </div>
             <div class="highlight-item">
               <div class="highlight-icon">📊</div>
               <div class="highlight-content">
                 <strong>Calculadora Ponderada Oficial</strong>
-                <span>Conoce con cuántos puntos pasas según el reglamento oficial ESPE (33.34% / 33.33% / 33.33%).</span>
+                <span
+                  >Conoce con cuántos puntos pasas según el reglamento oficial
+                  ESPE (33.34% / 33.33% / 33.33%).</span
+                >
               </div>
             </div>
             <div class="highlight-item">
               <div class="highlight-icon">🗺️</div>
               <div class="highlight-content">
                 <strong>Malla Curricular Interactiva</strong>
-                <span>Navega tu carrera, descubre qué materias te desbloquean los prerrequisitos y mide tu avance.</span>
+                <span
+                  >Navega tu carrera, descubre qué materias te desbloquean los
+                  prerrequisitos y mide tu avance.</span
+                >
               </div>
             </div>
             <div class="highlight-item">
               <div class="highlight-icon">🏠</div>
               <div class="highlight-content">
                 <strong>Dashboard Proactivo</strong>
-                <span>Antes de ir a dormir, entérate a qué hora y en qué aula es tu primera clase de mañana.</span>
+                <span
+                  >Antes de ir a dormir, entérate a qué hora y en qué aula es tu
+                  primera clase de mañana.</span
+                >
               </div>
             </div>
             <div class="highlight-item">
               <div class="highlight-icon">🛡️</div>
               <div class="highlight-content">
                 <strong>100% Privado y Offline</strong>
-                <span>Sin servidores de terceros. Comunicación directa entre tu celular y la ESPE (Banner y Moodle).</span>
+                <span
+                  >Sin servidores de terceros. Comunicación directa entre tu
+                  celular y la ESPE (Banner y Moodle).</span
+                >
               </div>
             </div>
           </div>
@@ -328,7 +560,10 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
                 <tbody>
                   <tr>
                     <th>Versión Actual</th>
-                    <td><code>Pilas! v1.0.0</code> (Build 4) · Publicada el 3 de Octubre de 2026</td>
+                    <td
+                      ><code>Pilas! v1.0.0</code> (Build 4) · Publicada el 3 de Octubre
+                      de 2026</td
+                    >
                   </tr>
                   <tr>
                     <th>Sistema Operativo</th>
@@ -336,19 +571,33 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
                   </tr>
                   <tr>
                     <th>Compatibilidad</th>
-                    <td>Teléfonos y Tablets (Arquitecturas <code>arm64-v8a</code>, <code>armeabi-v7a</code>, <code>x86_64</code>, <code>Universal</code>)</td>
+                    <td
+                      >Teléfonos y Tablets (Arquitecturas <code>arm64-v8a</code
+                      >, <code>armeabi-v7a</code>, <code>x86_64</code>, <code
+                        >Universal</code
+                      >)</td
+                    >
                   </tr>
                   <tr>
                     <th>Tamaño del Paquete</th>
-                    <td>~32 - 38 MB por arquitectura (Universal ~94 MB) · Optimizado con R8 / ProGuard</td>
+                    <td
+                      >~32 - 38 MB por arquitectura (Universal ~94 MB) ·
+                      Optimizado con R8 / ProGuard</td
+                    >
                   </tr>
                   <tr>
                     <th>Licencia</th>
-                    <td>Gratuita para uso personal y estudiantil · Proyecto Estudiantil Independiente · 100% Libre de Anuncios</td>
+                    <td
+                      >Gratuita para uso personal y estudiantil · Proyecto
+                      Estudiantil Independiente · Sin publicidad invasiva</td
+                    >
                   </tr>
                   <tr>
                     <th>Desarrollador</th>
-                    <td>Comunidad Estudiantil de la Universidad de las Fuerzas Armadas ESPE</td>
+                    <td
+                      >Comunidad Estudiantil de la Universidad de las Fuerzas
+                      Armadas ESPE</td
+                    >
                   </tr>
                 </tbody>
               </table>
@@ -358,78 +607,146 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
           <!-- Changelog Completo Acordeón -->
           <details class="changelog-details card-app">
             <summary class="changelog-summary">
-              <span>📋 Ver lista completa de novedades y cambios técnicos (v1.0.0)</span>
+              <span
+                >📋 Ver lista completa de novedades y cambios técnicos (v1.0.0)</span
+              >
               <span class="changelog-badge-count">15 novedades</span>
             </summary>
             <div class="changelog-list-body">
               <ul class="changelog-items">
                 <li>
                   <span class="change-tag new">Comunidad</span>
-                  <div><strong>Nuevo Módulo de Comunidad:</strong> Directorio de negocios estudiantiles, enlaces rápidos y cartelera de avisos mediante API estática JSON v1.</div>
+                  <div>
+                    <strong>Nuevo Módulo de Comunidad:</strong> Directorio de negocios
+                    estudiantiles, enlaces rápidos y cartelera de avisos mediante
+                    API estática JSON v1.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag feature">Aulas</span>
-                  <div><strong>Control de Visualización de Aulas:</strong> Selector de formato de aula (Conciso, Descriptivo, Híbrido) con vista previa en vivo en Ajustes.</div>
+                  <div>
+                    <strong>Control de Visualización de Aulas:</strong> Selector de
+                    formato de aula (Conciso, Descriptivo, Híbrido) con vista previa
+                    en vivo en Ajustes.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag storage">Offline</span>
-                  <div><strong>Gestión de Almacenamiento Offline Transparente:</strong> Inspección precisa de archivos Moodle y caché temporal de comunidad con limpieza segura que protege notas, credenciales y horarios.</div>
+                  <div>
+                    <strong
+                      >Gestión de Almacenamiento Offline Transparente:</strong
+                    > Inspección precisa de archivos Moodle y caché temporal de comunidad
+                    con limpieza segura que protege notas, credenciales y horarios.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag sync">Sincronización</span>
-                  <div><strong>Marcas de Tiempo de Sincronización Relativa y Exacta:</strong> Indicador dual para Banner y Moodle con estado de actividad y tiempo transcurrido inteligente.</div>
+                  <div>
+                    <strong
+                      >Marcas de Tiempo de Sincronización Relativa y Exacta:</strong
+                    > Indicador dual para Banner y Moodle con estado de actividad
+                    y tiempo transcurrido inteligente.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag storage">Archivos</span>
-                  <div><strong>Persistencia de Materiales y Descargas:</strong> Nuevo historial de archivos descargados con soporte para compartir y abrir offline en 1-Tap.</div>
+                  <div>
+                    <strong>Persistencia de Materiales y Descargas:</strong> Nuevo
+                    historial de archivos descargados con soporte para compartir y
+                    abrir offline en 1-Tap.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag perf">120 FPS</span>
-                  <div><strong>Optimización de Rendimiento 120 FPS:</strong> Reciclado inteligente de widgets en el listado de tareas con <code>SliverList.builder</code>.</div>
+                  <div>
+                    <strong>Optimización de Rendimiento 120 FPS:</strong> Reciclado
+                    inteligente de widgets en el listado de tareas con <code
+                      >SliverList.builder</code
+                    >.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag os">Android 15</span>
-                  <div><strong>Compatibilidad Android 15 Edge-to-Edge:</strong> Modales y botones de acción blindados contra la barra de gestos del sistema operativo.</div>
+                  <div>
+                    <strong>Compatibilidad Android 15 Edge-to-Edge:</strong> Modales
+                    y botones de acción blindados contra la barra de gestos del sistema
+                    operativo.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag chat">Moodle Chat</span>
-                  <div><strong>Mejoras en Chat Moodle:</strong> Ajuste nativo de teclado sin saltos de doble padding y auto-scroll inteligente.</div>
+                  <div>
+                    <strong>Mejoras en Chat Moodle:</strong> Ajuste nativo de teclado
+                    sin saltos de doble padding y auto-scroll inteligente.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag haptic">Háptica</span>
-                  <div><strong>Respuesta Háptica y Micro-Interacciones:</strong> Sistema global <code>AppHaptics</code> conmutador en Ajustes, retroalimentación táctil precisa en navegación de pestañas y filtros.</div>
+                  <div>
+                    <strong>Respuesta Háptica y Micro-Interacciones:</strong> Sistema
+                    global <code>AppHaptics</code> conmutador en Ajustes, retroalimentación
+                    táctil precisa en navegación de pestañas y filtros.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag a11y">Accesibilidad</span>
-                  <div><strong>Contraste Accesible WCAG AAA en Modo OLED y Slate:</strong> Textos secundarios y alertas críticas calibrados para superar la relación 7.0:1 sobre negro puro (<code>#000000</code>).</div>
+                  <div>
+                    <strong
+                      >Contraste Accesible WCAG AAA en Modo OLED y Slate:</strong
+                    > Textos secundarios y alertas críticas calibrados para superar
+                    la relación 7.0:1 sobre negro puro (<code>#000000</code>).
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag acad">Historial</span>
-                  <div><strong>Historial Académico con Acordeón y Búsqueda en Vivo:</strong> Plegado suave con <code>AnimatedCrossFade</code>, búsqueda en tiempo real por asignatura o código y filtros de estado.</div>
+                  <div>
+                    <strong
+                      >Historial Académico con Acordeón y Búsqueda en Vivo:</strong
+                    > Plegado suave con <code>AnimatedCrossFade</code>, búsqueda
+                    en tiempo real por asignatura o código y filtros de estado.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag files">Materiales</span>
-                  <div><strong>Gestión Offline Transparente de Archivos Moodle:</strong> Badges <code>[ ✓ EN DISPOSITIVO ]</code> y <code>[ ☁ EN LA NUBE ]</code>, cálculo visible de pesos y selector de visor nativo.</div>
+                  <div>
+                    <strong
+                      >Gestión Offline Transparente de Archivos Moodle:</strong
+                    > Badges <code>[ ✓ EN DISPOSITIVO ]</code> y <code
+                      >[ ☁ EN LA NUBE ]</code
+                    >, cálculo visible de pesos y selector de visor nativo.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag dash">Dashboard</span>
-                  <div><strong>Dashboard Proactivo con Anticipación de Clases:</strong> Tarjeta <em>"Mañana tu primera clase"</em> cuando concluye la jornada o en días libres, y badge pulsante neón (<code>CIERRA HOY</code>, <code>QUIZ HOY</code>) para tareas críticas.</div>
+                  <div>
+                    <strong
+                      >Dashboard Proactivo con Anticipación de Clases:</strong
+                    > Tarjeta <em>"Mañana tu primera clase"</em> cuando concluye la
+                    jornada o en días libres, y badge pulsante neón (<code
+                      >CIERRA HOY</code
+                    >, <code>QUIZ HOY</code>) para tareas críticas.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag moodle">Mensajería</span>
-                  <div><strong>Mensajería Moodle Clara y Organizada:</strong> Separación instantánea de Docentes vs Compañeros vs Grupos con insignias de rol institucional y auto-scroll inteligente al último mensaje.</div>
+                  <div>
+                    <strong>Mensajería Moodle Clara y Organizada:</strong> Separación
+                    instantánea de Docentes vs Compañeros vs Grupos con insignias
+                    de rol institucional y auto-scroll inteligente al último mensaje.
+                  </div>
                 </li>
                 <li>
                   <span class="change-tag nav">Navegación</span>
-                  <div><strong>Navegación Ergonómica:</strong> Función "Tap active tab to scroll to top" en la barra de navegación inferior.</div>
+                  <div>
+                    <strong>Navegación Ergonómica:</strong> Función "Tap active tab
+                    to scroll to top" en la barra de navegación inferior.
+                  </div>
                 </li>
               </ul>
             </div>
           </details>
-
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -470,14 +787,17 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     gap: 30px;
     background: var(--bg-surface-elevated);
     margin-bottom: 30px;
-    transition: transform 260ms var(--ease-spring),
-                box-shadow 260ms var(--ease-apple),
-                border-color 260ms ease;
+    transition:
+      transform 260ms var(--ease-spring),
+      box-shadow 260ms var(--ease-apple),
+      border-color 260ms ease;
   }
 
   .apk-primary-showcase:hover {
     transform: translateY(-4px);
-    box-shadow: 6px 6px 0px #000000, 0 12px 30px rgba(0, 255, 135, 0.16);
+    box-shadow:
+      6px 6px 0px #000000,
+      0 12px 30px rgba(0, 255, 135, 0.16);
   }
 
   .apk-identity {
@@ -591,13 +911,22 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
   }
 
   @keyframes download-bounce-fast {
-    from { transform: translateY(0); }
-    to { transform: translateY(5px); }
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(5px);
+    }
   }
 
   @keyframes download-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(3px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(3px);
+    }
   }
 
   .btn-text-block {
@@ -649,9 +978,10 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     font-size: 0.85rem;
     gap: 10px;
     text-transform: none;
-    transition: transform 220ms var(--ease-spring),
-                border-color 220ms ease,
-                box-shadow 220ms var(--ease-apple);
+    transition:
+      transform 220ms var(--ease-spring),
+      border-color 220ms ease,
+      box-shadow 220ms var(--ease-apple);
   }
 
   .btn-arch-pill:hover {
@@ -697,8 +1027,9 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     border: 2px solid var(--border-app);
     box-shadow: var(--shadow-hard-sm);
     background: var(--bg-primary);
-    transition: transform var(--duration-hover) var(--ease-apple),
-                border-color var(--duration-hover) ease;
+    transition:
+      transform var(--duration-hover) var(--ease-apple),
+      border-color var(--duration-hover) ease;
   }
 
   .preview-item img:hover {
@@ -835,11 +1166,11 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
   }
 
   .hash-help summary::before {
-    content: '▸ ';
+    content: "▸ ";
   }
 
   .hash-help[open] summary::before {
-    content: '▾ ';
+    content: "▾ ";
   }
 
   .hash-help summary:hover {
@@ -881,11 +1212,12 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     cursor: pointer;
     white-space: nowrap;
     text-transform: uppercase;
-    transition: background-color 150ms ease,
-                border-color 150ms ease,
-                color 150ms ease,
-                transform 150ms var(--ease-apple),
-                box-shadow 150ms var(--ease-apple);
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease,
+      color 150ms ease,
+      transform 150ms var(--ease-apple),
+      box-shadow 150ms var(--ease-apple);
   }
 
   :global(.hash-row .btn-app-copy:not(.copied):hover) {
@@ -958,15 +1290,18 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: border-color 240ms var(--ease-apple),
-                box-shadow 240ms var(--ease-apple),
-                transform 240ms var(--ease-spring);
+    transition:
+      border-color 240ms var(--ease-apple),
+      box-shadow 240ms var(--ease-apple),
+      transform 240ms var(--ease-spring);
   }
 
   .step-box:hover {
     transform: translateY(-5px);
     border-color: var(--accent-primary);
-    box-shadow: 4px 4px 0px #000, 0 8px 24px rgba(0, 255, 135, 0.18);
+    box-shadow:
+      4px 4px 0px #000,
+      0 8px 24px rgba(0, 255, 135, 0.18);
   }
 
   .step-box.illuminated {
@@ -994,10 +1329,11 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     font-size: 1.15rem;
     color: var(--text-primary);
     margin-bottom: 16px;
-    transition: background-color 240ms ease,
-                color 240ms ease,
-                transform 240ms var(--ease-spring),
-                box-shadow 240ms ease;
+    transition:
+      background-color 240ms ease,
+      color 240ms ease,
+      transform 240ms var(--ease-spring),
+      box-shadow 240ms ease;
   }
 
   .step-box:hover .step-number-circle {
@@ -1172,7 +1508,9 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     border-radius: var(--radius-sm);
     padding: 14px 16px;
     box-shadow: 2px 2px 0px #000;
-    transition: transform 200ms var(--ease-spring), border-color 200ms ease;
+    transition:
+      transform 200ms var(--ease-spring),
+      border-color 200ms ease;
   }
 
   .highlight-item:hover {
@@ -1397,20 +1735,23 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
   // si el usuario subía y bajaba de la sección los pasos quedaban encendidos
   // para siempre y la línea nunca volvía a 0. Ahora es reversible y el ancho se
   // calcula según la posición real de la sección en el viewport.
-  const guideTrack = document.getElementById('install-guide-track');
-  const lineFill = document.getElementById('steps-line-fill');
+  const guideTrack = document.getElementById("install-guide-track");
+  const lineFill = document.getElementById("steps-line-fill");
   const stepBoxes = [
-    document.getElementById('step-box-1'),
-    document.getElementById('step-box-2'),
-    document.getElementById('step-box-3'),
+    document.getElementById("step-box-1"),
+    document.getElementById("step-box-2"),
+    document.getElementById("step-box-3"),
   ];
 
   if (guideTrack && lineFill) {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
     // Progreso: 0 cuando el bloque entra por abajo, 1 cuando llega al centro
     const computeProgress = () => {
       const rect = guideTrack.getBoundingClientRect();
-      const viewport = window.innerHeight || document.documentElement.clientHeight;
+      const viewport =
+        window.innerHeight || document.documentElement.clientHeight;
       const start = viewport;
       const end = viewport * 0.45;
       const raw = (start - rect.top) / (start - end);
@@ -1425,8 +1766,8 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
         if (!box) return;
         const threshold = (index + 1) / (stepBoxes.length + 0.35);
         const isOn = progress >= threshold;
-        box.classList.toggle('illuminated', isOn);
-        box.classList.toggle('current', isOn && progress < threshold + 0.34);
+        box.classList.toggle("illuminated", isOn);
+        box.classList.toggle("current", isOn && progress < threshold + 0.34);
       });
     };
 
@@ -1445,36 +1786,38 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
         }
       };
 
-      window.addEventListener('scroll', requestUpdate, { passive: true });
-      window.addEventListener('resize', requestUpdate);
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("resize", requestUpdate);
       update();
     }
   }
 
   // Copiado de las huellas SHA-256 al portapapeles
-  const hashButtons = document.querySelectorAll<HTMLButtonElement>('.hash-row .btn-app-copy');
+  const hashButtons = document.querySelectorAll<HTMLButtonElement>(
+    ".hash-row .btn-app-copy",
+  );
 
-  hashButtons.forEach(btn => {
-    const label = btn.querySelector('span') ?? btn;
-    const originalText = label.textContent ?? 'Copiar';
+  hashButtons.forEach((btn) => {
+    const label = btn.querySelector("span") ?? btn;
+    const originalText = label.textContent ?? "Copiar";
 
-    btn.addEventListener('click', async () => {
-      const textToCopy = btn.getAttribute('data-copy');
+    btn.addEventListener("click", async () => {
+      const textToCopy = btn.getAttribute("data-copy");
       if (!textToCopy) return;
 
       try {
         await navigator.clipboard.writeText(textToCopy);
       } catch (_) {
         // Fallback para contextos sin permiso de clipboard
-        const helper = document.createElement('textarea');
+        const helper = document.createElement("textarea");
         helper.value = textToCopy;
-        helper.setAttribute('readonly', '');
-        helper.style.position = 'fixed';
-        helper.style.opacity = '0';
+        helper.setAttribute("readonly", "");
+        helper.style.position = "fixed";
+        helper.style.opacity = "0";
         document.body.appendChild(helper);
         helper.select();
         try {
-          document.execCommand('copy');
+          document.execCommand("copy");
         } catch (_) {
           helper.remove();
           return;
@@ -1482,11 +1825,11 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
         helper.remove();
       }
 
-      label.textContent = '✓ Copiado';
-      btn.classList.add('copied');
+      label.textContent = "✓ Copiado";
+      btn.classList.add("copied");
       window.setTimeout(() => {
         label.textContent = originalText;
-        btn.classList.remove('copied');
+        btn.classList.remove("copied");
       }, 2000);
     });
   });

@@ -9,36 +9,24 @@ import { SITE } from '../config/site';
 
   <div class="container hero-container">
     <div class="hero-text-col">
-      <!-- Badge de Proyecto Estudiantil -->
+      <!-- Badge de Proyecto Estudiantil con Animación Typewriter Ecuatoriana -->
       <div class="hero-badge-row">
-        <span class="badge-app green hero-badge">
+        <span class="badge-app green hero-badge" aria-label="¡Ponte pilas politécnico, ñaño, ñaña, socio, socia, mijin, mija!">
           <span class="pulse-circle"></span>
-          Hecha por estudiantes, para estudiantes
+          <span>¡Ponte pilas, <strong class="badge-rotator-word" id="hero-rotator-word">ñaño</strong><span class="badge-rotator-cursor" aria-hidden="true">|</span>!</span>
         </span>
+        <span class="badge-app neutral">Estudiantes ESPE</span>
       </div>
 
-      <!-- Titular Gigante por 3 líneas controladas -->
+      <!-- Titular Gigante y Limpio -->
       <h1 class="hero-headline" id="hero-headline">
-        <span class="hero-line hero-line-1" aria-label="¡Ponte pilas politécnico, ñaño, ñaña, socio, socia, mijin, mija!">
-          ¡Ponte pilas, <span class="ecuador-rotator" id="hero-ecuador-rotator"><span class="rotator-word" id="hero-rotator-word">ñaño</span><span class="rotator-cursor" aria-hidden="true">|</span></span>!
-        </span>
-        <span class="hero-line hero-line-2"><span class="highlight-neon">Pilas!</span> para la ESPE</span>
-        <span class="hero-line hero-line-3">Tu vida universitaria todo-en-uno.</span>
+        <span class="hero-line hero-line-1"><span class="highlight-neon">Pilas!</span> • La App Estudiantil</span>
+        <span class="hero-line hero-line-2">Todo-en-uno para la ESPE.</span>
       </h1>
-
-      <!-- Aviso de Proyecto Independiente (Visible sin scroll en móvil) -->
-      <div class="hero-independent-notice" role="note">
-        <svg class="notice-inline-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="12"></line>
-          <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
-        <span>Proyecto independiente hecho por estudiantes. No es una app oficial de la ESPE ni cuenta con su respaldo ni autorización.</span>
-      </div>
 
       <!-- Párrafo Descriptivo con Información Completa -->
       <p class="hero-description">
-        ¡Ponte pilas! Mira tu <strong>malla curricular</strong> y calcula en qué año te gradúas, revisa tu <strong>horario con el aula exacta</strong> de cada clase y entra a tu <strong>Moodle</strong> escaneando un código QR en un segundo. Todo funciona <strong>sin internet</strong>, gratis y se queda en tu celular.
+        Revisa tu <strong>horario con el aula exacta</strong> de cada clase, consulta tu <strong>malla curricular sin internet</strong> y entra a <strong>Moodle</strong> escaneando un código QR en un segundo. Directo en tu celular y sin publicidad invasiva.
       </p>
 
       <!-- Botones de Acción (Descarga Dominante y Apoyo Ámbar) -->
@@ -65,6 +53,16 @@ import { SITE } from '../config/site';
           </svg>
           <span>Ayudar a la app</span>
         </button>
+      </div>
+
+      <!-- Aviso de Proyecto Independiente Discreto -->
+      <div class="hero-independent-notice" role="note">
+        <svg class="notice-inline-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span>Proyecto estudiantil independiente · No es una app oficial de la ESPE</span>
       </div>
 
       <!-- Fila Compacta de Chips de Confianza (Sin cajas gigantes) -->
@@ -101,13 +99,13 @@ import { SITE } from '../config/site';
           </div>
         </div>
 
-        <div class="feature-chip" title="Sin publicidad y pesa solo 31 MB">
+        <div class="feature-chip" title="Sin publicidad invasiva y pesa solo 35 MB">
           <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
           </svg>
           <div class="chip-info">
-            <strong>Sin anuncios</strong>
-            <span>Pesa poco y no te molesta</span>
+            <strong>Sin publicidad invasiva</strong>
+            <span>Pesa poco y sin molestias</span>
           </div>
         </div>
       </div>
@@ -401,12 +399,11 @@ import { SITE } from '../config/site';
 
   /* Titular Gigante estilo Apple (Sin palabras pegadas) */
   .hero-headline {
-    font-size: clamp(2.4rem, 4.8vw, 4.1rem);
+    font-size: clamp(2.2rem, 3.6vw, 3.6rem);
     font-weight: 900;
-    line-height: 1.08;
-    letter-spacing: -0.015em;
-    word-spacing: 0.04em;
-    margin-bottom: 24px;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
     display: flex;
     flex-direction: column;
   }
@@ -453,27 +450,17 @@ import { SITE } from '../config/site';
     }
   }
 
-  /* Animación Typewriter Ecuatoriana e Inclusiva */
-  .ecuador-rotator {
-    display: inline-flex;
-    align-items: baseline;
+  /* Badge Typewriter Ecuatoriano */
+  .badge-rotator-word {
     color: var(--accent-amber);
-    text-shadow: 0 0 24px rgba(255, 179, 0, 0.4);
-    min-width: 4.8ch;
-    position: relative;
-    border-bottom: 2px dashed rgba(255, 179, 0, 0.45);
-    padding-bottom: 2px;
-  }
-
-  .rotator-word {
+    font-weight: 700;
     display: inline-block;
   }
 
-  .rotator-cursor {
-    display: inline-block;
+  .badge-rotator-cursor {
     color: var(--accent-emerald);
     font-weight: 300;
-    margin-left: 2px;
+    margin-left: 1px;
     animation: cursor-blink 0.9s steps(2, start) infinite;
   }
 
@@ -483,29 +470,21 @@ import { SITE } from '../config/site';
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .rotator-cursor {
+    .badge-rotator-cursor {
       display: none;
-    }
-    .ecuador-rotator {
-      border-bottom: none;
-      min-width: auto;
     }
   }
 
   .hero-independent-notice {
     display: inline-flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    line-height: 1.45;
-    color: var(--text-primary);
-    background: var(--bg-surface-elevated);
-    border: 1.5px solid var(--border-app);
-    border-left: 3.5px solid var(--accent-amber);
-    padding: 10px 14px;
-    border-radius: var(--radius-sm);
-    margin-bottom: 22px;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.84rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-tertiary);
+    margin-top: 10px;
+    margin-bottom: 24px;
     max-width: 580px;
     text-align: left;
   }
@@ -1263,14 +1242,14 @@ import { SITE } from '../config/site';
        animación con fill-mode se quedaba "congelada" en su fotograma final
        controlando el transform: el :hover de la tarjeta nunca se veía. */
     .float-wrap-grad {
-      top: 12%;
-      left: -58px;
+      top: 10%;
+      left: -28px;
       animation: gentle-bob 4.2s ease-in-out infinite alternate;
     }
 
     .float-wrap-banner {
       top: 42%;
-      right: -52px;
+      right: -28px;
       animation: gentle-bob-rev 4.8s ease-in-out infinite alternate;
     }
 

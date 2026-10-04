@@ -86,7 +86,7 @@ const raw: Array<Omit<FaqEntry, 'plainAnswer'>> = [
   {
     question: '¿La aplicación seguirá siendo gratis?',
     answer:
-      'Sí, y seguirá sin publicidad. La mantengo activa en mi tiempo libre. Si quieres ayudar a que siga así, puedes aportar de forma voluntaria o simplemente contarme errores e ideas desde la sección de comentarios.',
+      'Sí. La descarga y las funciones esenciales (horario, aulas, malla y Moodle) siempre serán gratuitas y sin publicidad invasiva. La mantengo activa en mi tiempo libre. Si quieres apoyar al proyecto para cubrir costos de publicación y servidores, puedes aportar de forma voluntaria desde la sección de apoyo.',
   },
   {
     question: '¿Hay versión para iPhone?',

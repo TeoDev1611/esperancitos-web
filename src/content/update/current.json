@@ -5,11 +5,11 @@
   "minSupportedBuild": 1,
   "publishedAt": "2026-10-03T22:15:00Z",
   "notes": [
-    "🪪 Carnet digital inmersivo a toda pantalla con zoom y sin textos duplicados.",
+    "🪪 Carnet digital inmersivo vertical con foto, datos y QR institucional para garitas.",
     "🏢 Visualización de aulas en 3 formatos (Conciso, Descriptivo, Híbrido) con 1-Tap Toggle.",
     "⏰ Horario Banner con indicador 'EN VIVO', tiempo restante y auto-scroll semanal.",
     "📝 Tareas Moodle con filtros por estado, contador regresivo crítico y adjuntos directos.",
-    "📊 Calculadora de notas con desglose ponderado oficial ESPE (42/60 pts) y simulador rápido.",
+    "📊 Calculadora oficial ESPE (42/60 pts) con simulador en vivo y alerta de repetición de materia (sin supletorios).",
     "🗺️ Malla curricular con búsqueda instantánea e inspector visual de prerrequisitos en ámbar.",
     "⚙️ Ajustes con gestión de almacenamiento offline transparente y marcas de sincronización.",
     "📳 Micro-interacciones hápticas en navegación y contraste WCAG AAA en OLED.",
