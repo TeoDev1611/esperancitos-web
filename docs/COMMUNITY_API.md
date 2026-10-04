@@ -265,7 +265,7 @@ Para mantener la integridad, calidad y seguridad de la información estudiantil,
 
 ### ¿Por qué?
 1. **Pérdida de la naturaleza no comercial:** Cobrar por listados o posiciones convertiría la aplicación y el sitio en un **medio publicitario comercial**.
-2. **Revisión obligatoria del plan de alojamiento:** Las plataformas de hosting actuales (como Vercel Hobby / planes gratuitos para proyectos personales y de código abierto) **prohíben terminantemente el uso comercial y la venta de espacios publicitarios sin contratar un plan comercial de pago (Pro/Enterprise)**.
+2. **Revisión obligatoria del plan de alojamiento:** Las plataformas de hosting actuales (como Vercel Hobby / planes para proyectos personales y no comerciales) **prohíben terminantemente el uso comercial y la venta de espacios publicitarios sin contratar un plan comercial de pago (Pro/Enterprise)**.
 3. **Implicaciones legales y tributarias:** Generar ingresos publicitarios exigiría facturación electrónica, RUC comercial, declaraciones tributarias ante el SRI y una reescritura total de la Política de Privacidad y Términos de Servicio.
 4. **Independencia y orden neutral:** Los listados se organizan siempre por categoría y en orden alfabético, garantizando equidad para todos los emprendimientos estudiantiles.
 
