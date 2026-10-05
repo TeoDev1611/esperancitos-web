@@ -532,10 +532,10 @@ export function buildApiPayloads(options: LoadOptions = {}) {
 
   // --- 5. SERIALIZACIÓN DETERMINISTA ---
   // JSON UTF-8 formateado a 2 espacios para inspección limpia y tamaño reducido
-  const updateJsonStr = JSON.stringify(updatePayload, null, 2) + '\n';
-  const avisosJsonStr = JSON.stringify(avisosPayload, null, 2) + '\n';
-  const negociosJsonStr = JSON.stringify(negociosPayload, null, 2) + '\n';
-  const enlacesJsonStr = JSON.stringify(enlacesPayload, null, 2) + '\n';
+  const updateJsonStr = JSON.stringify(updatePayload, null, 2);
+  const avisosJsonStr = JSON.stringify(avisosPayload, null, 2);
+  const negociosJsonStr = JSON.stringify(negociosPayload, null, 2);
+  const enlacesJsonStr = JSON.stringify(enlacesPayload, null, 2);
 
   function sha256(content: string): string {
     return crypto.createHash('sha256').update(content, 'utf8').digest('hex');
@@ -595,7 +595,7 @@ export function buildApiPayloads(options: LoadOptions = {}) {
     },
   };
 
-  const manifestJsonStr = JSON.stringify(manifestPayload, null, 2) + '\n';
+  const manifestJsonStr = JSON.stringify(manifestPayload, null, 2);
 
   return {
     parsed: {

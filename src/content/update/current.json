@@ -1,22 +1,14 @@
 {
   "id": "current",
-  "latestVersion": "1.0.0",
-  "latestBuild": 4,
+  "latestVersion": "1.1.0",
+  "latestBuild": 5,
   "minSupportedBuild": 1,
-  "publishedAt": "2026-10-03T22:15:00Z",
+  "publishedAt": "2026-10-05T16:02:46Z",
   "notes": [
-    "🪪 Carnet digital inmersivo vertical con foto, datos y QR institucional para garitas.",
-    "🏢 Visualización de aulas en 3 formatos (Conciso, Descriptivo, Híbrido) con 1-Tap Toggle.",
-    "⏰ Horario Banner con indicador 'EN VIVO', tiempo restante y auto-scroll semanal.",
-    "📝 Tareas Moodle con filtros por estado, contador regresivo crítico y adjuntos directos.",
-    "📊 Calculadora oficial ESPE (42/60 pts) con simulador en vivo y alerta de repetición de materia (sin supletorios).",
-    "🗺️ Malla curricular con búsqueda instantánea e inspector visual de prerrequisitos en ámbar.",
-    "⚙️ Ajustes con gestión de almacenamiento offline transparente y marcas de sincronización.",
-    "📳 Micro-interacciones hápticas en navegación y contraste WCAG AAA en OLED.",
-    "📜 Historial académico con acordeón suave por períodos y buscador en vivo.",
-    "📂 Materiales de clase con insignias 'En dispositivo' / 'En la nube' y apertura en 1-Tap.",
-    "🏠 Dashboard proactivo con tarjeta 'Mañana tu primera clase' y badges urgentes de tareas.",
-    "💬 Mensajería Moodle clasificada (Docentes vs Compañeros) y auto-scroll al último mensaje."
+    "🚀 Widgets de pantalla de inicio nativos completos en Kotlin (Android) y Swift (iOS).",
+    "📲 Apertura directa y sin pantalla en blanco de tareas desde notificaciones push.",
+    "📚 Modo 'Vista Moodle' con extracción completa de avisos, foros, guías y tareas.",
+    "⚡ Compartir archivos y documentos por Código QR instantáneo junto al botón de descarga."
   ],
-  "downloadPage": "https://esperancitos.vercel.app/#descargar"
+  "downloadPage": "https://pilas-ec.vercel.app/"
 }

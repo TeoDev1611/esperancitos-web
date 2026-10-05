@@ -1,0 +1,13 @@
+{
+  "latestVersion": "1.1.0",
+  "latestBuild": 5,
+  "minSupportedBuild": 1,
+  "publishedAt": "2026-10-05T16:02:46Z",
+  "notes": [
+    "🚀 Widgets de pantalla de inicio nativos completos en Kotlin (Android) y Swift (iOS).",
+    "📲 Apertura directa y sin pantalla en blanco de tareas desde notificaciones push.",
+    "📚 Modo 'Vista Moodle' con extracción completa de avisos, foros, guías y tareas.",
+    "⚡ Compartir archivos y documentos por Código QR instantáneo junto al botón de descarga."
+  ],
+  "downloadPage": "https://pilas-ec.vercel.app/"
+}

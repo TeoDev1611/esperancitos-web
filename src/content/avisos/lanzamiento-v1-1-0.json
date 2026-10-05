@@ -1,0 +1,15 @@
+{
+  "id": "lanzamiento-v1-1-0",
+  "type": "importante",
+  "title": "🚀 ¡Pilas, ñañ@s! Llegó Pilas! v1.1.0 con Widgets Nativos y Modo Moodle",
+  "body": "¡Ponte pilas con la nueva versión! Widgets completos para tu pantalla de inicio en Android y iOS, apertura directa de tareas desde notificaciones push sin pantallas en blanco, extracción profunda de avisos, foros, guías y tareas en 'Vista Moodle', y compartición instantánea de archivos mediante Código QR.",
+  "campus": ["presencial", "virtual"],
+  "publishedAt": "2026-10-05T16:02:46-05:00",
+  "expiresAt": "2026-12-31T23:59:59-05:00",
+  "pinned": true,
+  "link": {
+    "url": "https://pilas-ec.vercel.app/#descargar",
+    "label": "Descargar v1.1.0"
+  },
+  "minBuild": 1
+}

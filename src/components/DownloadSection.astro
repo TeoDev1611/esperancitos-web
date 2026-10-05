@@ -2,10 +2,10 @@
 // DownloadSection.astro - Centro de descargas con verificación de integridad
 import { SITE } from "../config/site";
 
-const primaryFile = "esperancitos-v1.0.0-arm64-v8a.apk";
-const secondaryFile = "esperancitos-v1.0.0-armeabi-v7a.apk";
-const universalFile = "esperancitos-v1.0.0-universal.apk";
-const x86File = "esperancitos-v1.0.0-x86_64.apk";
+const primaryFile = "esperancitos-v1.1.0-arm64-v8a.apk";
+const secondaryFile = "esperancitos-v1.1.0-armeabi-v7a.apk";
+const universalFile = "esperancitos-v1.1.0-universal.apk";
+const x86File = "esperancitos-v1.1.0-x86_64.apk";
 
 const primarySha = SITE.apkChecksums[primaryFile] ?? "";
 const secondarySha = SITE.apkChecksums[secondaryFile] ?? "";
@@ -72,7 +72,7 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
               width="68"
               height="68"
             />
-            <span class="apk-release-tag">v1.0.0 (Build 4)</span>
+            <span class="apk-release-tag">v1.1.0 (Build 5)</span>
           </div>
 
           <div class="apk-details">
@@ -118,7 +118,7 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
                   ></polygon>
                 </svg>
                 <span
-                  >Pesa <strong>35.8 MB</strong> (Arquitectura `arm64-v8a`)</span
+                  >Pesa <strong>35.9 MB</strong> (Arquitectura `arm64-v8a`)</span
                 >
               </div>
               <div class="spec-pill">
@@ -169,7 +169,7 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
             <div class="btn-text-block">
               <span class="btn-main-label">DESCARGAR AHORA</span>
               <small class="btn-sub-label"
-                >v1.0.0 · ARM64-v8a (35.8 MB) · Descarga directa</small
+                >v1.1.0 · ARM64-v8a (35.9 MB) · Descarga directa</small
               >
             </div>
           </a>
@@ -227,7 +227,7 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
               <path d="M12 18h.01"></path>
             </svg>
             <span>Celular antiguo (ARMv7 32-bit)</span>
-            <span class="arch-size">32.4 MB</span>
+            <span class="arch-size">32.5 MB</span>
           </a>
 
           <a
@@ -254,7 +254,7 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
               ></path>
             </svg>
             <span>Universal (Todo-en-uno)</span>
-            <span class="arch-size">94.2 MB</span>
+            <span class="arch-size">94.5 MB</span>
           </a>
 
           <a
@@ -279,7 +279,7 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
               <line x1="12" y1="17" x2="12" y2="21"></line>
             </svg>
             <span>Emulador / PC (x86_64)</span>
-            <span class="arch-size">38.3 MB</span>
+            <span class="arch-size">38.4 MB</span>
           </a>
         </div>
       </div>
@@ -450,8 +450,8 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
         <div class="release-banner-card card-app">
           <div class="release-header-row">
             <div class="release-badge-group">
-              <span class="badge-app green">NOVEDADES · VERSIÓN 1.0.0</span>
-              <span class="release-build-pill">Build 4 · 03 Octubre 2026</span>
+              <span class="badge-app green">NOVEDADES · VERSIÓN 1.1.0</span>
+              <span class="release-build-pill">Build 5 · 05 Octubre 2026</span>
             </div>
             <span class="release-status-chip"
               >★ Versión Definitiva para el Campus</span
@@ -459,17 +459,57 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
           </div>
 
           <h3 class="release-main-title">
-            🎉 ¡Pilas, ñañ@s! Llegó Pilas! v1.0.0: La versión definitiva para la
-            ESPE
+            🚀 ¡Pilas, ñañ@s! Llegó Pilas! v1.1.0: Widgets Nativos y Modo Moodle
           </h3>
           <p class="release-intro">
             Diseñada por y para politécnicos de la Universidad de las Fuerzas
-            Armadas ESPE. Todo lo que necesitas para tu vida universitaria en un
-            solo lugar, 100% privado, offline y sin servidores intermediarios.
+            Armadas ESPE. Nueva versión con widgets nativos para tu pantalla de inicio,
+            apertura instantánea de tareas desde notificaciones push, modo 'Vista Moodle'
+            completo y compartición de documentos por Código QR.
           </p>
 
           <!-- Lo más destacado en grid neo-brutalista -->
           <div class="release-highlights-grid">
+            <div class="highlight-item">
+              <div class="highlight-icon">🚀</div>
+              <div class="highlight-content">
+                <strong>Widgets Nativos de Pantalla de Inicio</strong>
+                <span
+                  >Widgets completos en Kotlin (Android) y Swift (iOS) con tu horario,
+                  próximas clases y tareas pendientes directo en tu pantalla principal.</span
+                >
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">📲</div>
+              <div class="highlight-content">
+                <strong>Apertura Directa Push</strong>
+                <span
+                  >Abre tareas al instante desde notificaciones push sin pantallas
+                  intermedias ni pantallas en blanco.</span
+                >
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">📚</div>
+              <div class="highlight-content">
+                <strong>Modo 'Vista Moodle'</strong>
+                <span
+                  >Extracción y lectura completa de avisos, foros, guías de práctica
+                  y tareas organizadas por asignatura.</span
+                >
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">⚡</div>
+              <div class="highlight-content">
+                <strong>Compartir por Código QR</strong>
+                <span
+                  >Comparte archivos, documentos y guías en 1-Tap con tus compañeros
+                  mediante código QR instantáneo.</span
+                >
+              </div>
+            </div>
             <div class="highlight-item">
               <div class="highlight-icon">🪪</div>
               <div class="highlight-content">
@@ -501,52 +541,12 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
               </div>
             </div>
             <div class="highlight-item">
-              <div class="highlight-icon">📝</div>
-              <div class="highlight-content">
-                <strong>Entregas Moodle Bajo Control</strong>
-                <span
-                  >Filtros rápidos, cuentas regresivas para entregas críticas y
-                  descarga directa de guías adjuntas.</span
-                >
-              </div>
-            </div>
-            <div class="highlight-item">
               <div class="highlight-icon">📊</div>
               <div class="highlight-content">
                 <strong>Calculadora Ponderada Oficial</strong>
                 <span
                   >Conoce con cuántos puntos pasas según el reglamento oficial
-                  ESPE (33.34% / 33.33% / 33.33%).</span
-                >
-              </div>
-            </div>
-            <div class="highlight-item">
-              <div class="highlight-icon">🗺️</div>
-              <div class="highlight-content">
-                <strong>Malla Curricular Interactiva</strong>
-                <span
-                  >Navega tu carrera, descubre qué materias te desbloquean los
-                  prerrequisitos y mide tu avance.</span
-                >
-              </div>
-            </div>
-            <div class="highlight-item">
-              <div class="highlight-icon">🏠</div>
-              <div class="highlight-content">
-                <strong>Dashboard Proactivo</strong>
-                <span
-                  >Antes de ir a dormir, entérate a qué hora y en qué aula es tu
-                  primera clase de mañana.</span
-                >
-              </div>
-            </div>
-            <div class="highlight-item">
-              <div class="highlight-icon">🛡️</div>
-              <div class="highlight-content">
-                <strong>100% Privado y Offline</strong>
-                <span
-                  >Sin servidores de terceros. Comunicación directa entre tu
-                  celular y la ESPE (Banner y Moodle).</span
+                  ESPE (33.34% / 33.33% / 33.33%) con simulador en vivo.</span
                 >
               </div>
             </div>
@@ -561,7 +561,7 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
                   <tr>
                     <th>Versión Actual</th>
                     <td
-                      ><code>Pilas! v1.0.0</code> (Build 4) · Publicada el 3 de Octubre
+                      ><code>Pilas! v1.1.0</code> (Build 5) · Publicada el 5 de Octubre
                       de 2026</td
                     >
                   </tr>
@@ -608,12 +608,44 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
           <details class="changelog-details card-app">
             <summary class="changelog-summary">
               <span
-                >📋 Ver lista completa de novedades y cambios técnicos (v1.0.0)</span
+                >📋 Ver lista completa de novedades y cambios técnicos (v1.1.0)</span
               >
-              <span class="changelog-badge-count">15 novedades</span>
+              <span class="changelog-badge-count">19 novedades</span>
             </summary>
             <div class="changelog-list-body">
               <ul class="changelog-items">
+                <li>
+                  <span class="change-tag new">Widgets</span>
+                  <div>
+                    <strong>Widgets de Pantalla de Inicio Nativos:</strong> Implementación
+                    nativa completa en Kotlin para Android y Swift para iOS con
+                    actualización automática de próximas clases y pendientes.
+                  </div>
+                </li>
+                <li>
+                  <span class="change-tag perf">Push</span>
+                  <div>
+                    <strong>Apertura Directa de Notificaciones:</strong> Resolución
+                    instantánea del intent de notificación push hacia la vista de tarea
+                    eliminando pantallas en blanco y estados intermedios.
+                  </div>
+                </li>
+                <li>
+                  <span class="change-tag feature">Moodle</span>
+                  <div>
+                    <strong>Modo 'Vista Moodle' Completa:</strong> Extracción profunda
+                    de avisos de aula, foros de discusión, guías de práctica y tareas
+                    con persistencia local.
+                  </div>
+                </li>
+                <li>
+                  <span class="change-tag new">QR</span>
+                  <div>
+                    <strong>Compartir Archivos por Código QR Instantáneo:</strong> Generador
+                    de QR junto a la descarga de documentos para compartir guías y
+                    archivos en 1-Tap con compañeros.
+                  </div>
+                </li>
                 <li>
                   <span class="change-tag new">Comunidad</span>
                   <div>
