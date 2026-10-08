@@ -1,4 +1,4 @@
-# robots.txt — Esperancitos
+# robots.txt — Pilas!
 # Recuerda mantener sincronizado el dominio con src/config/site.ts
 
 User-agent: *
@@ -12,4 +12,4 @@ Disallow: /_astro/
 User-agent: GPTBot
 Allow: /
 
-Sitemap: https://esperancitos.app/sitemap.xml
+Sitemap: https://pilas-ec.vercel.app/sitemap.xml

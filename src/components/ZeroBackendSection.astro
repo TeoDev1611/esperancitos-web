@@ -1,0 +1,342 @@
+---
+// ZeroBackendSection.astro - Arquitectura de Privacidad Radical (Zero-Backend)
+---
+
+<section class="security-section scroll-reveal" id="seguridad">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <div class="sticker-pill" style="background: #FFDB79; margin-bottom: 14px;">
+        🛡️ ZERO-BACKEND · PRIVACIDAD RADICAL
+      </div>
+      <h2>Tus datos en tu teléfono. Cero intermediarios.</h2>
+      <p>
+        Pilas! fue diseñada desde el primer día con una regla de oro: <strong>ninguna máquina nuestra se interpone entre tu teléfono y los servidores oficiales de la ESPE</strong>.
+      </p>
+    </div>
+
+    <div class="security-hero-card reveal-init">
+      <!-- Icono Central Candado Brutalista y Auditoría Local -->
+      <div class="lock-graphic-wrapper">
+        <div class="lock-mascot-row">
+          <img
+            src="/logos/icono_var3_sin_fondo.svg"
+            alt="Mascota Pilas Cuidando tus Datos"
+            class="mascot-img lock-mascot-img"
+            width="200"
+            height="200"
+            loading="lazy"
+          />
+          <div class="lock-mascot-bubble">
+            <span>¡Tus notas son solo tuyas! 🔒</span>
+          </div>
+        </div>
+
+        <div class="lock-status-badge">
+          <span class="lock-dot"></span>
+          <span>100% PRIVADA · EN TU TELÉFONO</span>
+        </div>
+
+        <div class="lock-trust-card">
+          <div class="trust-item">
+            <span class="trust-icon">✓</span>
+            <span>Sin servidores intermedios</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">✓</span>
+            <span>Tus claves no salen de tu celular</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">✓</span>
+            <span>Funciona sin conexión</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">✓</span>
+            <span>Cero analíticas ni rastreo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explicación Sencilla y Humana -->
+      <div class="security-explanation">
+        <h3>¿Por qué tu información está 100% segura?</h3>
+        <p>
+          A diferencia de otras apps que te piden registrarte y guardan tus datos en la nube, <strong>Pilas! no guarda nada fuera de tu teléfono</strong>. La conexión va directamente desde tu celular a las páginas oficiales de la <strong>Universidad de las Fuerzas Armadas ESPE</strong>, sin intermediarios.
+        </p>
+
+        <!-- Grid de 4 Pilares de Seguridad Sin Jargón Técnico -->
+        <div class="security-pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                <path d="M7 7h10v10H7z"></path>
+              </svg>
+            </div>
+            <h4>Tus accesos bajo llave</h4>
+            <p>
+              Tus sesiones se guardan protegidas dentro de la memoria segura de tu propio celular. Nadie más puede verlas ni sacarlas de ahí.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h4>Moodle sin dar tu contraseña</h4>
+            <p>
+              Entras escaneando el código QR oficial de tu perfil del Campus Virtual. Tu contraseña nunca pasa por la aplicación.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <h4>Cero espionaje ni rastreo</h4>
+            <p>
+              No recopilamos analíticas, ni sabemos qué materias tienes ni qué notas sacas. Lo que haces en tu celular se queda en tu celular.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" x2="22" y1="12" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <h4>Todo guardado en tu celular</h4>
+            <p>
+              Tus horarios, aulas y materias quedan guardados en tu teléfono para que los consultes al instante, incluso sin tener señal o internet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .security-section {
+    padding: 90px 0;
+    position: relative;
+    border-top: 2px solid var(--color-border);
+    background: #0E1117;
+  }
+
+  .security-hero-card {
+    background: #161A23;
+    border: 2px solid var(--color-border);
+    border-radius: 16px;
+    padding: 36px;
+    box-shadow: 6px 6px 0px #000000;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  @media (max-width: 860px) {
+    .security-hero-card {
+      grid-template-columns: 1fr;
+      padding: 24px;
+      gap: 28px;
+    }
+  }
+
+  .lock-graphic-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .lock-mascot-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2px;
+  }
+
+  .lock-mascot-img {
+    width: 250px;
+    height: 250px;
+    filter: drop-shadow(3px 3px 0px #000);
+    transition: transform 0.2s ease;
+  }
+
+  .lock-mascot-img:hover {
+    transform: scale(1.08);
+  }
+
+  .lock-mascot-bubble {
+    background: #FFDB79;
+    color: #000;
+    font-size: 0.76rem;
+    font-weight: 800;
+    font-family: var(--font-sans);
+    padding: 5px 12px;
+    border: 2px solid #000;
+    border-radius: 999px;
+    box-shadow: 2px 2px 0px #000;
+    white-space: nowrap;
+  }
+
+  .lock-trust-card {
+    width: 100%;
+    background: #11141C;
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+    text-align: left;
+    box-shadow: 2px 2px 0px #000;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+
+  .trust-icon {
+    color: var(--color-primary);
+    font-weight: 900;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .brutal-lock-box {
+    width: 110px;
+    height: 110px;
+    background: #1E2230;
+    border: 3px solid #000000;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    box-shadow: 4px 4px 0px var(--color-primary-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .brutal-lock-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px var(--color-primary-shadow);
+  }
+
+  .lock-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #000000;
+    color: var(--color-success);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1.5px solid var(--color-success);
+    box-shadow: 2px 2px 0px #000000;
+    letter-spacing: 0.04em;
+  }
+
+  .lock-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-success);
+    box-shadow: 0 0 6px var(--color-success);
+  }
+
+  .security-explanation h3 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin-bottom: 12px;
+  }
+
+  .security-explanation > p {
+    font-size: 1.02rem;
+    color: var(--color-text-body);
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  .security-explanation strong {
+    color: #FFFFFF;
+  }
+
+  .security-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .security-pillars-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .pillar-card {
+    background: #1E2230;
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 3px 3px 0px #000000;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+  }
+
+  .pillar-icon {
+    width: 38px;
+    height: 38px;
+    background: #141720;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-success);
+    margin-bottom: 12px;
+    box-shadow: 2px 2px 0px #000000;
+  }
+
+  .pillar-card h4 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin-bottom: 6px;
+  }
+
+  .pillar-card p {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .pillar-card strong {
+    color: var(--color-text-body);
+  }
+</style>

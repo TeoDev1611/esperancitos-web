@@ -5,12 +5,10 @@
 <section class="features-section scroll-reveal" id="funciones">
   <div class="container">
     <div class="section-header reveal-init">
-      <span class="section-kicker">¡Ponte pilas con tu semestre!</span>
+      <div class="sticker-pill" style="background: #FF3FA4; color: #000; margin-bottom: 14px;">⚡ CON PILAS!, TODO RESUELTO</div>
       <h2>Todo lo que necesitas para tu carrera, en grande</h2>
       <p>
-        Nació de problemas reales en la ESPE: horarios que no abren a las 7 AM,
-        notas al filo de repetir materia y tareas que vencen a medianoche. Pilas! te
-        salva el semestre con interfaces claras que te ahorran tiempo cada día.
+        Horarios inteligentes sin internet, resolución de aulas en campus, alarmas avisandote de tareas y simulación de notas para asegurar tu semestre.
       </p>
     </div>
 
@@ -19,7 +17,7 @@
       <!-- BENTO 1: Malla Curricular Inteligente (PROTAGONISTA - 2 Columnas) -->
       <article class="bento-card bento-hero-span card-app reveal-init">
         <div class="bento-card-header">
-          <div class="bento-icon-wrapper green">
+          <div class="bento-icon-wrapper fuchsia">
             <svg
               width="24"
               height="24"
@@ -39,19 +37,19 @@
             </svg>
           </div>
           <div class="bento-title-group">
-            <span class="badge-app green"
-              >Sin internet · 23 carreras oficiales</span
-            >
-            <h3>
-              ¡Pilas con tu graduación! Malla curricular con proyección en vivo
-            </h3>
+            <div class="bento-title-top-row">
+              <span class="badge-app fuchsia">Sin internet · 23 carreras cargadas</span>
+              <div class="bento-mascot-v3-badge">
+                <img src="/logos/icono_var1_sin_fondo.svg" alt="Pilas Mascota Malla" class="mascot-v3-inline" width="28" height="28" />
+                <span>¡Proyecta tu título! 🎓</span>
+              </div>
+            </div>
+            <h3>¡Pilas con tu graduación! Malla curricular con proyección en vivo</h3>
           </div>
         </div>
 
         <p class="bento-desc">
-          Las 23 carreras oficiales de la ESPE ya vienen cargadas. ¡Ponte pilas!
-          Marca lo aprobado y la app calcula tu fecha estimada de graduación y
-          te alerta en ámbar la ruta crítica de materias que te pueden atrasar.
+            Las 23 carreras de la ESPE ya vienen listas. Marca las materias que vas pasando y la app te dice de una en qué año te gradúas ( aún en desarrollo ) <i> si encuentras bugs avísame socio</i>
         </p>
 
         <!-- Mockup Visual Rico: Dashboard de Avance y Grafo de Materias -->
@@ -69,7 +67,7 @@
             <div class="malla-kpi-card right">
               <span class="kpi-label">AVANCE DE CRÉDITOS</span>
               <div class="kpi-val-group">
-                <span class="kpi-num text-green">44.2%</span>
+                <span class="kpi-num text-fuchsia">44.2%</span>
                 <span class="kpi-sub-fraction">106 / 240</span>
               </div>
               <div class="malla-glow-track">
@@ -137,6 +135,25 @@
               <span class="node-cr">3 CR</span>
             </div>
           </div>
+
+          <!-- Resumen de Nivel y Carrera en Malla -->
+          <div class="malla-level-summary">
+            <div class="malla-stat-pill approved">
+              <span class="malla-stat-dot"></span>
+              <span>24 Aprobadas (106 CR)</span>
+            </div>
+            <div class="malla-stat-pill current">
+              <span class="malla-stat-dot"></span>
+              <span>5 En Curso · 4to Nivel</span>
+            </div>
+            <div class="malla-stat-pill pending">
+              <span class="malla-stat-dot"></span>
+              <span>23 Por Cursar</span>
+            </div>
+            <div class="malla-career-pill">
+              <span>Ing. Mecánica (Sangolquí)</span>
+            </div>
+          </div>
         </div>
 
         <div class="bento-chips-row">
@@ -169,15 +186,19 @@
             </svg>
           </div>
           <div class="bento-title-group">
-            <span class="badge-app amber">Banner ESPE & Aulas 1-Tap</span>
-            <h3>Pilas con el aula exacta: A-110, G-201 o Bloque A</h3>
+            <div class="bento-title-top-row">
+              <span class="badge-app amber">Horario & Aulas en vivo</span>
+              <div class="bento-mascot-v3-badge">
+                <img src="/logos/icono_var1_sin_fondo.svg" alt="Pilas Mascota Aulas" class="mascot-v3-inline" width="28" height="28" />
+                <span>¡Directo a tu aula! 📍</span>
+              </div>
+            </div>
+            <h3>Pilas! con el aula exacta</h3>
           </div>
         </div>
 
         <p class="bento-desc">
-          Alterna entre código conciso, descriptivo o híbrido en 1 toque. ¡Ponte
-          pilas! Tu clase en curso resalta con borde esmeralda, badge [ AHORA ],
-          tiempo restante exacto y auto-scroll semanal directo al día de hoy.
+          ¿No te acuerdas en qué aula te toca hoy? La app te muestra tu clase actual, te dice a qué bloque ir y te avisa cuántos minutos faltan para terminar, directo en tu pantalla y sin abrir el navegador.
         </p>
 
         <!-- Mockup Visual Rico: Widget Flotante estilo Android 14 -->
@@ -204,10 +225,10 @@
                 <span class="widget-nrc-code">NRC 14205</span>
               </div>
               <div class="widget-room-hero">
-                Aula A-204 · Bloque Central (Piso 2)
+                Aula G-201 · Bloque G (Mecánica)
               </div>
               <div class="widget-subject-name">
-                Sistemas Operativos · Modo Híbrido
+                Termodinámica I · Modo Presencial
               </div>
 
               <div class="widget-teams-btn">
@@ -235,6 +256,12 @@
                 </div>
                 <span class="teams-action-arrow">➔</span>
               </div>
+
+              <!-- Siguiente Clase para Llenar y Optimizar Espacio de la Card -->
+              <div class="widget-next-class-bar">
+                <span class="next-class-badge">SIGUIENTE · 11:00 AM</span>
+                <span class="next-class-details">Mecánica de Materiales · Aula G-102 (Bloque G)</span>
+              </div>
             </div>
           </div>
         </div>
@@ -251,7 +278,7 @@
       <!-- BENTO 3: Carnet Digital Inmersivo con Zoom Táctil (1 Columna) -->
       <article class="bento-card card-app reveal-init">
         <div class="bento-card-header">
-          <div class="bento-icon-wrapper green">
+          <div class="bento-icon-wrapper fuchsia">
             <svg
               width="24"
               height="24"
@@ -271,19 +298,17 @@
             </svg>
           </div>
           <div class="bento-title-group">
-            <span class="badge-app green">100% Offline · Zoom Táctil & QR</span>
+            <span class="badge-app fuchsia">100% Offline · Zoom Táctil & QR</span>
             <h3>
-              Pilas en la garita: Carnet digital inmersivo para el guardia y
-              torniquetes
+              Pilas en la entrada: Carnet digital fácil de encontrar para el guardia
             </h3>
           </div>
         </div>
 
         <p class="bento-desc">
-          ¡Pilas, ñañ@s! Entra al campus sin líos: visor a pantalla completa con
-          zoom táctil nítido (InteractiveViewer), sin pantallas intermedias ni
-          textos duplicados. Conmutador de 1-toque para ocultar tu cédula y QR
-          dinámico offline.
+          ¡Pilas, ñañ@s! Entra a la u sin problemas: visor a pantalla completa con
+          zoom táctil nítido, sin pantallas intermedias ni
+          textos duplicados.
         </p>
 
         <!-- Mockup Visual Rico: Carnet Digital Institucional Vertical ESPE -->
@@ -341,13 +366,13 @@
             <div class="carnet-v-data-section">
               <div class="carnet-v-field name-field">
                 <span class="v-label">ESTUDIANTE</span>
-                <span class="v-value student-fullname">SILVA VALLEJO MATEO SEBASTIÁN</span>
+                <span class="v-value student-fullname">UN ESTUDIANTE GUAPO O GUAPA DE LA ESPE</span>
               </div>
 
               <div class="carnet-v-grid-2">
                 <div class="carnet-v-field">
                   <span class="v-label">ID BANNER</span>
-                  <span class="v-value font-mono highlight-green">L00412890</span>
+                  <span class="v-value font-mono highlight-fuchsia">L00412890</span>
                 </div>
                 <div class="carnet-v-field">
                   <span class="v-label">CÉDULA DE IDENTIDAD</span>
@@ -355,21 +380,6 @@
                 </div>
               </div>
 
-              <div class="carnet-v-field career-field">
-                <span class="v-label">CARRERA / DEPARTAMENTO</span>
-                <span class="v-value text-amber">INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN</span>
-              </div>
-
-              <div class="carnet-v-grid-2 blood-insurance">
-                <div class="carnet-v-field">
-                  <span class="v-label">TIPO SANGRE</span>
-                  <span class="v-value font-mono">O POSITIVO (O+)</span>
-                </div>
-                <div class="carnet-v-field">
-                  <span class="v-label">SEGURO DE ACCIDENTES</span>
-                  <span class="v-value text-green font-mono">VIGENTE</span>
-                </div>
-              </div>
             </div>
 
             <!-- 4. Más abajo: Código QR Institucional para garitas y torniquetes -->
@@ -390,7 +400,7 @@
                 </svg>
               </div>
               <div class="carnet-v-qr-meta">
-                <span class="qr-badge-text">ACCESO A GARITAS Y TORNIQUETES</span>
+                <span class="qr-badge-text">ACCESO AL GYM</span>
                 <span class="qr-sub-text">Código QR Dinámico Seguro · 100% Offline</span>
               </div>
             </div>
@@ -461,9 +471,15 @@
             </svg>
           </div>
           <div class="bento-title-group">
-            <span class="badge-app amber"
-              >Reglamento Oficial ESPE (Umbral 42.00 / 60.00 pts)</span
-            >
+            <div class="bento-title-top-row">
+              <span class="badge-app amber"
+                >Reglamento Oficial ESPE (Umbral 42.00 / 60.00 pts)</span
+              >
+              <div class="bento-mascot-v3-badge">
+                <img src="/logos/icono_var3_sin_fondo.svg" alt="Pilas Aprobado Mascota" class="mascot-v3-inline" width="30" height="30" />
+                <span>Promedios & Aprobados (≥ 14.0)</span>
+              </div>
+            </div>
             <h3>¿Pasas o repites materia? Calculadora oficial ESPE</h3>
           </div>
         </div>
@@ -563,6 +579,35 @@
               >
             </div>
           </div>
+
+          <!-- Resumen de Fórmula Reglamentaria ESPE (Desglose Dinámico) -->
+          <div class="calc-formula-summary-card">
+            <div class="formula-rule-pill">
+              <span class="rule-icon">⚖️</span>
+              <span>Reglamento Oficial: Parcial 1 + Parcial 2 + Parcial 3 ≥ 42.00 pts (Sin Supletorios)</span>
+            </div>
+            <div class="formula-pills-row">
+              <div class="f-pill-badge">
+                <span class="f-lbl">PARCIAL 1</span>
+                <span class="f-val text-green" id="f-p1-sum">15.50</span>
+              </div>
+              <span class="f-plus">+</span>
+              <div class="f-pill-badge">
+                <span class="f-lbl">PARCIAL 2</span>
+                <span class="f-val text-green" id="f-p2-sum">14.50</span>
+              </div>
+              <span class="f-plus">+</span>
+              <div class="f-pill-badge target">
+                <span class="f-lbl">PARCIAL 3</span>
+                <span class="f-val text-amber" id="f-p3-sum">12.00</span>
+              </div>
+              <span class="f-eq">=</span>
+              <div class="f-pill-badge total">
+                <span class="f-lbl">TOTAL ACUMULADO</span>
+                <span class="f-val text-green" id="f-total-sum">42.00 / 60</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="bento-chips-row">
@@ -570,14 +615,14 @@
           <span class="chip-app">Umbral de Aprobación: 42.00 Pts</span>
           <span class="chip-app">Sin Supletorios (&lt; 42 Repites)</span>
           <span class="chip-app">Simulador en Vivo</span>
-          <span class="chip-app">Alerta de Jalada</span>
+          <span class="chip-app">Alerta de Peligro</span>
         </div>
       </article>
 
       <!-- BENTO 5: Amigos QR y Horas Libres Comunes (2 Columnas) -->
       <article class="bento-card bento-hero-span card-app reveal-init">
         <div class="bento-card-header">
-          <div class="bento-icon-wrapper green">
+          <div class="bento-icon-wrapper fuchsia">
             <svg
               width="24"
               height="24"
@@ -596,19 +641,16 @@
             </svg>
           </div>
           <div class="bento-title-group">
-            <span class="badge-app green">P2P Gzip · Sin Internet</span>
+            <span class="badge-app fuchsia">P2P Gzip · Sin Internet</span>
             <h3>
               ¡Pilas con las huecas! Coincide con tus panas para almorzar o
-              estudiar
+              estudiar o lokiar.
             </h3>
           </div>
         </div>
 
         <p class="bento-desc">
-          ¡Pilas, ñañ@s! Pasa tu horario escaneando un código QR comprimisssdo
-          de pantalla a cámara, sin internet. Pilas! compara automáticamente los
-          horarios con tus panas y te resalta los huecos libres exactos en
-          común.
+          ¡Pilas, ñañ@s! Pasa tu horario escaneando un código QR de pantalla a cámara, sin internet. Pilas! compara automáticamente los horarios con tus panas y te resalta los huecos libres exactos en común.
         </p>
 
         <!-- Mockup Visual Rico: Comparador de Cronogramas con Bloque Libre Resaltado -->
@@ -671,7 +713,7 @@
               <div class="timeline-slots">
                 <div class="slot-item busy">
                   <span class="slot-hour">07:00 - 09:00</span>
-                  <span class="slot-class">Cálculo Vectorial (A-201)</span>
+                  <span class="slot-class">Termodinámica I (G-201)</span>
                 </div>
                 <div class="slot-item free-match">
                   <span class="slot-hour">10:00 - 12:00</span>
@@ -679,7 +721,7 @@
                 </div>
                 <div class="slot-item busy">
                   <span class="slot-hour">12:00 - 14:00</span>
-                  <span class="slot-class">Física II (Lab B)</span>
+                  <span class="slot-class">Lab de Fluidos (Bloque G)</span>
                 </div>
               </div>
             </div>
@@ -700,7 +742,7 @@
               <div class="timeline-slots">
                 <div class="slot-item busy">
                   <span class="slot-hour">07:00 - 09:00</span>
-                  <span class="slot-class">Programación Avanzada</span>
+                  <span class="slot-class">Dinámica y Mecanismos</span>
                 </div>
                 <div class="slot-item free-match">
                   <span class="slot-hour">10:00 - 12:00</span>
@@ -708,17 +750,21 @@
                 </div>
                 <div class="slot-item busy">
                   <span class="slot-hour">12:00 - 14:00</span>
-                  <span class="slot-class">Estadística Descriptiva</span>
+                  <span class="slot-class">Resistencia de Materiales</span>
                 </div>
               </div>
             </div>
+          </div>
+
+          <!-- Barra Inferior de Recomendación y Hueco Común -->
+          <div class="friends-bottom-action-bar">
+            <span class="p2p-status-pill">✓ Sincronizado sin internet (QR Offline)</span>
           </div>
         </div>
 
         <div class="bento-chips-row">
           <span class="chip-app">Horas Libres con Amigos</span>
-          <span class="chip-app">QR Comprimido Gzip</span>
-          <span class="chip-app">Sin Servidores</span>
+          <span class="chip-app">Sin Internet</span>
           <span class="chip-app">Agenda 3-en-1</span>
         </div>
       </article>
@@ -726,7 +772,7 @@
       <!-- BENTO 6: Moodle con Filtros, Alarmas Nativas & Adjuntos Directos (1 Columna) -->
       <article class="bento-card card-app reveal-init">
         <div class="bento-card-header">
-          <div class="bento-icon-wrapper green">
+          <div class="bento-icon-wrapper fuchsia">
             <svg
               width="24"
               height="24"
@@ -746,10 +792,10 @@
             </svg>
           </div>
           <div class="bento-title-group">
-            <span class="badge-app green"
-              >Filtros Dinámicos · Adjuntos · Alarmas</span
+            <span class="badge-app fuchsia"
+              >Filtros · Adjuntos · Alarmas</span
             >
-            <h3>Entregas Moodle bajo control y alarmas críticas</h3>
+            <h3>Entregas en la plataforma bajo control</h3>
           </div>
         </div>
 
@@ -786,10 +832,10 @@
             </div>
 
             <div class="alarm-task-title">
-              Laboratorio 3 de Sistemas · [ ⚡ Cierra en 2h 14m ]
+              Laboratorio de Mecánica de Fluidos · [ ⚡ Cierra en 2h 14m ]
             </div>
             <div class="alarm-due-pill">
-              Adjunto: [ 📎 Guia_Lab3.pdf ] · Descarga en 1-Tap
+              Adjunto: [ 📎 Guia_Lab_Fluidos.pdf ] · Descarga en 1-Tap
             </div>
 
             <!-- Ecualizador de Audio Visual Animado -->
@@ -843,8 +889,8 @@
               </svg>
             </div>
             <div class="upload-file-info">
-              <span class="upload-filename">informe_lab3_final.pdf</span>
-              <span class="upload-status-text">✓ Verificado con upload.php</span
+              <span class="upload-filename">informe_mecanica_fluidos.pdf</span>
+              <span class="upload-status-text">✓ Verificado en la plataforma</span
               >
             </div>
             <span class="upload-btn-fake">Entregar</span>
@@ -852,7 +898,7 @@
         </div>
 
         <div class="bento-chips-row">
-          <span class="chip-app">Filtros Dinámicos</span>
+          <span class="chip-app">Filtros</span>
           <span class="chip-app">Contador &lt;24h</span>
           <span class="chip-app">Adjuntos en 1-Tap</span>
           <span class="chip-app">Alarma Nativa</span>
@@ -882,7 +928,7 @@
           </div>
           <div class="bento-title-group">
             <span class="badge-app amber"
-              >Persistencia Real · Badges Estado · Wallpaper HD</span
+              >Archivos Reales · Compartir Archivos Offline · Calendario Listo</span
             >
             <h3>
               Materiales de clase en 1-Tap y fondo de pantalla interactivo
@@ -894,8 +940,7 @@
           Descarga sílabos, diapositivas y guías que se quedan guardadas en tu
           teléfono aunque cierres o reinicies la app. Identifica al vuelo qué
           archivos están [ EN DISPOSITIVO ] o [ EN LA NUBE ], y exporta tu
-          horario con zoom InteractiveViewer (0.5x - 3.5x) o calendario iCal
-          (.ics).
+          horario a imagen o a tu calendario preferido o <b>mejor usa el de Pilas :)</b>
         </p>
 
         <!-- Mockup Visual Rico: Visor de Archivos Offline y Preview Wallpaper -->
@@ -905,7 +950,7 @@
             <div class="offline-file-item">
               <span class="file-type-icon pdf">PDF</span>
               <div class="file-text">
-                <span class="file-name">Guia_Lab_Circuitos_P1.pdf</span>
+                <span class="file-name">Guia_Lab_Resistencia_Materiales.pdf</span>
                 <span class="file-size">1.8 MB · Apertura directa en 1-Tap</span
                 >
               </div>
@@ -916,140 +961,71 @@
               <span class="file-type-icon doc">DOC</span>
               <div class="file-text">
                 <span class="file-name"
-                  >Silabo_Oficial_Ecuaciones_2026.docx</span
+                  >Silabo_Oficial_Termodinamica_2026.docx</span
                 >
                 <span class="file-size">840 KB · Disponible para descarga</span>
               </div>
               <span class="file-state-chip cloud">☁ EN LA NUBE</span>
             </div>
+
+            <div class="offline-file-item">
+              <span class="file-type-icon pdf">PDF</span>
+              <div class="file-text">
+                <span class="file-name">Formulario_Tablas_Termodinamicas.pdf</span>
+                <span class="file-size">2.4 MB · Apertura directa en 1-Tap</span>
+              </div>
+              <span class="file-state-chip">✓ EN DISPOSITIVO</span>
+            </div>
+
+            <div class="offline-storage-stat">
+              <span class="storage-dot"></span>
+              <span>Memoria Flash: 5.04 MB en sandbox local · 100% offline</span>
+            </div>
           </div>
 
           <div class="wallpaper-preview-col">
-            <div class="col-kicker-title">FONDO DE PANTALLA & CALENDARIO</div>
+            <div class="col-kicker-title">CALENDARIO EN IMAGEN</div>
             <div class="wallpaper-phone-frame">
               <div class="wp-phone-notch"></div>
               <div class="wp-phone-clock">08:00 AM</div>
               <div class="wp-schedule-table">
                 <div class="wp-sched-row">
                   <span class="wp-day">LUN</span>
-                  <span class="wp-subject">Aula A-204 · Cálculo</span>
+                  <span class="wp-subject">Aula G-201 · Dinámica</span>
                 </div>
                 <div class="wp-sched-row">
                   <span class="wp-day">MAR</span>
-                  <span class="wp-subject">Aula C-110 · Física II</span>
+                  <span class="wp-subject">Aula G-102 · Mecánica Materiales</span>
                 </div>
                 <div class="wp-sched-row">
                   <span class="wp-day">MIE</span>
-                  <span class="wp-subject">LAB-3 · Sistemas</span>
+                  <span class="wp-subject">Lab Fluidos · Mecánica</span>
                 </div>
-              </div>
-              <div class="wp-download-pill">
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                Zoom Interactivo & iCal .ICS
+                <div class="wp-sched-row">
+                  <span class="wp-day">JUE</span>
+                  <span class="wp-subject">Aula G-201 · Mecanismos</span>
+                </div>
+                <div class="wp-sched-row">
+                  <span class="wp-day">VIE</span>
+                  <span class="wp-subject">Aula G-102 · Resistencia</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="bento-chips-row">
-          <span class="chip-app">Persistencia Real Offline</span>
-          <span class="chip-app">Badges Dispositivo / Nube</span>
-          <span class="chip-app">Apertura en 1-Tap</span>
-          <span class="chip-app">Fondo de Pantalla HD</span>
+          <span class="chip-app">Tus Archivos Offline</span>
+          <span class="chip-app">Clarito - Dispositivo / Nube</span>
+          <span class="chip-app">Apertura al toque</span>
+          <span class="chip-app">Imagen de tu calendario</span>
           <span class="chip-app">Calendario .ics</span>
         </div>
       </article>
 
       <!-- BENTO 8: Estabilidad Blindada: WCAG AAA · Deep OLED · Háptica (1 Columna) -->
       <article class="bento-card card-app reveal-init">
-        <div class="bento-card-header">
-          <div class="bento-icon-wrapper green">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-          </div>
-          <div class="bento-title-group">
-            <span class="badge-app green">WCAG AAA · OLED Puro · Háptica</span>
-            <h3>Modo Deep OLED, micro-háptica y 100% privado</h3>
-          </div>
-        </div>
-
-        <p class="bento-desc">
-          Contraste accesible WCAG AAA (&gt;7.0:1) sobre negro puro (#000000)
-          para máxima batería. Feedback háptico preciso con AppHaptics,
-          dashboard con alerta "Mañana tu primera clase" y cero rastreo.
-        </p>
-
-        <!-- Mockup Visual Rico: Panel de Calidad de Software con Instrumentos -->
-        <div class="bento-ui-mockup tech-specs-mockup" aria-hidden="true">
-          <div class="bench-hero-gauge">
-            <div class="gauge-ring-box">
-              <span class="gauge-pct text-green">AAA</span>
-              <span class="gauge-label">WCAG OLED</span>
-            </div>
-            <div class="gauge-meta-text">
-              <strong class="text-white">Contraste Matemático &gt; 7:1</strong>
-              <span>Negro puro #000000 para pantallas AMOLED</span>
-            </div>
-          </div>
-
-          <div class="tech-spec-line">
-            <span class="led-dot green"></span>
-            <div class="spec-label">Respuesta Háptica</div>
-            <strong class="spec-val text-green">AppHaptics Global</strong>
-          </div>
-
-          <div class="tech-spec-line">
-            <span class="led-dot amber"></span>
-            <div class="spec-label">Dashboard Proactivo</div>
-            <strong class="spec-val text-amber">Mañana tu 1ª clase</strong>
-          </div>
-
-          <div class="tech-spec-line">
-            <span class="led-dot blue"></span>
-            <div class="spec-label">Privacidad y Seguridad</div>
-            <strong class="spec-val text-white">Keystore Cifrado</strong>
-          </div>
-
-          <div class="oled-theme-preview-box">
-            <span class="oled-circle-sample"></span>
-            <span class="oled-desc-text"
-              >Neo-Student Brutalism: Slate refinado & Deep OLED puro</span
-            >
-          </div>
-        </div>
-
-        <div class="bento-chips-row">
-          <span class="chip-app">Contraste WCAG AAA</span>
-          <span class="chip-app">Deep OLED (#000000)</span>
-          <span class="chip-app">Micro-háptica Táctil</span>
-          <span class="chip-app">Dashboard Proactivo</span>
-          <span class="chip-app">Cero Servidores Terceros</span>
-        </div>
+        SECCION PARA PONER SOBRE LA COMUNIDAD QUE DESARROLLAMOS DATOS NUEVOS DE LA APP Y FUNCIONES MAS LLAMATIVAS QUE TEMAS Y COLORES
       </article>
     </div>
   </div>
@@ -1196,6 +1172,20 @@
           p3StatusDesc.className = "slider-contrib-text text-error";
         }
       }
+
+      // Actualizar desglose en pills oficiales
+      const fp1 = document.getElementById("f-p1-sum");
+      const fp2 = document.getElementById("f-p2-sum");
+      const fp3 = document.getElementById("f-p3-sum");
+      const fTot = document.getElementById("f-total-sum");
+      if (fp1) fp1.textContent = p1.toFixed(2);
+      if (fp2) fp2.textContent = p2.toFixed(2);
+      if (fp3) fp3.textContent = (neededP3 <= 0 ? 0 : Math.min(20, neededP3)).toFixed(2);
+      if (fTot) {
+        const simTotal = neededP3 > 20 ? (sum2 + 20) : Math.max(42, sum2);
+        fTot.textContent = `${simTotal.toFixed(2)} / 60`;
+        fTot.className = neededP3 > 20 ? "f-val text-error" : "f-val text-green";
+      }
     }
 
     inputP1.addEventListener("input", recalculate);
@@ -1238,11 +1228,11 @@
     border-bottom: 2px solid var(--border-app);
   }
 
-  /* Bento Grid Asimétrico Espacioso */
+  /* Bento Grid Compacto y Optimizado */
   .bento-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    gap: 18px;
   }
 
   /* Tarjeta protagonista en el Bento Grid */
@@ -1253,7 +1243,7 @@
   @media (max-width: 1140px) {
     .bento-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
+      gap: 16px;
     }
     .bento-hero-span {
       grid-column: span 2;
@@ -1262,12 +1252,12 @@
 
   @media (max-width: 760px) {
     .features-section {
-      padding: 70px 0 80px 0;
+      padding: 50px 0 60px 0;
     }
 
     .bento-grid {
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 16px;
     }
 
     .bento-hero-span {
@@ -1275,7 +1265,11 @@
     }
 
     .bento-card {
-      padding: 22px;
+      padding: 18px 14px;
+    }
+
+    .bento-ui-mockup {
+      padding: 12px 10px;
     }
 
     .bento-title-group h3 {
@@ -1287,16 +1281,16 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 32px 30px;
+    padding: 24px 22px;
     background: var(--bg-surface);
     border-radius: var(--radius-lg);
     border: 2px solid var(--border-app);
     position: relative;
     overflow: hidden;
     transition:
-      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 320ms ease,
-      box-shadow 320ms ease;
+      transform 240ms ease,
+      border-color 240ms ease,
+      box-shadow 240ms ease;
   }
 
   /* Rayo de luz superior al pasar el cursor */
@@ -1310,7 +1304,7 @@
     background: linear-gradient(
       90deg,
       transparent,
-      var(--accent-primary),
+      var(--color-primary),
       transparent
     );
     transition: left 0.75s ease;
@@ -1321,30 +1315,30 @@
   }
 
   .bento-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(34, 197, 94, 0.55);
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
     box-shadow:
-      0 20px 42px rgba(0, 0, 0, 0.6),
-      0 0 24px rgba(34, 197, 94, 0.12);
+      0 16px 36px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(255, 63, 164, 0.22);
   }
 
   .bento-card:hover .bento-icon-wrapper {
-    transform: scale(1.08) rotate(-4deg);
+    transform: scale(1.06);
     box-shadow:
       3px 3px 0px #000,
-      0 0 14px rgba(34, 197, 94, 0.45);
+      0 0 14px rgba(255, 63, 164, 0.45);
   }
 
   .bento-card-header {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 14px;
+    gap: 14px;
+    margin-bottom: 12px;
   }
 
   .bento-icon-wrapper {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: var(--radius-md);
     border: 2px solid #000;
     box-shadow: 2px 2px 0px #000;
@@ -1354,9 +1348,10 @@
     flex-shrink: 0;
   }
 
-  .bento-icon-wrapper.green {
-    background: var(--accent-primary);
-    color: var(--on-primary);
+  .bento-icon-wrapper.green,
+  .bento-icon-wrapper.fuchsia {
+    background: var(--color-primary);
+    color: #000000;
   }
 
   .bento-icon-wrapper.amber {
@@ -1368,11 +1363,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
+    gap: 5px;
   }
 
   .bento-title-group h3 {
-    font-size: 1.42rem;
+    font-size: 1.35rem;
     line-height: 1.25;
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -1381,9 +1376,9 @@
 
   .bento-desc {
     color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.55;
-    margin-bottom: 22px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
   }
 
   /* Contenedores Genéricos de Mockups Visuales */
@@ -1391,18 +1386,28 @@
     background: var(--bg-surface-elevated);
     border: 1.5px solid var(--border-app);
     border-radius: var(--radius-md);
-    padding: 18px 20px;
-    margin-bottom: 22px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
     box-shadow: 3px 3px 0px #000;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   /* Colores Globales de Texto */
+  .text-fuchsia {
+    color: var(--color-primary);
+  }
+  .highlight-fuchsia {
+    color: var(--color-primary);
+  }
+  .led-dot.fuchsia {
+    background: var(--color-primary);
+    box-shadow: 0 0 8px var(--color-primary);
+  }
   .text-green {
-    color: var(--accent-primary);
+    color: var(--color-primary);
   }
   .text-amber {
     color: var(--accent-amber);
@@ -1411,12 +1416,42 @@
     color: #fff;
   }
 
+  /* Mini Preview de Siguiente Clase en Bento 2 */
+  .widget-next-class-bar {
+    margin-top: 10px;
+    background: rgba(16, 26, 35, 0.75);
+    border: 1px dashed rgba(255, 255, 255, 0.16);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .next-class-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--accent-amber);
+    letter-spacing: 0.04em;
+  }
+  .next-class-details {
+    font-size: 0.78rem;
+    color: var(--color-text-title);
+    font-weight: 700;
+  }
+
   /* -------------------------------------------------------------
      1. MOCKUP: DASHBOARD DE MALLA CURRICULAR Y RUTA CRÍTICA
      ------------------------------------------------------------- */
   .mockup-malla-board {
     background: linear-gradient(180deg, #101c26 0%, #0a131b 100%);
-    padding: 20px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
   }
 
   .malla-kpi-row {
@@ -1493,8 +1528,8 @@
 
   .malla-glow-bar {
     height: 100%;
-    background: linear-gradient(90deg, #10b981 0%, var(--accent-primary) 100%);
-    box-shadow: 0 0 10px rgba(0, 255, 135, 0.4);
+    background: linear-gradient(90deg, #FF3FA4 0%, #E5147D 100%);
+    box-shadow: 0 0 10px rgba(255, 63, 164, 0.5);
     border-radius: 4px;
   }
 
@@ -1605,6 +1640,60 @@
   }
   .graph-connector.warning {
     background: var(--accent-amber);
+  }
+
+  .malla-level-summary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.12);
+    margin-top: 6px;
+  }
+
+  .malla-stat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    color: var(--text-secondary);
+  }
+
+  .malla-stat-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .malla-stat-pill.approved .malla-stat-dot {
+    background: var(--color-primary);
+    box-shadow: 0 0 6px var(--color-primary);
+  }
+  .malla-stat-pill.current .malla-stat-dot {
+    background: var(--accent-amber);
+    box-shadow: 0 0 6px var(--accent-amber);
+  }
+  .malla-stat-pill.pending .malla-stat-dot {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .malla-career-pill {
+    margin-left: auto;
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   /* -------------------------------------------------------------
@@ -1757,8 +1846,8 @@
   .carnet-vertical-card {
     width: 100%;
     max-width: 280px;
-    background: linear-gradient(180deg, #092015 0%, #0d1720 45%, #080d13 100%);
-    border: 1.5px solid rgba(0, 255, 135, 0.28);
+    background: linear-gradient(180deg, #1c0e18 0%, #10141e 45%, #080d13 100%);
+    border: 1.5px solid rgba(255, 63, 164, 0.35);
     border-radius: 16px;
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05);
     overflow: hidden;
@@ -1768,13 +1857,13 @@
 
   .carnet-vertical-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.75), 0 0 16px rgba(0, 255, 135, 0.2);
-    border-color: rgba(0, 255, 135, 0.45);
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.75), 0 0 16px rgba(255, 63, 164, 0.25);
+    border-color: rgba(255, 63, 164, 0.55);
   }
 
   .carnet-vertical-card.mode-garita-active {
     border-color: var(--accent-primary);
-    box-shadow: 0 0 35px rgba(0, 255, 135, 0.4), 0 16px 40px rgba(0, 0, 0, 0.85);
+    box-shadow: 0 0 35px rgba(255, 63, 164, 0.4), 0 16px 40px rgba(0, 0, 0, 0.85);
   }
 
   .carnet-vertical-card.mode-garita-active .carnet-v-qr-box {
@@ -1783,7 +1872,7 @@
 
   /* 1. Header con Logo de la U */
   .carnet-v-header {
-    background: linear-gradient(180deg, rgba(0, 255, 135, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%);
+    background: linear-gradient(180deg, rgba(255, 63, 164, 0.14) 0%, rgba(0, 0, 0, 0.25) 100%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px 14px 10px;
     text-align: center;
@@ -2054,6 +2143,10 @@
   .calc-interactive-simulator {
     background: linear-gradient(180deg, #111e29 0%, #0a1219 100%);
     padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
   }
 
   .calc-top-header {
@@ -2331,12 +2424,87 @@
     color: #f87171;
   }
 
+  .calc-formula-summary-card {
+    background: rgba(16, 26, 35, 0.85);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .formula-rule-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .formula-pills-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .f-pill-badge {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 70px;
+  }
+
+  .f-pill-badge.target {
+    border-color: rgba(255, 219, 121, 0.4);
+    background: rgba(255, 219, 121, 0.08);
+  }
+
+  .f-pill-badge.total {
+    border-color: rgba(34, 197, 94, 0.4);
+    background: rgba(34, 197, 94, 0.08);
+  }
+
+  .f-lbl {
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  .f-val {
+    font-size: 0.92rem;
+    font-weight: 900;
+    font-family: var(--font-mono);
+    margin-top: 2px;
+  }
+
+  .f-plus, .f-eq {
+    font-weight: 900;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
   /* -------------------------------------------------------------
      5. MOCKUP: CRONOGRAMA DE AMIGOS Y HORAS LIBRES
      ------------------------------------------------------------- */
   .friends-timeline-mockup {
     background: linear-gradient(180deg, #101c26 0%, #0a121a 100%);
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
   }
 
   .friends-match-hero-bar {
@@ -2503,6 +2671,42 @@
     color: var(--accent-primary);
     padding: 2px 6px;
     border-radius: 4px;
+  }
+
+  .friends-bottom-action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: rgba(16, 28, 38, 0.9);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .spot-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+  }
+
+  .spot-hint strong {
+    color: var(--text-primary);
+  }
+
+  .p2p-status-pill {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    background: rgba(0, 255, 135, 0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 255, 135, 0.25);
   }
 
   /* -------------------------------------------------------------
@@ -2703,10 +2907,11 @@
      ------------------------------------------------------------- */
   .files-wallpaper-mockup {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 16px;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 18px;
     background: linear-gradient(180deg, #121e28 0%, #0b131a 100%);
     padding: 18px 20px;
+    align-items: stretch;
   }
 
   @media (max-width: 700px) {
@@ -2772,6 +2977,26 @@
     font-size: 0.64rem;
     font-weight: 800;
     color: var(--accent-primary);
+  }
+
+  .offline-storage-stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.66rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  }
+
+  .storage-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 6px var(--color-primary);
   }
 
   .wallpaper-phone-frame {
@@ -3244,5 +3469,35 @@
     .wave-bar {
       animation: none !important;
     }
+  }
+
+  .bento-title-top-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .bento-mascot-v3-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #00FF87;
+    color: #000000;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 800;
+    padding: 2px 10px;
+    border: 1.5px solid #000000;
+    border-radius: 6px;
+    box-shadow: 2px 2px 0px #000000;
+    letter-spacing: 0.04em;
+  }
+
+  .mascot-v3-inline {
+    width: 26px;
+    height: 26px;
+    filter: drop-shadow(1px 1px 0px #000000);
   }
 </style>

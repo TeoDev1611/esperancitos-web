@@ -1,0 +1,367 @@
+---
+// PainPointsSection.astro - Sección de Dolores del Estudiante ESPE con Mascota Variación 2
+---
+
+<section class="pain-section scroll-reveal" id="problemas">
+  <div id="dolores" style="position: absolute; top: -80px;"></div>
+  <div class="container">
+    <div class="section-header reveal-init">
+      <span class="sticker-pill" style="background: #FFDB79;">¿TE HA PASADO? · PROBLEMAS TÍPICOS DE LA U</span>
+      <h2>Los problemas de siempre en la ESPE, resueltos</h2>
+      <p>
+        Estudiar en la ESPE ya es bastante exigente como para perder tiempo con servidores lentos, cuentas al ojo o tareas olvidadas a medianoche.
+      </p>
+    </div>
+
+    <!-- Layout: Mascota Negación/Alerta + Grid Brutalista de 3 Dolores -->
+    <div class="pain-showcase-layout">
+      <!-- Columna Mascota (Variación 2: Negación / "Algo está mal") -->
+      <div class="pain-mascot-col reveal-init">
+        <div class="pain-mascot-frame">
+          <img
+            src="/logos/icono_var2_sin_fondo.svg"
+            alt="Mascota Pilas Alerta y Preocupación"
+            class="mascot-img pain-mascot-img"
+            width="280"
+            height="280"
+            loading="lazy"
+          />
+          <div class="pain-speech-bubble">
+            <span class="speech-tag">¡CHUTA! 🤦‍♂️</span>
+            <p>¡Otra vez el sistema colgado justo antes de entrar al aula!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid de 3 Tarjetas Brutalistas -->
+      <div class="pain-cards-grid">
+        <!-- Dolor 1: MiESPE Caído -->
+        <article class="pilas-card pain-card reveal-init">
+          <div class="pain-card-header">
+            <span class="pain-badge critical">ERROR 502 · SERVIDORES CAÍDOS</span>
+            <div class="pain-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+          </div>
+          <h3>MiESPE caído justo cuando ibas a ver tu aula</h3>
+          <p>
+            Son las <strong>6:58 AM</strong>, no hay señal en el Bloque G y el portal no responde. No sabes si tu clase es en el Lab de Fluidos o en el G-201 (Bloque G). Con Pilas!, tu horario completo y ubicación de aulas están <strong>100% en tu teléfono</strong>.
+          </p>
+          <div class="pain-solution-tag">
+            <span class="check-dot">✓</span>
+            <span>Resuelto: Horario Banner 9 sin internet</span>
+          </div>
+        </article>
+
+        <!-- Dolor 2: Promedios a Ciegas -->
+        <article class="pilas-card pain-card reveal-init">
+          <div class="pain-card-header">
+            <span class="pain-badge warning">CÁLCULO A CIEGAS · FÓRMULAS ROTAS</span>
+            <div class="pain-icon-box amber">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="16" height="20" x="4" y="2" rx="2"></rect>
+                <line x1="8" x2="16" y1="6" y2="6"></line>
+                <line x1="16" x2="16" y1="14" y2="18"></line>
+                <path d="M16 10h.01"></path>
+                <path d="M12 10h.01"></path>
+                <path d="M8 10h.01"></path>
+                <path d="M12 14h.01"></path>
+                <path d="M8 14h.01"></path>
+                <path d="M12 18h.01"></path>
+                <path d="M8 18h.01"></path>
+              </svg>
+            </div>
+          </div>
+          <h3>No sabes si te da el promedio para aprobar</h3>
+          <p>
+            Haciendo cuentas sufriendo con decimales dudosos sin saber si repites la materia o si la salvas. Nuestro simulador de notas de la ESPE te dice con exactitud cuánto necesitas para alcanzar los <strong>14.0 puntos</strong>.
+          </p>
+          <div class="pain-solution-tag">
+            <span class="check-dot">✓</span>
+            <span>Resuelto: Simulador oficial ESPE (umbral 42/60 pts)</span>
+          </div>
+        </article>
+
+        <!-- Dolor 3: Moodle no te avisó -->
+        <article class="pilas-card pain-card reveal-init">
+          <div class="pain-card-header">
+            <span class="pain-badge alert">SIN NOTIFICACIÓN · 23:59 PM</span>
+            <div class="pain-icon-box coral">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                <line x1="1" x2="23" y1="1" y2="23"></line>
+              </svg>
+            </div>
+          </div>
+          <h3>No te acordaste que la tarea vencía a las 23:59</h3>
+          <p>
+            Si te olvidas y no te hacen acuerdo tus panas generalmente te enteras de la tarea cuando ya cerró la plataforma. Pilas! programa <strong>alarmas sonoras locales</strong> en tu teléfono que te despiertan y alertan antes de que sea tarde.
+          </p>
+          <div class="pain-solution-tag">
+            <span class="check-dot">✓</span>
+            <span>Resuelto: Alarmas locales persistentes</span>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Banner Conector hacia las Características -->
+    <div class="pain-bottom-banner reveal-init">
+      <div class="banner-sticker">⚡ TRANQUILO, ÑAÑO</div>
+      <div class="banner-text">
+        <h3>Con Pilas!, todo esto queda completamente resuelto</h3>
+        <p>Una app nativa, rápida y ligera diseñada por y para la ESPE.</p>
+      </div>
+      <a href="#funciones" class="btn-pilas-primary">
+        <span>Ver todas las funciones</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pain-section {
+    padding: 90px 0 70px 0;
+    position: relative;
+    border-top: 2px solid var(--color-border);
+    background: #12151D;
+  }
+
+  .pain-showcase-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+  @media (max-width: 960px) {
+    .pain-showcase-layout {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+
+  /* Marco de la Mascota */
+  .pain-mascot-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  .pain-mascot-frame {
+    position: relative;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .pain-mascot-img {
+    max-width: 260px;
+    height: auto;
+    filter: drop-shadow(6px 6px 0px #000000);
+  }
+
+  .pain-speech-bubble {
+    background: #FF3D5E;
+    color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    padding: 10px 14px;
+    box-shadow: 4px 4px 0px #000000;
+    margin-top: 12px;
+    text-align: left;
+    max-width: 280px;
+  }
+
+  .speech-tag {
+    display: inline-block;
+    background: #000000;
+    color: #FFDB79;
+    font-size: 0.72rem;
+    font-weight: 900;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .pain-speech-bubble p {
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  /* Tarjetas de Dolores */
+  .pain-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .pain-card {
+    background: #161A23;
+    border: 2px solid var(--color-border);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 4px 4px 0px #000000;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .pain-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+  }
+
+  .pain-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .pain-badge {
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1.5px solid #000000;
+    box-shadow: 2px 2px 0px #000000;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .pain-badge.critical {
+    background: #FF3D5E;
+    color: #FFFFFF;
+  }
+
+  .pain-badge.warning {
+    background: #FFDB79;
+    color: #000000;
+  }
+
+  .pain-badge.alert {
+    background: #FFB4AB;
+    color: #690005;
+  }
+
+  .pain-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 2px solid #000000;
+    background: #2A1018;
+    color: #FF3D5E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 0px #000000;
+  }
+
+  .pain-icon-box.amber {
+    background: #2A1F0D;
+    color: #FFDB79;
+  }
+
+  .pain-icon-box.coral {
+    background: #2A141A;
+    color: #FFB4AB;
+  }
+
+  .pain-card h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin-bottom: 8px;
+  }
+
+  .pain-card p {
+    font-size: 0.95rem;
+    color: var(--color-text-body);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .pain-card p strong {
+    color: #FFFFFF;
+  }
+
+  .pain-solution-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 63, 164, 0.12);
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+
+  .check-dot {
+    font-weight: 900;
+  }
+
+  /* Banner Inferior */
+  .pain-bottom-banner {
+    background: #1A1F2C;
+    border: 2px solid var(--color-primary);
+    border-radius: 14px;
+    padding: 24px 32px;
+    box-shadow: 4px 4px 0px #4A0026;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .banner-sticker {
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: #FFDB79;
+    color: #000000;
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    font-weight: 900;
+    padding: 2px 10px;
+    border: 1.5px solid #000000;
+    border-radius: 6px;
+    box-shadow: 2px 2px 0px #000000;
+    letter-spacing: 0.04em;
+  }
+
+  .banner-text h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin-bottom: 4px;
+  }
+
+  .banner-text p {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .pain-bottom-banner {
+      flex-direction: column;
+      text-align: center;
+      gap: 16px;
+    }
+  }
+</style>

@@ -8,7 +8,7 @@ const hasDeunaLink = DEUNA_LINK_READY && deunaLink.trim().length > 0 && !deunaLi
 
 <dialog id="support-dialog" class="support-native-dialog">
   <div class="modal-card card-app amber-accent">
-    
+
     <div class="modal-top">
       <div class="modal-badge-group">
         <span class="badge-app amber">
@@ -36,42 +36,6 @@ const hasDeunaLink = DEUNA_LINK_READY && deunaLink.trim().length > 0 && !deunaLi
         <span class="modal-qr-hint">Ábrelo con la app de Deuna o con cualquier app de banco del Ecuador</span>
         <p class="modal-voluntary-notice">Aporte voluntario. No es el pago de un servicio y la ESPE no participa.</p>
       </div>
-
-      <!-- Datos de aporte -->
-      <div class="modal-bank-info">
-        {hasDeunaLink && (
-          <a
-            href={deunaLink}
-            class="btn-app btn-app-primary btn-modal-deuna"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Abrir el enlace de aporte en Deuna"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
-            </svg>
-            <span>Aportar con Deuna</span>
-          </a>
-        )}
-
-        <div class="m-bank-row">
-          <span class="m-label">A nombre de:</span>
-          <div class="m-val-group">
-            <span class="m-val">{deunaHolder}</span>
-            <button type="button" class="btn-app-copy" data-copy={deunaHolder}>Copiar</button>
-          </div>
-        </div>
-
-        <p class="modal-voluntary-notice">Aporte voluntario. No es el pago de un servicio y la ESPE no participa.</p>
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      <button type="button" class="btn-app btn-app-surface btn-modal-done" id="dialog-understand-btn">
-        Entendido, ¡muchas gracias!
-      </button>
     </div>
   </div>
 </dialog>

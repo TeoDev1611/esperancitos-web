@@ -18,11 +18,35 @@ const iconPaths: Record<string, string> = {
 <section class="feedback-section scroll-reveal" id="comentarios">
   <div class="container">
     <div class="section-header reveal-init">
-      <span class="section-kicker">Cuéntame qué opinas</span>
+      <div class="sticker-pill" style="background: #FFE500; margin-bottom: 12px;">💬 COMUNIDAD & FEEDBACK</div>
       <h2>¿Algo no funciona o se te ocurre una idea?</h2>
       <p>
-        Esta app se mejora con lo que reportan los estudiantes. Si algo falla, o si se te ocurre algo que le falta, escríbeme: leo todos los mensajes.
+        Esta app se mejora con lo que reportan los estudiantes. Si algo falla o si se te ocurre una función útil, escríbeme: leo y respondo todos los mensajes.
       </p>
+    </div>
+
+    <!-- Tarjeta Brutalista de Contacto Directo Oficial -->
+    <div class="direct-contact-banner card-app reveal-init">
+      <div class="direct-contact-info">
+        <span class="sticker-pill fuchsia" style="margin-bottom: 8px;">SOPORTE DIRECTO</span>
+        <h3>Escríbeme directamente por correo</h3>
+        <p>Para reportes de horarios, errores en mallas o sugerencias:</p>
+        <span class="direct-email-code">teo.hurtado.16@gmail.com</span>
+      </div>
+      <div class="direct-contact-cta">
+        <a
+          href="mailto:teo.hurtado.16@gmail.com?subject=Feedback%20Pilas!%20Web/App"
+          class="btn-pilas-primary direct-btn"
+          aria-label="Enviar correo directo a teo.hurtado.16@gmail.com"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+            <path d="m2 7 10 6 10-6"></path>
+          </svg>
+          <span>Enviar Feedback Directo</span>
+        </a>
+        <span class="direct-subject-hint">Asunto: <code>Feedback Pilas! Web/App</code></span>
+      </div>
     </div>
 
     <div class="feedback-grid">
@@ -79,7 +103,7 @@ const iconPaths: Record<string, string> = {
             <path d="m2 7 10 6 10-6"></path>
           </svg>
           <span>
-            ¿Prefieres escribirme directo? Mándame un correo a <a href={`mailto:${supportEmail}`}>{supportEmail}</a>
+            Correo oficial: <a href="mailto:teo.hurtado.16@gmail.com?subject=Feedback%20Pilas!%20Web/App">teo.hurtado.16@gmail.com</a>
           </span>
         </p>
       )}
@@ -93,6 +117,73 @@ const iconPaths: Record<string, string> = {
     position: relative;
     border-top: 2px solid var(--border-app);
     background: rgba(16, 26, 35, 0.2);
+  }
+
+  .direct-contact-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    background: #1A1F2C;
+    border: 2px solid var(--color-primary);
+    border-radius: 16px;
+    padding: 28px 36px;
+    box-shadow: 4px 4px 0px #4A0026;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .direct-contact-info h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin: 6px 0;
+  }
+
+  .direct-contact-info p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+  }
+
+  .direct-email-code {
+    display: inline-block;
+    background: #000000;
+    color: var(--color-success);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+  }
+
+  .direct-contact-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .direct-btn {
+    white-space: nowrap;
+  }
+
+  .direct-subject-hint {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+  }
+
+  .direct-subject-hint code {
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .direct-contact-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 24px 20px;
+    }
   }
 
   .feedback-grid {
@@ -143,9 +234,9 @@ const iconPaths: Record<string, string> = {
   }
 
   .feedback-card.accent-green .feedback-icon {
-    background: rgba(0, 255, 135, 0.14);
+    background: rgba(255, 63, 164, 0.14);
     color: var(--accent-primary);
-    border-color: rgba(0, 255, 135, 0.45);
+    border-color: rgba(255, 63, 164, 0.45);
   }
 
   .feedback-card.accent-amber .feedback-icon {
@@ -168,7 +259,7 @@ const iconPaths: Record<string, string> = {
   }
 
   .feedback-card:hover .feedback-icon {
-    transform: scale(1.12) rotate(4deg);
+    transform: scale(1.12);
   }
 
   .feedback-card h3 {

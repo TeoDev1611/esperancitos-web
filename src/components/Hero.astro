@@ -11,48 +11,54 @@ import { SITE } from '../config/site';
     <div class="hero-text-col">
       <!-- Badge de Proyecto Estudiantil con Animación Typewriter Ecuatoriana -->
       <div class="hero-badge-row">
-        <span class="badge-app green hero-badge" aria-label="¡Ponte pilas politécnico, ñaño, ñaña, socio, socia, mijin, mija!">
+        <div class="sticker-pill">⚡ ESPE — HECHO POR ESTUDIANTES</div>
+        <span class="badge-app neutral hero-rotator-pill" aria-label="¡Ponte pilas politécnico, ñaño, ñaña, socio, socia, mijin, mija!">
           <span class="pulse-circle"></span>
           <span>¡Ponte pilas, <strong class="badge-rotator-word" id="hero-rotator-word">ñaño</strong><span class="badge-rotator-cursor" aria-hidden="true">|</span>!</span>
         </span>
-        <span class="badge-app neutral">Estudiantes ESPE</span>
       </div>
 
-      <!-- Titular Gigante y Limpio -->
-      <h1 class="hero-headline" id="hero-headline">
-        <span class="hero-line hero-line-1"><span class="highlight-neon">Pilas!</span> • La App Estudiantil</span>
-        <span class="hero-line hero-line-2">Todo-en-uno para la ESPE.</span>
+      <!-- Titular Gigante Oficial ESPE -->
+      <h1 class="hero-title hero-headline" id="hero-headline">
+        <span class="hero-line hero-line-1">¡Ponte pilas, <span class="text-fuchsia">ñaño</span>!</span>
+        <span class="hero-line hero-line-2"><span class="text-fuchsia">Pilas!</span> para la ESPE</span>
+        <span class="hero-line hero-line-3">Tu vida universitaria al día, sin rodeos.</span>
       </h1>
 
-      <!-- Párrafo Descriptivo con Información Completa -->
-      <p class="hero-description">
-        Revisa tu <strong>horario con el aula exacta</strong> de cada clase, consulta tu <strong>malla curricular sin internet</strong> y entra a <strong>Moodle</strong> escaneando un código QR en un segundo. Directo en tu celular y sin publicidad invasiva.
+      <!-- Párrafo Descriptivo Oficial -->
+      <p class="hero-subtitle hero-description">
+        Mira tu <strong>malla curricular</strong> y calcula en qué año te gradúas, revisa tu <strong>horario con el aula exacta</strong> (G-201, Lab de Fluidos) y sincroniza tu <strong>Moodle</strong> con alarmas oportunas. Todo funciona <strong>100% sin internet</strong>, seguro y en tu propio celular.
       </p>
 
-      <!-- Botones de Acción (Descarga Dominante y Apoyo Ámbar) -->
-      <div class="hero-actions-group">
-        <a href={SITE.primaryApkPath} download class="btn-app btn-app-primary btn-hero-cta" id="hero-download-btn" aria-label="Descargar Pilas! para Android">
-          <svg class="hero-download-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
-          <div class="btn-cta-labels">
-            <span class="cta-title">Descargar Pilas!</span>
-            <span class="cta-subtitle">Gratis · {SITE.fileSize} · Android {SITE.minAndroid} o superior</span>
-          </div>
-        </a>
+      <!-- Botones de Acción Brutalistas y Mascota Sticker -->
+      <div class="hero-actions-wrapper">
+        <div class="hero-actions-group">
+          <a href={SITE.primaryApkPath} download class="btn-pilas-primary btn-hero-cta" id="hero-download-btn" aria-label="Descargar Pilas! para Android">
+            <svg class="w-5 h-5 mr-2 hero-dl-icon" width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            <div class="btn-cta-labels">
+              <span class="cta-title">Descargar APK (Directo)</span>
+              <span class="cta-subtitle">Gratis · {SITE.fileSize} · Android {SITE.minAndroid}+</span>
+            </div>
+            <span class="hero-version-tag">v2.2.0</span>
+          </a>
 
-        <button type="button" class="btn-app btn-app-amber btn-hero-support" id="hero-support-btn" data-open-support aria-label="Ayudar a que la app llegue a Google Play">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
-            <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
-            <line x1="6" y1="2" x2="6" y2="4"></line>
-            <line x1="10" y1="2" x2="10" y2="4"></line>
-            <line x1="14" y1="2" x2="14" y2="4"></line>
-          </svg>
-          <span>Ayudar a la app</span>
-        </button>
+          <a href="/#funciones" class="btn-pilas-secondary btn-hero-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Ver Funciones</span>
+          </a>
+        </div>
+
+        <!-- Mascota Variación 1 (Neutro / Enérgico / Bienvenida) -->
+        <div class="hero-mascot-sticker" aria-hidden="true">
+          <img src="/logos/icono_var1_sin_fondo.svg" alt="Pilas Mascota Bienvenida" class="mascot-img hero-mascot-img" width="130" height="130" />
+          <div class="hero-mascot-bubble">
+            <span>¡Pilas ñaño, al día! ⚡</span>
+          </div>
+        </div>
       </div>
 
       <!-- Aviso de Proyecto Independiente Discreto -->
@@ -62,7 +68,7 @@ import { SITE } from '../config/site';
           <line x1="12" y1="8" x2="12" y2="12"></line>
           <line x1="12" y1="16" x2="12.01" y2="16"></line>
         </svg>
-        <span>Proyecto estudiantil independiente · No es una app oficial de la ESPE</span>
+        <span>Proyecto estudiantil independiente · Cero servidores intermedios</span>
       </div>
 
       <!-- Fila Compacta de Chips de Confianza (Sin cajas gigantes) -->
@@ -188,7 +194,7 @@ import { SITE } from '../config/site';
                   </div>
 
                   <div class="class-subject-info">
-                    <h3 class="subject-title">ESTRUCTURAS DE DATOS Y ALGORITMOS</h3>
+                    <h3 class="subject-title">TERMODINÁMICA I</h3>
                     <span class="subject-nrc">NRC: 14205</span>
                   </div>
 
@@ -197,7 +203,7 @@ import { SITE } from '../config/site';
                       <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
                       <circle cx="12" cy="10" r="3"></circle>
                     </svg>
-                    <span class="location-text">Aula A-204 · Bloque A (Sangolquí)</span>
+                    <span class="location-text">Aula G-201 · Bloque G (Mecánica)</span>
                   </div>
 
                   <div class="class-card-actions">
@@ -313,13 +319,13 @@ import { SITE } from '../config/site';
         <!-- Tarjeta 2: Banner 9 SSB con Auto-reintento x2 -->
         <div class="float-wrapper float-wrap-banner">
           <div class="floating-story-card card-banner" id="card-banner">
-            <div class="f-icon-box green">
+            <div class="f-icon-box fuchsia">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
               </svg>
             </div>
             <div class="f-info">
-              <span class="f-title">Aula A-204 · Bloque A</span>
+              <span class="f-title">Aula G-201 · Bloque G</span>
               <div class="banner-retry-status" id="banner-retry-status">
                 <span class="status-pill-retry" id="retry-badge">Intento 2 OK</span>
                 <span class="status-text-retry" id="retry-text">Sincronizado</span>
@@ -337,7 +343,7 @@ import { SITE } from '../config/site';
             </div>
             <div class="f-info">
               <span class="f-title">Login QR Moodle</span>
-              <span class="f-sub green">Sin escribir tu contraseña</span>
+              <span class="f-sub fuchsia">Sin escribir tu contraseña</span>
             </div>
           </div>
         </div>
@@ -376,36 +382,48 @@ import { SITE } from '../config/site';
   }
 
   .hero-container {
-    display: grid;
-    /* La columna visual recibe más ancho que antes (0.85fr -> 0.94fr) porque las
-       tarjetas flotantes necesitan canal real a los lados del teléfono. */
-    grid-template-columns: 1.06fr 0.94fr;
-    gap: 48px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    gap: 40px;
     position: relative;
     z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
-  /* Columna de Texto */
+  /* Columna de Texto Centrada */
   .hero-text-col {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
   }
 
   .hero-badge-row {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
     margin-bottom: 20px;
   }
 
-  /* Titular Gigante estilo Apple (Sin palabras pegadas) */
+  /* Titular Gigante estilo Apple Centrado */
   .hero-headline {
-    font-size: clamp(2.2rem, 3.6vw, 3.6rem);
+    font-size: clamp(2.3rem, 4.4vw, 3.8rem);
     font-weight: 900;
     line-height: 1.16;
     letter-spacing: -0.02em;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .hero-badge-row {
@@ -458,7 +476,7 @@ import { SITE } from '../config/site';
   }
 
   .badge-rotator-cursor {
-    color: var(--accent-emerald);
+    color: var(--color-primary);
     font-weight: 300;
     margin-left: 1px;
     animation: cursor-blink 0.9s steps(2, start) infinite;
@@ -478,15 +496,18 @@ import { SITE } from '../config/site';
   .hero-independent-notice {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     font-size: 0.84rem;
     font-weight: 500;
     line-height: 1.4;
     color: var(--text-tertiary);
-    margin-top: 10px;
-    margin-bottom: 24px;
+    margin-top: 6px;
+    margin-bottom: 28px;
     max-width: 580px;
-    text-align: left;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-independent-notice .notice-inline-icon {
@@ -500,11 +521,14 @@ import { SITE } from '../config/site';
   }
 
   .hero-description {
-    font-size: 1.12rem;
+    font-size: 1.15rem;
     color: var(--text-secondary);
     line-height: 1.65;
-    margin-bottom: 36px;
-    max-width: 580px;
+    margin-bottom: 30px;
+    max-width: 680px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   html.js-anim .hero-description {
@@ -515,13 +539,67 @@ import { SITE } from '../config/site';
     color: var(--text-primary);
   }
 
-  /* Grupo de Acciones */
+  /* Wrapper de Acciones y Mascota Centrados */
+  .hero-actions-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 22px;
+    position: relative;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
   .hero-actions-group {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 16px;
-    margin-bottom: 40px;
+  }
+
+  .hero-mascot-sticker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: float 4s ease-in-out infinite;
+    user-select: none;
+  }
+
+  .hero-mascot-img {
+    width: 84px;
+    height: 84px;
+    filter: drop-shadow(4px 4px 0px #000000);
+    transition: transform 0.2s ease;
+  }
+
+  .hero-mascot-sticker:hover .hero-mascot-img {
+    transform: scale(1.08);
+  }
+
+  .hero-mascot-bubble {
+    background: #FFE500;
+    color: #000000;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 0.78rem;
+    padding: 6px 12px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    box-shadow: 2px 2px 0px #000000;
+    transform: none;
+    white-space: nowrap;
+  }
+
+  .hero-version-tag {
+    background: #000000;
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 900;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin-left: 6px;
   }
 
   html.js-anim .hero-actions-group {
@@ -531,10 +609,20 @@ import { SITE } from '../config/site';
   .btn-hero-cta {
     padding: 13px 26px;
     gap: 14px;
-    box-shadow: var(--shadow-hard), 0 0 16px rgba(0, 255, 135, 0.22);
-    animation: download-pulse 2.8s ease-in-out 2500ms infinite;
+    background-color: var(--color-primary);
+    color: #000000;
+    border: 2px solid #000000;
+    box-shadow: 4px 4px 0px #000000;
     position: relative;
-    overflow: hidden;
+  }
+
+  .btn-hero-cta:hover {
+    background-color: var(--color-primary-hover);
+    color: #FFFFFF;
+  }
+
+  .btn-hero-secondary {
+    padding: 14px 22px;
   }
 
   .btn-hero-cta .hero-download-icon {
@@ -599,18 +687,19 @@ import { SITE } from '../config/site';
   }
 
   .btn-hero-support:hover svg {
-    transform: scale(1.15) rotate(-6deg);
+    transform: scale(1.15);
   }
 
-  /* Fila compacta de Chips con micro-animaciones táctiles */
+  /* Fila compacta de Chips Centrada */
   .hero-features-chips {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
     width: 100%;
-    max-width: 580px;
+    max-width: 920px;
     border-top: 1.5px solid var(--border-app);
     padding-top: 24px;
+    margin: 0 auto;
   }
 
   html.js-anim .hero-features-chips .feature-chip {
@@ -650,8 +739,8 @@ import { SITE } from '../config/site';
   }
 
   .feature-chip:hover .chip-svg {
-    transform: scale(1.18) rotate(4deg);
-    color: #00ff87;
+    transform: scale(1.18);
+    color: var(--color-primary);
   }
 
   .chip-info {
@@ -1209,13 +1298,13 @@ import { SITE } from '../config/site';
   }
 
   @keyframes gentle-bob {
-    0% { transform: translate3d(0, 0, 0) rotate(0deg); }
-    100% { transform: translate3d(0, -10px, 0) rotate(1.1deg); }
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(0, -9px, 0); }
   }
 
   @keyframes gentle-bob-rev {
-    0% { transform: translate3d(0, 0, 0) rotate(0deg); }
-    100% { transform: translate3d(0, -11px, 0) rotate(-1.3deg); }
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(0, -9px, 0); }
   }
 
   @keyframes gentle-bob-plain {
@@ -1223,51 +1312,57 @@ import { SITE } from '../config/site';
     100% { transform: translate3d(0, -8px, 0); }
   }
 
-  /* --- Layout flotante: solo con canal suficiente (>115px por lado) --------- */
-  @media (min-width: 1200px) {
+  /* --- Layout flotante: solo con canal suficiente en escritorio centrado --------- */
+  @media (min-width: 1140px) {
     .container.hero-container {
-      max-width: 1280px;
+      max-width: 1100px;
     }
 
     .hero-device-col {
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
     }
 
     .float-wrapper {
       position: absolute;
     }
 
-    /* El vaivén vive SOLO en el wrapper. Antes estaba repartido entre el wrapper
-       (bob infinito) y la tarjeta (card-spring-in con fill: both), y esa
-       animación con fill-mode se quedaba "congelada" en su fotograma final
-       controlando el transform: el :hover de la tarjeta nunca se veía. */
     .float-wrap-grad {
-      top: 10%;
-      left: -28px;
+      top: 15%;
+      left: -60px;
       animation: gentle-bob 4.2s ease-in-out infinite alternate;
     }
 
     .float-wrap-banner {
-      top: 42%;
-      right: -28px;
+      top: 45%;
+      right: -60px;
       animation: gentle-bob-rev 4.8s ease-in-out infinite alternate;
     }
 
-    /* Centrada abajo: el vaivén en diagonal de las otras dos hacía que esta
-       tarjeta chocara con el teléfono, así que se queda en el eje vertical. */
     .float-wrap-moodle {
       top: auto;
-      bottom: 64px;
-      left: 50%;
-      margin-left: -86px;
+      bottom: 24px;
+      left: -30px;
       animation: gentle-bob-plain 3.9s ease-in-out infinite alternate;
     }
   }
 
-  @media (min-width: 961px) and (max-width: 1199px) {
-    /* El canal es demasiado estrecho para flotar: las tarjetas se reparten en
-       una fila ordenada debajo del teléfono, sin taparlo. */
+  @media (min-width: 961px) and (max-width: 1139px) {
+    .hero-device-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+    }
+
     .float-wrapper {
+      position: static;
       flex: 0 1 auto;
     }
   }
@@ -1344,8 +1439,8 @@ import { SITE } from '../config/site';
     color: var(--accent-amber);
   }
 
-  .f-icon-box.green {
-    background: rgba(0, 255, 135, 0.16);
+  .f-icon-box.fuchsia {
+    background: rgba(255, 63, 164, 0.16);
     color: var(--accent-primary);
   }
 
@@ -1368,7 +1463,7 @@ import { SITE } from '../config/site';
     color: var(--text-muted);
   }
 
-  .f-sub.green {
+  .f-sub.fuchsia {
     color: var(--accent-primary);
   }
 
@@ -1451,69 +1546,80 @@ import { SITE } from '../config/site';
 
   @media (max-width: 960px) {
     .hero-container {
-      grid-template-columns: 1fr;
-      text-align: center;
-      gap: 50px;
+      gap: 36px;
     }
 
-    .hero-text-col {
-      align-items: center;
-    }
-
-    .hero-independent-notice {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero-description {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero-actions-group {
-      justify-content: center;
+    .hero-headline {
+      font-size: clamp(2.1rem, 6.5vw, 2.8rem);
     }
 
     .hero-features-chips {
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 600px;
     }
 
-    /* Una sola columna: no queda canal a los lados, así que las tarjetas ya no
-       pueden flotar. En vez de taparse entre ellas se reparten en fila debajo
-       del teléfono, manteniendo el vaivén para conservar el dinamismo. */
     .hero-device-col {
-      align-content: flex-start;
-      gap: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
     }
 
     .float-wrapper {
-      animation: gentle-bob-plain 4.2s ease-in-out infinite alternate;
+      position: static !important;
+      transform: none !important;
+      animation: none !important;
+    }
+
+    .floating-story-card {
+      width: 100%;
+      max-width: 320px;
+      justify-content: center;
+      white-space: normal;
     }
   }
 
   @media (max-width: 580px) {
     .hero-headline {
-      font-size: 2.25rem;
+      font-size: clamp(1.85rem, 8vw, 2.3rem);
     }
 
     .hero-independent-notice {
-      font-size: 0.88rem;
-      padding: 8px 12px;
+      font-size: 0.8rem;
+      padding: 6px 10px;
     }
 
     .hero-features-chips {
       grid-template-columns: 1fr;
-    }
-
-    .floating-story-card {
-      padding: 7px 10px;
-      gap: 8px;
+      max-width: 100%;
     }
 
     .phone-perspective-stage {
-      width: 290px;
+      width: 100%;
+      max-width: 290px;
+    }
+
+    .hero-actions-wrapper {
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .hero-actions-group {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .btn-hero-cta,
+    .btn-hero-secondary {
+      width: 100%;
+      max-width: 320px;
+      justify-content: center;
+    }
+
+    .hero-mascot-sticker {
+      justify-content: center;
     }
   }
 </style>

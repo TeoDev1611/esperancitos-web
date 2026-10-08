@@ -527,7 +527,7 @@ export function buildApiPayloads(options: LoadOptions = {}) {
         minSupportedBuild: 1,
         publishedAt: now.toISOString(),
         notes: ['Versión inicial estable de Esperancitos'],
-        downloadPage: 'https://esperancitos.app/#descargar',
+        downloadPage: 'https://pilas-ec.vercel.app/#descargar',
       };
 
   // --- 5. SERIALIZACIÓN DETERMINISTA ---

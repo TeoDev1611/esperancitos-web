@@ -1,16 +1,16 @@
 import { z } from 'zod';
 
 // ============================================================================
-// CONTRATO API v1 - COMUNIDAD ESPERANCITOS
+// CONTRATO API v1 - COMUNIDAD PILAS!
 // ============================================================================
-// Base: https://esperancitos.app/api/v1/
+// Base: https://pilas-ec.vercel.app/api/v1/
 // Solo JSON UTF-8, solo HTTPS.
 // Texto plano, sin HTML. IDs estables (slug). Fechas ISO 8601 con offset.
 // Campos desconocidos se ignoran. Entradas inválidas se omiten.
 // Cada JSON <= 200 KB; logos WebP <= 60 KB.
 // ============================================================================
 
-export const API_BASE_URL = 'https://esperancitos.app/api/v1/';
+export const API_BASE_URL = 'https://pilas-ec.vercel.app/api/v1/';
 export const MAX_JSON_SIZE_BYTES = 200 * 1024; // 200 KB
 export const MAX_LOGO_SIZE_BYTES = 60 * 1024;  // 60 KB
 

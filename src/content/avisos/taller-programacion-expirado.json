@@ -1,8 +1,8 @@
 {
-  "id": "taller-programacion-expirado",
+  "id": "taller-mecanica-expirado",
   "type": "evento",
-  "title": "Taller de inducción tecnológica (Finalizado)",
-  "body": "Sesión práctica de bienvenida para estudiantes de primeros niveles.",
+  "title": "Taller de Diseño Mecánico y CNC (Finalizado)",
+  "body": "Sesión práctica en laboratorios y talleres para estudiantes de Ingeniería Mecánica.",
   "publishedAt": "2026-08-01T10:00:00-05:00",
   "expiresAt": "2026-08-15T18:00:00-05:00",
   "pinned": false,

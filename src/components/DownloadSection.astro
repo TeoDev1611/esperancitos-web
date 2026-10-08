@@ -18,7 +18,7 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
     <div class="download-card card-app reveal-init">
       <!-- Encabezado de la Sección -->
       <div class="download-header">
-        <span class="badge-app green"
+        <span class="badge-app fuchsia"
           >¡PONTE PILAS! · DESCARGA GRATUITA · SIN PUBLICIDAD INVASIVA</span
         >
         <h2>Descarga Pilas! para Android</h2>
@@ -66,18 +66,18 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
         <div class="apk-identity">
           <div class="apk-logo-frame">
             <img
-              src="/logo_esperancitos.jpg"
+              src="/logos/icono_logo2.svg"
               alt="Logo de Pilas!"
               class="apk-logo-img"
               width="68"
               height="68"
             />
-            <span class="apk-release-tag">v1.1.0 (Build 5)</span>
+            <span class="apk-release-tag">v2.2.0 (Build 6)</span>
           </div>
 
           <div class="apk-details">
             <div class="apk-title-row">
-              <h3>Descarga Pilas!</h3>
+              <h3>Descarga Pilas! Directo</h3>
               <span class="chip-live">Recomendada (ARM64)</span>
             </div>
 
@@ -174,30 +174,6 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
             </div>
           </a>
         </div>
-      </div>
-
-      <!-- Capturas de la app: es lo que más ayuda a decidir la descarga -->
-      <div class="download-preview-row reveal-init">
-        <figure class="preview-item">
-          <img
-            src="/images/mockup-malla.webp"
-            alt="Pantalla de la malla curricular con el progreso de créditos y el año estimado de graduación"
-            width="640"
-            height="1147"
-            loading="lazy"
-          />
-          <figcaption>Tu malla con cálculo de graduación</figcaption>
-        </figure>
-        <figure class="preview-item">
-          <img
-            src="/images/mockup-horario.webp"
-            alt="Pantalla del horario semanal con el aula y el bloque de cada clase"
-            width="640"
-            height="1147"
-            loading="lazy"
-          />
-          <figcaption>Tu horario con el aula de cada clase</figcaption>
-        </figure>
       </div>
 
       <!-- Variantes Secundarias por Arquitectura -->
@@ -462,7 +438,7 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
             🚀 ¡Pilas, ñañ@s! Llegó Pilas! v1.1.0: Widgets Nativos y Modo Moodle
           </h3>
           <p class="release-intro">
-            Diseñada por y para politécnicos de la Universidad de las Fuerzas
+            Diseñada por y para estudiantes de la Universidad de las Fuerzas
             Armadas ESPE. Nueva versión con widgets nativos para tu pantalla de inicio,
             apertura instantánea de tareas desde notificaciones push, modo 'Vista Moodle'
             completo y compartición de documentos por Código QR.
@@ -524,10 +500,8 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
               <div class="highlight-icon">🏢</div>
               <div class="highlight-content">
                 <strong>Aulas Inteligentes</strong>
-                <span
-                  >Códigos oficiales concisos (A-110, G-201) o con detalle de
-                  piso y bloque con un solo toque.</span
-                >
+                <span>Códigos oficiales concisos (G-201, G-102) o con detalle de
+                  piso y bloque con un solo toque.</span>
               </div>
             </div>
             <div class="highlight-item">
@@ -781,7 +755,59 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
       </div>
     </div>
   </div>
+
+  <!-- Modal Post-Descarga (Mascota Variación 3: Aprobación / Éxito) -->
+  <dialog class="post-download-modal" id="post-download-dialog" aria-labelledby="post-dl-title">
+    <div class="post-dl-card">
+      <button type="button" class="post-dl-close" id="post-dl-close-btn" aria-label="Cerrar ventana">✕</button>
+      <div class="post-dl-mascot-col">
+        <img src="/logos/icono_var3_sin_fondo.svg" alt="Pilas Mascota Éxito" class="mascot-img post-dl-mascot-img" width="130" height="130" />
+      </div>
+      <div class="post-dl-content">
+        <div class="sticker-pill" style="background: #FF3FA4; color: #000; margin-bottom: 8px;">🎉 ¡DESCARGA INICIADA!</div>
+        <h3 id="post-dl-title">¡De una! Tu descarga ha comenzado</h3>
+        <p class="post-dl-desc">
+          El archivo APK se está guardando en tu celular. Sigue estos 3 pasos rápidos para completar la instalación:
+        </p>
+        <ol class="post-dl-steps">
+          <li><strong>Abre el archivo descargado</strong> desde la barra de notificaciones o la carpeta <em>Descargas</em>.</li>
+          <li>Si Android te pide confirmación, pulsa <strong>"Ajustes"</strong> y activa <strong>"Permitir desde esta fuente"</strong> (orígenes desconocidos).</li>
+          <li>Toca <strong>"Instalar"</strong> y listo: ¡Pilas! está en tu teléfono funcionando sin internet.</li>
+        </ol>
+        <div class="post-dl-actions">
+          <button type="button" class="btn-pilas-primary" id="post-dl-ok-btn">
+            <span>¡Pilas, entendido!</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
 </section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dialog = document.getElementById('post-download-dialog');
+    if (!dialog) return;
+
+    // Abrir modal tras hacer clic en descargas
+    document.querySelectorAll('a[download], a[href*=".apk"]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        setTimeout(() => {
+          if (typeof dialog.showModal === 'function' && !dialog.open) {
+            dialog.showModal();
+          }
+        }, 500);
+      });
+    });
+
+    // Cerrar modal
+    document.getElementById('post-dl-close-btn')?.addEventListener('click', () => dialog.close());
+    document.getElementById('post-dl-ok-btn')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  });
+</script>
 
 <style>
   .download-section {
@@ -829,7 +855,7 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     transform: translateY(-4px);
     box-shadow:
       6px 6px 0px #000000,
-      0 12px 30px rgba(0, 255, 135, 0.16);
+      0 12px 30px rgba(255, 63, 164, 0.25);
   }
 
   .apk-identity {
@@ -839,37 +865,40 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
   }
 
   .apk-logo-frame {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     flex-shrink: 0;
   }
 
   .apk-logo-img {
-    width: 68px;
-    height: 68px;
+    width: 72px;
+    height: 72px;
     border-radius: var(--radius-md);
-    border: 2.5px solid #000;
+    border: 2px solid #000;
     box-shadow: 3px 3px 0px #000;
     object-fit: cover;
     transition: transform 240ms var(--ease-spring);
   }
 
   .apk-primary-showcase:hover .apk-logo-img {
-    transform: scale(1.06) rotate(-2deg);
+    transform: scale(1.05) rotate(-2deg);
   }
 
   .apk-release-tag {
-    position: absolute;
-    bottom: -6px;
-    right: -6px;
-    background: var(--accent-primary);
-    color: var(--on-primary);
+    background: var(--color-primary);
+    color: #000000;
     font-family: var(--font-mono);
     font-weight: 800;
-    font-size: 0.65rem;
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid #000;
-    box-shadow: 1px 1px 0px #000;
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1.5px solid #000;
+    box-shadow: 2px 2px 0px #000;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: 0.02em;
   }
 
   .apk-details {
@@ -1456,6 +1485,10 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
       width: 100%;
       justify-content: center;
     }
+
+    .release-highlights-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* Bloque de Novedades y Ficha Técnica v1.0.0 */
@@ -1757,6 +1790,118 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
 
     .specs-table th {
       width: 38%;
+    }
+  }
+
+  /* Modal Post-Descarga Brutalista */
+  .post-download-modal {
+    border: none;
+    background: transparent;
+    padding: 0;
+    max-width: 560px;
+    width: 90%;
+    margin: auto;
+  }
+
+  .post-download-modal::backdrop {
+    background: rgba(16, 19, 25, 0.85);
+    backdrop-filter: blur(10px);
+  }
+
+  .post-dl-card {
+    background: #161A23;
+    border: 3px solid #000000;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 8px 8px 0px #000000;
+    position: relative;
+    color: var(--color-text-body);
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 600px) {
+    .post-dl-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 24px 20px;
+    }
+  }
+
+  .post-dl-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: #1E2230;
+    color: #FAF7F7;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease;
+  }
+
+  .post-dl-close:hover {
+    background: var(--color-primary);
+    color: #000000;
+    transform: translate(-1px, -1px);
+  }
+
+  .post-dl-mascot-col {
+    flex-shrink: 0;
+  }
+
+  .post-dl-mascot-img {
+    filter: drop-shadow(4px 4px 0px #000000);
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .post-dl-content h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin-bottom: 8px;
+  }
+
+  .post-dl-desc {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  .post-dl-steps {
+    margin: 0 0 20px 20px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  .post-dl-steps li {
+    margin-bottom: 8px;
+  }
+
+  .post-dl-steps strong {
+    color: #FFFFFF;
+  }
+
+  .post-dl-actions {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 600px) {
+    .post-dl-actions {
+      justify-content: center;
     }
   }
 </style>

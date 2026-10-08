@@ -1,0 +1,141 @@
+---
+// 404.astro - Página de error 404 con Mascota Variación 2 (Negación / "Algo está mal")
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="404: ¡Chuta, te perdiste! • Pilas!"
+  description="Esta página no existe o fue movida. Regresa al inicio de Pilas! para continuar."
+  noindex={true}
+>
+  <main class="not-found-main">
+    <div class="container not-found-container">
+      <div class="not-found-card pilas-card">
+        <div class="not-found-mascot-wrapper">
+          <img
+            src="/logos/icono_var2_sin_fondo.svg"
+            alt="Pilas Mascota Perdida"
+            class="mascot-img not-found-mascot"
+            width="220"
+            height="220"
+          />
+          <div class="not-found-bubble">
+            <span>¡CHUTA! 404 😵</span>
+          </div>
+        </div>
+
+        <div class="not-found-content">
+          <div class="sticker-pill" style="background: #FF3D5E; color: #FFFFFF; margin-bottom: 12px;">
+            ⚠️ PÁGINA NO ENCONTRADA
+          </div>
+          <h1>¡Chuta, te perdiste! Esta página no existe.</h1>
+          <p>
+            Parece que buscaste un aula que no está en el mapa del campus o el enlace cambió de lugar. No te preocupes, ¡ponte pilas y regresa al inicio!
+          </p>
+
+          <div class="not-found-actions">
+            <a href="/" class="btn-pilas-primary">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              <span>Volver al inicio</span>
+            </a>
+            <a href="/#descargar" class="btn-pilas-secondary">
+              <span>Descargar la App</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .not-found-main {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+  }
+
+  .not-found-container {
+    max-width: 760px;
+  }
+
+  .not-found-card {
+    background: #161A23;
+    border: 3px solid #000000;
+    border-radius: 20px;
+    padding: 48px 40px;
+    box-shadow: 8px 8px 0px #000000;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  @media (max-width: 700px) {
+    .not-found-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 32px 20px;
+      gap: 24px;
+    }
+  }
+
+  .not-found-mascot-wrapper {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .not-found-mascot {
+    width: 200px;
+    height: auto;
+    filter: drop-shadow(6px 6px 0px #000000);
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .not-found-bubble {
+    position: absolute;
+    bottom: -8px;
+    right: 0;
+    background: #FFDB79;
+    color: #000000;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 0.78rem;
+    padding: 4px 10px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    box-shadow: 2px 2px 0px #000000;
+  }
+
+  .not-found-content h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-text-title);
+    margin-bottom: 12px;
+    line-height: 1.15;
+  }
+
+  .not-found-content p {
+    font-size: 1rem;
+    color: var(--color-text-body);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .not-found-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 700px) {
+    .not-found-actions {
+      justify-content: center;
+    }
+  }
+</style>

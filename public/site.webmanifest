@@ -1,15 +1,15 @@
 {
-  "name": "Esperancitos — App Estudiantil ESPE",
-  "short_name": "Esperancitos",
-  "description": "Malla curricular offline, horario semanal con aulas desde Banner 9 SSB y Campus Virtual Moodle vía QR seguro. La app todo-en-uno para estudiantes de la ESPE.",
+  "name": "Pilas! — App Politécnica ESPE",
+  "short_name": "Pilas!",
+  "description": "Tu vida universitaria al día. Sin rodeos. Horarios con aulas, tareas de Moodle y mallas offline para la ESPE.",
   "lang": "es-EC",
   "dir": "ltr",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0B0F14",
-  "theme_color": "#0B0F14",
+  "background_color": "#101319",
+  "theme_color": "#FF3FA4",
   "categories": ["education", "productivity", "utilities"],
   "icons": [
     {

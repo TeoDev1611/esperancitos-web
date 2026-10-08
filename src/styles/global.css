@@ -6,64 +6,95 @@
 
 :root {
   /* ==========================================================================
-     ADN VISUAL DE LA APP (Valores reales extraídos de lib/core/theme)
+     SISTEMA DE DISEÑO OFICIAL: NEO-STUDENT BRUTALISM (FUCSIA POP v2.2.0)
      ========================================================================== */
-  --bg-primary: #0B0F14;
-  --bg-surface: #161A23;
-  --bg-surface-elevated: #1E2230;
-  --bg-surface-container: #272A31;
-  --bg-surface-subtle: #191C22;
 
-  /* Bordes brutalistas */
-  --border-app: #2A3142;
+  /* Marca Primaria */
+  --color-primary: #FF3FA4;
+  --color-primary-hover: #E5147D;
+  --color-primary-extrude: #7A0A45;
+  --color-primary-shadow: #4A0026;
+  --color-primary-coral: #FF3D5E;
+
+  /* Semántica de Estado */
+  --color-success: #00FF87;
+  --color-success-shadow: #059669;
+  --color-warning: #FFDB79;
+  --color-critical: #EF4444;
+
+  /* Superficies Dark Slate */
+  --color-bg-base: #101319;
+  --color-bg-surface: #161A23;
+  --color-bg-elevated: #1E2230;
+  --color-bg-container: #242938;
+
+  /* Bordes & Sombras Brutalistas */
+  --color-border: #2A3142;
+  --color-border-heavy: #000000;
+  --color-border-white: #FFFFFF;
+  --shadow-brutalist: 4px 4px 0px #000000;
+  --shadow-brutalist-sm: 2px 2px 0px #000000;
+  --shadow-brutalist-lg: 6px 6px 0px #000000;
+  --shadow-brutalist-fuchsia: 4px 4px 0px #4A0026;
+  --shadow-brutalist-success: 4px 4px 0px #059669;
+
+  /* Tipografía Oficial */
+  --color-text-title: #FAF7F7;
+  --color-text-body: #E1E2EB;
+  --color-text-muted: #8F9CAE;
+
+  /* Mapeo de Compatibilidad para Componentes Existentes */
+  --bg-primary: var(--color-bg-base);
+  --bg-surface: var(--color-bg-surface);
+  --bg-surface-elevated: var(--color-bg-elevated);
+  --bg-surface-container: var(--color-bg-container);
+  --bg-surface-subtle: #191D28;
+
+  --border-app: var(--color-border);
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-bold: #000000;
-  --border-highlight: #00FF87;
+  --border-bold: var(--color-border-heavy);
+  --border-highlight: var(--color-primary);
 
-  /* Acento Primario: Verde Esmeralda Neón de la App */
-  --accent-primary: #00FF87;
-  --accent-primary-hover: #059669;
-  --accent-primary-dark: #007138;
-  --on-primary: #00210C;
+  --accent-primary: var(--color-primary);
+  --accent-primary-hover: var(--color-primary-hover);
+  --accent-primary-dark: var(--color-primary-extrude);
+  --on-primary: #000000;
 
-  /* Acento Secundario / Alertas / Ruta Crítica: Ámbar Oro Neón */
-  --accent-amber: #FFDB79;
+  --accent-green: var(--color-success);
+  --accent-green-hover: #34D399;
+  --on-green: #00210C;
+
+  --accent-amber: var(--color-warning);
   --accent-amber-hover: #F59E0B;
   --on-amber: #2A1C00;
 
-  /* Alertas críticas */
-  --accent-critical: #FFB4AB;
+  --accent-critical: var(--color-critical);
   --accent-cyan: #38BDF8;
 
-  /* Tipografía y Contrastes (WCAG AA Compliant) */
-  --text-primary: #FFFAF7;   /* Blanco puro nítido */
-  --text-secondary: #E1E2EB; /* Claro y sumamente legible (Contraste > 12:1) */
-  --text-muted: #94A3B8;     /* Gris neutro legible (Contraste > 5.5:1) */
+  --text-primary: var(--color-text-title);
+  --text-secondary: var(--color-text-body);
+  --text-muted: var(--color-text-muted);
 
-  /* Sombras Brutalistas Duras (Box-Shadows sin blur) */
-  --shadow-hard: 4px 4px 0px #000000;
-  --shadow-hard-sm: 2px 2px 0px #000000;
-  --shadow-hard-lg: 6px 6px 0px #000000;
-  --shadow-hard-green: 4px 4px 0px #00FF87;
-  --shadow-hard-green-sm: 2px 2px 0px #00FF87;
-  --shadow-hard-amber: 4px 4px 0px #FFDB79;
+  --shadow-hard: var(--shadow-brutalist);
+  --shadow-hard-sm: var(--shadow-brutalist-sm);
+  --shadow-hard-lg: var(--shadow-brutalist-lg);
+  --shadow-hard-green: var(--shadow-brutalist-success);
+  --shadow-hard-fuchsia: var(--shadow-brutalist-fuchsia);
+  --shadow-hard-amber: 4px 4px 0px #7A4B00;
   --shadow-hard-white: 3px 3px 0px #FFFFFF;
 
-  /* Radios */
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-lg: 14px;
   --radius-pill: 9999px;
 
-  /* Tipografías */
-  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Outfit', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Curvas y Duraciones Estilo Apple */
   --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-enter: 700ms;
-  --duration-hover: 220ms;
+  --duration-hover: 150ms;
   --duration-sink: 100ms;
 }
 
@@ -85,6 +116,7 @@ html {
   line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 body {
@@ -275,35 +307,226 @@ p, span, li, button, a, label {
   box-shadow: 1px 1px 0px #000000;
 }
 
-/* Botón Primario Verde Sólido de la App */
-.btn-app-primary {
-  background: var(--accent-primary);
-  color: var(--on-primary);
-  border-color: #000000;
+/* Botón Primario Fucsia Pop de Pilas! */
+.btn-app-primary,
+.btn-pilas-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.85rem 1.75rem;
+  background-color: #FF3FA4;
+  color: #000000;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-decoration: none;
+  border: 2px solid #000000;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0px #000000;
+  transition: all 0.12s ease;
+  cursor: pointer;
 }
-.btn-app-primary:hover {
+
+.btn-app-primary:hover,
+.btn-pilas-primary:hover {
+  background-color: #E5147D;
+  color: #FFFFFF;
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px #000000;
+}
+
+.btn-app-primary:active,
+.btn-pilas-primary:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px #000000;
+}
+
+/* Botón Secundario Brutalista */
+.btn-pilas-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.85rem 1.75rem;
+  background-color: #1E2230;
+  color: #FAF7F7;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-decoration: none;
+  border: 2px solid #2A3142;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0px #000000;
+  transition: all 0.12s ease;
+  cursor: pointer;
+}
+
+.btn-pilas-secondary:hover {
+  background-color: #272C3E;
+  border-color: #FF3FA4;
+  color: #FFFFFF;
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px #000000;
+}
+
+.btn-pilas-secondary:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px #000000;
+}
+
+/* Botón Verde Éxito */
+.btn-app-green {
+  background: var(--color-success);
+  color: #000000;
+  border-color: #000000;
+  box-shadow: 4px 4px 0px #000000;
+}
+.btn-app-green:hover {
   background: #34D399;
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px #000000;
 }
 
 /* Botón Ámbar (Apoyo / Donaciones) */
 .btn-app-amber {
-  background: var(--accent-amber);
-  color: var(--on-amber);
-  border-color: #000000;
+  background: var(--color-warning);
+  color: #000000;
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
 }
 .btn-app-amber:hover {
   background: #FCD34D;
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px #000000;
 }
 
 /* Botón Superficie / Secundario */
 .btn-app-surface {
-  background: var(--bg-surface-elevated);
-  color: var(--text-primary);
-  border-color: var(--border-app);
+  background: var(--color-bg-elevated);
+  color: var(--color-text-title);
+  border: 2px solid var(--color-border);
+  box-shadow: 4px 4px 0px #000000;
 }
 .btn-app-surface:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px #000000;
+}
+
+/* Tarjeta Brutalista Pilas! */
+.pilas-card {
+  position: relative;
+  background: var(--color-bg-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0px #000000;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pilas-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary);
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.pilas-card-badge {
+  display: inline-block;
+  background: var(--color-success);
+  color: #000000;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border: 1.5px solid #000000;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0px #000000;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Sticker Pill */
+.sticker-pill {
+  display: inline-block;
+  background: #FFE500;
+  color: #000000;
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.9rem;
+  border: 2px solid #000000;
+  border-radius: 999px;
+  box-shadow: 2px 2px 0px #000000;
+  margin-bottom: 1rem;
+  letter-spacing: 0.04em;
+  user-select: none;
+}
+
+.sticker-pill.fuchsia {
+  background: var(--color-primary);
+  color: #000000;
+}
+
+.sticker-pill.green {
+  background: var(--color-success);
+  color: #000000;
+}
+
+/* Tipografía y Acentos */
+.text-fuchsia {
+  color: var(--color-primary);
+  text-shadow: 2px 2px 0px #000000;
+}
+
+/* Mascota con Físicas e Iluminación */
+.mascot-img {
+  width: 100%;
+  max-width: 380px;
+  filter: drop-shadow(6px 6px 0px #000000);
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Deep Links 'pilas://' */
+.link-deep {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.65rem 1.2rem;
+  background: #1E2230;
+  color: #FAF7F7;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border: 2px solid #2A3142;
+  border-radius: 10px;
+  box-shadow: 3px 3px 0px #000000;
+  transition: all 0.12s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link-deep:hover {
+  background: #252B3D;
+  border-color: #FF3FA4;
+  color: #FF3FA4;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.link-deep:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #000000;
 }
 
 /* 3. Etiquetas y Badges Pequeños en MAYÚSCULAS con Letter-Spacing */

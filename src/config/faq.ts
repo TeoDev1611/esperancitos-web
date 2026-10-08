@@ -33,7 +33,7 @@ const raw: Array<Omit<FaqEntry, 'plainAnswer'>> = [
   {
     question: '¿Es una app oficial de la Universidad de las Fuerzas Armadas ESPE?',
     answer:
-      '<strong>No.</strong> Pilas! la hice yo, un estudiante politécnico por mi cuenta y para ayudar a mis compañeros. No es una app oficial ni tiene el respaldo de la universidad.',
+      '<strong>No.</strong> Pilas! la hice yo, un estudiante de Ingeniería Mecánica de la ESPE por mi cuenta y para ayudar a mis compañeros. No es una app oficial ni tiene el respaldo de la universidad.',
   },
   {
     question: '¿Se guardan mis credenciales en algún servidor externo o en la nube?',

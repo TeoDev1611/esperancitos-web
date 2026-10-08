@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import PainPointsSection from '../components/PainPointsSection.astro';
 import Features from '../components/Features.astro';
 import AppScreensShowcase from '../components/AppScreensShowcase.astro';
+import ZeroBackendSection from '../components/ZeroBackendSection.astro';
 import DownloadSection from '../components/DownloadSection.astro';
+import DeepLinksSection from '../components/DeepLinksSection.astro';
 import FeedbackSection from '../components/FeedbackSection.astro';
 import CollaborationSection from '../components/CollaborationSection.astro';
 import SupportSection from '../components/SupportSection.astro';
@@ -11,31 +14,40 @@ import DocsSection from '../components/DocsSection.astro';
 ---
 
 <Layout
-  title="Pilas! • ¡Ponte pilas! La App Politécnica Todo-en-Uno para la ESPE"
-  description="¡Ponte pilas, ñañ@s! Revisa tu horario con aula exacta, tu malla curricular sin internet y conéctate a Moodle escaneando un código QR en un segundo. Descarga gratuita y sin publicidad invasiva."
+  title="Pilas! • Tu vida universitaria al día. Sin rodeos."
+  description="Cliente móvil y ecosistema estudiantil independiente para la comunidad de la ESPE. Horarios con aulas exactas, tareas de Moodle sincronizadas, simulación de notas y 100% offline."
   keywords="Pilas!, app Pilas, ponte pilas, pilas ñañ@s, pilas ñaño, pilas ñaña, mijin, app ESPE gratis, malla curricular sin internet, horario con aulas ESPE, entrar a Moodle con QR, calculadora de notas universitarias Ecuador"
 >
-  <!-- 1. Hero Principal con Mockup Interactivo -->
+  <!-- 1. Hero Principal con Mascota Variación 1 y Mockup Cinético -->
   <Hero />
 
-  <!-- 2. Vistas de la App & Capturas de Pantalla -->
-  <AppScreensShowcase />
+  <!-- 2. Sección de Dolores: ¿Cansado de MiESPE caído? (Mascota Variación 2) -->
+  <PainPointsSection />
 
-  <!-- 3. Todas las Funciones Detalladas -->
+  <!-- 3. Todas las Funciones Detalladas & Simulador de Promedios (Mascota Variación 3) -->
   <Features />
 
-  <!-- 4. Centro Oficial de Descargas (APK Android) -->
+  <!-- 4. Vistas de la App & Capturas de Pantalla -->
+  <AppScreensShowcase />
+
+  <!-- 5. Seguridad & Privacidad Radical: Arquitectura Zero-Backend -->
+  <ZeroBackendSection />
+
+  <!-- 6. Centro Oficial de Descargas (APK Android Directo) -->
   <DownloadSection />
 
-  <!-- 5. Reportes de errores y sugerencias de funciones -->
+  <!-- 7. Integración con la App Móvil: Protocolo de Deep Links pilas:// -->
+  <DeepLinksSection />
+
+  <!-- 8. Reportes de errores, sugerencias de funciones & Contacto Directo -->
   <FeedbackSection />
 
-  <!-- 6. Tablón de avisos: se buscan colaboradores para la versión de iPhone -->
+  <!-- 9. Tablón de avisos: colaboradores para versión de iPhone -->
   <CollaborationSection />
 
-  <!-- 7. Apoyo para publicar en Google Play (Deuna & QR) -->
+  <!-- 10. Apoyo para publicar en Google Play (Deuna & QR) -->
   <SupportSection />
 
-  <!-- 8. Documentación, Guías de Login & FAQ -->
+  <!-- 11. Documentación, Guías de Login & FAQ -->
   <DocsSection />
 </Layout>

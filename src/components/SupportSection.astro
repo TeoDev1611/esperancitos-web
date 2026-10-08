@@ -22,7 +22,7 @@ const hasDeunaLink = DEUNA_LINK_READY && deunaLink.trim().length > 0 && !deunaLi
         <!-- Columna Izquierda: Mensaje + métodos de aporte -->
         <div class="support-text-col reveal-init reveal-left">
           <div class="support-badge-row">
-            <span class="badge-app green">Ningún estudiante paga nada para usarla</span>
+            <span class="badge-app fuchsia">Ningún estudiante paga nada para usarla</span>
           </div>
 
           <h3>En qué se usa tu aporte</h3>
@@ -294,7 +294,7 @@ const hasDeunaLink = DEUNA_LINK_READY && deunaLink.trim().length > 0 && !deunaLi
     overflow: hidden;
     margin-bottom: 14px;
     border-color: var(--accent-primary);
-    box-shadow: var(--shadow-hard-green);
+    box-shadow: 4px 4px 0px #000000;
     transition: transform 260ms var(--ease-spring),
                 box-shadow 260ms var(--ease-apple),
                 border-color 260ms ease;
@@ -302,7 +302,7 @@ const hasDeunaLink = DEUNA_LINK_READY && deunaLink.trim().length > 0 && !deunaLi
 
   .deuna-box:hover {
     transform: translateY(-3px);
-    box-shadow: 6px 6px 0px #000000, 0 8px 24px rgba(0, 255, 135, 0.2);
+    box-shadow: 6px 6px 0px #000000, 0 8px 24px rgba(255, 63, 164, 0.25);
   }
 
   .deuna-box-top {
@@ -496,7 +496,7 @@ const hasDeunaLink = DEUNA_LINK_READY && deunaLink.trim().length > 0 && !deunaLi
   }
 
   .qr-display-card:hover {
-    transform: translateY(-4px) rotate(0.4deg);
+    transform: translateY(-4px);
     box-shadow: 6px 6px 0px #000, 0 8px 24px rgba(255, 219, 121, 0.22);
   }
 

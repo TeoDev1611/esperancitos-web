@@ -10,15 +10,15 @@
 
 export const SITE = {
   /** URL canónica de producción, sin barra final. */
-  url: 'https://esperancitos.app',
+  url: 'https://pilas-ec.vercel.app',
   name: 'Pilas!',
   locale: 'es_EC',
   lang: 'es-EC',
 
   /** Título y descripción por defecto de la home (se indexan tal cual). */
-  title: 'Pilas! • ¡Ponte pilas! La App Politécnica Todo-en-Uno para la ESPE',
+  title: 'Pilas! • Tu vida universitaria al día. Sin rodeos.',
   description:
-    '¡Ponte pilas, ñañ@s! Mira tu malla curricular sin internet, revisa tu horario con el aula exacta de cada clase y entra a tu Moodle escaneando un código QR en un segundo. Descarga gratuita y sin publicidad invasiva.',
+    'La app hecha por y para politécnicos de la ESPE. Tu horario con aula exacta, tareas de Moodle con alarmas, calculadora de notas para pasar el semestre y todo funciona sin internet.',
 
   /** Palabras clave orientadas a búsquedas reales de estudiantes de la ESPE. */
   keywords: [
@@ -30,7 +30,6 @@ export const SITE = {
     'pilas ñaña',
     'mijin',
     'socio',
-    'Esperancitos',
     'app ESPE',
     'malla curricular ESPE',
     'horario ESPE',
@@ -45,19 +44,19 @@ export const SITE = {
     'app universitaria sin internet',
   ].join(', '),
 
-  /** Imagen para Open Graph / Twitter Card. Debe ser 1200x630 apaisada. */
+  /** Imagen para Open Graph / Twitter Card. */
   ogImage: {
-    path: '/images/og-esperancitos.jpg',
+    path: '/logos/icono_logo2.svg',
     width: 1200,
     height: 630,
-    alt: 'Pilas!: ¡Ponte pilas, ñañ@s! Malla curricular, horario con aulas y Moodle por QR para la ESPE',
+    alt: 'Pilas!: Tu vida universitaria al día. Sin rodeos. ESPE',
   },
 
   /** Versión publicada del APK. */
-  version: '1.1.0',
-  build: 5,
-  releaseDate: '2026-10-05',
-  fileSize: '35.9 MB',
+  version: '2.2.0',
+  build: 6,
+  releaseDate: '2026-10-07',
+  fileSize: '36.5 MB',
   minAndroid: '8.0',
 
   /** APK principal de descarga (el que enlazan los CTA). */
@@ -111,7 +110,7 @@ export const SITE = {
 
   /** Autor del proyecto (se usa en los datos estructurados). */
   author: {
-    name: 'Mateo (Dev Esperancitos)',
+    name: 'Mateo (Dev Pilas!)',
     // Perfil de GitHub/red social del autor; vacío = se omite
     url: '',
   },

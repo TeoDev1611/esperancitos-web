@@ -4,7 +4,7 @@
   "title": "¿Tienes un emprendimiento? ¡Pilas, ñañ@s! Súbelo gratis a la app",
   "body": "Apoyamos el comercio estudiantil y local. Si tienes un local o servicio de comida, fotocopias, papelería o transporte cerca de la ESPE, puedes registrarlo en el directorio de Pilas! sin costo alguno.",
   "link": {
-    "url": "https://esperancitos.app/negocios",
+    "url": "https://pilas-ec.vercel.app/negocios",
     "label": "Registrar negocio gratis"
   },
   "campus": ["matriz", "latacunga", "santo-domingo"],

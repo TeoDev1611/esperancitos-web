@@ -6,7 +6,7 @@ export default defineConfig({
   // Dominio de producción: lo usa Astro para `Astro.site`, la URL canónica y
   // todas las etiquetas absolutas de Open Graph. Cámbialo aquí y en
   // src/config/site.ts si algún día migras de dominio.
-  site: 'https://esperancitos.app',
+  site: 'https://pilas-ec.vercel.app',
 
   // El sitio es una sola página; se mantiene estático sin integraciones extra.
   build: {

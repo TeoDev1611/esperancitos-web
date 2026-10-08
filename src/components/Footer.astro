@@ -4,7 +4,7 @@
 
 <footer class="site-footer">
   <div class="container">
-    
+
     <!-- Banner de Apoyo antes del footer -->
     <div class="pre-footer-support-banner card-app amber-accent">
       <div class="pre-footer-text">
@@ -27,15 +27,15 @@
     <!-- Navegación Principal del Footer -->
     <div class="footer-main-grid">
       <div class="footer-brand-col">
-        <div class="footer-brand-row">
-          <img src="/logo_esperancitos.jpg" alt="Logo Pilas!" class="footer-logo-img" width="46" height="46" />
-          <div class="footer-brand-titles">
-            <span class="f-brand-name">PILAS!</span>
-            <span class="f-brand-sub">Gratis · Versión 1.1.0</span>
-          </div>
+        <a href="/" class="footer-brand-row" aria-label="Volver al inicio">
+          <img src="/logos/letras_estilo_fucsia.svg" alt="Pilas! Logo" class="footer-logo-svg" height="44" />
+        </a>
+        <div class="footer-brand-badge">
+          <span class="f-version-badge">v2.2.0 Fucsia Pop</span>
+          <span class="f-status-pill">100% Offline & Open Source</span>
         </div>
         <p class="footer-description">
-          ¡Ponte pilas! La app independiente que reúne todo lo que un estudiante de la ESPE necesita: tu malla, tu horario con aulas y tu Moodle, funcionando incluso sin internet.
+          El cliente móvil y ecosistema estudiantil independiente para la comunidad de la <strong>Universidad de las Fuerzas Armadas ESPE</strong>. Horarios sin internet, resolución de aulas en campus, Moodle por QR y simulación de notas.
         </p>
       </div>
 
@@ -43,26 +43,27 @@
         <!-- Columna 1: Navegación -->
         <div class="footer-link-group">
           <h4>Explorar</h4>
-          <a href="/#funciones">Qué puede hacer</a>
-          <a href="/#vistas">Cómo se ve</a>
-          <a href="/avisos">Avisos de la comunidad</a>
-          <a href="/negocios">Directorio de negocios</a>
-          <a href="/#descargar">Descargar la app</a>
-          <a href="/#docs">Guías y dudas</a>
+          <a href="/#funciones">Características</a>
+          <a href="/#dolores">Dolores resueltos</a>
+          <a href="/#seguridad">Zero-Backend</a>
+          <a href="/#vistas">Mallas & App</a>
+          <a href="/#descargar">Descargar APK</a>
+          <a href="/#docs">Guías & FAQ</a>
         </div>
 
         <!-- Columna 2: Recursos y soporte -->
         <div class="footer-link-group">
-          <h4>Ayuda</h4>
-          <a href="/#descargar">Descargar para Android</a>
+          <h4>Soporte & Contacto</h4>
+          <a href="/#descargar">Descarga Directa Android</a>
+          <a href="mailto:teo.hurtado.16@gmail.com?subject=Feedback%20Pilas!%20Web/App">Enviar Feedback Directo</a>
           <a href="/#comentarios">Reportar un error</a>
-          <a href="/#comentarios">Sugerir una idea</a>
-          <a href="/#apoyar">Ayudar a llegar a Play Store</a>
+          <a href="/#apoyar">Ayudar al proyecto</a>
+          <a href="mailto:teo.hurtado.16@gmail.com">teo.hurtado.16@gmail.com</a>
         </div>
 
         <!-- Columna 3: Comunidad y legal -->
         <div class="footer-link-group">
-          <h4>Comunidad</h4>
+          <h4>Comunidad & Legal</h4>
           <a href="/avisos" class="f-community-info f-feedback-link">Avisos comunitarios</a>
           <a href="/negocios" class="f-community-info f-feedback-link">Directorio de negocios</a>
           <a href="/#colaborar" class="f-community-info f-feedback-link">Colaboradores (iPhone)</a>
@@ -77,17 +78,23 @@
             </svg>
             <span>Ayudar al proyecto</span>
           </a>
-        </div>      </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Aviso Legal de Independencia y Copyright -->
+    <!-- Aviso Legal de Independencia Obligatorio -->
     <div class="footer-legal-area">
-      <p class="legal-disclaimer">
-        <strong>Aviso legal.</strong> Pilas! es un proyecto independiente y no está afiliado a la Universidad de las Fuerzas Armadas ESPE. Los nombres y marcas pertenecen a sus dueños. Se ofrece gratis y "tal cual", sin garantías. La información (horarios, fechas de entrega, notas, malla) puede estar retrasada o ser incorrecta: verifícala siempre en miESPE y en Moodle. Usa únicamente tu propia cuenta; eres responsable de lo que se haga desde ella y de cumplir los reglamentos de la ESPE. La app puede dejar de funcionar si la universidad cambia o restringe sus sistemas. Los aportes son voluntarios y la universidad no participa en ellos.
-      </p>
+      <div class="legal-disclaimer-box">
+        <p class="legal-disclaimer">
+          <strong>Aviso Legal:</strong> <strong>Pilas!</strong> es un proyecto estudiantil independiente y de código abierto desarrollado para la comunidad universitaria de la <strong>Universidad de las Fuerzas Armadas ESPE</strong>.<br />
+          <strong>Pilas! no está afiliada, asociada, autorizada, respaldada ni de ninguna manera oficialmente conectada con la Universidad de las Fuerzas Armadas ESPE, Ellucian Company L.P., Banner, ni Moodle Pty Ltd.</strong><br />
+          Los nombres, marcas y logotipos asociados son marcas registradas de sus respectivos propietarios. La aplicación y este sitio web funcionan bajo una arquitectura de <strong>Cero Servidores Intermedios (Zero-Backend)</strong>: toda la autenticación y sincronización se realiza de forma directa y cifrada entre el dispositivo del usuario y los portales públicos de la institución.<br />
+          Para dudas, reportes técnicos o solicitud de baja: <a href="mailto:teo.hurtado.16@gmail.com" class="legal-email-link">teo.hurtado.16@gmail.com</a>.
+        </p>
+      </div>
 
       <div class="footer-credits-row">
-        <span>Hecho con <span class="footer-heart" role="img" aria-label="amor">❤️</span> en la ESPE · © {new Date().getFullYear()} Pilas! · ¡Ponte pilas, ñañ@s!</span>
+        <span>Hecho con <span class="footer-heart" role="img" aria-label="amor">❤️</span> en la ESPE · © {new Date().getFullYear()} Pilas! · ¡Ponte pilas!</span>
         <a href="/#main-header" class="btn-app btn-app-surface btn-back-top" aria-label="Volver al inicio de la página">
           <span>↑ Arriba</span>
         </a>
@@ -184,39 +191,69 @@
   }
 
   .footer-brand-row {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 14px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    transition: transform 0.15s ease;
+  }
+
+  .footer-brand-row:hover {
+    transform: translateY(-2px);
+  }
+
+  .footer-logo-svg {
+    height: 44px;
+    width: auto;
+    filter: drop-shadow(2px 2px 0px #000000);
+  }
+
+  .footer-brand-badge {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     margin-bottom: 14px;
   }
 
-  .footer-logo-img {
-    width: 46px;
-    height: 46px;
-    border-radius: var(--radius-md);
-    border: 2px solid #000;
-    box-shadow: 2px 2px 0px var(--accent-primary);
-    object-fit: cover;
-  }
-
-  .footer-brand-titles {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.15;
-  }
-
-  .f-brand-name {
-    font-family: var(--font-sans);
-    font-size: 1.3rem;
+  .f-version-badge {
+    display: inline-block;
+    background: var(--color-primary);
+    color: #000000;
+    font-size: 0.72rem;
     font-weight: 900;
-    color: var(--text-primary);
+    padding: 2px 8px;
+    border: 1.5px solid #000000;
+    border-radius: 6px;
+    box-shadow: 2px 2px 0px #000000;
+    letter-spacing: 0.04em;
   }
 
-  .f-brand-sub {
+  .f-status-pill {
+    display: inline-block;
+    background: var(--color-bg-elevated);
+    color: var(--color-success);
     font-size: 0.72rem;
     font-weight: 800;
-    color: var(--accent-primary);
-    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border: 1.5px solid var(--color-border);
+    border-radius: 6px;
+    letter-spacing: 0.03em;
+  }
+
+  .legal-disclaimer-box {
+    background: #141720;
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    box-shadow: 2px 2px 0px #000000;
+  }
+
+  .legal-email-link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 700;
   }
 
   .footer-description {

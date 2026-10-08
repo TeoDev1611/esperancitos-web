@@ -4,7 +4,7 @@
   "title": "Ventana técnica en servicios de consulta",
   "body": "Este fin de semana se realizará mantenimiento preventivo en enlaces de consulta. Las funciones locales de la app seguirán activas sin conexión.",
   "link": {
-    "url": "https://esperancitos.app/#docs",
+    "url": "https://pilas-ec.vercel.app/#docs",
     "label": "Ver guía"
   },
   "campus": ["presencial"],
