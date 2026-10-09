@@ -29,17 +29,34 @@ export interface FeedbackChannel {
   accent: 'green' | 'amber' | 'critical';
   /** Si es true y no hay url, la tarjeta entera se oculta */
   optional?: boolean;
+  /** ID del popup de Tally si abre como modal */
+  tallyId?: string;
 }
+
+/**
+ * Configuración oficial de Tally (Popup y deep-links)
+ */
+export const TALLY_CONFIG = {
+  formId: 'Y5E4ZN',
+  url: 'https://tally.so/r/Y5E4ZN',
+  overlay: '1',
+  emojiText: '👋',
+  emojiAnimation: 'wave',
+  autoClose: '0',
+  popupHash: '#tally-open=Y5E4ZN&tally-overlay=1&tally-emoji-text=👋&tally-emoji-animation=wave&tally-auto-close=0',
+} as const;
 
 export const FEEDBACK_CONFIG = {
   /** Tiempo de respuesta que prometes, en texto libre */
   responseTime: 'Normalmente respondo en 24–48 horas',
+  tally: TALLY_CONFIG,
 
   channels: <FeedbackChannel[]>[
     {
       id: 'bug',
       label: 'Reportar un error',
-      url: '', // <-- PEGA AQUÍ EL ENLACE DE TU FORMULARIO DE ERRORES
+      url: TALLY_CONFIG.url,
+      tallyId: TALLY_CONFIG.formId,
       description: '¿Algo no funciona como debería?',
       hint: 'Cuéntame qué pasó, en qué pantalla y qué celular usas. Si puedes, adjunta una captura de pantalla.',
       icon: 'bug',
@@ -48,7 +65,8 @@ export const FEEDBACK_CONFIG = {
     {
       id: 'feature',
       label: 'Sugerir una idea',
-      url: '', // <-- PEGA AQUÍ EL ENLACE DE TU FORMULARIO DE SUGERENCIAS
+      url: TALLY_CONFIG.url,
+      tallyId: TALLY_CONFIG.formId,
       description: '¿Se te ocurre algo que le falta a la app?',
       hint: 'Ideas de nuevas funciones, cosas que se podrían mejorar o carreras que quieras ver integradas.',
       icon: 'sparkles',
@@ -57,12 +75,13 @@ export const FEEDBACK_CONFIG = {
     {
       id: 'survey',
       label: 'Dejar mi opinión',
-      url: '', // <-- OPCIONAL: encuesta corta de satisfacción
+      url: TALLY_CONFIG.url,
+      tallyId: TALLY_CONFIG.formId,
       description: 'Una encuesta rápida de 1 minuto',
       hint: 'Ayúdame a entender qué es lo que más usas y qué debería mejorar primero en la próxima versión.',
       icon: 'star',
       accent: 'amber',
-      optional: true,
+      optional: false,
     },
   ] as FeedbackChannel[],
 } as const;

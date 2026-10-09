@@ -86,7 +86,12 @@ const raw: Array<Omit<FaqEntry, 'plainAnswer'>> = [
   {
     question: '¿La aplicación seguirá siendo gratis?',
     answer:
-      'Sí. La descarga y las funciones esenciales (horario, aulas, malla y Moodle) siempre serán gratuitas y sin publicidad invasiva. La mantengo activa en mi tiempo libre. Si quieres apoyar al proyecto para cubrir costos de publicación y servidores, puedes aportar de forma voluntaria desde la sección de apoyo.',
+      'Sí. Pilas! es y seguirá siendo 100% gratuita para los estudiantes politécnicos, sin anuncios, cobros ni suscripciones.',
+  },
+  {
+    question: '¿Pilas! es de código abierto (open source)?',
+    answer:
+      '<strong>No.</strong> Pilas! es un proyecto de <strong>código privado y propietario</strong>, pero <strong>100% gratuito para todos los estudiantes de la ESPE</strong>. El código fuente no es de código abierto con el fin de resguardar la seguridad, estabilidad e integridad de las conexiones directas con los sistemas institucionales (Banner y Moodle). Tus datos y credenciales nunca salen de tu propio teléfono.',
   },
   {
     question: '¿Hay versión para iPhone?',

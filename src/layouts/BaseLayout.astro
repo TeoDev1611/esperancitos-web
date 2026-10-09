@@ -265,6 +265,11 @@ const jsonLdData = includeAppSchema
         }
       }
     </style>
+
+    <!-- ===================================================================
+         TALLY POPUP WIDGET (Formularios interactivos de errores y sugerencias)
+         =================================================================== -->
+    <script async src="https://tally.so/widgets/embed.js"></script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
@@ -287,18 +292,25 @@ const jsonLdData = includeAppSchema
         const rawHref = anchor.getAttribute('href');
         if (!rawHref) return;
 
+        // Si es un disparador de hash de Tally (#tally-open=...), no interferir
+        if (rawHref.includes('tally-open')) return;
+
         const hash = rawHref.startsWith('/#') ? rawHref.slice(1) : rawHref;
         if (hash.length < 2) return;
 
         anchor.addEventListener('click', function (e) {
-          const target = document.querySelector(hash);
-          // Si la sección no está en esta página, se deja navegar normalmente
-          if (!target) return;
+          try {
+            const target = document.querySelector(hash);
+            // Si la sección no está en esta página, se deja navegar normalmente
+            if (!target) return;
 
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Se conserva la ruta actual: en la home queda "/#seccion"
-          history.pushState(null, '', `${location.pathname}${hash}`);
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Se conserva la ruta actual: en la home queda "/#seccion"
+            history.pushState(null, '', `${location.pathname}${hash}`);
+          } catch {
+            // Ignorar selectores que no sean válidos para querySelector
+          }
         });
       });
 

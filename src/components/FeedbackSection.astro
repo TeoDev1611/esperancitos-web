@@ -1,6 +1,6 @@
 ---
 // FeedbackSection.astro - Reporte de bugs, sugerencias de funciones y contacto
-import { FEEDBACK_CONFIG, enabledChannels } from '../config/feedback';
+import { FEEDBACK_CONFIG, enabledChannels, TALLY_CONFIG } from '../config/feedback';
 import { SITE } from '../config/site';
 
 const channels = enabledChannels();
@@ -25,33 +25,45 @@ const iconPaths: Record<string, string> = {
       </p>
     </div>
 
-    <!-- Tarjeta Brutalista de Contacto Directo Oficial -->
+    <!-- Tarjeta Brutalista de Contacto Directo y Formulario Tally -->
     <div class="direct-contact-banner card-app reveal-init">
       <div class="direct-contact-info">
         <span class="sticker-pill fuchsia" style="margin-bottom: 8px;">SOPORTE DIRECTO</span>
-        <h3>Escríbeme directamente por correo</h3>
-        <p>Para reportes de horarios, errores en mallas o sugerencias:</p>
-        <span class="direct-email-code">teo.hurtado.16@gmail.com</span>
+        <h3>Formulario oficial o contacto directo</h3>
+        <p>Abre el formulario interactivo en un toque o escribe directamente al correo:</p>
+        <span class="direct-email-code">{supportEmail}</span>
       </div>
       <div class="direct-contact-cta">
-        <a
-          href="mailto:teo.hurtado.16@gmail.com?subject=Feedback%20Pilas!%20Web/App"
+        <button
+          type="button"
           class="btn-pilas-primary direct-btn"
-          aria-label="Enviar correo directo a teo.hurtado.16@gmail.com"
+          data-tally-open={TALLY_CONFIG.formId}
+          data-tally-overlay={TALLY_CONFIG.overlay}
+          data-tally-emoji-text={TALLY_CONFIG.emojiText}
+          data-tally-emoji-animation={TALLY_CONFIG.emojiAnimation}
+          data-tally-auto-close={TALLY_CONFIG.autoClose}
+          aria-label="Abrir formulario web de reporte y sugerencias en ventana emergente"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-            <path d="m2 7 10 6 10-6"></path>
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
           </svg>
-          <span>Enviar Feedback Directo</span>
+          <span>Abrir Formulario de Soporte</span>
+        </button>
+        <a
+          href={`mailto:${supportEmail}?subject=Feedback%20Pilas!%20Web/App`}
+          class="direct-mail-fallback-link"
+          aria-label={`O enviar correo directo a ${supportEmail}`}
+        >
+          O escribe a <code>{supportEmail}</code>
         </a>
-        <span class="direct-subject-hint">Asunto: <code>Feedback Pilas! Web/App</code></span>
       </div>
     </div>
 
     <div class="feedback-grid">
       {channels.map((channel) => {
         const hasUrl = channel.url.trim().length > 0;
+        const tallyId = channel.tallyId || TALLY_CONFIG.formId;
+        const tallyHash = `#tally-open=${tallyId}&tally-overlay=${TALLY_CONFIG.overlay}&tally-emoji-text=${TALLY_CONFIG.emojiText}&tally-emoji-animation=${TALLY_CONFIG.emojiAnimation}&tally-auto-close=${TALLY_CONFIG.autoClose}`;
         return (
           <article class:list={['feedback-card', 'card-app', `accent-${channel.accent}`, 'reveal-init']}>
             <div class="feedback-icon" aria-hidden="true">
@@ -63,11 +75,14 @@ const iconPaths: Record<string, string> = {
 
             {hasUrl ? (
               <a
-                href={channel.url}
+                href={tallyHash}
                 class="btn-app feedback-btn"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${channel.label} (abre un formulario externo en una pestaña nueva)`}
+                data-tally-open={tallyId}
+                data-tally-overlay={TALLY_CONFIG.overlay}
+                data-tally-emoji-text={TALLY_CONFIG.emojiText}
+                data-tally-emoji-animation={TALLY_CONFIG.emojiAnimation}
+                data-tally-auto-close={TALLY_CONFIG.autoClose}
+                aria-label={`${channel.label} (abre el formulario emergente de Tally)`}
               >
                 <span>{channel.label}</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -107,6 +122,15 @@ const iconPaths: Record<string, string> = {
           </span>
         </p>
       )}
+
+      <p class="feedback-meta">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+        <span>
+          Canal oficial: <a href="https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 700;">WhatsApp Pilas! (Noticias y Avisos)</a>
+        </span>
+      </p>
     </div>
   </div>
 </section>
@@ -176,6 +200,25 @@ const iconPaths: Record<string, string> = {
 
   .direct-subject-hint code {
     color: var(--color-primary);
+  }
+
+  .direct-mail-fallback-link {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 180ms ease;
+    margin-top: 4px;
+  }
+
+  .direct-mail-fallback-link:hover {
+    color: #FF3FA4;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .direct-mail-fallback-link code {
+    color: #FF3FA4;
+    font-family: 'JetBrains Mono', monospace;
   }
 
   @media (max-width: 768px) {

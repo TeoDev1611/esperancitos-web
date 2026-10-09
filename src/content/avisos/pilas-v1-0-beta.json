@@ -1,0 +1,15 @@
+{
+  "id": "pilas-v1-0-beta",
+  "type": "importante",
+  "title": "🚀 ¡Pilas! v1.0 Beta ya disponible para la comunidad ESPE",
+  "body": "¡Ponte pilas! Todo tu semestre universitario bajo control: horario inteligente con aulas, tareas de Moodle con alarmas, carnet digital para garitas y acceso, widgets de pantalla de inicio y avisos de campus. 100% gratis para estudiantes, sin conexión y con privacidad total.",
+  "campus": ["presencial", "virtual"],
+  "publishedAt": "2026-10-09T12:00:00-05:00",
+  "expiresAt": "2026-12-31T23:59:59-05:00",
+  "pinned": true,
+  "link": {
+    "url": "https://pilas-ec.vercel.app/#descargar",
+    "label": "Descargar v1.0 Beta"
+  },
+  "minBuild": 1
+}

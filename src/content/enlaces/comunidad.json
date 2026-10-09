@@ -4,6 +4,13 @@
   "order": 4,
   "items": [
     {
+      "id": "canal-whatsapp-pilas",
+      "title": "Canal de WhatsApp Pilas!",
+      "url": "https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g",
+      "description": "Noticias, actualizaciones, información del campus y comunicados oficiales",
+      "updatedAt": "2026-10-09T17:00:00-05:00"
+    },
+    {
       "id": "subir-negocio-gratis",
       "title": "Subir mi negocio a Pilas!",
       "url": "https://pilas-ec.vercel.app/negocios",

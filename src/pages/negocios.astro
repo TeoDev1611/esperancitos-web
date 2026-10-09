@@ -27,6 +27,13 @@ const categoryLabels: Record<string, { label: string; icon: string }> = {
 };
 
 const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
+const mailtoSubject = encodeURIComponent('Postulación de Negocio - Directorio Pilas!');
+const mailtoBody = encodeURIComponent(
+  '¡Hola Mateo!\n\nQuisiera registrar mi local o emprendimiento en el directorio gratuito de Pilas!:\n\n• Nombre del negocio: \n• Categoría (comida, copias, papeleria, transporte, vivienda, salud, servicios, otros): \n• Descripción breve (qué ofreces): \n• Dirección y Zona (ej. Frente a Puerta 1 ESPE, Av. Gral. Rumiñahui): \n• Horarios de atención: \n• Teléfono / WhatsApp de contacto: \n• Instagram o enlace web (opcional): \n\n¡Gracias!'
+);
+const postularUrl = hasFormUrl
+  ? NEGOCIOS_FORM_URL
+  : `mailto:${COMUNIDAD_REPORTE_EMAIL}?subject=${mailtoSubject}&body=${mailtoBody}`;
 ---
 
 <BaseLayout
@@ -46,29 +53,30 @@ const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
       <header class="page-header reveal-init">
         <div class="header-split">
           <div>
-            <span class="section-kicker">Comunidad Pilas!</span>
+            <div class="header-kicker-row">
+              <span class="section-kicker">Comunidad Pilas!</span>
+              <span class="badge-app green">✨ 100% Gratuito</span>
+            </div>
             <h1>Directorio de Negocios y Servicios</h1>
             <p class="page-lead">
-              Servicios locales, copias, papelerías, alimentación y hospedaje recomendados por y para estudiantes.
+              Fotocopias, comida, papelerías, transporte y residencias estudiantiles recomendadas para toda la comunidad de la ESPE.
             </p>
           </div>
 
-          {hasFormUrl && (
-            <div class="postular-cta-wrap">
-              <a
-                href={NEGOCIOS_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-app btn-app-primary btn-postular"
-              >
-                <span>¿Tienes un negocio? Postula</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-              </a>
-            </div>
-          )}
+          <div class="postular-cta-wrap">
+            <a
+              href={postularUrl}
+              target={hasFormUrl ? '_blank' : undefined}
+              rel={hasFormUrl ? 'noopener noreferrer' : undefined}
+              class="btn-app btn-app-primary btn-postular"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>¿Tienes un negocio? Postula Gratis</span>
+            </a>
+          </div>
         </div>
 
         <!-- AVISO LEGAL OBLIGATORIO SEGÚN CONTRATO -->
@@ -87,82 +95,201 @@ const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
           </p>
         </div>
 
-        <!-- BARRA DE BÚSQUEDA Y FILTROS -->
-        <div class="controls-wrapper card-app">
-          <div class="search-box">
-            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input
-              type="search"
-              id="negocios-search"
-              placeholder="Buscar por nombre, zona o descripción..."
-              aria-label="Buscar negocios"
-              autocomplete="off"
-            />
-            <button type="button" id="clear-search-btn" class="clear-btn" aria-label="Limpiar búsqueda" style="display: none;">
-              ✕
-            </button>
-          </div>
+        {negocios.length > 0 && (
+          <div class="controls-wrapper card-app">
+            <div class="search-box">
+              <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input
+                type="search"
+                id="negocios-search"
+                placeholder="Buscar por nombre, zona o descripción..."
+                aria-label="Buscar negocios"
+                autocomplete="off"
+              />
+              <button type="button" id="clear-search-btn" class="clear-btn" aria-label="Limpiar búsqueda" style="display: none;">
+                ✕
+              </button>
+            </div>
 
-          <div class="categories-filter" role="tablist" aria-label="Filtrar por categoría">
-            <button
-              type="button"
-              class="cat-chip active"
-              data-cat="todas"
-              role="tab"
-              aria-selected="true"
-            >
-              <span>{categoryLabels.todas.icon}</span>
-              <span>{categoryLabels.todas.label}</span>
-            </button>
-            {NEGOCIO_CATEGORIES.map((cat) => {
-              const conf = categoryLabels[cat] || { label: cat, icon: '🏷️' };
-              return (
-                <button
-                  type="button"
-                  class="cat-chip"
-                  data-cat={cat}
-                  role="tab"
-                  aria-selected="false"
-                >
-                  <span>{conf.icon}</span>
-                  <span>{conf.label}</span>
-                </button>
-              );
-            })}
+            <div class="categories-filter" role="tablist" aria-label="Filtrar por categoría">
+              <button
+                type="button"
+                class="cat-chip active"
+                data-cat="todas"
+                role="tab"
+                aria-selected="true"
+              >
+                <span>{categoryLabels.todas.icon}</span>
+                <span>{categoryLabels.todas.label}</span>
+              </button>
+              {NEGOCIO_CATEGORIES.map((cat) => {
+                const conf = categoryLabels[cat] || { label: cat, icon: '🏷️' };
+                return (
+                  <button
+                    type="button"
+                    class="cat-chip"
+                    data-cat={cat}
+                    role="tab"
+                    aria-selected="false"
+                  >
+                    <span>{conf.icon}</span>
+                    <span>{conf.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </header>
 
-      <!-- Contador dinámico de resultados -->
-      <div class="results-meta" id="results-counter" aria-live="polite">
-        Mostrando <strong id="visible-count">{negocios.length}</strong> de <strong>{negocios.length}</strong> negocios registrados
-      </div>
-
-      <!-- LISTADO DE NEGOCIOS -->
+      <!-- LISTADO DE NEGOCIOS O ESTADO VACÍO RICO -->
       {negocios.length === 0 ? (
-        <div class="empty-state card-app reveal-init">
-          <div class="empty-icon-wrap" aria-hidden="true">
-            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-            </svg>
+        <div class="empty-state-hub card-app reveal-init">
+          <div class="empty-hero-section">
+            <div class="empty-icon-pill-wrap" aria-hidden="true">
+              <div class="empty-icon-circle">
+                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"></path>
+                  <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                  <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"></path>
+                  <path d="M2 7h20"></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="empty-hero-content">
+              <div class="sticker-pill empty-sticker">🚀 ¡SÉ EL PRIMERO EN APARECER!</div>
+              <h2 class="empty-hub-title">¡Ups! Aún no hay negocios registrados en el directorio</h2>
+              <p class="empty-hub-lead">
+                Estamos estrenando la <strong>versión oficial final v1.0.0</strong> de Pilas! y abrimos este directorio limpio para que los mejores locales de los alrededores de la ESPE y los emprendimientos politécnicos se den a conocer. <strong>¡El registro es y siempre será 100% gratuito!</strong>
+              </p>
+            </div>
           </div>
-          <h3>Aún no hay negocios listados en el directorio</h3>
-          <p>
-            Los listados son 100% gratuitos y abiertos a la comunidad politécnica.
-            Si eres dueño o conoces un negocio cercano a la ESPE, postúlalo para que aparezca aquí y en la app.
-          </p>
-          {hasFormUrl && (
-            <a href={NEGOCIOS_FORM_URL} target="_blank" rel="noopener noreferrer" class="btn-app btn-app-primary">
-              <span>Postular un negocio</span>
+
+          <!-- VENTAJAS / POR QUÉ REGISTRARTE -->
+          <div class="hub-reasons-title-row">
+            <span class="hub-kicker">¿POR QUÉ FORMAR PARTE DEL DIRECTORIO PILAS?</span>
+            <h3>Ventajas exclusivas para tu negocio o emprendimiento</h3>
+          </div>
+
+          <div class="hub-benefits-grid">
+            <div class="hub-benefit-card">
+              <div class="hub-benefit-icon green">💸</div>
+              <div class="hub-benefit-body">
+                <h4>100% Gratuito de por vida</h4>
+                <p>Cero costos de inscripción y cero comisiones sobre lo que vendas. Una plataforma colaborativa para dinamizar la economía de la comunidad.</p>
+              </div>
+            </div>
+
+            <div class="hub-benefit-card">
+              <div class="hub-benefit-icon fuchsia">📱</div>
+              <div class="hub-benefit-body">
+                <h4>Visible en la App y en la Web</h4>
+                <p>Llega a miles de politécnicos en sus teléfonos (Android e iOS) cuando busquen dónde imprimir, almorzar o comprar materiales cerca del campus.</p>
+              </div>
+            </div>
+
+            <div class="hub-benefit-card">
+              <div class="hub-benefit-icon amber">⚡</div>
+              <div class="hub-benefit-body">
+                <h4>Contacto Directo sin Intermediarios</h4>
+                <p>Los estudiantes te contactarán directamente a tu WhatsApp, te llamarán o te seguirán en Instagram con un solo toque.</p>
+              </div>
+            </div>
+
+            <div class="hub-benefit-card">
+              <div class="hub-benefit-icon cyan">📍</div>
+              <div class="hub-benefit-body">
+                <h4>Ubicación Exacta por Zonas ESPE</h4>
+                <p>Frente a Puerta 1, Puerta 2, Santa Clara o sedes. Los estudiantes sabrán exactamente cómo llegar a tu local y tus horarios de atención.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CATEGORÍAS ABIERTAS -->
+          <div class="hub-categories-box">
+            <div class="hub-cat-header">
+              <span class="cat-box-icon">🎯</span>
+              <strong>Buscamos todo tipo de negocios y servicios cerca de la ESPE:</strong>
+            </div>
+            <div class="hub-tags-cloud">
+              <span class="hub-tag">🖨️ Fotocopiadoras, Ploteo y Anillados</span>
+              <span class="hub-tag">🍲 Restaurantes, Almuerzos y Cafeterías</span>
+              <span class="hub-tag">📐 Papelerías y Artículos de Dibujo</span>
+              <span class="hub-tag">🚌 Rutas de Transporte Universitario</span>
+              <span class="hub-tag">🏠 Alquiler de Cuartos y Residencias</span>
+              <span class="hub-tag">🩺 Consultorios Médicos, Dentales y Ópticas</span>
+              <span class="hub-tag">⚡ Asesorías Académicas y Clases Particulares</span>
+              <span class="hub-tag">📦 Emprendimientos Estudiantiles</span>
+            </div>
+          </div>
+
+          <!-- PASOS PARA POSTULAR -->
+          <div class="hub-steps-container">
+            <span class="steps-title">¿Cómo postular? Solo 3 pasos rápidos:</span>
+            <div class="steps-row">
+              <div class="step-card">
+                <div class="step-badge">1</div>
+                <strong>Envía la Información</strong>
+                <p>Nombre del local, categoría, dirección o zona, horario y datos de contacto de tu negocio.</p>
+              </div>
+              <div class="step-card">
+                <div class="step-badge">2</div>
+                <strong>Revisión Comunitaria</strong>
+                <p>Validamos que los datos sean auténticos para proteger y guiar a los estudiantes de la ESPE.</p>
+              </div>
+              <div class="step-card">
+                <div class="step-badge">3</div>
+                <strong>¡Aparece en Pilas!</strong>
+                <p>Se publica en este directorio web y se sincroniza en la app de toda la comunidad politécnica.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOTONES DE ACCIÓN PRINCIPALES -->
+          <div class="hub-actions-bar">
+            <a
+              href={postularUrl}
+              target={hasFormUrl ? '_blank' : undefined}
+              rel={hasFormUrl ? 'noopener noreferrer' : undefined}
+              class="btn-app btn-app-primary btn-hub-cta"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Postular mi Negocio o Emprendimiento Gratis</span>
             </a>
-          )}
+
+            <a
+              href={`mailto:${COMUNIDAD_REPORTE_EMAIL}?subject=${mailtoSubject}&body=${mailtoBody}`}
+              class="btn-app btn-app-surface btn-hub-email"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>Enviar datos por Correo ({COMUNIDAD_REPORTE_EMAIL})</span>
+            </a>
+          </div>
+
+          <div class="hub-student-tip">
+            <span class="tip-spark">💡</span>
+            <span>
+              <strong>¿Eres estudiante politécnico y tienes un emprendimiento?</strong> Si vendes postres, dulces, haces impresiones en tu depa o das clases de cálculo o física, ¡este directorio también es para ti!
+            </span>
+          </div>
         </div>
       ) : (
-        <div class="negocios-grid" id="negocios-list">
+        <>
+          <div class="results-meta" id="results-counter" aria-live="polite">
+            Mostrando <strong id="visible-count">{negocios.length}</strong> de <strong>{negocios.length}</strong> negocios registrados
+          </div>
+
+          <div class="negocios-grid" id="negocios-list">
           {negocios.map((negocio) => {
             const catInfo = categoryLabels[negocio.category] || { label: negocio.category, icon: '🏷️' };
             const cleanWhatsapp = negocio.contact?.whatsapp?.replace(/[^0-9+]/g, '');
@@ -302,7 +429,8 @@ const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
             );
           })}
         </div>
-      )}
+      </>
+    )}
 
       <!-- Estado vacío para búsquedas sin resultados -->
       <div id="no-search-results" class="empty-state card-app" style="display: none;">
@@ -452,6 +580,13 @@ const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
     gap: 20px;
     flex-wrap: wrap;
     margin-bottom: 18px;
+  }
+
+  .header-kicker-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
   }
 
   .page-header h1 {
@@ -786,24 +921,328 @@ const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
     border-color: #000000;
   }
 
-  /* Estado vacío */
+  /* ==========================================================================
+     ESTADO VACÍO RICO: CONVOCATORIA Y RECLUTAMIENTO DE NEGOCIOS (v1.0.0)
+     ========================================================================== */
+  .empty-state-hub {
+    background: var(--bg-surface-elevated);
+    border: 2px solid var(--border-app);
+    border-radius: var(--radius-lg);
+    box-shadow: 6px 6px 0px #000000, 0 10px 30px rgba(0, 0, 0, 0.4);
+    padding: 38px 32px;
+    margin-bottom: 44px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .empty-state-hub::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-success), var(--accent-cyan));
+  }
+
+  .empty-hero-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 34px;
+    padding-bottom: 28px;
+    border-bottom: 1.5px solid var(--border-subtle);
+  }
+
+  .empty-icon-pill-wrap {
+    flex-shrink: 0;
+  }
+
+  .empty-icon-circle {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: rgba(0, 255, 135, 0.1);
+    border: 2px solid var(--color-success);
+    color: var(--color-success);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 0px #000000;
+  }
+
+  .empty-hero-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .empty-sticker {
+    background: var(--color-primary);
+    color: #000000;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+
+  .empty-hub-title {
+    font-size: clamp(1.4rem, 3.2vw, 2rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+
+  .empty-hub-lead {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .empty-hub-lead strong {
+    color: var(--text-primary);
+  }
+
+  /* Razón de ser / Beneficios */
+  .hub-reasons-title-row {
+    margin-bottom: 18px;
+  }
+
+  .hub-kicker {
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--accent-cyan);
+    margin-bottom: 4px;
+  }
+
+  .hub-reasons-title-row h3 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .hub-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .hub-benefit-card {
+    background: var(--bg-primary);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: transform var(--duration-hover) ease, border-color var(--duration-hover) ease;
+  }
+
+  .hub-benefit-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .hub-benefit-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    border: 1.5px solid #000000;
+    box-shadow: 2px 2px 0px #000000;
+  }
+
+  .hub-benefit-icon.green {
+    background: var(--color-success);
+  }
+
+  .hub-benefit-icon.fuchsia {
+    background: var(--color-primary);
+  }
+
+  .hub-benefit-icon.amber {
+    background: var(--color-warning);
+  }
+
+  .hub-benefit-icon.cyan {
+    background: var(--accent-cyan);
+  }
+
+  .hub-benefit-body h4 {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .hub-benefit-body p {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Categorías Buscadas */
+  .hub-categories-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1.5px dashed var(--border-app);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+    margin-bottom: 32px;
+  }
+
+  .hub-cat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.94rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .hub-tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .hub-tag {
+    display: inline-flex;
+    align-items: center;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-app);
+    border-radius: var(--radius-pill);
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    transition: all var(--duration-hover) ease;
+  }
+
+  .hub-tag:hover {
+    border-color: var(--color-primary);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+  }
+
+  /* Pasos de Postulación */
+  .hub-steps-container {
+    margin-bottom: 34px;
+  }
+
+  .steps-title {
+    display: block;
+    font-size: 0.94rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+  }
+
+  .steps-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .step-card {
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-md);
+    padding: 20px 18px;
+  }
+
+  .step-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #000000;
+    font-weight: 900;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border: 1.5px solid #000000;
+    box-shadow: 2px 2px 0px #000000;
+  }
+
+  .step-card strong {
+    display: block;
+    font-size: 0.96rem;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .step-card p {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Acciones de Postulación */
+  .hub-actions-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .btn-hub-cta {
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 800;
+    background: var(--color-success);
+    color: #000000;
+    border: 2px solid #000000;
+    box-shadow: 4px 4px 0px #000000;
+  }
+
+  .btn-hub-cta:hover {
+    background: var(--accent-green-hover);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000000;
+  }
+
+  .btn-hub-email {
+    padding: 14px 22px;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .hub-student-tip {
+    background: rgba(255, 63, 164, 0.08);
+    border: 1.5px solid rgba(255, 63, 164, 0.25);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .tip-spark {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  /* Estado vacío general para búsquedas */
   .empty-state {
     text-align: center;
     padding: 50px 24px;
     margin-bottom: 40px;
-  }
-
-  .empty-icon-wrap {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: var(--bg-surface-elevated);
-    border: 2px solid var(--border-app);
-    color: var(--accent-primary);
-    margin-bottom: 18px;
   }
 
   .empty-state h3 {
@@ -816,6 +1255,30 @@ const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
     max-width: 520px;
     margin: 0 auto 24px auto;
     font-size: 0.96rem;
+  }
+
+  @media (max-width: 768px) {
+    .empty-state-hub {
+      padding: 26px 20px;
+    }
+
+    .empty-hero-section {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .hub-actions-bar {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .btn-hub-cta,
+    .btn-hub-email {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
   }
 
   .community-page-footer {

@@ -116,6 +116,55 @@
             </p>
           </div>
         </div>
+
+        <!-- Tabla Oficial de Criterios de Privacidad y Modelo de Distribución -->
+        <div class="security-table-container">
+          <h4 class="security-table-title">🛡️ Privacidad y Seguridad: Criterios Oficiales</h4>
+          <div class="security-table-wrapper">
+            <table class="security-table">
+              <thead>
+                <tr>
+                  <th>Criterio</th>
+                  <th>¿Cómo lo hace Pilas!?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Almacenamiento de Credenciales</strong></td>
+                  <td>Cifrado por hardware con <strong>Android Keystore</strong> y <strong>Apple Keychain</strong> (AES-256).</td>
+                </tr>
+                <tr>
+                  <td><strong>Servidores Intermediarios</strong></td>
+                  <td><strong>Ninguno.</strong> Conexión directa y exclusiva entre tu teléfono y los servidores oficiales de la ESPE (<code>espe.edu.ec</code>).</td>
+                </tr>
+                <tr>
+                  <td><strong>Telemetría y Rastreo</strong></td>
+                  <td><strong>0 rastreadores.</strong> Sin Firebase Analytics, sin venta de datos ni telemetría invasiva.</td>
+                </tr>
+                <tr>
+                  <td><strong>Base de Datos Local</strong></td>
+                  <td>SQLite nativo ultra-rápido mediante <strong>Drift ORM</strong> en el almacenamiento interno privado.</td>
+                </tr>
+                <tr>
+                  <td><strong>Modelo de Acceso</strong></td>
+                  <td><strong>100% Gratuito.</strong> Sin costo, sin donaciones forzadas, sin anuncios ni compras integradas.</td>
+                </tr>
+                <tr>
+                  <td><strong>Licencia del Código</strong></td>
+                  <td><strong>Software Propietario Privado (No es Open Source).</strong> Desarrollado de forma independiente por y para estudiantes.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="distribution-model-card">
+            <h4>💡 Modelo de Distribución: 100% Gratuita pero No Open Source</h4>
+            <p class="dist-desc">
+              <strong>100% Gratis para la Comunidad:</strong> Pilas! se entrega de manera totalmente libre y gratuita a los estudiantes politécnicos para facilitar su vida académica diaria, sin cobros ni publicidad.<br />
+              <strong>Código Fuente Privado:</strong> El proyecto <strong>NO es de código abierto (no es open source)</strong>. El código fuente es propietario, seguro y privado, manteniendo la integridad, seguridad y estabilidad de la plataforma frente a los portales universitarios.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -338,5 +387,94 @@
 
   .pillar-card strong {
     color: var(--color-text-body);
+  }
+
+  .security-table-container {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .security-table-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin: 0;
+  }
+
+  .security-table-wrapper {
+    overflow-x: auto;
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    background: #141722;
+    box-shadow: 3px 3px 0px #000000;
+  }
+
+  .security-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    text-align: left;
+  }
+
+  .security-table th,
+  .security-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .security-table th {
+    background: #0E111A;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .security-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .security-table td:first-child {
+    white-space: nowrap;
+    color: #FFFFFF;
+  }
+
+  .security-table td:nth-child(2) {
+    color: var(--color-text-body);
+    line-height: 1.45;
+  }
+
+  .security-table code {
+    background: #000;
+    padding: 2px 5px;
+    border-radius: 4px;
+    color: var(--color-primary);
+    font-size: 0.8em;
+  }
+
+  .distribution-model-card {
+    background: #181D29;
+    border: 2px solid var(--color-primary);
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 3px 3px 0px #000000;
+  }
+
+  .distribution-model-card h4 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin: 0 0 8px 0;
+  }
+
+  .dist-desc {
+    font-size: 0.88rem;
+    color: var(--color-text-body);
+    line-height: 1.6;
+    margin: 0;
   }
 </style>

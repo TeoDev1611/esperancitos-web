@@ -16,9 +16,9 @@ export const SITE = {
   lang: 'es-EC',
 
   /** Título y descripción por defecto de la home (se indexan tal cual). */
-  title: 'Pilas! • Tu vida universitaria al día. Sin rodeos.',
+  title: 'Pilas! v1.0.0 • Todo tu semestre bajo control. Rápido, privado y sin internet.',
   description:
-    'La app hecha por y para politécnicos de la ESPE. Tu horario con aula exacta, tareas de Moodle con alarmas, calculadora de notas para pasar el semestre y todo funciona sin internet.',
+    'La aplicación académica definitiva para estudiantes de la Universidad de las Fuerzas Armadas ESPE. Horario de clases de Banner, tareas y chat de Moodle con alarmas, calculadora de parciales ESPE, malla curricular interactiva, carnet digital y widgets de pantalla de inicio: tus credenciales nunca salen de tu teléfono. Disponible 100% gratis para todos los estudiantes.',
 
   /** Palabras clave orientadas a búsquedas reales de estudiantes de la ESPE. */
   keywords: [
@@ -53,14 +53,14 @@ export const SITE = {
   },
 
   /** Versión publicada del APK. */
-  version: '2.2.0',
-  build: 6,
-  releaseDate: '2026-10-07',
-  fileSize: '36.5 MB',
+  version: '1.0.0',
+  build: 1,
+  releaseDate: '2026-10-09',
+  fileSize: '35.8 MB',
   minAndroid: '8.0',
 
   /** APK principal de descarga (el que enlazan los CTA). */
-  primaryApkPath: '/downloads/esperancitos-v1.1.0-arm64-v8a.apk',
+  primaryApkPath: '/downloads/esperancitos-v1.0.0-arm64-v8a.apk',
 
   /**
    * Huellas SHA-256 de los APK publicados. Se muestran en la sección de
@@ -106,6 +106,7 @@ export const SITE = {
     github: '',
     instagram: '',
     email: 'teo.hurtado.16@gmail.com',
+    whatsappChannel: 'https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g',
   },
 
   /** Autor del proyecto (se usa en los datos estructurados). */

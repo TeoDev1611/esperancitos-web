@@ -31,8 +31,8 @@
           <img src="/logos/letras_estilo_fucsia.svg" alt="Pilas! Logo" class="footer-logo-svg" height="44" />
         </a>
         <div class="footer-brand-badge">
-          <span class="f-version-badge">v2.2.0 Fucsia Pop</span>
-          <span class="f-status-pill">100% Offline & Open Source</span>
+          <span class="f-version-badge">v1.0.0 Oficial Estable</span>
+          <span class="f-status-pill">100% Offline · Código Privado</span>
         </div>
         <p class="footer-description">
           El cliente móvil y ecosistema estudiantil independiente para la comunidad de la <strong>Universidad de las Fuerzas Armadas ESPE</strong>. Horarios sin internet, resolución de aulas en campus, Moodle por QR y simulación de notas.
@@ -55,8 +55,18 @@
         <div class="footer-link-group">
           <h4>Soporte & Contacto</h4>
           <a href="/#descargar">Descarga Directa Android</a>
-          <a href="mailto:teo.hurtado.16@gmail.com?subject=Feedback%20Pilas!%20Web/App">Enviar Feedback Directo</a>
-          <a href="/#comentarios">Reportar un error</a>
+          <a
+            href="#tally-open=Y5E4ZN&tally-overlay=1&tally-emoji-text=👋&tally-emoji-animation=wave&tally-auto-close=0"
+            data-tally-open="Y5E4ZN"
+            data-tally-overlay="1"
+            data-tally-emoji-text="👋"
+            data-tally-emoji-animation="wave"
+            data-tally-auto-close="0"
+            aria-label="Reportar un error o sugerencia mediante formulario de Tally"
+          >
+            Reportar un error o idea
+          </a>
+          <a href="/#comentarios">Centro de comentarios</a>
           <a href="/#apoyar">Ayudar al proyecto</a>
           <a href="mailto:teo.hurtado.16@gmail.com">teo.hurtado.16@gmail.com</a>
         </div>
@@ -64,6 +74,15 @@
         <!-- Columna 3: Comunidad y legal -->
         <div class="footer-link-group">
           <h4>Comunidad & Legal</h4>
+          <a
+            href="https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="f-community-info f-whatsapp-link"
+            title="Noticias, actualizaciones, información del campus y comunicados oficiales"
+          >
+            Canal de WhatsApp (Noticias y Actualizaciones)
+          </a>
           <a href="/avisos" class="f-community-info f-feedback-link">Avisos comunitarios</a>
           <a href="/negocios" class="f-community-info f-feedback-link">Directorio de negocios</a>
           <a href="/#colaborar" class="f-community-info f-feedback-link">Colaboradores (iPhone)</a>
@@ -86,7 +105,7 @@
     <div class="footer-legal-area">
       <div class="legal-disclaimer-box">
         <p class="legal-disclaimer">
-          <strong>Aviso Legal:</strong> <strong>Pilas!</strong> es un proyecto estudiantil independiente y de código abierto desarrollado para la comunidad universitaria de la <strong>Universidad de las Fuerzas Armadas ESPE</strong>.<br />
+          <strong>Aviso Legal:</strong> <strong>Pilas!</strong> es un proyecto estudiantil independiente de código privado y propietario, desarrollado de forma 100% gratuita para los estudiantes de la <strong>Universidad de las Fuerzas Armadas ESPE</strong>.<br />
           <strong>Pilas! no está afiliada, asociada, autorizada, respaldada ni de ninguna manera oficialmente conectada con la Universidad de las Fuerzas Armadas ESPE, Ellucian Company L.P., Banner, ni Moodle Pty Ltd.</strong><br />
           Los nombres, marcas y logotipos asociados son marcas registradas de sus respectivos propietarios. La aplicación y este sitio web funcionan bajo una arquitectura de <strong>Cero Servidores Intermedios (Zero-Backend)</strong>: toda la autenticación y sincronización se realiza de forma directa y cifrada entre el dispositivo del usuario y los portales públicos de la institución.<br />
           Para dudas, reportes técnicos o solicitud de baja: <a href="mailto:teo.hurtado.16@gmail.com" class="legal-email-link">teo.hurtado.16@gmail.com</a>.
@@ -318,6 +337,20 @@
 
   .f-feedback-link:hover {
     color: #34D399;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transform: translateX(3px);
+  }
+
+  .f-whatsapp-link {
+    display: inline-block;
+    color: #25D366 !important;
+    font-weight: 800;
+    transition: color var(--duration-hover) ease, transform 180ms var(--ease-apple);
+  }
+
+  .f-whatsapp-link:hover {
+    color: #4ADE80 !important;
     text-decoration: underline;
     text-underline-offset: 3px;
     transform: translateX(3px);

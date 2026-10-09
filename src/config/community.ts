@@ -15,3 +15,10 @@ export const NEGOCIOS_FORM_URL: string = '';
  * Correo de contacto para bajas, correcciones o reportes de listados comunitarios.
  */
 export const COMUNIDAD_REPORTE_EMAIL = 'teo.hurtado.16@gmail.com';
+
+/**
+ * Canal oficial de WhatsApp de la comunidad Pilas!
+ * Para noticias, actualizaciones, información del campus y comunicados.
+ */
+export const PILAS_WHATSAPP_CHANNEL_URL = 'https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
+
