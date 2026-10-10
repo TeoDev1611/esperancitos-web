@@ -15,6 +15,8 @@
 //   2. qrImage   -> reemplaza public/images/qr-donacion.jpg por tu QR real.
 // ============================================================================
 
+export const SHOW_DONATIONS = false;
+export const SHOW_DONATION_QR = false;
 export const DEUNA_LINK_READY = false;
 
 export interface DonationGoal {
@@ -30,16 +32,7 @@ export const DONATION_CONFIG = {
   // --- Deuna ------------------------------------------------------------------
   deunaLinkReady: DEUNA_LINK_READY,
   deunaLink: 'https://deuna.app/tu-enlace-de-cobro', // <-- REEMPLAZAR
-  deunaHolder: 'Mateo (Dev Esperancitos)',
-
-  /** QR principal: se muestra a 240 px en la sección de apoyo. Debe verse nítido
-   *  para poder escanearlo desde otra pantalla. Reemplaza el archivo por el tuyo. */
-  qrImage: '/images/qr-donacion.jpg',
-
-  /** Versión reducida del mismo QR, para el chip del héroe y el modal (32-130 px).
-   *  Si cambias el QR principal, regenera esta miniatura con:
-   *      python tools/build_assets.py */
-  qrThumbImage: '/images/qr-donacion-thumb.png',
+  deunaHolder: 'Dev Pilas! ESPE',
 
   /**
    * En qué se usa el dinero. Se muestra en la sección de apoyo para que quien
@@ -66,6 +59,6 @@ export const DONATION_CONFIG = {
 if (DONATION_CONFIG.isPlaceholder) {
   console.warn(
     "\x1b[33m%s\x1b[0m",
-    "⚠️ [ESPERANCITOS CONFIG] DONATION_CONFIG usa datos de ejemplo (PLACEHOLDER). Actualiza deunaLink y qrImage en src/config/donation.ts antes del despliegue final."
+    "⚠️ [PILAS CONFIG] DONATION_CONFIG usa datos de ejemplo (PLACEHOLDER). Actualiza deunaLink en src/config/donation.ts antes del despliegue final."
   );
 }

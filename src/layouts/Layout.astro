@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   image?: string;
   keywords?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -16,6 +17,7 @@ const {
   description = SITE.description,
   image,
   keywords,
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -24,6 +26,7 @@ const {
   description={description}
   image={image}
   keywords={keywords}
+  noindex={noindex}
   ogType="website"
   includeAppSchema={true}
 >

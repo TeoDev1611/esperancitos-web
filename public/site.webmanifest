@@ -40,13 +40,13 @@
   "screenshots": [
     {
       "src": "/images/mockup-malla.webp",
-      "sizes": "640x1147",
+      "sizes": "640x1459",
       "type": "image/webp",
       "label": "Malla curricular con cálculo de graduación"
     },
     {
       "src": "/images/mockup-horario.webp",
-      "sizes": "640x1147",
+      "sizes": "640x1459",
       "type": "image/webp",
       "label": "Horario semanal con aulas y bloques"
     }

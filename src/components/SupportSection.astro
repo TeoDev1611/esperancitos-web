@@ -1,8 +1,9 @@
 ---
 // SupportSection.astro - Sección de Apoyo al Proyecto (Deuna + QR)
-import { DONATION_CONFIG, DEUNA_LINK_READY } from '../config/donation';
+import { DONATION_CONFIG, DEUNA_LINK_READY, SHOW_DONATION_QR } from '../config/donation';
+import CssQrCode from './CssQrCode.astro';
 
-const { deunaLink, deunaHolder, qrImage, goals } = DONATION_CONFIG;
+const { deunaLink, deunaHolder, goals } = DONATION_CONFIG;
 const hasDeunaLink = DEUNA_LINK_READY && deunaLink.trim().length > 0 && !deunaLink.includes('tu-enlace-de-cobro');
 ---
 
@@ -120,20 +121,25 @@ const hasDeunaLink = DEUNA_LINK_READY && deunaLink.trim().length > 0 && !deunaLi
             </div>
 
             <div class="qr-viewport">
-              <div class="qr-laser-scanner" aria-hidden="true"></div>
-              <img 
-                src={qrImage}
-                alt="Código QR de Deuna para aportar al proyecto Pilas!" 
-                class="qr-main-img" 
-                width="240" 
-                height="240" 
-                loading="lazy"
-              />
+              {SHOW_DONATION_QR ? (
+                <>
+                  <div class="qr-laser-scanner" aria-hidden="true"></div>
+                  <CssQrCode variant="deuna" size={240} label="Código QR de Deuna para aportar al proyecto Pilas!" />
+                </>
+              ) : (
+                <div class="qr-coming-soon-placeholder">
+                  <span class="badge-app amber">Próximamente</span>
+                  <p class="cs-desc">El código QR de aportes estará disponible más adelante.</p>
+                </div>
+              )}
             </div>
 
             <p class="qr-supported-apps">
-              Ábrelo con la app de <strong>Deuna</strong><br/>
-              o con cualquier app de banco del Ecuador
+              {SHOW_DONATION_QR ? (
+                <>Ábrelo con la app de <strong>Deuna</strong><br/>o con cualquier app de banco del Ecuador</>
+              ) : (
+                <>Aportes voluntarios disponibles próximamente</>
+              )}
             </p>
 
             <p class="qr-voluntary-notice">

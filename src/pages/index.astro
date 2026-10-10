@@ -11,10 +11,12 @@ import FeedbackSection from '../components/FeedbackSection.astro';
 import CollaborationSection from '../components/CollaborationSection.astro';
 import SupportSection from '../components/SupportSection.astro';
 import DocsSection from '../components/DocsSection.astro';
+import { SITE } from '../config/site';
+import { SHOW_DONATIONS } from '../config/donation';
 ---
 
 <Layout
-  title="Pilas! v1.0.0 • Todo tu semestre bajo control. Rápido, privado y sin internet."
+  title={`Pilas! ${SITE.versionTag} • Todo tu semestre bajo control. Rápido, privado y sin internet.`}
   description="La aplicación académica definitiva para estudiantes de la Universidad de las Fuerzas Armadas ESPE. Horario de clases de Banner, tareas y chat de Moodle con alarmas, calculadora de parciales ESPE, malla curricular interactiva, carnet digital y widgets de pantalla de inicio: tus credenciales nunca salen de tu teléfono. Disponible 100% gratis para todos los estudiantes."
   keywords="Pilas!, app Pilas, ponte pilas, pilas ñañ@s, pilas ñaño, pilas ñaña, mijin, app ESPE gratis, malla curricular sin internet, horario con aulas ESPE, carnet digital garita ESPE, widgets horario Android, tareas Moodle con alarmas"
 >
@@ -45,8 +47,8 @@ import DocsSection from '../components/DocsSection.astro';
   <!-- 9. Tablón de avisos: colaboradores para versión de iPhone -->
   <CollaborationSection />
 
-  <!-- 10. Apoyo para publicar en Google Play (Deuna & QR) -->
-  <SupportSection />
+  <!-- 10. Apoyo para publicar en Google Play (Oculto si las donaciones salen luego) -->
+  {SHOW_DONATIONS && <SupportSection />}
 
   <!-- 11. Documentación, Guías de Login & FAQ -->
   <DocsSection />

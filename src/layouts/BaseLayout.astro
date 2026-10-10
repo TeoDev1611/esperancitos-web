@@ -8,6 +8,7 @@ import Footer from '../components/Footer.astro';
 import SupportModal from '../components/SupportModal.astro';
 import { SITE, absoluteUrl } from '../config/site';
 import { FAQ_ENTRIES } from '../config/faq';
+import { SHOW_DONATIONS } from '../config/donation';
 
 interface Props {
   title?: string;
@@ -279,8 +280,8 @@ const jsonLdData = includeAppSchema
     </main>
     <Footer />
     
-    <!-- Modal Global de Apoyo al Proyecto -->
-    <SupportModal />
+    <!-- Modal Global de Apoyo al Proyecto (Oculto si las donaciones salen luego) -->
+    {SHOW_DONATIONS && <SupportModal />}
 
     <script>
       // Scroll suave para enlaces internos.

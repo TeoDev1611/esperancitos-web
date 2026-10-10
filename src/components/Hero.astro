@@ -1,6 +1,7 @@
 ---
 // Hero.astro - Héroe Cinético Estilo Apple con Recreación Real de la App en HTML/CSS
 import { SITE } from '../config/site';
+import CssQrCode from './CssQrCode.astro';
 ---
 
 <section class="hero-section" id="hero-section">
@@ -32,15 +33,15 @@ import { SITE } from '../config/site';
       <!-- Botones de Acción Brutalistas y Mascota Sticker -->
       <div class="hero-actions-wrapper">
         <div class="hero-actions-group">
-          <a href={SITE.primaryApkPath} download class="btn-pilas-primary btn-hero-cta" id="hero-download-btn" aria-label="Descargar Pilas! v1.0.0 para Android">
+          <a href={SITE.primaryApkPath} download class="btn-pilas-primary btn-hero-cta" id="hero-download-btn" aria-label={`Descargar Pilas! ${SITE.versionTag} para Android`}>
             <svg class="w-5 h-5 mr-2 hero-dl-icon" width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
             </svg>
             <div class="btn-cta-labels">
-              <span class="cta-title">Descargar Pilas! v1.0.0 (APK Gratis)</span>
+              <span class="cta-title">Descargar Pilas! {SITE.versionTag} (APK Gratis)</span>
               <span class="cta-subtitle">Gratis · {SITE.fileSize} · Android {SITE.minAndroid}+</span>
             </div>
-            <span class="hero-version-tag">v1.0.0</span>
+            <span class="hero-version-tag">{SITE.versionTag}</span>
           </a>
 
           <a href="/#descargar" class="btn-pilas-secondary btn-hero-secondary">
@@ -332,7 +333,7 @@ import { SITE } from '../config/site';
             <div class="screen-layer" id="layer-malla">
               <picture>
                 <source srcset="/images/mockup-malla.webp" type="image/webp" />
-                <img src="/images/mockup-malla.jpg" alt="Malla curricular de la carrera con materias aprobadas, en curso y pendientes en Pilas!" class="screen-layer-img" loading="eager" width="640" height="1147" />
+                <img src="/images/mockup-malla.jpg" alt="Malla curricular de la carrera con materias aprobadas, en curso y pendientes en Pilas!" class="screen-layer-img" loading="eager" width="640" height="1459" />
               </picture>
             </div>
 
@@ -340,7 +341,7 @@ import { SITE } from '../config/site';
             <div class="screen-layer" id="layer-horario">
               <picture>
                 <source srcset="/images/mockup-horario.webp" type="image/webp" />
-                <img src="/images/mockup-horario.jpg" alt="Horario semanal con el aula, el bloque y el docente de cada clase en Pilas!" class="screen-layer-img" loading="lazy" width="640" height="1147" />
+                <img src="/images/mockup-horario.jpg" alt="Horario semanal con el aula, el bloque y el docente de cada clase en Pilas!" class="screen-layer-img" loading="lazy" width="640" height="1459" />
               </picture>
             </div>
 
@@ -391,7 +392,7 @@ import { SITE } from '../config/site';
           <div class="floating-story-card card-moodle" id="card-moodle">
             <div class="qr-mini-thumb">
               <div class="mini-laser-line"></div>
-              <img src="/images/qr-donacion-thumb.png" alt="Vista previa del código QR de Moodle" width="32" height="32" class="mini-qr-img" />
+              <CssQrCode variant="moodle" size={30} compact={true} class="mini-qr-css" label="Vista previa del código QR de Moodle" />
             </div>
             <div class="f-info">
               <span class="f-title">Login QR Moodle</span>
@@ -1688,11 +1689,16 @@ import { SITE } from '../config/site';
     to { top: 90%; }
   }
 
-  .mini-qr-img {
-    width: 32px;
-    height: 32px;
-    object-fit: cover;
-    display: block;
+  .mini-qr-css {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mini-qr-css :global(.css-qr-card) {
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 2px;
   }
 
   /* ==========================================================================

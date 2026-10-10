@@ -1,0 +1,151 @@
+---
+// CssQrCode.astro - Código QR vectorial ligero y ultra nítido estilizado con CSS
+import { DEUNA_QR, MOODLE_QR } from '../lib/qr-data';
+
+interface Props {
+  variant?: 'deuna' | 'moodle';
+  size?: number | string;
+  compact?: boolean;
+  class?: string;
+  label?: string;
+}
+
+const {
+  variant = 'deuna',
+  size = 200,
+  compact = false,
+  class: className = '',
+  label = variant === 'deuna' ? 'Código QR de Deuna para aportar' : 'Código QR de Moodle',
+} = Astro.props;
+
+const qrData = variant === 'deuna' ? DEUNA_QR : MOODLE_QR;
+const sizeStyle = typeof size === 'number' ? `${size}px` : size;
+---
+
+<div class:list={['css-qr-wrapper', `qr-${variant}`, { 'is-compact': compact }, className]} style={`--qr-size: ${sizeStyle};`} role="img" aria-label={label}>
+  <div class="css-qr-card">
+    <svg
+      viewBox={qrData.viewBox}
+      class="css-qr-svg"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      shape-rendering="crispEdges"
+      aria-hidden="true"
+    >
+      <path d={qrData.path} fill="currentColor" />
+    </svg>
+    {variant === 'deuna' && !compact && (
+      <div class="qr-center-badge deuna-badge" aria-hidden="true">
+        <span class="deuna-logo-text">deuna!</span>
+      </div>
+    )}
+    {variant === 'moodle' && !compact && (
+      <div class="qr-center-badge moodle-badge" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .css-qr-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--qr-size);
+    height: var(--qr-size);
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  .css-qr-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+      0 12px 30px rgba(0, 0, 0, 0.45),
+      4px 4px 0px #000000;
+    box-sizing: border-box;
+    border: 3px solid #000000;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .css-qr-wrapper:hover .css-qr-card {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 16px 36px rgba(0, 0, 0, 0.55),
+      6px 6px 0px #000000;
+  }
+
+  .css-qr-wrapper.is-compact .css-qr-card {
+    border-radius: 4px;
+    padding: 2px;
+    border: 1px solid #000000;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .css-qr-wrapper.is-compact:hover .css-qr-card {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .css-qr-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: #0b0f14;
+  }
+
+  .qr-center-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    padding: 2px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    border: 2px solid #000000;
+  }
+
+  .deuna-badge {
+    background: #00FF87;
+    background: linear-gradient(135deg, #00FF87, #00D2FF);
+    color: #000000;
+  }
+
+  .deuna-logo-text {
+    font-family: var(--font-sans, system-ui);
+    font-weight: 900;
+    font-size: 0.7rem;
+    letter-spacing: -0.02em;
+    color: #000000;
+    text-transform: lowercase;
+    line-height: 1;
+  }
+
+  .moodle-badge {
+    background: #FF6600;
+    color: #FFFFFF;
+    padding: 4px;
+    border-radius: 50%;
+  }
+
+  .moodle-badge svg {
+    display: block;
+    width: 13px;
+    height: 13px;
+  }
+</style>

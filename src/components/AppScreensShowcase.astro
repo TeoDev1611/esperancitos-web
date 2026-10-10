@@ -1,5 +1,6 @@
 ---
 // AppScreensShowcase.astro - Conoce la interfaz por dentro con Tabs Segmented Control y Desbloqueo de Materias
+import CssQrCode from './CssQrCode.astro';
 ---
 
 <section class="screens-section scroll-reveal" id="vistas">
@@ -70,7 +71,7 @@
             <div class="mockup-img-holder">
               <picture>
                 <source srcset="/images/mockup-malla.webp" type="image/webp" />
-                <img src="/images/mockup-malla.jpg" alt="Malla curricular de la carrera con el progreso de créditos y el año estimado de graduación" class="mockup-view-img" width="640" height="1147" loading="lazy" />
+                <img src="/images/mockup-malla.jpg" alt="Malla curricular de la carrera con el progreso de créditos y el año estimado de graduación" class="mockup-view-img" width="640" height="1459" loading="lazy" />
               </picture>
               
               <!-- Overlay interactivo demostrativo de materias en cascada (desbloqueo gris a verde) -->
@@ -179,7 +180,7 @@
             <div class="mockup-img-holder">
               <picture>
                 <source srcset="/images/mockup-horario.webp" type="image/webp" />
-                <img src="/images/mockup-horario.jpg" alt="Horario semanal de la ESPE con el aula, el bloque y el docente de cada asignatura" class="mockup-view-img" width="640" height="1147" loading="lazy" />
+                <img src="/images/mockup-horario.jpg" alt="Horario semanal de la ESPE con el aula, el bloque y el docente de cada asignatura" class="mockup-view-img" width="640" height="1459" loading="lazy" />
               </picture>
             </div>
           </div>
@@ -259,7 +260,7 @@
               <div class="moodle-qr-visual card-app">
                 <div class="qr-laser-scanner">
                   <div class="laser-beam"></div>
-                  <img src="/images/qr-donacion.jpg" alt="Demostración de código QR Moodle" class="qr-big-sample" width="180" height="180" loading="lazy" />
+                  <CssQrCode variant="moodle" size={180} class="qr-big-sample" label="Demostración de código QR Moodle" />
                 </div>
                 <span class="qr-hint-text">Apunta la cámara al código QR de tu perfil de Moodle</span>
               </div>
@@ -591,7 +592,7 @@
   .mockup-img-holder {
     position: relative;
     background: #0B0F14;
-    aspect-ratio: 9 / 18;
+    aspect-ratio: 702 / 1600;
     overflow: hidden;
   }
 
@@ -785,10 +786,7 @@
 
   .qr-laser-scanner {
     position: relative;
-    background: #ffffff;
-    padding: 8px;
-    border-radius: 8px;
-    border: 2px solid #000000;
+    border-radius: 16px;
     overflow: hidden;
     display: inline-flex;
   }
@@ -801,6 +799,7 @@
     background: var(--accent-primary);
     box-shadow: 0 0 10px var(--accent-primary);
     animation: scanner-sweep 2s ease-in-out infinite alternate;
+    z-index: 2;
   }
 
   @keyframes scanner-sweep {

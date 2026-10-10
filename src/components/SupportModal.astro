@@ -1,9 +1,7 @@
 ---
 // SupportModal.astro - Modal nativo accesible <dialog> para apoyar el proyecto
-import { DONATION_CONFIG, DEUNA_LINK_READY } from '../config/donation';
-
-const { deunaLink, deunaHolder, qrThumbImage } = DONATION_CONFIG;
-const hasDeunaLink = DEUNA_LINK_READY && deunaLink.trim().length > 0 && !deunaLink.includes('tu-enlace-de-cobro');
+import { SHOW_DONATION_QR } from '../config/donation';
+import CssQrCode from './CssQrCode.astro';
 ---
 
 <dialog id="support-dialog" class="support-native-dialog">
@@ -30,11 +28,20 @@ const hasDeunaLink = DEUNA_LINK_READY && deunaLink.trim().length > 0 && !deunaLi
     <div class="modal-body-grid">
       <!-- QR de Deuna -->
       <div class="modal-qr-area">
-        <div class="modal-qr-frame">
-          <img src={qrThumbImage} alt="Código QR de Deuna para aportar al proyecto" class="modal-qr-img" width="130" height="130" />
-        </div>
-        <span class="modal-qr-hint">Ábrelo con la app de Deuna o con cualquier app de banco del Ecuador</span>
-        <p class="modal-voluntary-notice">Aporte voluntario. No es el pago de un servicio y la ESPE no participa.</p>
+        {SHOW_DONATION_QR ? (
+          <>
+            <div class="modal-qr-frame">
+              <CssQrCode variant="deuna" size={140} label="Código QR de Deuna para aportar al proyecto" />
+            </div>
+            <span class="modal-qr-hint">Ábrelo con la app de Deuna o con cualquier app de banco del Ecuador</span>
+            <p class="modal-voluntary-notice">Aporte voluntario. No es el pago de un servicio y la ESPE no participa.</p>
+          </>
+        ) : (
+          <div class="modal-coming-soon-box">
+            <span class="badge-app amber">Próximamente</span>
+            <p class="modal-cs-p">El canal de donaciones voluntarias se habilitará más adelante. ¡Gracias por tu interés en apoyar!</p>
+          </div>
+        )}
       </div>
     </div>
   </div>

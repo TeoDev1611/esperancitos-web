@@ -1,16 +1,16 @@
 {
   "id": "current",
-  "latestVersion": "1.0.0",
-  "latestBuild": 1,
+  "latestVersion": "1.1.0-beta.1",
+  "latestBuild": 4,
   "minSupportedBuild": 1,
-  "publishedAt": "2026-10-09T12:00:00-05:00",
+  "publishedAt": "2026-10-10T03:45:36Z",
   "notes": [
-    "🚀 Pilas! v1.0.0 Edición Oficial Estable: Horario inteligente de Banner con resolución de aulas y detección de clases virtuales.",
-    "🪪 Carnet digital institucional para garitas y control de acceso con brillo automático 100% offline.",
-    "📝 Aula Virtual Moodle con visor HTML enriquecido, explorador y descarga de archivos adjuntos y compartir por QR.",
-    "⏰ Alarmas de tareas persistentes con anticipación personalizable, control físico de volumen y modo No Molestar (DND).",
-    "📲 Widgets nativos para pantalla de inicio en Android y iOS (Horario del Día, Próxima Clase, Tareas Pendientes y QuickHub).",
-    "🎨 Diseño Neo-Brutalista con 3 temas oscuros (Slate, OLED y Suave) y 3 acentos institucionales: Fucsia Pilas (#E5147D), Carmesí Neo-Brutal (#E11D48) y Verde Esmeralda ESPE (#10B981)."
+    "🚀 Versión 1.1.0 Beta: Gran actualización para la comunidad estudiantil de la ESPE.",
+    "🎓 Selector de Carrera y Malla Curricular con aviso sobre soporte progresivo de secuencias y prerrequisitos.",
+    "🎨 Asistente de configuración inicial (Onboarding) completo: temas visuales, color de acento y formato de aulas.",
+    "📂 Redundancia robusta en descarga y visor de archivos y recursos adjuntos de Moodle.",
+    "⚡ Mejoras de rendimiento, optimización de caché y ofuscación avanzada de seguridad.",
+    "📱 Widgets Neo-Brutalistas mejorados y compatibilidad de plataforma optimizada."
   ],
   "downloadPage": "https://pilas-ec.vercel.app/"
 }

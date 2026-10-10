@@ -1,28 +1,32 @@
 ---
 // Footer.astro - Pie de página limpio con llamado a apoyar y aviso de independencia
+import { SITE } from '../config/site';
+import { SHOW_DONATIONS } from '../config/donation';
 ---
 
 <footer class="site-footer">
   <div class="container">
 
-    <!-- Banner de Apoyo antes del footer -->
-    <div class="pre-footer-support-banner card-app amber-accent">
-      <div class="pre-footer-text">
-        <span class="badge-app amber">META: GOOGLE PLAY</span>
-        <h3>Ayúdanos a llegar a la Play Store</h3>
-        <p>La cuenta de desarrollador cuesta 25 dólares, una sola vez. Con tu aporte dejamos las descargas por enlace y la app pasa a la tienda oficial.</p>
+    <!-- Banner de Apoyo antes del footer (Oculto si las donaciones salen luego) -->
+    {SHOW_DONATIONS && (
+      <div class="pre-footer-support-banner card-app amber-accent">
+        <div class="pre-footer-text">
+          <span class="badge-app amber">META: GOOGLE PLAY</span>
+          <h3>Ayúdanos a llegar a la Play Store</h3>
+          <p>La cuenta de desarrollador cuesta 25 dólares, una sola vez. Con tu aporte dejamos las descargas por enlace y la app pasa a la tienda oficial.</p>
+        </div>
+        <a href="/#apoyar" class="btn-app btn-app-amber btn-footer-cta" data-open-support>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+            <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+            <line x1="6" y1="2" x2="6" y2="4"></line>
+            <line x1="10" y1="2" x2="10" y2="4"></line>
+            <line x1="14" y1="2" x2="14" y2="4"></line>
+          </svg>
+          <span>Ayudar al proyecto</span>
+        </a>
       </div>
-      <a href="/#apoyar" class="btn-app btn-app-amber btn-footer-cta" data-open-support>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
-          <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
-          <line x1="6" y1="2" x2="6" y2="4"></line>
-          <line x1="10" y1="2" x2="10" y2="4"></line>
-          <line x1="14" y1="2" x2="14" y2="4"></line>
-        </svg>
-        <span>Ayudar al proyecto</span>
-      </a>
-    </div>
+    )}
 
     <!-- Navegación Principal del Footer -->
     <div class="footer-main-grid">
@@ -31,7 +35,7 @@
           <img src="/logos/letras_estilo_fucsia.svg" alt="Pilas! Logo" class="footer-logo-svg" height="44" />
         </a>
         <div class="footer-brand-badge">
-          <span class="f-version-badge">v1.0.0 Oficial Estable</span>
+          <span class="f-version-badge">{SITE.versionTag} (Beta)</span>
           <span class="f-status-pill">100% Offline · Código Privado</span>
         </div>
         <p class="footer-description">
@@ -67,7 +71,7 @@
             Reportar un error o idea
           </a>
           <a href="/#comentarios">Centro de comentarios</a>
-          <a href="/#apoyar">Ayudar al proyecto</a>
+          {SHOW_DONATIONS && <a href="/#apoyar">Ayudar al proyecto</a>}
           <a href="mailto:teo.hurtado.16@gmail.com">teo.hurtado.16@gmail.com</a>
         </div>
 
@@ -87,16 +91,18 @@
           <a href="/negocios" class="f-community-info f-feedback-link">Directorio de negocios</a>
           <a href="/#colaborar" class="f-community-info f-feedback-link">Colaboradores (iPhone)</a>
           <a href="/privacidad" class="f-community-info f-feedback-link">Política de Privacidad</a>
-          <a href="/#apoyar" class="f-support-link" data-open-support>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block; vertical-align:middle; margin-right:4px;">
-              <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
-              <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
-              <line x1="6" y1="2" x2="6" y2="4"></line>
-              <line x1="10" y1="2" x2="10" y2="4"></line>
-              <line x1="14" y1="2" x2="14" y2="4"></line>
-            </svg>
-            <span>Ayudar al proyecto</span>
-          </a>
+          {SHOW_DONATIONS && (
+            <a href="/#apoyar" class="f-support-link" data-open-support>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+                <line x1="6" y1="2" x2="6" y2="4"></line>
+                <line x1="10" y1="2" x2="10" y2="4"></line>
+                <line x1="14" y1="2" x2="14" y2="4"></line>
+              </svg>
+              <span>Ayudar al proyecto</span>
+            </a>
+          )}
         </div>
       </div>
     </div>

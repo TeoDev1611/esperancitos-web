@@ -111,7 +111,8 @@ def build_social_card():
 # 2. FAVICON (PNG + ICO) a partir del logo real
 # ---------------------------------------------------------------------------
 def build_favicons():
-    logo = Image.open(PUB / 'logo_esperancitos.jpg').convert('RGBA')
+    logo_path = PUB / 'icon-512.png'
+    logo = Image.open(logo_path).convert('RGBA')
 
     def square(img, size, radius_ratio=0.22):
         im = img.copy()
@@ -160,27 +161,7 @@ def build_webp():
         print(f'  fallback {name}.jpg -> {fb.stat().st_size/1024:.0f} KB')
 
 
-# ---------------------------------------------------------------------------
-# 4. Miniatura del QR
-# ---------------------------------------------------------------------------
-def build_qr_thumb():
-    """Copia reducida del QR para los sitios donde se muestra a 32-130 px.
-
-    El archivo original (1024x1024, ~845 KB) se sigue usando en la tarjeta
-    grande de la sección de apoyo, donde tiene que verse nítido para escanear.
-    Se guarda como PNG con paleta de 16 colores: un QR es blanco y negro, así
-    que la reducción de color no le quita legibilidad y baja mucho el peso.
-    """
-    src = Image.open(IMG / 'qr-donacion.jpg').convert('RGB')
-    thumb = src.resize((320, 320), Image.LANCZOS)
-    dest = IMG / 'qr-donacion-thumb.png'
-    thumb.convert('P', palette=Image.ADAPTIVE, colors=16).save(dest, 'PNG', optimize=True)
-    before = (IMG / 'qr-donacion.jpg').stat().st_size
-    print(f'qr-donacion-thumb.png 320x320  {before/1024:.0f} KB -> {dest.stat().st_size/1024:.0f} KB')
-
-
 if __name__ == '__main__':
     build_social_card()
     build_favicons()
     build_webp()
-    build_qr_thumb()
