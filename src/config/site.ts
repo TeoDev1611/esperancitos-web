@@ -16,7 +16,7 @@ export const SITE = {
   lang: 'es-EC',
 
   /** Título y descripción por defecto de la home (se indexan tal cual). */
-  title: 'Pilas! v1.1-beta.1 • Todo tu semestre bajo control. Rápido, privado y sin internet.',
+  title: 'Pilas! v1.1-beta.2 • Todo tu semestre bajo control. Rápido, privado y sin internet.',
   description:
     'La aplicación académica definitiva para estudiantes de la Universidad de las Fuerzas Armadas ESPE. Horario de clases de Banner, tareas y chat de Moodle con alarmas, calculadora de parciales ESPE, malla curricular interactiva, carnet digital y widgets de pantalla de inicio: tus credenciales nunca salen de tu teléfono. Disponible 100% gratis para todos los estudiantes.',
 
@@ -53,15 +53,15 @@ export const SITE = {
   },
 
   /** Versión publicada del APK. */
-  version: '1.1.0-beta.1',
-  versionTag: 'v1.1-beta.1',
-  build: 4,
+  version: '1.1.0-beta.2',
+  versionTag: 'v1.1-beta.2',
+  build: 5,
   releaseDate: '2026-10-10',
-  fileSize: '37.1 MB',
+  fileSize: '37.2 MB',
   minAndroid: '8.0',
 
   /** APK principal de descarga (el que enlazan los CTA). */
-  primaryApkPath: '/downloads/pilas-v1.1-beta.1-arm64-v8a.apk',
+  primaryApkPath: '/downloads/pilas-v1.1-beta.2-arm64-v8a.apk',
 
   /**
    * Huellas SHA-256 de los APK publicados. Se muestran en la sección de
@@ -73,6 +73,14 @@ export const SITE = {
    *   Linux   : sha256sum archivo.apk
    */
   apkChecksums: {
+    'pilas-v1.1-beta.2-arm64-v8a.apk':
+      '6146d397772f13c4aa3032e91ad4f5957af7d8fd612235bb9043e30ac66a9ff2',
+    'pilas-v1.1-beta.2-armeabi-v7a.apk':
+      'b5eb74cdb1b8e21609c9c10067f948b4125c57fa5043f552e376014e9340977a',
+    'pilas-v1.1-beta.2-universal.apk':
+      '9f5ba9c879b51b13c29491846673149174bfc004f2d9376fcbe7ad5eb4d04cbc',
+    'pilas-v1.1-beta.2-x86_64.apk':
+      '999c710f32bb91922a1fc089d841e65d152e2c48888ef7482df6c24cbb394953',
     'pilas-v1.1-beta.1-arm64-v8a.apk':
       'f9f2d4662b3532c639f829e5adce2eae824c4bfcf3712a0b93d4f8f6fe9dea81',
     'pilas-v1.1-beta.1-armeabi-v7a.apk':

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-10T15:42:34Z",
+  "files": {
+    "update": {
+      "path": "update.json",
+      "sha256": "4d0b23ed5521a0294cf3768d7a6b276e096a70ce4e92ec21bdf86e51869a0160",
+      "updatedAt": "2026-10-10T15:42:34Z"
+    }
+  }
+}

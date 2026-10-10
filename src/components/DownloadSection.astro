@@ -2,10 +2,10 @@
 // DownloadSection.astro - Centro de descargas con verificación de integridad
 import { SITE } from "../config/site";
 
-const primaryFile = "pilas-v1.1-beta.1-arm64-v8a.apk";
-const secondaryFile = "pilas-v1.1-beta.1-armeabi-v7a.apk";
-const universalFile = "pilas-v1.1-beta.1-universal.apk";
-const x86File = "pilas-v1.1-beta.1-x86_64.apk";
+const primaryFile = "pilas-v1.1-beta.2-arm64-v8a.apk";
+const secondaryFile = "pilas-v1.1-beta.2-armeabi-v7a.apk";
+const universalFile = "pilas-v1.1-beta.2-universal.apk";
+const x86File = "pilas-v1.1-beta.2-x86_64.apk";
 
 const primarySha = SITE.apkChecksums[primaryFile] ?? "";
 const secondarySha = SITE.apkChecksums[secondaryFile] ?? "";
@@ -72,7 +72,7 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
               width="68"
               height="68"
             />
-            <span class="apk-release-tag">v1.1-beta.1 (Build 4)</span>
+            <span class="apk-release-tag">v1.1-beta.2 (Build 5)</span>
           </div>
 
           <div class="apk-details">
@@ -167,9 +167,9 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
               <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
             <div class="btn-text-block">
-              <span class="btn-main-label">DESCARGAR PILAS! v1.1-BETA.1 (APK GRATIS)</span>
+              <span class="btn-main-label">DESCARGAR PILAS! v1.1-BETA.2 (APK GRATIS)</span>
               <small class="btn-sub-label"
-                >v1.1.0-beta.1 · ARM64-v8a (37.1 MB) · Descarga directa</small
+                >v1.1.0-beta.2 · ARM64-v8a (37.2 MB) · Descarga directa</small
               >
             </div>
           </a>
@@ -468,12 +468,12 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
               <span class="release-build-pill">Build 1 · Octubre 2026</span>
             </div>
             <span class="release-status-chip"
-              >★ Versión 1.1.0 Beta (Build 4)</span
+              >★ Versión 1.1.0 Beta 2 (Build 5)</span
             >
           </div>
 
           <h3 class="release-main-title">
-            🚀 ¡Pilas, ñañ@s! Llegó Pilas! v1.1-beta.1: Gran Actualización Estudiantil
+            🚀 ¡Pilas, ñañ@s! Llegó Pilas! v1.1-beta.2: Parche para Moodle y Permisos
           </h3>
           <p class="release-intro">
             Diseñada por y para estudiantes de la Universidad de las Fuerzas
@@ -573,7 +573,7 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
                   <tr>
                     <th>Nombre & Versión</th>
                     <td
-                      ><code>Pilas! v1.1.0-beta.1</code> (Build 4) · Versión Beta Oficial (Octubre 2026)</td
+                      ><code>Pilas! v1.1.0-beta.2</code> (Build 5) · Versión Beta Oficial (Octubre 2026)</td
                     >
                   </tr>
                   <tr>
@@ -627,12 +627,28 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
           <details class="changelog-details card-app">
             <summary class="changelog-summary">
               <span
-                >📋 Ver lista completa de novedades y cambios técnicos (v1.1-beta.1)</span
+                >📋 Ver lista completa de novedades y cambios técnicos (v1.1-beta.2)</span
               >
-              <span class="changelog-badge-count">v1.1-beta.1</span>
+              <span class="changelog-badge-count">v1.1-beta.2</span>
             </summary>
             <div class="changelog-list-body">
               <ul class="changelog-items">
+                <li>
+                  <span class="change-tag feature">Moodle</span>
+                  <div>
+                    <strong>Soporte Scoped Storage para Moodle:</strong> Descarga y visor
+                    de diapositivas, documentos y archivos de tareas 100% privado y seguro
+                    sin requerir permisos invasivos de almacenamiento en Android 11-15+.
+                  </div>
+                </li>
+                <li>
+                  <span class="change-tag new">Permisos</span>
+                  <div>
+                    <strong>Gestión Interactiva de Permisos:</strong> Flujo intuitivo en
+                    Configuración Inicial (Onboarding) para Notificaciones push, Alarmas exactas
+                    de tareas y Cámara para escaneo QR.
+                  </div>
+                </li>
                 <li>
                   <span class="change-tag new">Widgets</span>
                   <div>

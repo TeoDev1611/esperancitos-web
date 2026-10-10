@@ -1,16 +1,16 @@
 {
   "id": "current",
-  "latestVersion": "1.1.0-beta.1",
-  "latestBuild": 4,
+  "latestVersion": "1.1.0-beta.2",
+  "latestBuild": 5,
   "minSupportedBuild": 1,
-  "publishedAt": "2026-10-10T03:45:36Z",
+  "publishedAt": "2026-10-10T15:42:34Z",
   "notes": [
     "🚀 Versión 1.1.0 Beta: Gran actualización para la comunidad estudiantil de la ESPE.",
-    "🎓 Selector de Carrera y Malla Curricular con aviso sobre soporte progresivo de secuencias y prerrequisitos.",
-    "🎨 Asistente de configuración inicial (Onboarding) completo: temas visuales, color de acento y formato de aulas.",
-    "📂 Redundancia robusta en descarga y visor de archivos y recursos adjuntos de Moodle.",
-    "⚡ Mejoras de rendimiento, optimización de caché y ofuscación avanzada de seguridad.",
-    "📱 Widgets Neo-Brutalistas mejorados y compatibilidad de plataforma optimizada."
+    "🛡️ Gestión interactiva de permisos en Configuración Inicial (Onboarding): Notificaciones, Alarmas exactas y Cámara QR.",
+    "📂 Soporte Scoped Storage (100% privado y seguro) para descarga y visor de diapositivas y tareas Moodle sin permisos invasivos.",
+    "🎓 Selector de Carrera y Malla Curricular con cálculo de avance de créditos.",
+    "⚡ Optimizaciones de rendimiento: arranque concurrente en paralelo y SQLite Drift en modo WAL ultrarrápido.",
+    "📱 Widgets Neo-Brutalistas mejorados y compatibilidad robusta Android 11-15+."
   ],
   "downloadPage": "https://pilas-ec.vercel.app/"
 }
