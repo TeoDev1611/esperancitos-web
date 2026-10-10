@@ -1,7 +1,7 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import crypto from 'node:crypto';
-import yaml from 'js-yaml';
+import fs from "node:fs";
+import path from "node:path";
+import crypto from "node:crypto";
+import yaml from "js-yaml";
 import {
   avisoSchema,
   negocioSchema,
@@ -23,7 +23,7 @@ import {
   type EnlacesJsonResponse,
   type UpdateJsonResponse,
   type ManifestJsonResponse,
-} from './community-contract.ts';
+} from "./community-contract.ts";
 
 export interface ContentFileReport {
   file: string;
@@ -57,9 +57,9 @@ export function getProjectRootDir(customDir?: string): string {
  * Lee y parsea un archivo que puede ser .json o .yaml/.yml
  */
 export function readContentFile<T = unknown>(filePath: string): T {
-  const content = fs.readFileSync(filePath, 'utf8');
+  const content = fs.readFileSync(filePath, "utf8");
   const ext = path.extname(filePath).toLowerCase();
-  if (ext === '.yaml' || ext === '.yml') {
+  if (ext === ".yaml" || ext === ".yml") {
     return yaml.load(content) as T;
   }
   return JSON.parse(content) as T;
@@ -75,7 +75,7 @@ export function listCollectionFiles(dirPath: string): string[] {
   for (const entry of entries) {
     if (entry.isFile()) {
       const ext = path.extname(entry.name).toLowerCase();
-      if (['.json', '.yaml', '.yml'].includes(ext)) {
+      if ([".json", ".yaml", ".yml"].includes(ext)) {
         files.push(path.join(dirPath, entry.name));
       }
     }
@@ -86,15 +86,17 @@ export function listCollectionFiles(dirPath: string): string[] {
 /**
  * Valida todas las colecciones y devuelve un reporte completo detallado sin romper la ejecución
  */
-export function validateAllContent(options: { rootDir?: string; now?: Date } = {}): ValidationSummary {
+export function validateAllContent(
+  options: { rootDir?: string; now?: Date } = {},
+): ValidationSummary {
   const root = getProjectRootDir(options.rootDir);
-  const contentRoot = path.join(root, 'src', 'content');
-  const publicDir = path.join(root, 'public');
+  const contentRoot = path.join(root, "src", "content");
+  const publicDir = path.join(root, "public");
 
   const reports: ContentFileReport[] = [];
-  const duplicateIds: ValidationSummary['duplicateIds'] = [];
-  const logoErrors: ValidationSummary['logoErrors'] = [];
-  const sizeErrors: ValidationSummary['sizeErrors'] = [];
+  const duplicateIds: ValidationSummary["duplicateIds"] = [];
+  const logoErrors: ValidationSummary["logoErrors"] = [];
+  const sizeErrors: ValidationSummary["sizeErrors"] = [];
 
   const idMap: Record<string, Map<string, string[]>> = {
     avisos: new Map(),
@@ -113,7 +115,7 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
   }
 
   // 1. Avisos
-  const avisosFiles = listCollectionFiles(path.join(contentRoot, 'avisos'));
+  const avisosFiles = listCollectionFiles(path.join(contentRoot, "avisos"));
   for (const file of avisosFiles) {
     const relFile = path.relative(root, file);
     try {
@@ -122,18 +124,18 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
       if (!parsed.success) {
         reports.push({
           file: relFile,
-          collection: 'avisos',
+          collection: "avisos",
           id: raw?.id,
           valid: false,
           errors: parsed.error.issues.map(
-            (issue) => `[${issue.path.join('.') || 'raíz'}]: ${issue.message}`
+            (issue) => `[${issue.path.join(".") || "raíz"}]: ${issue.message}`,
           ),
         });
       } else {
-        recordId('avisos', parsed.data.id, relFile);
+        recordId("avisos", parsed.data.id, relFile);
         reports.push({
           file: relFile,
-          collection: 'avisos',
+          collection: "avisos",
           id: parsed.data.id,
           valid: true,
           errors: [],
@@ -142,7 +144,7 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
     } catch (err: any) {
       reports.push({
         file: relFile,
-        collection: 'avisos',
+        collection: "avisos",
         valid: false,
         errors: [`Error de sintaxis al leer archivo: ${err.message}`],
       });
@@ -150,7 +152,7 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
   }
 
   // 2. Negocios
-  const negociosFiles = listCollectionFiles(path.join(contentRoot, 'negocios'));
+  const negociosFiles = listCollectionFiles(path.join(contentRoot, "negocios"));
   for (const file of negociosFiles) {
     const relFile = path.relative(root, file);
     try {
@@ -159,18 +161,18 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
       if (!parsed.success) {
         reports.push({
           file: relFile,
-          collection: 'negocios',
+          collection: "negocios",
           id: raw?.id,
           valid: false,
           errors: parsed.error.issues.map(
-            (issue) => `[${issue.path.join('.') || 'raíz'}]: ${issue.message}`
+            (issue) => `[${issue.path.join(".") || "raíz"}]: ${issue.message}`,
           ),
         });
       } else {
-        recordId('negocios', parsed.data.id, relFile);
+        recordId("negocios", parsed.data.id, relFile);
         reports.push({
           file: relFile,
-          collection: 'negocios',
+          collection: "negocios",
           id: parsed.data.id,
           valid: true,
           errors: [],
@@ -178,7 +180,10 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
 
         // Validar logo si está presente
         if (parsed.data.logo) {
-          const logoDiskPath = path.join(publicDir, parsed.data.logo.replace(/^\//, ''));
+          const logoDiskPath = path.join(
+            publicDir,
+            parsed.data.logo.replace(/^\//, ""),
+          );
           if (!fs.existsSync(logoDiskPath)) {
             logoErrors.push({
               file: relFile,
@@ -200,7 +205,7 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
     } catch (err: any) {
       reports.push({
         file: relFile,
-        collection: 'negocios',
+        collection: "negocios",
         valid: false,
         errors: [`Error de sintaxis al leer archivo: ${err.message}`],
       });
@@ -208,7 +213,7 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
   }
 
   // 3. Enlaces
-  const enlacesFiles = listCollectionFiles(path.join(contentRoot, 'enlaces'));
+  const enlacesFiles = listCollectionFiles(path.join(contentRoot, "enlaces"));
   for (const file of enlacesFiles) {
     const relFile = path.relative(root, file);
     try {
@@ -217,23 +222,23 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
       if (!parsed.success) {
         reports.push({
           file: relFile,
-          collection: 'enlaces',
+          collection: "enlaces",
           id: raw?.id || raw?.title,
           valid: false,
           errors: parsed.error.issues.map(
-            (issue) => `[${issue.path.join('.') || 'raíz'}]: ${issue.message}`
+            (issue) => `[${issue.path.join(".") || "raíz"}]: ${issue.message}`,
           ),
         });
       } else {
         if (parsed.data.id) {
-          recordId('enlaces_groups', parsed.data.id, relFile);
+          recordId("enlaces_groups", parsed.data.id, relFile);
         }
         for (const item of parsed.data.items) {
-          recordId('enlaces_items', item.id, relFile);
+          recordId("enlaces_items", item.id, relFile);
         }
         reports.push({
           file: relFile,
-          collection: 'enlaces',
+          collection: "enlaces",
           id: parsed.data.id || parsed.data.title,
           valid: true,
           errors: [],
@@ -242,7 +247,7 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
     } catch (err: any) {
       reports.push({
         file: relFile,
-        collection: 'enlaces',
+        collection: "enlaces",
         valid: false,
         errors: [`Error de sintaxis al leer archivo: ${err.message}`],
       });
@@ -250,7 +255,7 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
   }
 
   // 4. Update
-  const updateFiles = listCollectionFiles(path.join(contentRoot, 'update'));
+  const updateFiles = listCollectionFiles(path.join(contentRoot, "update"));
   for (const file of updateFiles) {
     const relFile = path.relative(root, file);
     try {
@@ -259,17 +264,17 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
       if (!parsed.success) {
         reports.push({
           file: relFile,
-          collection: 'update',
+          collection: "update",
           id: raw?.latestVersion,
           valid: false,
           errors: parsed.error.issues.map(
-            (issue) => `[${issue.path.join('.') || 'raíz'}]: ${issue.message}`
+            (issue) => `[${issue.path.join(".") || "raíz"}]: ${issue.message}`,
           ),
         });
       } else {
         reports.push({
           file: relFile,
-          collection: 'update',
+          collection: "update",
           id: parsed.data.latestVersion,
           valid: true,
           errors: [],
@@ -278,7 +283,7 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
     } catch (err: any) {
       reports.push({
         file: relFile,
-        collection: 'update',
+        collection: "update",
         valid: false,
         errors: [`Error de sintaxis al leer archivo: ${err.message}`],
       });
@@ -296,9 +301,13 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
 
   // Probar generación de payloads para verificar límites de tamaño (<= 200 KB)
   try {
-    const payloads = buildApiPayloads({ rootDir: root, includeExamples: true, now: options.now });
+    const payloads = buildApiPayloads({
+      rootDir: root,
+      includeExamples: true,
+      now: options.now,
+    });
     for (const [name, p] of Object.entries(payloads.rawStrings)) {
-      const bytes = Buffer.byteLength(p, 'utf8');
+      const bytes = Buffer.byteLength(p, "utf8");
       if (bytes > MAX_JSON_SIZE_BYTES) {
         sizeErrors.push({
           file: `${name}.json`,
@@ -332,17 +341,17 @@ export function validateAllContent(options: { rootDir?: string; now?: Date } = {
  */
 export function buildApiPayloads(options: LoadOptions = {}) {
   const root = getProjectRootDir(options.rootDir);
-  const contentRoot = path.join(root, 'src', 'content');
+  const contentRoot = path.join(root, "src", "content");
   const now = options.now || new Date();
 
   const includeExamples =
     options.includeExamples !== undefined
       ? options.includeExamples
-      : process.env.INCLUDE_EXAMPLES === 'true' ||
-        process.env.PUBLIC_API_INCLUDE_EXAMPLES === 'true';
+      : process.env.INCLUDE_EXAMPLES === "true" ||
+        process.env.PUBLIC_API_INCLUDE_EXAMPLES === "true";
 
   // --- 1. CARGAR AVISOS ---
-  const avisosFiles = listCollectionFiles(path.join(contentRoot, 'avisos'));
+  const avisosFiles = listCollectionFiles(path.join(contentRoot, "avisos"));
   const avisosRaw: AvisoInput[] = [];
   const avisosSeenIds = new Set<string>();
 
@@ -352,7 +361,7 @@ export function buildApiPayloads(options: LoadOptions = {}) {
       const parsed = avisoSchema.parse(data);
       if (avisosSeenIds.has(parsed.id)) {
         throw new Error(
-          `ID duplicado en colección avisos: "${parsed.id}" (encontrado en ${path.relative(root, file)})`
+          `ID duplicado en colección avisos: "${parsed.id}" (encontrado en ${path.relative(root, file)})`,
         );
       }
       avisosSeenIds.add(parsed.id);
@@ -374,8 +383,10 @@ export function buildApiPayloads(options: LoadOptions = {}) {
     } catch (err: any) {
       // Si la entrada es inválida por error en archivo, se omite según el contrato
       // o se lanza si hay duplicados
-      if (err.message.includes('ID duplicado')) throw err;
-      console.warn(`[API v1 / avisos] Omitiendo entrada inválida ${file}: ${err.message}`);
+      if (err.message.includes("ID duplicado")) throw err;
+      console.warn(
+        `[API v1 / avisos] Omitiendo entrada inválida ${file}: ${err.message}`,
+      );
     }
   }
 
@@ -400,7 +411,7 @@ export function buildApiPayloads(options: LoadOptions = {}) {
   };
 
   // --- 2. CARGAR NEGOCIOS ---
-  const negociosFiles = listCollectionFiles(path.join(contentRoot, 'negocios'));
+  const negociosFiles = listCollectionFiles(path.join(contentRoot, "negocios"));
   const negociosRaw: NegocioInput[] = [];
   const negociosSeenIds = new Set<string>();
 
@@ -410,7 +421,7 @@ export function buildApiPayloads(options: LoadOptions = {}) {
       const parsed = negocioSchema.parse(data);
       if (negociosSeenIds.has(parsed.id)) {
         throw new Error(
-          `ID duplicado en colección negocios: "${parsed.id}" (encontrado en ${path.relative(root, file)})`
+          `ID duplicado en colección negocios: "${parsed.id}" (encontrado en ${path.relative(root, file)})`,
         );
       }
       negociosSeenIds.add(parsed.id);
@@ -428,8 +439,10 @@ export function buildApiPayloads(options: LoadOptions = {}) {
 
       negociosRaw.push(parsed);
     } catch (err: any) {
-      if (err.message.includes('ID duplicado')) throw err;
-      console.warn(`[API v1 / negocios] Omitiendo entrada inválida ${file}: ${err.message}`);
+      if (err.message.includes("ID duplicado")) throw err;
+      console.warn(
+        `[API v1 / negocios] Omitiendo entrada inválida ${file}: ${err.message}`,
+      );
     }
   }
 
@@ -441,7 +454,9 @@ export function buildApiPayloads(options: LoadOptions = {}) {
     if (catIndexA !== catIndexB) {
       return catIndexA - catIndexB;
     }
-    const nameComp = a.name.localeCompare(b.name, 'es', { sensitivity: 'base' });
+    const nameComp = a.name.localeCompare(b.name, "es", {
+      sensitivity: "base",
+    });
     if (nameComp !== 0) {
       return nameComp;
     }
@@ -454,7 +469,7 @@ export function buildApiPayloads(options: LoadOptions = {}) {
   };
 
   // --- 3. CARGAR ENLACES ---
-  const enlacesFiles = listCollectionFiles(path.join(contentRoot, 'enlaces'));
+  const enlacesFiles = listCollectionFiles(path.join(contentRoot, "enlaces"));
   const enlacesRaw: EnlaceGroupInput[] = [];
   const enlacesSeenItemIds = new Set<string>();
 
@@ -466,7 +481,7 @@ export function buildApiPayloads(options: LoadOptions = {}) {
       for (const it of parsed.items) {
         if (enlacesSeenItemIds.has(it.id)) {
           throw new Error(
-            `ID duplicado de enlace: "${it.id}" (encontrado en ${path.relative(root, file)})`
+            `ID duplicado de enlace: "${it.id}" (encontrado en ${path.relative(root, file)})`,
           );
         }
         enlacesSeenItemIds.add(it.id);
@@ -478,8 +493,10 @@ export function buildApiPayloads(options: LoadOptions = {}) {
 
       enlacesRaw.push(parsed);
     } catch (err: any) {
-      if (err.message.includes('ID duplicado')) throw err;
-      console.warn(`[API v1 / enlaces] Omitiendo entrada inválida ${file}: ${err.message}`);
+      if (err.message.includes("ID duplicado")) throw err;
+      console.warn(
+        `[API v1 / enlaces] Omitiendo entrada inválida ${file}: ${err.message}`,
+      );
     }
   }
 
@@ -488,19 +505,21 @@ export function buildApiPayloads(options: LoadOptions = {}) {
     const orderA = a.order ?? 0;
     const orderB = b.order ?? 0;
     if (orderA !== orderB) return orderA - orderB;
-    return a.title.localeCompare(b.title, 'es');
+    return a.title.localeCompare(b.title, "es");
   });
 
   const enlacesGroups = enlacesRaw
     .map((g) => toPublicEnlaceGroup(g, includeExamples))
-    .filter((g): g is NonNullable<typeof g> => g !== null && g.items.length > 0);
+    .filter(
+      (g): g is NonNullable<typeof g> => g !== null && g.items.length > 0,
+    );
 
   const enlacesPayload: EnlacesJsonResponse = {
     groups: enlacesGroups,
   };
 
   // --- 4. CARGAR UPDATE ---
-  const updateFiles = listCollectionFiles(path.join(contentRoot, 'update'));
+  const updateFiles = listCollectionFiles(path.join(contentRoot, "update"));
   let latestUpdate: UpdateInput | null = null;
 
   for (const file of updateFiles) {
@@ -514,7 +533,9 @@ export function buildApiPayloads(options: LoadOptions = {}) {
         latestUpdate = parsed;
       }
     } catch (err: any) {
-      console.warn(`[API v1 / update] Omitiendo entrada inválida ${file}: ${err.message}`);
+      console.warn(
+        `[API v1 / update] Omitiendo entrada inválida ${file}: ${err.message}`,
+      );
     }
   }
 
@@ -522,12 +543,12 @@ export function buildApiPayloads(options: LoadOptions = {}) {
   const updatePayload: UpdateJsonResponse = latestUpdate
     ? toPublicUpdate(latestUpdate)
     : {
-        latestVersion: '1.0.0',
+        latestVersion: "1.0.0",
         latestBuild: 1,
         minSupportedBuild: 1,
         publishedAt: now.toISOString(),
-        notes: ['Versión inicial estable de Esperancitos'],
-        downloadPage: 'https://pilas-ec.vercel.app/#descargar',
+        notes: ["Versión inicial estable de Esperancitos"],
+        downloadPage: "https://pilas-ec.vercel.app/#descargar",
       };
 
   // --- 5. SERIALIZACIÓN DETERMINISTA ---
@@ -538,7 +559,7 @@ export function buildApiPayloads(options: LoadOptions = {}) {
   const enlacesJsonStr = JSON.stringify(enlacesPayload, null, 2);
 
   function sha256(content: string): string {
-    return crypto.createHash('sha256').update(content, 'utf8').digest('hex');
+    return crypto.createHash("sha256").update(content, "utf8").digest("hex");
   }
 
   // Fecha de actualización por archivo
@@ -557,15 +578,15 @@ export function buildApiPayloads(options: LoadOptions = {}) {
   const updateUpdatedAt = updatePayload.publishedAt;
   const avisosUpdatedAt = maxDate(
     avisosPayload.items.map((i) => i.publishedAt),
-    generatedAtIso
+    generatedAtIso,
   );
   const negociosUpdatedAt = maxDate(
     negociosPayload.items.map((i) => i.updatedAt),
-    generatedAtIso
+    generatedAtIso,
   );
   const enlacesUpdatedAt = maxDate(
     enlacesPayload.groups.flatMap((g) => g.items.map((i) => i.updatedAt)),
-    generatedAtIso
+    generatedAtIso,
   );
 
   const manifestPayload: ManifestJsonResponse = {
@@ -573,22 +594,22 @@ export function buildApiPayloads(options: LoadOptions = {}) {
     generatedAt: generatedAtIso,
     files: {
       update: {
-        path: 'update.json',
+        path: "update.json",
         sha256: sha256(updateJsonStr),
         updatedAt: updateUpdatedAt,
       },
       avisos: {
-        path: 'avisos.json',
+        path: "avisos.json",
         sha256: sha256(avisosJsonStr),
         updatedAt: avisosUpdatedAt,
       },
       negocios: {
-        path: 'negocios.json',
+        path: "negocios.json",
         sha256: sha256(negociosJsonStr),
         updatedAt: negociosUpdatedAt,
       },
       enlaces: {
-        path: 'enlaces.json',
+        path: "enlaces.json",
         sha256: sha256(enlacesJsonStr),
         updatedAt: enlacesUpdatedAt,
       },

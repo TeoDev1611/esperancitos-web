@@ -20,9 +20,9 @@ export interface CollaboratorRole {
   /** Qué necesitas que tenga o sepa */
   needs: string[];
   /** Icono: 'apple' | 'design' | 'test' | 'code' */
-  icon: 'apple' | 'design' | 'test' | 'code';
+  icon: "apple" | "design" | "test" | "code";
   /** Etiqueta de urgencia */
-  priority: 'alta' | 'media' | 'abierta';
+  priority: "alta" | "media" | "abierta";
 }
 
 export const COLLABORATION_CONFIG = {
@@ -30,71 +30,71 @@ export const COLLABORATION_CONFIG = {
   isOpen: true,
 
   /** Correo de contacto para colaboraciones */
-  contactEmail: 'teo.hurtado.16@gmail.com',
+  contactEmail: "teo.hurtado.16@gmail.com",
 
   /** Tiempo de respuesta prometido */
-  responseTime: 'Respondo todos los correos en 24–48 horas',
+  responseTime: "Respondo todos los correos en 24–48 horas",
 
   /** Texto que aparece si `isOpen` es false */
   closedMessage:
-    'Por ahora no estamos buscando colaboradores, pero si tienes una idea o quieres aportar algo, escríbenos igual: siempre leemos los correos.',
+    "Por ahora no estamos buscando colaboradores, pero si tienes una idea o quieres aportar algo, escríbenos igual: siempre leemos los correos.",
 
   /** Mensaje general de la sección */
   intro:
-    'Pilas! hoy solo existe para Android y lo mantiene una sola persona. Para dar el salto a iPhone necesitamos manos: si sabes programar para iOS o tienes un Mac, ¡ponte pilas y sé parte del proyecto!',
+    "Pilas! hoy solo existe para Android y lo mantiene una sola persona. Para dar el salto a iPhone necesitamos manos: si sabes programar para iOS o tienes un Mac, ¡ponte pilas y sé parte del proyecto!",
 
   /** Puestos abiertos */
-  roles: <CollaboratorRole[]>[
+  roles: (<CollaboratorRole[]>[
     {
-      id: 'ios',
-      title: 'Desarrollador para iPhone (iOS)',
+      id: "ios",
+      title: "Desarrollador para iPhone (iOS)",
       summary:
-        'Portar la app a iPhone y publicarla en la App Store. Es el objetivo principal del proyecto ahora mismo.',
+        "Portar la app a iPhone y publicarla en la App Store. Es el objetivo principal del proyecto ahora mismo.",
       needs: [
-        'Saber Swift o Flutter con experiencia en iOS',
-        'Conocer Xcode y el proceso de publicación en la App Store',
-        'Disponer de un Mac para compilar y firmar la app',
+        "Saber Swift o Flutter con experiencia en iOS",
+        "Conocer Xcode y el proceso de publicación en la App Store",
+        "Disponer de un Mac para compilar y firmar la app",
       ],
-      icon: 'apple',
-      priority: 'alta',
+      icon: "apple",
+      priority: "alta",
     },
     {
-      id: 'mac',
-      title: 'Alguien con Mac para compilar',
+      id: "mac",
+      title: "Alguien con Mac para compilar",
       summary:
-        'No hace falta que programes: solo con prestar acceso a un Mac se puede generar y firmar la versión de iPhone.',
+        "No hace falta que programes: solo con prestar acceso a un Mac se puede generar y firmar la versión de iPhone.",
       needs: [
-        'Un Mac con Xcode instalado',
-        'Disposición a ejecutar los comandos de compilación',
+        "Un Mac con Xcode instalado",
+        "Disposición a ejecutar los comandos de compilación",
       ],
-      icon: 'code',
-      priority: 'alta',
+      icon: "code",
+      priority: "alta",
     },
     {
-      id: 'design',
-      title: 'Diseño y experiencia de usuario',
+      id: "design",
+      title: "Diseño y experiencia de usuario",
       summary:
-        'Revisar la interfaz de la app y proponer mejoras para que se entienda sin explicaciones.',
+        "Revisar la interfaz de la app y proponer mejoras para que se entienda sin explicaciones.",
       needs: [
-        'Manejo de Figma o similar',
-        'Criterio para organizar información densa (mallas, horarios, notas)',
+        "Manejo de Figma o similar",
+        "Criterio para organizar información densa (mallas, horarios, notas)",
       ],
-      icon: 'design',
-      priority: 'media',
+      icon: "design",
+      priority: "media",
     },
     {
-      id: 'testing',
-      title: 'Probadores en celulares distintos',
+      id: "testing",
+      title: "Probadores en celulares distintos",
       summary:
-        'Probar versiones nuevas en tu propio teléfono y reportar qué falla, sobre todo en equipos antiguos.',
+        "Probar versiones nuevas en tu propio teléfono y reportar qué falla, sobre todo en equipos antiguos.",
       needs: [
-        'Un celular Android (cualquier versión)',
-        'Ganas de reportar errores con capturas',
+        "Un celular Android (cualquier versión)",
+        "Ganas de reportar errores con capturas",
       ],
-      icon: 'test',
-      priority: 'abierta',
+      icon: "test",
+      priority: "abierta",
     },
-  ] as CollaboratorRole[],
+  ]) as CollaboratorRole[],
 } as const;
 
 /** Correo de contacto, exportado aparte por comodidad */

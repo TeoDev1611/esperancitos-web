@@ -24,9 +24,9 @@ export interface FeedbackChannel {
   /** Texto de apoyo dentro de la tarjeta */
   hint: string;
   /** Icono identificador */
-  icon: 'bug' | 'sparkles' | 'star' | 'mail';
+  icon: "bug" | "sparkles" | "star" | "mail";
   /** Color de acento */
-  accent: 'green' | 'amber' | 'critical';
+  accent: "green" | "amber" | "critical";
   /** Si es true y no hay url, la tarjeta entera se oculta */
   optional?: boolean;
   /** ID del popup de Tally si abre como modal */
@@ -37,63 +37,53 @@ export interface FeedbackChannel {
  * Configuración oficial de Tally (Popup y deep-links)
  */
 export const TALLY_CONFIG = {
-  formId: 'Y5E4ZN',
-  url: 'https://tally.so/r/Y5E4ZN',
-  overlay: '1',
-  emojiText: '👋',
-  emojiAnimation: 'wave',
-  autoClose: '0',
-  popupHash: '#tally-open=Y5E4ZN&tally-overlay=1&tally-emoji-text=👋&tally-emoji-animation=wave&tally-auto-close=0',
+  formId: "Y5E4ZN",
+  url: "https://tally.so/r/Y5E4ZN",
+  overlay: "1",
+  emojiText: "👋",
+  emojiAnimation: "wave",
+  autoClose: "0",
+  popupHash:
+    "#tally-open=Y5E4ZN&tally-overlay=1&tally-emoji-text=👋&tally-emoji-animation=wave&tally-auto-close=0",
 } as const;
 
 export const FEEDBACK_CONFIG = {
   /** Tiempo de respuesta que prometes, en texto libre */
-  responseTime: 'Normalmente respondo en 24–48 horas',
+  responseTime: "Normalmente respondo en 24–48 horas",
   tally: TALLY_CONFIG,
 
-  channels: <FeedbackChannel[]>[
+  channels: (<FeedbackChannel[]>[
     {
-      id: 'bug',
-      label: 'Reportar un error',
+      id: "bug",
+      label: "Reportar un error",
       url: TALLY_CONFIG.url,
       tallyId: TALLY_CONFIG.formId,
-      description: '¿Algo no funciona como debería?',
-      hint: 'Cuéntame qué pasó, en qué pantalla y qué celular usas. Si puedes, adjunta una captura de pantalla.',
-      icon: 'bug',
-      accent: 'critical',
+      description: "¿Algo no funciona como debería?",
+      hint: "Cuéntame qué pasó, en qué pantalla y qué celular usas. Si puedes, adjunta una captura de pantalla.",
+      icon: "bug",
+      accent: "critical",
     },
     {
-      id: 'feature',
-      label: 'Sugerir una idea',
+      id: "feature",
+      label: "Sugerir una idea",
       url: TALLY_CONFIG.url,
       tallyId: TALLY_CONFIG.formId,
-      description: '¿Se te ocurre algo que le falta a la app?',
-      hint: 'Ideas de nuevas funciones, cosas que se podrían mejorar o carreras que quieras ver integradas.',
-      icon: 'sparkles',
-      accent: 'green',
+      description: "¿Se te ocurre algo que le falta a la app?",
+      hint: "Ideas de nuevas funciones, cosas que se podrían mejorar o carreras que quieras ver integradas.",
+      icon: "sparkles",
+      accent: "green",
     },
-    {
-      id: 'survey',
-      label: 'Dejar mi opinión',
-      url: TALLY_CONFIG.url,
-      tallyId: TALLY_CONFIG.formId,
-      description: 'Una encuesta rápida de 1 minuto',
-      hint: 'Ayúdame a entender qué es lo que más usas y qué debería mejorar primero en la próxima versión.',
-      icon: 'star',
-      accent: 'amber',
-      optional: false,
-    },
-  ] as FeedbackChannel[],
+  ]) as FeedbackChannel[],
 } as const;
 
 /** Canales con enlace configurado. */
 export function enabledChannels(): FeedbackChannel[] {
   return FEEDBACK_CONFIG.channels.filter(
-    (channel) => channel.url.trim().length > 0 || !channel.optional
+    (channel) => channel.url.trim().length > 0 || !channel.optional,
   );
 }
 
 /** true si al menos un canal tiene formulario listo. */
 export const hasAnyFormUrl = FEEDBACK_CONFIG.channels.some(
-  (channel) => channel.url.trim().length > 0
+  (channel) => channel.url.trim().length > 0,
 );

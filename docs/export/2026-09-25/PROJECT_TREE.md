@@ -1,4 +1,5 @@
 # 🌳 Estructura del Proyecto (PROJECT_TREE)
+
 ## Versión de Pruebas: v1.4.0 (Build 240) — 2026-09-25
 
 Árbol de directorios de `lib/`, `test/` y `android/` de **Esperancitos** con la descripción de los módulos principales y el estado de la aplicación.
@@ -74,13 +75,13 @@ Esperancitos/
 
 ## 2. Estado de Compleción por Módulo
 
-| Módulo | Estado | Métricas de Prueba |
-| :--- | :--- | :--- |
-| `auth` | ✅ 100% | Splash Screen optimizado sin retrasos nativos de Android 12+ |
-| `dashboard` | ✅ 100% | Próxima clase, fin de jornada, atajo virtual y widget nativo |
-| `ellucian` (Banner 9) | ✅ 100% | Horario actual + Historial académico multi-periodo (`AcademicHistoryScreen`) |
-| `moodle` (Aulas) | ✅ 100% | Multi-cuenta oficial, QR login, descarga offline de PDFs |
-| `moodle` (Tareas & QR) | ✅ 100% | Tareas con estados + Compartición P2P de checklist vía código QR |
-| `moodle` (Simulador) | ✅ 100% | Simulador interactivo "Con Cuánto Paso" con sliders y metas 14/16/18 |
-| `schedule` (Horario) | ✅ 100% | Horario semanal + Calendario mensual unificado + Exportador a PNG |
-| `settings` | ✅ 100% | Modo Ahorro de Datos, gestión multi-cuenta, alertas y periodo Banner |
+| Módulo                 | Estado  | Métricas de Prueba                                                           |
+| :--------------------- | :------ | :--------------------------------------------------------------------------- |
+| `auth`                 | ✅ 100% | Splash Screen optimizado sin retrasos nativos de Android 12+                 |
+| `dashboard`            | ✅ 100% | Próxima clase, fin de jornada, atajo virtual y widget nativo                 |
+| `ellucian` (Banner 9)  | ✅ 100% | Horario actual + Historial académico multi-periodo (`AcademicHistoryScreen`) |
+| `moodle` (Aulas)       | ✅ 100% | Multi-cuenta oficial, QR login, descarga offline de PDFs                     |
+| `moodle` (Tareas & QR) | ✅ 100% | Tareas con estados + Compartición P2P de checklist vía código QR             |
+| `moodle` (Simulador)   | ✅ 100% | Simulador interactivo "Con Cuánto Paso" con sliders y metas 14/16/18         |
+| `schedule` (Horario)   | ✅ 100% | Horario semanal + Calendario mensual unificado + Exportador a PNG            |
+| `settings`             | ✅ 100% | Modo Ahorro de Datos, gestión multi-cuenta, alertas y periodo Banner         |

@@ -1,7 +1,6 @@
 ---
 // Hero.astro - Héroe Cinético Estilo Apple con Recreación Real de la App en HTML/CSS
-import { SITE } from '../config/site';
-import CssQrCode from './CssQrCode.astro';
+import { SITE } from "../config/site";
 ---
 
 <section class="hero-section" id="hero-section">
@@ -13,48 +12,122 @@ import CssQrCode from './CssQrCode.astro';
       <!-- Badge de Proyecto Estudiantil con Animación Typewriter Ecuatoriana -->
       <div class="hero-badge-row">
         <div class="sticker-pill">⚡ ESPE — HECHO POR ESTUDIANTES</div>
-        <span class="badge-app neutral hero-rotator-pill" aria-label="¡Ponte pilas politécnico, ñaño, ñaña, socio, socia, mijin, mija!">
+        <span
+          class="badge-app neutral hero-rotator-pill"
+          aria-label="¡Ponte pilas  , ñaño, ñaña, socio, socia, mijin, mija!"
+        >
           <span class="pulse-circle"></span>
-          <span>¡Ponte pilas, <strong class="badge-rotator-word" id="hero-rotator-word">ñaño</strong><span class="badge-rotator-cursor" aria-hidden="true">|</span>!</span>
+          <span
+            >¡Ponte pilas, <strong
+              class="badge-rotator-word"
+              id="hero-rotator-word">ñaño</strong
+            ><span class="badge-rotator-cursor" aria-hidden="true">|</span
+            >!</span
+          >
         </span>
       </div>
 
       <!-- Titular Gigante Oficial ESPE -->
       <h1 class="hero-title hero-headline" id="hero-headline">
-        <span class="hero-line hero-line-1">Todo tu semestre universitario bajo control.</span>
-        <span class="hero-line hero-line-2"><span class="text-fuchsia">Rápido, privado</span> y sin internet.</span>
+        <span class="hero-line hero-line-1"
+          >Todo tu semestre universitario bajo control.</span
+        >
+        <span class="hero-line hero-line-2"
+          ><span class="text-fuchsia">Rápido, privado</span> y sin internet.</span
+        >
       </h1>
 
       <!-- Párrafo Descriptivo Oficial -->
       <p class="hero-subtitle hero-description">
-        La aplicación académica definitiva para estudiantes de la <strong>Universidad de las Fuerzas Armadas ESPE</strong>. Horario de clases de Banner, tareas y chat de Moodle con alarmas, calculadora de parciales ESPE, malla curricular interactiva, carnet digital y widgets de pantalla de inicio: tus credenciales nunca salen de tu teléfono. Disponible <strong>100% gratis para todos los estudiantes</strong>.
+        La aplicación académica definitiva para estudiantes de la <strong
+          >Universidad de las Fuerzas Armadas ESPE</strong
+        >. Horario de clases de Banner, tareas y chat de Moodle con alarmas,
+        calculadora de parciales ESPE, malla curricular interactiva, carnet
+        digital y widgets de pantalla de inicio: tus credenciales nunca salen de
+        tu teléfono. Disponible <strong
+          >100% gratis para todos los estudiantes</strong
+        >.
       </p>
 
       <!-- Botones de Acción Brutalistas y Mascota Sticker -->
       <div class="hero-actions-wrapper">
         <div class="hero-actions-group">
-          <a href={SITE.primaryApkPath} download class="btn-pilas-primary btn-hero-cta" id="hero-download-btn" aria-label={`Descargar Pilas! ${SITE.versionTag} para Android`}>
-            <svg class="w-5 h-5 mr-2 hero-dl-icon" width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          <a
+            href={SITE.primaryApkPath}
+            download
+            class="btn-pilas-primary btn-hero-cta"
+            id="hero-download-btn"
+            aria-label={`Descargar Pilas! ${SITE.versionTag} para Android`}
+          >
+            <svg
+              class="w-5 h-5 mr-2 hero-dl-icon"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              ></path>
             </svg>
             <div class="btn-cta-labels">
-              <span class="cta-title">Descargar Pilas! {SITE.versionTag} (APK Gratis)</span>
-              <span class="cta-subtitle">Gratis · {SITE.fileSize} · Android {SITE.minAndroid}+</span>
+              <span class="cta-title"
+                >Descargar Pilas! {SITE.versionTag} (APK Gratis)</span
+              >
+              <span class="cta-subtitle"
+                >Gratis · {SITE.fileSize} · Android {SITE.minAndroid}+</span
+              >
             </div>
             <span class="hero-version-tag">{SITE.versionTag}</span>
           </a>
 
           <a href="/#descargar" class="btn-pilas-secondary btn-hero-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
+              ></polygon>
             </svg>
             <span>Ver Novedades y Guía de Instalación</span>
           </a>
+
+          <!-- Contador chiquito de descargas oficial -->
+          <div
+            class="hero-dl-counter-badge"
+            id="hero-dl-counter"
+            data-base-count={SITE.downloads.baseCount}
+            title="Descargas acumuladas en la comunidad ESPE"
+          >
+            <span class="dl-live-dot" aria-hidden="true"></span>
+            <span class="dl-counter-icon" aria-hidden="true">📥</span>
+            <span class="dl-counter-num" id="hero-dl-count-val"
+              >{SITE.downloads.formatted}</span
+            >
+            <span class="dl-counter-text">descargas ESPE</span>
+          </div>
         </div>
 
         <!-- Mascota Variación 1 (Neutro / Enérgico / Bienvenida) -->
         <div class="hero-mascot-sticker" aria-hidden="true">
-          <img src="/logos/icono_var1_sin_fondo.svg" alt="Pilas Mascota Bienvenida" class="mascot-img hero-mascot-img" width="130" height="130" />
+          <img
+            src="/logos/icono_var1_sin_fondo.svg"
+            alt="Pilas Mascota Bienvenida"
+            class="mascot-img hero-mascot-img"
+            width="130"
+            height="130"
+          />
           <div class="hero-mascot-bubble">
             <span>¡Pilas ñaño, al día! ⚡</span>
           </div>
@@ -62,14 +135,20 @@ import CssQrCode from './CssQrCode.astro';
       </div>
 
       <!-- Invitación al Canal de WhatsApp para Noticias, Actualizaciones y Comunicados -->
-      <div class="hero-channel-callout" role="region" aria-label="Canal oficial de WhatsApp de Pilas!">
+      <div
+        class="hero-channel-callout"
+        role="region"
+        aria-label="Canal oficial de WhatsApp de Pilas!"
+      >
         <div class="channel-callout-inner">
           <span class="channel-callout-badge">
             <span class="channel-dot-pulse" aria-hidden="true"></span>
             CANAL DE WHATSAPP
           </span>
           <span class="channel-callout-text">
-            Aparte de descargártela, <strong>únete al canal oficial de Pilas!</strong> para noticias, actualizaciones y comunicados:
+            Aparte de descargártela, <strong
+              >únete al canal oficial de Pilas!</strong
+            > para noticias, actualizaciones y comunicados:
           </span>
           <a
             href={SITE.social.whatsappChannel}
@@ -79,8 +158,20 @@ import CssQrCode from './CssQrCode.astro';
             aria-label="Unirse al canal oficial de WhatsApp de Pilas!"
             title="Abre el canal de WhatsApp de Pilas!"
           >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+              ></path>
             </svg>
             <span>Unirme al Canal →</span>
           </a>
@@ -89,23 +180,55 @@ import CssQrCode from './CssQrCode.astro';
 
       <!-- Aviso de Proyecto Independiente Discreto -->
       <div class="hero-independent-notice" role="note">
-        <svg class="notice-inline-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg
+          class="notice-inline-icon"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
           <circle cx="12" cy="12" r="10"></circle>
           <line x1="12" y1="8" x2="12" y2="12"></line>
           <line x1="12" y1="16" x2="12.01" y2="16"></line>
         </svg>
-        <span>Proyecto estudiantil independiente · Cero servidores intermedios</span>
+        <span
+          >Proyecto estudiantil independiente · Cero servidores intermedios</span
+        >
       </div>
 
       <!-- Nota de compatibilidad y modelo -->
-      <p class="hero-apk-note" style="margin-top: 10px; margin-bottom: 14px; font-size: 0.78rem; color: var(--text-tertiary); font-weight: 500;">
-        *Compatible con Android 8.0 o superior, tablets y iPhone/iPad. 100% gratis para estudiantes de la ESPE, sin publicidad ni intermediarios (código privado).*
+      <p
+        class="hero-apk-note"
+        style="margin-top: 10px; margin-bottom: 14px; font-size: 0.78rem; color: var(--text-tertiary); font-weight: 500;"
+      >
+        *Compatible con Android 8.0 o superior, tablets y iPhone/iPad. 100%
+        gratis para estudiantes de la ESPE, sin publicidad ni intermediarios
+        (código privado).*
       </p>
 
       <!-- Fila Compacta de Chips de Confianza (6 Puntos Fuertes Oficiales) -->
       <div class="hero-features-chips">
-        <div class="feature-chip" title="Cero servidores intermediarios (Zero-Backend). Conexión directa y cifrada a Banner y Moodle">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <div
+          class="feature-chip"
+          title="Cero servidores intermediarios (Zero-Backend). Conexión directa y cifrada a Banner y Moodle"
+        >
+          <svg
+            class="chip-svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
@@ -115,8 +238,22 @@ import CssQrCode from './CssQrCode.astro';
           </div>
         </div>
 
-        <div class="feature-chip" title="Consulta tu horario, carnet, malla y tareas en el aula o garita sin gastar megas">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <div
+          class="feature-chip"
+          title="Consulta tu horario, carnet, malla y tareas en el aula o garita sin gastar megas"
+        >
+          <svg
+            class="chip-svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
           </svg>
           <div class="chip-info">
@@ -125,9 +262,24 @@ import CssQrCode from './CssQrCode.astro';
           </div>
         </div>
 
-        <div class="feature-chip" title="Sin publicidad, sin muros de pago ni suscripciones (software de código privado, no es open source)">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        <div
+          class="feature-chip"
+          title="Sin publicidad, sin muros de pago ni suscripciones (software de código privado, no es open source)"
+        >
+          <svg
+            class="chip-svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+            ></path>
           </svg>
           <div class="chip-info">
             <strong>100% Gratis Estudiantes</strong>
@@ -135,8 +287,22 @@ import CssQrCode from './CssQrCode.astro';
           </div>
         </div>
 
-        <div class="feature-chip" title="3 temas oscuros calibrados y 3 colores de acento oficiales (Fucsia, Carmesí y Verde Esmeralda)">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <div
+          class="feature-chip"
+          title="3 temas oscuros calibrados y 3 colores de acento oficiales (Fucsia, Carmesí y Verde Esmeralda)"
+        >
+          <svg
+            class="chip-svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <circle cx="12" cy="12" r="10"></circle>
             <path d="M12 2a10 10 0 0 1 0 20z"></path>
           </svg>
@@ -146,8 +312,22 @@ import CssQrCode from './CssQrCode.astro';
           </div>
         </div>
 
-        <div class="feature-chip" title="Revisa tu próxima clase y tareas urgentes sin abrir la app en Android e iOS">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <div
+          class="feature-chip"
+          title="Revisa tu próxima clase y tareas urgentes sin abrir la app en Android e iOS"
+        >
+          <svg
+            class="chip-svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <rect width="18" height="18" x="3" y="3" rx="2"></rect>
             <path d="M3 9h18M9 21V9"></path>
           </svg>
@@ -157,8 +337,22 @@ import CssQrCode from './CssQrCode.astro';
           </div>
         </div>
 
-        <div class="feature-chip" title="Entiende el sistema de parciales de 20 puntos, aulas de los campus y mallas de más de 20 carreras">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <div
+          class="feature-chip"
+          title="Entiende el sistema de parciales de 20 puntos, aulas de los campus y mallas de más de 20 carreras"
+        >
+          <svg
+            class="chip-svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
             <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
           </svg>
@@ -174,25 +368,74 @@ import CssQrCode from './CssQrCode.astro';
     <div class="hero-device-col">
       <div class="hero-ambient-glow" aria-hidden="true"></div>
       <div class="phone-perspective-stage" id="phone-stage">
-        
         <!-- Segmented Control de Vistas Rápidas con SVGs finos -->
-        <div class="phone-segmented-control" role="tablist" aria-label="Vistas interactivas de la app">
-          <button class="seg-btn active" role="tab" aria-selected="true" data-view="home">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        <div
+          class="phone-segmented-control"
+          role="tablist"
+          aria-label="Vistas interactivas de la app"
+        >
+          <button
+            class="seg-btn active"
+            role="tab"
+            aria-selected="true"
+            data-view="home"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
+              ></polygon>
             </svg>
             <span>En Vivo</span>
           </button>
-          <button class="seg-btn" role="tab" aria-selected="false" data-view="malla">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <button
+            class="seg-btn"
+            role="tab"
+            aria-selected="false"
+            data-view="malla"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
               <line x1="18" y1="20" x2="18" y2="10"></line>
               <line x1="12" y1="20" x2="12" y2="4"></line>
               <line x1="6" y1="20" x2="6" y2="14"></line>
             </svg>
             <span>Malla</span>
           </button>
-          <button class="seg-btn" role="tab" aria-selected="false" data-view="horario">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <button
+            class="seg-btn"
+            role="tab"
+            aria-selected="false"
+            data-view="horario"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
               <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
               <line x1="16" y1="2" x2="16" y2="6"></line>
               <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -211,14 +454,15 @@ import CssQrCode from './CssQrCode.astro';
 
           <!-- Pantalla del Celular -->
           <div class="phone-screen-content">
-            
             <!-- VISTA 1: UI REAL DE LA APP (Home Dashboard) -->
             <div class="screen-layer active" id="layer-home">
               <div class="app-ui-canvas">
                 <!-- Barra superior de la app -->
                 <div class="app-topbar">
                   <div class="user-greeting">
-                    <span class="user-title">¡Pilas, <span id="app-rotator-word">ñaño</span>!</span>
+                    <span class="user-title"
+                      >¡Pilas, <span id="app-rotator-word">ñaño</span>!</span
+                    >
                     <span class="user-campus">Campus Sangolquí · 2026-1</span>
                   </div>
                   <div class="app-topbar-icons">
@@ -231,14 +475,27 @@ import CssQrCode from './CssQrCode.astro';
                 <div class="app-live-class-card" id="hero-live-card">
                   <div class="card-time-row">
                     <div class="time-meta">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="clock-icon" aria-hidden="true">
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="clock-icon"
+                        aria-hidden="true"
+                      >
                         <circle cx="12" cy="12" r="10"></circle>
                         <polyline points="12 6 12 12 16 14"></polyline>
                       </svg>
                       <span class="time-text">09:15 - 11:15</span>
                     </div>
                     <!-- Chip con cuenta regresiva -->
-                    <span class="countdown-chip" id="countdown-chip">119 MIN RESTANTES</span>
+                    <span class="countdown-chip" id="countdown-chip"
+                      >119 MIN RESTANTES</span
+                    >
                   </div>
 
                   <!-- Barra de progreso de clase en curso -->
@@ -252,11 +509,25 @@ import CssQrCode from './CssQrCode.astro';
                   </div>
 
                   <div class="class-location-row">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="pin-icon" aria-hidden="true">
-                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="pin-icon"
+                      aria-hidden="true"
+                    >
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                      ></path>
                       <circle cx="12" cy="10" r="3"></circle>
                     </svg>
-                    <span class="location-text">Aula G-201 · Bloque G (Mecánica)</span>
+                    <span class="location-text"
+                      >Aula G-201 · Bloque G (Mecánica)</span
+                    >
                   </div>
 
                   <div class="class-card-actions">
@@ -289,15 +560,37 @@ import CssQrCode from './CssQrCode.astro';
                 <!-- Bottom Navigation Bar de la App con SVGs finos -->
                 <div class="app-bottom-nav">
                   <div class="bottom-nav-item active">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                      ></path>
                       <polyline points="9 22 9 12 15 12 15 22"></polyline>
                     </svg>
                     <span>INICIO</span>
                   </div>
                   <div class="bottom-nav-item">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect width="18" height="18" x="3" y="4" rx="2" ry="2"
+                      ></rect>
                       <line x1="16" x2="16" y1="2" y2="6"></line>
                       <line x1="8" x2="8" y1="2" y2="6"></line>
                       <line x1="3" x2="21" y1="10" y2="10"></line>
@@ -305,21 +598,57 @@ import CssQrCode from './CssQrCode.astro';
                     <span>HORARIO</span>
                   </div>
                   <div class="bottom-nav-item">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
                       <path d="m9 11 3 3L22 4"></path>
-                      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                      <path
+                        d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                      ></path>
                     </svg>
                     <span>TAREAS</span>
                   </div>
                   <div class="bottom-nav-item">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                      ></path>
                     </svg>
                     <span>MENSAJES</span>
                   </div>
                   <div class="bottom-nav-item">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"
+                      ></path>
                       <path d="M6 6h10"></path>
                       <path d="M6 10h10"></path>
                     </svg>
@@ -333,70 +662,35 @@ import CssQrCode from './CssQrCode.astro';
             <div class="screen-layer" id="layer-malla">
               <picture>
                 <source srcset="/images/mockup-malla.webp" type="image/webp" />
-                <img src="/images/mockup-malla.jpg" alt="Malla curricular de la carrera con materias aprobadas, en curso y pendientes en Pilas!" class="screen-layer-img" loading="eager" width="640" height="1459" />
+                <img
+                  src="/images/mockup-malla.jpg"
+                  alt="Malla curricular de la carrera con materias aprobadas, en curso y pendientes en Pilas!"
+                  class="screen-layer-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="1459"
+                />
               </picture>
             </div>
 
             <!-- VISTA 3: Captura Real Horario Semanal -->
             <div class="screen-layer" id="layer-horario">
               <picture>
-                <source srcset="/images/mockup-horario.webp" type="image/webp" />
-                <img src="/images/mockup-horario.jpg" alt="Horario semanal con el aula, el bloque y el docente de cada clase en Pilas!" class="screen-layer-img" loading="lazy" width="640" height="1459" />
+                <source
+                  srcset="/images/mockup-horario.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="/images/mockup-horario.jpg"
+                  alt="Horario semanal con el aula, el bloque y el docente de cada clase en Pilas!"
+                  class="screen-layer-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="1459"
+                />
               </picture>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- 3 TARJETAS FLOTANTES EN CASCADA CON SVGS FINOS -->
-        
-        <!-- Tarjeta 1: Graduación con contador animado -->
-        <div class="float-wrapper float-wrap-grad">
-          <div class="floating-story-card card-grad" id="card-grad">
-            <div class="f-icon-box amber">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-              </svg>
-            </div>
-            <div class="f-info">
-              <span class="f-title">Graduación: 2029</span>
-              <div class="f-progress-track">
-                <div class="f-progress-fill" id="grad-progress-fill"></div>
-              </div>
-              <span class="f-sub"><span id="grad-counter">44.2</span>% completado</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 2: Banner 9 SSB con Auto-reintento x2 -->
-        <div class="float-wrapper float-wrap-banner">
-          <div class="floating-story-card card-banner" id="card-banner">
-            <div class="f-icon-box fuchsia">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-              </svg>
-            </div>
-            <div class="f-info">
-              <span class="f-title">Aula G-201 · Bloque G</span>
-              <div class="banner-retry-status" id="banner-retry-status">
-                <span class="status-pill-retry" id="retry-badge">Intento 2 OK</span>
-                <span class="status-text-retry" id="retry-text">Sincronizado</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 3: Login QR Moodle con línea de escaneo láser -->
-        <div class="float-wrapper float-wrap-moodle">
-          <div class="floating-story-card card-moodle" id="card-moodle">
-            <div class="qr-mini-thumb">
-              <div class="mini-laser-line"></div>
-              <CssQrCode variant="moodle" size={30} compact={true} class="mini-qr-css" label="Vista previa del código QR de Moodle" />
-            </div>
-            <div class="f-info">
-              <span class="f-title">Login QR Moodle</span>
-              <span class="f-sub fuchsia">Sin escribir tu contraseña</span>
             </div>
           </div>
         </div>
@@ -411,6 +705,7 @@ import CssQrCode from './CssQrCode.astro';
     padding: 70px 0 90px 0;
     overflow: hidden;
     min-height: calc(100vh - 110px);
+    min-height: calc(100dvh - 110px);
     display: flex;
     align-items: center;
   }
@@ -419,7 +714,7 @@ import CssQrCode from './CssQrCode.astro';
   .hero-grid-bg {
     position: absolute;
     inset: 0;
-    background-image: 
+    background-image:
       linear-gradient(to right, rgba(0, 255, 135, 0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(0, 255, 135, 0.05) 1px, transparent 1px);
     background-size: 48px 48px;
@@ -430,8 +725,14 @@ import CssQrCode from './CssQrCode.astro';
   }
 
   @keyframes grid-glow {
-    from { opacity: 0; transform: scale(0.98); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .hero-container {
@@ -486,8 +787,12 @@ import CssQrCode from './CssQrCode.astro';
   /* Fade de opacidad puro: no toca `transform`, así el `both` (que mantiene el
      fotograma final) no bloquea los :hover de estos elementos. */
   @keyframes hero-fade {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   html.js-anim .hero-badge-row {
@@ -509,9 +814,15 @@ import CssQrCode from './CssQrCode.astro';
     animation: text-reveal 700ms var(--ease-apple) forwards;
   }
 
-  html.js-anim .hero-line-1 { animation-delay: 180ms; }
-  html.js-anim .hero-line-2 { animation-delay: 340ms; }
-  html.js-anim .hero-line-3 { animation-delay: 500ms; }
+  html.js-anim .hero-line-1 {
+    animation-delay: 180ms;
+  }
+  html.js-anim .hero-line-2 {
+    animation-delay: 340ms;
+  }
+  html.js-anim .hero-line-3 {
+    animation-delay: 500ms;
+  }
 
   @keyframes text-reveal {
     to {
@@ -536,8 +847,13 @@ import CssQrCode from './CssQrCode.astro';
   }
 
   @keyframes cursor-blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -632,9 +948,9 @@ import CssQrCode from './CssQrCode.astro';
   }
 
   .hero-mascot-bubble {
-    background: #FFE500;
+    background: #ffe500;
     color: #000000;
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 800;
     font-size: 0.78rem;
     padding: 6px 12px;
@@ -647,12 +963,95 @@ import CssQrCode from './CssQrCode.astro';
 
   .hero-version-tag {
     background: #000000;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 0.72rem;
     font-weight: 900;
     padding: 3px 8px;
     border-radius: 999px;
     margin-left: 6px;
+  }
+
+  /* Badge Contador de Descargas Chiquito */
+  .hero-dl-counter-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #11151f;
+    border: 1.5px solid #283042;
+    border-radius: var(--radius-pill, 999px);
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    font-family: var(--font-mono, monospace);
+    color: var(--text-secondary, #c4cad4);
+    box-shadow: 2px 2px 0px #000000;
+    transition:
+      transform 0.15s ease,
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+    user-select: none;
+    cursor: default;
+  }
+
+  .hero-dl-counter-badge:hover {
+    border-color: var(--color-success, #00ff87);
+    transform: translateY(-1px);
+    box-shadow: 3px 3px 0px #000000;
+  }
+
+  .dl-live-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--color-success, #00ff87);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 255, 135, 0.7);
+    animation: livePulse 2s infinite ease-in-out;
+    flex-shrink: 0;
+  }
+
+  @keyframes livePulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.3);
+      opacity: 1;
+    }
+  }
+
+  .dl-counter-icon {
+    font-size: 0.82rem;
+  }
+
+  .dl-counter-num {
+    font-weight: 800;
+    color: var(--color-success, #00ff87);
+    font-size: 0.88rem;
+  }
+
+  .dl-counter-text {
+    font-size: 0.74rem;
+    color: var(--text-tertiary, #8f9cae);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-dl-counter-badge.celebrate {
+    animation: counterPop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-color: var(--color-primary, #ff3fa4);
+  }
+
+  @keyframes counterPop {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 
   html.js-anim .hero-actions-group {
@@ -675,14 +1074,16 @@ import CssQrCode from './CssQrCode.astro';
     background: rgba(37, 211, 102, 0.08);
     border: 1.5px solid rgba(37, 211, 102, 0.4);
     border-radius: var(--radius-pill);
-    box-shadow: 2px 2px 0px #064E3B;
+    box-shadow: 2px 2px 0px #064e3b;
     flex-wrap: wrap;
     justify-content: center;
-    transition: transform 200ms var(--ease-spring), border-color 200ms ease;
+    transition:
+      transform 200ms var(--ease-spring),
+      border-color 200ms ease;
   }
 
   .channel-callout-inner:hover {
-    border-color: #25D366;
+    border-color: #25d366;
     transform: translateY(-1px);
   }
 
@@ -691,7 +1092,7 @@ import CssQrCode from './CssQrCode.astro';
     align-items: center;
     gap: 6px;
     background: #000000;
-    color: #25D366;
+    color: #25d366;
     font-family: var(--font-mono);
     font-size: 0.68rem;
     font-weight: 900;
@@ -704,14 +1105,21 @@ import CssQrCode from './CssQrCode.astro';
   .channel-dot-pulse {
     width: 6px;
     height: 6px;
-    background: #25D366;
+    background: #25d366;
     border-radius: 50%;
     animation: channelPulse 2s infinite ease-in-out;
   }
 
   @keyframes channelPulse {
-    0%, 100% { opacity: 0.6; box-shadow: 0 0 2px #25D366; }
-    50% { opacity: 1; box-shadow: 0 0 8px #25D366; }
+    0%,
+    100% {
+      opacity: 0.6;
+      box-shadow: 0 0 2px #25d366;
+    }
+    50% {
+      opacity: 1;
+      box-shadow: 0 0 8px #25d366;
+    }
   }
 
   .channel-callout-text {
@@ -721,7 +1129,7 @@ import CssQrCode from './CssQrCode.astro';
   }
 
   .channel-callout-text strong {
-    color: #FAF7F7;
+    color: #faf7f7;
   }
 
   .btn-channel-pill {
@@ -729,7 +1137,7 @@ import CssQrCode from './CssQrCode.astro';
     align-items: center;
     gap: 6px;
     padding: 5px 12px;
-    background: #25D366;
+    background: #25d366;
     color: #000000;
     font-family: var(--font-sans);
     font-size: 0.78rem;
@@ -738,12 +1146,14 @@ import CssQrCode from './CssQrCode.astro';
     border-radius: var(--radius-pill);
     box-shadow: 2px 2px 0px #000000;
     text-decoration: none;
-    transition: transform 150ms var(--ease-apple), background-color 150ms ease;
+    transition:
+      transform 150ms var(--ease-apple),
+      background-color 150ms ease;
     white-space: nowrap;
   }
 
   .btn-channel-pill:hover {
-    background: #2BF075;
+    background: #2bf075;
     transform: translate(-1px, -1px);
     box-shadow: 3px 3px 0px #000000;
   }
@@ -774,7 +1184,7 @@ import CssQrCode from './CssQrCode.astro';
 
   .btn-hero-cta:hover {
     background-color: var(--color-primary-hover);
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   .btn-hero-secondary {
@@ -790,8 +1200,19 @@ import CssQrCode from './CssQrCode.astro';
   }
 
   @keyframes download-pulse {
-    0%, 100% { transform: scale(1); box-shadow: var(--shadow-hard), 0 0 16px rgba(0, 255, 135, 0.22); }
-    50% { transform: scale(1.025); box-shadow: 6px 6px 0px #000000, 0 0 24px rgba(0, 255, 135, 0.4); }
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow:
+        var(--shadow-hard),
+        0 0 16px rgba(0, 255, 135, 0.22);
+    }
+    50% {
+      transform: scale(1.025);
+      box-shadow:
+        6px 6px 0px #000000,
+        0 0 24px rgba(0, 255, 135, 0.4);
+    }
   }
 
   /* El pulso infinito controla el transform, así que hay que cederle el paso
@@ -846,13 +1267,13 @@ import CssQrCode from './CssQrCode.astro';
     transform: scale(1.15);
   }
 
-  /* Fila compacta de Chips Centrada */
+  /* Fila compacta de Chips Centrada (Matriz Simétrica 3 x 2 para los 6 chips) */
   .hero-features-chips {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     width: 100%;
-    max-width: 920px;
+    max-width: 980px;
     border-top: 1.5px solid var(--border-app);
     padding-top: 24px;
     margin: 0 auto;
@@ -863,10 +1284,24 @@ import CssQrCode from './CssQrCode.astro';
     animation: hero-fade 560ms var(--ease-apple) both;
   }
 
-  html.js-anim .hero-features-chips .feature-chip:nth-child(1) { animation-delay: 920ms; }
-  html.js-anim .hero-features-chips .feature-chip:nth-child(2) { animation-delay: 1000ms; }
-  html.js-anim .hero-features-chips .feature-chip:nth-child(3) { animation-delay: 1080ms; }
-  html.js-anim .hero-features-chips .feature-chip:nth-child(4) { animation-delay: 1160ms; }
+  html.js-anim .hero-features-chips .feature-chip:nth-child(1) {
+    animation-delay: 920ms;
+  }
+  html.js-anim .hero-features-chips .feature-chip:nth-child(2) {
+    animation-delay: 1000ms;
+  }
+  html.js-anim .hero-features-chips .feature-chip:nth-child(3) {
+    animation-delay: 1080ms;
+  }
+  html.js-anim .hero-features-chips .feature-chip:nth-child(4) {
+    animation-delay: 1160ms;
+  }
+  html.js-anim .hero-features-chips .feature-chip:nth-child(5) {
+    animation-delay: 1240ms;
+  }
+  html.js-anim .hero-features-chips .feature-chip:nth-child(6) {
+    animation-delay: 1320ms;
+  }
 
   .feature-chip {
     display: flex;
@@ -877,21 +1312,26 @@ import CssQrCode from './CssQrCode.astro';
     border: 1.5px solid var(--border-app);
     border-radius: var(--radius-md);
     box-shadow: 2px 2px 0px #000000;
-    transition: transform 220ms var(--ease-spring),
-                box-shadow 220ms var(--ease-apple),
-                border-color 220ms ease;
+    transition:
+      transform 220ms var(--ease-spring),
+      box-shadow 220ms var(--ease-apple),
+      border-color 220ms ease;
   }
 
   .feature-chip:hover {
     transform: translateY(-3px);
     border-color: var(--accent-primary);
-    box-shadow: 3px 3px 0px rgba(0, 255, 135, 0.4), 0 6px 16px rgba(0, 0, 0, 0.4);
+    box-shadow:
+      3px 3px 0px rgba(0, 255, 135, 0.4),
+      0 6px 16px rgba(0, 0, 0, 0.4);
   }
 
   .chip-svg {
     color: var(--accent-primary);
     flex-shrink: 0;
-    transition: transform 240ms var(--ease-spring), color 240ms ease;
+    transition:
+      transform 240ms var(--ease-spring),
+      color 240ms ease;
   }
 
   .feature-chip:hover .chip-svg {
@@ -916,19 +1356,16 @@ import CssQrCode from './CssQrCode.astro';
     color: var(--text-muted);
   }
 
-  /* Columna Visual / Teléfono.
-     Es flex + wrap porque las tarjetas flotantes también viven aquí: en pantallas
-     anchas se posicionan de forma absoluta alrededor del teléfono y, cuando no
-     hay canal suficiente, pasan a fluir en una fila ordenada debajo de él en
-     lugar de amontonarse encima de la pantalla. */
+  /* Columna Visual / Teléfono Centrado */
   .hero-device-col {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: flex-start;
-    align-content: center;
-    gap: 14px;
     position: relative;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
   }
 
   .hero-ambient-glow {
@@ -938,7 +1375,12 @@ import CssQrCode from './CssQrCode.astro';
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(0, 255, 135, 0.15) 0%, rgba(255, 219, 121, 0.06) 45%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(0, 255, 135, 0.15) 0%,
+      rgba(255, 219, 121, 0.06) 45%,
+      transparent 70%
+    );
     filter: blur(45px);
     pointer-events: none;
     z-index: 1;
@@ -946,8 +1388,14 @@ import CssQrCode from './CssQrCode.astro';
   }
 
   @keyframes ambient-breathe {
-    0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
-    100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+    0% {
+      transform: translate(-50%, -50%) scale(0.9);
+      opacity: 0.6;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.15);
+      opacity: 1;
+    }
   }
 
   .phone-perspective-stage {
@@ -1028,14 +1476,16 @@ import CssQrCode from './CssQrCode.astro';
     width: 100%;
     aspect-ratio: 9 / 18.5;
     background: #000000;
-    border: 9px solid #161A23;
+    border: 9px solid #161a23;
     border-radius: 40px;
-    box-shadow: 
+    box-shadow:
       0 25px 60px -15px rgba(0, 0, 0, 0.9),
       6px 6px 0px #000000,
       0 0 0 2px var(--accent-primary);
     overflow: hidden;
-    transition: transform 180ms var(--ease-apple), box-shadow 180ms ease;
+    transition:
+      transform 180ms var(--ease-apple),
+      box-shadow 180ms ease;
     transform-style: preserve-3d;
   }
 
@@ -1058,9 +1508,9 @@ import CssQrCode from './CssQrCode.astro';
   .phone-camera-dot {
     width: 6px;
     height: 6px;
-    background: #111A24;
+    background: #111a24;
     border-radius: 50%;
-    border: 1px solid #1F2E3D;
+    border: 1px solid #1f2e3d;
   }
 
   .phone-screen-content {
@@ -1201,13 +1651,23 @@ import CssQrCode from './CssQrCode.astro';
     transform: none !important;
   }
 
-  html.js-anim .app-ui-canvas .app-topbar { --arm-delay: 320ms; }
-  html.js-anim .app-ui-canvas .app-metrics-grid { --arm-delay: 600ms; }
-  html.js-anim .app-ui-canvas .app-bottom-nav { --arm-delay: 720ms; }
+  html.js-anim .app-ui-canvas .app-topbar {
+    --arm-delay: 320ms;
+  }
+  html.js-anim .app-ui-canvas .app-metrics-grid {
+    --arm-delay: 600ms;
+  }
+  html.js-anim .app-ui-canvas .app-bottom-nav {
+    --arm-delay: 720ms;
+  }
 
   @keyframes arm-ui-piece {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .card-time-row {
@@ -1242,8 +1702,12 @@ import CssQrCode from './CssQrCode.astro';
   }
 
   @keyframes countdown-pulse {
-    from { opacity: 1; }
-    to { opacity: 0.45; }
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.45;
+    }
   }
 
   /* Estado intermedio ámbar del reintento de Banner (antes se forzaba con
@@ -1273,23 +1737,35 @@ import CssQrCode from './CssQrCode.astro';
   }
 
   .class-progress-bar::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 60%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.65),
+      transparent
+    );
     animation: shimmer-pass 3.2s ease-in-out infinite 2.2s;
   }
 
   @keyframes shimmer-pass {
-    0% { left: -100%; }
-    50%, 100% { left: 160%; }
+    0% {
+      left: -100%;
+    }
+    50%,
+    100% {
+      left: 160%;
+    }
   }
 
   @keyframes fill-class-bar {
-    to { width: 62%; }
+    to {
+      width: 62%;
+    }
   }
 
   .class-subject-info {
@@ -1331,7 +1807,8 @@ import CssQrCode from './CssQrCode.astro';
     margin-top: 2px;
   }
 
-  .mini-btn-view, .mini-btn-join {
+  .mini-btn-view,
+  .mini-btn-join {
     flex: 1;
     text-align: center;
     padding: 4px;
@@ -1394,7 +1871,8 @@ import CssQrCode from './CssQrCode.astro';
     color: var(--text-primary);
   }
 
-  .metric-scale, .metric-unit {
+  .metric-scale,
+  .metric-unit {
     font-size: 0.65rem;
     color: var(--text-muted);
     font-weight: 700;
@@ -1438,270 +1916,6 @@ import CssQrCode from './CssQrCode.astro';
   }
 
   /* ==========================================================================
-     3 TARJETAS FLOTANTES
-     Base: fluyen dentro de .hero-device-col (fila ordenada debajo del teléfono).
-     El posicionamiento absoluto alrededor del teléfono se activa solo cuando hay
-     canal real, en @media (min-width: 1200px).
-     ========================================================================== */
-  .float-wrapper {
-    position: static;
-    z-index: 25;
-  }
-
-  .floating-story-card {
-    /* En modo flujo el nowrap podía desbordar en pantallas muy estrechas */
-    max-width: 100%;
-  }
-
-  @keyframes gentle-bob {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(0, -9px, 0); }
-  }
-
-  @keyframes gentle-bob-rev {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(0, -9px, 0); }
-  }
-
-  @keyframes gentle-bob-plain {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(0, -8px, 0); }
-  }
-
-  /* --- Layout flotante: solo con canal suficiente en escritorio centrado --------- */
-  @media (min-width: 1140px) {
-    .container.hero-container {
-      max-width: 1100px;
-    }
-
-    .hero-device-col {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      width: 100%;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    .float-wrapper {
-      position: absolute;
-    }
-
-    .float-wrap-grad {
-      top: 15%;
-      left: -60px;
-      animation: gentle-bob 4.2s ease-in-out infinite alternate;
-    }
-
-    .float-wrap-banner {
-      top: 45%;
-      right: -60px;
-      animation: gentle-bob-rev 4.8s ease-in-out infinite alternate;
-    }
-
-    .float-wrap-moodle {
-      top: auto;
-      bottom: 24px;
-      left: -30px;
-      animation: gentle-bob-plain 3.9s ease-in-out infinite alternate;
-    }
-  }
-
-  @media (min-width: 961px) and (max-width: 1139px) {
-    .hero-device-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      position: relative;
-    }
-
-    .float-wrapper {
-      position: static;
-      flex: 0 1 auto;
-    }
-  }
-
-  .floating-story-card {
-    background: var(--bg-surface-elevated);
-    border: 2px solid var(--border-bold);
-    border-radius: var(--radius-md);
-    padding: 8px 12px;
-    box-shadow: 4px 4px 0px #000000;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-    transition: transform var(--duration-hover) var(--ease-apple),
-                box-shadow var(--duration-hover) var(--ease-apple),
-                border-color var(--duration-hover) ease;
-  }
-
-  /* Entrada de las tarjetas: se anima una sola propiedad (opacity) para no
-     competir con el transform del vaivén del wrapper ni con el :hover. */
-  html.js-anim .floating-story-card {
-    opacity: 0;
-    animation: card-fade-in 700ms var(--ease-apple) both;
-  }
-
-  html.js-anim .float-wrap-grad .floating-story-card { animation-delay: 900ms; }
-  html.js-anim .float-wrap-banner .floating-story-card { animation-delay: 1050ms; }
-  html.js-anim .float-wrap-moodle .floating-story-card { animation-delay: 1200ms; }
-
-  @keyframes card-fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  .card-grad {
-    border-color: var(--accent-amber);
-    box-shadow: 3px 3px 0px var(--accent-amber);
-  }
-
-  .card-banner {
-    border-color: var(--border-app);
-  }
-
-  .card-moodle {
-    border-color: var(--accent-primary);
-  }
-
-  .floating-story-card:hover {
-    transform: translateY(-4px) scale(1.04);
-    box-shadow: 6px 6px 0px #000000;
-  }
-
-  .card-grad:hover { box-shadow: 6px 6px 0px var(--accent-amber); }
-  .card-moodle:hover { box-shadow: 6px 6px 0px var(--accent-primary); }
-
-  .f-icon-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid #000;
-    box-shadow: 1.5px 1.5px 0px #000;
-    line-height: 1;
-  }
-
-  /* Faltaban por completo: los iconos heredaban el color del texto y se veían
-     blancos en vez de ámbar/verde. */
-  .f-icon-box.amber {
-    background: rgba(255, 219, 121, 0.16);
-    color: var(--accent-amber);
-  }
-
-  .f-icon-box.fuchsia {
-    background: rgba(255, 63, 164, 0.16);
-    color: var(--accent-primary);
-  }
-
-  .f-info {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    line-height: 1.2;
-  }
-
-  .f-title {
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: var(--text-primary);
-  }
-
-  .f-sub {
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: var(--text-muted);
-  }
-
-  .f-sub.fuchsia {
-    color: var(--accent-primary);
-  }
-
-  .f-progress-track {
-    width: 80px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    margin: 3px 0;
-    overflow: hidden;
-  }
-
-  .f-progress-fill {
-    width: 0%;
-    height: 100%;
-    background: var(--accent-amber);
-    border-radius: 2px;
-    transition: width 1.2s var(--ease-apple);
-  }
-
-  .banner-retry-status {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 2px;
-  }
-
-  .status-pill-retry {
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    font-weight: 800;
-    background: rgba(0, 255, 135, 0.15);
-    color: var(--accent-primary);
-    border: 1px solid var(--accent-primary);
-    padding: 1px 4px;
-    border-radius: 3px;
-  }
-
-  .status-text-retry {
-    font-size: 0.68rem;
-    color: var(--text-muted);
-  }
-
-  .qr-mini-thumb {
-    position: relative;
-    background: #ffffff;
-    padding: 2px;
-    border-radius: 4px;
-    border: 1px solid #000;
-    overflow: hidden;
-    display: flex;
-  }
-
-  .mini-laser-line {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--accent-primary);
-    box-shadow: 0 0 6px var(--accent-primary), 0 0 12px rgba(0, 255, 135, 0.7);
-    animation: mini-laser 1.8s ease-in-out infinite alternate;
-    z-index: 2;
-  }
-
-  @keyframes mini-laser {
-    from { top: 0%; }
-    to { top: 90%; }
-  }
-
-  .mini-qr-css {
-    width: 30px;
-    height: 30px;
-  }
-
-  .mini-qr-css :global(.css-qr-card) {
-    border: none;
-    padding: 0;
-    box-shadow: none;
-    border-radius: 2px;
-  }
-
-  /* ==========================================================================
      RESPONSIVE
      ========================================================================== */
 
@@ -1726,22 +1940,6 @@ import CssQrCode from './CssQrCode.astro';
       align-items: center;
       gap: 12px;
       width: 100%;
-    }
-
-    .float-wrapper {
-      position: static !important;
-      transform: none !important;
-      animation: none !important;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .floating-story-card {
-      width: 100%;
-      max-width: min(320px, 100%);
-      justify-content: flex-start;
-      white-space: normal;
     }
   }
 
@@ -1780,7 +1978,7 @@ import CssQrCode from './CssQrCode.astro';
     .phone-chassis {
       border-width: 7px;
       border-radius: 28px;
-      box-shadow: 
+      box-shadow:
         0 15px 35px -10px rgba(0, 0, 0, 0.8),
         3px 3px 0px #000000,
         0 0 0 2px var(--accent-primary);
@@ -1880,33 +2078,35 @@ import CssQrCode from './CssQrCode.astro';
 
 <script>
   // Control de Tabs en la maqueta del teléfono
-  const segBtns = document.querySelectorAll<HTMLButtonElement>('.phone-segmented-control .seg-btn');
-  const layers = document.querySelectorAll<HTMLElement>('.screen-layer');
+  const segBtns = document.querySelectorAll<HTMLButtonElement>(
+    ".phone-segmented-control .seg-btn",
+  );
+  const layers = document.querySelectorAll<HTMLElement>(".screen-layer");
 
   const selectView = (btn: HTMLButtonElement, moveFocus = false) => {
-    segBtns.forEach(b => {
-      b.classList.remove('active');
-      b.setAttribute('aria-selected', 'false');
+    segBtns.forEach((b) => {
+      b.classList.remove("active");
+      b.setAttribute("aria-selected", "false");
     });
-    layers.forEach(l => l.classList.remove('active'));
+    layers.forEach((l) => l.classList.remove("active"));
 
-    btn.classList.add('active');
-    btn.setAttribute('aria-selected', 'true');
+    btn.classList.add("active");
+    btn.setAttribute("aria-selected", "true");
     if (moveFocus) btn.focus();
 
-    const targetView = btn.getAttribute('data-view');
+    const targetView = btn.getAttribute("data-view");
     const targetLayer = document.getElementById(`layer-${targetView}`);
     if (targetLayer) {
-      targetLayer.classList.add('active');
+      targetLayer.classList.add("active");
     }
   };
 
-  segBtns.forEach(btn => {
-    btn.addEventListener('click', () => selectView(btn));
+  segBtns.forEach((btn) => {
+    btn.addEventListener("click", () => selectView(btn));
 
     // Navegación por teclado dentro del tablist
-    btn.addEventListener('keydown', (event: KeyboardEvent) => {
-      const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+    btn.addEventListener("keydown", (event: KeyboardEvent) => {
+      const keys = ["ArrowRight", "ArrowLeft", "Home", "End"];
       if (!keys.includes(event.key)) return;
       event.preventDefault();
 
@@ -1914,10 +2114,11 @@ import CssQrCode from './CssQrCode.astro';
       const current = list.indexOf(btn);
       let next = current;
 
-      if (event.key === 'ArrowRight') next = (current + 1) % list.length;
-      if (event.key === 'ArrowLeft') next = (current - 1 + list.length) % list.length;
-      if (event.key === 'Home') next = 0;
-      if (event.key === 'End') next = list.length - 1;
+      if (event.key === "ArrowRight") next = (current + 1) % list.length;
+      if (event.key === "ArrowLeft")
+        next = (current - 1 + list.length) % list.length;
+      if (event.key === "Home") next = 0;
+      if (event.key === "End") next = list.length - 1;
 
       selectView(list[next], true);
     });
@@ -1929,11 +2130,16 @@ import CssQrCode from './CssQrCode.astro';
   // veces y provocaba un InvalidStateError.
 
   // 3D Tilt Sutil en Desktop (Solo si no hay prefers-reduced-motion)
-  const tiltTarget = document.getElementById('phone-tilt-target');
-  const stage = document.getElementById('phone-stage');
+  const tiltTarget = document.getElementById("phone-tilt-target");
+  const stage = document.getElementById("phone-stage");
 
-  if (tiltTarget && stage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.matchMedia('(min-width: 960px)').matches) {
-    stage.addEventListener('mousemove', (e) => {
+  if (
+    tiltTarget &&
+    stage &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+    window.matchMedia("(min-width: 960px)").matches
+  ) {
+    stage.addEventListener("mousemove", (e) => {
       const rect = stage.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -1947,104 +2153,61 @@ import CssQrCode from './CssQrCode.astro';
       tiltTarget.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale(1.01)`;
     });
 
-    stage.addEventListener('mouseleave', () => {
-      tiltTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    stage.addEventListener("mouseleave", () => {
+      tiltTarget.style.transform =
+        "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
     });
   }
 
-  // Animaciones de historia del Héroe
-  // 1. Contador de porcentaje de graduación 0 a 44.2%
-  const gradCounter = document.getElementById('grad-counter');
-  const gradFill = document.getElementById('grad-progress-fill');
-
-  function startGradAnimation() {
-    if (gradFill) {
-      gradFill.style.width = '44.2%';
-    }
-    if (gradCounter) {
-      // requestAnimationFrame en lugar de setInterval: se detiene solo cuando
-      // la pestaña no está visible y no acumula deriva entre pasos.
-      const target = 44.2;
-      const duration = 1100;
-      const start = performance.now();
-
-      const tick = (now: number) => {
-        const progress = Math.min((now - start) / duration, 1);
-        // Curva de salida suave para que el número "frene" como estilo Apple
-        const eased = 1 - Math.pow(1 - progress, 3);
-        gradCounter.textContent = (target * eased).toFixed(1);
-        if (progress < 1) {
-          requestAnimationFrame(tick);
-        } else {
-          gradCounter.textContent = target.toFixed(1);
-        }
-      };
-      requestAnimationFrame(tick);
-    }
-  }
-
-  // 2. Chip de minutos restantes: empieza arriba y baja una sola vez hasta 119
-  const chip = document.getElementById('countdown-chip');
+  // Animación del chip de minutos restantes dentro de la tarjeta de clase en curso
+  const chip = document.getElementById("countdown-chip");
   function startChipCountdown() {
     if (!chip) return;
     const target = 119;
     let val = 125;
-    chip.classList.add('is-ticking');
+    chip.classList.add("is-ticking");
 
     const timer = setInterval(() => {
       val -= 1;
       if (val <= target) {
         val = target;
         clearInterval(timer);
-        chip.classList.remove('is-ticking');
+        chip.classList.remove("is-ticking");
       }
       chip.textContent = `${val} MIN RESTANTES`;
     }, 150);
   }
 
-  // 3. Banner Auto-reintento: simula transición de "Intento 1..." a "Intento 2 OK"
-  const retryBadge = document.getElementById('retry-badge');
-  const retryText = document.getElementById('retry-text');
-  function startBannerSimulation() {
-    if (!retryBadge || !retryText) return;
-    retryBadge.textContent = 'Intento 1...';
-    retryBadge.classList.add('is-retrying');
-    retryText.textContent = 'Conectando';
-
-    setTimeout(() => {
-      retryBadge.textContent = 'Intento 2 OK';
-      retryBadge.classList.remove('is-retrying');
-      retryText.textContent = 'Sincronizado';
-    }, 1400);
-  }
-
   // Ejecución sincronizada o salto inmediato si el usuario prefiere reducción de movimiento
-  const heroLiveCard = document.getElementById('hero-live-card');
+  const heroLiveCard = document.getElementById("hero-live-card");
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    if (gradFill) gradFill.style.width = '44.2%';
-    if (gradCounter) gradCounter.textContent = '44.2';
-    if (chip) chip.textContent = '119 MIN RESTANTES';
-    document.getElementById('hero-download-btn')?.classList.add('is-static');
-    heroLiveCard?.classList.add('revealed');
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (chip) chip.textContent = "119 MIN RESTANTES";
+    document.getElementById("hero-download-btn")?.classList.add("is-static");
+    heroLiveCard?.classList.add("revealed");
   } else {
-    // Orquestación fluida
     setTimeout(startChipCountdown, 800);
-    setTimeout(startGradAnimation, 1100);
-    setTimeout(startBannerSimulation, 1400);
     // La tarjeta de clase en curso escala de 0.96 a 1 en sincronía con su fundido
-    setTimeout(() => heroLiveCard?.classList.add('revealed'), 460);
+    setTimeout(() => heroLiveCard?.classList.add("revealed"), 460);
   }
 
   // 4. Animación Typewriter Ecuatoriana e Inclusiva (ñaño -> ñaña -> socio -> socia -> mijin -> mija -> panas)
-  const heroRotatorWord = document.getElementById('hero-rotator-word');
-  const appRotatorWord = document.getElementById('app-rotator-word');
-  const ecuadorianWords = ['ñaño', 'ñaña', 'socio', 'socia', 'mijin', 'mija', 'panas'];
+  const heroRotatorWord = document.getElementById("hero-rotator-word");
+  const appRotatorWord = document.getElementById("app-rotator-word");
+  const ecuadorianWords = [
+    "ñaño",
+    "ñaña",
+    "socio",
+    "socia",
+    "mijin",
+    "mija",
+    "panas",
+  ];
 
   if (heroRotatorWord) {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      heroRotatorWord.textContent = 'ñañ@s';
-      if (appRotatorWord) appRotatorWord.textContent = 'ñañ@s';
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      heroRotatorWord.textContent = "ñañ@s";
+      if (appRotatorWord) appRotatorWord.textContent = "ñañ@s";
     } else {
       let wordIdx = 0;
       let charIdx = ecuadorianWords[0].length;
@@ -2088,4 +2251,71 @@ import CssQrCode from './CssQrCode.astro';
       }, 2400);
     }
   }
+
+  // 5. Manejo dinámico del contador de descargas (persistencia local + incremento al descargar)
+  (function () {
+    const heroCountEl = document.getElementById("hero-dl-count-val");
+    const heroBadgeEl = document.getElementById("hero-dl-counter");
+    const heroDlBtn = document.getElementById("hero-download-btn");
+    const BASE_COUNT =
+      parseInt(heroBadgeEl?.getAttribute("data-base-count") || "100", 10) ||
+      100;
+    const STORAGE_KEY = "pilas_app_dl_v1";
+
+    function getDownloads() {
+      try {
+        const stored = parseInt(localStorage.getItem(STORAGE_KEY) || "", 10);
+        return stored && stored >= BASE_COUNT ? stored : BASE_COUNT;
+      } catch (e) {
+        return BASE_COUNT;
+      }
+    }
+
+    function formatNumber(num: number) {
+      return "+" + num.toLocaleString();
+    }
+
+    function syncCounter(val: number) {
+      const formatted = formatNumber(val);
+      if (heroCountEl) heroCountEl.textContent = formatted;
+      const secVal = document.getElementById("section-dl-count-val");
+      if (secVal) secVal.textContent = formatted;
+      const specVal = document.getElementById("spec-dl-count-val");
+      if (specVal) specVal.textContent = formatted + " descargas";
+    }
+
+    const currentCount = getDownloads();
+    syncCounter(currentCount);
+
+    function onDownloadClick() {
+      const next = getDownloads() + 1;
+      try {
+        localStorage.setItem(STORAGE_KEY, String(next));
+      } catch (e) {}
+      syncCounter(next);
+
+      if (heroBadgeEl) {
+        heroBadgeEl.classList.remove("celebrate");
+        void heroBadgeEl.offsetWidth;
+        heroBadgeEl.classList.add("celebrate");
+      }
+
+      window.dispatchEvent(
+        new CustomEvent("pilas-download-registered", {
+          detail: { count: next },
+        }),
+      );
+    }
+
+    if (heroDlBtn) {
+      heroDlBtn.addEventListener("click", onDownloadClick);
+    }
+
+    window.addEventListener("pilas-download-registered", (e: Event) => {
+      const custom = e as CustomEvent<{ count: number }>;
+      if (custom.detail?.count) {
+        syncCounter(custom.detail.count);
+      }
+    });
+  })();
 </script>

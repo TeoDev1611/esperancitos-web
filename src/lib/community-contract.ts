@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 // ============================================================================
 // CONTRATO API v1 - COMUNIDAD PILAS!
@@ -10,22 +10,27 @@ import { z } from 'zod';
 // Cada JSON <= 200 KB; logos WebP <= 60 KB.
 // ============================================================================
 
-export const API_BASE_URL = 'https://pilas-ec.vercel.app/api/v1/';
+export const API_BASE_URL = "https://pilas-ec.vercel.app/api/v1/";
 export const MAX_JSON_SIZE_BYTES = 200 * 1024; // 200 KB
-export const MAX_LOGO_SIZE_BYTES = 60 * 1024;  // 60 KB
+export const MAX_LOGO_SIZE_BYTES = 60 * 1024; // 60 KB
 
-export const AVISO_TYPES = ['info', 'evento', 'mantenimiento', 'importante'] as const;
+export const AVISO_TYPES = [
+  "info",
+  "evento",
+  "mantenimiento",
+  "importante",
+] as const;
 export type AvisoType = (typeof AVISO_TYPES)[number];
 
 export const NEGOCIO_CATEGORIES = [
-  'comida',
-  'copias',
-  'papeleria',
-  'transporte',
-  'vivienda',
-  'salud',
-  'servicios',
-  'otros',
+  "comida",
+  "copias",
+  "papeleria",
+  "transporte",
+  "vivienda",
+  "salud",
+  "servicios",
+  "otros",
 ] as const;
 export type NegocioCategory = (typeof NEGOCIO_CATEGORIES)[number];
 
@@ -48,7 +53,7 @@ export const isValidIsoDate = (val: string): boolean => {
 export const isHttpsUrl = (val: string): boolean => {
   try {
     const url = new URL(val);
-    return url.protocol === 'https:';
+    return url.protocol === "https:";
   } catch {
     return false;
   }
@@ -60,50 +65,69 @@ export const isHttpsUrl = (val: string): boolean => {
 
 // --- 1. AVISOS ---
 export const avisoLinkSchema = z.object({
-  url: z.string().refine(isHttpsUrl, 'La URL del enlace debe comenzar con https://'),
+  url: z
+    .string()
+    .refine(isHttpsUrl, "La URL del enlace debe comenzar con https://"),
   label: z
     .string()
-    .max(30, 'La etiqueta del enlace no puede superar 30 caracteres')
-    .refine(noHtml, 'La etiqueta no puede contener código HTML'),
+    .max(30, "La etiqueta del enlace no puede superar 30 caracteres")
+    .refine(noHtml, "La etiqueta no puede contener código HTML"),
 });
 
 export const avisoSchema = z
   .object({
     id: z
       .string()
-      .regex(slugRegex, 'El id debe ser un slug válido (minúsculas, números y guiones)'),
+      .regex(
+        slugRegex,
+        "El id debe ser un slug válido (minúsculas, números y guiones)",
+      ),
     type: z.enum(AVISO_TYPES, {
-      message: `El tipo debe ser uno de: ${AVISO_TYPES.join(', ')}`,
+      message: `El tipo debe ser uno de: ${AVISO_TYPES.join(", ")}`,
     }),
     title: z
       .string()
-      .min(1, 'El título no puede estar vacío')
-      .max(80, 'El título no puede superar 80 caracteres')
-      .refine(noHtml, 'El título no puede contener código HTML'),
+      .min(1, "El título no puede estar vacío")
+      .max(80, "El título no puede superar 80 caracteres")
+      .refine(noHtml, "El título no puede contener código HTML"),
     body: z
       .string()
-      .min(1, 'El cuerpo no puede estar vacío')
-      .max(500, 'El cuerpo no puede superar 500 caracteres')
-      .refine(noHtml, 'El cuerpo no puede contener código HTML'),
+      .min(1, "El cuerpo no puede estar vacío")
+      .max(500, "El cuerpo no puede superar 500 caracteres")
+      .refine(noHtml, "El cuerpo no puede contener código HTML"),
     link: avisoLinkSchema.optional(),
     campus: z
       .array(
         z
           .string()
           .min(1)
-          .refine(noHtml, 'El nombre de campus no puede contener código HTML')
+          .refine(noHtml, "El nombre de campus no puede contener código HTML"),
       )
       .optional(),
     publishedAt: z
       .string()
-      .refine(isValidIsoDate, 'publishedAt debe ser una fecha ISO 8601 con offset (ej. 2026-10-02T10:00:00-05:00 o Z)'),
+      .refine(
+        isValidIsoDate,
+        "publishedAt debe ser una fecha ISO 8601 con offset (ej. 2026-10-02T10:00:00-05:00 o Z)",
+      ),
     expiresAt: z
       .string()
-      .refine(isValidIsoDate, 'expiresAt debe ser una fecha ISO 8601 con offset (ej. 2026-10-02T10:00:00-05:00 o Z)')
+      .refine(
+        isValidIsoDate,
+        "expiresAt debe ser una fecha ISO 8601 con offset (ej. 2026-10-02T10:00:00-05:00 o Z)",
+      )
       .optional(),
     pinned: z.boolean().default(false),
-    minBuild: z.number().int().positive('minBuild debe ser un entero positivo').optional(),
-    maxBuild: z.number().int().positive('maxBuild debe ser un entero positivo').optional(),
+    minBuild: z
+      .number()
+      .int()
+      .positive("minBuild debe ser un entero positivo")
+      .optional(),
+    maxBuild: z
+      .number()
+      .int()
+      .positive("maxBuild debe ser un entero positivo")
+      .optional(),
 
     // Campos internos / de moderación (permitidos en content, excluidos del JSON público)
     ejemplo: z.boolean().default(false).optional(),
@@ -114,14 +138,17 @@ export const avisoSchema = z
   .refine(
     (data) => {
       if (data.expiresAt) {
-        return new Date(data.expiresAt).getTime() > new Date(data.publishedAt).getTime();
+        return (
+          new Date(data.expiresAt).getTime() >
+          new Date(data.publishedAt).getTime()
+        );
       }
       return true;
     },
     {
-      message: 'expiresAt debe ser estrictamente posterior a publishedAt',
-      path: ['expiresAt'],
-    }
+      message: "expiresAt debe ser estrictamente posterior a publishedAt",
+      path: ["expiresAt"],
+    },
   )
   .refine(
     (data) => {
@@ -131,9 +158,9 @@ export const avisoSchema = z
       return true;
     },
     {
-      message: 'maxBuild debe ser mayor o igual a minBuild',
-      path: ['maxBuild'],
-    }
+      message: "maxBuild debe ser mayor o igual a minBuild",
+      path: ["maxBuild"],
+    },
   );
 
 export type AvisoInput = z.infer<typeof avisoSchema>;
@@ -162,65 +189,79 @@ export const negocioContactSchema = z.object({
   phone: z.string().optional(),
   instagram: z
     .string()
-    .refine(isHttpsUrl, 'El enlace de Instagram debe usar https://')
+    .refine(isHttpsUrl, "El enlace de Instagram debe usar https://")
     .optional(),
-  web: z.string().refine(isHttpsUrl, 'El enlace web debe usar https://').optional(),
+  web: z
+    .string()
+    .refine(isHttpsUrl, "El enlace web debe usar https://")
+    .optional(),
 });
 
 export const negocioSchema = z.object({
   id: z
     .string()
-    .regex(slugRegex, 'El id debe ser un slug válido (minúsculas, números y guiones)'),
+    .regex(
+      slugRegex,
+      "El id debe ser un slug válido (minúsculas, números y guiones)",
+    ),
   name: z
     .string()
-    .min(1, 'El nombre no puede estar vacío')
-    .max(60, 'El nombre no puede superar 60 caracteres')
-    .refine(noHtml, 'El nombre no puede contener código HTML'),
+    .min(1, "El nombre no puede estar vacío")
+    .max(60, "El nombre no puede superar 60 caracteres")
+    .refine(noHtml, "El nombre no puede contener código HTML"),
   category: z.enum(NEGOCIO_CATEGORIES, {
-    message: `La categoría debe ser una de: ${NEGOCIO_CATEGORIES.join(', ')}`,
+    message: `La categoría debe ser una de: ${NEGOCIO_CATEGORIES.join(", ")}`,
   }),
   description: z
     .string()
-    .min(1, 'La descripción no puede estar vacía')
-    .max(200, 'La descripción no puede superar 200 caracteres')
-    .refine(noHtml, 'La descripción no puede contener código HTML'),
+    .min(1, "La descripción no puede estar vacía")
+    .max(200, "La descripción no puede superar 200 caracteres")
+    .refine(noHtml, "La descripción no puede contener código HTML"),
   address: z
     .string()
-    .min(1, 'La dirección no puede estar vacía')
-    .max(120, 'La dirección no puede superar 120 caracteres')
-    .refine(noHtml, 'La dirección no puede contener código HTML'),
+    .min(1, "La dirección no puede estar vacía")
+    .max(120, "La dirección no puede superar 120 caracteres")
+    .refine(noHtml, "La dirección no puede contener código HTML"),
   zone: z
     .string()
-    .min(1, 'La zona no puede estar vacía')
-    .max(40, 'La zona no puede superar 40 caracteres')
-    .refine(noHtml, 'La zona no puede contener código HTML'),
-  lat: z.number().min(-90).max(90, 'Latitud debe estar entre -90 y 90').optional(),
-  lng: z.number().min(-180).max(180, 'Longitud debe estar entre -180 y 180').optional(),
+    .min(1, "La zona no puede estar vacía")
+    .max(40, "La zona no puede superar 40 caracteres")
+    .refine(noHtml, "La zona no puede contener código HTML"),
+  lat: z
+    .number()
+    .min(-90)
+    .max(90, "Latitud debe estar entre -90 y 90")
+    .optional(),
+  lng: z
+    .number()
+    .min(-180)
+    .max(180, "Longitud debe estar entre -180 y 180")
+    .optional(),
   hours: z
     .string()
-    .max(80, 'El horario no puede superar 80 caracteres')
-    .refine(noHtml, 'El horario no puede contener código HTML')
+    .max(80, "El horario no puede superar 80 caracteres")
+    .refine(noHtml, "El horario no puede contener código HTML")
     .optional(),
   contact: negocioContactSchema.optional(),
   logo: z
     .string()
     .regex(
       logoPathRegex,
-      'El logo debe ser una ruta relativa local en /api/v1/img/<id>.webp (sin host externo)'
+      "El logo debe ser una ruta relativa local en /api/v1/img/<id>.webp (sin host externo)",
     )
     .optional(),
   verifiedAt: z
     .string()
-    .refine(isValidIsoDate, 'verifiedAt debe ser una fecha ISO 8601 con offset')
+    .refine(isValidIsoDate, "verifiedAt debe ser una fecha ISO 8601 con offset")
     .optional(),
   updatedAt: z
     .string()
-    .refine(isValidIsoDate, 'updatedAt debe ser una fecha ISO 8601 con offset'),
+    .refine(isValidIsoDate, "updatedAt debe ser una fecha ISO 8601 con offset"),
   validUntil: z
     .string()
     .refine(
       isValidIsoDate,
-      'validUntil es obligatorio y debe ser una fecha ISO 8601 con offset'
+      "validUntil es obligatorio y debe ser una fecha ISO 8601 con offset",
     ),
 
   // Campos internos / de moderación (permitidos en content, excluidos del JSON público)
@@ -263,21 +304,24 @@ export interface NegociosJsonResponse {
 export const enlaceItemSchema = z.object({
   id: z
     .string()
-    .regex(slugRegex, 'El id debe ser un slug válido (minúsculas, números y guiones)'),
+    .regex(
+      slugRegex,
+      "El id debe ser un slug válido (minúsculas, números y guiones)",
+    ),
   title: z
     .string()
-    .min(1, 'El título no puede estar vacío')
-    .max(60, 'El título no puede superar 60 caracteres')
-    .refine(noHtml, 'El título no puede contener código HTML'),
-  url: z.string().refine(isHttpsUrl, 'La URL debe usar el protocolo https://'),
+    .min(1, "El título no puede estar vacío")
+    .max(60, "El título no puede superar 60 caracteres")
+    .refine(noHtml, "El título no puede contener código HTML"),
+  url: z.string().refine(isHttpsUrl, "La URL debe usar el protocolo https://"),
   description: z
     .string()
-    .max(120, 'La descripción no puede superar 120 caracteres')
-    .refine(noHtml, 'La descripción no puede contener código HTML')
+    .max(120, "La descripción no puede superar 120 caracteres")
+    .refine(noHtml, "La descripción no puede contener código HTML")
     .optional(),
   updatedAt: z
     .string()
-    .refine(isValidIsoDate, 'updatedAt debe ser una fecha ISO 8601 con offset'),
+    .refine(isValidIsoDate, "updatedAt debe ser una fecha ISO 8601 con offset"),
   ejemplo: z.boolean().default(false).optional(),
   notas: z.unknown().optional(),
 });
@@ -286,11 +330,13 @@ export const enlaceGroupSchema = z.object({
   id: z.string().regex(slugRegex).optional(),
   title: z
     .string()
-    .min(1, 'El título del grupo no puede estar vacío')
-    .max(40, 'El título del grupo no puede superar 40 caracteres')
-    .refine(noHtml, 'El título del grupo no puede contener código HTML'),
+    .min(1, "El título del grupo no puede estar vacío")
+    .max(40, "El título del grupo no puede superar 40 caracteres")
+    .refine(noHtml, "El título del grupo no puede contener código HTML"),
   order: z.number().int().default(0).optional(),
-  items: z.array(enlaceItemSchema).min(1, 'El grupo debe contener al menos un enlace'),
+  items: z
+    .array(enlaceItemSchema)
+    .min(1, "El grupo debe contener al menos un enlace"),
   ejemplo: z.boolean().default(false).optional(),
   notas: z.unknown().optional(),
 });
@@ -320,30 +366,45 @@ export const updateSchema = z
     id: z.string().optional(),
     latestVersion: z
       .string()
-      .min(1, 'latestVersion no puede estar vacío')
-      .regex(/^\d+\.\d+\.\d+(?:-[\w.]+)?$/, 'latestVersion debe seguir versionado semántico (ej. 1.1.0)'),
-    latestBuild: z.number().int().positive('latestBuild debe ser un entero positivo'),
-    minSupportedBuild: z.number().int().positive('minSupportedBuild debe ser un entero positivo'),
+      .min(1, "latestVersion no puede estar vacío")
+      .regex(
+        /^\d+\.\d+\.\d+(?:-[\w.]+)?$/,
+        "latestVersion debe seguir versionado semántico (ej. 1.1.0)",
+      ),
+    latestBuild: z
+      .number()
+      .int()
+      .positive("latestBuild debe ser un entero positivo"),
+    minSupportedBuild: z
+      .number()
+      .int()
+      .positive("minSupportedBuild debe ser un entero positivo"),
     publishedAt: z
       .string()
-      .refine(isValidIsoDate, 'publishedAt debe ser una fecha ISO 8601 con offset'),
+      .refine(
+        isValidIsoDate,
+        "publishedAt debe ser una fecha ISO 8601 con offset",
+      ),
     notes: z
       .array(
         z
           .string()
           .min(1)
-          .refine(noHtml, 'Las notas no pueden contener código HTML')
+          .refine(noHtml, "Las notas no pueden contener código HTML"),
       )
-      .min(1, 'Debe incluir al menos una nota de versión'),
+      .min(1, "Debe incluir al menos una nota de versión"),
     downloadPage: z
       .string()
-      .refine(isHttpsUrl, 'downloadPage debe ser una URL HTTPS (no enlace directo de APK)'),
+      .refine(
+        isHttpsUrl,
+        "downloadPage debe ser una URL HTTPS (no enlace directo de APK)",
+      ),
     ejemplo: z.boolean().default(false).optional(),
     notas: z.unknown().optional(),
   })
   .refine((data) => data.latestBuild >= data.minSupportedBuild, {
-    message: 'latestBuild debe ser mayor o igual a minSupportedBuild',
-    path: ['minSupportedBuild'],
+    message: "latestBuild debe ser mayor o igual a minSupportedBuild",
+    path: ["minSupportedBuild"],
   });
 
 export type UpdateInput = z.infer<typeof updateSchema>;
@@ -411,7 +472,7 @@ export function toPublicNegocio(raw: NegocioInput): PublicNegocioItem {
   if (raw.lng !== undefined) item.lng = raw.lng;
   if (raw.hours) item.hours = raw.hours;
   if (raw.contact) {
-    const contactObj: NonNullable<PublicNegocioItem['contact']> = {};
+    const contactObj: NonNullable<PublicNegocioItem["contact"]> = {};
     if (raw.contact.whatsapp) contactObj.whatsapp = raw.contact.whatsapp;
     if (raw.contact.phone) contactObj.phone = raw.contact.phone;
     if (raw.contact.instagram) contactObj.instagram = raw.contact.instagram;
@@ -425,7 +486,7 @@ export function toPublicNegocio(raw: NegocioInput): PublicNegocioItem {
 
 export function toPublicEnlaceGroup(
   raw: EnlaceGroupInput,
-  includeExamples = false
+  includeExamples = false,
 ): PublicEnlaceGroup | null {
   const items = raw.items
     .filter((it) => includeExamples || !it.ejemplo)

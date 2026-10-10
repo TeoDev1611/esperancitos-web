@@ -7,6 +7,7 @@
 ## 🚀 Resumen de Funcionalidades y Fases Entregadas
 
 ### 1. **Fase 1: Setup, Diseño Neo-Brutalista y Enrutamiento**
+
 - **Identidad Independiente:** Paquete `com.esperancitos.esperancitos` para uso personal/estudiantil sin conflictos institucionales.
 - **Diseño Neo-Student Brutalism:** Paleta de diseño basada en Dark Space Slate (`#0B1120`), superficies oscuras (`#1E293B`), bordes duros de 2px, sombras sólidas esmeralda y acento verde (`#10B981`) con tipografías locales empaquetadas `Outfit` (títulos) e `Inter` (lectura).
 - **Manejo de Errores Tipado:** Clases selladas `Result<T>` (`Success<T>`, `Failure<T>`) y jerarquía `AppFailure` (`NetworkFailure`, `SessionExpiredFailure`, `ParseFailure`, `StorageFailure`).
@@ -14,12 +15,14 @@
 - **Onboarding de Permisos:** Pantalla explicativa con solicitud explícita de `POST_NOTIFICATIONS` (Android 13+) para alertas escalonadas y resumen matutino.
 
 ### 2. **Fase 2: Capa de Datos (Drift SQLite Offline-First v2)**
+
 - **Tablas:** `MoodleCourses`, `Assignments`, `GradeItems` y `EllucianScheduleCache`.
 - **Primary Key en `moodleId`:** Habilita `insertAllOnConflictUpdate` en Drift sin duplicar registros al sincronizar.
 - **Versionado de Esquema e Índices:** `schemaVersion = 2` y `MigrationStrategy.onUpgrade` implementado, incorporando índices secundarios B-Tree para optimizar consultas de tareas, notas y horario.
 - **Repositorios Locales:** `MoodleLocalRepositoryImpl` y `EllucianLocalRepositoryImpl` inyectados vía providers puros de Riverpod.
 
 ### 3. **Fase 3: Moodle Nativo Multi-Campus (Web Services Reales)**
+
 - **Soporte Multi-Campus:** 4 campus institucionales (`micampus`, `micampusvirtual`, `micampus2`, `micampus1`) con conmutación dinámica y purga atómica de datos locales.
 - **Seguridad de Credenciales con SSO `launch.php`:** Autenticación mediante `/admin/tool/mobile/launch.php`, interceptando el protocolo `moodlemobile://token=<base64>` para extraer el `wstoken` de forma segura en `FlutterSecureStorage` (Keychain / Keystore).
 - **Normalización de Zonas Horarias:** `TimezoneUtils` convierte explícitamente los timestamps UNIX del servidor a la hora local del estudiante (`America/Guayaquil`, GMT-5), evitando desfasajes de medianoche.
@@ -32,6 +35,7 @@
   - `core_course_get_contents`: Recursos y archivos adjuntos con explorador y descargador offline (FEAT-08).
 
 ### 4. **Fase 4: Ellucian Banner 9 SSB (Login SAML + Fetch en WebView)**
+
 - **SSO WebView:** Pantalla de login para MiESPE con detección automática de redirección al portal de registro `/StudentRegistrationSsb/`.
 - **Extracción Directa de JSON Nativo:** En lugar de scrapers de HTML frágiles, inyecta un `fetch()` autenticado con `credentials: 'same-origin'` hacia `/StudentRegistrationSsb/ssb/registrationHistory/reset?term=$term`.
 - **`BannerScheduleParser` en Isolate Secundario:**
@@ -43,6 +47,7 @@
   - Detecta expiración de sesión (`SyncStatus.sessionExpired`) vs fallos de red (`SyncStatus.networkError`).
 
 ### 5. **Fase 5: Dashboard y Horario Reactivos con Atajos Virtuales**
+
 - **Dashboard en Vivo:**
   - Tarjeta destacada `NextClassPreviewCard`: Muestra la clase actual en vivo con punto pulsante animado verde esmeralda o la tarjeta de fin de jornada.
   - Atajo a Clase Virtual (FEAT-01): Botón directo a Microsoft Teams, Zoom o Google Meet detectado automáticamente de Moodle.
@@ -57,9 +62,10 @@
   - **Widget Nativo de Android "Próxima Clase" (FEAT-02):** Widget en la pantalla de inicio del teléfono que actualiza la siguiente clase.
 
 ### 6. **Fase 6: Tareas, Notificaciones, Materiales y Calculadora de Notas**
+
 - **Pantalla de Tareas (`AssignmentsScreen`):**
   - 3 Tabs: Pendientes, Completadas y Atrasadas con contadores dinámicos.
-  - Deslizamiento lateral (*swipe-to-dismiss*) para marcar tareas localmente con feedback háptico y acción "Deshacer".
+  - Deslizamiento lateral (_swipe-to-dismiss_) para marcar tareas localmente con feedback háptico y acción "Deshacer".
   - **Explorador y Descarga de Materiales (FEAT-08):** `CourseMaterialsScreen` con árbol de temas, descarga offline y apertura de PDFs vía `open_filex`.
 - **Alertas Escalonadas y Resumen Matutino (`NotificationService` & `MorningBriefingService`):**
   - Recordatorios automáticos 7 días, 3 días, 24 horas y 3 horas antes del límite de entrega.
@@ -71,6 +77,7 @@
   - Cálculo 100% local, privado y en tiempo real.
 
 ### 7. **Fase 7: Ajustes, Seguridad y Rendimiento**
+
 - **Pantalla de Ajustes (`SettingsScreen`):**
   - Información de usuario autenticado y ID de estudiante.
   - Conmutadores individuales para cada nivel de alerta con persistencia en `SecureStorageService`.
@@ -78,6 +85,7 @@
   - **Cerrar Sesión Seguro:** Cuadro de diálogo de confirmación que cancela todas las alertas del SO, borra las credenciales en `FlutterSecureStorage` y vacía atómicamente la base de datos local SQLite.
 
 ### 8. **Fase 8: Calendario y Agenda Escolar Unificada (v1.5.0)**
+
 - **Vistas 3-en-1 (`ScheduleScreen`):**
   - Segmented Control superior `[ DÍA | SEMANA | MES ]` con sincronización del día seleccionado entre vistas y transición fluida.
   - **Vista Día (`DayTimelineView`):** Timeline vertical completa que fusiona clases institucionales de Banner, tareas con fecha límite de Moodle, eventos personales, recordatorios y checklists. Incluye filtros rápidos por categoría, cálculo de horarios y estado vacío brutalista ilustrado.
@@ -103,6 +111,7 @@
   - Aislamiento de IDs de notificación en bloques de enteros de 32 bits.
 
 ### 9. **Fase 9: Malla Curricular Interactiva y Plan de Estudios ("Mi Malla" - SchoIA+ Replicada 100% Offline)**
+
 - **Catálogo Dinámico de 23 Carreras (`assets/mallas/`):**
   - Incorporación de los reportes JSON reales de SchoIA+ para 23 carreras más `mallas_todas.json`.
   - Descubrimiento automático vía `AssetManifest` sin requerir enums fijos ni cambios de código Dart para añadir carreras en el futuro.
@@ -130,13 +139,15 @@
   - Opción "Mi Carrera y Malla Curricular" en la pantalla de Ajustes para cambiar de carrera en cualquier momento o abrir la malla directamente.
 
 ### 10. **Fase 10: Selector de Temas Neo-Brutalista y Gestión de Cursos Smowl**
+
 - **Selector de 3 Temas:**
   - `AppThemeMode` con soporte para **Claro Blanco** (alta luminosidad para exteriores), **Oscuro Slate** (azul/gris espacial icónico) y **Deep Negro OLED** (ahorro extremo de batería en pantallas AMOLED/OLED).
   - Persistencia instantánea de la selección de tema mediante Riverpod (`themeModeProvider`) y `SharedPreferences`.
 - **Filtro del Curso Smowl:**
-  - `HideSmowlProvider` persistido en `SharedPreferences` para ocultar automáticamente la materia tutorial *"Manual de registro en Smowl para estudiantes"* del listado de materias y tareas pendientes de Moodle sin borrar la matrícula del usuario.
+  - `HideSmowlProvider` persistido en `SharedPreferences` para ocultar automáticamente la materia tutorial _"Manual de registro en Smowl para estudiantes"_ del listado de materias y tareas pendientes de Moodle sin borrar la matrícula del usuario.
 
 ### 11. **Fase 11: Auditoría Experta de UX/UI y Rendimiento (60/120 FPS)**
+
 - **Normalización de Contraste en Modo Claro:**
   - Refactorización de todos los textos, bordes y superficies para leer reactivamente `AppColors.of(context)` / `palette.textPrimary`, eliminando fugas de contraste donde textos claros quedaban sobre fondos blancos.
   - Adaptación contextual de `DatePicker` y `TimePicker` al brillo del sistema.
@@ -150,6 +161,7 @@
   - Uso de `RepaintBoundary` en `CurriculumProgressHeader` y `CurriculumSubjectCard` y asignación de `ValueKey(item.codigo)` para evitar reconstrucciones o repintados innecesarios durante el scroll continuo.
 
 ### 12. **Fase 12: Versión Beta Oficial — Detección Automática de Malla, Materiales Moodle Offline, Telemetría de Red y Optimización R8/ProGuard**
+
 - **Detección Automática de Materias y Horario en "Mi Malla":**
   - Algoritmo inteligente `CurriculumCalculator.detectFromHorario`: Cruza nombres y códigos de asignaturas con el horario de Banner 9 y los cursos matriculados de Moodle.
   - Inferencia y auto-aprobación de materias previas por semestre mínimo y árbol de prerrequisitos, con modal interactivo de confirmación (`_ScheduleDetectionModal`).
@@ -174,6 +186,7 @@
   - Landing page moderna e interactiva en `web/` con capturas, showcase de funciones, descarga de APKs por arquitectura y documentación.
 
 ### 13. **Fase 13: Alarma Real de Tareas (Task Alarm — FEAT-17)**
+
 - **Objetivo y Enfoque:**
   - Capa de alarma real (volumen de alarma, en bucle, vibración continua y pantalla completa interactiva) como capa adicional y opcional a las notificaciones locales existentes de 7d/3d/24h/3h.
   - Diseñada bajo Clean Architecture con separación estricta: `domain/` (modelos puros y contrato con `Result<T>`), `data/` (implementación de repositorio sobre `SecureStorageService` y scheduler) y `presentation/` (Notifier Riverpod, Widget Tile y pantalla de alarma).
@@ -198,6 +211,7 @@
     - Adaptabilidad garantizada en los 3 esquemas de color (Claro, Oscuro, OLED) y en pantallas estrechas ($\ge 320\text{dp}$).
 
 ### 14. **Fase 14: Auditoría y Corrección de Sincronización Integral (SyncOrchestrator, Drift Atómico y Post-Sync Hooks)**
+
 - **Objetivo y Contexto:**
   - Diagnosticar y erradicar fallas críticas donde el botón "Sincronizar" no actualizaba aulas/docentes ni tareas nuevas, y el horario cambiaba solo de manera inconsistente debido a carreras de condición y reemplazos destructivos no controlados.
 - **Decisiones Técnicas Implementadas:**
@@ -231,5 +245,3 @@ flutter test
 flutter analyze
 # Resultado: No issues found! (0 errores, 0 advertencias)
 ```
-
-

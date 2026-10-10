@@ -1,5 +1,5 @@
-import type { APIRoute } from 'astro';
-import { buildApiPayloads } from '../../../lib/community-payloads.ts';
+import type { APIRoute } from "astro";
+import { buildApiPayloads } from "../../../lib/community-payloads.ts";
 
 export const prerender = true;
 
@@ -12,9 +12,10 @@ export const GET: APIRoute = async () => {
   return new Response(payloads.rawStrings.enlaces, {
     status: 200,
     headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'X-Content-Type-Options': 'nosniff',
-      'Cache-Control': 'public, max-age=300, s-maxage=300, stale-while-revalidate=86400',
+      "Content-Type": "application/json; charset=utf-8",
+      "X-Content-Type-Options": "nosniff",
+      "Cache-Control":
+        "public, max-age=300, s-maxage=300, stale-while-revalidate=86400",
     },
   });
 };

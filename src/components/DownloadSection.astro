@@ -11,6 +11,11 @@ const primarySha = SITE.apkChecksums[primaryFile] ?? "";
 const secondarySha = SITE.apkChecksums[secondaryFile] ?? "";
 const universalSha = SITE.apkChecksums[universalFile] ?? "";
 const x86Sha = SITE.apkChecksums[x86File] ?? "";
+
+function shortHash(hash: string): string {
+  if (!hash || hash.length <= 20) return hash;
+  return `${hash.slice(0, 10)}…${hash.slice(-8)}`;
+}
 ---
 
 <section class="download-section scroll-reveal" id="descargar">
@@ -28,38 +33,6 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
         </p>
       </div>
 
-      <!-- Aviso Legal antes de la descarga -->
-      <div class="download-legal-notice reveal-init" role="note">
-        <div class="notice-icon" aria-hidden="true">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-          </svg>
-        </div>
-        <div class="notice-body">
-          <p>
-            <strong>Aviso legal.</strong> Pilas! es un proyecto independiente y no
-            está afiliado a la Universidad de las Fuerzas Armadas ESPE. Los nombres
-            y marcas pertenecen a sus dueños. Se ofrece gratis y "tal cual", sin garantías.
-            La información (horarios, fechas de entrega, notas, malla) puede estar
-            retrasada o ser incorrecta: verifícala siempre en miESPE y en Moodle.
-            Usa únicamente tu propia cuenta; eres responsable de lo que se haga desde
-            ella y de cumplir los reglamentos de la ESPE. La app puede dejar de funcionar
-            si la universidad cambia o restringe sus sistemas. Los aportes son voluntarios
-            y la universidad no participa en ellos.
-          </p>
-        </div>
-      </div>
 
       <!-- Tarjeta Principal Dominante -->
       <div class="apk-primary-showcase card-app live">
@@ -79,6 +52,11 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
             <div class="apk-title-row">
               <h3>Descarga Pilas! Directo</h3>
               <span class="chip-live">Recomendada (ARM64)</span>
+              <span class="chip-dl-counter" id="section-dl-counter" data-base-count={SITE.downloads.baseCount} title="Descargas acumuladas en la comunidad ESPE">
+                <span class="dl-live-dot" aria-hidden="true"></span>
+                <span class="chip-dl-num" id="section-dl-count-val">{SITE.downloads.formatted}</span>
+                <span class="chip-dl-lbl">descargas</span>
+              </span>
             </div>
 
             <div class="apk-specs-grid">
@@ -139,6 +117,26 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
                 </svg>
                 <span>Necesitas <strong>Android 8.0 o superior</strong></span>
               </div>
+              <div class="spec-pill spec-pill-downloads">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span
+                  ><strong id="spec-dl-count-val">{SITE.downloads.formatted} descargas</strong> registradas en la ESPE</span
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -167,249 +165,109 @@ const x86Sha = SITE.apkChecksums[x86File] ?? "";
               <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
             <div class="btn-text-block">
-              <span class="btn-main-label">DESCARGAR PILAS! v1.1-BETA.2 (APK GRATIS)</span>
+              <span class="btn-main-label">DESCARGAR PILAS! v1.1-BETA.2</span>
               <small class="btn-sub-label"
-                >v1.1.0-beta.2 · ARM64-v8a (37.2 MB) · Descarga directa</small
+                >APK Oficial Directo · ARM64 (37.1 MB) · Gratis</small
               >
             </div>
           </a>
-          <p class="download-cta-note" style="margin-top: 10px; font-size: 0.78rem; color: var(--text-tertiary); text-align: center;">
-            *Compatible con Android 8.0 o superior. 100% gratis para estudiantes, sin anuncios ni registros raros (código privado).*
-          </p>
-        </div>
-      </div>
-
-      <!-- Banner de Comunidad / Canal de WhatsApp -->
-      <div class="download-channel-banner card-app green-accent reveal-init">
-        <div class="channel-banner-icon-col">
-          <div class="channel-wa-icon-frame" aria-hidden="true">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-            </svg>
+          <div class="download-trust-row">
+            <span class="trust-item"><span class="trust-check" aria-hidden="true">✓</span> 100% Gratuito</span>
+            <span class="trust-item"><span class="trust-check" aria-hidden="true">✓</span> Sin Anuncios</span>
+            <span class="trust-item"><span class="trust-check" aria-hidden="true">✓</span> Verificado Seguro</span>
           </div>
         </div>
-        <div class="channel-banner-info">
-          <div class="channel-banner-badges">
-            <span class="badge-app green">💬 CANAL OFICIAL EN WHATSAPP</span>
-            <span class="channel-live-chip">COMUNIDAD PILAS!</span>
+      </div>
+
+      <!-- Variantes Secundarias por Arquitectura (Colapsable / Limpio) -->
+      <details class="secondary-arch-dropdown">
+        <summary class="secondary-arch-summary">
+          <div class="sec-arch-summary-content">
+            <span class="sec-arch-icon" aria-hidden="true">⚙️</span>
+            <span>¿Celular antiguo de más de 5 años o emulador en PC? <strong>Ver otras versiones del APK</strong></span>
           </div>
-          <h3>Aparte de descargarte la app, ¡únete al canal de Pilas!</h3>
-          <p>
-            Entérate de nuevas versiones, actualizaciones, avisos académicos del campus e información oficial sin rodeos. ¡Ponte pilas y súmate a la comunidad!
-          </p>
-        </div>
-        <div class="channel-banner-action">
-          <a
-            href={SITE.social.whatsappChannel}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-whatsapp-channel-cta"
-            aria-label="Unirse al canal oficial de WhatsApp de Pilas!"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-            </svg>
-            <span>Unirme al Canal de WhatsApp</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Variantes Secundarias por Arquitectura -->
-      <div class="secondary-architectures">
-        <span class="secondary-title"
-          >¿Tu celular es antiguo o buscas otra arquitectura?</span
-        >
-        <div class="arch-pills-row">
-          <a
-            href={`/downloads/${secondaryFile}`}
-            download
-            class="btn-app btn-app-surface btn-arch-pill"
-            title="Para celulares de más de 5 años o de gama baja (ARMv7 32-bit)"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
+          <span class="sec-arch-badge">Otras versiones ▾</span>
+        </summary>
+        <div class="secondary-arch-body">
+          <div class="arch-pills-row">
+            <a
+              href={`/downloads/${secondaryFile}`}
+              download
+              class="btn-app btn-app-surface btn-arch-pill apk-option-btn"
+              title="Para celulares de más de 5 años o de gama baja (ARMv7 32-bit)"
             >
-              <rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect>
-              <path d="M12 18h.01"></path>
-            </svg>
-            <span>Celular antiguo (ARMv7 32-bit)</span>
-            <span class="arch-size">33.6 MB</span>
-          </a>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect>
+                <path d="M12 18h.01"></path>
+              </svg>
+              <span>Celular antiguo (ARMv7 32-bit)</span>
+              <span class="arch-size">33.6 MB</span>
+            </a>
 
-          <a
-            href={`/downloads/${universalFile}`}
-            download
-            class="btn-app btn-app-surface btn-arch-pill"
-            title="Universal: compatible con cualquier procesador o dispositivo Android"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
+            <a
+              href={`/downloads/${universalFile}`}
+              download
+              class="btn-app btn-app-surface btn-arch-pill apk-option-btn"
+              title="Universal: compatible con cualquier procesador o dispositivo Android"
             >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path
-                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-              ></path>
-            </svg>
-            <span>Universal (Todo-en-uno)</span>
-            <span class="arch-size">94.7 MB</span>
-          </a>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+              <span>Universal (Todo-en-uno)</span>
+              <span class="arch-size">94.7 MB</span>
+            </a>
 
-          <a
-            href={`/downloads/${x86File}`}
-            download
-            class="btn-app btn-app-surface btn-arch-pill"
-            title="Para emuladores en PC (Windows Subsystem for Android, BlueStacks, LDPlayer)"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
+            <a
+              href={`/downloads/${x86File}`}
+              download
+              class="btn-app btn-app-surface btn-arch-pill apk-option-btn"
+              title="Para emuladores en PC (Windows Subsystem for Android, BlueStacks, LDPlayer)"
             >
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
-            <span>Emulador / PC (x86_64)</span>
-            <span class="arch-size">39.6 MB</span>
-          </a>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+              <span>Emulador / PC (x86_64)</span>
+              <span class="arch-size">39.6 MB</span>
+            </a>
+          </div>
         </div>
-      </div>
-
-      <!-- Aviso de instalación fuera de la tienda + verificación de integridad -->
-      <div class="install-notice reveal-init">
-        <div class="notice-icon" aria-hidden="true">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            <path d="M12 8v4"></path>
-            <path d="M12 16h.01"></path>
-          </svg>
-        </div>
-        <div class="notice-body">
-          <h4>Por ahora se instala así (pronto estará en Play Store)</h4>
-          <p>
-            Estamos juntando los <strong>25 dólares</strong> que cuesta la cuenta
-            de desarrollador de Google Play. Mientras tanto, la app se descarga directamente
-            desde aquí. Como no proviene de la tienda oficial, el sistema te pedirá
-            autorizar la instalación y puede mostrar un aviso preventivo de <strong
-              >Google Play Protect</strong
-            >. Es el comportamiento habitual de Android para cualquier APK
-            directo. Si deseas verificar la autenticidad e integridad del
-            paquete antes de instalarlo, aquí tienes las huellas criptográficas
-            SHA-256 oficiales:
-          </p>
-
-          {
-            primarySha && (
-              <div class="hash-row">
-                <span class="hash-label">Recomendada · ARM64-v8a</span>
-                <code class="hash-value">{primarySha}</code>
-                <button
-                  type="button"
-                  class="btn-app-copy"
-                  data-copy={primarySha}
-                  aria-label="Copiar la huella SHA-256 del APK recomendado"
-                >
-                  <span>Copiar</span>
-                </button>
-              </div>
-            )
-          }
-
-          {
-            secondarySha && (
-              <div class="hash-row">
-                <span class="hash-label">Gama baja · ARMeabi-v7a</span>
-                <code class="hash-value">{secondarySha}</code>
-                <button
-                  type="button"
-                  class="btn-app-copy"
-                  data-copy={secondarySha}
-                  aria-label="Copiar la huella SHA-256 del APK para celulares antiguos"
-                >
-                  <span>Copiar</span>
-                </button>
-              </div>
-            )
-          }
-
-          {
-            universalSha && (
-              <div class="hash-row">
-                <span class="hash-label">Universal · Multi-Arch</span>
-                <code class="hash-value">{universalSha}</code>
-                <button
-                  type="button"
-                  class="btn-app-copy"
-                  data-copy={universalSha}
-                  aria-label="Copiar la huella SHA-256 del APK universal"
-                >
-                  <span>Copiar</span>
-                </button>
-              </div>
-            )
-          }
-
-          {
-            x86Sha && (
-              <div class="hash-row">
-                <span class="hash-label">Emulador · x86_64</span>
-                <code class="hash-value">{x86Sha}</code>
-                <button
-                  type="button"
-                  class="btn-app-copy"
-                  data-copy={x86Sha}
-                  aria-label="Copiar la huella SHA-256 del APK x86_64"
-                >
-                  <span>Copiar</span>
-                </button>
-              </div>
-            )
-          }
-
-          <details class="hash-help">
-            <summary>¿Cómo verifico la huella en mi computadora?</summary>
-            <p>
-              Descarga el archivo y ejecuta uno de estos comandos en la carpeta
-              de descargas. El resultado debe coincidir exactamente con el texto
-              de arriba:
-            </p>
-            <pre><code>Windows (PowerShell):  Get-FileHash .\{primaryFile} -Algorithm SHA256
-macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
-          </details>
-        </div>
-      </div>
+      </details>
 
       <!-- 3 Pasos de Instalación Conectados por una Línea Dinámica -->
       <div class="install-guide-block" id="install-guide-track">
@@ -459,18 +317,221 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
         </div>
       </div>
 
-      <!-- Ficha Técnica y Changelog Oficial de la Versión 1.0.0 -->
-      <div class="version-release-block reveal-init" id="novedades-v1">
-        <div class="release-banner-card card-app">
-          <div class="release-header-row">
-            <div class="release-badge-group">
-              <span class="badge-app green">NOVEDADES · VERSIÓN 1.0.0</span>
-              <span class="release-build-pill">Build 1 · Octubre 2026</span>
-            </div>
-            <span class="release-status-chip"
-              >★ Versión 1.1.0 Beta 2 (Build 5)</span
-            >
+      <!-- Banner de Comunidad / Canal de WhatsApp -->
+      <div class="download-channel-banner card-app green-accent reveal-init">
+        <div class="channel-banner-icon-col">
+          <div class="channel-wa-icon-frame" aria-hidden="true">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
           </div>
+        </div>
+        <div class="channel-banner-info">
+          <div class="channel-banner-badges">
+            <span class="badge-app green">💬 CANAL OFICIAL EN WHATSAPP</span>
+            <span class="channel-live-chip">COMUNIDAD PILAS!</span>
+          </div>
+          <h3>Aparte de descargarte la app, ¡únete al canal de Pilas!</h3>
+          <p>
+            Entérate de nuevas versiones, actualizaciones, avisos académicos del campus e información oficial sin rodeos. ¡Ponte pilas y súmate a la comunidad!
+          </p>
+        </div>
+        <div class="channel-banner-action">
+          <a
+            href={SITE.social.whatsappChannel}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-whatsapp-channel-cta"
+            aria-label="Unirse al canal oficial de WhatsApp de Pilas!"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            <span>Unirme al Canal de WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Seguridad, Google Play Protect y Verificación de Integridad SHA-256 (Acordeón Limpio) -->
+      <details class="security-verify-accordion card-app reveal-init">
+        <summary class="sec-verify-summary">
+          <div class="sec-verify-header-left">
+            <span class="sec-verify-icon-frame" aria-hidden="true">🛡️</span>
+            <div class="sec-verify-text">
+              <div class="sec-verify-title-row">
+                <h4>Seguridad, Google Play Protect y Huellas SHA-256</h4>
+                <span class="badge-app amber">OPCIONAL · VERIFICACIÓN</span>
+              </div>
+              <p class="sec-verify-subtitle">
+                ¿Por qué Android muestra aviso de instalación y cómo verificar la autenticidad del APK?
+              </p>
+            </div>
+          </div>
+          <span class="sec-verify-arrow" aria-hidden="true">▾</span>
+        </summary>
+
+        <div class="sec-verify-body">
+          <p class="sec-verify-desc">
+            Estamos juntando los <strong>25 dólares</strong> que cuesta la cuenta de desarrollador de Google Play. Mientras tanto, la app se descarga directamente desde aquí. Como no proviene de la tienda oficial, el sistema te pedirá autorizar la instalación y puede mostrar un aviso preventivo de <strong>Google Play Protect</strong>. Es el comportamiento habitual de Android para cualquier APK directo. Si deseas verificar la autenticidad e integridad del paquete antes de instalarlo, aquí tienes las huellas criptográficas SHA-256 oficiales:
+          </p>
+
+          {
+            primarySha && (
+              <div class="hash-row">
+                <span class="hash-label">Recomendada · ARM64-v8a</span>
+                <code
+                  class="hash-value"
+                  title={`Huella SHA-256 completa:\n${primarySha}\n(Clic para copiar)`}
+                  data-copy={primarySha}
+                >
+                  {shortHash(primarySha)}
+                </code>
+                <button
+                  type="button"
+                  class="btn-app-copy"
+                  data-copy={primarySha}
+                  aria-label="Copiar la huella SHA-256 del APK recomendado"
+                  title="Copiar huella SHA-256 completa"
+                >
+                  <span>Copiar</span>
+                </button>
+              </div>
+            )
+          }
+
+          {
+            secondarySha && (
+              <div class="hash-row">
+                <span class="hash-label">Gama baja · ARMeabi-v7a</span>
+                <code
+                  class="hash-value"
+                  title={`Huella SHA-256 completa:\n${secondarySha}\n(Clic para copiar)`}
+                  data-copy={secondarySha}
+                >
+                  {shortHash(secondarySha)}
+                </code>
+                <button
+                  type="button"
+                  class="btn-app-copy"
+                  data-copy={secondarySha}
+                  aria-label="Copiar la huella SHA-256 del APK para celulares antiguos"
+                  title="Copiar huella SHA-256 completa"
+                >
+                  <span>Copiar</span>
+                </button>
+              </div>
+            )
+          }
+
+          {
+            universalSha && (
+              <div class="hash-row">
+                <span class="hash-label">Universal · Multi-Arch</span>
+                <code
+                  class="hash-value"
+                  title={`Huella SHA-256 completa:\n${universalSha}\n(Clic para copiar)`}
+                  data-copy={universalSha}
+                >
+                  {shortHash(universalSha)}
+                </code>
+                <button
+                  type="button"
+                  class="btn-app-copy"
+                  data-copy={universalSha}
+                  aria-label="Copiar la huella SHA-256 del APK universal"
+                  title="Copiar huella SHA-256 completa"
+                >
+                  <span>Copiar</span>
+                </button>
+              </div>
+            )
+          }
+
+          {
+            x86Sha && (
+              <div class="hash-row">
+                <span class="hash-label">Emulador · x86_64</span>
+                <code
+                  class="hash-value"
+                  title={`Huella SHA-256 completa:\n${x86Sha}\n(Clic para copiar)`}
+                  data-copy={x86Sha}
+                >
+                  {shortHash(x86Sha)}
+                </code>
+                <button
+                  type="button"
+                  class="btn-app-copy"
+                  data-copy={x86Sha}
+                  aria-label="Copiar la huella SHA-256 del APK x86_64"
+                  title="Copiar huella SHA-256 completa"
+                >
+                  <span>Copiar</span>
+                </button>
+              </div>
+            )
+          }
+
+          <!-- Manual de Verificación Comprimido -->
+          <details class="hash-help">
+            <summary>¿Cómo verifico la huella en mi computadora?</summary>
+            <div class="hash-help-body">
+              <p class="hash-help-desc">
+                Abre la terminal en tu carpeta de <strong>Descargas</strong> y ejecuta:
+              </p>
+
+              <div class="manual-cmd-list">
+                <div class="manual-cmd-row">
+                  <span class="manual-os-badge">PowerShell</span>
+                  <code class="manual-cmd-code">Get-FileHash .\pilas-*.apk</code>
+                  <button
+                    type="button"
+                    class="btn-app-copy"
+                    data-copy="Get-FileHash .\pilas-*.apk"
+                    aria-label="Copiar comando PowerShell"
+                    title="Copiar comando para Windows PowerShell"
+                  >
+                    <span>Copiar</span>
+                  </button>
+                </div>
+
+                <div class="manual-cmd-row">
+                  <span class="manual-os-badge">macOS / Linux</span>
+                  <code class="manual-cmd-code">shasum -a 256 pilas-*.apk</code>
+                  <button
+                    type="button"
+                    class="btn-app-copy"
+                    data-copy="shasum -a 256 pilas-*.apk"
+                    aria-label="Copiar comando macOS y Linux"
+                    title="Copiar comando para Mac y Linux"
+                  >
+                    <span>Copiar</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="manual-verify-tip">
+                <span>💡 El resultado debe empezar con <code>{primarySha.slice(0, 10)}</code> y terminar en <code>{primarySha.slice(-8)}</code>.</span>
+              </div>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- Ficha Técnica y Changelog Oficial de la Versión 1.1-beta.2 (Acordeón Limpio) -->
+      <details class="version-release-accordion card-app reveal-init" id="novedades-v1">
+        <summary class="release-accordion-summary">
+          <div class="release-summary-left">
+            <div class="release-summary-badges">
+              <span class="badge-app green">NOVEDADES · v1.1-BETA.2</span>
+              <span class="release-build-pill">Build 5 · Octubre 2026</span>
+            </div>
+            <h4>🚀 Ver novedades de la versión, ficha técnica y changelog completo</h4>
+          </div>
+          <span class="release-accordion-arrow" aria-hidden="true">▾</span>
+        </summary>
+
+        <div class="release-accordion-body">
+          <div class="release-banner-card">
 
           <h3 class="release-main-title">
             🚀 ¡Pilas, ñañ@s! Llegó Pilas! v1.1-beta.2: Parche para Moodle y Permisos
@@ -814,7 +875,26 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
           </details>
         </div>
       </div>
+    </details>
+
+    <!-- Aviso Legal y Descargo de Responsabilidad (Al final, no invasivo y formal) -->
+    <div class="download-legal-disclaimer reveal-init" role="note">
+      <details class="legal-disclaimer-details">
+        <summary class="legal-disclaimer-summary">
+          <div class="legal-summary-left">
+            <span class="legal-badge-icon" aria-hidden="true">⚖️</span>
+            <span>Aviso legal y descargo de responsabilidad (Iniciativa Estudiantil Independiente)</span>
+          </div>
+          <span class="legal-toggle-hint">Leer aviso legal ▾</span>
+        </summary>
+        <div class="legal-disclaimer-body">
+          <p>
+            <strong>Aviso legal.</strong> Pilas! es un proyecto independiente desarrollado por y para estudiantes, y no está afiliado, respaldado ni administrado por la Universidad de las Fuerzas Armadas ESPE. Los nombres institucionales, logos y marcas pertenecen a sus respectivos dueños. Se ofrece gratis y "tal cual", sin garantías expresas o implícitas. La información académica (horarios, fechas de entrega, notas, malla) puede presentar retrasos o variaciones temporales respecto a los servidores de la universidad: verifícala siempre en miESPE y en Moodle oficial. Usa únicamente tu propia cuenta institucional; eres responsable de lo que se haga desde ella y de cumplir los reglamentos de la ESPE. La app puede requerir ajustes si la universidad cambia o restringe sus sistemas. Las donaciones son 100% voluntarias para costear servidores y licencias sin intervención de la universidad.
+          </p>
+        </div>
+      </details>
     </div>
+  </div>
   </div>
 
   <!-- Modal Post-Descarga (Mascota Variación 3: Aprobación / Éxito) -->
@@ -1097,20 +1177,101 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     text-transform: none;
   }
 
-  /* Variantes Secundarias */
-  .secondary-architectures {
-    border-top: 1.5px solid var(--border-app);
-    padding-top: 24px;
-    margin-bottom: 40px;
-    text-align: center;
+  /* Micro-badges de Confianza */
+  .download-trust-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 14px;
+    flex-wrap: wrap;
   }
 
-  .secondary-title {
-    font-size: 0.92rem;
+  .trust-item {
+    font-size: 0.78rem;
     color: var(--text-secondary);
-    font-weight: 700;
-    display: block;
-    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+  }
+
+  .trust-check {
+    color: var(--color-success, #00FF87);
+    font-weight: 900;
+    font-size: 0.85rem;
+  }
+
+  /* Desplegable de Variantes Secundarias */
+  .secondary-arch-dropdown {
+    margin: 0 auto 36px auto;
+    max-width: 820px;
+    border: 1.5px dashed var(--border-app);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.015);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .secondary-arch-dropdown[open] {
+    border-style: solid;
+    border-color: var(--border-bold);
+    background: var(--bg-surface-elevated);
+    box-shadow: 2px 2px 0px #000;
+  }
+
+  .secondary-arch-summary {
+    padding: 13px 20px;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    list-style: none;
+    user-select: none;
+    transition: color 0.15s ease;
+  }
+
+  .secondary-arch-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .secondary-arch-summary:hover {
+    color: var(--text-primary);
+  }
+
+  .sec-arch-summary-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sec-arch-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .sec-arch-badge {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    background: rgba(0, 255, 135, 0.1);
+    border: 1px solid rgba(0, 255, 135, 0.3);
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: transform 0.2s ease;
+  }
+
+  .secondary-arch-dropdown[open] .sec-arch-badge {
+    transform: rotate(180deg);
+  }
+
+  .secondary-arch-body {
+    padding: 16px 20px 22px 20px;
+    border-top: 1px solid var(--border-app);
   }
 
   .arch-pills-row {
@@ -1151,131 +1312,131 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     font-size: 0.8rem;
   }
 
-  /* Capturas de la app */
-  .download-preview-row {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    margin: 8px 0 34px 0;
-  }
-
-  .preview-item {
-    margin: 0;
-    width: 190px;
-    max-width: 42%;
-  }
-
-  .preview-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: var(--radius-md);
-    border: 2px solid var(--border-app);
-    box-shadow: var(--shadow-hard-sm);
-    background: var(--bg-primary);
-    transition:
-      transform var(--duration-hover) var(--ease-apple),
-      border-color var(--duration-hover) ease;
-  }
-
-  .preview-item img:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent-primary);
-  }
-
-  .preview-item figcaption {
-    margin-top: 10px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-align: center;
-    line-height: 1.35;
-  }
-
-  /* Aviso Legal previo a la descarga */
-  .download-legal-notice {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
+  /* Acordeón de Seguridad y Verificación SHA-256 */
+  .security-verify-accordion {
+    margin-top: 36px;
     background: var(--bg-surface-elevated);
     border: 1.5px solid var(--border-app);
-    border-left: 4px solid var(--accent-amber);
     border-radius: var(--radius-md);
-    padding: 18px 22px;
-    margin-bottom: 24px;
-    text-align: left;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .download-legal-notice .notice-body p {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 0;
+  .security-verify-accordion[open] {
+    border-color: rgba(255, 219, 121, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   }
 
-  .download-legal-notice .notice-body strong {
-    color: var(--text-primary);
-  }
-
-  /* Aviso de instalación + verificación */
-  .install-notice {
+  .sec-verify-summary {
+    padding: 18px 24px;
+    cursor: pointer;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 16px;
-    align-items: flex-start;
-    background: var(--bg-surface-elevated);
-    border: 1.5px solid var(--border-app);
-    border-left: 4px solid var(--accent-amber);
-    border-radius: var(--radius-md);
-    padding: 20px 22px;
-    margin-bottom: 38px;
-    text-align: left;
+    list-style: none;
+    user-select: none;
+    transition: background 0.15s ease;
   }
 
-  .notice-icon {
+  .sec-verify-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .sec-verify-summary:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .sec-verify-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .sec-verify-icon-frame {
+    font-size: 1.4rem;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
     border-radius: var(--radius-sm);
-    background: rgba(255, 219, 121, 0.14);
-    color: var(--accent-amber);
-    border: 1.5px solid rgba(255, 219, 121, 0.45);
+    background: rgba(255, 219, 121, 0.12);
+    border: 1.5px solid rgba(255, 219, 121, 0.35);
+    flex-shrink: 0;
   }
 
-  .notice-body {
+  .sec-verify-text {
     min-width: 0;
-    flex: 1;
   }
 
-  .notice-body h4 {
-    font-size: 1.06rem;
-    margin-bottom: 8px;
+  .sec-verify-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
   }
 
-  .notice-body p {
+  .sec-verify-title-row h4 {
+    font-size: 1.05rem;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .sec-verify-subtitle {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .sec-verify-arrow {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent-amber);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .security-verify-accordion[open] .sec-verify-arrow {
+    transform: rotate(180deg);
+  }
+
+  .sec-verify-body {
+    padding: 20px 24px 24px 24px;
+    border-top: 1px solid var(--border-app);
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .sec-verify-desc {
     font-size: 0.9rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
 
-  .notice-body strong {
+  .sec-verify-desc strong {
     color: var(--text-primary);
   }
 
   .hash-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
     background: var(--bg-surface);
     border: 1px solid var(--border-app);
     border-radius: var(--radius-sm);
-    padding: 8px 12px;
+    padding: 8px 14px;
     margin-bottom: 8px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .hash-row:hover {
+    border-color: rgba(255, 219, 121, 0.4);
+    background: rgba(30, 34, 48, 0.85);
   }
 
   .hash-label {
@@ -1285,19 +1446,36 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     text-transform: uppercase;
     letter-spacing: 0.04em;
     flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .hash-value {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    overflow-wrap: anywhere;
-    flex: 1;
-    min-width: 0;
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 3px 10px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    cursor: copy;
+    transition: all 0.15s ease;
+    user-select: all;
   }
 
+  .hash-value:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  /* Manual Comprimido */
   .hash-help {
-    margin-top: 10px;
+    margin-top: 14px;
   }
 
   .hash-help summary {
@@ -1306,6 +1484,10 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     color: var(--accent-primary);
     cursor: pointer;
     list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.15s ease;
   }
 
   .hash-help summary::-webkit-details-marker {
@@ -1313,35 +1495,127 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
   }
 
   .hash-help summary::before {
-    content: "▸ ";
+    content: "▸";
+    font-size: 0.75rem;
+    color: var(--accent-primary);
   }
 
   .hash-help[open] summary::before {
-    content: "▾ ";
+    content: "▾";
   }
 
   .hash-help summary:hover {
     text-decoration: underline;
   }
 
-  .hash-help pre {
-    overflow-x: auto;
-    background: var(--bg-primary);
+  .hash-help-body {
+    margin-top: 10px;
+    padding: 12px 14px;
+    background: rgba(0, 0, 0, 0.45);
     border: 1px solid var(--border-app);
     border-radius: var(--radius-sm);
-    padding: 12px 14px;
-    margin-top: 8px;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
   }
 
-  .hash-help p {
-    font-size: 0.84rem;
-    margin-bottom: 0;
+  .hash-help-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .manual-cmd-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .manual-cmd-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+    padding: 6px 12px;
+  }
+
+  .manual-os-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    color: var(--accent-amber);
+    flex-shrink: 0;
+    min-width: 115px;
+  }
+
+  .manual-cmd-code {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: #FAF7F7;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .manual-verify-tip {
+    font-size: 0.76rem;
+    color: var(--text-tertiary);
+    line-height: 1.4;
+    border-top: 1px dashed rgba(255, 255, 255, 0.08);
+    padding-top: 8px;
+    margin-top: 6px;
+  }
+
+  .manual-verify-tip code {
+    font-family: var(--font-mono);
+    color: var(--color-success, #00FF87);
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 1px 5px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 255, 135, 0.2);
+  }
+
+  @media (max-width: 600px) {
+    .hash-row {
+      padding: 7px 10px;
+      gap: 8px;
+    }
+
+    .hash-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hash-value {
+      font-size: 0.68rem;
+      padding: 2px 6px;
+    }
+
+    .manual-cmd-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+    }
+
+    .manual-os-badge {
+      min-width: unset;
+      font-size: 0.68rem;
+    }
+
+    .manual-cmd-row :global(.btn-app-copy) {
+      align-self: flex-end;
+      width: 100%;
+      text-align: center;
+      padding: 5px;
+    }
   }
 
   /* Botón de copiado de la huella. Se usa :global() porque Astro añade un
@@ -1586,17 +1860,79 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     }
   }
 
-  /* Bloque de Novedades y Ficha Técnica v1.0.0 */
-  .version-release-block {
-    margin-top: 50px;
-    border-top: 1.5px solid var(--border-app);
-    padding-top: 40px;
+  /* Acordeón de Novedades y Ficha Técnica v1.1-beta.2 */
+  .version-release-accordion {
+    margin-top: 28px;
+    background: var(--bg-surface-elevated);
+    border: 1.5px solid var(--border-app);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .version-release-accordion[open] {
+    border-color: var(--accent-primary);
+  }
+
+  .release-accordion-summary {
+    padding: 18px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    list-style: none;
+    user-select: none;
+    transition: background 0.15s ease;
+  }
+
+  .release-accordion-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .release-accordion-summary:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .release-summary-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .release-summary-badges {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .release-summary-left h4 {
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .release-accordion-arrow {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .version-release-accordion[open] .release-accordion-arrow {
+    transform: rotate(180deg);
+  }
+
+  .release-accordion-body {
+    border-top: 1px solid var(--border-app);
   }
 
   .release-banner-card {
     background: var(--bg-surface-elevated);
-    border: 2px solid var(--border-app);
-    padding: 32px;
+    padding: 28px 32px;
   }
 
   .release-header-row {
@@ -2193,6 +2529,84 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     transform: translate(-1px, -1px);
     box-shadow: 3px 3px 0px #000000;
   }
+
+  /* Aviso Legal y Descargo de Responsabilidad (Discreto y no invasivo) */
+  .download-legal-disclaimer {
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--border-app);
+  }
+
+  .legal-disclaimer-details {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .legal-disclaimer-details[open] {
+    border-color: var(--border-app);
+    background: var(--bg-surface-elevated);
+  }
+
+  .legal-disclaimer-summary {
+    padding: 12px 18px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    list-style: none;
+    user-select: none;
+    transition: color 0.15s ease;
+  }
+
+  .legal-disclaimer-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .legal-disclaimer-summary:hover {
+    color: var(--text-secondary);
+  }
+
+  .legal-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .legal-badge-icon {
+    font-size: 0.95rem;
+  }
+
+  .legal-toggle-hint {
+    font-size: 0.74rem;
+    font-family: var(--font-mono);
+    color: var(--text-tertiary);
+    transition: transform 0.2s ease;
+  }
+
+  .legal-disclaimer-details[open] .legal-toggle-hint {
+    transform: rotate(180deg);
+  }
+
+  .legal-disclaimer-body {
+    padding: 14px 18px 18px 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .legal-disclaimer-body p {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .legal-disclaimer-body strong {
+    color: var(--text-secondary);
+  }
 </style>
 
 <script>
@@ -2258,12 +2672,12 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
     }
   }
 
-  // Copiado de las huellas SHA-256 al portapapeles
-  const hashButtons = document.querySelectorAll<HTMLButtonElement>(
-    ".hash-row .btn-app-copy",
+  // Copiado de las huellas SHA-256 y comandos al portapapeles
+  const copyButtons = document.querySelectorAll<HTMLButtonElement>(
+    ".hash-row .btn-app-copy, .manual-cmd-row .btn-app-copy",
   );
 
-  hashButtons.forEach((btn) => {
+  copyButtons.forEach((btn) => {
     const label = btn.querySelector("span") ?? btn;
     const originalText = label.textContent ?? "Copiar";
 
@@ -2298,5 +2712,85 @@ macOS / Linux:         shasum -a 256 {primaryFile}</code></pre>
         btn.classList.remove("copied");
       }, 2000);
     });
+  });
+
+  // Clic directo en el código de la huella también copia la huella completa
+  const hashCodes = document.querySelectorAll<HTMLElement>(".hash-value");
+  hashCodes.forEach((code) => {
+    code.addEventListener("click", async () => {
+      const textToCopy = code.getAttribute("data-copy");
+      if (!textToCopy) return;
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+      } catch (_) {
+        const helper = document.createElement("textarea");
+        helper.value = textToCopy;
+        document.body.appendChild(helper);
+        helper.select();
+        document.execCommand("copy");
+        helper.remove();
+      }
+      const parentRow = code.closest(".hash-row");
+      const btn = parentRow?.querySelector<HTMLButtonElement>(".btn-app-copy");
+      if (btn) {
+        const label = btn.querySelector("span") ?? btn;
+        const originalText = label.textContent ?? "Copiar";
+        label.textContent = "✓ Copiado";
+        btn.classList.add("copied");
+        window.setTimeout(() => {
+          label.textContent = originalText;
+          btn.classList.remove("copied");
+        }, 2000);
+      }
+    });
+  });
+
+  // Sincronización del contador de descargas al hacer clic en los botones de APK
+  const downloadLinks = document.querySelectorAll<HTMLAnchorElement>(
+    "#primary-apk-download-btn, .apk-option-btn",
+  );
+  const sectionBadge = document.getElementById("section-dl-counter");
+  const BASE_COUNT = parseInt(sectionBadge?.getAttribute("data-base-count") || "100", 10) || 100;
+  const STORAGE_KEY = "pilas_app_dl_v1";
+
+  function getStoredDownloads() {
+    try {
+      const stored = parseInt(localStorage.getItem(STORAGE_KEY) || "", 10);
+      return stored && stored >= BASE_COUNT ? stored : BASE_COUNT;
+    } catch (_) {
+      return BASE_COUNT;
+    }
+  }
+
+  function updateSectionCounter(count: number) {
+    const formatted = "+" + count.toLocaleString();
+    const countEl = document.getElementById("section-dl-count-val");
+    if (countEl) countEl.textContent = formatted;
+    const specEl = document.getElementById("spec-dl-count-val");
+    if (specEl) specEl.textContent = formatted + " descargas";
+  }
+
+  updateSectionCounter(getStoredDownloads());
+
+  downloadLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const next = getStoredDownloads() + 1;
+      try {
+        localStorage.setItem(STORAGE_KEY, String(next));
+      } catch (_) {}
+      updateSectionCounter(next);
+      window.dispatchEvent(
+        new CustomEvent("pilas-download-registered", {
+          detail: { count: next },
+        }),
+      );
+    });
+  });
+
+  window.addEventListener("pilas-download-registered", (e: Event) => {
+    const custom = e as CustomEvent<{ count: number }>;
+    if (custom.detail?.count) {
+      updateSectionCounter(custom.detail.count);
+    }
   });
 </script>

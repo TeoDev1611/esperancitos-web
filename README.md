@@ -26,10 +26,10 @@ python tools/build_assets.py   # Tarjeta social, favicons, WebP y miniatura del 
 python tools/fetch_fonts.py    # Descarga las fuentes a public/fonts y regenera fonts.css
 ```
 
-| Script | Qué regenera |
-| :--- | :--- |
+| Script            | Qué regenera                                                                                                                                  |
+| :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | `build_assets.py` | `og-esperancitos.jpg` (1200x630), `favicon.ico`, `apple-touch-icon.png`, `icon-192/512.png`, los `.webp` de los mockups y la miniatura del QR |
-| `fetch_fonts.py` | Los `.woff2` de `public/fonts/` y `src/styles/fonts.css` |
+| `fetch_fonts.py`  | Los `.woff2` de `public/fonts/` y `src/styles/fonts.css`                                                                                      |
 
 ---
 
@@ -38,13 +38,13 @@ python tools/fetch_fonts.py    # Descarga las fuentes a public/fonts y regenera 
 Todo lo que necesitas tocar está centralizado en `src/config/`. **No hay textos
 que editar dentro de los componentes.**
 
-| Archivo | Qué contiene | Qué cambiar |
-| :--- | :--- | :--- |
-| `src/config/site.ts` | Dominio, título, descripción, keywords, versión del APK, huellas SHA-256, autor | El dominio si migras; las huellas si recompilas la app |
-| `src/config/donation.ts` | Enlace de **Deuna** y QR | `deunaLink`, `qrImage` y la miniatura `qrThumbImage` |
-| `src/config/feedback.ts` | Formularios de **errores**, **sugerencias** y encuesta | El campo `url` de cada canal |
-| `src/config/faq.ts` | Preguntas frecuentes | Añadir o editar preguntas |
-| `src/config/community.ts` | Formulario de postulación de negocios y correo de reportes | `NEGOCIOS_FORM_URL` y `COMUNIDAD_REPORTE_EMAIL` |
+| Archivo                   | Qué contiene                                                                    | Qué cambiar                                            |
+| :------------------------ | :------------------------------------------------------------------------------ | :----------------------------------------------------- |
+| `src/config/site.ts`      | Dominio, título, descripción, keywords, versión del APK, huellas SHA-256, autor | El dominio si migras; las huellas si recompilas la app |
+| `src/config/donation.ts`  | Enlace de **Deuna** y QR                                                        | `deunaLink`, `qrImage` y la miniatura `qrThumbImage`   |
+| `src/config/feedback.ts`  | Formularios de **errores**, **sugerencias** y encuesta                          | El campo `url` de cada canal                           |
+| `src/config/faq.ts`       | Preguntas frecuentes                                                            | Añadir o editar preguntas                              |
+| `src/config/community.ts` | Formulario de postulación de negocios y correo de reportes                      | `NEGOCIOS_FORM_URL` y `COMUNIDAD_REPORTE_EMAIL`        |
 
 ### Apoyo al proyecto (Deuna)
 
@@ -78,8 +78,8 @@ Microsoft Forms…) en el campo `url` de cada canal:
 En `src/config/community.ts`:
 
 ```ts
-export const NEGOCIOS_FORM_URL = ''; // Enlace a tu Google Forms o Tally (vacío = oculta el botón)
-export const COMUNIDAD_REPORTE_EMAIL = 'teo.hurtado.16@gmail.com';
+export const NEGOCIOS_FORM_URL = ""; // Enlace a tu Google Forms o Tally (vacío = oculta el botón)
+export const COMUNIDAD_REPORTE_EMAIL = "teo.hurtado.16@gmail.com";
 ```
 
 ---
@@ -108,19 +108,20 @@ Para la especificación técnica completa, consulta [docs/COMMUNITY_API.md](docs
 
 ### 🛡️ Política de moderación y verificación
 
-- **Aprobación:** Solo se aprueban servicios legales, verificables y de utilidad directa para estudiantes politécnicos en las zonas aledañas a los campus de la ESPE.
+- **Aprobación:** Solo se aprueban servicios legales, verificables y de utilidad directa para estudiantes en las zonas aledañas a los campus de la ESPE.
 - **Caducidad obligatoria (`validUntil`):** Todos los negocios caducan (máximo 6 meses) para garantizar que los datos sigan vigentes. Si un negocio no confirma sus datos antes de vencer, deja de compilarse automáticamente.
 - **Verificación (`verifiedAt`):** Solo se añade cuando se ha verificado presencialmente o mediante contacto directo con el dueño la existencia del local.
 
 ### ⚠️ Regla de Oro: Gratuidad total vs. Publicidad
 
 > **COBRAR POR LISTADOS O POSICIONES CONVERTIRÍA EL SITIO EN PUBLICITARIO.**
-> 
+>
 > Si alguna vez se cobrara por publicar o posicionar negocios:
+>
 > 1. Se rompería la naturaleza no lucrativa y comunitaria de Esperancitos.
 > 2. Se violarían las políticas de uso gratuito de la mayoría de plataformas de hosting (como Vercel Hobby), obligando a pagar planes comerciales Pro/Enterprise.
 > 3. Requeriría cambiar radicalmente los términos legales del sitio, emitir facturas con el SRI y gestionar obligaciones tributarias comerciales.
-> 
+>
 > Por tanto, **todos los listados son gratuitos** y el orden de aparición es neutral (alfabético y por categoría), sin favoritismos ni cobros de ninguna índole.
 
 ### 🧪 Validación de contenido sin compilar

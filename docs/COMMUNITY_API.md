@@ -26,6 +26,7 @@ No requiere servidores backend, base de datos ni funciones serverless en tiempo 
 ## 2. Contrato API v1
 
 ### 2.1. `manifest.json`
+
 El cliente móvil consulta este archivo primero enviando la cabecera `If-None-Match` (ETag) o comparando hashes. Contiene la huella criptográfica SHA-256 de cada recurso y su fecha de última actualización:
 
 ```json
@@ -58,6 +59,7 @@ El cliente móvil consulta este archivo primero enviando la cabecera `If-None-Ma
 ```
 
 ### 2.2. `update.json`
+
 Indica la versión más reciente publicada, notas de versión y la página de descarga. No contiene enlaces directos a archivos APK; la aplicación redirige al usuario a la página web en su navegador:
 
 ```json
@@ -75,7 +77,9 @@ Indica la versión más reciente publicada, notas de versión y la página de de
 ```
 
 ### 2.3. `avisos.json`
+
 Lista de avisos y comunicados estudiantiles vigentes.
+
 - **Orden determinista:** Fijados (`pinned: true`) primero y luego por fecha `publishedAt` descendente (más recientes primero).
 - **Caducidad:** Entradas con `expiresAt` en el pasado al momento de compilar son excluidas automáticamente del JSON público.
 
@@ -98,7 +102,9 @@ Lista de avisos y comunicados estudiantiles vigentes.
 ```
 
 ### 2.4. `negocios.json`
+
 Directorio de servicios y negocios cercanos a los campus universitarios.
+
 - **Categorías permitidas:** `comida`, `copias`, `papeleria`, `transporte`, `vivienda`, `salud`, `servicios`, `otros`.
 - **Orden determinista:** Por categoría (según el orden oficial del contrato) y luego por nombre alfabético (`localeCompare` en español).
 - **Caducidad obligatoria:** Todo negocio debe contar con `validUntil`. Si ha vencido, no se compila en el JSON.
@@ -141,6 +147,7 @@ Directorio de servicios y negocios cercanos a los campus universitarios.
 ```
 
 ### 2.5. `enlaces.json`
+
 Enlaces académicos y de servicios clasificados por grupos:
 
 ```json
@@ -167,8 +174,10 @@ Enlaces académicos y de servicios clasificados por grupos:
 ## 3. Guía de Operaciones y Flujo Editorial
 
 ### 3.1. Cómo agregar un aviso
+
 1. Crea un archivo JSON en `src/content/avisos/<slug-estable>.json` (o YAML).
 2. Estructura requerida:
+
 ```json
 {
   "id": "charla-bienestar-estudiantil",
@@ -182,14 +191,18 @@ Enlaces académicos y de servicios clasificados por grupos:
   "notas": "Organizado por el club estudiantil"
 }
 ```
+
 3. Ejecuta la validación:
+
 ```sh
 npm run validate:content
 ```
 
 ### 3.2. Cómo agregar un negocio
+
 1. Si el negocio cuenta con logotipo, optimízalo en formato **WebP**, redimensionalo a un tamaño prudente (ej. 200x200 px), verifica que pese **menos de 60 KB** y guárdalo en `public/api/v1/img/<slug>.webp`.
 2. Crea un archivo JSON en `src/content/negocios/<slug-estable>.json`:
+
 ```json
 {
   "id": "libreria-politecnica",
@@ -218,13 +231,16 @@ npm run validate:content
   "notas": "Local verificado presencialmente"
 }
 ```
+
 > **IMPORTANTE:** Los campos `consentimiento`, `contactoDueno` y `notas` son de uso administrativo interno y **jamás** se exponen en los JSON públicos ni en la web.
 
 ### 3.3. Cómo agregar o editar enlaces
+
 1. Dirígete a `src/content/enlaces/` y edita el grupo correspondiente o crea un archivo nuevo.
 2. Cada grupo debe contener un `title` (<= 40 car.) y una lista de `items` con `url` sobre HTTPS y `updatedAt`.
 
 ### 3.4. Cómo marcar una versión nueva de la aplicación
+
 1. Edita `src/content/update/current.json`:
    - Incrementa `latestVersion` (ej. `1.1.0`).
    - Incrementa `latestBuild` (ej. `13`).
@@ -234,7 +250,9 @@ npm run validate:content
 2. Actualiza también `src/config/site.ts` (`version`, `releaseDate`, `primaryApkPath`, `apkChecksums`).
 
 ### 3.5. Cómo dar de baja o retirar un listado
+
 Existen dos formas limpias:
+
 1. **Borrado directo:** Elimina el archivo correspondiente en `src/content/avisos/` o `src/content/negocios/` (y su logo en `public/api/v1/img/` si aplica).
 2. **Por caducidad:** Ajusta el campo `expiresAt` (en avisos) o `validUntil` (en negocios) a una fecha pasada. El generador estático lo excluirá de inmediato en la siguiente compilación.
 
@@ -260,10 +278,12 @@ Para mantener la integridad, calidad y seguridad de la información estudiantil,
 ## 5. Regla Fundamental: Gratuidad y No Publicidad
 
 > ### ⚠️ Advertencia Legal y Operativa
+>
 > **Los listados en Esperancitos son 100% gratuitos y de libre acceso.**
 > **Está estrictamente prohibido cobrar por publicar o destacar un negocio.**
 
 ### ¿Por qué?
+
 1. **Pérdida de la naturaleza no comercial:** Cobrar por listados o posiciones convertiría la aplicación y el sitio en un **medio publicitario comercial**.
 2. **Revisión obligatoria del plan de alojamiento:** Las plataformas de hosting actuales (como Vercel Hobby / planes para proyectos personales y no comerciales) **prohíben terminantemente el uso comercial y la venta de espacios publicitarios sin contratar un plan comercial de pago (Pro/Enterprise)**.
 3. **Implicaciones legales y tributarias:** Generar ingresos publicitarios exigiría facturación electrónica, RUC comercial, declaraciones tributarias ante el SRI y una reescritura total de la Política de Privacidad y Términos de Servicio.
@@ -282,6 +302,7 @@ npm run validate:content
 ```
 
 Para verificar tipos en TypeScript y componentes Astro:
+
 ```sh
 npm run astro -- check
 ```
@@ -291,6 +312,7 @@ npm run astro -- check
 ## 7. Cláusula de Privacidad y Aviso Legal (App Móvil y Web)
 
 ### 📢 Avisos, Comunidad y Actualizaciones en la App Móvil
+
 1. **Archivos Públicos y Estáticos:**  
    La aplicación móvil consulta periódicamente archivos estáticos en formato JSON alojados en `https://esperancitos.vercel.app/api/v1/` (`manifest.json`, `avisos.json`, `negocios.json`, `enlaces.json`, `update.json`).
 2. **Cero Datos Personales:**  
@@ -299,4 +321,3 @@ npm run astro -- check
    Al tratarse de una conexión HTTPS estándar a través de CDN/Vercel, el servidor de alojamiento únicamente registra la dirección IP técnica de la conexión para la entrega del contenido estático, tal como ocurre al visitar cualquier página web en un navegador.
 4. **Control Total del Usuario:**  
    El estudiante puede desactivar estas consultas en cualquier momento desde **Ajustes > Comunidad y Avisos > Novedades y comunidad**. Al desactivarlo, la app suspende de forma inmediata y absoluta toda petición de red hacia el servidor de la comunidad.
-

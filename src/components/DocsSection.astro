@@ -1,8 +1,17 @@
 ---
-// DocsSection.astro - Guías de Sincronización y Acordeón FAQ con Animación Suave
-// Las preguntas viven en src/config/faq.ts porque también alimentan el JSON-LD
-// FAQPage del <head>; así la UI y los datos estructurados nunca se contradicen.
+// DocsSection.astro - Guías de Sincronización y Vista Previa de Preguntas Frecuentes
+// Las preguntas completas viven en src/config/faq.ts y se exploran en /faq con buscador en tiempo real
 import { FAQ_ENTRIES } from '../config/faq';
+
+// Seleccionamos 4 preguntas críticas para la vista rápida de la home;
+// el catálogo completo con buscador y filtros vive en /faq
+const PREVIEW_IDS = [
+  'servidores-credenciales',
+  'play-protect-peligroso',
+  'funciona-sin-internet-offline',
+  'calculadora-notas-ponderadas',
+];
+const PREVIEW_FAQS = FAQ_ENTRIES.filter((f) => PREVIEW_IDS.includes(f.id));
 ---
 
 <section class="docs-section scroll-reveal" id="docs">
@@ -117,12 +126,15 @@ import { FAQ_ENTRIES } from '../config/faq';
     <!-- Sección de Preguntas Frecuentes (FAQ) en Acordeón -->
     <div class="faq-wrapper" id="faq">
       <div class="faq-header-box">
-        <span class="badge-app green">DUDAS FRECUENTES</span>
+        <span class="badge-app green">DUDAS DESTACADAS</span>
         <h3 class="faq-title">Preguntas Frecuentes</h3>
+        <p class="faq-subtitle">
+          Respuestas rápidas a las consultas más comunes. Explora las {FAQ_ENTRIES.length} preguntas organizadas por temas en nuestra página dedicada.
+        </p>
       </div>
 
       <div class="faq-accordion-list">
-        {FAQ_ENTRIES.map((entry) => (
+        {PREVIEW_FAQS.map((entry) => (
           <details class="faq-accordion-item card-app">
             <summary class="faq-question">
               <span>{entry.question}</span>
@@ -141,6 +153,27 @@ import { FAQ_ENTRIES } from '../config/faq';
           </details>
         ))}
       </div>
+
+      <!-- Tarjeta destacada hacia la página completa /faq -->
+      <div class="faq-cta-banner card-app reveal-init">
+        <div class="faq-cta-left">
+          <div class="faq-cta-badge">CENTRO DE AYUDA OFICIAL</div>
+          <h4 class="faq-cta-title">¿Tienes más dudas sobre Moodle, sedes o instalación?</h4>
+          <p class="faq-cta-desc">
+            Tenemos un catálogo completo con <strong>{FAQ_ENTRIES.length} preguntas frecuentes</strong> organizadas en 6 categorías: contraseñas, avisos de Android, sedes Latacunga/Santo Domingo, iPhone, cálculo de notas y archivos de Moodle.
+          </p>
+        </div>
+        <div class="faq-cta-right">
+          <a href="/faq" class="btn-pilas-primary btn-see-full-faq" id="btn-see-full-faq">
+            <span>Ver las {FAQ_ENTRIES.length} preguntas frecuentes</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <span class="faq-cta-hint">Buscador en vivo · Filtros por tema · Sin rodeos</span>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -151,6 +184,8 @@ import { FAQ_ENTRIES } from '../config/faq';
     padding: 90px 0 100px 0;
     border-top: 2px solid var(--border-app);
     background: rgba(16, 26, 35, 0.2);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
   }
 
   /* Tres columnas sólo cuando hay ancho de sobra: con dos guías de 4 pasos cada
@@ -335,6 +370,15 @@ import { FAQ_ENTRIES } from '../config/faq';
     margin-top: 10px;
   }
 
+  .faq-subtitle {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    max-width: 600px;
+    margin-inline: auto;
+    line-height: 1.5;
+  }
+
   .faq-accordion-list {
     display: flex;
     flex-direction: column;
@@ -442,6 +486,124 @@ import { FAQ_ENTRIES } from '../config/faq';
     color: var(--text-primary);
   }
 
+  /* Banner hacia la página completa /faq */
+  .faq-cta-banner {
+    margin-top: 32px;
+    padding: 30px 32px;
+    background: linear-gradient(135deg, rgba(16, 26, 35, 0.95), rgba(11, 18, 25, 0.98));
+    border: 2px solid var(--border-app);
+    border-radius: var(--radius-md);
+    box-shadow: 4px 4px 0px #000000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 240ms var(--ease-spring), box-shadow 240ms var(--ease-apple), border-color 240ms ease;
+  }
+
+  .faq-cta-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px #000000, 0 10px 24px rgba(0, 0, 0, 0.35);
+    border-color: rgba(0, 255, 135, 0.4);
+  }
+
+  .faq-cta-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-fuchsia));
+  }
+
+  .faq-cta-left {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .faq-cta-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: var(--accent-primary);
+    background: rgba(0, 255, 135, 0.12);
+    border: 1px solid var(--accent-primary);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .faq-cta-title {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+  }
+
+  .faq-cta-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .faq-cta-desc strong {
+    color: var(--text-primary);
+  }
+
+  .faq-cta-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .btn-see-full-faq {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 22px;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 800;
+    background: var(--accent-primary);
+    color: #000000;
+    border: 2px solid #000000;
+    border-radius: var(--radius-sm);
+    box-shadow: 4px 4px 0px #000000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 200ms var(--ease-spring), box-shadow 200ms var(--ease-apple), background-color 200ms ease;
+    white-space: nowrap;
+  }
+
+  .btn-see-full-faq:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000000;
+    background: #00ff9d;
+    color: #000000;
+  }
+
+  .btn-see-full-faq:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000000;
+  }
+
+  .faq-cta-hint {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-align: right;
+  }
+
   /* Responsive: colocados al final para garantizar cascada correcta */
   @media (max-width: 860px) {
     .docs-section {
@@ -461,11 +623,41 @@ import { FAQ_ENTRIES } from '../config/faq';
     .guide-box h3 {
       font-size: 1.3rem;
     }
+
+    .faq-cta-banner {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 24px 22px;
+      gap: 20px;
+    }
+
+    .faq-cta-right {
+      align-items: stretch;
+    }
+
+    .btn-see-full-faq {
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      white-space: normal;
+    }
+
+    .faq-cta-hint {
+      text-align: center;
+    }
   }
 
   @media (max-width: 560px) {
     .guide-box {
       padding: 18px 14px;
+    }
+
+    .faq-cta-banner {
+      padding: 20px 16px;
+    }
+
+    .faq-cta-title {
+      font-size: 1.12rem;
     }
 
     .faq-question {

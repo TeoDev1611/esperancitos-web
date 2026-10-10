@@ -1,41 +1,65 @@
 ---
-// 404.astro - Página de error 404 con Mascota Variación 2 (Negación / "Algo está mal")
-import Layout from '../layouts/Layout.astro';
+// 404.astro - Página de error 404 con Easter Egg Secreto (Minijuego Arcade Oculto)
+import Layout from "../layouts/Layout.astro";
+import CampusRunner from "../components/CampusRunner.astro";
 ---
 
 <Layout
-  title="404: ¡Chuta, te perdiste! • Pilas!"
+  title="404: ¡Chuta, aquí no hay nada! • Pilas!"
   description="Esta página no existe o fue movida. Regresa al inicio de Pilas! para continuar."
   noindex={true}
 >
   <main class="not-found-main">
     <div class="container not-found-container">
       <div class="not-found-card pilas-card">
-        <div class="not-found-mascot-wrapper">
+        <div
+          class="not-found-mascot-wrapper"
+          id="mascot-secret-trigger"
+          role="button"
+          tabindex="0"
+          aria-label="Tocar a la mascota para ver si pasa algo"
+          title="¿Qué pasa si me tocas? 🤫"
+        >
           <img
             src="/logos/icono_var2_sin_fondo.svg"
             alt="Pilas Mascota Perdida"
             class="mascot-img not-found-mascot"
+            id="not-found-mascot-img"
             width="220"
             height="220"
           />
           <div class="not-found-bubble">
-            <span>¡CHUTA! 404 😵</span>
+            <span id="mascot-bubble-text">¡NADA AQUÍ! 😵</span>
           </div>
         </div>
 
         <div class="not-found-content">
-          <div class="sticker-pill" style="background: #FF3D5E; color: #FFFFFF; margin-bottom: 12px;">
-            ⚠️ PÁGINA NO ENCONTRADA
+          <div
+            class="sticker-pill"
+            style="background: #FF3D5E; color: #FFFFFF; margin-bottom: 12px;"
+          >
+            ⚠️ ERROR 404 · RUTA VACÍA
           </div>
-          <h1>¡Chuta, te perdiste! Esta página no existe.</h1>
+          <h1>¡Chuta! Aquí no hay nada.</h1>
           <p>
-            Parece que buscaste un aula que no está en el mapa del campus o el enlace cambió de lugar. No te preocupes, ¡ponte pilas y regresa al inicio!
+            No mires arriba ni busques más: esta página no existe en los
+            servidores de la ESPE, el enlace no lleva a ningún lado y ya. Pero
+            bueno, ya que estás aquí... ¿seguro que no hay nada?
           </p>
 
           <div class="not-found-actions">
             <a href="/" class="btn-pilas-primary">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
                 <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
               </svg>
@@ -45,8 +69,29 @@ import Layout from '../layouts/Layout.astro';
               <span>Descargar la App</span>
             </a>
           </div>
+
+          <!-- Pista secreta Easter Egg -->
+          <div class="secret-easter-box">
+            <button
+              type="button"
+              class="btn-secret-easter"
+              id="secret-easter-btn"
+              aria-label="Desbloquear minijuego secreto"
+            >
+              <span class="secret-dot" aria-hidden="true"></span>
+              <span class="secret-txt"
+                >Aquí no hay nada... <em
+                  >(o presiona [ESPACIO] / toca la mascota)</em
+                ></span
+              >
+              <span class="secret-pill-icon" aria-hidden="true">🕹️</span>
+            </button>
+          </div>
         </div>
       </div>
+
+      <!-- Minijuego Arcade   (Oculto por defecto hasta desbloquearlo) -->
+      <CampusRunner />
     </div>
   </main>
 </Layout>
@@ -54,25 +99,26 @@ import Layout from '../layouts/Layout.astro';
 <style>
   .not-found-main {
     min-height: calc(100vh - 200px);
+    min-height: calc(100dvh - 200px);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 80px 0;
+    padding: 60px 0 80px 0;
   }
 
   .not-found-container {
-    max-width: 760px;
+    max-width: 820px;
   }
 
   .not-found-card {
-    background: #161A23;
+    background: #161a23;
     border: 3px solid #000000;
     border-radius: 20px;
-    padding: 48px 40px;
+    padding: 44px 38px;
     box-shadow: 8px 8px 0px #000000;
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 36px;
   }
 
   @media (max-width: 700px) {
@@ -87,6 +133,17 @@ import Layout from '../layouts/Layout.astro';
   .not-found-mascot-wrapper {
     position: relative;
     flex-shrink: 0;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.15s ease;
+  }
+
+  .not-found-mascot-wrapper:hover {
+    transform: scale(1.05) rotate(-2deg);
+  }
+
+  .not-found-mascot-wrapper:active {
+    transform: scale(0.96);
   }
 
   .not-found-mascot {
@@ -100,15 +157,22 @@ import Layout from '../layouts/Layout.astro';
     position: absolute;
     bottom: -8px;
     right: 0;
-    background: #FFDB79;
+    background: #ffdb79;
     color: #000000;
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 900;
     font-size: 0.78rem;
     padding: 4px 10px;
     border: 2px solid #000000;
     border-radius: 8px;
     box-shadow: 2px 2px 0px #000000;
+    transition: all 0.2s ease;
+  }
+
+  .not-found-mascot-wrapper:hover .not-found-bubble {
+    background: var(--color-primary, #ff3fa4);
+    color: #000000;
+    transform: scale(1.08);
   }
 
   .not-found-content h1 {
@@ -117,13 +181,15 @@ import Layout from '../layouts/Layout.astro';
     color: var(--color-text-title);
     margin-bottom: 12px;
     line-height: 1.15;
+    text-wrap: balance;
   }
 
   .not-found-content p {
     font-size: 1rem;
     color: var(--color-text-body);
     line-height: 1.6;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
+    text-wrap: pretty;
   }
 
   .not-found-actions {
@@ -131,10 +197,59 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
     gap: 14px;
     flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  /* Pista secreta para desbloquear el Easter Egg */
+  .secret-easter-box {
+    margin-top: 4px;
+  }
+
+  .btn-secret-easter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1.5px dashed #2a3142;
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: var(--color-text-muted, #8f9cae);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.76rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-secret-easter:hover {
+    border-color: var(--color-primary, #ff3fa4);
+    color: var(--color-text-title, #faf7f7);
+    background: rgba(255, 63, 164, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .secret-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary, #ff3fa4);
+    box-shadow: 0 0 6px var(--color-primary);
+  }
+
+  .secret-txt em {
+    font-style: normal;
+    color: var(--color-success, #00ff87);
+  }
+
+  .secret-pill-icon {
+    font-size: 0.85rem;
   }
 
   @media (max-width: 700px) {
     .not-found-actions {
+      justify-content: center;
+    }
+    .secret-easter-box {
+      display: flex;
       justify-content: center;
     }
   }
@@ -157,5 +272,56 @@ import Layout from '../layouts/Layout.astro';
     .not-found-mascot {
       width: min(170px, 100%);
     }
+
+    .btn-secret-easter {
+      font-size: 0.7rem;
+      text-align: center;
+      justify-content: center;
+      width: 100%;
+    }
   }
 </style>
+
+<script>
+  // Control interactivo del Easter Egg en la página 404
+  (function () {
+    const mascotTrigger = document.getElementById("mascot-secret-trigger");
+    const easterBtn = document.getElementById("secret-easter-btn");
+    const bubbleText = document.getElementById("mascot-bubble-text");
+
+    let isUnlocked = false;
+
+    function triggerEasterEgg() {
+      isUnlocked = true;
+      window.dispatchEvent(new CustomEvent("unlock-runner-game"));
+      if (bubbleText) {
+        bubbleText.textContent = "¡A CORRER! 🏃💨";
+        bubbleText.style.color = "#000000";
+      }
+    }
+
+    if (mascotTrigger) {
+      mascotTrigger.addEventListener("click", triggerEasterEgg);
+      mascotTrigger.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          triggerEasterEgg();
+        }
+      });
+    }
+
+    if (easterBtn) {
+      easterBtn.addEventListener("click", triggerEasterEgg);
+    }
+
+    window.addEventListener("pilas-game-unlocked", () => {
+      isUnlocked = true;
+      if (bubbleText) bubbleText.textContent = "¡A CORRER! 🏃💨";
+    });
+
+    window.addEventListener("pilas-game-hidden", () => {
+      isUnlocked = false;
+      if (bubbleText) bubbleText.textContent = "¡NADA AQUÍ! 😵";
+    });
+  })();
+</script>

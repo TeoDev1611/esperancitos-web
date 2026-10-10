@@ -1,243 +1,347 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#101319;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-container": "#007138", "inverse-on-surface": "#2e3037", "surface-container-high": "#272a31", "secondary": "#c6c6c7", "surface-dark": "#161a23", "primary-fixed": "#60ff98", "on-tertiary-container": "#795f01", "surface-container": "#1d2026", "tertiary": "#fffaf7", "on-tertiary": "#3d2f00", "on-secondary-fixed": "#1a1c1c", "surface": "#101319", "on-surface-variant": "#b9cbb9", "surface-container-low": "#191c22", "on-tertiary-fixed-variant": "#584400", "on-primary-fixed": "#00210c", "text-muted": "#8f9cae", "surface-container-lowest": "#0b0e14", "on-tertiary-fixed": "#241a00", "accent-emerald-dark": "#059669", "surface-bright": "#363940", "on-error-container": "#ffdad6", "secondary-fixed-dim": "#c6c6c7", "on-error": "#690005", "primary": "#f1ffef", "surface-dim": "#101319", "on-surface": "#e1e2eb", "on-primary": "#003919", "surface-variant": "#32353c", "surface-container-highest": "#32353c", "surface-elevated": "#1e2230", "tertiary-fixed": "#ffe08d", "secondary-fixed": "#e2e2e2", "error": "#ffb4ab", "surface-tint": "#00e478", "secondary-container": "#454747", "background": "#101319", "primary-container": "#00ff87", "outline-variant": "#3b4b3d", "on-secondary-container": "#b4b5b5", "outline": "#849585", "inverse-surface": "#e1e2eb", "primary-fixed-dim": "#00e478", "on-background": "#e1e2eb", "tertiary-fixed-dim": "#e5c364", "on-secondary-fixed-variant": "#454747", "border-dark": "#2a3142", "tertiary-container": "#ffdb79", "on-primary-fixed-variant": "#005227", "error-container": "#93000a", "inverse-primary": "#006d36", "on-secondary": "#2f3131" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "1rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "gutter-desktop": "1.5rem", "margin-desktop": "2rem", "space-lg": "1.5rem", "gutter": "1rem", "margin": "1rem" }, fontFamily: { "headline-md": ["Outfit"], "display-xl": ["Outfit"], "label-md": ["Outfit"], "body-sm": ["Outfit"], "headline-lg-mobile": ["Outfit"], "body-lg": ["Outfit"], "label-sm": ["Outfit"], "display-xl-mobile": ["Outfit"], "headline-lg": ["Outfit"], "body-md": ["Outfit"], "label-lg": ["Outfit"] }, fontSize: { "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "display-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-lg": ["17px", { "lineHeight": "24px", "fontWeight": "500" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }], "display-xl-mobile": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "700" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-fixed"><header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl pt-safe shadow-[0_1px_12px_rgba(0,0,0,0.45)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-xs min-w-0"><button aria-label="Regresar" class="w-11 h-11 -ml-2 flex items-center justify-center text-on-surface hover:text-primary-container active:scale-95 transition-transform duration-150" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><img alt="Logo minimalista moderno para la app estudiantil Esperancitos ESPE con un birrete de graduación geométrico y ondas de sincronización digital en verde esmeralda institucional y blanco.. Brand logo. - Primary color: #059669 - Font: outfit - Mode: dark - Roundness: rounded-md" class="h-7 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1WRyBRJvU4fC5Uc2_qDnPfUSDit7nCWNGTvHzOs_8UXGXHtbru0aKPjAEEw2P_HF-zWK73sQLGiqMQZbmWQSMd7m7yZpcHzYwyb1pvVfFwXxQGted2PNB0JJhtBcj6-j4AwPIF8hxfZAo8_K1PPiNX6Qnd8BsHmQyQdXfspj-pbjrwdIbfsz1Khc49ae7T80uyUB6zKuDD1iesA8LMqfHxhk1xhHFzqwoPHw54s-rJJ"/><h1 class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface truncate">Perfil Estudiante</h1></div><div class="flex items-center gap-space-xs shrink-0"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-primary-container/30" src="https://lh3.googleusercontent.com/aida/AEtjO1X5RvjfD1K5Z_NLIPb12PvjR4U7L3hA_En2ZUfKqvO5Z0WSkYvBIkTF30Y_nOgRWY02wuBdnwqNtUHbXVv-AoLdUyBZ0Jen-RUmPgxXxmohlvCAIWpHNwmM3HjSX8F-fCBKWmoESKjMXOBhXdaw02Ui3zCgGDFunFFc0c2oEULqSJXKUlYhfoscqV5ZpSufAwT7RewsfZGm2wRoxkD3kUs-mFdkGSIrmy8emvxkLTY9"/></div></div></header><main class="flex-1 flex flex-col relative w-full px-gutter pt-16 pb-safe bg-surface min-h-[calc(100vh-4rem)]"><div class="flex flex-col w-full pb-10 space-y-space-md">
-<!-- Card de Identidad Politécnica -->
-<section class="bg-surface-dark rounded-xl p-space-md shadow-md relative overflow-hidden">
-<div class="absolute -right-10 -bottom-10 w-36 h-36 bg-primary-container/5 rounded-full pointer-events-none blur-xl"></div>
-<div class="flex flex-col items-center text-center">
-<div class="relative mb-space-sm">
-<div class="w-24 h-24 rounded-full overflow-hidden bg-surface shadow-md">
-<img alt="Avatar de Mateo Alejandro Benítez Silva" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1X5RvjfD1K5Z_NLIPb12PvjR4U7L3hA_En2ZUfKqvO5Z0WSkYvBIkTF30Y_nOgRWY02wuBdnwqNtUHbXVv-AoLdUyBZ0Jen-RUmPgxXxmohlvCAIWpHNwmM3HjSX8F-fCBKWmoESKjMXOBhXdaw02Ui3zCgGDFunFFc0c2oEULqSJXKUlYhfoscqV5ZpSufAwT7RewsfZGm2wRoxkD3kUs-mFdkGSIrmy8emvxkLTY9"/>
-</div>
-<div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-on-primary-fixed shadow-sm">
-<span class="material-symbols-outlined text-[16px] leading-none" style="font-variation-settings: 'FILL' 1;">verified</span>
-</div>
-</div>
-<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-primary-container text-on-primary-fixed mb-space-xs">
-<span class="w-1.5 h-1.5 rounded-full bg-on-primary-fixed animate-pulse"></span>
-<span class="font-label-sm text-label-sm uppercase tracking-wider">Estudiante Regular Activo</span>
-</div>
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold mt-1">
-        Mateo Alejandro Benítez Silva
-      </h2>
-<p class="font-label-md text-label-md text-primary-container mt-1 font-semibold">
-        L00394821 <span class="text-text-muted">•</span> Sangolquí
-      </p>
-<div class="w-full bg-surface-elevated rounded-lg p-space-sm mt-space-md flex flex-col gap-1 text-left">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary-container text-[18px]">terminal</span>
-<span class="font-body-md text-body-md text-primary font-semibold truncate">Ingeniería en Tecnologías de la Información</span>
-</div>
-<div class="flex items-center gap-2 text-text-muted">
-<span class="material-symbols-outlined text-text-muted text-[18px]">school</span>
-<span class="font-body-sm text-body-sm">Sexto Semestre • Periodo 2024-50 (2024-II)</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Resumen Académico del Periodo -->
-<section class="space-y-space-xs">
-<div class="flex items-center justify-between px-space-xs">
-<h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
-<span class="material-symbols-outlined text-primary-container text-[20px]">analytics</span>
-        Rendimiento Académico
-      </h3>
-<span class="font-label-sm text-label-sm text-primary-container bg-surface-elevated px-2 py-0.5 rounded-full">Corte Activo</span>
-</div>
-<div class="grid grid-cols-3 gap-space-xs">
-<!-- Métrica: Promedio -->
-<div class="bg-surface-dark rounded-xl p-space-sm flex flex-col justify-between shadow-sm">
-<span class="font-label-sm text-label-sm text-text-muted uppercase">Promedio</span>
-<div class="my-1">
-<div class="font-display-xl-mobile text-display-xl-mobile text-primary font-extrabold tracking-tight">
-            17.8
+<html class="dark" lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    name="viewport" />
+  <meta content="mobile_stack" name="shell-type" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    @layer base {
+
+      html,
+      body {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        background-color: #101319;
+      }
+
+      body {
+        overscroll-behavior: none;
+      }
+
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+
+      main>:first-child {
+        margin-top: 0 !important;
+      }
+
+      main>:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-container": "#007138", "inverse-on-surface": "#2e3037", "surface-container-high": "#272a31", "secondary": "#c6c6c7", "surface-dark": "#161a23", "primary-fixed": "#60ff98", "on-tertiary-container": "#795f01", "surface-container": "#1d2026", "tertiary": "#fffaf7", "on-tertiary": "#3d2f00", "on-secondary-fixed": "#1a1c1c", "surface": "#101319", "on-surface-variant": "#b9cbb9", "surface-container-low": "#191c22", "on-tertiary-fixed-variant": "#584400", "on-primary-fixed": "#00210c", "text-muted": "#8f9cae", "surface-container-lowest": "#0b0e14", "on-tertiary-fixed": "#241a00", "accent-emerald-dark": "#059669", "surface-bright": "#363940", "on-error-container": "#ffdad6", "secondary-fixed-dim": "#c6c6c7", "on-error": "#690005", "primary": "#f1ffef", "surface-dim": "#101319", "on-surface": "#e1e2eb", "on-primary": "#003919", "surface-variant": "#32353c", "surface-container-highest": "#32353c", "surface-elevated": "#1e2230", "tertiary-fixed": "#ffe08d", "secondary-fixed": "#e2e2e2", "error": "#ffb4ab", "surface-tint": "#00e478", "secondary-container": "#454747", "background": "#101319", "primary-container": "#00ff87", "outline-variant": "#3b4b3d", "on-secondary-container": "#b4b5b5", "outline": "#849585", "inverse-surface": "#e1e2eb", "primary-fixed-dim": "#00e478", "on-background": "#e1e2eb", "tertiary-fixed-dim": "#e5c364", "on-secondary-fixed-variant": "#454747", "border-dark": "#2a3142", "tertiary-container": "#ffdb79", "on-primary-fixed-variant": "#005227", "error-container": "#93000a", "inverse-primary": "#006d36", "on-secondary": "#2f3131" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "1rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "gutter-desktop": "1.5rem", "margin-desktop": "2rem", "space-lg": "1.5rem", "gutter": "1rem", "margin": "1rem" }, fontFamily: { "headline-md": ["Outfit"], "display-xl": ["Outfit"], "label-md": ["Outfit"], "body-sm": ["Outfit"], "headline-lg-mobile": ["Outfit"], "body-lg": ["Outfit"], "label-sm": ["Outfit"], "display-xl-mobile": ["Outfit"], "headline-lg": ["Outfit"], "body-md": ["Outfit"], "label-lg": ["Outfit"] }, fontSize: { "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "display-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-lg": ["17px", { "lineHeight": "24px", "fontWeight": "500" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }], "display-xl-mobile": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "700" }] } } } };</script>
+</head>
+
+<body
+  class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-fixed">
+  <header
+    class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl pt-safe shadow-[0_1px_12px_rgba(0,0,0,0.45)]">
+    <div class="h-16 px-gutter flex items-center justify-between">
+      <div class="flex items-center gap-space-xs min-w-0"><button aria-label="Regresar"
+          class="w-11 h-11 -ml-2 flex items-center justify-center text-on-surface hover:text-primary-container active:scale-95 transition-transform duration-150"
+          onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><img
+          alt="Logo minimalista moderno para la app estudiantil Esperancitos ESPE con un birrete de graduación geométrico y ondas de sincronización digital en verde esmeralda institucional y blanco.. Brand logo. - Primary color: #059669 - Font: outfit - Mode: dark - Roundness: rounded-md"
+          class="h-7 w-auto object-contain shrink-0"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1WRyBRJvU4fC5Uc2_qDnPfUSDit7nCWNGTvHzOs_8UXGXHtbru0aKPjAEEw2P_HF-zWK73sQLGiqMQZbmWQSMd7m7yZpcHzYwyb1pvVfFwXxQGted2PNB0JJhtBcj6-j4AwPIF8hxfZAo8_K1PPiNX6Qnd8BsHmQyQdXfspj-pbjrwdIbfsz1Khc49ae7T80uyUB6zKuDD1iesA8LMqfHxhk1xhHFzqwoPHw54s-rJJ" />
+        <h1 class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface truncate">Perfil
+          Estudiante</h1>
+      </div>
+      <div class="flex items-center gap-space-xs shrink-0"><img alt="Profile"
+          class="w-8 h-8 rounded-full object-cover ring-1 ring-primary-container/30"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1X5RvjfD1K5Z_NLIPb12PvjR4U7L3hA_En2ZUfKqvO5Z0WSkYvBIkTF30Y_nOgRWY02wuBdnwqNtUHbXVv-AoLdUyBZ0Jen-RUmPgxXxmohlvCAIWpHNwmM3HjSX8F-fCBKWmoESKjMXOBhXdaw02Ui3zCgGDFunFFc0c2oEULqSJXKUlYhfoscqV5ZpSufAwT7RewsfZGm2wRoxkD3kUs-mFdkGSIrmy8emvxkLTY9" />
+      </div>
+    </div>
+  </header>
+  <main class="flex-1 flex flex-col relative w-full px-gutter pt-16 pb-safe bg-surface min-h-[calc(100vh-4rem)]">
+    <div class="flex flex-col w-full pb-10 space-y-space-md">
+      <!-- Card de Identidad Politécnica -->
+      <section class="bg-surface-dark rounded-xl p-space-md shadow-md relative overflow-hidden">
+        <div
+          class="absolute -right-10 -bottom-10 w-36 h-36 bg-primary-container/5 rounded-full pointer-events-none blur-xl">
+        </div>
+        <div class="flex flex-col items-center text-center">
+          <div class="relative mb-space-sm">
+            <div class="w-24 h-24 rounded-full overflow-hidden bg-surface shadow-md">
+              <img alt="Avatar de Mateo Alejandro Benítez Silva" class="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida/AEtjO1X5RvjfD1K5Z_NLIPb12PvjR4U7L3hA_En2ZUfKqvO5Z0WSkYvBIkTF30Y_nOgRWY02wuBdnwqNtUHbXVv-AoLdUyBZ0Jen-RUmPgxXxmohlvCAIWpHNwmM3HjSX8F-fCBKWmoESKjMXOBhXdaw02Ui3zCgGDFunFFc0c2oEULqSJXKUlYhfoscqV5ZpSufAwT7RewsfZGm2wRoxkD3kUs-mFdkGSIrmy8emvxkLTY9" />
+            </div>
+            <div
+              class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-on-primary-fixed shadow-sm">
+              <span class="material-symbols-outlined text-[16px] leading-none"
+                style="font-variation-settings: 'FILL' 1;">verified</span>
+            </div>
           </div>
-<span class="font-label-sm text-label-sm text-text-muted">/ 20.0</span>
-</div>
-<span class="font-label-sm text-label-sm text-primary-container font-semibold truncate">
-          ✓ Aprobando todo
-        </span>
-</div>
-<!-- Métrica: Créditos -->
-<div class="bg-surface-dark rounded-xl p-space-sm flex flex-col justify-between shadow-sm">
-<span class="font-label-sm text-label-sm text-text-muted uppercase">Créditos</span>
-<div class="my-1">
-<div class="font-display-xl-mobile text-display-xl-mobile text-primary font-extrabold tracking-tight">
-            18
+          <div
+            class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-primary-container text-on-primary-fixed mb-space-xs">
+            <span class="w-1.5 h-1.5 rounded-full bg-on-primary-fixed animate-pulse"></span>
+            <span class="font-label-sm text-label-sm uppercase tracking-wider">Estudiante Regular Activo</span>
           </div>
-<span class="font-label-sm text-label-sm text-text-muted">/ 20 total</span>
-</div>
-<span class="font-label-sm text-label-sm text-text-muted font-medium">
-          90% de avance
-        </span>
-</div>
-<!-- Métrica: Materias -->
-<div class="bg-surface-dark rounded-xl p-space-sm flex flex-col justify-between shadow-sm">
-<span class="font-label-sm text-label-sm text-text-muted uppercase">Materias</span>
-<div class="my-1">
-<div class="font-display-xl-mobile text-display-xl-mobile text-primary font-extrabold tracking-tight">
-            5
+          <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold mt-1">
+            Mateo Alejandro Benítez Silva
+          </h2>
+          <p class="font-label-md text-label-md text-primary-container mt-1 font-semibold">
+            L00394821 <span class="text-text-muted">•</span> Sangolquí
+          </p>
+          <div class="w-full bg-surface-elevated rounded-lg p-space-sm mt-space-md flex flex-col gap-1 text-left">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary-container text-[18px]">terminal</span>
+              <span class="font-body-md text-body-md text-primary font-semibold truncate">Ingeniería en Tecnologías de
+                la Información</span>
+            </div>
+            <div class="flex items-center gap-2 text-text-muted">
+              <span class="material-symbols-outlined text-text-muted text-[18px]">school</span>
+              <span class="font-body-sm text-body-sm">Sexto Semestre • Periodo 2024-50 (2024-II)</span>
+            </div>
           </div>
-<span class="font-label-sm text-label-sm text-text-muted">Cursos</span>
-</div>
-<span class="font-label-sm text-label-sm text-primary-container font-semibold">
-          100% asistidas
-        </span>
-</div>
-</div>
-</section>
-<!-- Información de Acceso Institucional -->
-<section class="space-y-space-xs">
-<div class="px-space-xs">
-<h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
-<span class="material-symbols-outlined text-primary-container text-[20px]">hub</span>
-        Sincronización Institucional
-      </h3>
-</div>
-<div class="bg-surface-dark rounded-xl p-space-md shadow-sm space-y-space-sm">
-<!-- Correo Institucional -->
-<div class="flex items-center justify-between gap-space-sm p-space-xs rounded-lg bg-surface-elevated">
-<div class="flex items-center gap-space-sm min-w-0">
-<div class="w-8 h-8 rounded-lg bg-surface-dark flex items-center justify-center shrink-0 text-primary-container">
-<span class="material-symbols-outlined text-[18px]">mail</span>
-</div>
-<div class="min-w-0">
-<p class="font-label-sm text-label-sm text-text-muted">Correo Institucional ESPE</p>
-<p class="font-body-sm text-body-sm text-primary font-semibold truncate">mabenitez2@espe.edu.ec</p>
-</div>
-</div>
-<span class="font-label-sm text-label-sm bg-primary-container/10 text-primary-container px-2 py-1 rounded-full shrink-0 font-bold flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">check_circle</span>
-          Verificado
-        </span>
-</div>
-<!-- Conexión Banner -->
-<div class="flex items-center justify-between gap-space-sm p-space-xs rounded-lg bg-surface-elevated">
-<div class="flex items-center gap-space-sm min-w-0">
-<div class="w-8 h-8 rounded-lg bg-surface-dark flex items-center justify-center shrink-0 text-primary-container">
-<span class="material-symbols-outlined text-[18px]">database</span>
-</div>
-<div class="min-w-0">
-<p class="font-label-sm text-label-sm text-text-muted">MiESPE / Banner ERP</p>
-<p class="font-body-sm text-body-sm text-primary font-semibold">Conectado (Token válido)</p>
-</div>
-</div>
-<div class="w-2.5 h-2.5 rounded-full bg-primary-container shrink-0 shadow-sm animate-ping"></div>
-</div>
-<!-- Conexión Moodle -->
-<div class="flex items-center justify-between gap-space-sm p-space-xs rounded-lg bg-surface-elevated">
-<div class="flex items-center gap-space-sm min-w-0">
-<div class="w-8 h-8 rounded-lg bg-surface-dark flex items-center justify-center shrink-0 text-primary-container">
-<span class="material-symbols-outlined text-[18px]">sync_alt</span>
-</div>
-<div class="min-w-0">
-<p class="font-label-sm text-label-sm text-text-muted">Campus Moodle Virtual</p>
-<p class="font-body-sm text-body-sm text-primary font-semibold">Conectado (REST Web Services)</p>
-</div>
-</div>
-<div class="w-2.5 h-2.5 rounded-full bg-primary-container shrink-0 shadow-sm"></div>
-</div>
-</div>
-</section>
-<!-- Acciones y Accesos Directos -->
-<section class="space-y-space-xs">
-<div class="px-space-xs">
-<h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
-<span class="material-symbols-outlined text-primary-container text-[20px]">bolt</span>
-        Gestión Rápida
-      </h3>
-</div>
-<div class="flex flex-col gap-space-xs">
-<!-- Botón Editar Info -->
-<button class="w-full bg-primary-container text-on-primary-fixed p-space-md rounded-xl font-label-lg text-label-lg font-bold flex items-center justify-between shadow-sm active:translate-y-0.5 transition-all" id="btn-edit-info" type="button">
-<span class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-[20px]">edit</span>
-          Editar información de contacto
-        </span>
-<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
-</button>
-<!-- Botón Descargar PDF -->
-<button class="w-full bg-surface-dark text-primary p-space-md rounded-xl font-label-lg text-label-lg font-bold flex items-center justify-between shadow-sm active:translate-y-0.5 transition-all" id="btn-download-pdf" type="button">
-<span class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-primary-container text-[20px]">description</span>
-          Descargar comprobante de matrícula (PDF)
-        </span>
-<span class="material-symbols-outlined text-text-muted text-[20px]">download</span>
-</button>
-<!-- Botón Ajustes -->
-<button class="w-full bg-surface-dark text-primary p-space-md rounded-xl font-label-lg text-label-lg font-bold flex items-center justify-between shadow-sm active:translate-y-0.5 transition-all" id="btn-settings" type="button">
-<span class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-primary-container text-[20px]">settings</span>
-          Ir a Ajustes y Preferencias
-        </span>
-<span class="material-symbols-outlined text-text-muted text-[20px]">chevron_right</span>
-</button>
-</div>
-</section>
-<!-- Notificación de estado temporal (toast interactivo) -->
-<div class="hidden fixed bottom-6 left-4 right-4 bg-surface-elevated text-primary p-space-sm rounded-xl shadow-lg flex items-center gap-space-sm z-50 transition-transform" id="status-toast">
-<span class="material-symbols-outlined text-primary-container" id="toast-icon">check_circle</span>
-<span class="font-body-sm text-body-sm font-medium flex-1" id="toast-msg">Acción completada</span>
-</div>
-<!-- Soporte politécnico al pie -->
-<footer class="pt-space-sm pb-space-lg flex flex-col items-center text-center">
-<a class="inline-flex items-center gap-1.5 text-text-muted hover:text-primary-container font-label-md text-label-md transition-colors py-1" href="#" id="link-support">
-<span class="material-symbols-outlined text-[16px]">help_center</span>
-<span>Mesa de Ayuda y Soporte TI ESPE</span>
-</a>
-<p class="font-label-sm text-label-sm text-text-muted/60 mt-0.5">
-      Esperancitos ESPE v2.4 • Sangolquí, Ecuador
-    </p>
-</footer>
-</div>
-<script>
-  (function() {
-    const toast = document.getElementById('status-toast');
-    const toastMsg = document.getElementById('toast-msg');
-    const toastIcon = document.getElementById('toast-icon');
-    let toastTimeout = null;
+        </div>
+      </section>
+      <!-- Resumen Académico del Periodo -->
+      <section class="space-y-space-xs">
+        <div class="flex items-center justify-between px-space-xs">
+          <h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container text-[20px]">analytics</span>
+            Rendimiento Académico
+          </h3>
+          <span
+            class="font-label-sm text-label-sm text-primary-container bg-surface-elevated px-2 py-0.5 rounded-full">Corte
+            Activo</span>
+        </div>
+        <div class="grid grid-cols-3 gap-space-xs">
+          <!-- Métrica: Promedio -->
+          <div class="bg-surface-dark rounded-xl p-space-sm flex flex-col justify-between shadow-sm">
+            <span class="font-label-sm text-label-sm text-text-muted uppercase">Promedio</span>
+            <div class="my-1">
+              <div class="font-display-xl-mobile text-display-xl-mobile text-primary font-extrabold tracking-tight">
+                17.8
+              </div>
+              <span class="font-label-sm text-label-sm text-text-muted">/ 20.0</span>
+            </div>
+            <span class="font-label-sm text-label-sm text-primary-container font-semibold truncate">
+              ✓ Aprobando todo
+            </span>
+          </div>
+          <!-- Métrica: Créditos -->
+          <div class="bg-surface-dark rounded-xl p-space-sm flex flex-col justify-between shadow-sm">
+            <span class="font-label-sm text-label-sm text-text-muted uppercase">Créditos</span>
+            <div class="my-1">
+              <div class="font-display-xl-mobile text-display-xl-mobile text-primary font-extrabold tracking-tight">
+                18
+              </div>
+              <span class="font-label-sm text-label-sm text-text-muted">/ 20 total</span>
+            </div>
+            <span class="font-label-sm text-label-sm text-text-muted font-medium">
+              90% de avance
+            </span>
+          </div>
+          <!-- Métrica: Materias -->
+          <div class="bg-surface-dark rounded-xl p-space-sm flex flex-col justify-between shadow-sm">
+            <span class="font-label-sm text-label-sm text-text-muted uppercase">Materias</span>
+            <div class="my-1">
+              <div class="font-display-xl-mobile text-display-xl-mobile text-primary font-extrabold tracking-tight">
+                5
+              </div>
+              <span class="font-label-sm text-label-sm text-text-muted">Cursos</span>
+            </div>
+            <span class="font-label-sm text-label-sm text-primary-container font-semibold">
+              100% asistidas
+            </span>
+          </div>
+        </div>
+      </section>
+      <!-- Información de Acceso Institucional -->
+      <section class="space-y-space-xs">
+        <div class="px-space-xs">
+          <h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container text-[20px]">hub</span>
+            Sincronización Institucional
+          </h3>
+        </div>
+        <div class="bg-surface-dark rounded-xl p-space-md shadow-sm space-y-space-sm">
+          <!-- Correo Institucional -->
+          <div class="flex items-center justify-between gap-space-sm p-space-xs rounded-lg bg-surface-elevated">
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-8 h-8 rounded-lg bg-surface-dark flex items-center justify-center shrink-0 text-primary-container">
+                <span class="material-symbols-outlined text-[18px]">mail</span>
+              </div>
+              <div class="min-w-0">
+                <p class="font-label-sm text-label-sm text-text-muted">Correo Institucional ESPE</p>
+                <p class="font-body-sm text-body-sm text-primary font-semibold truncate">mabenitez2@espe.edu.ec</p>
+              </div>
+            </div>
+            <span
+              class="font-label-sm text-label-sm bg-primary-container/10 text-primary-container px-2 py-1 rounded-full shrink-0 font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">check_circle</span>
+              Verificado
+            </span>
+          </div>
+          <!-- Conexión Banner -->
+          <div class="flex items-center justify-between gap-space-sm p-space-xs rounded-lg bg-surface-elevated">
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-8 h-8 rounded-lg bg-surface-dark flex items-center justify-center shrink-0 text-primary-container">
+                <span class="material-symbols-outlined text-[18px]">database</span>
+              </div>
+              <div class="min-w-0">
+                <p class="font-label-sm text-label-sm text-text-muted">MiESPE / Banner ERP</p>
+                <p class="font-body-sm text-body-sm text-primary font-semibold">Conectado (Token válido)</p>
+              </div>
+            </div>
+            <div class="w-2.5 h-2.5 rounded-full bg-primary-container shrink-0 shadow-sm animate-ping"></div>
+          </div>
+          <!-- Conexión Moodle -->
+          <div class="flex items-center justify-between gap-space-sm p-space-xs rounded-lg bg-surface-elevated">
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-8 h-8 rounded-lg bg-surface-dark flex items-center justify-center shrink-0 text-primary-container">
+                <span class="material-symbols-outlined text-[18px]">sync_alt</span>
+              </div>
+              <div class="min-w-0">
+                <p class="font-label-sm text-label-sm text-text-muted">Campus Moodle Virtual</p>
+                <p class="font-body-sm text-body-sm text-primary font-semibold">Conectado (REST Web Services)</p>
+              </div>
+            </div>
+            <div class="w-2.5 h-2.5 rounded-full bg-primary-container shrink-0 shadow-sm"></div>
+          </div>
+        </div>
+      </section>
+      <!-- Acciones y Accesos Directos -->
+      <section class="space-y-space-xs">
+        <div class="px-space-xs">
+          <h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container text-[20px]">bolt</span>
+            Gestión Rápida
+          </h3>
+        </div>
+        <div class="flex flex-col gap-space-xs">
+          <!-- Botón Editar Info -->
+          <button
+            class="w-full bg-primary-container text-on-primary-fixed p-space-md rounded-xl font-label-lg text-label-lg font-bold flex items-center justify-between shadow-sm active:translate-y-0.5 transition-all"
+            id="btn-edit-info" type="button">
+            <span class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-[20px]">edit</span>
+              Editar información de contacto
+            </span>
+            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+          </button>
+          <!-- Botón Descargar PDF -->
+          <button
+            class="w-full bg-surface-dark text-primary p-space-md rounded-xl font-label-lg text-label-lg font-bold flex items-center justify-between shadow-sm active:translate-y-0.5 transition-all"
+            id="btn-download-pdf" type="button">
+            <span class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-primary-container text-[20px]">description</span>
+              Descargar comprobante de matrícula (PDF)
+            </span>
+            <span class="material-symbols-outlined text-text-muted text-[20px]">download</span>
+          </button>
+          <!-- Botón Ajustes -->
+          <button
+            class="w-full bg-surface-dark text-primary p-space-md rounded-xl font-label-lg text-label-lg font-bold flex items-center justify-between shadow-sm active:translate-y-0.5 transition-all"
+            id="btn-settings" type="button">
+            <span class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-primary-container text-[20px]">settings</span>
+              Ir a Ajustes y Preferencias
+            </span>
+            <span class="material-symbols-outlined text-text-muted text-[20px]">chevron_right</span>
+          </button>
+        </div>
+      </section>
+      <!-- Notificación de estado temporal (toast interactivo) -->
+      <div
+        class="hidden fixed bottom-6 left-4 right-4 bg-surface-elevated text-primary p-space-sm rounded-xl shadow-lg flex items-center gap-space-sm z-50 transition-transform"
+        id="status-toast">
+        <span class="material-symbols-outlined text-primary-container" id="toast-icon">check_circle</span>
+        <span class="font-body-sm text-body-sm font-medium flex-1" id="toast-msg">Acción completada</span>
+      </div>
+      <!-- Soporte   al pie -->
+      <footer class="pt-space-sm pb-space-lg flex flex-col items-center text-center">
+        <a class="inline-flex items-center gap-1.5 text-text-muted hover:text-primary-container font-label-md text-label-md transition-colors py-1"
+          href="#" id="link-support">
+          <span class="material-symbols-outlined text-[16px]">help_center</span>
+          <span>Mesa de Ayuda y Soporte TI ESPE</span>
+        </a>
+        <p class="font-label-sm text-label-sm text-text-muted/60 mt-0.5">
+          Esperancitos ESPE v2.4 • Sangolquí, Ecuador
+        </p>
+      </footer>
+    </div>
+    <script>
+      (function () {
+        const toast = document.getElementById('status-toast');
+        const toastMsg = document.getElementById('toast-msg');
+        const toastIcon = document.getElementById('toast-icon');
+        let toastTimeout = null;
 
-    function showToast(message, icon = 'check_circle') {
-      if (!toast) return;
-      if (toastTimeout) clearTimeout(toastTimeout);
-      
-      toastMsg.textContent = message;
-      toastIcon.textContent = icon;
-      toast.classList.remove('hidden');
-      
-      toastTimeout = setTimeout(() => {
-        toast.classList.add('hidden');
-      }, 2600);
-    }
+        function showToast(message, icon = 'check_circle') {
+          if (!toast) return;
+          if (toastTimeout) clearTimeout(toastTimeout);
 
-    const btnDownload = document.getElementById('btn-download-pdf');
-    if (btnDownload) {
-      btnDownload.addEventListener('click', () => {
-        showToast('Generando Comprobante 2024-II en PDF...', 'download_done');
-      });
-    }
+          toastMsg.textContent = message;
+          toastIcon.textContent = icon;
+          toast.classList.remove('hidden');
 
-    const btnEdit = document.getElementById('btn-edit-info');
-    if (btnEdit) {
-      btnEdit.addEventListener('click', () => {
-        showToast('Abriendo editor de datos de contacto...', 'edit_note');
-      });
-    }
+          toastTimeout = setTimeout(() => {
+            toast.classList.add('hidden');
+          }, 2600);
+        }
 
-    const btnSettings = document.getElementById('btn-settings');
-    if (btnSettings) {
-      btnSettings.addEventListener('click', () => {
-        showToast('Accediendo al panel de configuración...', 'tune');
-      });
-    }
+        const btnDownload = document.getElementById('btn-download-pdf');
+        if (btnDownload) {
+          btnDownload.addEventListener('click', () => {
+            showToast('Generando Comprobante 2024-II en PDF...', 'download_done');
+          });
+        }
 
-    const linkSupport = document.getElementById('link-support');
-    if (linkSupport) {
-      linkSupport.addEventListener('click', (e) => {
-        e.preventDefault();
-        showToast('Conectando con Mesa de Ayuda ESPE TI...', 'support_agent');
-      });
-    }
-  })();
-</script></main></body></html>
+        const btnEdit = document.getElementById('btn-edit-info');
+        if (btnEdit) {
+          btnEdit.addEventListener('click', () => {
+            showToast('Abriendo editor de datos de contacto...', 'edit_note');
+          });
+        }
+
+        const btnSettings = document.getElementById('btn-settings');
+        if (btnSettings) {
+          btnSettings.addEventListener('click', () => {
+            showToast('Accediendo al panel de configuración...', 'tune');
+          });
+        }
+
+        const linkSupport = document.getElementById('link-support');
+        if (linkSupport) {
+          linkSupport.addEventListener('click', (e) => {
+            e.preventDefault();
+            showToast('Conectando con Mesa de Ayuda ESPE TI...', 'support_agent');
+          });
+        }
+      })();
+    </script>
+  </main>
+</body>
+
+</html>

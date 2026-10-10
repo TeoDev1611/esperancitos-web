@@ -1,0 +1,1437 @@
+---
+// CampusRunner.astro - Minijuego interactivo "Corre al Aula" para la página 404
+// Diseñado con estética Neo-Student Brutalist, soporte táctil, teclado y efectos Web Audio.
+---
+
+<div class="runner-arcade-card is-hidden" id="runner-arcade-box">
+  <!-- Barra superior estilo cabina arcade / consola politécnica -->
+  <div class="arcade-top-bar">
+    <div class="arcade-title-group">
+      <span class="arcade-status-dot" aria-hidden="true"></span>
+      <span class="arcade-title">ARCADE ESPE · CORRE AL AULA 🏃💨</span>
+    </div>
+
+    <div class="arcade-stats-group">
+      <div class="stat-pill">
+        <span class="stat-lbl">PUNTOS</span>
+        <span class="stat-num" id="runner-score">0000</span>
+      </div>
+      <div class="stat-pill highlight">
+        <span class="stat-lbl">RÉCORD</span>
+        <span class="stat-num" id="runner-highscore">0000</span>
+      </div>
+      <button
+        type="button"
+        class="arcade-btn-mute"
+        id="runner-mute-toggle"
+        aria-label="Silenciar o activar sonido del juego"
+        title="Activar / Desactivar sonido"
+      >
+        <span id="mute-icon">🔊</span>
+      </button>
+      <button
+        type="button"
+        class="arcade-btn-maximize"
+        id="runner-maximize-toggle"
+        aria-label="Maximizar o restaurar tamaño de pantalla completa"
+        title="Maximizar a pantalla completa"
+      >
+        <svg
+          id="maximize-icon-expand"
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M15 3h6v6"></path>
+          <path d="M9 21H3v-6"></path>
+          <path d="M21 3l-7 7"></path>
+          <path d="M3 21l7-7"></path>
+        </svg>
+        <svg
+          id="maximize-icon-compress"
+          class="is-hidden"
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M4 14h6v6"></path>
+          <path d="M20 10h-6V4"></path>
+          <path d="M14 10l7-7"></path>
+          <path d="M10 14L3 21"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="arcade-btn-close"
+        id="runner-close-toggle"
+        aria-label="Cerrar y ocultar minijuego"
+        title="Ocultar minijuego"
+      >
+        <span>✕</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Contenedor del Canvas del juego -->
+  <div class="arcade-screen-viewport" id="runner-viewport">
+    <canvas
+      id="runner-canvas"
+      class="runner-canvas"
+      width="800"
+      height="320"
+      aria-label="Juego Corre al Aula: Salta obstáculos con espacio o tocando la pantalla"
+    ></canvas>
+
+    <!-- Overlay de inicio / pausa / fin de partida -->
+    <div class="arcade-overlay" id="runner-overlay">
+      <div class="overlay-modal" id="overlay-modal-content">
+        <div class="overlay-mascot-badge">
+          <img
+            src="/logos/icono_var1_sin_fondo.svg"
+            alt="Pilas Mascota"
+            class="overlay-mascot-img"
+            id="overlay-mascot-preview"
+            width="72"
+            height="72"
+          />
+        </div>
+        <h3 id="overlay-heading">¡LLEGA AL AULA ANTES DE LAS 07:00!</h3>
+        <p id="overlay-subtext">
+          Esquiva los servidores caídos de Banner, exámenes supletorios y la
+          fila de la garita.
+        </p>
+
+        <div class="overlay-controls-guide">
+          <span class="ctrl-tag"><kbd>ESPACIO</kbd> o <kbd>↑</kbd> Saltar</span>
+          <span class="ctrl-tag">Toca la pantalla en móvil</span>
+        </div>
+
+        <button
+          type="button"
+          class="btn-app btn-pilas-primary btn-runner-start"
+          id="runner-start-btn"
+        >
+          <span>¡EMPEZAR A CORRER!</span>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de control inferior (especial para pantallas táctiles) -->
+  <div class="arcade-bottom-bar">
+    <div class="arcade-tip-text">
+      <span>💡 Tip:</span> Recoge las <strong>Pilas 🔋 (+50 pts)</strong> para subir
+      tu promedio.
+    </div>
+
+    <button
+      type="button"
+      class="btn-arcade-jump"
+      id="runner-jump-button"
+      aria-label="Saltar obstáculo"
+    >
+      <span>🚀 SALTAR</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .runner-arcade-card {
+    background: #121620;
+    border: 3px solid #000000;
+    border-radius: 18px;
+    box-shadow: 6px 6px 0px #000000;
+    overflow: hidden;
+    margin-top: 28px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    animation: arcadeAppear 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .runner-arcade-card.is-hidden {
+    display: none !important;
+  }
+
+  @keyframes arcadeAppear {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .arcade-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #181d2a;
+    border-bottom: 3px solid #000000;
+    padding: 10px 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .arcade-title-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .arcade-status-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--color-success, #00ff87);
+    border: 1.5px solid #000000;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 255, 135, 0.6);
+    animation: arcadePulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes arcadePulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.25);
+      opacity: 0.6;
+    }
+  }
+
+  .arcade-title {
+    font-family: var(--font-mono, monospace);
+    font-weight: 800;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--color-text-title, #faf7f7);
+    text-transform: uppercase;
+  }
+
+  .arcade-stats-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #000000;
+    border: 1.5px solid #2a3142;
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-family: var(--font-mono, monospace);
+  }
+
+  .stat-pill.highlight {
+    border-color: var(--color-primary, #ff3fa4);
+  }
+
+  .stat-pill.highlight .stat-num {
+    color: var(--color-primary, #ff3fa4);
+  }
+
+  .stat-lbl {
+    font-size: 0.65rem;
+    color: var(--color-text-muted, #8f9cae);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .stat-num {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-success, #00ff87);
+  }
+
+  .arcade-btn-mute {
+    background: #000000;
+    border: 1.5px solid #2a3142;
+    border-radius: 6px;
+    color: #faf7f7;
+    width: 32px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition:
+      transform 0.1s ease,
+      border-color 0.1s ease;
+  }
+
+  .arcade-btn-mute:hover {
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+  }
+
+  .arcade-btn-maximize {
+    background: #000000;
+    border: 1.5px solid #2a3142;
+    border-radius: 6px;
+    color: #faf7f7;
+    width: 32px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+      transform 0.1s ease,
+      border-color 0.1s ease,
+      background-color 0.1s ease;
+  }
+
+  .arcade-btn-maximize:hover {
+    border-color: var(--color-primary, #ff3fa4);
+    background: rgba(255, 63, 164, 0.15);
+    color: var(--color-primary, #ff3fa4);
+    transform: scale(1.06);
+  }
+
+  .arcade-btn-maximize svg.is-hidden {
+    display: none !important;
+  }
+
+  .arcade-btn-close {
+    background: #000000;
+    border: 1.5px solid #2a3142;
+    border-radius: 6px;
+    color: var(--color-critical, #ef4444);
+    width: 32px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 900;
+    transition:
+      transform 0.1s ease,
+      border-color 0.1s ease,
+      background-color 0.1s ease;
+  }
+
+  .arcade-btn-close:hover {
+    border-color: var(--color-critical);
+    background: rgba(239, 68, 68, 0.15);
+    transform: scale(1.08);
+  }
+
+  /* Viewport del juego */
+  .arcade-screen-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 800 / 320;
+    min-height: 220px;
+    max-height: 380px;
+    background: #0b0e14;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .runner-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated;
+  }
+
+  /* Overlay de UI dentro del juego */
+  .arcade-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 14, 20, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 10;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
+  }
+
+  .arcade-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .overlay-modal {
+    background: #161a23;
+    border: 2.5px solid #000000;
+    border-radius: 14px;
+    box-shadow: 6px 6px 0px #000000;
+    padding: 24px 28px;
+    text-align: center;
+    max-width: 440px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: popIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes popIn {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .overlay-mascot-badge {
+    width: 64px;
+    height: 64px;
+    background: #1e2230;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 0px #000000;
+    margin-bottom: 12px;
+  }
+
+  .overlay-mascot-img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+  }
+
+  .overlay-modal h3 {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--color-text-title, #faf7f7);
+    margin-bottom: 6px;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .overlay-modal p {
+    font-size: 0.86rem;
+    color: var(--color-text-body, #e1e2eb);
+    line-height: 1.45;
+    margin-bottom: 16px;
+    text-wrap: pretty;
+  }
+
+  .overlay-controls-guide {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .ctrl-tag {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    background: #000000;
+    color: var(--color-text-muted);
+    border: 1px solid #2a3142;
+    border-radius: 6px;
+    padding: 4px 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  kbd {
+    background: #242938;
+    color: var(--color-success);
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-weight: 800;
+    font-size: 0.72rem;
+  }
+
+  .btn-runner-start {
+    padding: 10px 22px;
+    font-size: 0.92rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* Barra inferior */
+  .arcade-bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #181d2a;
+    border-top: 2.5px solid #000000;
+    padding: 10px 16px;
+    gap: 12px;
+  }
+
+  .arcade-tip-text {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    line-height: 1.35;
+  }
+
+  .arcade-tip-text strong {
+    color: var(--color-warning, #ffdb79);
+  }
+
+  .btn-arcade-jump {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary, #ff3fa4);
+    color: #000000;
+    font-family: var(--font-sans);
+    font-weight: 900;
+    font-size: 0.88rem;
+    padding: 9px 18px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0px #000000;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition:
+      transform 0.08s ease,
+      box-shadow 0.08s ease;
+    flex-shrink: 0;
+  }
+
+  .btn-arcade-jump:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #000000;
+    background: #e5147d;
+    color: #ffffff;
+  }
+
+  @media (max-width: 600px) {
+    .arcade-top-bar {
+      padding: 8px 12px;
+    }
+    .arcade-title {
+      font-size: 0.72rem;
+    }
+    .arcade-screen-viewport {
+      aspect-ratio: 16 / 9;
+      min-height: 200px;
+    }
+    .overlay-modal {
+      padding: 18px 16px;
+    }
+    .overlay-modal h3 {
+      font-size: 1.05rem;
+    }
+    .overlay-modal p {
+      font-size: 0.78rem;
+      margin-bottom: 12px;
+    }
+    .btn-arcade-jump {
+      width: 100%;
+      padding: 12px;
+      font-size: 0.95rem;
+    }
+    .arcade-bottom-bar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+    .arcade-tip-text {
+      text-align: center;
+    }
+  }
+
+  /* =========================================================================
+     MODO MAXIMIZADO / PANTALLA COMPLETA
+     ========================================================================= */
+  .runner-arcade-card.is-maximized {
+    position: fixed !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 99999 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-width: 100vw !important;
+    max-height: 100dvh !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    animation: none !important;
+    background: #090c12;
+  }
+
+  .runner-arcade-card.is-maximized .arcade-top-bar {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    flex-shrink: 0;
+    padding: 10px 18px;
+  }
+
+  .runner-arcade-card.is-maximized .arcade-screen-viewport {
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: unset !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #06080d;
+    position: relative;
+    padding: 12px;
+  }
+
+  .runner-arcade-card.is-maximized .runner-canvas {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: 800 / 320;
+    object-fit: contain;
+    border: 2px solid #202636;
+    border-radius: 12px;
+    box-shadow:
+      0 0 35px rgba(0, 0, 0, 0.85),
+      0 0 25px rgba(255, 63, 164, 0.08);
+  }
+
+  .runner-arcade-card.is-maximized .arcade-bottom-bar {
+    flex-shrink: 0;
+    padding: 10px 18px;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  @media (max-width: 600px) {
+    .runner-arcade-card.is-maximized .arcade-screen-viewport {
+      padding: 6px;
+    }
+    .runner-arcade-card.is-maximized .runner-canvas {
+      border-radius: 8px;
+    }
+  }
+</style>
+
+<script>
+  // =========================================================================
+  // MOTOR DEL JUEGO: PILAS! RUNNER - CORRE AL AULA
+  // =========================================================================
+  (function () {
+    const canvas = document.getElementById(
+      "runner-canvas",
+    ) as HTMLCanvasElement | null;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const overlay = document.getElementById("runner-overlay");
+    const heading = document.getElementById("overlay-heading");
+    const subtext = document.getElementById("overlay-subtext");
+    const mascotPreview = document.getElementById(
+      "overlay-mascot-preview",
+    ) as HTMLImageElement | null;
+    const startBtn = document.getElementById("runner-start-btn");
+    const jumpBtn = document.getElementById("runner-jump-button");
+    const scoreEl = document.getElementById("runner-score");
+    const highscoreEl = document.getElementById("runner-highscore");
+    const muteBtn = document.getElementById("runner-mute-toggle");
+    const muteIcon = document.getElementById("mute-icon");
+    const maximizeBtn = document.getElementById("runner-maximize-toggle");
+    const iconExpand = document.getElementById("maximize-icon-expand");
+    const iconCompress = document.getElementById("maximize-icon-compress");
+    const viewport = document.getElementById("runner-viewport");
+
+    // Imágenes de la mascota de Pilas!
+    const mascotRunImg = new Image();
+    mascotRunImg.src = "/logos/icono_var1_sin_fondo.svg";
+
+    const mascotCrashImg = new Image();
+    mascotCrashImg.src = "/logos/icono_var2_sin_fondo.svg";
+
+    // Sonidos con Web Audio API (procedurales, sin descargar archivos externos)
+    let audioCtx: AudioContext | null = null;
+    let isMuted = false;
+
+    function playSound(type: "jump" | "coin" | "crash") {
+      if (isMuted) return;
+      try {
+        const AudioContextClass =
+          window.AudioContext ||
+          (window as unknown as { webkitAudioContext: typeof AudioContext })
+            .webkitAudioContext;
+        if (!audioCtx) audioCtx = new AudioContextClass();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        const now = audioCtx.currentTime;
+
+        if (type === "jump") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.exponentialRampToValueAtTime(540, now + 0.12);
+          gain.gain.setValueAtTime(0.16, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.12);
+          osc.start(now);
+          osc.stop(now + 0.12);
+        } else if (type === "coin") {
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.setValueAtTime(783.99, now + 0.08); // G5
+          gain.gain.setValueAtTime(0.18, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.2);
+          osc.start(now);
+          osc.stop(now + 0.2);
+        } else if (type === "crash") {
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(260, now);
+          osc.frequency.exponentialRampToValueAtTime(70, now + 0.28);
+          gain.gain.setValueAtTime(0.24, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.28);
+          osc.start(now);
+          osc.stop(now + 0.28);
+        }
+      } catch (e) {
+        // Silencioso si el navegador bloquea audio sin interacción
+      }
+    }
+
+    if (muteBtn && muteIcon) {
+      muteBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        isMuted = !isMuted;
+        muteIcon.textContent = isMuted ? "🔇" : "🔊";
+      });
+    }
+
+    // Coordenadas lógicas virtuales del juego (independientes del tamaño físico)
+    const V_WIDTH = 800;
+    const V_HEIGHT = 320;
+    const GROUND_Y = 250;
+
+    // Estado del Jugador (Mascota)
+    const player = {
+      x: 75,
+      y: GROUND_Y - 48,
+      w: 48,
+      h: 48,
+      vy: 0,
+      gravity: 0.68,
+      jumpForce: -13.2,
+      grounded: true,
+      legCycle: 0,
+    };
+
+    // Obstáculos y Coleccionables
+    interface Obstacle {
+      x: number;
+      y: number;
+      w: number;
+      h: number;
+      type: "server" | "exam" | "garita";
+      label: string;
+      sub: string;
+      color: string;
+    }
+
+    interface Coin {
+      x: number;
+      y: number;
+      r: number;
+      collected: boolean;
+      rot: number;
+    }
+
+    interface Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      life: number;
+      color: string;
+      size: number;
+    }
+
+    let obstacles: Obstacle[] = [];
+    let coins: Coin[] = [];
+    let particles: Particle[] = [];
+
+    let score = 0;
+    let highScore = 0;
+    try {
+      highScore =
+        parseInt(localStorage.getItem("pilas_runner_high") || "0", 10) || 0;
+      if (highscoreEl)
+        highscoreEl.textContent = String(highScore).padStart(4, "0");
+    } catch (e) {}
+
+    let gameSpeed = 5.2;
+    let spawnTimer = 0;
+    let coinTimer = 0;
+    let groundOffset = 0;
+    let gameState: "IDLE" | "RUNNING" | "CRASHED" = "IDLE";
+    let animId = 0;
+
+    // Partículas al recoger o chocar
+    function spawnParticles(x: number, y: number, color: string, count = 10) {
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const spd = 2 + Math.random() * 4;
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * spd,
+          vy: Math.sin(angle) * spd,
+          life: 1.0,
+          color,
+          size: 3 + Math.random() * 3,
+        });
+      }
+    }
+
+    // Salto
+    function jump() {
+      if (gameState === "IDLE") {
+        startGame();
+        return;
+      }
+      if (gameState === "CRASHED") {
+        restartGame();
+        return;
+      }
+      if (player.grounded) {
+        player.vy = player.jumpForce;
+        player.grounded = false;
+        playSound("jump");
+        spawnParticles(player.x + 20, player.y + player.h, "#FAF7F7", 4);
+      }
+    }
+
+    // Iniciar juego
+    function startGame() {
+      gameState = "RUNNING";
+      if (overlay) overlay.classList.add("hidden");
+      score = 0;
+      gameSpeed = 5.2;
+      obstacles = [];
+      coins = [];
+      particles = [];
+      spawnTimer = 60;
+      player.y = GROUND_Y - player.h;
+      player.vy = 0;
+      player.grounded = true;
+    }
+
+    // Reiniciar juego tras choque
+    function restartGame() {
+      if (mascotPreview) mascotPreview.src = "/logos/icono_var1_sin_fondo.svg";
+      startGame();
+    }
+
+    // Fin de juego
+    function crash(cause: string) {
+      gameState = "CRASHED";
+      playSound("crash");
+      spawnParticles(
+        player.x + player.w / 2,
+        player.y + player.h / 2,
+        "#EF4444",
+        18,
+      );
+
+      if (score > highScore) {
+        highScore = score;
+        try {
+          localStorage.setItem("pilas_runner_high", String(highScore));
+        } catch (e) {}
+        if (highscoreEl)
+          highscoreEl.textContent = String(highScore).padStart(4, "0");
+      }
+
+      if (overlay && heading && subtext && mascotPreview) {
+        mascotPreview.src = "/logos/icono_var2_sin_fondo.svg";
+        heading.textContent = "¡CHUTA! TE QUEDASTE AL SUPLETORIO 😵";
+        subtext.innerHTML = `Chocaste contra <strong>${cause}</strong>.<br/>Puntos alcanzados: <strong style="color:var(--color-primary); font-size:1.15rem;">${score}</strong> · Récord: <strong>${highScore}</strong>`;
+        if (startBtn)
+          startBtn.querySelector("span")!.textContent = "INTENTAR DE NUEVO";
+        overlay.classList.remove("hidden");
+      }
+    }
+
+    const arcadeCard = document.getElementById("runner-arcade-box");
+    const closeBtn = document.getElementById("runner-close-toggle");
+
+    let isMaximized = false;
+
+    function toggleMaximize(forceState?: boolean) {
+      if (!arcadeCard) return;
+      isMaximized = typeof forceState === "boolean" ? forceState : !isMaximized;
+
+      if (isMaximized) {
+        arcadeCard.classList.add("is-maximized");
+        document.body.style.overflow = "hidden";
+        if (iconExpand) iconExpand.classList.add("is-hidden");
+        if (iconCompress) iconCompress.classList.remove("is-hidden");
+        if (maximizeBtn) {
+          maximizeBtn.title = "Restaurar tamaño normal (Esc)";
+          maximizeBtn.setAttribute("aria-label", "Restaurar tamaño normal");
+        }
+
+        // Intenta API Fullscreen nativa de HTML5 si el navegador lo permite
+        if (
+          document.fullscreenEnabled &&
+          !document.fullscreenElement &&
+          arcadeCard.requestFullscreen
+        ) {
+          arcadeCard.requestFullscreen().catch(() => {
+            // El fallback visual ya está activo con .is-maximized
+          });
+        }
+      } else {
+        arcadeCard.classList.remove("is-maximized");
+        document.body.style.overflow = "";
+        if (iconExpand) iconExpand.classList.remove("is-hidden");
+        if (iconCompress) iconCompress.classList.add("is-hidden");
+        if (maximizeBtn) {
+          maximizeBtn.title = "Maximizar a pantalla completa";
+          maximizeBtn.setAttribute(
+            "aria-label",
+            "Maximizar a pantalla completa",
+          );
+        }
+
+        // Salir de Fullscreen nativo si estaba activo
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(() => {});
+        }
+      }
+    }
+
+    if (maximizeBtn) {
+      maximizeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleMaximize();
+      });
+    }
+
+    // Si el usuario sale de fullscreen nativo con la tecla ESC del navegador
+    document.addEventListener("fullscreenchange", () => {
+      if (!document.fullscreenElement && isMaximized) {
+        toggleMaximize(false);
+      }
+    });
+
+    function revealGame() {
+      if (!arcadeCard) return;
+      if (arcadeCard.classList.contains("is-hidden")) {
+        arcadeCard.classList.remove("is-hidden");
+        setTimeout(() => {
+          arcadeCard.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 50);
+        window.dispatchEvent(new CustomEvent("pilas-game-unlocked"));
+      }
+    }
+
+    function hideGame() {
+      if (!arcadeCard) return;
+      if (isMaximized) {
+        toggleMaximize(false);
+      }
+      arcadeCard.classList.add("is-hidden");
+      gameState = "IDLE";
+      if (overlay) overlay.classList.remove("hidden");
+      window.dispatchEvent(new CustomEvent("pilas-game-hidden"));
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        hideGame();
+      });
+    }
+
+    window.addEventListener("unlock-runner-game", revealGame);
+
+    // Eventos de entrada
+    window.addEventListener("keydown", (e) => {
+      if (e.code === "Space" || e.code === "ArrowUp") {
+        // Evita hacer scroll en la página al jugar
+        const activeTag = (document.activeElement?.tagName || "").toLowerCase();
+        if (activeTag !== "input" && activeTag !== "textarea") {
+          e.preventDefault();
+          if (arcadeCard && arcadeCard.classList.contains("is-hidden")) {
+            revealGame();
+            return;
+          }
+          jump();
+        }
+      } else if (e.code === "KeyR" && gameState === "CRASHED") {
+        restartGame();
+      } else if (
+        e.code === "Escape" &&
+        arcadeCard &&
+        !arcadeCard.classList.contains("is-hidden")
+      ) {
+        if (isMaximized) {
+          toggleMaximize(false);
+        } else {
+          hideGame();
+        }
+      }
+    });
+
+    if (viewport) {
+      viewport.addEventListener("pointerdown", (e) => {
+        // Si se hace clic en botones del overlay modal, no disparar el salto
+        const target = e.target as HTMLElement | null;
+        if (target && target.closest(".overlay-modal")) return;
+        e.preventDefault();
+        jump();
+      });
+    }
+
+    if (startBtn) {
+      startBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (gameState === "CRASHED") restartGame();
+        else startGame();
+      });
+    }
+
+    if (jumpBtn) {
+      jumpBtn.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        jump();
+      });
+    }
+
+    // Generador de obstáculos
+    function spawnObstacle() {
+      const types: Array<"server" | "exam" | "garita"> = [
+        "server",
+        "exam",
+        "garita",
+      ];
+      const chosen = types[Math.floor(Math.random() * types.length)];
+
+      if (chosen === "server") {
+        obstacles.push({
+          x: V_WIDTH + 20,
+          y: GROUND_Y - 44,
+          w: 42,
+          h: 44,
+          type: "server",
+          label: "500",
+          sub: "MIESPE CAÍDO",
+          color: "#EF4444",
+        });
+      } else if (chosen === "exam") {
+        obstacles.push({
+          x: V_WIDTH + 20,
+          y: GROUND_Y - 38,
+          w: 36,
+          h: 38,
+          type: "exam",
+          label: "0/20",
+          sub: "SUPLE",
+          color: "#FF3D5E",
+        });
+      } else {
+        obstacles.push({
+          x: V_WIDTH + 20,
+          y: GROUND_Y - 52,
+          w: 34,
+          h: 52,
+          type: "garita",
+          label: "FILA",
+          sub: "GARITA",
+          color: "#FFDB79",
+        });
+      }
+    }
+
+    // Generador de Pilas 🔋 coleccionables
+    function spawnCoin() {
+      // Las pilas flotan a una altura alcanzable con un salto
+      const coinY = GROUND_Y - 70 - Math.random() * 30;
+      coins.push({
+        x: V_WIDTH + 40,
+        y: coinY,
+        r: 14,
+        collected: false,
+        rot: 0,
+      });
+    }
+
+    // Bucle Principal de Renderizado & Física
+    function update() {
+      // Ajustar resolución nativa interna del Canvas al tamaño visible (soporte Retina)
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas!.getBoundingClientRect();
+      const targetW = Math.round(rect.width * dpr);
+      const targetH = Math.round(rect.height * dpr);
+
+      if (canvas!.width !== targetW || canvas!.height !== targetH) {
+        canvas!.width = targetW;
+        canvas!.height = targetH;
+      }
+
+      ctx!.save();
+      // Escalar al sistema virtual 800 x 320
+      ctx!.scale(canvas!.width / V_WIDTH, canvas!.height / V_HEIGHT);
+
+      // 1. Limpiar pantalla
+      ctx!.fillStyle = "#0D1118";
+      ctx!.fillRect(0, 0, V_WIDTH, V_HEIGHT);
+
+      // Cuadrícula de fondo temática ESPE
+      ctx!.strokeStyle = "rgba(42, 49, 66, 0.35)";
+      ctx!.lineWidth = 1;
+      const gridSize = 32;
+      const gridShift = groundOffset % gridSize;
+      for (let x = -gridShift; x < V_WIDTH; x += gridSize) {
+        ctx!.beginPath();
+        ctx!.moveTo(x, 0);
+        ctx!.lineTo(x, GROUND_Y);
+        ctx!.stroke();
+      }
+      for (let y = 0; y < GROUND_Y; y += gridSize) {
+        ctx!.beginPath();
+        ctx!.moveTo(0, y);
+        ctx!.lineTo(V_WIDTH, y);
+        ctx!.stroke();
+      }
+
+      // Silueta de bloques del campus en el horizonte
+      ctx!.fillStyle = "#151B26";
+      ctx!.fillRect(40, 140, 110, GROUND_Y - 140);
+      ctx!.fillRect(220, 110, 140, GROUND_Y - 110);
+      ctx!.fillRect(440, 155, 90, GROUND_Y - 155);
+      ctx!.fillRect(600, 125, 130, GROUND_Y - 125);
+
+      // Ventanitas encendidas en los bloques
+      ctx!.fillStyle = "rgba(255, 219, 121, 0.45)";
+      ctx!.fillRect(60, 160, 12, 16);
+      ctx!.fillRect(90, 160, 12, 16);
+      ctx!.fillRect(245, 130, 14, 18);
+      ctx!.fillRect(280, 130, 14, 18);
+      ctx!.fillRect(315, 130, 14, 18);
+      ctx!.fillRect(630, 145, 14, 18);
+
+      // 2. Línea de suelo Neo-Brutalista
+      ctx!.strokeStyle = "#000000";
+      ctx!.lineWidth = 4;
+      ctx!.beginPath();
+      ctx!.moveTo(0, GROUND_Y);
+      ctx!.lineTo(V_WIDTH, GROUND_Y);
+      ctx!.stroke();
+
+      // Relleno de acera bajo el suelo
+      ctx!.fillStyle = "#1A1F2C";
+      ctx!.fillRect(0, GROUND_Y, V_WIDTH, V_HEIGHT - GROUND_Y);
+
+      // Textura rayada del suelo
+      ctx!.strokeStyle = "#252C3D";
+      ctx!.lineWidth = 2;
+      for (let x = -gridShift; x < V_WIDTH; x += 16) {
+        ctx!.beginPath();
+        ctx!.moveTo(x, GROUND_Y + 4);
+        ctx!.lineTo(x + 10, GROUND_Y + 24);
+        ctx!.stroke();
+      }
+
+      // Franja de meta / indicador en el piso
+      ctx!.fillStyle = "var(--color-primary, #FF3FA4)";
+      ctx!.fillRect(0, GROUND_Y, V_WIDTH, 3);
+
+      // 3. Actualizar física del jugador
+      if (gameState === "RUNNING") {
+        groundOffset += gameSpeed;
+        player.legCycle += 0.22;
+
+        player.y += player.vy;
+        player.vy += player.gravity;
+
+        if (player.y >= GROUND_Y - player.h) {
+          player.y = GROUND_Y - player.h;
+          player.vy = 0;
+          player.grounded = true;
+        }
+
+        // Subir puntuación y dificultad gradual
+        score += 1;
+        if (scoreEl) scoreEl.textContent = String(score).padStart(4, "0");
+        if (score % 400 === 0 && gameSpeed < 9.5) {
+          gameSpeed += 0.45;
+        }
+
+        // Spawneo de obstáculos
+        spawnTimer -= 1;
+        if (spawnTimer <= 0) {
+          spawnObstacle();
+          // Intervalo aleatorio pero justo
+          const minGap = Math.max(75, 120 - Math.floor(score / 50));
+          spawnTimer = minGap + Math.floor(Math.random() * 55);
+        }
+
+        // Spawneo de monedas / pilas
+        coinTimer -= 1;
+        if (coinTimer <= 0) {
+          spawnCoin();
+          coinTimer = 110 + Math.floor(Math.random() * 120);
+        }
+      }
+
+      // 4. Dibujar sombra del jugador
+      const shadowW = Math.max(
+        20,
+        player.w - (GROUND_Y - player.h - player.y) * 0.4,
+      );
+      ctx!.fillStyle = "rgba(0, 0, 0, 0.45)";
+      ctx!.beginPath();
+      ctx!.ellipse(
+        player.x + player.w / 2,
+        GROUND_Y - 2,
+        shadowW / 2,
+        4,
+        0,
+        0,
+        Math.PI * 2,
+      );
+      ctx!.fill();
+
+      // 5. Dibujar Jugador (Mascota Pilas!)
+      ctx!.save();
+      const currentMascot =
+        gameState === "CRASHED" ? mascotCrashImg : mascotRunImg;
+      // Ligero bamboleo de carrera cuando corre
+      const runBob =
+        player.grounded && gameState === "RUNNING"
+          ? Math.sin(player.legCycle) * 3
+          : 0;
+      const jumpTilt = !player.grounded ? (player.vy < 0 ? -0.12 : 0.12) : 0;
+
+      ctx!.translate(player.x + player.w / 2, player.y + player.h / 2 + runBob);
+      ctx!.rotate(jumpTilt);
+
+      if (currentMascot.complete && currentMascot.naturalWidth > 0) {
+        ctx!.drawImage(
+          currentMascot,
+          -player.w / 2,
+          -player.h / 2,
+          player.w,
+          player.h,
+        );
+      } else {
+        // Fallback vectorial en caso de que la imagen aún no haya cargado
+        ctx!.fillStyle = "#FF3FA4";
+        ctx!.fillRect(-player.w / 2, -player.h / 2, player.w, player.h);
+        ctx!.strokeStyle = "#000000";
+        ctx!.lineWidth = 3;
+        ctx!.strokeRect(-player.w / 2, -player.h / 2, player.w, player.h);
+      }
+      ctx!.restore();
+
+      // 6. Actualizar y dibujar obstáculos
+      for (let i = obstacles.length - 1; i >= 0; i--) {
+        const obs = obstacles[i];
+        if (gameState === "RUNNING") {
+          obs.x -= gameSpeed;
+        }
+
+        // Renderizado Neo-Brutalista del obstáculo
+        ctx!.save();
+        ctx!.fillStyle = obs.color;
+        ctx!.fillRect(obs.x, obs.y, obs.w, obs.h);
+        ctx!.strokeStyle = "#000000";
+        ctx!.lineWidth = 3;
+        ctx!.strokeRect(obs.x, obs.y, obs.w, obs.h);
+
+        // Sombra brutalista
+        ctx!.fillStyle = "#000000";
+        ctx!.fillRect(obs.x + obs.w, obs.y + 4, 3, obs.h - 4);
+        ctx!.fillRect(obs.x + 4, obs.y + obs.h, obs.w, 3);
+
+        // Texto o icono identificador
+        ctx!.fillStyle = "#000000";
+        ctx!.font = "bold 11px 'JetBrains Mono', monospace";
+        ctx!.textAlign = "center";
+        ctx!.textBaseline = "middle";
+        ctx!.fillText(obs.label, obs.x + obs.w / 2, obs.y + obs.h / 2 - 4);
+
+        ctx!.font = "800 7.5px 'Outfit', sans-serif";
+        ctx!.fillText(obs.sub, obs.x + obs.w / 2, obs.y + obs.h / 2 + 8);
+        ctx!.restore();
+
+        // Detección de colisión precisa (caja con margen perdonable de 6px)
+        const hitMargin = 7;
+        const playerBox = {
+          l: player.x + hitMargin,
+          r: player.x + player.w - hitMargin,
+          t: player.y + hitMargin,
+          b: player.y + player.h - 2,
+        };
+        const obsBox = {
+          l: obs.x + 2,
+          r: obs.x + obs.w - 2,
+          t: obs.y + 2,
+          b: obs.y + obs.h,
+        };
+
+        if (
+          gameState === "RUNNING" &&
+          playerBox.r > obsBox.l &&
+          playerBox.l < obsBox.r &&
+          playerBox.b > obsBox.t &&
+          playerBox.t < obsBox.b
+        ) {
+          crash(
+            obs.sub === "MIESPE CAÍDO"
+              ? "el Servidor Caído 🚨"
+              : obs.sub === "SUPLE"
+                ? "un Examen Supletorio 📑"
+                : "la Fila de la Garita 🚧",
+          );
+        }
+
+        // Eliminar si sale de la pantalla
+        if (obs.x < -60) {
+          obstacles.splice(i, 1);
+        }
+      }
+
+      // 7. Actualizar y dibujar Pilas 🔋 coleccionables
+      for (let i = coins.length - 1; i >= 0; i--) {
+        const coin = coins[i];
+        if (gameState === "RUNNING") {
+          coin.x -= gameSpeed;
+          coin.rot += 0.05;
+        }
+
+        // Dibujar Pila coleccionable estilizada
+        ctx!.save();
+        ctx!.translate(coin.x, coin.y + Math.sin(coin.rot * 2) * 4);
+
+        // Resplandor verde
+        ctx!.fillStyle = "rgba(0, 255, 135, 0.25)";
+        ctx!.beginPath();
+        ctx!.arc(0, 0, coin.r + 6, 0, Math.PI * 2);
+        ctx!.fill();
+
+        // Cuerpo de batería
+        ctx!.fillStyle = "#00FF87";
+        ctx!.strokeStyle = "#000000";
+        ctx!.lineWidth = 2.5;
+        ctx!.fillRect(-8, -12, 16, 24);
+        ctx!.strokeRect(-8, -12, 16, 24);
+
+        // Terminal positivo
+        ctx!.fillStyle = "#FFFFFF";
+        ctx!.fillRect(-4, -16, 8, 4);
+        ctx!.strokeRect(-4, -16, 8, 4);
+
+        // Rayo central
+        ctx!.fillStyle = "#000000";
+        ctx!.font = "bold 12px sans-serif";
+        ctx!.textAlign = "center";
+        ctx!.textBaseline = "middle";
+        ctx!.fillText("⚡", 0, 1);
+
+        ctx!.restore();
+
+        // Recolección
+        const dx = player.x + player.w / 2 - coin.x;
+        const dy = player.y + player.h / 2 - coin.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (gameState === "RUNNING" && dist < player.w / 2 + coin.r) {
+          playSound("coin");
+          spawnParticles(coin.x, coin.y, "#00FF87", 12);
+          score += 50;
+          if (scoreEl) scoreEl.textContent = String(score).padStart(4, "0");
+          coins.splice(i, 1);
+          continue;
+        }
+
+        if (coin.x < -40) {
+          coins.splice(i, 1);
+        }
+      }
+
+      // 8. Actualizar y dibujar partículas
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.035;
+
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+        } else {
+          ctx!.save();
+          ctx!.globalAlpha = p.life;
+          ctx!.fillStyle = p.color;
+          ctx!.fillRect(p.x, p.y, p.size, p.size);
+          ctx!.strokeStyle = "#000000";
+          ctx!.lineWidth = 1;
+          ctx!.strokeRect(p.x, p.y, p.size, p.size);
+          ctx!.restore();
+        }
+      }
+
+      ctx!.restore();
+      animId = requestAnimationFrame(update);
+    }
+
+    // Arrancar el ciclo de animación inicial
+    animId = requestAnimationFrame(update);
+  })();
+</script>

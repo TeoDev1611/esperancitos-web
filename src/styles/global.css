@@ -1,8 +1,5 @@
 /* Tipografías oficiales servidas desde este mismo dominio.
-   Antes se cargaban con @import desde fonts.googleapis.com, lo que bloqueaba el
-   renderizado, añadía una conexión externa y filtraba la visita a Google.
-   El archivo se genera con: python tools/fetch_fonts.py */
-@import './fonts.css';
+   Las fuentes se importan en BaseLayout.astro para evitar cadenas de @import en CSS. */
 
 :root {
   /* ==========================================================================
@@ -10,45 +7,45 @@
      ========================================================================== */
 
   /* Marca Primaria */
-  --color-primary: #FF3FA4;
-  --color-primary-hover: #E5147D;
-  --color-primary-extrude: #7A0A45;
-  --color-primary-shadow: #4A0026;
-  --color-primary-coral: #FF3D5E;
+  --color-primary: #ff3fa4;
+  --color-primary-hover: #e5147d;
+  --color-primary-extrude: #7a0a45;
+  --color-primary-shadow: #4a0026;
+  --color-primary-coral: #ff3d5e;
 
   /* Semántica de Estado */
-  --color-success: #00FF87;
+  --color-success: #00ff87;
   --color-success-shadow: #059669;
-  --color-warning: #FFDB79;
-  --color-critical: #EF4444;
+  --color-warning: #ffdb79;
+  --color-critical: #ef4444;
 
   /* Superficies Dark Slate */
   --color-bg-base: #101319;
-  --color-bg-surface: #161A23;
-  --color-bg-elevated: #1E2230;
+  --color-bg-surface: #161a23;
+  --color-bg-elevated: #1e2230;
   --color-bg-container: #242938;
 
   /* Bordes & Sombras Brutalistas */
-  --color-border: #2A3142;
+  --color-border: #2a3142;
   --color-border-heavy: #000000;
-  --color-border-white: #FFFFFF;
+  --color-border-white: #ffffff;
   --shadow-brutalist: 4px 4px 0px #000000;
   --shadow-brutalist-sm: 2px 2px 0px #000000;
   --shadow-brutalist-lg: 6px 6px 0px #000000;
-  --shadow-brutalist-fuchsia: 4px 4px 0px #4A0026;
+  --shadow-brutalist-fuchsia: 4px 4px 0px #4a0026;
   --shadow-brutalist-success: 4px 4px 0px #059669;
 
   /* Tipografía Oficial */
-  --color-text-title: #FAF7F7;
-  --color-text-body: #E1E2EB;
-  --color-text-muted: #8F9CAE;
+  --color-text-title: #faf7f7;
+  --color-text-body: #e1e2eb;
+  --color-text-muted: #8f9cae;
 
   /* Mapeo de Compatibilidad para Componentes Existentes */
   --bg-primary: var(--color-bg-base);
   --bg-surface: var(--color-bg-surface);
   --bg-surface-elevated: var(--color-bg-elevated);
   --bg-surface-container: var(--color-bg-container);
-  --bg-surface-subtle: #191D28;
+  --bg-surface-subtle: #191d28;
 
   --border-app: var(--color-border);
   --border-subtle: rgba(255, 255, 255, 0.08);
@@ -61,15 +58,15 @@
   --on-primary: #000000;
 
   --accent-green: var(--color-success);
-  --accent-green-hover: #34D399;
-  --on-green: #00210C;
+  --accent-green-hover: #34d399;
+  --on-green: #00210c;
 
   --accent-amber: var(--color-warning);
-  --accent-amber-hover: #F59E0B;
-  --on-amber: #2A1C00;
+  --accent-amber-hover: #f59e0b;
+  --on-amber: #2a1c00;
 
   --accent-critical: var(--color-critical);
-  --accent-cyan: #38BDF8;
+  --accent-cyan: #38bdf8;
 
   --text-primary: var(--color-text-title);
   --text-secondary: var(--color-text-body);
@@ -80,16 +77,16 @@
   --shadow-hard-lg: var(--shadow-brutalist-lg);
   --shadow-hard-green: var(--shadow-brutalist-success);
   --shadow-hard-fuchsia: var(--shadow-brutalist-fuchsia);
-  --shadow-hard-amber: 4px 4px 0px #7A4B00;
-  --shadow-hard-white: 3px 3px 0px #FFFFFF;
+  --shadow-hard-amber: 4px 4px 0px #7a4b00;
+  --shadow-hard-white: 3px 3px 0px #ffffff;
 
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 14px;
   --radius-pill: 9999px;
 
-  --font-sans: 'Outfit', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
   --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
@@ -101,7 +98,9 @@
 /* ==========================================================================
    RESET & BASE STYLES
    ========================================================================== */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -117,16 +116,21 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  /* Scrollbar estándar moderno y reserva de espacio para evitar saltos (CLS) */
+  scrollbar-color: var(--bg-surface-elevated) var(--bg-primary);
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
 }
 
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
   position: relative;
   /* Fondo técnico con cuadrícula sutil de malla curricular */
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(42, 49, 66, 0.25) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(42, 49, 66, 0.25) 1px, transparent 1px);
   background-size: 40px 40px;
@@ -161,13 +165,14 @@ a {
   outline-offset: 3px;
 }
 
-/* Tipografía de Encabezados y Texto: Evitar palabras pegadas */
+/* Tipografía de Encabezados y Texto: Guías modernas de balance y prevención de huérfanos */
 h1 {
   font-family: var(--font-sans);
   font-weight: 900;
   line-height: 1.08;
   letter-spacing: -0.015em;
   word-spacing: 0.04em;
+  text-wrap: balance;
   color: var(--text-primary);
 }
 
@@ -181,7 +186,19 @@ h2 {
   color: var(--text-primary);
 }
 
-h3, h4, h5, h6 {
+h3 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  word-spacing: 0.02em;
+  text-wrap: balance;
+  color: var(--text-primary);
+}
+
+h4,
+h5,
+h6 {
   font-family: var(--font-sans);
   font-weight: 700;
   line-height: 1.25;
@@ -190,7 +207,17 @@ h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
-p, span, li, button, a, label {
+p,
+blockquote {
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+li,
+span,
+button,
+a,
+label {
   letter-spacing: 0;
 }
 
@@ -243,9 +270,10 @@ p, span, li, button, a, label {
   padding: 24px;
   box-shadow: var(--shadow-hard);
   position: relative;
-  transition: transform var(--duration-hover) var(--ease-apple),
-              box-shadow var(--duration-hover) var(--ease-apple),
-              border-color var(--duration-hover) ease;
+  transition:
+    transform var(--duration-hover) var(--ease-apple),
+    box-shadow var(--duration-hover) var(--ease-apple),
+    border-color var(--duration-hover) ease;
 }
 
 .card-app:hover {
@@ -287,10 +315,11 @@ p, span, li, button, a, label {
   cursor: pointer;
   user-select: none;
   text-decoration: none;
-  transition: transform var(--duration-sink) var(--ease-apple),
-              box-shadow var(--duration-sink) var(--ease-apple),
-              background-color var(--duration-hover) ease,
-              border-color var(--duration-hover) ease;
+  transition:
+    transform var(--duration-sink) var(--ease-apple),
+    box-shadow var(--duration-sink) var(--ease-apple),
+    background-color var(--duration-hover) ease,
+    border-color var(--duration-hover) ease;
   position: relative;
 }
 
@@ -321,9 +350,9 @@ p, span, li, button, a, label {
   justify-content: center;
   gap: 10px;
   padding: 0.85rem 1.75rem;
-  background-color: #FF3FA4;
+  background-color: #ff3fa4;
   color: #000000;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 800;
   font-size: 1.05rem;
   text-decoration: none;
@@ -336,8 +365,8 @@ p, span, li, button, a, label {
 
 .btn-app-primary:hover,
 .btn-pilas-primary:hover {
-  background-color: #E5147D;
-  color: #FFFFFF;
+  background-color: #e5147d;
+  color: #ffffff;
   transform: translate(-1px, -1px);
   box-shadow: 5px 5px 0px #000000;
 }
@@ -355,13 +384,13 @@ p, span, li, button, a, label {
   justify-content: center;
   gap: 10px;
   padding: 0.85rem 1.75rem;
-  background-color: #1E2230;
-  color: #FAF7F7;
-  font-family: 'Outfit', sans-serif;
+  background-color: #1e2230;
+  color: #faf7f7;
+  font-family: "Outfit", sans-serif;
   font-weight: 800;
   font-size: 1.05rem;
   text-decoration: none;
-  border: 2px solid #2A3142;
+  border: 2px solid #2a3142;
   border-radius: 12px;
   box-shadow: 4px 4px 0px #000000;
   transition: all 0.12s ease;
@@ -369,9 +398,9 @@ p, span, li, button, a, label {
 }
 
 .btn-pilas-secondary:hover {
-  background-color: #272C3E;
-  border-color: #FF3FA4;
-  color: #FFFFFF;
+  background-color: #272c3e;
+  border-color: #ff3fa4;
+  color: #ffffff;
   transform: translate(-1px, -1px);
   box-shadow: 5px 5px 0px #000000;
 }
@@ -389,7 +418,7 @@ p, span, li, button, a, label {
   box-shadow: 4px 4px 0px #000000;
 }
 .btn-app-green:hover {
-  background: #34D399;
+  background: #34d399;
   transform: translate(-1px, -1px);
   box-shadow: 5px 5px 0px #000000;
 }
@@ -402,7 +431,7 @@ p, span, li, button, a, label {
   box-shadow: 4px 4px 0px #000000;
 }
 .btn-app-amber:hover {
-  background: #FCD34D;
+  background: #fcd34d;
   transform: translate(-1px, -1px);
   box-shadow: 5px 5px 0px #000000;
 }
@@ -439,7 +468,10 @@ p, span, li, button, a, label {
   border-radius: 14px;
   padding: 1.5rem;
   box-shadow: 4px 4px 0px #000000;
-  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .pilas-card:hover {
@@ -452,7 +484,7 @@ p, span, li, button, a, label {
   display: inline-block;
   background: var(--color-success);
   color: #000000;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 800;
   font-size: 0.75rem;
   padding: 0.2rem 0.6rem;
@@ -467,7 +499,7 @@ p, span, li, button, a, label {
 /* Sticker Pill */
 .sticker-pill {
   display: inline-block;
-  background: #FFE500;
+  background: #ffe500;
   color: #000000;
   font-weight: 800;
   font-size: 0.82rem;
@@ -505,7 +537,8 @@ p, span, li, button, a, label {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -519,12 +552,12 @@ p, span, li, button, a, label {
   align-items: center;
   gap: 8px;
   padding: 0.65rem 1.2rem;
-  background: #1E2230;
-  color: #FAF7F7;
-  font-family: 'JetBrains Mono', monospace;
+  background: #1e2230;
+  color: #faf7f7;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.88rem;
   font-weight: 700;
-  border: 2px solid #2A3142;
+  border: 2px solid #2a3142;
   border-radius: 10px;
   box-shadow: 3px 3px 0px #000000;
   transition: all 0.12s ease;
@@ -533,9 +566,9 @@ p, span, li, button, a, label {
 }
 
 .link-deep:hover {
-  background: #252B3D;
-  border-color: #FF3FA4;
-  color: #FF3FA4;
+  background: #252b3d;
+  border-color: #ff3fa4;
+  color: #ff3fa4;
   transform: translate(-1px, -1px);
   box-shadow: 4px 4px 0px #000000;
 }
@@ -594,6 +627,56 @@ p, span, li, button, a, label {
   box-shadow: 2px 2px 0px #000000;
 }
 
+/* Chip Contador de Descargas Chiquito */
+.chip-dl-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #000000;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  border: 1.5px solid #283042;
+  box-shadow: 2px 2px 0px #000000;
+  user-select: none;
+}
+
+.chip-dl-counter .dl-live-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-success, #00ff87);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--color-success, #00ff87);
+  animation: livePulse 2s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+.chip-dl-counter .chip-dl-num {
+  color: var(--color-success, #00ff87);
+  font-weight: 800;
+}
+
+.chip-dl-counter .chip-dl-lbl {
+  color: var(--text-tertiary);
+  font-size: 0.68rem;
+}
+
+.spec-pill-downloads {
+  border-color: rgba(0, 255, 135, 0.3) !important;
+  background: rgba(0, 255, 135, 0.04) !important;
+}
+
+.spec-pill-downloads svg {
+  color: var(--color-success, #00ff87) !important;
+}
+
+.spec-pill-downloads strong {
+  color: var(--color-success, #00ff87) !important;
+}
+
 .pulse-circle {
   width: 7px;
   height: 7px;
@@ -603,8 +686,15 @@ p, span, li, button, a, label {
 }
 
 @keyframes pulse-ring {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.3); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.3);
+  }
 }
 
 /* 4. Encabezados de Sección */
@@ -653,9 +743,10 @@ html.js-anim .reveal-init {
   opacity: 0;
   transform: translateY(30px);
   filter: blur(4px);
-  transition: opacity 700ms var(--ease-apple),
-              transform 700ms var(--ease-spring),
-              filter 700ms var(--ease-apple);
+  transition:
+    opacity 700ms var(--ease-apple),
+    transform 700ms var(--ease-spring),
+    filter 700ms var(--ease-apple);
   will-change: opacity, transform, filter;
 }
 
@@ -666,10 +757,16 @@ html.js-anim .reveal-init.revealed {
 }
 
 /* Variantes de entrada para evitar que todos los bloques suban igual */
-html.js-anim .reveal-init.reveal-left  { transform: translateX(-28px) translateY(0); }
-html.js-anim .reveal-init.reveal-right { transform: translateX(28px) translateY(0); }
+html.js-anim .reveal-init.reveal-left {
+  transform: translateX(-28px) translateY(0);
+}
+html.js-anim .reveal-init.reveal-right {
+  transform: translateX(28px) translateY(0);
+}
 html.js-anim .reveal-init.reveal-left.revealed,
-html.js-anim .reveal-init.reveal-right.revealed { transform: translateX(0) translateY(0); }
+html.js-anim .reveal-init.reveal-right.revealed {
+  transform: translateX(0) translateY(0);
+}
 
 /* Aplicado a <section> completas: refuerza la entrada de sus hijos .reveal-init */
 html.js-anim .scroll-reveal .reveal-init {
@@ -693,24 +790,54 @@ html.js-anim .scroll-reveal .reveal-init.revealed {
    .bento-card, .feature-chip, etc.) responden de inmediato en vez de quedar
    frenadas por un delay heredado que nunca se limpiaba.
    -------------------------------------------------------------------------- */
-html.js-anim .bento-grid .reveal-init:nth-child(1) { transition-delay: 0ms; }
-html.js-anim .bento-grid .reveal-init:nth-child(2) { transition-delay: 90ms; }
-html.js-anim .bento-grid .reveal-init:nth-child(3) { transition-delay: 180ms; }
-html.js-anim .bento-grid .reveal-init:nth-child(4) { transition-delay: 0ms; }
-html.js-anim .bento-grid .reveal-init:nth-child(5) { transition-delay: 90ms; }
-html.js-anim .bento-grid .reveal-init:nth-child(6) { transition-delay: 180ms; }
+html.js-anim .bento-grid .reveal-init:nth-child(1) {
+  transition-delay: 0ms;
+}
+html.js-anim .bento-grid .reveal-init:nth-child(2) {
+  transition-delay: 90ms;
+}
+html.js-anim .bento-grid .reveal-init:nth-child(3) {
+  transition-delay: 180ms;
+}
+html.js-anim .bento-grid .reveal-init:nth-child(4) {
+  transition-delay: 0ms;
+}
+html.js-anim .bento-grid .reveal-init:nth-child(5) {
+  transition-delay: 90ms;
+}
+html.js-anim .bento-grid .reveal-init:nth-child(6) {
+  transition-delay: 180ms;
+}
 
-html.js-anim .feature-checklist .reveal-init:nth-child(1) { transition-delay: 0ms; }
-html.js-anim .feature-checklist .reveal-init:nth-child(2) { transition-delay: 70ms; }
-html.js-anim .feature-checklist .reveal-init:nth-child(3) { transition-delay: 140ms; }
-html.js-anim .feature-checklist .reveal-init:nth-child(4) { transition-delay: 210ms; }
+html.js-anim .feature-checklist .reveal-init:nth-child(1) {
+  transition-delay: 0ms;
+}
+html.js-anim .feature-checklist .reveal-init:nth-child(2) {
+  transition-delay: 70ms;
+}
+html.js-anim .feature-checklist .reveal-init:nth-child(3) {
+  transition-delay: 140ms;
+}
+html.js-anim .feature-checklist .reveal-init:nth-child(4) {
+  transition-delay: 210ms;
+}
 
-html.js-anim .guides-grid .reveal-init:nth-child(1) { transition-delay: 0ms; }
-html.js-anim .guides-grid .reveal-init:nth-child(2) { transition-delay: 120ms; }
+html.js-anim .guides-grid .reveal-init:nth-child(1) {
+  transition-delay: 0ms;
+}
+html.js-anim .guides-grid .reveal-init:nth-child(2) {
+  transition-delay: 120ms;
+}
 
-html.js-anim .steps-grid .reveal-init:nth-child(1) { transition-delay: 0ms; }
-html.js-anim .steps-grid .reveal-init:nth-child(2) { transition-delay: 90ms; }
-html.js-anim .steps-grid .reveal-init:nth-child(3) { transition-delay: 180ms; }
+html.js-anim .steps-grid .reveal-init:nth-child(1) {
+  transition-delay: 0ms;
+}
+html.js-anim .steps-grid .reveal-init:nth-child(2) {
+  transition-delay: 90ms;
+}
+html.js-anim .steps-grid .reveal-init:nth-child(3) {
+  transition-delay: 180ms;
+}
 
 /* --------------------------------------------------------------------------
    BOTÓN DE COPIADO (compartido por SupportSection y el modal de donación)
@@ -731,11 +858,12 @@ html.js-anim .steps-grid .reveal-init:nth-child(3) { transition-delay: 180ms; }
   cursor: pointer;
   white-space: nowrap;
   text-transform: uppercase;
-  transition: background-color 150ms ease,
-              border-color 150ms ease,
-              color 150ms ease,
-              transform 150ms var(--ease-apple),
-              box-shadow 150ms var(--ease-apple);
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    transform 150ms var(--ease-apple),
+    box-shadow 150ms var(--ease-apple);
 }
 
 .btn-app-copy:not(.copied):hover {
@@ -788,23 +916,43 @@ dialog.is-closing::backdrop {
 }
 
 @keyframes backdrop-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes backdrop-fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes dialog-pop-in {
-  from { opacity: 0; transform: translateY(18px) scale(0.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @keyframes dialog-pop-out {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(10px) scale(0.98); }
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -834,7 +982,9 @@ dialog.is-closing::backdrop {
    RESPETO ESTRICTO A prefers-reduced-motion
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     animation-delay: 0ms !important;

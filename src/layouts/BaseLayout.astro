@@ -2,6 +2,7 @@
 // BaseLayout.astro - Shell común: <head> con SEO, header, footer y modal global.
 // Es la plantilla que usan TODAS las páginas. Si necesitas cambiar el <head>
 // (metadatos, datos estructurados, iconos), este es el archivo.
+import '../styles/fonts.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -144,20 +145,30 @@ const website = {
   },
 };
 
+const isFaq = Astro.url.pathname.startsWith('/faq');
+
 const breadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteOrigin },
-  ],
+  itemListElement: isFaq
+    ? [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteOrigin },
+        { '@type': 'ListItem', position: 2, name: 'Preguntas Frecuentes', item: `${siteOrigin}/faq` },
+      ]
+    : [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteOrigin },
+      ],
 };
 
-// En la home se emiten los cuatro bloques; en páginas internas solo WebSite
+// En la home y en /faq se emite el schema FAQPage estructurado para Google;
+// en páginas internas se emiten los esquemas correspondientes.
 const jsonLdData = includeAppSchema
-  ? isHome
+  ? isHome || isFaq
     ? [softwareApp, website, faqPage, breadcrumb]
     : [softwareApp, website]
-  : [website];
+  : isFaq
+    ? [website, faqPage, breadcrumb]
+    : [website];
 ---
 
 <!doctype html>
@@ -186,10 +197,10 @@ const jsonLdData = includeAppSchema
     <meta name="color-scheme" content="dark" />
     <meta name="format-detection" content="telephone=no" />
 
-    <!-- Google Fonts: Outfit & JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+    <!-- Tipografías Oficiales Autoalojadas: Precarga crítica (Zero FOIT, Cero llamadas a terceros) -->
+    <link rel="preload" href="/fonts/outfit-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/outfit-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/outfit-900-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Geolocalización / mercado objetivo (Ecuador) -->
     <meta name="geo.region" content="EC-P" />

@@ -1,15 +1,15 @@
 ---
 // avisos.astro - Tablón público de avisos comunitarios de Esperancitos
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { buildApiPayloads } from '../lib/community-payloads.ts';
-import type { PublicAvisoItem } from '../lib/community-contract.ts';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { buildApiPayloads } from "../lib/community-payloads.ts";
+import type { PublicAvisoItem } from "../lib/community-contract.ts";
 
 // Cargar avisos vigentes desde el generador determinista
 // Si INCLUDE_EXAMPLES está activo o estamos en dev, se muestran también los avisos de ejemplo vigentes
 const includeExamples =
   import.meta.env.DEV ||
-  process.env.INCLUDE_EXAMPLES === 'true' ||
-  process.env.PUBLIC_API_INCLUDE_EXAMPLES === 'true';
+  process.env.INCLUDE_EXAMPLES === "true" ||
+  process.env.PUBLIC_API_INCLUDE_EXAMPLES === "true";
 
 const payloads = buildApiPayloads({ includeExamples });
 const avisos: PublicAvisoItem[] = payloads.parsed.avisos.items;
@@ -18,20 +18,24 @@ const typeConfig: Record<
   string,
   { label: string; icon: string; className: string }
 > = {
-  info: { label: 'Información', icon: 'ℹ️', className: 'info' },
-  evento: { label: 'Evento', icon: '📅', className: 'evento' },
-  mantenimiento: { label: 'Mantenimiento', icon: '🛠️', className: 'mantenimiento' },
-  importante: { label: 'Importante', icon: '⚠️', className: 'importante' },
+  info: { label: "Información", icon: "ℹ️", className: "info" },
+  evento: { label: "Evento", icon: "📅", className: "evento" },
+  mantenimiento: {
+    label: "Mantenimiento",
+    icon: "🛠️",
+    className: "mantenimiento",
+  },
+  importante: { label: "Importante", icon: "⚠️", className: "importante" },
 };
 
 function formatDate(isoString: string): string {
   try {
     const d = new Date(isoString);
-    return new Intl.DateTimeFormat('es-EC', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-      timeZone: 'America/Guayaquil',
+    return new Intl.DateTimeFormat("es-EC", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      timeZone: "America/Guayaquil",
     }).format(d);
   } catch {
     return isoString;
@@ -42,7 +46,7 @@ function formatDate(isoString: string): string {
 <BaseLayout
   title="Avisos de la Comunidad"
   description="¡Ponte pilas con las novedades! Tablón de avisos, eventos y novedades de la comunidad estudiantil Pilas! para la ESPE."
-  keywords="avisos ESPE, eventos politécnicos, comunidad Pilas!, ponte pilas, pilas ñañ@s, novedades estudiantes"
+  keywords="avisos ESPE, eventos  , comunidad Pilas!, ponte pilas, pilas ñañ@s, novedades estudiantes"
   includeAppSchema={false}
 >
   <section class="community-page">
@@ -57,21 +61,36 @@ function formatDate(isoString: string): string {
         <span class="section-kicker">Comunidad Pilas!</span>
         <h1>Avisos de la Comunidad</h1>
         <p class="page-lead">
-          Novedades, eventos y avisos de interés compartidos por y para estudiantes politécnicos.
+          Novedades, eventos y avisos de interés compartidos por y para
+          estudiantes .
         </p>
 
         <!-- AVISO LEGAL OBLIGATORIO SEGÚN CONTRATO -->
         <div class="notice-disclaimer-box card-app">
           <div class="disclaimer-badge">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
               <circle cx="12" cy="12" r="10"></circle>
               <line x1="12" y1="8" x2="12" y2="12"></line>
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
             </svg>
-            <strong>Aviso de la comunidad Pilas!. No es un aviso oficial de la ESPE.</strong>
+            <strong
+              >Aviso de la comunidad Pilas!. No es un aviso oficial de la ESPE.</strong
+            >
           </div>
           <p class="disclaimer-text">
-            Este espacio es gestionado de forma independiente por estudiantes. Para comunicados oficiales y resoluciones institucionales consulta siempre los canales oficiales de la ESPE.
+            Este espacio es gestionado de forma independiente por estudiantes.
+            Para comunicados oficiales y resoluciones institucionales consulta
+            siempre los canales oficiales de la ESPE.
           </p>
         </div>
 
@@ -81,7 +100,9 @@ function formatDate(isoString: string): string {
             <span class="badge-app green">💬 CANAL OFICIAL DE NOTICIAS</span>
             <h3>Comunidad Pilas! en WhatsApp</h3>
             <p>
-              Súmate al canal oficial para enterarte al instante de nuevas versiones, comunicados del campus, información importante y actualizaciones verificadas.
+              Súmate al canal oficial para enterarte al instante de nuevas
+              versiones, comunicados del campus, información importante y
+              actualizaciones verificadas.
             </p>
           </div>
           <a
@@ -91,8 +112,20 @@ function formatDate(isoString: string): string {
             class="btn-pilas-primary btn-whatsapp-channel-cta"
             aria-label="Unirse al canal oficial de WhatsApp de Pilas!"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+              ></path>
             </svg>
             <span>Unirse al Canal de WhatsApp</span>
           </a>
@@ -104,12 +137,24 @@ function formatDate(isoString: string): string {
             <span class="badge-app green">DIRECTORIO GRATUITO</span>
             <h3>¿Tienes un negocio o emprendimiento cerca de la ESPE?</h3>
             <p>
-              Súbelo gratis al directorio de la web y a la app de Pilas! para que miles de estudiantes encuentren tu comida, fotocopias o servicios.
+              Súbelo gratis al directorio de la web y a la app de Pilas! para
+              que miles de estudiantes encuentren tu comida, fotocopias o
+              servicios.
             </p>
           </div>
           <a href="/negocios" class="btn-app btn-app-primary btn-business-cta">
             <span>Ver cómo subir mi negocio</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
@@ -118,92 +163,137 @@ function formatDate(isoString: string): string {
       </header>
 
       <!-- Lista de avisos -->
-      {avisos.length === 0 ? (
-        <div class="empty-state card-app reveal-init">
-          <div class="empty-icon-wrap" aria-hidden="true">
-            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-            </svg>
+      {
+        avisos.length === 0 ? (
+          <div class="empty-state card-app reveal-init">
+            <div class="empty-icon-wrap" aria-hidden="true">
+              <svg
+                width="42"
+                height="42"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+            </div>
+            <h3>No hay avisos vigentes en este momento</h3>
+            <p>
+              Cuando se publiquen anuncios para la comunidad aparecerán aquí y
+              se sincronizarán automáticamente con la aplicación Pilas!.
+            </p>
+            <a href="/" class="btn-app btn-app-primary">
+              <span>Volver al inicio</span>
+            </a>
           </div>
-          <h3>No hay avisos vigentes en este momento</h3>
-          <p>
-            Cuando se publiquen anuncios para la comunidad aparecerán aquí y se sincronizarán automáticamente con la aplicación Pilas!.
-          </p>
-          <a href="/" class="btn-app btn-app-primary">
-            <span>Volver al inicio</span>
-          </a>
-        </div>
-      ) : (
-        <div class="avisos-grid">
-          {avisos.map((aviso) => {
-            const conf = typeConfig[aviso.type] || {
-              label: aviso.type,
-              icon: '📢',
-              className: 'info',
-            };
-            return (
-              <article class:list={['card-app', 'aviso-card', { live: aviso.pinned }]} id={aviso.id}>
-                <div class="aviso-meta-top">
-                  <div class="meta-badges">
-                    <span class:list={['badge-type', `badge-${conf.className}`]}>
-                      <span aria-hidden="true">{conf.icon}</span>
-                      <span>{conf.label}</span>
-                    </span>
+        ) : (
+          <div class="avisos-grid">
+            {avisos.map((aviso) => {
+              const conf = typeConfig[aviso.type] || {
+                label: aviso.type,
+                icon: "📢",
+                className: "info",
+              };
+              return (
+                <article
+                  class:list={[
+                    "card-app",
+                    "aviso-card",
+                    { live: aviso.pinned },
+                  ]}
+                  id={aviso.id}
+                >
+                  <div class="aviso-meta-top">
+                    <div class="meta-badges">
+                      <span
+                        class:list={["badge-type", `badge-${conf.className}`]}
+                      >
+                        <span aria-hidden="true">{conf.icon}</span>
+                        <span>{conf.label}</span>
+                      </span>
 
-                    {aviso.pinned && (
-                      <span class="badge-pinned" title="Aviso fijado en la parte superior">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <line x1="12" y1="17" x2="12" y2="22"></line>
-                          <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"></path>
+                      {aviso.pinned && (
+                        <span
+                          class="badge-pinned"
+                          title="Aviso fijado en la parte superior"
+                        >
+                          <svg
+                            width="13"
+                            height="13"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.4"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <line x1="12" y1="17" x2="12" y2="22" />
+                            <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
+                          </svg>
+                          <span>Fijado</span>
+                        </span>
+                      )}
+
+                      {aviso.campus && aviso.campus.length > 0 && (
+                        <span class="badge-campus">
+                          {aviso.campus.join(", ")}
+                        </span>
+                      )}
+                    </div>
+
+                    <time datetime={aviso.publishedAt} class="aviso-date">
+                      {formatDate(aviso.publishedAt)}
+                    </time>
+                  </div>
+
+                  <h2 class="aviso-title">{aviso.title}</h2>
+                  <p class="aviso-body">{aviso.body}</p>
+
+                  {aviso.link && (
+                    <div class="aviso-link-wrapper">
+                      <a
+                        href={aviso.link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-app btn-app-surface btn-aviso-link"
+                      >
+                        <span>{aviso.link.label}</span>
+                        <svg
+                          width="15"
+                          height="15"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
                         </svg>
-                        <span>Fijado</span>
-                      </span>
-                    )}
+                      </a>
+                    </div>
+                  )}
 
-                    {aviso.campus && aviso.campus.length > 0 && (
-                      <span class="badge-campus">
-                        {aviso.campus.join(', ')}
-                      </span>
-                    )}
-                  </div>
-
-                  <time datetime={aviso.publishedAt} class="aviso-date">
-                    {formatDate(aviso.publishedAt)}
-                  </time>
-                </div>
-
-                <h2 class="aviso-title">{aviso.title}</h2>
-                <p class="aviso-body">{aviso.body}</p>
-
-                {aviso.link && (
-                  <div class="aviso-link-wrapper">
-                    <a
-                      href={aviso.link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="btn-app btn-app-surface btn-aviso-link"
-                    >
-                      <span>{aviso.link.label}</span>
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                      </svg>
-                    </a>
-                  </div>
-                )}
-
-                <footer class="aviso-card-footer">
-                  <span class="disclaimer-micro">
-                    Aviso de la comunidad Pilas!. No es un aviso oficial de la ESPE.
-                  </span>
-                </footer>
-              </article>
-            );
-          })}
-        </div>
-      )}
+                  <footer class="aviso-card-footer">
+                    <span class="disclaimer-micro">
+                      Aviso de la comunidad Pilas!. No es un aviso oficial de la
+                      ESPE.
+                    </span>
+                  </footer>
+                </article>
+              );
+            })}
+          </div>
+        )
+      }
 
       <div class="community-page-footer reveal-init">
         <a href="/" class="btn-app btn-app-surface">
@@ -298,17 +388,22 @@ function formatDate(isoString: string): string {
     gap: 20px;
     padding: 22px 24px;
     margin-top: 20px;
-    background: linear-gradient(135deg, rgba(37, 211, 102, 0.12) 0%, rgba(18, 140, 126, 0.08) 100%);
-    border: 2px solid #25D366;
+    background: linear-gradient(
+      135deg,
+      rgba(37, 211, 102, 0.12) 0%,
+      rgba(18, 140, 126, 0.08) 100%
+    );
+    border: 2px solid #25d366;
     border-radius: 14px;
-    box-shadow: 4px 4px 0px #064E3B;
-    transition: transform 260ms var(--ease-spring),
-                box-shadow 260ms var(--ease-apple);
+    box-shadow: 4px 4px 0px #064e3b;
+    transition:
+      transform 260ms var(--ease-spring),
+      box-shadow 260ms var(--ease-apple);
   }
 
   .whatsapp-channel-box:hover {
     transform: translateY(-3px);
-    box-shadow: 6px 6px 0px #064E3B;
+    box-shadow: 6px 6px 0px #064e3b;
   }
 
   .whatsapp-channel-content h3 {
@@ -328,13 +423,13 @@ function formatDate(isoString: string): string {
   .btn-whatsapp-channel-cta {
     white-space: nowrap;
     flex-shrink: 0;
-    background: #25D366 !important;
+    background: #25d366 !important;
     color: #000000 !important;
     border-color: #000000 !important;
   }
 
   .btn-whatsapp-channel-cta:hover {
-    background: #1EBE5D !important;
+    background: #1ebe5d !important;
   }
 
   @media (max-width: 640px) {
@@ -358,11 +453,16 @@ function formatDate(isoString: string): string {
     gap: 20px;
     padding: 22px 24px;
     margin-top: 20px;
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(13, 148, 136, 0.05) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(34, 197, 94, 0.08) 0%,
+      rgba(13, 148, 136, 0.05) 100%
+    );
     border-color: rgba(34, 197, 94, 0.35);
-    transition: transform 260ms var(--ease-spring),
-                box-shadow 260ms var(--ease-apple),
-                border-color 260ms ease;
+    transition:
+      transform 260ms var(--ease-spring),
+      box-shadow 260ms var(--ease-apple),
+      border-color 260ms ease;
   }
 
   .business-cta-box:hover {
@@ -415,14 +515,17 @@ function formatDate(isoString: string): string {
     display: flex;
     flex-direction: column;
     padding: 24px 28px;
-    transition: transform var(--duration-hover) var(--ease-spring),
-                box-shadow var(--duration-hover) var(--ease-apple),
-                border-color var(--duration-hover) ease;
+    transition:
+      transform var(--duration-hover) var(--ease-spring),
+      box-shadow var(--duration-hover) var(--ease-apple),
+      border-color var(--duration-hover) ease;
   }
 
   .aviso-card:hover {
     transform: translateY(-3px);
-    box-shadow: 6px 6px 0px #000000, 0 8px 24px rgba(0, 0, 0, 0.35);
+    box-shadow:
+      6px 6px 0px #000000,
+      0 8px 24px rgba(0, 0, 0, 0.35);
     border-color: rgba(0, 255, 135, 0.4);
   }
 

@@ -22,7 +22,7 @@ export const DEUNA_LINK_READY = false;
 export interface DonationGoal {
   label: string;
   detail: string;
-  status: 'en curso' | 'listo';
+  status: "en curso" | "listo";
 }
 
 export const DONATION_CONFIG = {
@@ -31,8 +31,8 @@ export const DONATION_CONFIG = {
 
   // --- Deuna ------------------------------------------------------------------
   deunaLinkReady: DEUNA_LINK_READY,
-  deunaLink: 'https://deuna.app/tu-enlace-de-cobro', // <-- REEMPLAZAR
-  deunaHolder: 'Dev Pilas! ESPE',
+  deunaLink: "https://deuna.app/tu-enlace-de-cobro", // <-- REEMPLAZAR
+  deunaHolder: "Dev Pilas! ESPE",
 
   /**
    * En qué se usa el dinero. Se muestra en la sección de apoyo para que quien
@@ -40,25 +40,25 @@ export const DONATION_CONFIG = {
    */
   goals: [
     {
-      label: 'Cuenta de desarrollador de Google Play',
-      detail: '25 USD por única vez, para que la app esté en la tienda oficial',
-      status: 'en curso',
+      label: "Cuenta de desarrollador de Google Play",
+      detail: "25 USD por única vez, para que la app esté en la tienda oficial",
+      status: "en curso",
     },
     {
-      label: 'Dominio y hosting de esta web',
-      detail: 'Mantener la página en línea para que puedas descargar la app',
-      status: 'en curso',
+      label: "Dominio y hosting de esta web",
+      detail: "Mantener la página en línea para que puedas descargar la app",
+      status: "en curso",
     },
   ] as DonationGoal[],
 
   // Checksum SHA-256 opcional para verificación de integridad del APK
-  apkSha256: '', // Dejar vacío si no se publica el checksum
+  apkSha256: "", // Dejar vacío si no se publica el checksum
 } as const;
 
 // Aviso en compilación si todavía quedan datos de ejemplo
 if (DONATION_CONFIG.isPlaceholder) {
   console.warn(
     "\x1b[33m%s\x1b[0m",
-    "⚠️ [PILAS CONFIG] DONATION_CONFIG usa datos de ejemplo (PLACEHOLDER). Actualiza deunaLink en src/config/donation.ts antes del despliegue final."
+    "⚠️ [PILAS CONFIG] DONATION_CONFIG usa datos de ejemplo (PLACEHOLDER). Actualiza deunaLink en src/config/donation.ts antes del despliegue final.",
   );
 }

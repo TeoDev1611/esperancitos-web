@@ -68,7 +68,9 @@ import CssQrCode from './CssQrCode.astro';
     padding: 28px;
     color: var(--text-primary);
     max-height: calc(100vh - 48px);
+    max-height: calc(100dvh - 48px);
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .modal-top {
