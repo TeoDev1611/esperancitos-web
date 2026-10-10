@@ -193,27 +193,6 @@ import { SHOW_DONATIONS } from '../config/donation';
     }
   }
 
-  /* En tablet los tres bloques de enlaces aún caben; por debajo pasan a dos
-     columnas antes de apilarse, para no dejar una columna larguísima */
-  @media (max-width: 700px) {
-    .footer-links-layout {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 26px 20px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .footer-links-layout {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-
-    .footer-credits-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-    }
-  }
 
   .footer-brand-row {
     display: inline-flex;
@@ -417,5 +396,40 @@ import { SHOW_DONATIONS } from '../config/donation';
     24% { transform: scale(1); }
     36% { transform: scale(1.12); }
     48% { transform: scale(1); }
+  }
+
+  /* Responsive Rules at the end to ensure proper cascade */
+  @media (max-width: 768px) {
+    .site-footer {
+      padding: 45px 0 25px 0;
+    }
+
+    .footer-links-layout {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 20px;
+    }
+
+    .legal-disclaimer-box {
+      padding: 14px 16px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .footer-links-layout {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .footer-credits-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+      text-align: center;
+    }
+
+    .btn-back-top {
+      width: 100%;
+      justify-content: center;
+    }
   }
 </style>

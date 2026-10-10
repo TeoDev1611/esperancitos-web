@@ -904,11 +904,59 @@ import CssQrCode from './CssQrCode.astro';
       flex-wrap: wrap;
       justify-content: center;
       border-radius: var(--radius-md);
+      width: 100%;
+      max-width: 540px;
     }
 
     .seg-tab-btn {
       padding: 8px 14px;
       font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .segmented-control {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      padding: 6px;
+      max-width: 100%;
+    }
+
+    .seg-tab-btn {
+      justify-content: center;
+      padding: 8px 6px;
+      font-size: clamp(0.72rem, 2.8vw, 0.82rem);
+      gap: 5px;
+    }
+
+    .seg-tab-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .device-mockup-frame {
+      width: min(280px, calc(100vw - 32px));
+      border-width: 6px;
+      border-radius: 28px;
+      box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.7),
+        3px 3px 0px #000000,
+        0 0 0 2px var(--accent-primary);
+    }
+
+    .screen-info-content h3 {
+      font-size: 1.4rem;
+    }
+
+    .screen-lead-text {
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+    }
+
+    .check-item {
+      padding: 12px 14px;
+      gap: 12px;
     }
   }
 </style>

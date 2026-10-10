@@ -55,10 +55,10 @@ const sizeStyle = typeof size === 'number' ? `${size}px` : size;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--qr-size);
-    height: var(--qr-size);
+    width: min(var(--qr-size), 100%);
     max-width: 100%;
     aspect-ratio: 1 / 1;
+    height: auto;
   }
 
   .css-qr-card {

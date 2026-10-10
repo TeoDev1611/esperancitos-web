@@ -138,4 +138,24 @@ import Layout from '../layouts/Layout.astro';
       justify-content: center;
     }
   }
+
+  @media (max-width: 480px) {
+    .not-found-card {
+      padding: 24px 16px;
+    }
+
+    .not-found-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .not-found-actions a {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .not-found-mascot {
+      width: min(170px, 100%);
+    }
+  }
 </style>

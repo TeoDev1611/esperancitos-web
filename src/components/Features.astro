@@ -1490,32 +1490,6 @@
     }
   }
 
-  @media (max-width: 760px) {
-    .features-section {
-      padding: 50px 0 60px 0;
-    }
-
-    .bento-grid {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    .bento-hero-span {
-      grid-column: span 1;
-    }
-
-    .bento-card {
-      padding: 18px 14px;
-    }
-
-    .bento-ui-mockup {
-      padding: 12px 10px;
-    }
-
-    .bento-title-group h3 {
-      font-size: 1.25rem;
-    }
-  }
 
   .bento-card {
     display: flex;
@@ -4055,5 +4029,104 @@
     font-weight: 700;
     text-align: center;
     color: var(--accent-cyan);
+  }
+
+  /* ==========================================================================
+     RESPONSIVE EN BENTO GRID Y MOCKUPS (Garantiza cascada limpia)
+     ========================================================================== */
+  @media (max-width: 760px) {
+    .features-section {
+      padding: 50px 0 60px 0;
+    }
+
+    .bento-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .bento-hero-span {
+      grid-column: span 1;
+    }
+
+    .bento-card {
+      padding: 18px 14px;
+    }
+
+    .bento-ui-mockup {
+      padding: 14px 12px;
+    }
+
+    .bento-title-group h3 {
+      font-size: 1.25rem;
+    }
+
+    .malla-kpi-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .malla-kpi-card.right {
+      align-items: flex-start;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .friends-match-hero-bar {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .match-plan-pill {
+      white-space: normal;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .bento-card {
+      padding: 16px 12px;
+    }
+
+    .quickhub-btns {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .comm-quick-links {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .mascot-states-row {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+
+    .calc-top-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .calc-target-selector {
+      width: 100%;
+    }
+
+    .formula-pills-row {
+      gap: 6px;
+    }
+
+    .f-pill-badge {
+      min-width: 0;
+    }
+
+    .carnet-vertical-card,
+    .carnet-v-controls {
+      max-width: min(280px, 100%);
+    }
+
+    .files-wallpaper-mockup {
+      padding: 14px 12px;
+    }
   }
 </style>

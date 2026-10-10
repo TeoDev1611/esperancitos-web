@@ -222,10 +222,35 @@ const iconPaths: Record<string, string> = {
   }
 
   @media (max-width: 768px) {
+    .feedback-section {
+      padding: 60px 0 70px 0;
+    }
+
     .direct-contact-banner {
       flex-direction: column;
       text-align: center;
-      padding: 24px 20px;
+      padding: 22px 16px;
+      gap: 20px;
+    }
+
+    .direct-contact-cta {
+      width: 100%;
+    }
+
+    .direct-btn {
+      width: 100%;
+      max-width: 320px;
+      white-space: normal;
+      text-align: center;
+      padding: 11px 16px;
+      font-size: 0.92rem;
+    }
+
+    .direct-email-code {
+      font-size: clamp(0.72rem, 3.6vw, 0.88rem);
+      overflow-wrap: anywhere;
+      word-break: break-all;
+      max-width: 100%;
     }
   }
 

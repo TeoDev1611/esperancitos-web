@@ -162,20 +162,6 @@ import { FAQ_ENTRIES } from '../config/faq';
     margin-bottom: 75px;
   }
 
-  @media (max-width: 860px) {
-    .guides-grid {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-
-    .guide-box {
-      padding: 24px;
-    }
-
-    .guide-box h3 {
-      font-size: 1.3rem;
-    }
-  }
 
   .guide-box {
     padding: 32px;
@@ -456,15 +442,39 @@ import { FAQ_ENTRIES } from '../config/faq';
     color: var(--text-primary);
   }
 
-  /* En pantallas estrechas el icono no debe empujar el texto */
+  /* Responsive: colocados al final para garantizar cascada correcta */
+  @media (max-width: 860px) {
+    .docs-section {
+      padding: 60px 0 70px 0;
+    }
+
+    .guides-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .guide-box {
+      padding: 22px 18px;
+    }
+
+    .guide-box h3 {
+      font-size: 1.3rem;
+    }
+  }
+
   @media (max-width: 560px) {
+    .guide-box {
+      padding: 18px 14px;
+    }
+
     .faq-question {
-      padding: 16px 18px;
-      font-size: 0.98rem;
+      padding: 14px 16px;
+      font-size: 0.95rem;
     }
 
     .faq-answer {
-      padding: 0 18px 18px 18px;
+      padding: 0 16px 16px 16px;
     }
   }
 </style>
