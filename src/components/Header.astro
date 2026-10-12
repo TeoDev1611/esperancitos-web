@@ -85,60 +85,59 @@ const tickerLoops = [0, 1, 2];
     </nav>
 
     <div class="header-actions">
-      <!-- Instagram Oficial -->
-      <a
-        href={SITE.social.instagram}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn-instagram-quick"
-        aria-label="Instagram oficial de Pilas!"
-        title="Instagram oficial: noticias, actualizaciones y comunicados (@pilas_ec.app)"
-      >
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
+      <!-- Redes Sociales Oficiales: Iconos compactos elegantes para evitar sobrecargar la barra -->
+      <div class="header-social-group">
+        <a
+          href={SITE.social.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-social-icon btn-instagram-quick"
+          aria-label="Instagram oficial @pilas_ec.app"
+          title="Instagram oficial: noticias, actualizaciones y comunicados (@pilas_ec.app)"
         >
-          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-        </svg>
-        <span>Instagram</span>
-      </a>
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+          </svg>
+        </a>
 
-      <!-- Canal de WhatsApp Oficial -->
-      <a
-        href={SITE.social.whatsappChannel}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn-whatsapp-quick"
-        aria-label="Canal oficial de WhatsApp de la comunidad Pilas!"
-        title="Canal de WhatsApp: noticias, actualizaciones y comunicados oficiales"
-      >
-        <span class="btn-wa-dot" aria-hidden="true"></span>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
+        <a
+          href={SITE.social.whatsappChannel}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-social-icon btn-whatsapp-quick"
+          aria-label="Canal oficial de WhatsApp"
+          title="Canal oficial de WhatsApp: noticias y comunicados oficiales"
         >
-          <path
-            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-          ></path>
-        </svg>
-        <span>Canal WhatsApp</span>
-      </a>
+          <span class="btn-wa-dot" aria-hidden="true"></span>
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+            ></path>
+          </svg>
+        </a>
+      </div>
 
       <!-- Botón de Donaciones / Apoyo Rápido (Oculto si las donaciones salen luego) -->
       {SHOW_DONATIONS && (
@@ -176,6 +175,22 @@ const tickerLoops = [0, 1, 2];
         class="btn-pilas-primary btn-nav-download"
         aria-label="Ir a la sección de descarga de la app"
       >
+        <svg
+          class="download-arrow"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
         <span class="nav-download-label">Descargar APK</span>
         <span class="nav-badge-v">{SITE.versionTag}</span>
       </a>
@@ -555,6 +570,7 @@ const tickerLoops = [0, 1, 2];
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
     height: 72px;
     transition: height var(--duration-hover) var(--ease-apple);
   }
@@ -574,6 +590,7 @@ const tickerLoops = [0, 1, 2];
     align-items: center;
     gap: 12px;
     text-decoration: none;
+    flex-shrink: 0;
     transition: transform 0.15s ease;
   }
 
@@ -685,6 +702,7 @@ const tickerLoops = [0, 1, 2];
     border-radius: var(--radius-pill);
     padding: 4px;
     box-shadow: var(--shadow-hard-sm);
+    flex-shrink: 0;
   }
 
   .nav-slider-pill {
@@ -719,6 +737,8 @@ const tickerLoops = [0, 1, 2];
     border-radius: var(--radius-pill);
     transition: color var(--duration-hover) ease;
     text-decoration: none;
+    white-space: nowrap;
+    user-select: none;
   }
 
   .nav-link:hover {
@@ -733,86 +753,66 @@ const tickerLoops = [0, 1, 2];
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    flex-shrink: 0;
   }
 
-  .btn-whatsapp-quick {
+  /* Redes Sociales: Iconos minimalistas para despejar y desaturar la barra */
+  .header-social-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .btn-social-icon {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 7px 13px;
-    background: rgba(37, 211, 102, 0.12);
-    border: 1.5px solid #25d366;
+    justify-content: center;
+    position: relative;
+    width: 38px;
+    height: 38px;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-app);
     border-radius: var(--radius-md);
-    color: #25d366;
-    font-family: var(--font-sans);
-    font-size: 0.82rem;
-    font-weight: 800;
+    color: var(--text-secondary);
     text-decoration: none;
-    box-shadow: 2px 2px 0px #064e3b;
+    box-shadow: var(--shadow-hard-sm);
+    flex-shrink: 0;
     transition:
       transform var(--duration-sink) var(--ease-apple),
       box-shadow var(--duration-sink) var(--ease-apple),
       background-color var(--duration-hover) ease,
+      border-color var(--duration-hover) ease,
       color var(--duration-hover) ease;
-    white-space: nowrap;
+  }
+
+  .btn-instagram-quick:hover {
+    background: rgba(225, 48, 108, 0.15);
+    border-color: #E1306C;
+    color: #FF659F;
+    transform: translate(-1px, -1px);
+    box-shadow: 2px 2px 0px #4A0026;
   }
 
   .btn-whatsapp-quick:hover {
-    background: #25d366;
-    color: #000000;
+    background: rgba(37, 211, 102, 0.15);
+    border-color: #25d366;
+    color: #25d366;
     transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0px #064e3b;
+    box-shadow: 2px 2px 0px #064e3b;
   }
 
   .btn-wa-dot {
+    position: absolute;
+    top: 5px;
+    right: 5px;
     width: 6px;
     height: 6px;
     background: #25d366;
     border-radius: 50%;
     box-shadow: 0 0 4px #25d366;
     animation: tickerDotGlow 2.4s ease-in-out infinite;
-  }
-
-  .btn-instagram-quick {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 7px 13px;
-    background: rgba(225, 48, 108, 0.12);
-    border: 1.5px solid #E1306C;
-    border-radius: var(--radius-md);
-    color: #FF659F;
-    font-family: var(--font-sans);
-    font-size: 0.82rem;
-    font-weight: 800;
-    text-decoration: none;
-    box-shadow: 2px 2px 0px #4A0026;
-    transition:
-      transform var(--duration-sink) var(--ease-apple),
-      box-shadow var(--duration-sink) var(--ease-apple),
-      background-color var(--duration-hover) ease,
-      color var(--duration-hover) ease;
-    white-space: nowrap;
-  }
-
-  .btn-instagram-quick:hover {
-    background: linear-gradient(135deg, #E1306C 0%, #C13584 100%);
-    color: #FFFFFF;
-    transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0px #4A0026;
-  }
-
-  @media (max-width: 1180px) {
-    .btn-instagram-quick {
-      display: none;
-    }
-  }
-
-  @media (max-width: 990px) {
-    .btn-whatsapp-quick {
-      display: none;
-    }
   }
 
   .btn-support-quick {
@@ -829,6 +829,7 @@ const tickerLoops = [0, 1, 2];
     border-radius: var(--radius-md);
     box-shadow: 2px 2px 0px #000000;
     cursor: pointer;
+    white-space: nowrap;
     transition:
       transform var(--duration-sink) var(--ease-apple),
       box-shadow var(--duration-sink) var(--ease-apple),
@@ -856,16 +857,27 @@ const tickerLoops = [0, 1, 2];
   }
 
   .btn-nav-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 8px 16px;
-    font-size: 0.85rem;
-    gap: 6px;
+    font-size: 0.86rem;
+    font-weight: 800;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-radius: var(--radius-md);
   }
 
   .download-arrow {
+    flex-shrink: 0;
     transition: transform var(--duration-hover) ease;
   }
   .btn-nav-download:hover .download-arrow {
     transform: translateY(2px);
+  }
+
+  .nav-download-label {
+    white-space: nowrap;
   }
 
   /* Botón Hamburguesa */
@@ -986,10 +998,20 @@ const tickerLoops = [0, 1, 2];
     border-color: rgba(255, 219, 121, 0.3);
   }
 
+  /* En pantallas intermedias (1024px - 1180px), la insignia de versión se oculta para que el botón sea compacto */
+  @media (max-width: 1180px) {
+    .nav-badge-v {
+      display: none;
+    }
+  }
+
   /* Con 5 enlaces en la navegación, el header tiene suficiente espacio y holgura:
      por debajo de 1024px se activa el menú móvil para evitar desbordes */
   @media (max-width: 1024px) {
     .desktop-nav {
+      display: none;
+    }
+    .header-social-group {
       display: none;
     }
     .mobile-menu-btn {
@@ -1003,6 +1025,9 @@ const tickerLoops = [0, 1, 2];
       gap: 6px;
     }
     .btn-nav-download .nav-download-label {
+      display: none;
+    }
+    .btn-nav-download .nav-badge-v {
       display: none;
     }
     .btn-nav-download::after {
