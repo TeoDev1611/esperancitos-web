@@ -1,6 +1,7 @@
 ---
 // avisos.astro - Tablón público de avisos comunitarios de Esperancitos
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../config/site";
 import { buildApiPayloads } from "../lib/community-payloads.ts";
 import type { PublicAvisoItem } from "../lib/community-contract.ts";
 
@@ -94,41 +95,58 @@ function formatDate(isoString: string): string {
           </p>
         </div>
 
-        <!-- CANAL OFICIAL DE WHATSAPP PARA NOTICIAS Y COMUNICADOS -->
+        <!-- CANALES OFICIALES PARA NOTICIAS Y COMUNICADOS -->
         <div class="whatsapp-channel-box card-app">
           <div class="whatsapp-channel-content">
-            <span class="badge-app green">💬 CANAL OFICIAL DE NOTICIAS</span>
-            <h3>Comunidad Pilas! en WhatsApp</h3>
+            <div class="news-channel-badges">
+              <span class="badge-app green">💬 WHATSAPP</span>
+              <span class="badge-app fuchsia">📸 INSTAGRAM OFICIAL</span>
+            </div>
+            <h3>Canales Oficiales de Noticias de Pilas!</h3>
             <p>
-              Súmate al canal oficial para enterarte al instante de nuevas
-              versiones, comunicados del campus, información importante y
-              actualizaciones verificadas.
+              Súmate al canal de WhatsApp y síguenos en Instagram (<strong style="color: #FF548F;">@pilas_ec.app</strong>) para enterarte al instante de noticias, historias, nuevas versiones y avisos verificados.
             </p>
           </div>
-          <a
-            href="https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-pilas-primary btn-whatsapp-channel-cta"
-            aria-label="Unirse al canal oficial de WhatsApp de Pilas!"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
+          <div class="news-channel-actions">
+            <a
+              href={SITE.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-pilas-primary btn-instagram-channel-cta"
+              aria-label="Seguir en el Instagram oficial de Pilas!"
             >
-              <path
-                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-              ></path>
-            </svg>
-            <span>Unirse al Canal de WhatsApp</span>
-          </a>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+              </svg>
+              <span>Instagram (@pilas_ec.app)</span>
+            </a>
+            <a
+              href={SITE.social.whatsappChannel}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-pilas-primary btn-whatsapp-channel-cta"
+              aria-label="Unirse al canal oficial de WhatsApp de Pilas!"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                ></path>
+              </svg>
+              <span>Canal de WhatsApp</span>
+            </a>
+          </div>
         </div>
 
         <!-- LLAMADO DESTACADO PARA SUBIR NEGOCIOS GRATIS -->
@@ -420,6 +438,43 @@ function formatDate(isoString: string): string {
     margin: 0;
   }
 
+  .news-channel-badges {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .badge-app.fuchsia {
+    color: #FF548F;
+    background: rgba(225, 48, 108, 0.15);
+    border: 1px solid rgba(225, 48, 108, 0.4);
+  }
+
+  .news-channel-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .btn-instagram-channel-cta {
+    white-space: nowrap;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #E1306C 0%, #C13584 100%) !important;
+    color: #FFFFFF !important;
+    border-color: #000000 !important;
+    box-shadow: 3px 3px 0px #5B0024 !important;
+  }
+
+  .btn-instagram-channel-cta:hover {
+    background: linear-gradient(135deg, #FD1D1D 0%, #E1306C 100%) !important;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #5B0024 !important;
+  }
+
   .btn-whatsapp-channel-cta {
     white-space: nowrap;
     flex-shrink: 0;
@@ -439,7 +494,12 @@ function formatDate(isoString: string): string {
       gap: 16px;
     }
 
-    .btn-whatsapp-channel-cta {
+    .news-channel-actions {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .news-channel-actions .btn-pilas-primary {
       width: 100%;
       justify-content: center;
     }

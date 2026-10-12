@@ -73,7 +73,7 @@ const raw: Array<Omit<FaqEntry, "plainAnswer">> = [
     question:
       "¿Cómo se actualiza la app cuando sale una nueva versión con mejoras?",
     answer:
-      "La app incluye un verificador estático ultra-ligero que consulta <code>update.json</code>. Cuando hay una nueva actualización, recibirás un aviso dentro de la app con el botón para descargar el nuevo APK. <strong>No perderás tus notas, materias ni horario al actualizar</strong>: Android instala la nueva versión encima de la anterior conservando tu base de datos local intacta. También anunciamos cada actualización en nuestro Canal oficial de WhatsApp.",
+      "La app incluye un verificador estático ultra-ligero que consulta <code>update.json</code>. Cuando hay una nueva actualización, recibirás un aviso dentro de la app con el botón para descargar el nuevo APK. <strong>No perderás tus notas, materias ni horario al actualizar</strong>: Android instala la nueva versión encima de la anterior conservando tu base de datos local intacta. También anunciamos cada actualización en nuestro Canal oficial de WhatsApp y en nuestro Instagram oficial (<a href=\"https://www.instagram.com/pilas_ec.app/\" target=\"_blank\" rel=\"noopener noreferrer\">@pilas_ec.app</a>).",
   },
   {
     id: "permisos-solicitados",
@@ -269,7 +269,7 @@ const raw: Array<Omit<FaqEntry, "plainAnswer">> = [
     question:
       "¿Cómo reporto un error, propongo una nueva función o contacto al desarrollador?",
     answer:
-      "Puedes usar el formulario directo de comentarios en esta web, unirte al <strong>Canal oficial de WhatsApp de Pilas!</strong>, o escribir directamente por correo electrónico a <code>teo.hurtado.16@gmail.com</code>. Todos los mensajes se leen y se toman en cuenta para las siguientes versiones.",
+      "Puedes usar el formulario directo de comentarios en esta web, unirte al <strong>Canal oficial de WhatsApp de Pilas!</strong>, seguirnos en nuestro <strong>Instagram oficial (<a href=\"https://www.instagram.com/pilas_ec.app/\" target=\"_blank\" rel=\"noopener noreferrer\">@pilas_ec.app</a>)</strong> donde subimos noticias y comunicados, o escribir directamente por correo electrónico a <code>teo.hurtado.16@gmail.com</code>. Todos los mensajes se leen y se toman en cuenta para las siguientes versiones.",
   },
 ];
 

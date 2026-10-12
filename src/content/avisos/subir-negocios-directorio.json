@@ -1,0 +1,15 @@
+{
+  "id": "subir-negocios-directorio",
+  "type": "importante",
+  "title": "💼 ¡Sube tu negocio o emprendimiento gratis a Pilas!",
+  "body": "¿Tienes un local, comida, copias, papelería, transporte o emprendimiento cerca de la ESPE? Regístralo 100% gratis en el directorio de la app y la web para que miles de estudiantes te encuentren y te contacten directo a WhatsApp.",
+  "campus": ["presencial", "virtual"],
+  "publishedAt": "2026-10-11T22:50:00-05:00",
+  "expiresAt": "2026-12-31T23:59:59-05:00",
+  "pinned": true,
+  "link": {
+    "url": "https://pilas-ec.vercel.app/negocios",
+    "label": "Registrar negocio gratis"
+  },
+  "minBuild": 1
+}

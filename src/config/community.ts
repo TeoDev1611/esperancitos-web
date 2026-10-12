@@ -22,3 +22,11 @@ export const COMUNIDAD_REPORTE_EMAIL = "teo.hurtado.16@gmail.com";
  */
 export const PILAS_WHATSAPP_CHANNEL_URL =
   "https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g";
+
+/**
+ * Instagram oficial de la comunidad Pilas!
+ * Donde subimos noticias, actualizaciones del proyecto y comunicados estudiantiles.
+ */
+export const PILAS_INSTAGRAM_URL =
+  "https://www.instagram.com/pilas_ec.app/";
+

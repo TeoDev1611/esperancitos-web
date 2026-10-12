@@ -146,10 +146,24 @@ const categoryMap: Record<string, string> = {
           </div>
           <h3>¿No encontraste la respuesta a tu duda?</h3>
           <p>
-            Únete al <strong>Canal oficial de WhatsApp de Pilas!</strong> para avisos del campus, solución de problemas y contacto directo, o envíame un mensaje directo.
+            Síguenos en <strong>Instagram oficial (@pilas_ec.app)</strong> y únete al <strong>Canal de WhatsApp de Pilas!</strong> para avisos del campus, noticias, solución de problemas y contacto directo.
           </p>
         </div>
         <div class="contact-card-actions">
+          <a
+            href={SITE.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-instagram-channel-cta"
+            aria-label="Seguir en el Instagram oficial @pilas_ec.app"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+            </svg>
+            <span>Instagram Oficial</span>
+          </a>
           <a
             href={SITE.social.whatsappChannel}
             target="_blank"
@@ -758,6 +772,33 @@ const categoryMap: Record<string, string> = {
     flex-shrink: 0;
   }
 
+  .btn-instagram-channel-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #E1306C 0%, #C13584 100%);
+    color: #FFFFFF;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 900;
+    border: 2px solid #000000;
+    border-radius: var(--radius-sm);
+    box-shadow: 3px 3px 0px #000000;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform var(--duration-sink) var(--ease-apple),
+                box-shadow var(--duration-sink) var(--ease-apple),
+                background var(--duration-hover) ease;
+  }
+
+  .btn-instagram-channel-cta:hover {
+    background: linear-gradient(135deg, #FD1D1D 0%, #E1306C 100%);
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #000000;
+  }
+
   .btn-whatsapp-channel-cta {
     display: inline-flex;
     align-items: center;
@@ -809,6 +850,7 @@ const categoryMap: Record<string, string> = {
     }
 
     .btn-whatsapp-channel-cta,
+    .btn-instagram-channel-cta,
     .btn-email-contact {
       width: 100%;
     }

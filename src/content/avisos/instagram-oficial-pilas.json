@@ -1,0 +1,15 @@
+{
+  "id": "instagram-oficial-pilas",
+  "type": "info",
+  "title": "📸 ¡Síguenos en Instagram! Lanzamos @pilas_ec.app",
+  "body": "¡Ponte pilas! Ya abrimos el Instagram oficial de Pilas! (@pilas_ec.app). Por ahí estaremos subiendo todas las noticias, novedades de la app, comunicados del campus, avisos de actualizaciones y encuestas. ¡Síguenos para estar al día!",
+  "campus": ["presencial", "virtual"],
+  "publishedAt": "2026-10-11T22:45:00-05:00",
+  "expiresAt": "2026-12-31T23:59:59-05:00",
+  "pinned": true,
+  "link": {
+    "url": "https://www.instagram.com/pilas_ec.app/",
+    "label": "Ir a Instagram"
+  },
+  "minBuild": 1
+}

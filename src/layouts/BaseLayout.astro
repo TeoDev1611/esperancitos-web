@@ -90,6 +90,7 @@ const softwareApp = {
     '@type': 'Organization',
     name: SITE.name,
     url: siteOrigin,
+    sameAs: [SITE.social.instagram, SITE.social.whatsappChannel].filter(Boolean),
   },
   featureList: [
     'Malla curricular interactiva 100% offline con 23 carreras oficiales de la ESPE',
@@ -138,6 +139,7 @@ const website = {
     '@type': 'Organization',
     name: SITE.name,
     url: siteOrigin,
+    sameAs: [SITE.social.instagram, SITE.social.whatsappChannel].filter(Boolean),
     logo: {
       '@type': 'ImageObject',
       url: absoluteUrl('/icon-512.png'),

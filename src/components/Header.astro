@@ -85,9 +85,36 @@ const tickerLoops = [0, 1, 2];
     </nav>
 
     <div class="header-actions">
+      <!-- Instagram Oficial -->
+      <a
+        href={SITE.social.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-instagram-quick"
+        aria-label="Instagram oficial de Pilas!"
+        title="Instagram oficial: noticias, actualizaciones y comunicados (@pilas_ec.app)"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+        </svg>
+        <span>Instagram</span>
+      </a>
+
       <!-- Canal de WhatsApp Oficial -->
       <a
-        href="https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g"
+        href={SITE.social.whatsappChannel}
         target="_blank"
         rel="noopener noreferrer"
         class="btn-whatsapp-quick"
@@ -229,7 +256,32 @@ const tickerLoops = [0, 1, 2];
         <span>Avisos de la comunidad</span>
       </a>
       <a
-        href="https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g"
+        href={SITE.social.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-link highlight-fuchsia"
+      >
+        <span class="m-icon">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+          </svg>
+        </span>
+        <span>Instagram Oficial (@pilas_ec.app)</span>
+      </a>
+      <a
+        href={SITE.social.whatsappChannel}
         target="_blank"
         rel="noopener noreferrer"
         class="mobile-link highlight-green"
@@ -722,6 +774,41 @@ const tickerLoops = [0, 1, 2];
     animation: tickerDotGlow 2.4s ease-in-out infinite;
   }
 
+  .btn-instagram-quick {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px;
+    background: rgba(225, 48, 108, 0.12);
+    border: 1.5px solid #E1306C;
+    border-radius: var(--radius-md);
+    color: #FF659F;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 2px 2px 0px #4A0026;
+    transition:
+      transform var(--duration-sink) var(--ease-apple),
+      box-shadow var(--duration-sink) var(--ease-apple),
+      background-color var(--duration-hover) ease,
+      color var(--duration-hover) ease;
+    white-space: nowrap;
+  }
+
+  .btn-instagram-quick:hover {
+    background: linear-gradient(135deg, #E1306C 0%, #C13584 100%);
+    color: #FFFFFF;
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px #4A0026;
+  }
+
+  @media (max-width: 1180px) {
+    .btn-instagram-quick {
+      display: none;
+    }
+  }
+
   @media (max-width: 990px) {
     .btn-whatsapp-quick {
       display: none;
@@ -885,6 +972,12 @@ const tickerLoops = [0, 1, 2];
     color: var(--color-primary);
     background: rgba(255, 63, 164, 0.12);
     border-color: rgba(255, 63, 164, 0.35);
+  }
+
+  .mobile-link.highlight-green {
+    color: #25D366;
+    background: rgba(37, 211, 102, 0.08);
+    border-color: rgba(37, 211, 102, 0.3);
   }
 
   .mobile-link.highlight-amber {

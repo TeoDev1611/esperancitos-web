@@ -121,7 +121,7 @@ export const SITE = {
   /** Perfiles oficiales. Deja vacío ('') para omitir la etiqueta. */
   social: {
     github: "",
-    instagram: "",
+    instagram: "https://www.instagram.com/pilas_ec.app/",
     email: "teo.hurtado.16@gmail.com",
     whatsappChannel: "https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g",
   },

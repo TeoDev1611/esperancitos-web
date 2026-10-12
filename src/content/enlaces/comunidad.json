@@ -11,6 +11,13 @@
       "updatedAt": "2026-10-09T17:00:00-05:00"
     },
     {
+      "id": "instagram-oficial-pilas",
+      "title": "Instagram Oficial Pilas!",
+      "url": "https://www.instagram.com/pilas_ec.app/",
+      "description": "Instagram oficial donde subimos noticias, novedades del proyecto y comunicados",
+      "updatedAt": "2026-10-11T22:30:00-05:00"
+    },
+    {
       "id": "subir-negocio-gratis",
       "title": "Subir mi negocio a Pilas!",
       "url": "https://pilas-ec.vercel.app/negocios",
