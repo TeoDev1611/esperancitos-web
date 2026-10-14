@@ -1,0 +1,2638 @@
+---
+// horario.astro - Convertidor Oficial de Horarios de Banner 9 a Pilas! ESPE
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config/site';
+---
+
+<BaseLayout
+  title="Convertidor de Horarios Banner 9 ESPE a .pilas | Pilas! para iPhone y Android"
+  description="Convierte tu horario en PDF descargado de Banner 9 ESPE al formato .pilas o sincronízalo mediante código QR a tu PWA Pilas! en iPhone y Android. Procesamiento 100% privado en tu navegador."
+  keywords="convertidor horario ESPE, horario banner espe pdf, horario pilas iphone, importar horario banner 9 espe, horario espe qr, app horario espe"
+  includeAppSchema={false}
+>
+  <main class="converter-page">
+    <div class="container">
+      <!-- Breadcrumb / Volver -->
+      <nav class="converter-breadcrumb" aria-label="Navegación secundaria">
+        <a href="/" class="btn-back-home">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Volver al inicio</span>
+        </a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="breadcrumb-current">Convertidor de Horarios Banner</span>
+      </nav>
+
+      <!-- Encabezado de la herramienta -->
+      <header class="converter-hero-header">
+        <div class="badge-row">
+          <span class="badge-app fuchsia">BANNER 9 ESPE · ZERO-BACKEND</span>
+          <span class="badge-app cyan">COMPATIBLE CON IPHONE & ANDROID</span>
+        </div>
+        <h1 class="converter-main-title">
+          Pasa tu Horario de Banner <br class="hidden-mobile" />
+          <span class="title-highlight">Directo a tu Teléfono</span>
+        </h1>
+        <p class="converter-hero-desc">
+          Convierte el PDF oficial impreso de Banner 9 al formato <code class="code-pill">.pilas</code> para la PWA en iOS o escanéalo al instante con la cámara de tu aplicación. 
+          <strong>Tus datos nunca salen de tu dispositivo:</strong> todo el procesamiento se ejecuta 100% en tu navegador de forma privada.
+        </p>
+
+        <!-- Píldoras de Seguridad & Privacidad -->
+        <div class="privacy-badges-grid">
+          <div class="privacy-item">
+            <span class="privacy-icon" aria-hidden="true">🔒</span>
+            <div>
+              <strong>100% en el cliente</strong>
+              <p>El PDF se lee en tu memoria RAM local</p>
+            </div>
+          </div>
+          <div class="privacy-item">
+            <span class="privacy-icon" aria-hidden="true">🚫</span>
+            <div>
+              <strong>Cero servidores</strong>
+              <p>Sin APIs externas ni almacenamiento remoto</p>
+            </div>
+          </div>
+          <div class="privacy-item">
+            <span class="privacy-icon" aria-hidden="true">⚡</span>
+            <div>
+              <strong>Instantáneo</strong>
+              <p>Genera el archivo .pilas y QR al instante</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Instrucciones Paso a Paso con Enlace Directo y Captura Oficial -->
+      <section class="banner-steps-guide" aria-label="Tutorial para descargar tu horario desde Banner 9">
+        <div class="guide-header">
+          <div class="guide-header-badges">
+            <span class="guide-num-badge">💡 TUTORIAL RÁPIDO</span>
+            <span class="badge-app green-subtle">PASO A PASO PARA MÓVIL Y PC</span>
+          </div>
+          <h2 class="guide-title">¿Cómo sacar tu Horario Oficial desde Banner 9 ESPE?</h2>
+          <p class="guide-subtitle">
+            Sigue estos 3 sencillos pasos para obtener tu horario listo para convertir:
+          </p>
+        </div>
+
+        <div class="steps-cards-grid">
+          <!-- PASO 1: ENLACE DIRECTO -->
+          <div class="step-card step-card-featured">
+            <div class="step-header-row">
+              <div class="step-number">1</div>
+              <span class="step-tag">ACCESO DIRECTO</span>
+            </div>
+            <div class="step-body">
+              <h3>Entra directo a tu Horario</h3>
+              <p>
+                Haz clic en el siguiente enlace oficial de la ESPE. Si no has iniciado sesión hoy, ingresa con tu correo y contraseña institucional:
+              </p>
+              
+              <a
+                href="https://registrop.espe.edu.ec/StudentRegistrationSsb/ssb/registrationHistory/registrationHistory"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-banner-direct"
+                id="btn-direct-banner"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                <span>Abrir mi Horario en Banner 9 ↗</span>
+              </a>
+              <span class="direct-link-note">Se abre en una pestaña nueva oficial de la ESPE</span>
+            </div>
+          </div>
+
+          <!-- PASO 2: BOTÓN IMPRESORA CON CAPTURA VISUAL -->
+          <div class="step-card step-card-visual">
+            <div class="step-header-row">
+              <div class="step-number">2</div>
+              <span class="step-tag pulse-tag">PUNTO CLAVE</span>
+            </div>
+            <div class="step-body">
+              <h3>Toca el icono de la Impresora 🖨️</h3>
+              <p>
+                En la esquina superior derecha del cuadro de tus materias, <strong>haz clic en el icono de la impresora</strong> como se muestra en la captura:
+              </p>
+
+              <!-- Captura ilustrativa del botón de impresora -->
+              <div class="tutorial-image-container">
+                <div class="image-spotlight-badge">
+                  <span class="spotlight-arrow">👉</span>
+                  <span>Clic en este botón de impresora</span>
+                </div>
+                <div class="tutorial-img-frame">
+                  <img
+                    src="/images/banner-print-btn.png"
+                    alt="Botón de impresora en la esquina superior derecha de Banner 9 ESPE"
+                    class="tutorial-img"
+                    width="180"
+                    height="140"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PASO 3: GUARDAR PDF O COPIAR TEXTO -->
+          <div class="step-card">
+            <div class="step-header-row">
+              <div class="step-number">3</div>
+              <span class="step-tag">GUARDAR O COPIAR</span>
+            </div>
+            <div class="step-body">
+              <h3>Guarda el PDF (o copia el texto)</h3>
+              <p>
+                En la ventana que se abre:
+              </p>
+              <ul class="step-tips-list">
+                <li>
+                  <strong>Si estás en iPhone / Teléfono:</strong> Puedes seleccionar todo el texto de la pantalla y copiarlo directamente (¡no necesitas descargar nada!).
+                </li>
+                <li>
+                  <strong>Si prefieres el PDF:</strong> En el cuadro de impresión selecciona <em>"Guardar como PDF"</em> y guárdalo en tus archivos.
+                </li>
+              </ul>
+              <p class="step-final-note">
+                Luego regresa aquí abajo y <strong>arrastra el PDF o pega el texto</strong>. ¡Listo!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Zona de Carga e Interacción Principal -->
+      <section class="converter-box-section" id="converter-box">
+        <!-- DROPZONE -->
+        <div class="dropzone-card" id="dropzone">
+          <input type="file" id="file-input" accept="application/pdf" class="sr-only" aria-label="Seleccionar archivo PDF de Banner" />
+          
+          <div class="dropzone-content">
+            <div class="dropzone-icon-wrap" id="dropzone-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <path d="M12 18v-6"></path>
+                <path d="M9 15l3-3 3 3"></path>
+              </svg>
+            </div>
+            
+            <h2 class="dropzone-title" id="dropzone-text">Arrastra y suelta tu horario en PDF aquí</h2>
+            <p class="dropzone-subtitle">o haz clic en el botón para buscarlo en tu dispositivo</p>
+            
+            <div class="dropzone-actions">
+              <button type="button" class="btn-brutalist btn-primary" id="btn-browse">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Seleccionar archivo PDF</span>
+              </button>
+
+              <button type="button" class="btn-brutalist btn-secondary" id="btn-demo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Cargar ejemplo de prueba</span>
+              </button>
+            </div>
+
+            <p class="dropzone-hint">
+              <span class="hint-bullet">•</span> Compatible con PDFs generados por Banner 9 ESPE (vista de impresión oficial).
+            </p>
+          </div>
+
+          <!-- Spinner / Estado de procesamiento -->
+          <div class="dropzone-loader" id="dropzone-loader" hidden>
+            <div class="spinner-neon"></div>
+            <p class="loader-title">Procesando horario en tu navegador...</p>
+            <p class="loader-desc">Analizando materias, horarios, aulas y docentes...</p>
+          </div>
+        </div>
+
+        <!-- MODO ALTERNATIVO: PEGAR TEXTO DIRECTAMENTE -->
+        <div class="text-paste-container">
+          <button type="button" class="btn-toggle-paste" id="btn-toggle-paste" aria-expanded="false" aria-controls="paste-panel">
+            <span class="toggle-icon" id="toggle-chevron">▼</span>
+            <span>¿Prefieres pegar el texto copiado de Banner? (Haz clic aquí)</span>
+          </button>
+
+          <div class="paste-panel" id="paste-panel" hidden>
+            <div class="paste-panel-inner">
+              <label for="raw-text-input" class="paste-label">
+                Pega el texto seleccionado de la página de impresión de Banner ESPE:
+              </label>
+              <textarea
+                id="raw-text-input"
+                class="paste-textarea"
+                rows="6"
+                placeholder="Ejemplo:
+INGENIERIA DE SOFTWARE SOFT A0101 101 6.0 12345 20-Oct-2026 - 20-Feb-2027
+Lunes, Miércoles
+07:00 - 08:59
+CAMPUS CENTRAL ESPE, BLOQUE X FICTICIO, AULA-X101
+DOCENTE EJEMPLO, CARLOS ALBERTO"
+              ></textarea>
+              <div class="paste-actions">
+                <button type="button" class="btn-brutalist btn-cyan" id="btn-parse-text">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Procesar texto pegado</span>
+                </button>
+                <button type="button" class="btn-brutalist btn-subtle" id="btn-clear-text">
+                  <span>Limpiar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alertas de estado y error -->
+        <div class="alert-box alert-error" id="error-alert" hidden role="alert">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content">
+            <strong id="error-title">No se pudieron detectar materias</strong>
+            <p id="error-desc">Asegúrate de haber subido el PDF oficial de la vista de impresión de Banner 9 ESPE.</p>
+          </div>
+          <button type="button" class="alert-close" id="btn-close-alert" aria-label="Cerrar alerta">✕</button>
+        </div>
+      </section>
+
+      <!-- RESULTADOS & PREVISUALIZACIÓN (SE MUESTRA TRAS EL PARSEO) -->
+      <section class="schedule-preview-section" id="schedule-preview" hidden aria-label="Previsualización del horario detectado">
+        <!-- Metadatos de la cabecera del horario -->
+        <div class="preview-meta-card">
+          <div class="meta-top">
+            <div class="meta-badge-group">
+              <span class="badge-app success" id="badge-total-materias">0 MATERIAS DETECTADAS</span>
+              <span class="badge-app amber" id="badge-total-clases">0 BLOQUES HORARIOS</span>
+              <span class="badge-app cyan" id="badge-periodo">PERIODO: 202651</span>
+            </div>
+            <button type="button" class="btn-reset-parse" id="btn-reset">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="1 4 1 10 7 10"></polyline>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+              </svg>
+              <span>Subir otro horario</span>
+            </button>
+          </div>
+
+          <div class="meta-fields-grid">
+            <div class="field-item">
+              <label for="input-estudiante" class="field-label">Estudiante:</label>
+              <input type="text" id="input-estudiante" class="field-input" value="Estudiante ESPE" />
+            </div>
+            <div class="field-item">
+              <label for="input-periodo" class="field-label">Periodo Académico:</label>
+              <input type="text" id="input-periodo" class="field-input" value="202651" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ACCIONES DE EXPORTACIÓN (DESCARGA .PILAS Y CÓDIGO QR) -->
+        <div class="export-actions-grid">
+          <!-- TARJETA 1: DESCARGA .PILAS -->
+          <div class="export-card download-card">
+            <div class="export-card-header">
+              <div class="export-badge-tag">RECOMENDADO PARA PWA</div>
+              <h2 class="export-title">Descargar archivo .pilas</h2>
+              <p class="export-desc">
+                Genera tu archivo <code class="code-pill">horario_espe.pilas</code> con la estructura exacta compatible con el almacenamiento Drift SQLite de Pilas!.
+              </p>
+            </div>
+
+            <div class="export-body">
+              <button type="button" class="btn-brutalist btn-fuchsia btn-large" id="btn-download-pilas">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Descargar horario_espe.pilas</span>
+              </button>
+
+              <div class="export-tips">
+                <span class="tip-check">✓</span>
+                <p>En tu iPhone o Android, abre Pilas! → <strong>Ajustes / Horario</strong> → <strong>Importar archivo .pilas</strong>.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TARJETA 2: CÓDIGO QR PWA (P2P ESP://FRIEND) -->
+          <div class="export-card qr-card">
+            <div class="export-card-header">
+              <div class="export-badge-tag qr-tag">SIN DESCARGAS · SCAN & GO</div>
+              <h2 class="export-title">Escanea con tu PWA Pilas!</h2>
+              <p class="export-desc">
+                Comprimido en Gzip y codificado en Base64Url con el protocolo <code class="code-pill">esp://friend</code>. Apunta la cámara de tu app al monitor.
+              </p>
+            </div>
+
+            <div class="qr-render-container">
+              <div class="qr-canvas-wrapper" id="qr-wrapper">
+                <canvas id="qr-canvas" width="220" height="220" aria-label="Código QR con tu horario comprimido"></canvas>
+              </div>
+
+              <div class="qr-action-buttons">
+                <a href="#" class="btn-mini-brutalist btn-open-pwa" id="btn-open-protocol" title="Abrir directamente con la app Pilas en tu teléfono">
+                  <span>📱 Abrir en Pilas! App</span>
+                </a>
+                <button type="button" class="btn-mini-brutalist" id="btn-copy-protocol">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span id="btn-copy-protocol-text">Copiar URI</span>
+                </button>
+                <button type="button" class="btn-mini-brutalist" id="btn-download-qr">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Guardar QR</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FILTROS Y VISTAS INTERACTIVAS -->
+        <div class="preview-controls-bar">
+          <div class="view-tabs" role="tablist" aria-label="Modo de visualización">
+            <button type="button" class="tab-btn is-active" id="tab-day-view" role="tab" aria-selected="true" aria-controls="view-by-days">
+              Vista por Días de Semana
+            </button>
+            <button type="button" class="tab-btn" id="tab-subject-view" role="tab" aria-selected="false" aria-controls="view-by-subjects">
+              Vista por Materias
+            </button>
+          </div>
+
+          <!-- Selector de día rápido -->
+          <div class="day-filter-pills" id="day-filter-container">
+            <button type="button" class="day-pill is-active" data-day="ALL">Todos</button>
+            <button type="button" class="day-pill" data-day="LUN">Lunes</button>
+            <button type="button" class="day-pill" data-day="MAR">Martes</button>
+            <button type="button" class="day-pill" data-day="MIE">Miércoles</button>
+            <button type="button" class="day-pill" data-day="JUE">Jueves</button>
+            <button type="button" class="day-pill" data-day="VIE">Viernes</button>
+            <button type="button" class="day-pill" data-day="SAB">Sábado</button>
+          </div>
+        </div>
+
+        <!-- CONTENEDOR 1: VISTA POR DÍAS (CRONOGRAMA) -->
+        <div class="schedule-view-panel" id="view-by-days">
+          <div class="schedule-grid" id="classes-grid">
+            <!-- Rellenado dinámicamente con JavaScript -->
+          </div>
+        </div>
+
+        <!-- CONTENEDOR 2: VISTA POR MATERIAS (ACORDEÓN / TARJETAS) -->
+        <div class="schedule-view-panel" id="view-by-subjects" hidden>
+          <div class="subjects-grid" id="subjects-grid">
+            <!-- Rellenado dinámicamente con JavaScript -->
+          </div>
+        </div>
+
+        <!-- PREVIEW JSON RAW (COLAPSABLE) -->
+        <div class="json-preview-container">
+          <button type="button" class="btn-toggle-json" id="btn-toggle-json" aria-expanded="false" aria-controls="json-preview-box">
+            <span id="json-chevron">▼</span>
+            <span>Ver JSON crudo generado para el archivo .pilas</span>
+          </button>
+          <div class="json-preview-box" id="json-preview-box" hidden>
+            <pre><code id="json-preview-code"></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN FAQ / RESOLUCIÓN DE PROBLEMAS -->
+      <section class="converter-faq-section" aria-label="Preguntas frecuentes sobre horarios">
+        <h2 class="faq-section-title">Preguntas Frecuentes del Horario Banner</h2>
+        <div class="faq-grid">
+          <div class="faq-card">
+            <h3>¿Por qué los iPhone necesitan este convertidor?</h3>
+            <p>
+              En iOS / Safari existen restricciones de seguridad en las descargas directas de PDFs institucionales con cookies protegidas. Con este convertidor web, extraes tu horario en un formato ligero y lo sincronizas a tu PWA en 1 segundo con la cámara.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h3>¿Mis contraseñas o datos se comparten con Pilas!?</h3>
+            <p>
+              <strong>Jamás.</strong> Este convertidor no pide tus contraseñas ni tiene base de datos en la nube. El archivo PDF se abre en la memoria de tu navegador y nada se transmite a internet.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h3>¿Qué pasa si mi clase termina en :59 minutos?</h3>
+            <p>
+              Banner 9 registra las clases con minutos como <code>08:59</code> o <code>14:59</code> para evitar traslapes del sistema. Nuestro algoritmo inteligente las redondea automáticamente a <code>09:00</code> y <code>15:00</code> respectivamente.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h3>¿Cómo se resuelven las aulas del campus?</h3>
+            <p>
+              El analizador descompone cadenas como <code>ESPE MATRIZ SANGOLQUI, BLOQUE B SANGOLQUI, B415</code> para extraer el aula limpia y el bloque de forma que la app Pilas! te ubique sin confusiones.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  import { extractTextFromPdf } from '../lib/pdf-extractor';
+  import {
+    parseBannerSchedule,
+    generateQrPayload,
+    generateFriendQrProtocol,
+    downloadPilasFile,
+    type PilasSchedule,
+    type MateriaItem,
+    type ClaseItem,
+  } from '../lib/banner-parser';
+  import QRCode from 'qrcode';
+
+  // Demo schedule text con datos y bloques ficticios de mentira
+  const DEMO_BANNER_TEXT = `Universidad de las Fuerzas Armadas ESPE
+Detalle del Horario del Estudiante
+Estudiante: ESTUDIANTE EJEMPLO, ALEX JAVIER
+Periodo: 202651 - Pregrado Octubre 2026 - Febrero 2027
+
+INGENIERIA DE SOFTWARE SOFT A0101 101 6.0 12345 20-Oct-2026 - 20-Feb-2027
+Lunes, Miércoles
+07:00 - 08:59
+CAMPUS CENTRAL ESPE, BLOQUE X FICTICIO, AULA-X101
+DOCENTE EJEMPLO, CARLOS ALBERTO
+
+CALCULO VECTORIAL MATG 1002 102 4.0 23456 20-Oct-2026 - 20-Feb-2027
+Martes, Jueves
+09:00 - 10:59
+CAMPUS CENTRAL ESPE, EDIFICIO OMEGA, AULA-OM02
+PROFESORA DEMO, MARIA FERNANDA (P)
+
+PROGRAMACION ORIENTADA A OBJETOS CS 2002 103 3.0 34567 15-Oct-2026 - 25-Feb-2027
+Lunes, Miércoles, Viernes
+11:00 - 12:59
+CAMPUS CENTRAL ESPE, LABORATORIO VIRTUAL, LAB-DEMO-03
+INSTRUCTOR FICTICIO, ROBERTO DANIEL
+
+FISICA CONCEPTUAL FISI A0102 104 4.0 45678 20-Oct-2026 - 20-Feb-2027
+Martes
+11:00 - 12:59
+CAMPUS CENTRAL ESPE, BLOQUE Z KRYPTON, AULA-Z204
+DOCENTE PRUEBA, ANDREA SOFIA
+Jueves
+11:00 - 11:59
+CAMPUS CENTRAL ESPE, LABORATORIOS EXPERIMENTALES, LAB-EXP-02
+DOCENTE PRUEBA, ANDREA SOFIA`;
+
+  // Estado global en memoria
+  let currentSchedule: PilasSchedule | null = null;
+  let currentDayFilter = 'ALL';
+  let currentViewMode: 'days' | 'subjects' = 'days';
+
+  // Elementos DOM
+  const dropzone = document.getElementById('dropzone') as HTMLElement;
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  const btnBrowse = document.getElementById('btn-browse') as HTMLButtonElement;
+  const btnDemo = document.getElementById('btn-demo') as HTMLButtonElement;
+  const dropzoneLoader = document.getElementById('dropzone-loader') as HTMLElement;
+  const errorAlert = document.getElementById('error-alert') as HTMLElement;
+  const errorTitle = document.getElementById('error-title') as HTMLElement;
+  const errorDesc = document.getElementById('error-desc') as HTMLElement;
+  const btnCloseAlert = document.getElementById('btn-close-alert') as HTMLButtonElement;
+
+  // Textarea panel
+  const btnTogglePaste = document.getElementById('btn-toggle-paste') as HTMLButtonElement;
+  const pastePanel = document.getElementById('paste-panel') as HTMLElement;
+  const toggleChevron = document.getElementById('toggle-chevron') as HTMLElement;
+  const rawTextInput = document.getElementById('raw-text-input') as HTMLTextAreaElement;
+  const btnParseText = document.getElementById('btn-parse-text') as HTMLButtonElement;
+  const btnClearText = document.getElementById('btn-clear-text') as HTMLButtonElement;
+
+  // Preview Section
+  const schedulePreview = document.getElementById('schedule-preview') as HTMLElement;
+  const badgeTotalMaterias = document.getElementById('badge-total-materias') as HTMLElement;
+  const badgeTotalClases = document.getElementById('badge-total-clases') as HTMLElement;
+  const badgePeriodo = document.getElementById('badge-periodo') as HTMLElement;
+  const inputEstudiante = document.getElementById('input-estudiante') as HTMLInputElement;
+  const inputPeriodo = document.getElementById('input-periodo') as HTMLInputElement;
+  const btnReset = document.getElementById('btn-reset') as HTMLButtonElement;
+
+  // Export buttons
+  const btnDownloadPilas = document.getElementById('btn-download-pilas') as HTMLButtonElement;
+  const qrCanvas = document.getElementById('qr-canvas') as HTMLCanvasElement;
+  const btnCopyProtocol = document.getElementById('btn-copy-protocol') as HTMLButtonElement;
+  const btnCopyProtocolText = document.getElementById('btn-copy-protocol-text') as HTMLElement;
+  const btnDownloadQr = document.getElementById('btn-download-qr') as HTMLButtonElement;
+
+  // Tabs & Views
+  const tabDayView = document.getElementById('tab-day-view') as HTMLButtonElement;
+  const tabSubjectView = document.getElementById('tab-subject-view') as HTMLButtonElement;
+  const viewByDays = document.getElementById('view-by-days') as HTMLElement;
+  const viewBySubjects = document.getElementById('view-by-subjects') as HTMLElement;
+  const classesGrid = document.getElementById('classes-grid') as HTMLElement;
+  const subjectsGrid = document.getElementById('subjects-grid') as HTMLElement;
+  const dayPills = document.querySelectorAll<HTMLButtonElement>('.day-pill');
+
+  // JSON Preview
+  const btnToggleJson = document.getElementById('btn-toggle-json') as HTMLButtonElement;
+  const jsonPreviewBox = document.getElementById('json-preview-box') as HTMLElement;
+  const jsonPreviewCode = document.getElementById('json-preview-code') as HTMLElement;
+  const jsonChevron = document.getElementById('json-chevron') as HTMLElement;
+
+  // ---------------------------------------------------------------------------
+  // MANEJADORES DE DROPZONE & ARCHIVOS
+  // ---------------------------------------------------------------------------
+  if (btnBrowse && fileInput) {
+    btnBrowse.addEventListener('click', () => {
+      fileInput.click();
+    });
+  }
+
+  if (fileInput) {
+    fileInput.addEventListener('change', async (e) => {
+      const files = (e.target as HTMLInputElement).files;
+      if (files && files[0]) {
+        await handleFile(files[0]);
+      }
+      fileInput.value = '';
+    });
+  }
+
+  if (dropzone) {
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add('is-dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove('is-dragover');
+      });
+    });
+
+    dropzone.addEventListener('drop', async (e) => {
+      const dt = e.dataTransfer;
+      if (dt && dt.files && dt.files[0]) {
+        await handleFile(dt.files[0]);
+      }
+    });
+  }
+
+  async function handleFile(file: File) {
+    if (!file.name.toLowerCase().endsWith('.pdf') && file.type !== 'application/pdf') {
+      showError('Formato no compatible', 'Por favor selecciona un archivo PDF descargado de Banner 9.');
+      return;
+    }
+
+    hideError();
+    setLoader(true);
+
+    try {
+      const extractedText = await extractTextFromPdf(file);
+      if (!extractedText || extractedText.trim().length === 0) {
+        throw new Error('El PDF no contiene texto legible (posiblemente esté protegido o escaneado como imagen).');
+      }
+
+      processTextAndRender(extractedText);
+    } catch (err: any) {
+      console.error('Error al procesar PDF:', err);
+      showError(
+        'Error al procesar el PDF',
+        err.message || 'No se pudo extraer el texto del archivo. Puedes copiar y pegar el texto manualmente usando la casilla inferior.'
+      );
+    } finally {
+      setLoader(false);
+    }
+  }
+
+  // Demo Button
+  if (btnDemo) {
+    btnDemo.addEventListener('click', () => {
+      hideError();
+      processTextAndRender(DEMO_BANNER_TEXT);
+    });
+  }
+
+  // Toggle Paste Panel
+  if (btnTogglePaste && pastePanel && toggleChevron) {
+    btnTogglePaste.addEventListener('click', () => {
+      const isHidden = pastePanel.hidden;
+      pastePanel.hidden = !isHidden;
+      btnTogglePaste.setAttribute('aria-expanded', String(isHidden));
+      toggleChevron.textContent = isHidden ? '▲' : '▼';
+    });
+  }
+
+  // Parse Text Button
+  if (btnParseText && rawTextInput) {
+    btnParseText.addEventListener('click', () => {
+      const text = rawTextInput.value.trim();
+      if (!text) {
+        showError('Texto vacío', 'Pega el texto del horario copiado desde Banner 9 en el cuadro de texto.');
+        return;
+      }
+      hideError();
+      processTextAndRender(text);
+    });
+  }
+
+  if (btnClearText && rawTextInput) {
+    btnClearText.addEventListener('click', () => {
+      rawTextInput.value = '';
+    });
+  }
+
+  if (btnCloseAlert && errorAlert) {
+    btnCloseAlert.addEventListener('click', () => {
+      hideError();
+    });
+  }
+
+  function showError(title: string, desc: string) {
+    if (errorTitle) errorTitle.textContent = title;
+    if (errorDesc) errorDesc.textContent = desc;
+    if (errorAlert) errorAlert.hidden = false;
+  }
+
+  function hideError() {
+    if (errorAlert) errorAlert.hidden = true;
+  }
+
+  function setLoader(isLoading: boolean) {
+    if (dropzoneLoader) {
+      dropzoneLoader.hidden = !isLoading;
+      if (isLoading) {
+        dropzoneLoader.classList.add('is-loading');
+      } else {
+        dropzoneLoader.classList.remove('is-loading');
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // PARSEO Y ACTUALIZACIÓN DE INTERFAZ
+  // ---------------------------------------------------------------------------
+  function processTextAndRender(rawText: string) {
+    try {
+      const schedule = parseBannerSchedule(rawText);
+
+      if (!schedule.materias || schedule.materias.length === 0) {
+        showError(
+          'No se encontraron materias en el archivo',
+          'El documento no contiene el formato típico de impresión de Banner 9 ESPE. Revisa que incluya código de materia (ej. EMEC A0202) y NRC de 5 dígitos.'
+        );
+        return;
+      }
+
+      currentSchedule = schedule;
+
+      // Actualizar campos
+      if (inputEstudiante) inputEstudiante.value = schedule.estudiante;
+      if (inputPeriodo) inputPeriodo.value = schedule.periodo;
+
+      updateStatsAndViews();
+
+      // Mostrar previsualización
+      if (schedulePreview) {
+        schedulePreview.hidden = false;
+        schedulePreview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Generar código QR y preview JSON
+      renderQrCode();
+      updateJsonPreview();
+    } catch (err: any) {
+      console.error('Error durante el parseo:', err);
+      showError('Error de análisis', err.message || 'Ocurrió un error inesperado al analizar el horario.');
+    }
+  }
+
+  // Sincronizar cambios manuales de estudiante o periodo
+  if (inputEstudiante) {
+    inputEstudiante.addEventListener('input', () => {
+      if (currentSchedule) {
+        currentSchedule.estudiante = inputEstudiante.value.trim() || 'Estudiante ESPE';
+        renderQrCode();
+        updateJsonPreview();
+      }
+    });
+  }
+
+  if (inputPeriodo) {
+    inputPeriodo.addEventListener('input', () => {
+      if (currentSchedule) {
+        currentSchedule.periodo = inputPeriodo.value.trim() || '202651';
+        if (badgePeriodo) badgePeriodo.textContent = `PERIODO: ${currentSchedule.periodo}`;
+        updateJsonPreview();
+      }
+    });
+  }
+
+  if (btnReset) {
+    btnReset.addEventListener('click', () => {
+      currentSchedule = null;
+      if (schedulePreview) schedulePreview.hidden = true;
+      if (dropzone) dropzone.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  function updateStatsAndViews() {
+    if (!currentSchedule) return;
+
+    const totalMaterias = currentSchedule.materias.length;
+    let totalClases = 0;
+    for (const m of currentSchedule.materias) {
+      totalClases += m.clases.length;
+    }
+
+    if (badgeTotalMaterias) {
+      badgeTotalMaterias.textContent = `${totalMaterias} ${totalMaterias === 1 ? 'MATERIA DETECTADA' : 'MATERIAS DETECTADAS'}`;
+    }
+    if (badgeTotalClases) {
+      badgeTotalClases.textContent = `${totalClases} ${totalClases === 1 ? 'BLOQUE HORARIO' : 'BLOQUES HORARIOS'}`;
+    }
+    if (badgePeriodo) {
+      badgePeriodo.textContent = `PERIODO: ${currentSchedule.periodo}`;
+    }
+
+    renderDaysView();
+    renderSubjectsView();
+  }
+
+  // ---------------------------------------------------------------------------
+  // VISTA POR DÍAS (CRONOGRAMA SEMANAL)
+  // ---------------------------------------------------------------------------
+  interface FlattenedClass {
+    dia: ClaseItem['dia'];
+    inicio: string;
+    fin: string;
+    aula: string;
+    materia: string;
+    codigo: string;
+    nrc: string;
+    docente: string;
+  }
+
+  const DAY_ORDER: Record<string, number> = {
+    LUN: 1, MAR: 2, MIE: 3, JUE: 4, VIE: 5, SAB: 6, DOM: 7,
+  };
+
+  const DAY_FULL_NAMES: Record<string, string> = {
+    LUN: 'Lunes',
+    MAR: 'Martes',
+    MIE: 'Miércoles',
+    JUE: 'Jueves',
+    VIE: 'Viernes',
+    SAB: 'Sábado',
+    DOM: 'Domingo',
+  };
+
+  function renderDaysView() {
+    if (!currentSchedule || !classesGrid) return;
+
+    // Aplanar todas las clases con sus metadatos de materia
+    const allClases: FlattenedClass[] = [];
+    for (const m of currentSchedule.materias) {
+      for (const c of m.clases) {
+        allClases.push({
+          dia: c.dia,
+          inicio: c.inicio,
+          fin: c.fin,
+          aula: c.aula,
+          materia: m.materia,
+          codigo: m.codigo,
+          nrc: m.nrc,
+          docente: m.docente,
+        });
+      }
+    }
+
+    // Filtrar por día si no es ALL
+    const filtered = currentDayFilter === 'ALL'
+      ? allClases
+      : allClases.filter(c => c.dia === currentDayFilter);
+
+    // Ordenar cronológicamente por día y luego por hora de inicio
+    filtered.sort((a, b) => {
+      const dayDiff = (DAY_ORDER[a.dia] || 0) - (DAY_ORDER[b.dia] || 0);
+      if (dayDiff !== 0) return dayDiff;
+      return a.inicio.localeCompare(b.inicio);
+    });
+
+    if (filtered.length === 0) {
+      classesGrid.innerHTML = `
+        <div class="empty-state-card">
+          <span class="empty-icon">☕</span>
+          <h3>Sin clases registradas para este día</h3>
+          <p>No se encontraron bloques de clase para ${DAY_FULL_NAMES[currentDayFilter] || currentDayFilter}.</p>
+        </div>
+      `;
+      return;
+    }
+
+    let html = '';
+    for (const item of filtered) {
+      const dayClass = `day-tag-${item.dia.toLowerCase()}`;
+      html += `
+        <article class="class-card ${dayClass}">
+          <div class="class-card-header">
+            <span class="day-badge ${dayClass}">${DAY_FULL_NAMES[item.dia] || item.dia}</span>
+            <span class="time-range-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              ${item.inicio} - ${item.fin}
+            </span>
+          </div>
+
+          <h3 class="class-title">${escapeHtml(item.materia)}</h3>
+
+          <div class="class-meta-pills">
+            <span class="pill-code">${escapeHtml(item.codigo)}</span>
+            <span class="pill-nrc">NRC: ${escapeHtml(item.nrc)}</span>
+          </div>
+
+          <div class="class-details">
+            <div class="detail-row">
+              <span class="detail-icon" aria-hidden="true">📍</span>
+              <span class="detail-text aula-text"><strong>Aula:</strong> ${escapeHtml(item.aula)}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-icon" aria-hidden="true">👨‍🏫</span>
+              <span class="detail-text docente-text"><strong>Docente:</strong> ${escapeHtml(item.docente)}</span>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    classesGrid.innerHTML = html;
+  }
+
+  // ---------------------------------------------------------------------------
+  // VISTA POR MATERIAS
+  // ---------------------------------------------------------------------------
+  function renderSubjectsView() {
+    if (!currentSchedule || !subjectsGrid) return;
+
+    let html = '';
+    for (const m of currentSchedule.materias) {
+      html += `
+        <article class="subject-card">
+          <div class="subject-header">
+            <div class="subject-tags">
+              <span class="badge-app fuchsia">${escapeHtml(m.codigo)}</span>
+              <span class="badge-app amber">NRC ${escapeHtml(m.nrc)}</span>
+            </div>
+            <h3 class="subject-title">${escapeHtml(m.materia)}</h3>
+            <p class="subject-docente">
+              <span class="icon-inline" aria-hidden="true">👨‍🏫</span>
+              ${escapeHtml(m.docente)}
+            </p>
+          </div>
+
+          <div class="subject-sessions-list">
+            <h4 class="sessions-heading">Horarios de clase asignados:</h4>
+            ${m.clases.length === 0 ? '<p class="no-sessions">Sin sesiones detectadas.</p>' : ''}
+            <div class="sessions-chips">
+              ${m.clases.map(c => `
+                <div class="session-chip day-tag-${c.dia.toLowerCase()}">
+                  <span class="chip-day">${DAY_FULL_NAMES[c.dia] || c.dia}</span>
+                  <span class="chip-time">${c.inicio} - ${c.fin}</span>
+                  <span class="chip-aula">📍 ${escapeHtml(c.aula)}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    subjectsGrid.innerHTML = html;
+  }
+
+  // ---------------------------------------------------------------------------
+  // FILTRADO POR DÍAS & TABS
+  // ---------------------------------------------------------------------------
+  dayPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      dayPills.forEach(p => p.classList.remove('is-active'));
+      pill.classList.add('is-active');
+      currentDayFilter = pill.getAttribute('data-day') || 'ALL';
+      renderDaysView();
+    });
+  });
+
+  if (tabDayView && tabSubjectView && viewByDays && viewBySubjects) {
+    tabDayView.addEventListener('click', () => {
+      tabDayView.classList.add('is-active');
+      tabDayView.setAttribute('aria-selected', 'true');
+      tabSubjectView.classList.remove('is-active');
+      tabSubjectView.setAttribute('aria-selected', 'false');
+
+      viewByDays.hidden = false;
+      viewBySubjects.hidden = true;
+      currentViewMode = 'days';
+    });
+
+    tabSubjectView.addEventListener('click', () => {
+      tabSubjectView.classList.add('is-active');
+      tabSubjectView.setAttribute('aria-selected', 'true');
+      tabDayView.classList.remove('is-active');
+      tabDayView.setAttribute('aria-selected', 'false');
+
+      viewByDays.hidden = true;
+      viewBySubjects.hidden = false;
+      currentViewMode = 'subjects';
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // DESCARGA DEL ARCHIVO .PILAS
+  // ---------------------------------------------------------------------------
+  if (btnDownloadPilas) {
+    btnDownloadPilas.addEventListener('click', () => {
+      if (!currentSchedule) {
+        showError('Sin datos', 'Carga un horario antes de descargar.');
+        return;
+      }
+      downloadPilasFile(currentSchedule, 'horario_espe.pilas');
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // GENERACIÓN DE CÓDIGO QR (P2P esp://friend?d=...)
+  // ---------------------------------------------------------------------------
+  let currentQrUri = '';
+
+  async function renderQrCode() {
+    if (!currentSchedule || !qrCanvas) return;
+
+    try {
+      const qrPayload = generateQrPayload(currentSchedule);
+      const uri = generateFriendQrProtocol(qrPayload);
+      currentQrUri = uri;
+
+      const btnOpenProtocol = document.getElementById('btn-open-protocol') as HTMLAnchorElement;
+      if (btnOpenProtocol) {
+        btnOpenProtocol.href = uri;
+      }
+
+      await QRCode.toCanvas(qrCanvas, uri, {
+        width: 220,
+        margin: 2,
+        color: {
+          dark: '#101319',
+          light: '#ffffff',
+        },
+        errorCorrectionLevel: 'M',
+      });
+    } catch (err) {
+      console.error('Error al generar código QR:', err);
+    }
+  }
+
+  if (btnCopyProtocol && btnCopyProtocolText) {
+    btnCopyProtocol.addEventListener('click', async () => {
+      if (!currentQrUri) return;
+      try {
+        await navigator.clipboard.writeText(currentQrUri);
+        const originalText = btnCopyProtocolText.textContent;
+        btnCopyProtocolText.textContent = '¡Copiado!';
+        setTimeout(() => {
+          btnCopyProtocolText.textContent = originalText;
+        }, 2000);
+      } catch (err) {
+        console.error('Error al copiar al portapapeles:', err);
+      }
+    });
+  }
+
+  if (btnDownloadQr && qrCanvas) {
+    btnDownloadQr.addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.download = 'horario_pilas_qr.png';
+      link.href = qrCanvas.toDataURL('image/png');
+      link.click();
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // PREVISUALIZACIÓN DE JSON
+  // ---------------------------------------------------------------------------
+  function updateJsonPreview() {
+    if (!currentSchedule || !jsonPreviewCode) return;
+    jsonPreviewCode.textContent = JSON.stringify(currentSchedule, null, 2);
+  }
+
+  if (btnToggleJson && jsonPreviewBox && jsonChevron) {
+    btnToggleJson.addEventListener('click', () => {
+      const isHidden = jsonPreviewBox.hidden;
+      jsonPreviewBox.hidden = !isHidden;
+      btnToggleJson.setAttribute('aria-expanded', String(isHidden));
+      jsonChevron.textContent = isHidden ? '▲' : '▼';
+    });
+  }
+
+  function escapeHtml(str: string): string {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+</script>
+
+<style>
+  /* ==========================================================================
+     PÁGINA CONVERTIDOR DE HORARIOS - NEO-BRUTALISMO DARK SLATE
+     ========================================================================== */
+
+  .converter-page {
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+    background: var(--color-bg-base);
+    color: var(--color-text-body);
+    min-height: 100vh;
+  }
+
+  /* BREADCRUMB */
+  .converter-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .btn-back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-body);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-surface);
+    transition: all var(--duration-hover) var(--ease-spring);
+  }
+
+  .btn-back-home:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: translateX(-2px);
+  }
+
+  .breadcrumb-sep {
+    color: var(--color-border);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-text-title);
+    font-weight: 500;
+  }
+
+  /* HERO HEADER */
+  .converter-hero-header {
+    margin-bottom: 3rem;
+  }
+
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .converter-main-title {
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-text-title);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+
+  .title-highlight {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #ff85c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .converter-hero-desc {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-body);
+    max-width: 820px;
+    margin-bottom: 2rem;
+  }
+
+  .code-pill {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--color-bg-elevated);
+    color: var(--accent-cyan);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+  }
+
+  /* PÍLDORAS PRIVACIDAD */
+  .privacy-badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+  }
+
+  .privacy-item {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    box-shadow: var(--shadow-brutalist-sm);
+    padding: 0.9rem 1.1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .privacy-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .privacy-item strong {
+    display: block;
+    color: var(--color-text-title);
+    font-size: 0.95rem;
+  }
+
+  .privacy-item p {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* GUÍA DE PASOS */
+  .banner-steps-guide {
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-brutalist);
+    padding: 1.75rem 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .guide-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .guide-num-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-warning);
+    background: rgba(255, 219, 121, 0.12);
+    border: 1px solid var(--color-warning);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.5rem;
+  }
+
+  .guide-header-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .badge-app.green-subtle {
+    background: rgba(0, 255, 135, 0.12);
+    color: var(--color-success);
+    border: 1px solid var(--color-success);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .guide-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin: 0 0 0.35rem 0;
+  }
+
+  .guide-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .steps-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .step-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-base);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-brutalist-sm);
+    transition: transform var(--duration-hover) var(--ease-spring);
+  }
+
+  .step-card:hover {
+    border-color: var(--accent-cyan);
+    transform: translateY(-2px);
+  }
+
+  .step-card-featured {
+    border-color: rgba(255, 63, 164, 0.4);
+    background: linear-gradient(180deg, rgba(255, 63, 164, 0.04) 0%, var(--color-bg-base) 100%);
+  }
+
+  .step-card-visual {
+    border-color: rgba(56, 189, 248, 0.4);
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.04) 0%, var(--color-bg-base) 100%);
+  }
+
+  .step-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.9rem;
+  }
+
+  .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--color-primary);
+    color: #000;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    border-radius: 8px;
+    flex-shrink: 0;
+    box-shadow: 2px 2px 0 #000;
+  }
+
+  .step-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    background: var(--color-bg-elevated);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+  }
+
+  .step-tag.pulse-tag {
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+  }
+
+  .step-body h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .step-body p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-text-body);
+    margin: 0 0 0.75rem 0;
+  }
+
+  /* BOTÓN ENLACE DIRECTO BANNER */
+  .btn-banner-direct {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background: var(--color-primary);
+    color: #000;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 800;
+    padding: 0.85rem 1.15rem;
+    border-radius: var(--radius-md);
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0 #000;
+    text-decoration: none;
+    margin-top: 0.75rem;
+    margin-bottom: 0.4rem;
+    transition: all var(--duration-hover) var(--ease-spring);
+    text-align: center;
+  }
+
+  .btn-banner-direct:hover {
+    background: var(--color-primary-hover);
+    color: #fff;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 #000;
+  }
+
+  .btn-banner-direct:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #000;
+  }
+
+  .direct-link-note {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* CAPTURA TUTORIAL DE LA IMPRESORA */
+  .tutorial-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+  }
+
+  .image-spotlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid var(--accent-cyan);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .spotlight-arrow {
+    font-size: 0.9rem;
+    animation: bounce-horizontal 1.2s infinite ease-in-out;
+  }
+
+  @keyframes bounce-horizontal {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+  }
+
+  .tutorial-img-frame {
+    background: #000;
+    border: 2px solid var(--color-border);
+    border-radius: 10px;
+    padding: 4px;
+    box-shadow: 3px 3px 0 #000;
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .tutorial-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: contain;
+  }
+
+  .step-tips-list {
+    margin: 0 0 0.75rem 1.15rem;
+    padding: 0;
+    font-size: 0.85rem;
+    color: var(--color-text-body);
+    line-height: 1.5;
+  }
+
+  .step-tips-list li {
+    margin-bottom: 0.4rem;
+  }
+
+  .step-final-note {
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+    font-weight: 600;
+  }
+
+  /* BOTÓN ABRIR APP PWA */
+  .btn-open-pwa {
+    background: var(--color-primary);
+    color: #000;
+    border-color: #000;
+    font-weight: 800;
+  }
+
+  .btn-open-pwa:hover {
+    background: var(--color-primary-hover);
+    color: #fff;
+  }
+
+  /* DROPZONE CARD */
+  .converter-box-section {
+    margin-bottom: 3rem;
+  }
+
+  .dropzone-card {
+    position: relative;
+    background: var(--color-bg-surface);
+    border: 3px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-brutalist);
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: all var(--duration-hover) var(--ease-spring);
+    cursor: pointer;
+  }
+
+  .dropzone-card:hover {
+    border-color: var(--color-primary);
+    background: #171c26;
+  }
+
+  .dropzone-card.is-dragover {
+    border-color: var(--accent-cyan);
+    background: rgba(56, 189, 248, 0.05);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2), var(--shadow-brutalist-lg);
+    transform: scale(1.01);
+  }
+
+  .dropzone-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: var(--color-bg-elevated);
+    border: 2px solid var(--color-border);
+    color: var(--color-primary);
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-brutalist-sm);
+    transition: transform var(--duration-hover) var(--ease-spring);
+  }
+
+  .dropzone-card:hover .dropzone-icon-wrap {
+    transform: translateY(-4px);
+    color: #fff;
+    background: var(--color-primary);
+    border-color: #000;
+  }
+
+  .dropzone-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .dropzone-subtitle {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin: 0 0 1.75rem 0;
+  }
+
+  .dropzone-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .dropzone-hint {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .hint-bullet {
+    color: var(--color-success);
+    font-weight: bold;
+  }
+
+  /* BOTONES BRUTALISTAS */
+  .btn-brutalist {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.8rem 1.4rem;
+    border-radius: var(--radius-md);
+    border: 2px solid #000;
+    box-shadow: var(--shadow-brutalist);
+    cursor: pointer;
+    transition: all var(--duration-hover) var(--ease-spring);
+    text-decoration: none;
+  }
+
+  .btn-brutalist:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-brutalist-lg);
+  }
+
+  .btn-brutalist:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #000;
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: #000;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primary-hover);
+    color: #fff;
+  }
+
+  .btn-secondary {
+    background: var(--color-bg-elevated);
+    color: var(--color-text-title);
+    border-color: var(--color-border);
+  }
+
+  .btn-secondary:hover {
+    border-color: #000;
+    background: var(--color-bg-container);
+  }
+
+  .btn-fuchsia {
+    background: var(--color-primary);
+    color: #000;
+  }
+
+  .btn-fuchsia:hover {
+    background: #ff1f8f;
+    color: #fff;
+  }
+
+  .btn-cyan {
+    background: var(--accent-cyan);
+    color: #000;
+  }
+
+  .btn-cyan:hover {
+    background: #0284c7;
+    color: #fff;
+  }
+
+  .btn-subtle {
+    background: transparent;
+    color: var(--color-text-muted);
+    border-color: var(--color-border);
+    box-shadow: none;
+  }
+
+  .btn-subtle:hover {
+    background: var(--color-bg-elevated);
+    color: var(--color-text-title);
+  }
+
+  .btn-large {
+    font-size: 1.1rem;
+    padding: 1.1rem 1.8rem;
+    width: 100%;
+  }
+
+  /* LOADER (Oculto por defecto; se muestra solo al procesar un archivo) */
+  .dropzone-loader {
+    position: absolute;
+    inset: 0;
+    background: rgba(16, 19, 25, 0.95);
+    border-radius: var(--radius-lg);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .dropzone-loader.is-loading,
+  .dropzone-loader:not([hidden]) {
+    display: flex;
+  }
+
+  .dropzone-loader[hidden] {
+    display: none !important;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  .spinner-neon {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--color-border);
+    border-top-color: var(--color-primary);
+    border-right-color: var(--accent-cyan);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 1rem;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .loader-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-title);
+    margin: 0 0 0.3rem 0;
+  }
+
+  .loader-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* TEXTAREA COLLAPSIBLE */
+  .text-paste-container {
+    margin-top: 1.25rem;
+  }
+
+  .btn-toggle-paste {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-md);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    transition: all var(--duration-hover) var(--ease-spring);
+  }
+
+  .btn-toggle-paste:hover {
+    color: var(--color-text-title);
+    border-color: var(--color-primary);
+  }
+
+  .toggle-icon {
+    font-size: 0.75rem;
+    transition: transform 0.2s;
+  }
+
+  .paste-panel {
+    margin-top: 0.75rem;
+  }
+
+  .paste-panel-inner {
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-brutalist-sm);
+    padding: 1.25rem;
+  }
+
+  .paste-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-title);
+    margin-bottom: 0.6rem;
+  }
+
+  .paste-textarea {
+    width: 100%;
+    background: var(--color-bg-base);
+    color: var(--color-text-title);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0.8rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    resize: vertical;
+    margin-bottom: 1rem;
+  }
+
+  .paste-textarea:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+  }
+
+  .paste-actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  /* ALERT BOX */
+  .alert-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    border: 2px solid #000;
+    box-shadow: var(--shadow-brutalist);
+    margin-top: 1.5rem;
+  }
+
+  .alert-error {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: var(--color-critical);
+  }
+
+  .alert-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .alert-content strong {
+    display: block;
+    color: #fca5a5;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .alert-content p {
+    font-size: 0.85rem;
+    color: #e1e2eb;
+    margin: 0;
+  }
+
+  .alert-close {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+
+  /* PREVISUALIZACIÓN */
+  .schedule-preview-section {
+    margin-top: 3rem;
+  }
+
+  .preview-meta-card {
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-brutalist);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .meta-badge-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .btn-reset-parse {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--duration-hover);
+  }
+
+  .btn-reset-parse:hover {
+    border-color: var(--color-critical);
+    color: var(--color-critical);
+  }
+
+  .meta-fields-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .field-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .field-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .field-input {
+    background: var(--color-bg-base);
+    color: var(--color-text-title);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  /* EXPORT ACTIONS GRID */
+  .export-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .export-card {
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-brutalist);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .export-badge-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    background: rgba(255, 63, 164, 0.15);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+  }
+
+  .export-badge-tag.qr-tag {
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+  }
+
+  .export-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .export-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .export-tips {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+    padding: 0.8rem 1rem;
+    background: var(--color-bg-base);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .tip-check {
+    color: var(--color-success);
+    font-weight: bold;
+  }
+
+  .export-tips p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--color-text-body);
+    margin: 0;
+  }
+
+  /* QR CODE STYLES */
+  .qr-render-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .qr-canvas-wrapper {
+    background: #ffffff;
+    padding: 0.75rem;
+    border-radius: 12px;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qr-canvas-wrapper canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .qr-action-buttons {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-mini-brutalist {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.5rem 0.9rem;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-title);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--duration-hover);
+  }
+
+  .btn-mini-brutalist:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+  }
+
+  /* BARRA DE CONTROLES & TABS */
+  .preview-controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .view-tabs {
+    display: flex;
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    padding: 0.3rem;
+    border-radius: var(--radius-md);
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--duration-hover);
+  }
+
+  .tab-btn.is-active {
+    background: var(--color-primary);
+    color: #000;
+  }
+
+  .day-filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .day-pill {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all var(--duration-hover);
+  }
+
+  .day-pill:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+  }
+
+  .day-pill.is-active {
+    background: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    color: #000;
+    font-weight: 700;
+  }
+
+  /* CLASES GRID (VISTA POR DÍAS) */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .class-card {
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-brutalist-sm);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--duration-hover) var(--ease-spring);
+  }
+
+  .class-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-brutalist);
+  }
+
+  .class-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.9rem;
+  }
+
+  .day-badge {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #000;
+    box-shadow: 2px 2px 0 #000;
+  }
+
+  /* Colores por día */
+  .day-badge.day-tag-lun, .day-badge.day-tag-lunes { background: var(--color-primary); color: #000; }
+  .day-badge.day-tag-mar, .day-badge.day-tag-martes { background: var(--accent-cyan); color: #000; }
+  .day-badge.day-tag-mie, .day-badge.day-tag-miercoles { background: var(--color-success); color: #000; }
+  .day-badge.day-tag-jue, .day-badge.day-tag-jueves { background: var(--color-warning); color: #000; }
+  .day-badge.day-tag-vie, .day-badge.day-tag-viernes { background: #c084fc; color: #000; }
+  .day-badge.day-tag-sab, .day-badge.day-tag-sabado { background: #f43f5e; color: #fff; }
+
+  .time-range-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text-title);
+    background: var(--color-bg-base);
+    border: 1px solid var(--color-border);
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+  }
+
+  .class-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.35;
+    color: var(--color-text-title);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .class-meta-pills {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .pill-code {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    color: var(--accent-cyan);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .pill-nrc {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    color: var(--color-warning);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .class-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 0.85rem;
+  }
+
+  .detail-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .detail-icon {
+    font-size: 1rem;
+    line-height: 1.2;
+    flex-shrink: 0;
+  }
+
+  .detail-text {
+    color: var(--color-text-body);
+    line-height: 1.4;
+  }
+
+  .detail-text strong {
+    color: var(--color-text-muted);
+  }
+
+  /* VISTA POR MATERIAS */
+  .subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .subject-card {
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-brutalist-sm);
+    padding: 1.5rem;
+  }
+
+  .subject-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .subject-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .subject-docente {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0 0 1.25rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .sessions-heading {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin: 0 0 0.6rem 0;
+  }
+
+  .sessions-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .session-chip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--color-bg-base);
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+  }
+
+  .chip-day {
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+  }
+
+  .chip-time {
+    font-family: var(--font-mono);
+    color: var(--color-text-title);
+  }
+
+  .chip-aula {
+    color: var(--color-text-muted);
+    margin-left: auto;
+  }
+
+  /* EMPTY STATE */
+  .empty-state-card {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--color-bg-surface);
+    border: 2px dashed var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .empty-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  /* JSON COLLAPSIBLE */
+  .json-preview-container {
+    margin-top: 1.5rem;
+  }
+
+  .btn-toggle-json {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+  }
+
+  .btn-toggle-json:hover {
+    color: var(--accent-cyan);
+  }
+
+  .json-preview-box {
+    margin-top: 0.75rem;
+    background: #0d1017;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    max-height: 380px;
+    overflow-y: auto;
+  }
+
+  .json-preview-box pre {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: #a5b4fc;
+    line-height: 1.5;
+  }
+
+  /* FAQ SECTION */
+  .converter-faq-section {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq-section-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin: 0 0 2rem 0;
+    text-align: center;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .faq-card {
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-brutalist-sm);
+    padding: 1.5rem;
+  }
+
+  .faq-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text-title);
+    margin: 0 0 0.6rem 0;
+  }
+
+  .faq-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-text-body);
+    margin: 0;
+  }
+
+  /* ==========================================================================
+     RESPONSIVE DESIGN (OPTIMIZACIÓN MÓVIL-FIRST / IPHONE & ANDROID)
+     ========================================================================== */
+  @media (max-width: 860px) {
+    .steps-cards-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .export-actions-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .hidden-mobile {
+      display: none;
+    }
+
+    .converter-page {
+      padding-top: 1.25rem;
+      padding-bottom: 3.5rem;
+    }
+
+    .converter-hero-header {
+      margin-bottom: 1.75rem;
+    }
+
+    .converter-main-title {
+      font-size: 1.85rem;
+      line-height: 1.2;
+    }
+
+    .converter-hero-desc {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .banner-steps-guide {
+      padding: 1.25rem 1rem;
+    }
+
+    .guide-title {
+      font-size: 1.15rem;
+    }
+
+    .step-card {
+      padding: 1.15rem 1rem;
+    }
+
+    .btn-banner-direct {
+      width: 100%;
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem;
+    }
+
+    .privacy-badges-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .privacy-item {
+      padding: 0.75rem 0.9rem;
+    }
+
+    /* DROPZONE RESPONSIVE */
+    .dropzone-card {
+      padding: 2rem 1rem;
+      border-width: 2px;
+    }
+
+    .dropzone-icon-wrap {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .dropzone-title {
+      font-size: 1.2rem;
+    }
+
+    .dropzone-subtitle {
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .dropzone-actions {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.75rem;
+    }
+
+    .btn-brutalist {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* CONTROLES Y TABS EN MÓVIL */
+    .preview-controls-bar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.85rem;
+    }
+
+    .view-tabs {
+      width: 100%;
+      display: flex;
+    }
+
+    .tab-btn {
+      flex: 1;
+      text-align: center;
+      padding: 0.55rem 0.5rem;
+      font-size: 0.825rem;
+    }
+
+    /* FILTROS POR DÍA: SWIPE HORIZONTAL CON EL PULGAR */
+    .day-filter-pills {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 0.35rem;
+      gap: 0.35rem;
+      width: 100%;
+    }
+
+    .day-filter-pills::-webkit-scrollbar {
+      display: none;
+    }
+
+    .day-pill {
+      flex-shrink: 0;
+      white-space: nowrap;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    /* GRID DE CLASES */
+    .schedule-grid,
+    .subjects-grid {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+
+    .class-card {
+      padding: 1rem;
+    }
+
+    .class-title {
+      font-size: 0.975rem;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .class-card-header {
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .time-range-badge {
+      font-size: 0.775rem;
+      padding: 0.15rem 0.45rem;
+    }
+
+    .meta-fields-grid {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+
+    /* BOTONES DE ACCIONES EXPORTACIÓN */
+    .btn-large {
+      font-size: 0.95rem;
+      padding: 0.9rem 1.15rem;
+    }
+
+    .qr-render-container {
+      width: 100%;
+    }
+
+    .qr-canvas-wrapper {
+      padding: 0.5rem;
+      max-width: 100%;
+    }
+
+    .qr-canvas-wrapper canvas {
+      max-width: 180px;
+      max-height: 180px;
+    }
+
+    .qr-action-buttons {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.5rem;
+    }
+
+    .btn-mini-brutalist {
+      width: 100%;
+      justify-content: center;
+      padding: 0.7rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .converter-main-title {
+      font-size: 1.55rem;
+    }
+
+    .guide-title {
+      font-size: 1.05rem;
+    }
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      font-size: 0.85rem;
+    }
+
+    .day-pill {
+      padding: 0.35rem 0.65rem;
+      font-size: 0.75rem;
+    }
+
+    .pill-code,
+    .pill-nrc {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.35rem;
+    }
+  }
+</style>
