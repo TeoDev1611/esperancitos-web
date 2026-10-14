@@ -367,20 +367,62 @@ DOCENTE EJEMPLO, CARLOS ALBERTO"
           </div>
         </div>
 
-        <!-- FILTROS Y VISTAS INTERACTIVAS -->
+        <!-- FILTROS Y VISTAS INTERACTIVAS: HORARIO & CALENDARIO -->
         <div class="preview-controls-bar">
-          <div class="view-tabs" role="tablist" aria-label="Modo de visualización">
-            <button type="button" class="tab-btn is-active" id="tab-day-view" role="tab" aria-selected="true" aria-controls="view-by-days">
-              Vista por Días de Semana
-            </button>
-            <button type="button" class="tab-btn" id="tab-subject-view" role="tab" aria-selected="false" aria-controls="view-by-subjects">
-              Vista por Materias
+          <div class="view-tabs-wrapper">
+            <div class="view-tabs" role="tablist" aria-label="Modo de visualización del horario">
+              <button type="button" class="tab-btn is-active" id="tab-weekly-board" role="tab" aria-selected="true" aria-controls="view-weekly-board" title="Vista por columnas de lunes a sábado">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                  <line x1="9" y1="3" x2="9" y2="21"></line>
+                  <line x1="15" y1="3" x2="15" y2="21"></line>
+                </svg>
+                <span>Horario Semanal</span>
+              </button>
+              <button type="button" class="tab-btn" id="tab-matrix-view" role="tab" aria-selected="false" aria-controls="view-matrix" title="Rejilla de calendario con horas de 07:00 a 21:00">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>Matriz Horaria</span>
+              </button>
+              <button type="button" class="tab-btn" id="tab-agenda-view" role="tab" aria-selected="false" aria-controls="view-agenda" title="Timeline cronológico con huecos libres">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="8" y1="6" x2="21" y2="6"></line>
+                  <line x1="8" y1="12" x2="21" y2="12"></line>
+                  <line x1="8" y1="18" x2="21" y2="18"></line>
+                  <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                  <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                  <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                </svg>
+                <span>Agenda Diaria</span>
+              </button>
+              <button type="button" class="tab-btn" id="tab-subject-view" role="tab" aria-selected="false" aria-controls="view-by-subjects" title="Resumen agrupado por materia">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+                  <path d="M6 6h10"></path>
+                  <path d="M6 10h10"></path>
+                </svg>
+                <span>Por Materias</span>
+              </button>
+            </div>
+
+            <!-- Botón de impresión limpia de horario -->
+            <button type="button" class="btn-print-action" id="btn-print-schedule" title="Imprimir o guardar como PDF en alta calidad">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+              <span>Imprimir</span>
             </button>
           </div>
 
-          <!-- Selector de día rápido -->
+          <!-- Selector de día rápido para filtrar o enfocar -->
           <div class="day-filter-pills" id="day-filter-container">
-            <button type="button" class="day-pill is-active" data-day="ALL">Todos</button>
+            <button type="button" class="day-pill is-active" data-day="ALL">Toda la Semana</button>
             <button type="button" class="day-pill" data-day="LUN">Lunes</button>
             <button type="button" class="day-pill" data-day="MAR">Martes</button>
             <button type="button" class="day-pill" data-day="MIE">Miércoles</button>
@@ -390,19 +432,51 @@ DOCENTE EJEMPLO, CARLOS ALBERTO"
           </div>
         </div>
 
-        <!-- CONTENEDOR 1: VISTA POR DÍAS (CRONOGRAMA) -->
-        <div class="schedule-view-panel" id="view-by-days">
-          <div class="schedule-grid" id="classes-grid">
+        <!-- CONTENEDOR 1: HORARIO SEMANAL (TABLERO DE COLUMNAS POR DÍA) -->
+        <div class="schedule-view-panel" id="view-weekly-board">
+          <div class="weekly-board-grid" id="weekly-board-container">
             <!-- Rellenado dinámicamente con JavaScript -->
           </div>
         </div>
 
-        <!-- CONTENEDOR 2: VISTA POR MATERIAS (ACORDEÓN / TARJETAS) -->
+        <!-- CONTENEDOR 2: MATRIZ HORARIA (GRID DE CALENDARIO 07:00 - 21:00) -->
+        <div class="schedule-view-panel" id="view-matrix" hidden>
+          <div class="matrix-card-wrap">
+            <div class="matrix-legend-row">
+              <div class="matrix-legend-label">
+                <span class="pulse-dot"></span>
+                <span>Matriz Semanal de Clases (07:00 a 21:00)</span>
+              </div>
+              <div class="matrix-legend-hint">Haz clic en cualquier clase para ver los detalles completos</div>
+            </div>
+            <div class="matrix-scroll-wrapper">
+              <div class="matrix-grid-container" id="matrix-grid-container">
+                <!-- Rellenado dinámicamente con JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTENEDOR 3: AGENDA DIARIA (TIMELINE CON HUECOS LIBRES) -->
+        <div class="schedule-view-panel" id="view-agenda" hidden>
+          <div class="agenda-timeline" id="agenda-timeline-container">
+            <!-- Rellenado dinámicamente con JavaScript -->
+          </div>
+        </div>
+
+        <!-- CONTENEDOR 4: VISTA POR MATERIAS (ACORDEÓN / TARJETAS) -->
         <div class="schedule-view-panel" id="view-by-subjects" hidden>
           <div class="subjects-grid" id="subjects-grid">
             <!-- Rellenado dinámicamente con JavaScript -->
           </div>
         </div>
+
+        <!-- MODAL INTERACTIVO DE DETALLES DE CLASE -->
+        <dialog id="class-detail-modal" class="class-modal-dialog">
+          <div class="class-modal-content" id="class-modal-content">
+            <!-- Inyectado dinámicamente -->
+          </div>
+        </dialog>
 
         <!-- PREVIEW JSON RAW (COLAPSABLE) -->
         <div class="json-preview-container">
@@ -500,7 +574,7 @@ DOCENTE PRUEBA, ANDREA SOFIA`;
   // Estado global en memoria
   let currentSchedule: PilasSchedule | null = null;
   let currentDayFilter = 'ALL';
-  let currentViewMode: 'days' | 'subjects' = 'days';
+  let currentViewMode: 'weekly' | 'matrix' | 'agenda' | 'subjects' = 'weekly';
 
   // Elementos DOM
   const dropzone = document.getElementById('dropzone') as HTMLElement;
@@ -537,14 +611,27 @@ DOCENTE PRUEBA, ANDREA SOFIA`;
   const btnCopyProtocolText = document.getElementById('btn-copy-protocol-text') as HTMLElement;
   const btnDownloadQr = document.getElementById('btn-download-qr') as HTMLButtonElement;
 
-  // Tabs & Views
-  const tabDayView = document.getElementById('tab-day-view') as HTMLButtonElement;
+  // Tabs & Vistas Interactivas
+  const tabWeeklyBoard = document.getElementById('tab-weekly-board') as HTMLButtonElement;
+  const tabMatrixView = document.getElementById('tab-matrix-view') as HTMLButtonElement;
+  const tabAgendaView = document.getElementById('tab-agenda-view') as HTMLButtonElement;
   const tabSubjectView = document.getElementById('tab-subject-view') as HTMLButtonElement;
-  const viewByDays = document.getElementById('view-by-days') as HTMLElement;
+  const btnPrintSchedule = document.getElementById('btn-print-schedule') as HTMLButtonElement;
+
+  const viewWeeklyBoard = document.getElementById('view-weekly-board') as HTMLElement;
+  const viewMatrix = document.getElementById('view-matrix') as HTMLElement;
+  const viewAgenda = document.getElementById('view-agenda') as HTMLElement;
   const viewBySubjects = document.getElementById('view-by-subjects') as HTMLElement;
-  const classesGrid = document.getElementById('classes-grid') as HTMLElement;
+
+  const weeklyBoardContainer = document.getElementById('weekly-board-container') as HTMLElement;
+  const matrixGridContainer = document.getElementById('matrix-grid-container') as HTMLElement;
+  const agendaTimelineContainer = document.getElementById('agenda-timeline-container') as HTMLElement;
   const subjectsGrid = document.getElementById('subjects-grid') as HTMLElement;
   const dayPills = document.querySelectorAll<HTMLButtonElement>('.day-pill');
+
+  // Modal de detalles
+  const classDetailModal = document.getElementById('class-detail-modal') as HTMLDialogElement;
+  const classModalContent = document.getElementById('class-modal-content') as HTMLElement;
 
   // JSON Preview
   const btnToggleJson = document.getElementById('btn-toggle-json') as HTMLButtonElement;
@@ -754,32 +841,123 @@ DOCENTE PRUEBA, ANDREA SOFIA`;
     });
   }
 
-  function updateStatsAndViews() {
-    if (!currentSchedule) return;
-
-    const totalMaterias = currentSchedule.materias.length;
-    let totalClases = 0;
-    for (const m of currentSchedule.materias) {
-      totalClases += m.clases.length;
-    }
-
-    if (badgeTotalMaterias) {
-      badgeTotalMaterias.textContent = `${totalMaterias} ${totalMaterias === 1 ? 'MATERIA DETECTADA' : 'MATERIAS DETECTADAS'}`;
-    }
-    if (badgeTotalClases) {
-      badgeTotalClases.textContent = `${totalClases} ${totalClases === 1 ? 'BLOQUE HORARIO' : 'BLOQUES HORARIOS'}`;
-    }
-    if (badgePeriodo) {
-      badgePeriodo.textContent = `PERIODO: ${currentSchedule.periodo}`;
-    }
-
-    renderDaysView();
-    renderSubjectsView();
+  // ===========================================================================
+  // PALETAS DE COLOR DINÁMICAS POR MATERIA (ESTUDIANTE PRO NEO-BRUTALISM)
+  // ===========================================================================
+  interface SubjectPalette {
+    id: string;
+    border: string;
+    bg: string;
+    accent: string;
+    tagBg: string;
+    tagColor: string;
+    glow: string;
   }
 
-  // ---------------------------------------------------------------------------
-  // VISTA POR DÍAS (CRONOGRAMA SEMANAL)
-  // ---------------------------------------------------------------------------
+  const SUBJECT_PALETTES: SubjectPalette[] = [
+    {
+      id: 'fuchsia',
+      border: '#ff3fa4',
+      bg: 'rgba(255, 63, 164, 0.12)',
+      accent: '#ff3fa4',
+      tagBg: '#ff3fa4',
+      tagColor: '#000000',
+      glow: 'rgba(255, 63, 164, 0.35)',
+    },
+    {
+      id: 'cyan',
+      border: '#00f0ff',
+      bg: 'rgba(0, 240, 255, 0.12)',
+      accent: '#00f0ff',
+      tagBg: '#00f0ff',
+      tagColor: '#000000',
+      glow: 'rgba(0, 240, 255, 0.35)',
+    },
+    {
+      id: 'emerald',
+      border: '#00ff87',
+      bg: 'rgba(0, 255, 135, 0.12)',
+      accent: '#00ff87',
+      tagBg: '#00ff87',
+      tagColor: '#00210c',
+      glow: 'rgba(0, 255, 135, 0.35)',
+    },
+    {
+      id: 'amber',
+      border: '#ffb703',
+      bg: 'rgba(255, 183, 3, 0.12)',
+      accent: '#ffb703',
+      tagBg: '#ffb703',
+      tagColor: '#2b1700',
+      glow: 'rgba(255, 183, 3, 0.35)',
+    },
+    {
+      id: 'violet',
+      border: '#c084fc',
+      bg: 'rgba(192, 132, 252, 0.12)',
+      accent: '#c084fc',
+      tagBg: '#c084fc',
+      tagColor: '#210036',
+      glow: 'rgba(192, 132, 252, 0.35)',
+    },
+    {
+      id: 'rose',
+      border: '#fb7185',
+      bg: 'rgba(251, 113, 133, 0.12)',
+      accent: '#fb7185',
+      tagBg: '#fb7185',
+      tagColor: '#38000d',
+      glow: 'rgba(251, 113, 133, 0.35)',
+    },
+    {
+      id: 'teal',
+      border: '#2dd4bf',
+      bg: 'rgba(45, 212, 191, 0.12)',
+      accent: '#2dd4bf',
+      tagBg: '#2dd4bf',
+      tagColor: '#002620',
+      glow: 'rgba(45, 212, 191, 0.35)',
+    },
+    {
+      id: 'indigo',
+      border: '#818cf8',
+      bg: 'rgba(129, 140, 248, 0.12)',
+      accent: '#818cf8',
+      tagBg: '#818cf8',
+      tagColor: '#0c003b',
+      glow: 'rgba(129, 140, 248, 0.35)',
+    },
+  ];
+
+  const coursePaletteMap = new Map<string, SubjectPalette>();
+
+  function setupCoursePalettes() {
+    coursePaletteMap.clear();
+    if (!currentSchedule) return;
+    currentSchedule.materias.forEach((m, idx) => {
+      const p = SUBJECT_PALETTES[idx % SUBJECT_PALETTES.length];
+      const key = (m.nrc || m.materia).trim();
+      coursePaletteMap.set(key, p);
+    });
+  }
+
+  function getSubjectPalette(materia: string, nrc?: string): SubjectPalette {
+    if (nrc && coursePaletteMap.has(nrc.trim())) {
+      return coursePaletteMap.get(nrc.trim())!;
+    }
+    if (coursePaletteMap.has(materia.trim())) {
+      return coursePaletteMap.get(materia.trim())!;
+    }
+    // Fallback hash
+    const str = nrc || materia;
+    let sum = 0;
+    for (let i = 0; i < str.length; i++) sum += str.charCodeAt(i);
+    return SUBJECT_PALETTES[sum % SUBJECT_PALETTES.length];
+  }
+
+  // ===========================================================================
+  // UTILIDADES DE HORAS Y AULAS
+  // ===========================================================================
   interface FlattenedClass {
     dia: ClaseItem['dia'];
     inicio: string;
@@ -805,14 +983,56 @@ DOCENTE PRUEBA, ANDREA SOFIA`;
     DOM: 'Domingo',
   };
 
-  function renderDaysView() {
-    if (!currentSchedule || !classesGrid) return;
+  const WEEK_DAYS: Array<{ code: ClaseItem['dia']; label: string; full: string }> = [
+    { code: 'LUN', label: 'LUN', full: 'Lunes' },
+    { code: 'MAR', label: 'MAR', full: 'Martes' },
+    { code: 'MIE', label: 'MIÉ', full: 'Miércoles' },
+    { code: 'JUE', label: 'JUE', full: 'Jueves' },
+    { code: 'VIE', label: 'VIE', full: 'Viernes' },
+    { code: 'SAB', label: 'SÁB', full: 'Sábado' },
+  ];
 
-    // Aplanar todas las clases con sus metadatos de materia
-    const allClases: FlattenedClass[] = [];
+  function parseTimeToMinutes(t: string): number {
+    if (!t) return 0;
+    const parts = t.trim().split(':');
+    const h = parseInt(parts[0], 10) || 0;
+    const m = parseInt(parts[1], 10) || 0;
+    return h * 60 + m;
+  }
+
+  function formatMinutesDuration(totalMinutes: number): string {
+    const h = Math.floor(totalMinutes / 60);
+    const m = totalMinutes % 60;
+    if (h > 0 && m > 0) return `${h}h ${m}m`;
+    if (h > 0) return `${h}h`;
+    return `${m}m`;
+  }
+
+  function cleanAulaInfo(raw: string): { display: string; short: string; isWarning: boolean; isVirtual: boolean } {
+    const trimmed = (raw || '').trim();
+    const upper = trimmed.toUpperCase();
+    if (!trimmed || upper.includes('POR ASIGNAR') || upper.includes('POR CONFIRMAR') || upper.includes('SIN AULA')) {
+      return { display: 'Aula: Por Asignar', short: 'Por Asignar', isWarning: true, isVirtual: false };
+    }
+    if (upper.includes('VIRTUAL') || upper.includes('LINEA') || upper.includes('TEAMS') || upper.includes('ZOOM')) {
+      return { display: 'Aula Virtual · En línea', short: 'Virtual', isWarning: false, isVirtual: true };
+    }
+    const parts = trimmed.split(',').map(p => p.trim()).filter(Boolean);
+    if (parts.length >= 2) {
+      const bldg = parts[parts.length - 2].replace(/ESPE|MATRIZ|CAMPUS|SANGOLQUI/gi, '').trim();
+      const room = parts[parts.length - 1];
+      const display = bldg ? `${bldg} · ${room}` : room;
+      return { display, short: room, isWarning: false, isVirtual: false };
+    }
+    return { display: trimmed, short: trimmed, isWarning: false, isVirtual: false };
+  }
+
+  function getAllFlattenedClasses(): FlattenedClass[] {
+    if (!currentSchedule) return [];
+    const list: FlattenedClass[] = [];
     for (const m of currentSchedule.materias) {
       for (const c of m.clases) {
-        allClases.push({
+        list.push({
           dia: c.dia,
           inicio: c.inicio,
           fin: c.fin,
@@ -824,103 +1044,466 @@ DOCENTE PRUEBA, ANDREA SOFIA`;
         });
       }
     }
+    return list;
+  }
 
-    // Filtrar por día si no es ALL
-    const filtered = currentDayFilter === 'ALL'
-      ? allClases
-      : allClases.filter(c => c.dia === currentDayFilter);
+  function updateStatsAndViews() {
+    if (!currentSchedule) return;
 
-    // Ordenar cronológicamente por día y luego por hora de inicio
-    filtered.sort((a, b) => {
-      const dayDiff = (DAY_ORDER[a.dia] || 0) - (DAY_ORDER[b.dia] || 0);
-      if (dayDiff !== 0) return dayDiff;
-      return a.inicio.localeCompare(b.inicio);
-    });
+    setupCoursePalettes();
 
-    if (filtered.length === 0) {
-      classesGrid.innerHTML = `
+    const totalMaterias = currentSchedule.materias.length;
+    let totalClases = 0;
+    let totalMinutes = 0;
+
+    for (const m of currentSchedule.materias) {
+      totalClases += m.clases.length;
+      for (const c of m.clases) {
+        const diff = parseTimeToMinutes(c.fin) - parseTimeToMinutes(c.inicio);
+        if (diff > 0) totalMinutes += diff;
+      }
+    }
+
+    const totalHoursStr = formatMinutesDuration(totalMinutes);
+
+    if (badgeTotalMaterias) {
+      badgeTotalMaterias.textContent = `${totalMaterias} ${totalMaterias === 1 ? 'MATERIA DETECTADA' : 'MATERIAS DETECTADAS'}`;
+    }
+    if (badgeTotalClases) {
+      badgeTotalClases.textContent = `${totalClases} ${totalClases === 1 ? 'BLOQUE' : 'BLOQUES'} (${totalHoursStr})`;
+    }
+    if (badgePeriodo) {
+      badgePeriodo.textContent = `PERIODO: ${currentSchedule.periodo}`;
+    }
+
+    renderCurrentView();
+  }
+
+  function renderCurrentView() {
+    renderWeeklyBoard();
+    renderMatrixView();
+    renderAgendaView();
+    renderSubjectsView();
+  }
+
+  // ===========================================================================
+  // 1. HORARIO SEMANAL: TABLERO MULTI-COLUMNA DE DÍAS (LUNES A SÁBADO)
+  // ===========================================================================
+  function renderWeeklyBoard() {
+    if (!currentSchedule || !weeklyBoardContainer) return;
+
+    const allClasses = getAllFlattenedClasses();
+    const daysToShow = currentDayFilter === 'ALL'
+      ? WEEK_DAYS
+      : WEEK_DAYS.filter(d => d.code === currentDayFilter);
+
+    if (daysToShow.length === 0) {
+      weeklyBoardContainer.innerHTML = `
         <div class="empty-state-card">
           <span class="empty-icon">☕</span>
-          <h3>Sin clases registradas para este día</h3>
-          <p>No se encontraron bloques de clase para ${DAY_FULL_NAMES[currentDayFilter] || currentDayFilter}.</p>
+          <h3>Sin clases registradas</h3>
+          <p>No se encontraron bloques para el filtro seleccionado.</p>
         </div>
       `;
       return;
     }
 
-    let html = '';
-    for (const item of filtered) {
-      const dayClass = `day-tag-${item.dia.toLowerCase()}`;
-      html += `
-        <article class="class-card ${dayClass}">
-          <div class="class-card-header">
-            <span class="day-badge ${dayClass}">${DAY_FULL_NAMES[item.dia] || item.dia}</span>
-            <span class="time-range-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-              ${item.inicio} - ${item.fin}
-            </span>
-          </div>
+    let boardHtml = '';
 
-          <h3 class="class-title">${escapeHtml(item.materia)}</h3>
+    for (const day of daysToShow) {
+      const dayClasses = allClasses
+        .filter(c => c.dia === day.code)
+        .sort((a, b) => a.inicio.localeCompare(b.inicio));
 
-          <div class="class-meta-pills">
-            <span class="pill-code">${escapeHtml(item.codigo)}</span>
-            <span class="pill-nrc">NRC: ${escapeHtml(item.nrc)}</span>
-          </div>
+      let totalDayMinutes = 0;
+      dayClasses.forEach(c => {
+        const diff = parseTimeToMinutes(c.fin) - parseTimeToMinutes(c.inicio);
+        if (diff > 0) totalDayMinutes += diff;
+      });
 
-          <div class="class-details">
-            <div class="detail-row">
-              <span class="detail-icon" aria-hidden="true">📍</span>
-              <span class="detail-text aula-text"><strong>Aula:</strong> ${escapeHtml(item.aula)}</span>
+      const hasClasses = dayClasses.length > 0;
+      const countLabel = hasClasses
+        ? `${dayClasses.length} ${dayClasses.length === 1 ? 'clase' : 'clases'} · ${formatMinutesDuration(totalDayMinutes)}`
+        : 'Libre 🌴';
+
+      boardHtml += `
+        <div class="day-column ${hasClasses ? 'has-classes' : 'is-free-day'}" data-day="${day.code}">
+          <div class="day-column-header">
+            <div class="day-title-wrap">
+              <span class="day-dot ${hasClasses ? 'active' : ''}"></span>
+              <span class="day-name">${day.full}</span>
             </div>
-            <div class="detail-row">
-              <span class="detail-icon" aria-hidden="true">👨‍🏫</span>
-              <span class="detail-text docente-text"><strong>Docente:</strong> ${escapeHtml(item.docente)}</span>
-            </div>
+            <span class="day-stats-pill ${hasClasses ? 'active' : 'free'}">${countLabel}</span>
           </div>
-        </article>
+
+          <div class="day-column-body">
+      `;
+
+      if (!hasClasses) {
+        boardHtml += `
+          <div class="day-empty-state">
+            <span class="day-empty-icon" aria-hidden="true">🌴</span>
+            <div class="day-empty-title">Día sin clases</div>
+            <div class="day-empty-desc">Aprovecha para repasar, proyectos o descansar</div>
+          </div>
+        `;
+      } else {
+        for (let i = 0; i < dayClasses.length; i++) {
+          const item = dayClasses[i];
+          const palette = getSubjectPalette(item.materia, item.nrc);
+          const duration = getDurationBetween(item.inicio, item.fin);
+          const aula = cleanAulaInfo(item.aula);
+
+          // Verificar si hay hueco libre antes de esta clase
+          if (i > 0) {
+            const prev = dayClasses[i - 1];
+            const gap = parseTimeToMinutes(item.inicio) - parseTimeToMinutes(prev.fin);
+            if (gap >= 30) {
+              boardHtml += `
+                <div class="schedule-gap-pill" title="Hueco libre de ${formatMinutesDuration(gap)}">
+                  <span class="gap-icon">⏳</span>
+                  <span class="gap-text"><strong>${formatMinutesDuration(gap)} libres</strong> (${prev.fin} - ${item.inicio})</span>
+                </div>
+              `;
+            }
+          }
+
+          boardHtml += `
+            <article class="schedule-class-card" 
+                     style="--card-accent: ${palette.accent}; --card-border: ${palette.border}; --card-bg: ${palette.bg}; --card-glow: ${palette.glow};"
+                     data-card-click="true"
+                     data-materia="${escapeHtml(item.materia)}"
+                     data-nrc="${escapeHtml(item.nrc)}"
+                     data-codigo="${escapeHtml(item.codigo)}"
+                     data-dia="${day.full}"
+                     data-horas="${item.inicio} - ${item.fin}"
+                     data-duracion="${duration}"
+                     data-aula="${escapeHtml(aula.display)}"
+                     data-docente="${escapeHtml(item.docente)}"
+                     tabindex="0"
+                     role="button"
+                     aria-label="${escapeHtml(item.materia)}, de ${item.inicio} a ${item.fin}">
+              <div class="card-top-bar">
+                <span class="card-time-badge">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  ${item.inicio} - ${item.fin}
+                </span>
+                <span class="card-duration-badge" style="background: ${palette.tagBg}; color: ${palette.tagColor};">${duration}</span>
+              </div>
+
+              <h4 class="card-subject-title">${escapeHtml(item.materia)}</h4>
+
+              <div class="card-meta-row">
+                <span class="meta-code-pill">${escapeHtml(item.codigo)}</span>
+                <span class="meta-nrc-pill">NRC ${escapeHtml(item.nrc)}</span>
+              </div>
+
+              <div class="card-info-list">
+                <div class="card-info-item ${aula.isWarning ? 'room-warning' : (aula.isVirtual ? 'room-virtual' : '')}">
+                  <span class="icon" aria-hidden="true">${aula.isWarning ? '⚠️' : (aula.isVirtual ? '💻' : '📍')}</span>
+                  <span class="text"><strong>Aula:</strong> ${escapeHtml(aula.display)}</span>
+                </div>
+                <div class="card-info-item">
+                  <span class="icon" aria-hidden="true">👨‍🏫</span>
+                  <span class="text"><strong>Docente:</strong> ${escapeHtml(item.docente)}</span>
+                </div>
+              </div>
+            </article>
+          `;
+        }
+      }
+
+      boardHtml += `
+          </div>
+        </div>
       `;
     }
 
-    classesGrid.innerHTML = html;
+    weeklyBoardContainer.innerHTML = boardHtml;
+    attachCardModalListeners(weeklyBoardContainer);
   }
 
-  // ---------------------------------------------------------------------------
-  // VISTA POR MATERIAS
-  // ---------------------------------------------------------------------------
+  // ===========================================================================
+  // 2. MATRIZ HORARIA: GRID SEMANAL DE 07:00 A 21:00
+  // ===========================================================================
+  function renderMatrixView() {
+    if (!currentSchedule || !matrixGridContainer) return;
+
+    const allClasses = getAllFlattenedClasses();
+    const START_HOUR = 7;
+    const END_HOUR = 21;
+    const TOTAL_HOURS = END_HOUR - START_HOUR;
+
+    let matrixHtml = '';
+
+    // Esquina superior izquierda
+    matrixHtml += `<div class="matrix-cell matrix-corner-cell">HORA</div>`;
+
+    // Cabeceras de días
+    WEEK_DAYS.forEach((d, idx) => {
+      const isFiltered = currentDayFilter !== 'ALL' && currentDayFilter === d.code;
+      matrixHtml += `
+        <div class="matrix-cell matrix-header-cell ${isFiltered ? 'is-highlighted' : ''}" style="grid-column: ${idx + 2}; grid-row: 1;">
+          <span class="matrix-header-abbr">${d.label}</span>
+          <span class="matrix-header-name">${d.full}</span>
+        </div>
+      `;
+    });
+
+    // Celdas de horas (Eje Y) y líneas de cuadrícula
+    for (let h = START_HOUR; h < END_HOUR; h++) {
+      const rowIdx = (h - START_HOUR) + 2;
+      const timeStr = `${h.toString().padStart(2, '0')}:00`;
+
+      matrixHtml += `
+        <div class="matrix-cell matrix-time-cell" style="grid-column: 1; grid-row: ${rowIdx};">
+          <span>${timeStr}</span>
+        </div>
+      `;
+
+      // Celdas vacías de fondo
+      for (let d = 0; d < 6; d++) {
+        matrixHtml += `
+          <div class="matrix-cell matrix-slot-bg" style="grid-column: ${d + 2}; grid-row: ${rowIdx};"></div>
+        `;
+      }
+    }
+
+    // Bloques de clase posicionados en la cuadrícula
+    for (const item of allClasses) {
+      const dayIdx = WEEK_DAYS.findIndex(d => d.code === item.dia);
+      if (dayIdx === -1) continue;
+
+      const col = dayIdx + 2;
+      const startMin = parseTimeToMinutes(item.inicio);
+      const endMin = parseTimeToMinutes(item.fin);
+
+      const startHourFloat = startMin / 60;
+      const endHourFloat = endMin / 60;
+
+      // Calcular fila de inicio y span de filas
+      const clampedStartHour = Math.max(START_HOUR, Math.min(END_HOUR - 1, Math.floor(startHourFloat)));
+      const rowStart = (clampedStartHour - START_HOUR) + 2;
+      const span = Math.max(1, Math.round(endHourFloat - startHourFloat));
+
+      const palette = getSubjectPalette(item.materia, item.nrc);
+      const aula = cleanAulaInfo(item.aula);
+      const duration = getDurationBetween(item.inicio, item.fin);
+
+      matrixHtml += `
+        <div class="matrix-class-block" 
+             style="grid-column: ${col}; grid-row: ${rowStart} / span ${span}; --card-accent: ${palette.accent}; --card-border: ${palette.border}; --card-bg: ${palette.bg}; --card-glow: ${palette.glow};"
+             data-card-click="true"
+             data-materia="${escapeHtml(item.materia)}"
+             data-nrc="${escapeHtml(item.nrc)}"
+             data-codigo="${escapeHtml(item.codigo)}"
+             data-dia="${DAY_FULL_NAMES[item.dia] || item.dia}"
+             data-horas="${item.inicio} - ${item.fin}"
+             data-duracion="${duration}"
+             data-aula="${escapeHtml(aula.display)}"
+             data-docente="${escapeHtml(item.docente)}"
+             tabindex="0"
+             role="button"
+             title="${escapeHtml(item.materia)} (${item.inicio} - ${item.fin})">
+          <div class="matrix-block-header">
+            <span class="matrix-block-time">${item.inicio} - ${item.fin}</span>
+            <span class="matrix-block-nrc" style="background: ${palette.tagBg}; color: ${palette.tagColor};">${escapeHtml(item.nrc)}</span>
+          </div>
+          <div class="matrix-block-title">${escapeHtml(item.materia)}</div>
+          <div class="matrix-block-footer">
+            <span class="matrix-block-room ${aula.isWarning ? 'warn' : ''}">
+              ${aula.isWarning ? '⚠️' : (aula.isVirtual ? '💻' : '📍')} ${escapeHtml(aula.short)}
+            </span>
+          </div>
+        </div>
+      `;
+    }
+
+    matrixGridContainer.innerHTML = matrixHtml;
+    attachCardModalListeners(matrixGridContainer);
+  }
+
+  // ===========================================================================
+  // 3. AGENDA DIARIA: TIMELINE CRONOLÓGICO
+  // ===========================================================================
+  function renderAgendaView() {
+    if (!currentSchedule || !agendaTimelineContainer) return;
+
+    const allClasses = getAllFlattenedClasses();
+    const daysToShow = currentDayFilter === 'ALL'
+      ? WEEK_DAYS
+      : WEEK_DAYS.filter(d => d.code === currentDayFilter);
+
+    let html = '';
+
+    for (const day of daysToShow) {
+      const dayClasses = allClasses
+        .filter(c => c.dia === day.code)
+        .sort((a, b) => a.inicio.localeCompare(b.inicio));
+
+      if (dayClasses.length === 0 && currentDayFilter !== 'ALL') {
+        html += `
+          <div class="empty-state-card">
+            <span class="empty-icon">☕</span>
+            <h3>Sin clases programadas para el ${day.full}</h3>
+            <p>No tienes asignaturas registradas este día.</p>
+          </div>
+        `;
+        continue;
+      }
+
+      if (dayClasses.length === 0) continue;
+
+      let totalDayMinutes = 0;
+      dayClasses.forEach(c => {
+        const diff = parseTimeToMinutes(c.fin) - parseTimeToMinutes(c.inicio);
+        if (diff > 0) totalDayMinutes += diff;
+      });
+
+      html += `
+        <div class="agenda-day-section">
+          <div class="agenda-day-header">
+            <div class="agenda-day-title">
+              <span class="agenda-accent-bar"></span>
+              <h3>${day.full}</h3>
+            </div>
+            <span class="agenda-day-badge">${dayClasses.length} ${dayClasses.length === 1 ? 'bloque' : 'bloques'} · ${formatMinutesDuration(totalDayMinutes)}</span>
+          </div>
+
+          <div class="agenda-timeline-rail">
+      `;
+
+      for (let i = 0; i < dayClasses.length; i++) {
+        const item = dayClasses[i];
+        const palette = getSubjectPalette(item.materia, item.nrc);
+        const aula = cleanAulaInfo(item.aula);
+        const duration = getDurationBetween(item.inicio, item.fin);
+
+        // Hueco libre
+        if (i > 0) {
+          const prev = dayClasses[i - 1];
+          const gap = parseTimeToMinutes(item.inicio) - parseTimeToMinutes(prev.fin);
+          if (gap >= 30) {
+            html += `
+              <div class="agenda-gap-node">
+                <div class="agenda-node-icon">⏳</div>
+                <div class="agenda-gap-card">
+                  <strong>${formatMinutesDuration(gap)} de tiempo libre</strong> entre ${prev.fin} y ${item.inicio}
+                </div>
+              </div>
+            `;
+          }
+        }
+
+        html += `
+          <div class="agenda-item-node" 
+               style="--card-accent: ${palette.accent}; --card-border: ${palette.border}; --card-bg: ${palette.bg}; --card-glow: ${palette.glow};"
+               data-card-click="true"
+               data-materia="${escapeHtml(item.materia)}"
+               data-nrc="${escapeHtml(item.nrc)}"
+               data-codigo="${escapeHtml(item.codigo)}"
+               data-dia="${day.full}"
+               data-horas="${item.inicio} - ${item.fin}"
+               data-duracion="${duration}"
+               data-aula="${escapeHtml(aula.display)}"
+               data-docente="${escapeHtml(item.docente)}">
+            <div class="agenda-time-column">
+              <span class="agenda-time-start">${item.inicio}</span>
+              <span class="agenda-time-divider"></span>
+              <span class="agenda-time-end">${item.fin}</span>
+              <span class="agenda-time-dur">${duration}</span>
+            </div>
+
+            <div class="agenda-card-bubble">
+              <div class="agenda-card-top">
+                <span class="meta-nrc-pill" style="background: ${palette.tagBg}; color: ${palette.tagColor};">NRC ${escapeHtml(item.nrc)}</span>
+                <span class="meta-code-pill">${escapeHtml(item.codigo)}</span>
+              </div>
+              <h4 class="agenda-card-title">${escapeHtml(item.materia)}</h4>
+              <div class="agenda-card-details">
+                <div class="agenda-detail-row ${aula.isWarning ? 'room-warning' : (aula.isVirtual ? 'room-virtual' : '')}">
+                  <span class="icon">${aula.isWarning ? '⚠️' : (aula.isVirtual ? '💻' : '📍')}</span>
+                  <span><strong>Aula:</strong> ${escapeHtml(aula.display)}</span>
+                </div>
+                <div class="agenda-detail-row">
+                  <span class="icon">👨‍🏫</span>
+                  <span><strong>Docente:</strong> ${escapeHtml(item.docente)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      html += `
+          </div>
+        </div>
+      `;
+    }
+
+    if (!html.trim()) {
+      html = `
+        <div class="empty-state-card">
+          <span class="empty-icon">☕</span>
+          <h3>Semana sin asignaturas</h3>
+          <p>No se encontraron bloques de clase cargados.</p>
+        </div>
+      `;
+    }
+
+    agendaTimelineContainer.innerHTML = html;
+    attachCardModalListeners(agendaTimelineContainer);
+  }
+
+  // ===========================================================================
+  // 4. VISTA POR MATERIAS
+  // ===========================================================================
   function renderSubjectsView() {
     if (!currentSchedule || !subjectsGrid) return;
 
     let html = '';
     for (const m of currentSchedule.materias) {
+      const palette = getSubjectPalette(m.materia, m.nrc);
+      let totalCourseMinutes = 0;
+      m.clases.forEach(c => {
+        const diff = parseTimeToMinutes(c.fin) - parseTimeToMinutes(c.inicio);
+        if (diff > 0) totalCourseMinutes += diff;
+      });
+
       html += `
-        <article class="subject-card">
+        <article class="subject-card" style="--card-border: ${palette.border}; --card-glow: ${palette.glow};">
           <div class="subject-header">
             <div class="subject-tags">
               <span class="badge-app fuchsia">${escapeHtml(m.codigo)}</span>
               <span class="badge-app amber">NRC ${escapeHtml(m.nrc)}</span>
+              <span class="badge-app cyan">${m.clases.length} ${m.clases.length === 1 ? 'sesión' : 'sesiones'} (${formatMinutesDuration(totalCourseMinutes)})</span>
             </div>
             <h3 class="subject-title">${escapeHtml(m.materia)}</h3>
             <p class="subject-docente">
               <span class="icon-inline" aria-hidden="true">👨‍🏫</span>
-              ${escapeHtml(m.docente)}
+              <strong>Docente:</strong> ${escapeHtml(m.docente)}
             </p>
           </div>
 
           <div class="subject-sessions-list">
-            <h4 class="sessions-heading">Horarios de clase asignados:</h4>
+            <h4 class="sessions-heading">Horarios semanales asignados:</h4>
             ${m.clases.length === 0 ? '<p class="no-sessions">Sin sesiones detectadas.</p>' : ''}
             <div class="sessions-chips">
-              ${m.clases.map(c => `
-                <div class="session-chip day-tag-${c.dia.toLowerCase()}">
-                  <span class="chip-day">${DAY_FULL_NAMES[c.dia] || c.dia}</span>
-                  <span class="chip-time">${c.inicio} - ${c.fin}</span>
-                  <span class="chip-aula">📍 ${escapeHtml(c.aula)}</span>
-                </div>
-              `).join('')}
+              ${m.clases.map(c => {
+                const aula = cleanAulaInfo(c.aula);
+                return `
+                  <div class="session-chip" style="border-left: 3px solid ${palette.accent};">
+                    <span class="chip-day">${DAY_FULL_NAMES[c.dia] || c.dia}</span>
+                    <span class="chip-time">${c.inicio} - ${c.fin}</span>
+                    <span class="chip-aula ${aula.isWarning ? 'warn' : ''}">
+                      ${aula.isWarning ? '⚠️' : (aula.isVirtual ? '💻' : '📍')} ${escapeHtml(aula.short)}
+                    </span>
+                  </div>
+                `;
+              }).join('')}
             </div>
           </div>
         </article>
@@ -930,41 +1513,188 @@ DOCENTE PRUEBA, ANDREA SOFIA`;
     subjectsGrid.innerHTML = html;
   }
 
-  // ---------------------------------------------------------------------------
-  // FILTRADO POR DÍAS & TABS
-  // ---------------------------------------------------------------------------
+  // ===========================================================================
+  // MODAL INTERACTIVO DE DETALLE DE CLASE
+  // ===========================================================================
+  function attachCardModalListeners(parent: HTMLElement) {
+    const clickableCards = parent.querySelectorAll<HTMLElement>('[data-card-click="true"]');
+    clickableCards.forEach(card => {
+      card.addEventListener('click', () => {
+        openClassDetailModal(card);
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openClassDetailModal(card);
+        }
+      });
+    });
+  }
+
+  function openClassDetailModal(card: HTMLElement) {
+    if (!classDetailModal || !classModalContent) return;
+
+    const materia = card.getAttribute('data-materia') || '';
+    const nrc = card.getAttribute('data-nrc') || '';
+    const codigo = card.getAttribute('data-codigo') || '';
+    const dia = card.getAttribute('data-dia') || '';
+    const horas = card.getAttribute('data-horas') || '';
+    const duracion = card.getAttribute('data-duracion') || '';
+    const aula = card.getAttribute('data-aula') || '';
+    const docente = card.getAttribute('data-docente') || '';
+    const palette = getSubjectPalette(materia, nrc);
+
+    classModalContent.innerHTML = `
+      <div class="modal-card-inner" style="--modal-accent: ${palette.accent}; --modal-glow: ${palette.glow};">
+        <div class="modal-header">
+          <div class="modal-badges">
+            <span class="badge-app fuchsia">${escapeHtml(codigo)}</span>
+            <span class="badge-app amber">NRC ${escapeHtml(nrc)}</span>
+            <span class="badge-app cyan">${escapeHtml(dia)}</span>
+          </div>
+          <button type="button" class="btn-modal-close" id="btn-close-modal" aria-label="Cerrar ventana">✕</button>
+        </div>
+
+        <h3 class="modal-title">${escapeHtml(materia)}</h3>
+
+        <div class="modal-details-grid">
+          <div class="modal-detail-item">
+            <span class="modal-detail-icon">🕒</span>
+            <div>
+              <div class="modal-detail-label">Horario de clase:</div>
+              <div class="modal-detail-val"><strong>${escapeHtml(horas)}</strong> (${escapeHtml(duracion)})</div>
+            </div>
+          </div>
+
+          <div class="modal-detail-item">
+            <span class="modal-detail-icon">📍</span>
+            <div>
+              <div class="modal-detail-label">Ubicación / Aula:</div>
+              <div class="modal-detail-val">${escapeHtml(aula)}</div>
+            </div>
+          </div>
+
+          <div class="modal-detail-item">
+            <span class="modal-detail-icon">👨‍🏫</span>
+            <div>
+              <div class="modal-detail-label">Docente Asignado:</div>
+              <div class="modal-detail-val">${escapeHtml(docente)}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-brutalist btn-secondary btn-copy-nrc" id="btn-modal-copy-nrc">
+            📋 Copiar NRC (${escapeHtml(nrc)})
+          </button>
+          <button type="button" class="btn-brutalist btn-primary btn-modal-done" id="btn-modal-done">
+            Entendido
+          </button>
+        </div>
+      </div>
+    `;
+
+    try {
+      classDetailModal.showModal();
+    } catch (_) {
+      classDetailModal.setAttribute('open', 'true');
+    }
+
+    const btnClose = document.getElementById('btn-close-modal');
+    const btnDone = document.getElementById('btn-modal-done');
+    const btnCopyNrc = document.getElementById('btn-modal-copy-nrc');
+
+    const closeModal = () => {
+      try {
+        classDetailModal.close();
+      } catch (_) {
+        classDetailModal.removeAttribute('open');
+      }
+    };
+
+    if (btnClose) btnClose.addEventListener('click', closeModal);
+    if (btnDone) btnDone.addEventListener('click', closeModal);
+    if (btnCopyNrc) {
+      btnCopyNrc.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(nrc);
+          btnCopyNrc.textContent = '¡NRC Copiado!';
+          setTimeout(() => {
+            btnCopyNrc.textContent = `📋 Copiar NRC (${nrc})`;
+          }, 2000);
+        } catch (_) {}
+      });
+    }
+
+    classDetailModal.addEventListener('click', (e) => {
+      if (e.target === classDetailModal) closeModal();
+    }, { once: true });
+  }
+
+  // ===========================================================================
+  // TABS & FILTROS DE DÍA
+  // ===========================================================================
+  function switchViewTab(mode: 'weekly' | 'matrix' | 'agenda' | 'subjects') {
+    currentViewMode = mode;
+
+    [tabWeeklyBoard, tabMatrixView, tabAgendaView, tabSubjectView].forEach(btn => {
+      if (btn) {
+        btn.classList.remove('is-active');
+        btn.setAttribute('aria-selected', 'false');
+      }
+    });
+
+    if (viewWeeklyBoard) viewWeeklyBoard.hidden = mode !== 'weekly';
+    if (viewMatrix) viewMatrix.hidden = mode !== 'matrix';
+    if (viewAgenda) viewAgenda.hidden = mode !== 'agenda';
+    if (viewBySubjects) viewBySubjects.hidden = mode !== 'subjects';
+
+    if (mode === 'weekly' && tabWeeklyBoard) {
+      tabWeeklyBoard.classList.add('is-active');
+      tabWeeklyBoard.setAttribute('aria-selected', 'true');
+      renderWeeklyBoard();
+    } else if (mode === 'matrix' && tabMatrixView) {
+      tabMatrixView.classList.add('is-active');
+      tabMatrixView.setAttribute('aria-selected', 'true');
+      renderMatrixView();
+    } else if (mode === 'agenda' && tabAgendaView) {
+      tabAgendaView.classList.add('is-active');
+      tabAgendaView.setAttribute('aria-selected', 'true');
+      renderAgendaView();
+    } else if (mode === 'subjects' && tabSubjectView) {
+      tabSubjectView.classList.add('is-active');
+      tabSubjectView.setAttribute('aria-selected', 'true');
+      renderSubjectsView();
+    }
+  }
+
+  if (tabWeeklyBoard) tabWeeklyBoard.addEventListener('click', () => switchViewTab('weekly'));
+  if (tabMatrixView) tabMatrixView.addEventListener('click', () => switchViewTab('matrix'));
+  if (tabAgendaView) tabAgendaView.addEventListener('click', () => switchViewTab('agenda'));
+  if (tabSubjectView) tabSubjectView.addEventListener('click', () => switchViewTab('subjects'));
+
+  if (btnPrintSchedule) {
+    btnPrintSchedule.addEventListener('click', () => {
+      window.print();
+    });
+  }
+
   dayPills.forEach(pill => {
     pill.addEventListener('click', () => {
       dayPills.forEach(p => p.classList.remove('is-active'));
       pill.classList.add('is-active');
       currentDayFilter = pill.getAttribute('data-day') || 'ALL';
-      renderDaysView();
+      renderCurrentView();
+
+      // Si el usuario elige un día específico en el tablero semanal, hacer scroll suave hacia él
+      if (currentDayFilter !== 'ALL' && weeklyBoardContainer) {
+        const targetCol = weeklyBoardContainer.querySelector(`[data-day="${currentDayFilter}"]`);
+        if (targetCol) {
+          targetCol.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        }
+      }
     });
   });
-
-  if (tabDayView && tabSubjectView && viewByDays && viewBySubjects) {
-    tabDayView.addEventListener('click', () => {
-      tabDayView.classList.add('is-active');
-      tabDayView.setAttribute('aria-selected', 'true');
-      tabSubjectView.classList.remove('is-active');
-      tabSubjectView.setAttribute('aria-selected', 'false');
-
-      viewByDays.hidden = false;
-      viewBySubjects.hidden = true;
-      currentViewMode = 'days';
-    });
-
-    tabSubjectView.addEventListener('click', () => {
-      tabSubjectView.classList.add('is-active');
-      tabSubjectView.setAttribute('aria-selected', 'true');
-      tabDayView.classList.remove('is-active');
-      tabDayView.setAttribute('aria-selected', 'false');
-
-      viewByDays.hidden = true;
-      viewBySubjects.hidden = false;
-      currentViewMode = 'subjects';
-    });
-  }
 
   // ---------------------------------------------------------------------------
   // DESCARGA DEL ARCHIVO .PILAS
@@ -2025,53 +2755,99 @@ DOCENTE PRUEBA, ANDREA SOFIA`;
   }
 
   /* BARRA DE CONTROLES & TABS */
+  /* ==========================================================================
+     BARRA DE CONTROLES DE VISTA & TABS (NEO-BRUTALISMO ESTUDIANTIL)
+     ========================================================================== */
   .preview-controls-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .view-tabs-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 1.75rem;
   }
 
   .view-tabs {
-    display: flex;
+    display: inline-flex;
     background: var(--color-bg-surface);
     border: 2px solid var(--color-border);
-    padding: 0.3rem;
+    padding: 0.35rem;
     border-radius: var(--radius-md);
+    box-shadow: var(--shadow-brutalist-sm);
+    flex-wrap: wrap;
+    gap: 0.35rem;
   }
 
   .tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     background: transparent;
     border: none;
     color: var(--color-text-muted);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     font-weight: 700;
-    padding: 0.5rem 1rem;
+    padding: 0.55rem 1rem;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: all var(--duration-hover);
+    transition: all var(--duration-hover) var(--ease-spring);
+  }
+
+  .tab-btn:hover {
+    color: var(--color-text-title);
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .tab-btn.is-active {
     background: var(--color-primary);
     color: #000;
+    box-shadow: 2px 2px 0px #000;
   }
 
+  .btn-print-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    color: var(--color-text-title);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.55rem 1.1rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    box-shadow: var(--shadow-brutalist-sm);
+    transition: all var(--duration-hover) var(--ease-spring);
+  }
+
+  .btn-print-action:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    transform: translate(-1px, -1px);
+    box-shadow: var(--shadow-brutalist);
+  }
+
+  /* SELECTOR DE DÍAS (PILLS HORIZONTALES) */
   .day-filter-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.5rem;
+    align-items: center;
   }
 
   .day-pill {
     background: var(--color-bg-surface);
-    border: 1px solid var(--color-border);
+    border: 1.5px solid var(--color-border);
     color: var(--color-text-muted);
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.4rem 0.85rem;
+    font-size: 0.825rem;
+    font-weight: 700;
+    padding: 0.4rem 0.95rem;
     border-radius: 999px;
     cursor: pointer;
     transition: all var(--duration-hover);
@@ -2086,139 +2862,916 @@ DOCENTE PRUEBA, ANDREA SOFIA`;
     background: var(--accent-cyan);
     border-color: var(--accent-cyan);
     color: #000;
-    font-weight: 700;
+    font-weight: 800;
+    box-shadow: 2px 2px 0 #000;
   }
 
-  /* CLASES GRID (VISTA POR DÍAS) */
-  .schedule-grid {
+  /* ==========================================================================
+     1. HORARIO SEMANAL: TABLERO MULTI-COLUMNA DE DÍAS
+     ========================================================================== */
+  .weekly-board-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(6, minmax(250px, 1fr));
     gap: 1.25rem;
+    overflow-x: auto;
+    padding-bottom: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
     margin-bottom: 2.5rem;
   }
 
-  .class-card {
+  .day-column {
     background: var(--color-bg-surface);
     border: 2px solid var(--color-border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-brutalist-sm);
-    padding: 1.25rem;
     display: flex;
     flex-direction: column;
-    position: relative;
+    min-width: 250px;
+    scroll-snap-align: start;
+    transition: all var(--duration-hover);
     overflow: hidden;
-    transition: all var(--duration-hover) var(--ease-spring);
   }
 
-  .class-card:hover {
-    border-color: var(--color-primary);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-brutalist);
+  .day-column.has-classes {
+    border-color: rgba(255, 255, 255, 0.12);
   }
 
-  .class-card-header {
+  .day-column.is-free-day {
+    opacity: 0.85;
+    border-style: dashed;
+  }
+
+  .day-column-header {
+    padding: 0.85rem 1rem;
+    background: var(--color-bg-elevated);
+    border-bottom: 2px solid var(--color-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.9rem;
+    gap: 0.5rem;
   }
 
-  .day-badge {
+  .day-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .day-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-border);
+  }
+
+  .day-dot.active {
+    background: var(--color-primary);
+    box-shadow: 0 0 8px var(--color-primary);
+  }
+
+  .day-name {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 800;
-    padding: 0.2rem 0.6rem;
-    border-radius: 6px;
-    border: 1px solid #000;
-    box-shadow: 2px 2px 0 #000;
+    font-size: 0.875rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: var(--color-text-title);
+    text-transform: uppercase;
   }
 
-  /* Colores por día */
-  .day-badge.day-tag-lun, .day-badge.day-tag-lunes { background: var(--color-primary); color: #000; }
-  .day-badge.day-tag-mar, .day-badge.day-tag-martes { background: var(--accent-cyan); color: #000; }
-  .day-badge.day-tag-mie, .day-badge.day-tag-miercoles { background: var(--color-success); color: #000; }
-  .day-badge.day-tag-jue, .day-badge.day-tag-jueves { background: var(--color-warning); color: #000; }
-  .day-badge.day-tag-vie, .day-badge.day-tag-viernes { background: #c084fc; color: #000; }
-  .day-badge.day-tag-sab, .day-badge.day-tag-sabado { background: #f43f5e; color: #fff; }
+  .day-stats-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: var(--color-bg-base);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
 
-  .time-range-badge {
+  .day-stats-pill.active {
+    border-color: rgba(0, 240, 255, 0.35);
+    color: var(--accent-cyan);
+  }
+
+  .day-stats-pill.free {
+    border-color: rgba(0, 255, 135, 0.35);
+    color: var(--color-success);
+  }
+
+  .day-column-body {
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    flex: 1;
+  }
+
+  .day-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    text-align: center;
+    color: var(--color-text-muted);
+    border: 2px dashed rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    margin: auto 0;
+    background: rgba(255, 255, 255, 0.015);
+  }
+
+  .day-empty-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .day-empty-title {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+    margin-bottom: 0.25rem;
+  }
+
+  .day-empty-desc {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+    max-width: 180px;
+  }
+
+  /* HUECO / TIEMPO LIBRE ENTRE CLASES */
+  .schedule-gap-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    padding: 0.45rem 0.65rem;
+    border-radius: 6px;
+    text-align: center;
+    transition: all var(--duration-hover);
+  }
+
+  .schedule-gap-pill:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+  }
+
+  .schedule-gap-pill .gap-icon {
+    font-size: 0.85rem;
+  }
+
+  /* TARJETA DE CLASE EN EL TABLERO */
+  .schedule-class-card {
+    background: var(--color-bg-base);
+    border: 2px solid var(--card-border, var(--color-border));
+    border-radius: var(--radius-sm);
+    box-shadow: 2px 2px 0px #000;
+    padding: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .schedule-class-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--card-accent, var(--color-primary));
+  }
+
+  .schedule-class-card:hover,
+  .schedule-class-card:focus-visible {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px #000;
+    border-color: var(--card-accent, var(--color-primary));
+    outline: none;
+  }
+
+  .card-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2px;
+  }
+
+  .card-time-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
     font-family: var(--font-mono);
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-size: 0.775rem;
+    font-weight: 800;
     color: var(--color-text-title);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .card-duration-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    box-shadow: 1px 1px 0 #000;
+  }
+
+  .card-subject-title {
+    font-size: 0.985rem;
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--color-text-title);
+    margin: 0;
+    word-break: break-word;
+  }
+
+  .card-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .meta-code-pill,
+  .meta-nrc-pill {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  .meta-nrc-pill {
+    border-color: rgba(255, 183, 3, 0.4);
+    color: var(--color-warning);
+  }
+
+  .card-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 0.55rem;
+    font-size: 0.8rem;
+  }
+
+  .card-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    color: var(--color-text-body);
+    line-height: 1.35;
+  }
+
+  .card-info-item.room-warning {
+    color: var(--color-warning);
+    font-weight: 700;
+  }
+
+  .card-info-item.room-virtual {
+    color: var(--accent-cyan);
+    font-weight: 700;
+  }
+
+  .card-info-item .icon {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
+
+  .card-info-item .text strong {
+    color: var(--color-text-muted);
+  }
+
+  /* ==========================================================================
+     2. MATRIZ HORARIA (GRID SEMANAL COMPLETO DE 07:00 A 21:00)
+     ========================================================================== */
+  .matrix-card-wrap {
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-brutalist);
+    padding: 1.25rem;
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+  }
+
+  .matrix-legend-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .matrix-legend-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-text-title);
+  }
+
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary);
+    animation: pulseGlow 2s infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  .matrix-legend-hint {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .matrix-scroll-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-base);
+  }
+
+  .matrix-grid-container {
+    display: grid;
+    /* 1 Columna de tiempo (75px) + 6 Columnas de Días */
+    grid-template-columns: 75px repeat(6, minmax(135px, 1fr));
+    /* 1 Fila Cabecera (42px) + 14 Filas de Horas (07:00 a 21:00, 64px c/u) */
+    grid-template-rows: 42px repeat(14, 64px);
+    position: relative;
+    min-width: 890px;
+  }
+
+  .matrix-cell {
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .matrix-corner-cell {
+    grid-column: 1;
+    grid-row: 1;
+    background: var(--color-bg-elevated);
+    border-right: 2px solid var(--color-border);
+    border-bottom: 2px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: var(--color-text-muted);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+
+  .matrix-header-cell {
+    background: var(--color-bg-elevated);
+    border-bottom: 2px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 4;
+  }
+
+  .matrix-header-cell.is-highlighted {
+    background: rgba(0, 240, 255, 0.15);
+    border-color: var(--accent-cyan);
+  }
+
+  .matrix-header-abbr {
+    display: none;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 900;
+    color: var(--color-text-title);
+  }
+
+  .matrix-header-name {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: var(--color-text-title);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .matrix-time-cell {
+    background: var(--color-bg-elevated);
+    border-right: 2px solid var(--color-border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--color-text-muted);
+    position: sticky;
+    left: 0;
+    z-index: 3;
+  }
+
+  .matrix-slot-bg {
+    background: transparent;
+    pointer-events: none;
+  }
+
+  .matrix-slot-bg:nth-child(even) {
+    background: rgba(255, 255, 255, 0.008);
+  }
+
+  .matrix-class-block {
+    margin: 3px 4px;
+    border-radius: 6px;
+    border: 2px solid var(--card-border, var(--color-primary));
+    background: var(--card-bg, rgba(255, 63, 164, 0.15));
+    padding: 0.45rem 0.55rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 3;
+    box-shadow: 2px 2px 0px #000;
+    transition: all 0.16s ease;
+  }
+
+  .matrix-class-block:hover,
+  .matrix-class-block:focus-visible {
+    transform: scale(1.02);
+    z-index: 8;
+    box-shadow: 4px 4px 0px #000;
+    border-color: #fff;
+    outline: none;
+  }
+
+  .matrix-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 800;
+  }
+
+  .matrix-block-time {
+    color: var(--color-text-title);
+    white-space: nowrap;
+  }
+
+  .matrix-block-nrc {
+    font-size: 0.62rem;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    font-weight: 800;
+    box-shadow: 1px 1px 0 #000;
+  }
+
+  .matrix-block-title {
+    font-size: 0.8rem;
+    font-weight: 900;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0.2rem 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+  }
+
+  .matrix-block-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--color-text-body);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .matrix-block-room.warn {
+    color: var(--color-warning);
+  }
+
+  /* ==========================================================================
+     3. AGENDA DIARIA (TIMELINE DETALLADO)
+     ========================================================================== */
+  .agenda-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .agenda-day-section {
+    background: var(--color-bg-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-brutalist-sm);
+    padding: 1.5rem;
+  }
+
+  .agenda-day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .agenda-day-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .agenda-accent-bar {
+    width: 6px;
+    height: 22px;
+    border-radius: 3px;
+    background: var(--color-primary);
+  }
+
+  .agenda-day-title h3 {
+    font-size: 1.25rem;
+    font-weight: 900;
+    margin: 0;
+    color: var(--color-text-title);
+  }
+
+  .agenda-day-badge {
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
     background: var(--color-bg-base);
     border: 1px solid var(--color-border);
-    padding: 0.2rem 0.55rem;
-    border-radius: 6px;
+    color: var(--accent-cyan);
   }
 
-  .class-title {
-    font-size: 1.1rem;
-    font-weight: 800;
-    line-height: 1.35;
-    color: var(--color-text-title);
-    margin: 0 0 0.75rem 0;
-  }
-
-  .class-meta-pills {
+  .agenda-timeline-rail {
     display: flex;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+  }
+
+  .agenda-timeline-rail::before {
+    content: '';
+    position: absolute;
+    left: 80px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: var(--color-border);
+    z-index: 1;
+  }
+
+  .agenda-item-node {
+    display: flex;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .agenda-time-column {
+    width: 80px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-family: var(--font-mono);
+  }
+
+  .agenda-time-start {
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: var(--color-text-title);
+  }
+
+  .agenda-time-divider {
+    width: 10px;
+    height: 1px;
+    background: var(--color-border);
+    margin: 2px 0;
+  }
+
+  .agenda-time-end {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  .agenda-time-dur {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin-top: 0.2rem;
+  }
+
+  .agenda-card-bubble {
+    flex: 1;
+    background: var(--color-bg-base);
+    border: 2px solid var(--card-border, var(--color-border));
+    border-radius: var(--radius-sm);
+    padding: 1.15rem;
+    box-shadow: 2px 2px 0 #000;
+    position: relative;
+    transition: all 0.18s ease;
+  }
+
+  .agenda-card-bubble::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--card-accent, var(--color-primary));
+  }
+
+  .agenda-item-node:hover .agenda-card-bubble {
+    transform: translateX(4px);
+    box-shadow: 4px 4px 0 #000;
+    border-color: var(--card-accent, var(--color-primary));
+  }
+
+  .agenda-card-top {
+    display: flex;
+    gap: 0.45rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .agenda-card-title {
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: var(--color-text-title);
+    margin: 0 0 0.65rem 0;
+  }
+
+  .agenda-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.825rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 0.6rem;
+  }
+
+  .agenda-detail-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    color: var(--color-text-body);
+  }
+
+  .agenda-detail-row.room-warning {
+    color: var(--color-warning);
+    font-weight: 700;
+  }
+
+  .agenda-detail-row.room-virtual {
+    color: var(--accent-cyan);
+    font-weight: 700;
+  }
+
+  .agenda-gap-node {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0.25rem 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .agenda-node-icon {
+    width: 80px;
+    text-align: right;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+  }
+
+  .agenda-gap-card {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-sm);
+    padding: 0.45rem 0.95rem;
+    font-size: 0.775rem;
+    color: var(--color-text-muted);
+  }
+
+  .agenda-gap-card strong {
+    color: var(--accent-cyan);
+  }
+
+  /* ==========================================================================
+     MODAL INTERACTIVO DE DETALLES
+     ========================================================================== */
+  .class-modal-dialog {
+    background: transparent;
+    border: none;
+    padding: 0;
+    max-width: 520px;
+    width: 90vw;
+    margin: auto;
+  }
+
+  .class-modal-dialog::backdrop {
+    background: rgba(16, 19, 25, 0.85);
+    backdrop-filter: blur(8px);
+  }
+
+  .modal-card-inner {
+    background: var(--color-bg-surface);
+    border: 3px solid var(--modal-accent, var(--color-primary));
+    border-radius: var(--radius-md);
+    box-shadow: 6px 6px 0px #000;
+    padding: 1.75rem;
+    color: var(--color-text-body);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
     margin-bottom: 1rem;
   }
 
-  .pill-code {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 700;
-    background: var(--color-bg-elevated);
-    border: 1px solid var(--color-border);
-    color: var(--accent-cyan);
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
+  .modal-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
   }
 
-  .pill-nrc {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 700;
+  .btn-modal-close {
     background: var(--color-bg-elevated);
-    border: 1px solid var(--color-border);
-    color: var(--color-warning);
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text-title);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-hover);
   }
 
-  .class-details {
+  .btn-modal-close:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .modal-title {
+    font-size: 1.35rem;
+    font-weight: 900;
+    line-height: 1.25;
+    color: var(--color-text-title);
+    margin: 0 0 1.25rem 0;
+  }
+
+  .modal-details-grid {
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding-top: 0.85rem;
+    gap: 0.85rem;
+    background: var(--color-bg-base);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
   }
 
-  .detail-row {
+  .modal-detail-item {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
-    font-size: 0.85rem;
+    gap: 0.65rem;
   }
 
-  .detail-icon {
-    font-size: 1rem;
+  .modal-detail-icon {
+    font-size: 1.15rem;
     line-height: 1.2;
     flex-shrink: 0;
   }
 
-  .detail-text {
+  .modal-detail-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.15rem;
+  }
+
+  .modal-detail-val {
+    font-size: 0.925rem;
     color: var(--color-text-body);
     line-height: 1.4;
   }
 
-  .detail-text strong {
-    color: var(--color-text-muted);
+  .modal-actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .modal-actions button {
+    flex: 1;
+  }
+
+  /* ESTILO DE IMPRESIÓN OFICIAL (A4 / CARTA LIMPIA) */
+  @media print {
+    .converter-breadcrumb,
+    .converter-hero-header,
+    .converter-box-section,
+    .export-actions-grid,
+    .preview-controls-bar,
+    .json-preview-container,
+    .converter-faq-section,
+    .site-header,
+    .site-footer,
+    .btn-reset-parse,
+    .top-ticker {
+      display: none !important;
+    }
+
+    .converter-page,
+    .schedule-preview-section {
+      padding: 0 !important;
+      margin: 0 !important;
+      background: #fff !important;
+      color: #000 !important;
+    }
+
+    .weekly-board-grid {
+      display: grid !important;
+      grid-template-columns: repeat(6, 1fr) !important;
+      overflow: visible !important;
+      gap: 8px !important;
+    }
+
+    .day-column {
+      border: 1px solid #ccc !important;
+      background: #fff !important;
+      box-shadow: none !important;
+      min-width: 0 !important;
+    }
+
+    .schedule-class-card {
+      background: #fafafa !important;
+      border: 1px solid #aaa !important;
+      box-shadow: none !important;
+      color: #000 !important;
+      break-inside: avoid;
+    }
+
+    .card-subject-title,
+    .day-name {
+      color: #000 !important;
+    }
   }
 
   /* VISTA POR MATERIAS */
@@ -2504,16 +4057,75 @@ DOCENTE PRUEBA, ANDREA SOFIA`;
       gap: 0.85rem;
     }
 
+    .view-tabs-wrapper {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.65rem;
+      width: 100%;
+    }
+
     .view-tabs {
       width: 100%;
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.35rem;
     }
 
     .tab-btn {
-      flex: 1;
-      text-align: center;
-      padding: 0.55rem 0.5rem;
-      font-size: 0.825rem;
+      justify-content: center;
+      padding: 0.55rem 0.4rem;
+      font-size: 0.775rem;
+    }
+
+    .btn-print-action {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .weekly-board-grid {
+      grid-template-columns: repeat(6, 86vw);
+      gap: 0.85rem;
+      padding-bottom: 1rem;
+    }
+
+    .day-column {
+      min-width: 0;
+    }
+
+    .matrix-card-wrap {
+      padding: 0.85rem;
+    }
+
+    .matrix-header-abbr {
+      display: block;
+    }
+
+    .matrix-header-name {
+      display: none;
+    }
+
+    .agenda-timeline-rail::before {
+      left: 62px;
+    }
+
+    .agenda-time-column {
+      width: 62px;
+    }
+
+    .agenda-node-icon {
+      width: 62px;
+    }
+
+    .agenda-time-start {
+      font-size: 0.85rem;
+    }
+
+    .agenda-item-node {
+      gap: 0.85rem;
+    }
+
+    .agenda-card-bubble {
+      padding: 0.95rem;
     }
 
     /* FILTROS POR DÍA: SWIPE HORIZONTAL CON EL PULGAR */
