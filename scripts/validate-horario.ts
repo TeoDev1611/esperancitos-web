@@ -173,4 +173,116 @@ if (!nrcs.includes('33218') || !nrcs.includes('36033') || !nrcs.includes('36042'
   throw new Error('Faltan NRCs esperados en el horario');
 }
 
-console.log('\n✅ ¡TODOS LOS TESTS CON DATOS 100% FICTICIOS PASARON EXITOSAMENTE!');
+console.log('\n--- TEST 7: REAL BANNER MULTI-PAGE SCHEDULE (MARCH DATE COLLISION TEST) ---');
+const marchBannerRaw = `Universidad de FF.AA-ESPE
+Horario ESPINOZA GONZALEZ, CARLOS ALEXANDER NIVELACION S-II OCT24 - MAR25
+Clasificación: Nivel: NIVELACION SNNA
+Escuela: ESCUELA NO DESIGNADA Carrera: [PRES]CARRERAS TECNICAS
+Departamento:No Declarado
+Título Detalles del curso Horas crédito NRC Horas de reunión
+QUIMICA GENERAL EXCT QUI01 0 4.0 4070 28-Oct-2024 - 11-Mar-2025
+12:00 - 12:59
+PAZMIÑO NARANJO, MARCELA GABRIELA
+28-Oct-2024 - 11-Mar-2025
+Jueves
+15:00 - 16:59
+ESPE MATRIZ SANGOLQUI, BLOQUE D SANGOLQUI, D202
+PAZMIÑO NARANJO, MARCELA GABRIELA
+28-Oct-2024 - 11-Mar-2025
+Martes
+17:00 - 18:59
+ESPE MATRIZ SANGOLQUI, BLOQUE D SANGOLQUI, D202
+PAZMIÑO NARANJO, MARCELA GABRIELA
+FISICA EXCT FIS01 026 6.0 4135 28-Oct-2024 - 11-Mar-2025
+12:00 - 12:59
+NARANJO TORRES, ESTEBAN DANIEL
+28-Oct-2024 - 11-Mar-2025
+Lunes, Miércoles, Viernes
+17:00 - 18:59
+ESPE MATRIZ SANGOLQUI, BLOQUE D SANGOLQUI, D202
+NARANJO TORRES, ESTEBAN DANIEL
+ALGEBRA EXCT ALG01 0 8.0 4201 28-Oct-2024 - 11-Mar-2025
+12:00 - 12:59
+ANDRANGO PAILLACHO, ALEX ALEJANDRO
+28-Oct-2024 - 11-Mar-2025
+Jueves
+17:00 - 18:59
+ESPE MATRIZ SANGOLQUI, BLOQUE D SANGOLQUI, D202
+ANDRANGO PAILLACHO, ALEX ALEJANDRO
+28-Oct-2024 - 11-Mar-2025
+Miércoles
+15:00 - 16:59
+ESPE MATRIZ SANGOLQUI, BLOQUE D SANGOLQUI, D202
+ANDRANGO PAILLACHO, ALEX ALEJANDRO
+28-Oct-2024 - 11-Mar-2025
+Lunes, Martes
+13:00 - 14:59
+ESPE MATRIZ SANGOLQUI, BLOQUE D SANGOLQUI, D202
+ANDRANGO PAILLACHO, ALEX ALEJANDRO
+GEOMETRÍA EXCT GEO01 0 6.0 4290 28-Oct-2024 - 11-Mar-2025
+12:00 - 12:59
+SALAZAR ESCOBAR, HUGO DAVID
+28-Oct-2024 - 11-Mar-2025
+Miércoles, Viernes
+13:00 - 14:59
+ESPE MATRIZ SANGOLQUI, BLOQUE D SANGOLQUI, D202
+ESPINOZA GONZALEZ, CARLOS ALEXANDER
+Clases sin horas de reunión:
+Título Detalles del curso Horas crédito NRC Horas de reunión
+SALAZAR ESCOBAR, HUGO DAVID
+28-Oct-2024 - 11-Mar-2025
+Martes
+15:00 - 16:59
+ESPE MATRIZ SANGOLQUI, BLOQUE D SANGOLQUI, D202
+SALAZAR ESCOBAR, HUGO DAVID
+COMUNICACION ORAL Y ESCRITA CHUM LINP6 0 4.0 4433 28-Oct-2024 - 11-Mar-2025
+12:00 - 12:59
+MARTINEZ PASTOR, ERICKA GABRIELA
+28-Oct-2024 - 11-Mar-2025
+Martes
+07:00 - 08:59
+MARTINEZ PASTOR, ERICKA GABRIELA
+OFIMATICA COMP A0F00 0 4.0 4458 28-Oct-2024 - 11-Mar-2025
+12:00 - 12:59
+QUISPE CANDO, TRANSITO DEL ROSARIO
+28-Oct-2024 - 11-Mar-2025
+Lunes
+07:00 - 08:59
+QUISPE CANDO, TRANSITO DEL ROSARIO
+PROM. NIV. FINAL PRESENCIAL | EXCT MVNP 0 | NRC: 4381 | Horas crédito: 0.0 | Tipo de horario: TEORIA
+Total de horas | Inscritas: 32 | Cobro: 32 | UEC: 0`;
+
+const marchSchedule = parseBannerSchedule(marchBannerRaw);
+console.log('Student:', marchSchedule.estudiante);
+console.log('Period:', marchSchedule.periodo);
+console.log('Total subjects:', marchSchedule.materias.length);
+
+if (marchSchedule.estudiante !== 'Carlos Alexander Espinoza Gonzalez') {
+  throw new Error(`Nombre de estudiante erróneo: ${marchSchedule.estudiante}`);
+}
+if (marchSchedule.periodo !== 'S-II OCT24 - MAR25') {
+  throw new Error(`Periodo erróneo: ${marchSchedule.periodo}`);
+}
+if (marchSchedule.materias.length !== 6) {
+  throw new Error(`Se esperaban 6 materias, se obtuvieron ${marchSchedule.materias.length}`);
+}
+
+const allClasses = marchSchedule.materias.flatMap(m => m.clases);
+const countsByDay: Record<string, number> = { LUN: 0, MAR: 0, MIE: 0, JUE: 0, VIE: 0 };
+for (const c of allClasses) {
+  countsByDay[c.dia] = (countsByDay[c.dia] || 0) + 1;
+}
+
+console.log('Clases por día:', countsByDay);
+// En la cuadrícula oficial de Banner (página 3):
+// Lunes: 3 clases (Ofimática 07-09, Álgebra 13-15, Física 17-19)
+// Martes: 4 clases (Comunicación 07-09, Álgebra 13-15, Geometría 15-17, Química 17-19)
+// Miércoles: 3 clases (Geometría 13-15, Álgebra 15-17, Física 17-19)
+// Jueves: 2 clases (Química 15-17, Álgebra 17-19)
+// Viernes: 2 clases (Geometría 13-15, Física 17-19)
+if (countsByDay.LUN !== 3 || countsByDay.MAR !== 4 || countsByDay.MIE !== 3 || countsByDay.JUE !== 2 || countsByDay.VIE !== 2) {
+  throw new Error(`Distribución de clases por día incorrecta: ${JSON.stringify(countsByDay)}`);
+}
+
+console.log('\n✅ ¡TODOS LOS TESTS (INCLUYENDO CASO REAL DE MARZO) PASARON EXITOSAMENTE!');
+

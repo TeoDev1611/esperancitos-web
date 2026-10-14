@@ -80,7 +80,8 @@ export const DIA_MAP: Record<string, { code: ClaseItem['dia']; num: number }> = 
   sun: { code: 'DOM', num: 7 },
 };
 
-export const DIA_REGEX = /\b(Lunes|Martes|Mi[eé]rcoles|Jueves|Viernes|S[aá]bado|Domingo|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|Lun|Mar|Mi[eé]|Jue|Vie|S[aá]b|Dom|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b/gi;
+export const DATE_PATTERN_REGEX = /\b\d{1,2}[-/][A-Za-z0-9]{2,4}[-/]\d{2,4}\b|\b[A-Za-z]{3}\s*\d{2,4}\s*-\s*[A-Za-z]{3}\s*\d{2,4}\b/gi;
+export const DIA_REGEX = /(?<![-/\d\w])(Lunes|Martes|Mi[eé]rcoles|Jueves|Viernes|S[aá]bado|Domingo|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|Lun|Mar|Mi[eé]|Jue|Vie|S[aá]b|Dom|Mon|Tue|Wed|Thu|Fri|Sat|Sun)(?![-/\d\w])/gi;
 export const TIME_RANGE_REGEX = /\b([0-2]?\d:[0-5]\d(?:\s*[AaPp][Mm])?)\s*-\s*([0-2]?\d:[0-5]\d(?:\s*[AaPp][Mm])?)\b/;
 
 /**
@@ -219,25 +220,22 @@ export function parseBannerSchedule(rawText: string): PilasSchedule {
   // Extraer metadatos de cabecera general
   for (const line of lines) {
     // Formato Banner clásico: Horario ESTUDIANTE EJEMPLO, ALEX JAVIER PREGRADO S-II SEP 26 - FEB 27
-    const horarioHeaderMatch = line.match(/^Horario\s+([A-ZÁÉÍÓÚÑ\s,]+?)\s+(?:PREGRADO|POSGRADO|GRADO|S-[I|V|X]+)/i);
+    const horarioHeaderMatch = line.match(/^Horario\s+([A-ZÁÉÍÓÚÑ\s,]+?)\s+(?:NIVELACION|PREGRADO|POSGRADO|GRADO|S-[I|V|X]+)/i);
     if (horarioHeaderMatch && horarioHeaderMatch[1].trim().length > 3) {
       estudiante = formatDocente(horarioHeaderMatch[1].trim());
-      continue;
     }
 
     const estMatch = line.match(/(?:Estudiante|Alumno|Nombre(?:\s+del\s+Alumno)?):\s*([A-Za-zÁÉÍÓÚÑáéíóúñ\s,]+)/i);
     if (estMatch && estMatch[1].trim().length > 3) {
       estudiante = formatDocente(estMatch[1].trim());
-      continue;
     }
 
     const perMatch = line.match(/(?:Periodo|T[eé]rmino):\s*(\d{6})/i);
     if (perMatch) {
       periodo = perMatch[1];
-      continue;
     }
 
-    const semMatch = line.match(/\b(S-[I|V|X]+\s+[A-Z]{3}\s*\d{2}\s*-\s*[A-Z]{3}\s*\d{2}|SEP\s*\d{2}\s*-\s*[A-Z]{3}\s*\d{2})\b/i);
+    const semMatch = line.match(/\b(S-[I|V|X]+\s+[A-Z]{3}\s*\d{2}\s*-\s*[A-Z]{3}\s*\d{2}|[A-Z]{3}\s*\d{2}\s*-\s*[A-Z]{3}\s*\d{2}|SEP\s*\d{2}\s*-\s*[A-Z]{3}\s*\d{2}|OCT\s*\d{2}\s*-\s*[A-Z]{3}\s*\d{2})\b/i);
     if (semMatch) {
       periodo = semMatch[1];
     }
@@ -266,8 +264,8 @@ export function parseBannerSchedule(rawText: string): PilasSchedule {
       break;
     }
 
-    // Ignorar encabezados repetidos de página y URLs de pie de página
-    if (/^(Título\s+Detalles|https?:\/\/|Banner$|\d{1,2}\/\d{1,2}\/\d{2,4},?\s+\d{1,2}:\d{2}\s+Banner)/i.test(line)) {
+    // Ignorar encabezados repetidos de página, URLs de pie de página y secciones accesorias
+    if (/^(Título\s+Detalles|https?:\/\/|Banner$|\d{1,2}\/\d{1,2}\/\d{2,4},?\s+\d{1,2}:\d{2}\s+Banner|Clases sin horas de reuni[oó]n)/i.test(line)) {
       continue;
     }
 
@@ -382,8 +380,11 @@ export function parseBannerSchedule(rawText: string): PilasSchedule {
         }
       }
 
+      // Limpiar fechas antes de buscar días para evitar que meses como 'Mar' (Marzo) se confundan con 'Martes'
+      const lineWithoutDates = line.replace(DATE_PATTERN_REGEX, ' ');
+
       const timeMatch = line.match(TIME_RANGE_REGEX);
-      const dayMatches = Array.from(line.matchAll(DIA_REGEX)).map(m => m[1]);
+      const dayMatches = Array.from(lineWithoutDates.matchAll(DIA_REGEX)).map(m => m[1]);
       const hasAulaKeyword = isAulaString(line) && !line.match(COURSE_HEADER_REGEX) && !line.match(SPLIT_COURSE_HEADER_REGEX);
 
       // Si ya teníamos hora y encontramos nuevos días o una nueva hora, dividir sub-bloque
@@ -439,12 +440,23 @@ export function parseBannerSchedule(rawText: string): PilasSchedule {
       }
     }
 
+    // Deduplicar clases idénticas en la misma materia (mismo día y mismo rango horario)
+    const uniqueClases: ClaseItem[] = [];
+    const seenClases = new Set<string>();
+    for (const c of clases) {
+      const key = `${c.dia}-${c.inicio}-${c.fin}-${c.aula}`;
+      if (!seenClases.has(key)) {
+        seenClases.add(key);
+        uniqueClases.push(c);
+      }
+    }
+
     materias.push({
       nrc: header.nrc,
       materia: header.title,
       codigo: `${header.subjCode} ${header.courseNum}`,
       docente: detectedDocente || 'Docente Por Asignar',
-      clases,
+      clases: uniqueClases,
     });
   }
 

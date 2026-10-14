@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generador de Posts Instagram — PILAS! (1080x1350)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --fucsia: #E5147D;
+      --esmeralda: #10B981;
+      --amarillo: #FCD34D;
+      --crema: #FCF8F0;
+      --rosa-card: #FFE4EE;
+      --menta-card: #D5F8E8;
+    }
+    body {
+      background: #0f172a;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 30px;
+    }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    p.sub {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+    }
+    .post-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .btn-download {
+      background: var(--esmeralda);
+      color: #000;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      padding: 12px 28px;
+      border: 4px solid #000;
+      border-radius: 14px;
+      box-shadow: 5px 5px 0 #000;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .btn-download:active {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 #000;
+    }
+
+    /* LIENZO OFICIAL 1080x1350 (escalado al 45% en vista previa, exporta al 100%) */
+    .canvas-scaler {
+      width: 486px;
+      height: 607.5px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .artboard {
+      width: 1080px;
+      height: 1350px;
+      position: relative;
+      overflow: hidden;
+      transform: scale(0.45);
+      transform-origin: top left;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    /* ==========================================
+       ESTILO 1: CUADERNO UNIVERSITARIO
+       ========================================== */
+    .theme-cuaderno {
+      background-color: var(--crema);
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 62px,
+        #BFDBFE 62px,
+        #BFDBFE 65px
+      );
+    }
+    .theme-cuaderno::before {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; left: 92px;
+      width: 4px;
+      background: #F4A2A2;
+      z-index: 1;
+    }
+
+    .logo-top-left {
+      position: absolute;
+      top: 38px;
+      left: 92px;
+      width: 220px;
+      z-index: 10;
+    }
+    .logo-top-center {
+      position: absolute;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      z-index: 10;
+    }
+
+    .badge-top-right {
+      position: absolute;
+      top: 44px;
+      right: 60px;
+      background: var(--fucsia);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 27px;
+      padding: 10px 26px;
+      border-radius: 16px;
+      border: 6px solid #000;
+      box-shadow: 7px 9px 0 #000;
+      transform: rotate(-2.5deg);
+      z-index: 10;
+    }
+
+    /* TARJETAS SIN PILAS / CON PILAS */
+    .notebook-card {
+      position: absolute;
+      left: 60px;
+      width: 956px;
+      height: 350px;
+      border-radius: 26px;
+      border: 7px solid #000;
+      box-shadow: 12px 14px 0 #000;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      padding: 0 42px;
+      box-sizing: border-box;
+    }
+    .card-sin {
+      top: 150px;
+      background: var(--rosa-card);
+    }
+    .card-con {
+      top: 548px;
+      background: var(--menta-card);
+    }
+
+    .card-tag {
+      position: absolute;
+      top: -28px;
+      left: 70px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 25px;
+      padding: 7px 22px;
+      border-radius: 14px;
+      border: 6px solid #000;
+      box-shadow: 6px 7px 0 #000;
+      transform: rotate(3deg);
+      z-index: 8;
+    }
+    .tag-sin { background: var(--fucsia); color: #fff; }
+    .tag-con { background: var(--esmeralda); color: #000; }
+
+    /* Cinta adhesiva amarilla */
+    .tape {
+      position: absolute;
+      top: -22px;
+      right: 52px;
+      width: 150px;
+      height: 44px;
+      background: rgba(250, 219, 109, 0.78);
+      border: 1.5px solid rgba(180, 145, 50, 0.45);
+      transform: rotate(-5deg);
+      z-index: 9;
+    }
+
+    .mascot-box {
+      width: 280px;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .mascot-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Globo de diálogo */
+    .speech-bubble {
+      position: relative;
+      margin-left: 38px;
+      width: 550px;
+      height: 204px;
+      background: #fff;
+      border: 7px solid #000;
+      border-radius: 26px;
+      box-shadow: 9px 11px 0 #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 28px;
+      box-sizing: border-box;
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 35px;
+      line-height: 1.25;
+      color: #090d16;
+    }
+    .speech-bubble::before {
+      content: "";
+      position: absolute;
+      left: -28px;
+      top: 82px;
+      width: 0; height: 0;
+      border-top: 18px solid transparent;
+      border-bottom: 18px solid transparent;
+      border-right: 28px solid #000;
+    }
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      left: -17px;
+      top: 86px;
+      width: 0; height: 0;
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      border-right: 22px solid #fff;
+    }
+
+    .hl {
+      background: #FDE047;
+      padding: 2px 10px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* PILLS INFERIORES */
+    .pills-row {
+      position: absolute;
+      top: 936px;
+      left: 108px;
+      display: flex;
+      gap: 65px;
+      z-index: 6;
+    }
+    .pill {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 26px;
+      color: #000;
+      padding: 8px 22px;
+      border-radius: 14px;
+      border: 6px solid #000;
+      box-shadow: 7px 8px 0 #000;
+    }
+    .pill-yellow { background: var(--amarillo); transform: rotate(2.5deg); }
+    .pill-white  { background: #fff; transform: rotate(-2deg); }
+    .pill-green  { background: var(--esmeralda); transform: rotate(2deg); }
+    .pill-pink   { background: var(--fucsia); color: #fff; transform: rotate(-3deg); }
+
+    /* ==========================================
+       ESTILO 2: POP BURST / CÓMIC
+       ========================================== */
+    .theme-pop-dark {
+      background: repeating-conic-gradient(from 0deg at 50% 42%, #1a1625 0deg 7.5deg, #271c3a 7.5deg 15deg);
+    }
+    .theme-pop-fucsia {
+      background: repeating-conic-gradient(from 0deg at 50% 42%, #d81b60 0deg 7.5deg, #ad1457 7.5deg 15deg);
+    }
+    .theme-pop-yellow {
+      background: repeating-conic-gradient(from 0deg at 50% 42%, #fbbf24 0deg 7.5deg, #f59e0b 7.5deg 15deg);
+    }
+
+    .pop-title {
+      position: absolute;
+      top: 165px;
+      width: 100%;
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 98px;
+      line-height: 1.02;
+      color: #fff;
+      -webkit-text-stroke: 18px #000;
+      paint-order: stroke fill;
+      filter: drop-shadow(8px 10px 0 #000);
+      transform: rotate(2deg);
+      z-index: 10;
+    }
+
+    .burst-center {
+      position: absolute;
+      top: 370px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 650px;
+      height: 650px;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .burst-center img.mascot-pop {
+      width: 430px;
+      height: 430px;
+      object-fit: contain;
+      z-index: 6;
+    }
+
+    .burst-side {
+      position: absolute;
+      top: 375px;
+      right: 55px;
+      width: 300px;
+      height: 300px;
+      z-index: 8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .burst-side span {
+      position: relative;
+      z-index: 9;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 42px;
+      color: #fff;
+      text-align: center;
+      line-height: 1.05;
+      -webkit-text-stroke: 12px #000;
+      paint-order: stroke fill;
+      transform: rotate(-10deg);
+    }
+
+    /* ==========================================
+       FOOTER OFICIAL CON QR A #DESCARGAR
+       ========================================== */
+    .footer-cta {
+      position: absolute;
+      bottom: 42px;
+      left: 52px;
+      width: 970px;
+      height: 236px;
+      background: #fff;
+      border-radius: 26px;
+      border: 7px solid #000;
+      box-shadow: 12px 15px 0 #000;
+      display: flex;
+      align-items: center;
+      padding: 0 36px;
+      box-sizing: border-box;
+      z-index: 20;
+    }
+    .qr-container {
+      width: 176px;
+      height: 176px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-info {
+      margin-left: 36px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .footer-kicker {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 31px;
+      color: var(--fucsia);
+      margin-bottom: 2px;
+    }
+    .footer-heading {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      color: #000;
+      line-height: 1.05;
+    }
+    .footer-meta {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 23px;
+      color: #334155;
+      margin: 4px 0 10px 0;
+    }
+    .footer-url-bar {
+      background: var(--esmeralda);
+      border: 6px solid #000;
+      border-radius: 14px;
+      box-shadow: 6px 6px 0 #000;
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 27px;
+      color: #000;
+      padding: 6px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>⚡ Estudio de Publicaciones Instagram — PILAS!</h1>
+  <p class="sub">Haz clic en cualquier texto para editarlo en vivo · Todos los códigos QR dirigen a <strong>https://pilas-ec.vercel.app/#descargar</strong></p>
+
+  <div class="grid">
+
+    <!-- =================================================================
+         POST 1A: DORMIDO A LAS 23:59 (ESTILO CUADERNO)
+         ================================================================= -->
+    <div class="post-wrapper">
+      <div class="canvas-scaler">
+        <div class="artboard theme-cuaderno" id="post-04-cuaderno-dormido">
+          <img src="letras_estilo_transparente.svg" class="logo-top-left" alt="PILAS!">
+          <div class="badge-top-right" contenteditable="true">¡NO TE DUERMAS, ÑAÑO!</div>
+
+          <!-- SIN PILAS -->
+          <div class="notebook-card card-sin">
+            <div class="card-tag tag-sin">SIN PILAS!</div>
+            <div class="tape"></div>
+            <div class="mascot-box">
+              <img src="icono_var5_dormido.svg" alt="Pilas Dormido">
+            </div>
+            <div class="speech-bubble" contenteditable="true">
+              Yo en el quinto sueño y el<br>
+              informe de lab <span class="hl">cerraba hoy</span><br>
+              <span class="hl">a las 23:59... ¡Chuta!</span>
+            </div>
+          </div>
+
+          <!-- CON PILAS -->
+          <div class="notebook-card card-con">
+            <div class="card-tag tag-con">CON PILAS!</div>
+            <div class="tape"></div>
+            <div class="mascot-box">
+              <img src="icono_var1_sin_fondo.svg" alt="Pilas Activo">
+            </div>
+            <div class="speech-bubble" contenteditable="true">
+              La Alarma Real te despierta<br>
+              y <span class="hl">subes tu PDF a Moodle</span><br>
+              directo desde el cel.
+            </div>
+          </div>
+
+          <!-- PILLS -->
+          <div class="pills-row">
+            <div class="pill pill-yellow" contenteditable="true">Alarma sonora</div>
+            <div class="pill pill-white" contenteditable="true">Subida directa</div>
+            <div class="pill pill-green" contenteditable="true">Cero ceros</div>
+          </div>
+
+          <!-- FOOTER QR -->
+          <div class="footer-cta">
+            <div class="qr-container" data-qr="https://pilas-ec.vercel.app/#descargar"></div>
+            <div class="footer-info">
+              <div class="footer-kicker">ESCANEA Y</div>
+              <div class="footer-heading">DESCARGA GRATIS</div>
+              <div class="footer-meta">Android 8.0+ · Sin publicidad</div>
+              <div class="footer-url-bar">pilas-ec.vercel.app/#descargar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-download" onclick="exportPost('post-04-cuaderno-dormido', '04_cuaderno_dormido_1080x1350.png')">📸 Descargar 04_cuaderno_dormido.png</button>
+    </div>
+
+    <!-- =================================================================
+         POST 1B: DORMIDO A LAS 23:59 (ESTILO POP BURST)
+         ================================================================= -->
+    <div class="post-wrapper">
+      <div class="canvas-scaler">
+        <div class="artboard theme-pop-dark" id="post-04-pop-dormido">
+          <img src="letras_estilo_transparente.svg" class="logo-top-center" alt="PILAS!">
+          <div class="pop-title" contenteditable="true">¿DORMIDO A<br>LAS 23:58?</div>
+
+          <div class="burst-center">
+            <svg viewBox="0 0 200 200" width="650" height="650" style="position:absolute;">
+              <polygon points="100,6 121,38 158,20 156,59 194,68 170,100 194,132 156,141 158,180 121,162 100,194 79,162 42,180 44,141 6,132 30,100 6,68 44,59 42,20 79,38"
+                       fill="#E5147D" stroke="#000" stroke-width="5" style="filter: drop-shadow(5px 6px 0 #000);"/>
+            </svg>
+            <img src="icono_var5_dormido.svg" class="mascot-pop" alt="Pilas Dormido">
+          </div>
+
+          <div class="burst-side">
+            <svg viewBox="0 0 200 200" width="290" height="290" style="position:absolute;">
+              <polygon points="100,8 122,34 156,22 156,56 190,68 170,98 190,128 156,140 156,174 122,162 100,188 78,162 44,174 44,140 10,128 30,98 10,68 44,56 44,22 78,34"
+                       fill="#FCD34D" stroke="#000" stroke-width="6" style="filter: drop-shadow(5px 6px 0 #000);"/>
+            </svg>
+            <span contenteditable="true">23:59</span>
+          </div>
+
+          <div class="pills-row" style="top:890px; left:95px; gap:40px;">
+            <div class="pill pill-yellow" contenteditable="true">Alarma Full-Screen</div>
+            <div class="pill pill-white" contenteditable="true">Entrega nativa</div>
+            <div class="pill pill-green" contenteditable="true">Salva el parcial</div>
+          </div>
+
+          <div class="footer-cta">
+            <div class="qr-container" data-qr="https://pilas-ec.vercel.app/#descargar"></div>
+            <div class="footer-info">
+              <div class="footer-kicker">ESCANEA Y</div>
+              <div class="footer-heading">DESCARGA GRATIS</div>
+              <div class="footer-meta">Android 8.0+ · Sin publicidad</div>
+              <div class="footer-url-bar">pilas-ec.vercel.app/#descargar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-download" onclick="exportPost('post-04-pop-dormido', '04_pop_dormido_1080x1350.png')">📸 Descargar 04_pop_dormido.png</button>
+    </div>
+
+    <!-- =================================================================
+         POST 2A: GUARDIA Y CARNET DIGITAL (ESTILO CUADERNO)
+         ================================================================= -->
+    <div class="post-wrapper">
+      <div class="canvas-scaler">
+        <div class="artboard theme-cuaderno" id="post-05-cuaderno-guardia">
+          <img src="letras_estilo_transparente.svg" class="logo-top-left" alt="PILAS!">
+          <div class="badge-top-right" contenteditable="true">¡PASA DE UNA, SOCIO!</div>
+
+          <!-- SIN PILAS -->
+          <div class="notebook-card card-sin">
+            <div class="card-tag tag-sin">SIN PILAS!</div>
+            <div class="tape"></div>
+            <div class="mascot-box">
+              <img src="icono_var6_guardia.svg" alt="Pilas Guardia">
+            </div>
+            <div class="speech-bubble" contenteditable="true">
+              "A ver socio, su carnet..."<br>
+              Y a mí <span class="hl">no me carga el portal</span><br>
+              en plena entrada.
+            </div>
+          </div>
+
+          <!-- CON PILAS -->
+          <div class="notebook-card card-con">
+            <div class="card-tag tag-con">CON PILAS!</div>
+            <div class="tape"></div>
+            <div class="mascot-box">
+              <img src="icono_var3_sin_fondo.svg" alt="Pilas Pulgar">
+            </div>
+            <div class="speech-bubble" contenteditable="true">
+              Sacas tu <span class="hl">Carnet Digital HD</span><br>
+              <span class="hl">100% sin internet</span> y entras<br>
+              fresco al campus, pana.
+            </div>
+          </div>
+
+          <div class="pills-row">
+            <div class="pill pill-yellow" contenteditable="true">Carnet Offline</div>
+            <div class="pill pill-white" contenteditable="true">Efecto Flip HD</div>
+            <div class="pill pill-green" contenteditable="true">Cero filas</div>
+          </div>
+
+          <div class="footer-cta">
+            <div class="qr-container" data-qr="https://pilas-ec.vercel.app/#descargar"></div>
+            <div class="footer-info">
+              <div class="footer-kicker">ESCANEA Y</div>
+              <div class="footer-heading">DESCARGA GRATIS</div>
+              <div class="footer-meta">Android 8.0+ · Sin publicidad</div>
+              <div class="footer-url-bar">pilas-ec.vercel.app/#descargar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-download" onclick="exportPost('post-05-cuaderno-guardia', '05_cuaderno_carnet_1080x1350.png')">📸 Descargar 05_cuaderno_carnet.png</button>
+    </div>
+
+    <!-- =================================================================
+         POST 2B: GUARDIA Y CARNET DIGITAL (ESTILO POP BURST)
+         ================================================================= -->
+    <div class="post-wrapper">
+      <div class="canvas-scaler">
+        <div class="artboard theme-pop-fucsia" id="post-05-pop-guardia">
+          <img src="letras_estilo_transparente.svg" class="logo-top-center" alt="PILAS!">
+          <div class="pop-title" contenteditable="true">¿OLVIDASTE<br>EL CARNET?</div>
+
+          <div class="burst-center">
+            <svg viewBox="0 0 200 200" width="650" height="650" style="position:absolute;">
+              <polygon points="100,6 121,38 158,20 156,59 194,68 170,100 194,132 156,141 158,180 121,162 100,194 79,162 42,180 44,141 6,132 30,100 6,68 44,59 42,20 79,38"
+                       fill="#FCD34D" stroke="#000" stroke-width="5" style="filter: drop-shadow(5px 6px 0 #000);"/>
+            </svg>
+            <img src="icono_var6_guardia.svg" class="mascot-pop" alt="Pilas Guardia">
+          </div>
+
+          <div class="burst-side">
+            <svg viewBox="0 0 200 200" width="290" height="290" style="position:absolute;">
+              <polygon points="100,8 122,34 156,22 156,56 190,68 170,98 190,128 156,140 156,174 122,162 100,188 78,162 44,174 44,140 10,128 30,98 10,68 44,56 44,22 78,34"
+                       fill="#10B981" stroke="#000" stroke-width="6" style="filter: drop-shadow(5px 6px 0 #000);"/>
+            </svg>
+            <span contenteditable="true">100%<br>OFFLINE</span>
+          </div>
+
+          <div class="pills-row" style="top:890px; left:95px; gap:40px;">
+            <div class="pill pill-white" contenteditable="true">Carnet Digital ESPE</div>
+            <div class="pill pill-green" contenteditable="true">4 Widgets</div>
+            <div class="pill pill-yellow" contenteditable="true">Sin gastar megas</div>
+          </div>
+
+          <div class="footer-cta">
+            <div class="qr-container" data-qr="https://pilas-ec.vercel.app/#descargar"></div>
+            <div class="footer-info">
+              <div class="footer-kicker">ESCANEA Y</div>
+              <div class="footer-heading">DESCARGA GRATIS</div>
+              <div class="footer-meta">Android 8.0+ · Sin publicidad</div>
+              <div class="footer-url-bar">pilas-ec.vercel.app/#descargar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-download" onclick="exportPost('post-05-pop-guardia', '05_pop_carnet_1080x1350.png')">📸 Descargar 05_pop_carnet.png</button>
+    </div>
+
+    <!-- =================================================================
+         POST 3: ASUSTADO POR NOTIFICACIÓN EN CLASE / DND (CUADERNO)
+         ================================================================= -->
+    <div class="post-wrapper">
+      <div class="canvas-scaler">
+        <div class="artboard theme-cuaderno" id="post-06-cuaderno-asustado">
+          <img src="letras_estilo_transparente.svg" class="logo-top-left" alt="PILAS!">
+          <div class="badge-top-right" contenteditable="true">¡CERO SUSTOS, PANA!</div>
+
+          <!-- SIN PILAS -->
+          <div class="notebook-card card-sin">
+            <div class="card-tag tag-sin">SIN PILAS!</div>
+            <div class="tape"></div>
+            <div class="mascot-box">
+              <img src="icono_var4_asustado.svg" alt="Pilas Asustado">
+            </div>
+            <div class="speech-bubble" contenteditable="true">
+              ¡Ayayay! Sonó mi cel a todo<br>
+              volumen <span class="hl">en plena clase con</span><br>
+              <span class="hl">el inge más bravo...</span>
+            </div>
+          </div>
+
+          <!-- CON PILAS -->
+          <div class="notebook-card card-con">
+            <div class="card-tag tag-con">CON PILAS!</div>
+            <div class="tape"></div>
+            <div class="mascot-box">
+              <img src="icono_var3_sin_fondo.svg" alt="Pilas Pulgar">
+            </div>
+            <div class="speech-bubble" contenteditable="true">
+              Relájate, ñaño. Pilas! activa<br>
+              el <span class="hl">Modo No Molestar solito</span><br>
+              según tu horario de clases.
+            </div>
+          </div>
+
+          <div class="pills-row">
+            <div class="pill pill-yellow" contenteditable="true">Silencio auto</div>
+            <div class="pill pill-white" contenteditable="true">Según tu horario</div>
+            <div class="pill pill-green" contenteditable="true">Paz mental</div>
+          </div>
+
+          <div class="footer-cta">
+            <div class="qr-container" data-qr="https://pilas-ec.vercel.app/#descargar"></div>
+            <div class="footer-info">
+              <div class="footer-kicker">ESCANEA Y</div>
+              <div class="footer-heading">DESCARGA GRATIS</div>
+              <div class="footer-meta">Android 8.0+ · Sin publicidad</div>
+              <div class="footer-url-bar">pilas-ec.vercel.app/#descargar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-download" onclick="exportPost('post-06-cuaderno-asustado', '06_cuaderno_dnd_1080x1350.png')">📸 Descargar 06_cuaderno_dnd.png</button>
+    </div>
+
+    <!-- =================================================================
+         POST 4: HUECOS LIBRES CON LOS PANAS (CUADERNO)
+         ================================================================= -->
+    <div class="post-wrapper">
+      <div class="canvas-scaler">
+        <div class="artboard theme-cuaderno" id="post-07-cuaderno-huecos">
+          <img src="letras_estilo_transparente.svg" class="logo-top-left" alt="PILAS!">
+          <div class="badge-top-right" contenteditable="true">¡ARMA EL PLAN, ÑAÑO!</div>
+
+          <!-- SIN PILAS -->
+          <div class="notebook-card card-sin">
+            <div class="card-tag tag-sin">SIN PILAS!</div>
+            <div class="tape"></div>
+            <div class="mascot-box">
+              <img src="icono_var2_sin_fondo.svg" alt="Pilas Serio">
+            </div>
+            <div class="speech-bubble" contenteditable="true">
+              "¿A qué hora tienen hueco<br>
+              para ir a comer?" <span class="hl">Y nadie</span><br>
+              <span class="hl">responde en el grupo...</span>
+            </div>
+          </div>
+
+          <!-- CON PILAS -->
+          <div class="notebook-card card-con">
+            <div class="card-tag tag-con">CON PILAS!</div>
+            <div class="tape"></div>
+            <div class="mascot-box">
+              <img src="icono_var1_sin_fondo.svg" alt="Pilas Feliz">
+            </div>
+            <div class="speech-bubble" contenteditable="true">
+              Escanea el QR de tus panas<br>
+              sin internet y <span class="hl">cruza todos los</span><br>
+              <span class="hl">huecos libres al instante.</span>
+            </div>
+          </div>
+
+          <div class="pills-row">
+            <div class="pill pill-yellow" contenteditable="true">QR sin internet</div>
+            <div class="pill pill-white" contenteditable="true">Huecos grupales</div>
+            <div class="pill pill-green" contenteditable="true">De una</div>
+          </div>
+
+          <div class="footer-cta">
+            <div class="qr-container" data-qr="https://pilas-ec.vercel.app/#descargar"></div>
+            <div class="footer-info">
+              <div class="footer-kicker">ESCANEA Y</div>
+              <div class="footer-heading">DESCARGA GRATIS</div>
+              <div class="footer-meta">Android 8.0+ · Sin publicidad</div>
+              <div class="footer-url-bar">pilas-ec.vercel.app/#descargar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-download" onclick="exportPost('post-07-cuaderno-huecos', '07_cuaderno_huecos_1080x1350.png')">📸 Descargar 07_cuaderno_huecos.png</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Generar todos los QR apuntando exactamente a https://pilas-ec.vercel.app/#descargar
+    document.querySelectorAll('.qr-container').forEach(container => {
+      new QRCode(container, {
+        text: container.getAttribute('data-qr'),
+        width: 172,
+        height: 172,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.M
+      });
+    });
+
+    // Exportar Artboard a 1080x1350 real
+    async function exportPost(elementId, filename) {
+      const el = document.getElementById(elementId);
+      const originalTransform = el.style.transform;
+      el.style.transform = 'none';
+
+      const canvas = await html2canvas(el, {
+        width: 1080,
+        height: 1350,
+        scale: 1,
+        useCORS: true,
+        backgroundColor: null
+      });
+
+      el.style.transform = originalTransform;
+
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>
