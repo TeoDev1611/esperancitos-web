@@ -1,0 +1,51 @@
+{
+  "version": "1.2.0",
+  "build": 8,
+  "apkVersion": "1.1-beta.2",
+  "releaseDate": "2026-10-19",
+  "minAndroid": "8.0",
+  "versionDiscrepancyNote": "El APK público distribuido actualmente corresponde a la versión estable v1.1-beta.2, mientras la versión v1.2.0 (Build 8) se encuentra en fase de beta cerrada en Google Play.",
+  "downloads": {
+    "showDownloadCount": true,
+    "count": 100,
+    "label": "descargas comunitarias"
+  },
+  "architectures": {
+    "arm64-v8a": {
+      "name": "ARM64-v8a",
+      "description": "Celulares modernos recomendados",
+      "file": "pilas-v1.1-beta.2-arm64-v8a.apk",
+      "sizeBytes": 38999344,
+      "sha256": "6146d397772f13c4aa3032e91ad4f5957af7d8fd612235bb9043e30ac66a9ff2",
+      "url": "/downloads/pilas-v1.1-beta.2-arm64-v8a.apk",
+      "isPrimary": true
+    },
+    "armeabi-v7a": {
+      "name": "ARMeabi-v7a",
+      "description": "Celulares de más de 5 años",
+      "file": "pilas-v1.1-beta.2-armeabi-v7a.apk",
+      "sizeBytes": 35229604,
+      "sha256": "b5eb74cdb1b8e21609c9c10067f948b4125c57fa5043f552e376014e9340977a",
+      "url": "/downloads/pilas-v1.1-beta.2-armeabi-v7a.apk",
+      "isPrimary": false
+    },
+    "universal": {
+      "name": "Universal",
+      "description": "Compatible con todos los celulares",
+      "file": "pilas-v1.1-beta.2-universal.apk",
+      "sizeBytes": 99424798,
+      "sha256": "9f5ba9c879b51b13c29491846673149174bfc004f2d9376fcbe7ad5eb4d04cbc",
+      "url": "/downloads/pilas-v1.1-beta.2-universal.apk",
+      "isPrimary": false
+    },
+    "x86_64": {
+      "name": "x86_64",
+      "description": "Emuladores y PC",
+      "file": "pilas-v1.1-beta.2-x86_64.apk",
+      "sizeBytes": 41588008,
+      "sha256": "999c710f32bb91922a1fc089d841e65d152e2c48888ef7482df6c24cbb394953",
+      "url": "/downloads/pilas-v1.1-beta.2-x86_64.apk",
+      "isPrimary": false
+    }
+  }
+}

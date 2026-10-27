@@ -1,6 +1,6 @@
 ---
-// faq.astro - Centro oficial de Preguntas Frecuentes de Pilas!
-import BaseLayout from '../layouts/BaseLayout.astro';
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/inter';
 import { SITE } from '../config/site';
 import { FAQ_ENTRIES, FAQ_CATEGORIES } from '../config/faq';
 
@@ -12,859 +12,531 @@ const categoryMap: Record<string, string> = {
   malla: 'Malla & Modo Offline',
   general: 'General, Sedes & iPhone',
 };
+
+const V = {
+  version: SITE.version,
+  apk: SITE.primaryApkPath,
+};
+const IG = 'https://www.instagram.com/pilas_ec.app/';
+const WA = 'https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
 ---
+<!doctype html>
+<html lang="es-EC" data-mode="espe">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Preguntas Frecuentes | Pilas! para Android</title>
+<meta name="description" content="Respuestas sobre la app Pilas!: instalación de APK, seguridad y privacidad de contraseñas, Moodle por QR, horarios sin internet y cálculo de notas.">
+<meta name="theme-color" content="#101319">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<script is:inline>
+try {
+  var m = localStorage.pilasMode;
+  if (m === 'multi' || m === 'espe') document.documentElement.dataset.mode = m;
+} catch (e) {}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01"/></symbol>
+</svg>
 
-<BaseLayout
-  title="Preguntas Frecuentes | Pilas! para Android - Universidad ESPE"
-  description="Respuestas oficiales a dudas sobre la app Pilas! para estudiantes de la Universidad ESPE: instalación de APK, seguridad de credenciales, Moodle, horarios y notas."
-  keywords="FAQ Pilas, preguntas frecuentes Pilas ESPE, instalar APK Pilas, seguridad Moodle miESPE, notas Banner"
-  includeAppSchema={true}
->
-  <main class="faq-page">
-    <div class="container">
-      <!-- Breadcrumb / Volver -->
-      <nav class="faq-breadcrumb" aria-label="Navegación secundaria">
-        <a href="/" class="btn-back-home">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          <span>Volver al inicio</span>
-        </a>
-      </nav>
+<header class="top">
+  <div class="wrap">
+    <a class="nav-brand-logo-pill" href="/" aria-label="Pilas!, volver al inicio">
+      <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="128" height="42" />
+    </a>
+    <a class="btn btn-s btn-sm" href="/"><svg class="ico"><use href="#i-back"/></svg>Volver<span class="hide-xs"> al inicio</span></a>
+    <a class="btn btn-p btn-sm" href={V.apk}><svg class="ico"><use href="#i-down"/></svg><span class="hide-xs">Descargar </span>APK</a>
+  </div>
+</header>
 
-      <!-- Encabezado de la página -->
-      <header class="faq-hero-header">
-        <span class="badge-app fuchsia">AYUDA & RESPUESTAS OFICIALES · COMUNIDAD ESPE</span>
-        <h1 class="faq-main-title">Preguntas Frecuentes</h1>
-        <p class="faq-hero-desc">
-          Todo lo que necesitas saber sobre Pilas!: instalación de APK en Android, privacidad y seguridad de tus credenciales, sincronización de Moodle, horarios de Banner y notas.
-        </p>
-
-        <!-- Buscador en Vivo -->
-        <div class="faq-search-container">
-          <div class="faq-search-box">
-            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input
-              type="search"
-              id="faq-search-input"
-              class="faq-search-input"
-              placeholder="Buscar por palabra clave (ej. contraseña, APK, Play Protect, Moodle, notas)..."
-              autocomplete="off"
-              aria-label="Buscar preguntas frecuentes"
-            />
-            <button type="button" id="faq-clear-btn" class="faq-clear-btn" aria-label="Limpiar búsqueda" hidden>✕</button>
-          </div>
-        </div>
-
-        <!-- Filtros por Categoría -->
-        <div class="faq-categories-bar" role="tablist" aria-label="Categorías de preguntas">
-          {FAQ_CATEGORIES.map((cat, idx) => (
-            <button
-              type="button"
-              class={`faq-cat-filter-btn ${idx === 0 ? 'active' : ''}`}
-              data-cat-id={cat.id}
-              role="tab"
-              aria-selected={idx === 0 ? 'true' : 'false'}
-            >
-              <span class="cat-icon" aria-hidden="true">{cat.icon}</span>
-              <span>{cat.name}</span>
-            </button>
-          ))}
-        </div>
-
-        <div class="faq-results-counter">
-          <span id="faq-counter-text">Mostrando <strong>{FAQ_ENTRIES.length}</strong> preguntas</span>
-        </div>
-      </header>
-
-      <!-- Lista de Preguntas Frecuentes -->
-      <section class="faq-entries-section">
-        <div class="faq-accordion-container" id="faq-accordion-list">
-          {FAQ_ENTRIES.map((entry) => (
-            <details
-              class="faq-item-card card-app"
-              data-category={entry.category}
-              data-faq-id={entry.id}
-            >
-              <summary class="faq-item-summary">
-                <div class="faq-item-left">
-                  <span class={`faq-pill-cat ${entry.category}`}>
-                    {categoryMap[entry.category] || entry.category}
-                  </span>
-                  <h2 class="faq-item-question">{entry.question}</h2>
-                </div>
-                <span class="faq-expand-icon" aria-hidden="true">+</span>
-              </summary>
-              <div class="faq-item-answer">
-                <div class="answer-content">
-                  <p>
-                    <Fragment set:html={entry.answer} />
-                  </p>
-                  {entry.bullets && entry.bullets.length > 0 && (
-                    <ul class="faq-bullets-list">
-                      {entry.bullets.map((b) => (
-                        <li><Fragment set:html={b} /></li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </div>
-            </details>
-          ))}
-        </div>
-
-        <!-- Estado Vacío (Sin Resultados) -->
-        <div class="faq-empty-box card-app" id="faq-empty-state" hidden>
-          <div class="empty-icon" aria-hidden="true">🔍</div>
-          <h3>No encontramos respuestas para esa búsqueda</h3>
-          <p>
-            Prueba buscando con palabras más generales como <em>"Moodle"</em>, <em>"contraseña"</em>, <em>"APK"</em> o <em>"horario"</em>.
-          </p>
-          <button type="button" class="btn-pilas-primary btn-reset-search" id="btn-reset-search">
-            <span>Ver todas las preguntas</span>
-          </button>
-        </div>
-      </section>
-
-      <!-- Banner de Soporte / ¿Aún tienes dudas? -->
-      <section class="faq-contact-card card-app green-accent">
-        <div class="contact-card-icon-col" aria-hidden="true">
-          <div class="contact-wa-frame">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="contact-card-info">
-          <div class="contact-card-badge-row">
-            <span class="badge-app green">¿TIENES OTRA PREGUNTA?</span>
-            <span class="chip-direct">RESPUESTA RÁPIDA</span>
-          </div>
-          <h3>¿No encontraste la respuesta a tu duda?</h3>
-          <p>
-            Síguenos en <strong>Instagram oficial (@pilas_ec.app)</strong> y únete al <strong>Canal de WhatsApp de Pilas!</strong> para avisos del campus, noticias, solución de problemas y contacto directo.
-          </p>
-        </div>
-        <div class="contact-card-actions">
-          <a
-            href={SITE.social.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-instagram-channel-cta"
-            aria-label="Seguir en el Instagram oficial @pilas_ec.app"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-            </svg>
-            <span>Instagram Oficial</span>
-          </a>
-          <a
-            href={SITE.social.whatsappChannel}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-whatsapp-channel-cta"
-            aria-label="Unirse al canal oficial de WhatsApp de Pilas!"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-            </svg>
-            <span>Canal de WhatsApp</span>
-          </a>
-          <a
-            href="mailto:teo.hurtado.16@gmail.com"
-            class="btn-app btn-app-surface btn-email-contact"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-            </svg>
-            <span>Escribir por correo</span>
-          </a>
-        </div>
-      </section>
+<main class="page-body">
+  <div class="wrap">
+    <div class="page-head">
+      <span class="badge b-info"><svg class="ico"><use href="#i-info"/></svg>Centro de ayuda</span>
+      <h1>Preguntas Frecuentes</h1>
+      <p class="lead">Todo lo que necesitas saber sobre instalación, cuentas, seguridad, horarios y Moodle.</p>
     </div>
-  </main>
-</BaseLayout>
+
+    <!-- Buscador -->
+    <div class="search-wrap">
+      <div class="search-box">
+        <svg class="ico"><use href="#i-search"/></svg>
+        <input
+          type="search"
+          id="faq-search"
+          placeholder="Buscar por palabra clave (ej. contraseña, APK, Play Protect, QR)..."
+          aria-label="Buscar preguntas frecuentes"
+        />
+        <button type="button" id="faq-clear" class="btn-clear" aria-label="Limpiar búsqueda" hidden>×</button>
+      </div>
+    </div>
+
+    <!-- Filtros de categoría -->
+    <div class="cat-bar" role="tablist" aria-label="Categorías de preguntas">
+      {FAQ_CATEGORIES.map((cat, idx) => (
+        <button
+          type="button"
+          class={`cat-btn ${idx === 0 ? 'active' : ''}`}
+          data-cat-id={cat.id}
+          role="tab"
+          aria-selected={idx === 0 ? 'true' : 'false'}
+        >
+          <span>{cat.name}</span>
+        </button>
+      ))}
+    </div>
+
+    <p class="count-line" id="faq-count" aria-live="polite">Mostrando <b class="num">{FAQ_ENTRIES.length}</b> preguntas</p>
+
+    <!-- Lista de acordeones -->
+    <div class="faq-list" id="faq-list">
+      {FAQ_ENTRIES.map((entry) => (
+        <details class="faq-item" data-category={entry.category} data-faq-id={entry.id}>
+          <summary>
+            <span class="badge b-info">{categoryMap[entry.category] || entry.category}</span>
+            <span class="faq-q">{entry.question}</span>
+          </summary>
+          <div class="faq-ans">
+            <p><Fragment set:html={entry.answer} /></p>
+            {entry.bullets && entry.bullets.length > 0 && (
+              <ul class="faq-bullets">
+                {entry.bullets.map((b) => (
+                  <li><Fragment set:html={b} /></li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Estado vacío -->
+    <div class="empty card" id="faq-empty" hidden>
+      <img src="/logos/mascota_negacion.svg" alt="Pilo con ceño fruncido indicando que no se encontraron respuestas" width="120" height="120">
+      <h3>No encontramos respuestas para esa búsqueda</h3>
+      <p>Prueba con términos más generales como <em>Moodle</em>, <em>contraseña</em>, <em>APK</em> o <em>horario</em>.</p>
+      <button type="button" class="btn btn-p btn-sm" id="btn-reset">Ver todas las preguntas</button>
+    </div>
+
+    <!-- Tarjeta de contacto -->
+    <div class="card support-card">
+      <div>
+        <h3>¿Tienes otra duda o encontraste un problema?</h3>
+        <p style="margin-top:6px">Escríbenos directamente a través de nuestros canales comunitarios oficiales.</p>
+      </div>
+      <div class="support-btns">
+        <a class="btn btn-p" href={WA} target="_blank" rel="noopener noreferrer">Canal de WhatsApp</a>
+        <a class="btn btn-s" href={`mailto:${SITE.social.email}`}>Enviar correo</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="hub-footer">
+  <div class="wrap footer-wrap">
+    <div class="footer-brand-row">
+      <a class="footer-brand-logo-pill" href="/" aria-label="Pilas!, volver arriba">
+        <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="footer-lettering-img" width="132" height="42" />
+      </a>
+      <div class="footer-pill-edition">
+        <span class="sticker-pill" data-for="espe">⚡ COMUNIDAD UNIVERSITARIA ESPE</span>
+        <span class="sticker-pill coral" data-for="multi">⭐ RED MULTI-UNIVERSIDAD ECUADOR</span>
+      </div>
+    </div>
+    <nav aria-label="Enlaces del sitio" class="footer-nav">
+      <a href="/faq">Preguntas frecuentes</a>
+      <a href="/avisos">Avisos</a>
+      <a href="/negocios">Negocios</a>
+      <a href="/privacidad">Privacidad</a>
+      <a href={IG} target="_blank" rel="noopener noreferrer">Instagram (@pilas_ec.app)</a>
+      <a href={WA} target="_blank" rel="noopener noreferrer">Canal de WhatsApp</a>
+    </nav>
+    <div class="footer-legal">
+      <p>Pilas! es un proyecto estudiantil independiente. No está respaldado ni afiliado oficialmente a la Universidad de las Fuerzas Armadas ESPE, Ellucian, Banner ni Moodle. Las credenciales y datos viven únicamente en tu teléfono.</p>
+      <p class="footer-copy">© 2026 Pilas! · Hecho con orgullo estudiantil para el Ecuador.</p>
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+:root{
+  color-scheme:dark;
+  --primary:#ff3fa4;--primary-hover:#e5147d;--primary-extrude:#7a0a45;--primary-shadow:#4a0026;--primary-coral:#ff3d5e;
+  --success:#00ff87;--success-shadow:#059669;--warning:#ffdb60;--critical:#ef4444;--info:#38bdf8;
+  --bg-base:#101319;--bg-subtle:#191d28;--bg-surface:#161a23;--bg-elevated:#1e2230;--bg-container:#242938;
+  --border:#2a3142;--border-control:#6b7894;--title:#faf7f7;--body:#e1e2eb;--muted:#8f9cae;
+  --f-d:"Outfit Variable",system-ui,sans-serif;--f-b:"Inter Variable",system-ui,sans-serif;
+  --accent:var(--primary);--bg:var(--bg-base);
+}
+html[data-mode=multi]{--accent:var(--primary-coral);--bg:var(--bg-subtle)}
+html{scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background-color:var(--bg);color:var(--body);font:400 1.0625rem/1.6 var(--f-b);padding-bottom:env(safe-area-inset-bottom,0px)}
+html[data-mode=espe] body{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px}
+html[data-mode=multi] body{background-image:radial-gradient(rgba(255,255,255,.09) 1.5px,transparent 1.5px);background-size:22px 22px}
+h1,h2,h3{font-family:var(--f-d);font-weight:800;color:var(--title);line-height:1.1;letter-spacing:-.02em;margin:0}
+p{margin:0}a{color:var(--info)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,32px)}
+.num{font-variant-numeric:tabular-nums}
+.ico{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border:2px solid;border-radius:12px;font:800 1rem var(--f-d);text-decoration:none;cursor:pointer;transition:transform 100ms,box-shadow 100ms,background 150ms}
+.btn:active{transform:translate(2px,2px);box-shadow:none!important}
+.btn-p{background:var(--primary);color:#000;border-color:#000;box-shadow:3px 3px 0 #000}
+.btn-p:hover,.btn-p:active{background:var(--primary-hover)}
+.btn-s{background:var(--bg-elevated);color:var(--title);border:2px solid var(--border-control);box-shadow:3px 3px 0 #000}
+.btn-sm{padding:0 16px;font-size:.95rem}
+.card{background:var(--bg-surface);border:2px solid var(--border);border-radius:14px;box-shadow:2px 2px 0 var(--border);padding:24px}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1.5px solid currentColor;border-radius:999px;padding:4px 12px 4px 8px;background:var(--bg-base);font:600 .875rem/1.3 var(--f-b)}
+.b-ok{color:var(--success)}.b-warn{color:var(--warning)}.b-crit{color:var(--critical)}.b-info{color:var(--info)}
+
+/* top con logo pill y glow */
+.top{position:sticky;top:0;z-index:20;background:rgba(16,19,25,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:2px solid #000;padding:10px 0}
+.top .wrap{display:flex;align-items:center;gap:12px;min-height:50px}
+
+.nav-brand-logo-pill,
+.footer-brand-logo-pill {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+  text-decoration:none;
+  margin-right:auto;
+}
+
+.nav-brand-logo,
+.footer-lettering-img {
+  display:block;
+  height:36px;
+  width:auto;
+  filter:drop-shadow(0 0 10px rgba(255,63,164,0.9))
+         drop-shadow(0 0 22px rgba(255,20,117,0.7))
+         drop-shadow(2px 3px 0 #000000)!important;
+  transition:filter 220ms ease, transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation:logoPinkGlowPulse 4s ease-in-out infinite;
+}
+.nav-brand-logo:hover,
+.footer-lettering-img:hover {
+  filter:drop-shadow(0 0 14px rgba(255,63,164,1))
+         drop-shadow(0 0 30px rgba(255,20,117,0.95))
+         drop-shadow(2px 3px 0 #000000)!important;
+  transform:translateY(-2px) scale(1.03);
+}
+
+@keyframes logoPinkGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 63, 164, 0.9))
+            drop-shadow(0 0 20px rgba(255, 20, 117, 0.7))
+            drop-shadow(2px 3px 0 #000000);
+  }
+  50% {
+    filter: drop-shadow(0 0 13px rgba(255, 63, 164, 1))
+            drop-shadow(0 0 28px rgba(255, 20, 117, 0.88))
+            drop-shadow(2px 3px 0 #000000);
+  }
+}
+
+.sticker-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1.5px solid #000;
+  border-radius: 9999px;
+  background: var(--primary);
+  color: #000;
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  box-shadow: 2px 2px 0 #000;
+}
+.sticker-pill.coral { background: var(--primary-coral); }
+
+/* Footer Neo-Brutalista Oficial */
+.hub-footer {
+  padding: 48px 0 56px;
+  border-top: 2px solid #000;
+  background: #090b10;
+}
+.footer-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-pill-edition {
+  display: flex;
+  gap: 8px;
+}
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+}
+.footer-nav a {
+  color: var(--body);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color 150ms;
+}
+.footer-nav a:hover {
+  color: var(--primary);
+}
+.footer-legal {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
+}
+.footer-copy {
+  color: var(--title);
+  font-weight: 700;
+}
+
+/* page content */
+.page-body{padding:clamp(36px,6vw,72px) 0 clamp(48px,7vw,96px)}
+.page-head{display:grid;gap:12px;max-width:44em}
+.page-head h1{font-size:clamp(2.2rem,5vw,3.6rem);margin-top:6px}
+.lead{font-size:1.15rem;color:var(--body)}
+
+/* search */
+.search-wrap{margin-top:32px}
+.search-box{display:flex;align-items:center;gap:12px;min-height:56px;padding:0 16px;border:2px solid var(--border-control);border-radius:12px;background:var(--bg-elevated)}
+.search-box:focus-within{border-color:var(--primary);outline:2px solid var(--primary);outline-offset:2px}
+.search-box input{flex:1;background:transparent;border:none;color:var(--title);font:500 1.05rem var(--f-b);outline:none}
+.search-box input::placeholder{color:var(--muted)}
+.btn-clear{background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;padding:4px 8px}
+
+/* categories */
+.cat-bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.cat-btn{min-height:48px;padding:0 18px;border:2px solid var(--border-control);border-radius:12px;background:var(--bg-elevated);color:var(--title);font:700 .95rem var(--f-d);cursor:pointer;transition:background 120ms,color 120ms}
+.cat-btn.active{background:var(--primary);color:#000;border-color:#000;box-shadow:3px 3px 0 #000}
+.cat-btn:active{transform:translate(2px,2px);box-shadow:none}
+
+.count-line{margin-top:24px;color:var(--muted);font-size:.95rem}
+
+/* faq list */
+.faq-list{display:grid;gap:14px;margin-top:16px}
+.faq-item{border:2px solid var(--border-control);border-radius:12px;background:var(--bg-surface);padding:4px 18px}
+.faq-item summary{font:800 1.08rem var(--f-d);color:var(--title);cursor:pointer;min-height:54px;display:flex;align-items:center;gap:12px;list-style:none}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";margin-left:auto;font-size:1.5rem;color:var(--muted);flex:none;transition:transform .15s}
+.faq-item[open] summary::after{content:"−"}
+.faq-item[open]{padding-bottom:18px;background:var(--bg-elevated)}
+.faq-q{flex:1}
+.faq-ans{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);color:var(--body);line-height:1.65}
+.faq-bullets{margin:10px 0 0;padding-left:20px}
+.faq-bullets li{margin-top:6px}
+
+/* empty state */
+.empty{margin-top:32px;text-align:center;display:grid;place-items:center;gap:12px}
+.empty img{margin-bottom:6px}
+
+/* support card */
+.support-card{margin-top:48px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;background:var(--bg-container);border-color:var(--border-control)}
+.support-btns{display:flex;gap:12px;flex-wrap:wrap}
+
+footer{padding:40px 0 56px;border-top:2px solid #000;background:var(--bg);font-size:.95rem}
+footer .wrap{display:grid;gap:16px}footer nav{display:flex;flex-wrap:wrap;gap:0 22px}footer nav a{display:inline-flex;align-items:center;min-height:48px}footer p{color:var(--muted);max-width:60em}
+
+@media(max-width:720px){
+  .faq-item summary{align-items:flex-start;padding-top:12px}
+  .faq-item summary::after{margin-top:-4px}
+  .support-card{flex-direction:column;align-items:stretch}
+}
+@media(max-width:540px){
+  .hide-xs{display:none!important}
+  .top .wrap{gap:8px}
+  .nav-brand-logo{height:28px}
+}
+</style>
 
 <script>
-  // Interactividad de búsqueda en tiempo real y filtrado por categoría
-  const searchInput = document.getElementById('faq-search-input') as HTMLInputElement | null;
-  const clearBtn = document.getElementById('faq-clear-btn');
-  const catButtons = document.querySelectorAll<HTMLButtonElement>('.faq-cat-filter-btn');
-  const faqItems = document.querySelectorAll<HTMLDetailsElement>('.faq-item-card');
-  const counterText = document.getElementById('faq-counter-text');
-  const emptyState = document.getElementById('faq-empty-state');
-  const resetBtn = document.getElementById('btn-reset-search');
+const input = document.getElementById('faq-search') as HTMLInputElement;
+const clearBtn = document.getElementById('faq-clear') as HTMLButtonElement;
+const catBtns = document.querySelectorAll('.cat-btn') as NodeListOf<HTMLButtonElement>;
+const items = document.querySelectorAll('.faq-item') as NodeListOf<HTMLDetailsElement>;
+const countEl = document.getElementById('faq-count') as HTMLElement;
+const emptyBox = document.getElementById('faq-empty') as HTMLElement;
+const resetBtn = document.getElementById('btn-reset') as HTMLButtonElement;
 
-  let activeCategory = 'todos';
-  let searchQuery = '';
+let currentCat = 'todos';
+let currentQuery = '';
 
-  function normalizeText(text: string): string {
-    return text
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
+/**
+ * Normaliza texto eliminando acentos, diacríticos (incluyendo tilde de ñ para búsqueda insensible),
+ * signos de puntuación y espacios extras.
+ */
+function normalizeText(str: string): string {
+  return str
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// Pre-indexar el texto normalizado de cada pregunta para una búsqueda instantánea
+const itemData = Array.from(items).map((item) => {
+  const cat = item.dataset.category || '';
+  const rawText = item.textContent || '';
+  return {
+    el: item,
+    category: cat,
+    normText: normalizeText(rawText),
+  };
+});
+
+function matchToken(token: string, text: string): boolean {
+  if (text.includes(token)) return true;
+  if (token.length > 3 && token.endsWith('s')) {
+    if (text.includes(token.slice(0, -1))) return true;
+    if (token.length > 4 && token.endsWith('es')) {
+      if (text.includes(token.slice(0, -2))) return true;
+    }
   }
+  return false;
+}
 
-  function filterFaq() {
-    let visibleCount = 0;
-    const query = normalizeText(searchQuery.trim());
+function filter() {
+  let visible = 0;
+  const normQ = normalizeText(currentQuery);
+  const tokens = normQ.split(' ').filter(Boolean);
 
-    faqItems.forEach((item) => {
-      const category = item.getAttribute('data-category') || '';
-      const questionText = item.querySelector('.faq-item-question')?.textContent || '';
-      const answerText = item.querySelector('.faq-item-answer')?.textContent || '';
-      const fullText = normalizeText(`${questionText} ${answerText}`);
+  itemData.forEach(({ el, category, normText }) => {
+    const matchCat = currentCat === 'todos' || category === currentCat;
+    // Búsqueda multi-término (AND): cada palabra ingresada debe existir en la pregunta/respuesta
+    const matchQuery = tokens.length === 0 || tokens.every((token) => matchToken(token, normText));
 
-      const matchesCat = activeCategory === 'todos' || category === activeCategory;
-      const matchesSearch = query === '' || fullText.includes(query);
+    const show = matchCat && matchQuery;
+    el.hidden = !show;
 
-      const isVisible = matchesCat && matchesSearch;
-      item.hidden = !isVisible;
-      if (isVisible) {
-        visibleCount++;
-        // Si hay una búsqueda activa, expandir automáticamente los resultados que coincidan
-        if (query.length > 2) {
-          item.open = true;
-        }
+    if (show) {
+      visible++;
+      // Si el usuario está buscando términos activamente, auto-expandir el acordeón para mostrar la respuesta
+      if (tokens.length > 0) {
+        el.open = true;
       }
+    } else {
+      el.open = false;
+    }
+  });
+
+  // Si la búsqueda se limpió por completo, volver a colapsar los acordeones para navegación limpia
+  if (tokens.length === 0) {
+    items.forEach((item) => {
+      item.open = false;
     });
-
-    if (counterText) {
-      if (query === '' && activeCategory === 'todos') {
-        counterText.innerHTML = `Mostrando <strong>${visibleCount}</strong> preguntas`;
-      } else {
-        counterText.innerHTML = `Resultados encontrados: <strong>${visibleCount}</strong> preguntas`;
-      }
-    }
-
-    if (emptyState) {
-      emptyState.hidden = visibleCount > 0;
-    }
   }
 
-  searchInput?.addEventListener('input', (e) => {
-    const val = (e.target as HTMLInputElement).value;
-    searchQuery = val;
-    if (clearBtn) {
-      clearBtn.hidden = val.trim() === '';
-    }
-    filterFaq();
-  });
-
-  clearBtn?.addEventListener('click', () => {
-    if (searchInput) {
-      searchInput.value = '';
-      searchQuery = '';
-      clearBtn.hidden = true;
-      searchInput.focus();
-      filterFaq();
-    }
-  });
-
-  catButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      catButtons.forEach((b) => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      activeCategory = btn.getAttribute('data-cat-id') || 'todos';
-      filterFaq();
-    });
-  });
-
-  resetBtn?.addEventListener('click', () => {
-    if (searchInput) {
-      searchInput.value = '';
-      searchQuery = '';
-    }
-    if (clearBtn) clearBtn.hidden = true;
-    catButtons.forEach((b) => {
-      b.classList.remove('active');
-      b.setAttribute('aria-selected', 'false');
-    });
-    const firstCat = catButtons[0];
-    if (firstCat) {
-      firstCat.classList.add('active');
-      firstCat.setAttribute('aria-selected', 'true');
-    }
-    activeCategory = 'todos';
-    filterFaq();
-  });
-
-  // Si la URL contiene un hash específico (#play-protect-peligroso), abrirlo directamente
-  const initialHash = window.location.hash.replace('#', '');
-  if (initialHash) {
-    const targetItem = document.querySelector<HTMLDetailsElement>(`[data-faq-id="${initialHash}"]`);
-    if (targetItem) {
-      targetItem.open = true;
-      targetItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+  if (countEl) {
+    countEl.innerHTML = `Mostrando <b class="num">${visible}</b> ${visible === 1 ? 'pregunta' : 'preguntas'}`;
   }
+  if (emptyBox) {
+    emptyBox.hidden = visible > 0;
+  }
+}
+
+function setCategory(catId: string) {
+  currentCat = catId;
+  catBtns.forEach((btn) => {
+    const isSelected = (btn.dataset.catId || 'todos') === catId;
+    btn.classList.toggle('active', isSelected);
+    btn.setAttribute('aria-selected', String(isSelected));
+  });
+  filter();
+}
+
+input?.addEventListener('input', () => {
+  currentQuery = input.value;
+  clearBtn.hidden = !currentQuery.trim();
+  filter();
+});
+
+input?.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    e.preventDefault();
+    input.value = '';
+    currentQuery = '';
+    clearBtn.hidden = true;
+    filter();
+  }
+});
+
+clearBtn?.addEventListener('click', () => {
+  input.value = '';
+  currentQuery = '';
+  clearBtn.hidden = true;
+  filter();
+  input.focus();
+});
+
+catBtns.forEach((btn, idx) => {
+  btn.addEventListener('click', () => {
+    setCategory(btn.dataset.catId || 'todos');
+  });
+
+  // Navegación accesible por teclado entre pestañas (W3C WAI-ARIA)
+  btn.addEventListener('keydown', (e) => {
+    let nextIdx = -1;
+    if (e.key === 'ArrowRight') nextIdx = (idx + 1) % catBtns.length;
+    else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + catBtns.length) % catBtns.length;
+    else if (e.key === 'Home') nextIdx = 0;
+    else if (e.key === 'End') nextIdx = catBtns.length - 1;
+
+    if (nextIdx >= 0) {
+      e.preventDefault();
+      const target = catBtns[nextIdx];
+      target.focus();
+      target.click();
+    }
+  });
+});
+
+resetBtn?.addEventListener('click', () => {
+  input.value = '';
+  currentQuery = '';
+  clearBtn.hidden = true;
+  setCategory('todos');
+  input.focus();
+});
+
+// Soporte de enlace profundo por URL (ej. /faq?q=contrasena o /faq#moodle)
+try {
+  const urlParams = new URLSearchParams(window.location.search);
+  const qParam = urlParams.get('q');
+  const catHash = window.location.hash.replace('#', '');
+
+  if (qParam && input) {
+    input.value = qParam;
+    currentQuery = qParam;
+    clearBtn.hidden = false;
+  }
+  if (catHash && Array.from(catBtns).some((b) => b.dataset.catId === catHash)) {
+    setCategory(catHash);
+  } else {
+    filter();
+  }
+} catch {}
 </script>
-
-<style>
-  .faq-page {
-    padding: 110px 0 100px 0;
-    min-height: 85vh;
-  }
-
-  /* Breadcrumb */
-  .faq-breadcrumb {
-    margin-bottom: 24px;
-  }
-
-  .btn-back-home {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-sans);
-    font-size: 0.9rem;
-    font-weight: 800;
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: 8px 14px;
-    background: var(--bg-surface);
-    border: 1.5px solid var(--border-app);
-    border-radius: var(--radius-sm);
-    box-shadow: 2px 2px 0px #000;
-    transition: transform 180ms var(--ease-spring), color 180ms ease, border-color 180ms ease;
-  }
-
-  .btn-back-home:hover {
-    color: var(--accent-primary);
-    border-color: var(--accent-primary);
-    transform: translateX(-3px);
-  }
-
-  /* Hero Header */
-  .faq-hero-header {
-    text-align: center;
-    max-width: 860px;
-    margin: 0 auto 46px auto;
-  }
-
-  .faq-main-title {
-    font-size: clamp(2.3rem, 5vw, 3.4rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    margin: 16px 0 14px 0;
-    color: var(--text-primary);
-  }
-
-  .faq-hero-desc {
-    font-size: clamp(1rem, 2vw, 1.15rem);
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 32px;
-  }
-
-  /* Buscador */
-  .faq-search-container {
-    max-width: 680px;
-    margin: 0 auto 24px auto;
-  }
-
-  .faq-search-box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    background: var(--bg-surface-elevated);
-    border: 2px solid var(--border-bold);
-    border-radius: var(--radius-md);
-    box-shadow: 4px 4px 0px #000;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .faq-search-box:focus-within {
-    border-color: var(--accent-primary);
-    box-shadow: 4px 4px 0px var(--accent-primary);
-  }
-
-  .search-icon {
-    position: absolute;
-    left: 18px;
-    color: var(--accent-primary);
-    pointer-events: none;
-  }
-
-  .faq-search-input {
-    width: 100%;
-    padding: 16px 46px 16px 50px;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-family: var(--font-sans);
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #FFFFFF;
-  }
-
-  .faq-search-input::placeholder {
-    color: var(--text-tertiary);
-    font-size: 0.95rem;
-  }
-
-  .faq-clear-btn {
-    position: absolute;
-    right: 14px;
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.15s ease;
-  }
-
-  .faq-clear-btn:hover {
-    color: #FFFFFF;
-  }
-
-  /* Categorías */
-  .faq-categories-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
-
-  .faq-cat-filter-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 14px;
-    background: var(--bg-surface);
-    border: 1.5px solid var(--border-app);
-    border-radius: 999px;
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 180ms var(--ease-spring);
-    user-select: none;
-  }
-
-  .faq-cat-filter-btn:hover {
-    color: var(--text-primary);
-    border-color: var(--border-bold);
-    transform: translateY(-2px);
-  }
-
-  .faq-cat-filter-btn.active {
-    background: var(--accent-primary);
-    color: #000000;
-    border-color: #000000;
-    box-shadow: 2px 2px 0px #000000;
-    font-weight: 900;
-    transform: translateY(-2px);
-  }
-
-  .faq-results-counter {
-    font-size: 0.85rem;
-    color: var(--text-tertiary);
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  /* Lista de acordeones */
-  .faq-entries-section {
-    max-width: 860px;
-    margin: 0 auto 60px auto;
-  }
-
-  .faq-accordion-container {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .faq-item-card {
-    background: var(--bg-surface-elevated);
-    border: 2px solid var(--border-app);
-    border-radius: var(--radius-md);
-    box-shadow: 3px 3px 0px #000;
-    overflow: hidden;
-    transition: border-color 0.2s ease, transform 0.2s var(--ease-spring), box-shadow 0.2s ease;
-  }
-
-  .faq-item-card:hover {
-    border-color: var(--border-bold);
-    transform: translateY(-2px);
-    box-shadow: 4px 4px 0px #000;
-  }
-
-  .faq-item-card[open] {
-    border-color: var(--accent-primary);
-    box-shadow: 4px 4px 0px var(--accent-primary);
-  }
-
-  .faq-item-summary {
-    padding: 20px 24px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    list-style: none;
-    user-select: none;
-  }
-
-  .faq-item-summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .faq-item-left {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-width: 0;
-  }
-
-  .faq-pill-cat {
-    align-self: flex-start;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 2px 8px;
-    border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-tertiary);
-  }
-
-  .faq-pill-cat.instalacion {
-    color: #FF7BBE;
-    background: rgba(255, 63, 164, 0.12);
-    border-color: rgba(255, 63, 164, 0.35);
-  }
-
-  .faq-pill-cat.seguridad {
-    color: var(--accent-amber);
-    background: rgba(255, 219, 121, 0.12);
-    border-color: rgba(255, 219, 121, 0.35);
-  }
-
-  .faq-pill-cat.moodle {
-    color: #00E5FF;
-    background: rgba(0, 229, 255, 0.12);
-    border-color: rgba(0, 229, 255, 0.35);
-  }
-
-  .faq-pill-cat.horarios {
-    color: var(--accent-primary);
-    background: rgba(0, 255, 135, 0.12);
-    border-color: rgba(0, 255, 135, 0.35);
-  }
-
-  .faq-pill-cat.malla {
-    color: #C084FC;
-    background: rgba(192, 132, 252, 0.12);
-    border-color: rgba(192, 132, 252, 0.35);
-  }
-
-  .faq-pill-cat.general {
-    color: #FBBF24;
-    background: rgba(251, 191, 36, 0.12);
-    border-color: rgba(251, 191, 36, 0.35);
-  }
-
-  .faq-item-question {
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    line-height: 1.35;
-    margin: 0;
-  }
-
-  .faq-expand-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-sm);
-    background: var(--bg-surface);
-    border: 1.5px solid var(--border-app);
-    box-shadow: 2px 2px 0px #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    font-weight: 900;
-    color: var(--accent-primary);
-    flex-shrink: 0;
-    transition: transform 0.22s var(--ease-spring), background-color 0.2s ease, color 0.2s ease;
-  }
-
-  .faq-item-card[open] .faq-expand-icon {
-    transform: rotate(45deg);
-    background: var(--accent-primary);
-    color: #000000;
-  }
-
-  .faq-item-answer {
-    padding: 0 24px 22px 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  .answer-content {
-    padding-top: 16px;
-  }
-
-  .answer-content p {
-    font-size: 0.96rem;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin: 0 0 12px 0;
-  }
-
-  .answer-content p:last-child {
-    margin-bottom: 0;
-  }
-
-  .answer-content strong {
-    color: #FFFFFF;
-    font-weight: 700;
-  }
-
-  .answer-content code {
-    background: rgba(0, 255, 135, 0.1);
-    color: var(--accent-primary);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: var(--font-mono);
-    font-size: 0.86rem;
-  }
-
-  .faq-bullets-list {
-    margin: 12px 0 0 20px;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .faq-bullets-list li {
-    font-size: 0.94rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-  }
-
-  .faq-bullets-list li strong {
-    color: #FFFFFF;
-  }
-
-  /* Estado Vacío */
-  .faq-empty-box {
-    text-align: center;
-    padding: 44px 24px;
-    background: var(--bg-surface);
-    border: 2px dashed var(--border-app);
-    border-radius: var(--radius-md);
-  }
-
-  .empty-icon {
-    font-size: 2.4rem;
-    margin-bottom: 12px;
-  }
-
-  .faq-empty-box h3 {
-    font-size: 1.35rem;
-    margin-bottom: 8px;
-  }
-
-  .faq-empty-box p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    max-width: 440px;
-    margin: 0 auto 20px auto;
-  }
-
-  /* Tarjeta de Contacto / WhatsApp */
-  .faq-contact-card {
-    max-width: 860px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 28px 32px;
-    background: #0E1A14;
-    border: 2px solid #25D366;
-    border-radius: var(--radius-md);
-    box-shadow: 4px 4px 0px #064E3B;
-  }
-
-  .contact-card-icon-col {
-    flex-shrink: 0;
-  }
-
-  .contact-wa-frame {
-    width: 62px;
-    height: 62px;
-    border-radius: var(--radius-md);
-    background: rgba(37, 211, 102, 0.12);
-    border: 2px solid #25D366;
-    box-shadow: 2px 2px 0px #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .contact-card-info {
-    flex: 1;
-  }
-
-  .contact-card-badge-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-  }
-
-  .chip-direct {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 800;
-    color: #25D366;
-    background: rgba(37, 211, 102, 0.15);
-    border: 1px solid rgba(37, 211, 102, 0.4);
-    padding: 2px 7px;
-    border-radius: 4px;
-    letter-spacing: 0.04em;
-  }
-
-  .contact-card-info h3 {
-    font-size: 1.35rem;
-    color: #FAF7F7;
-    margin-bottom: 6px;
-    font-weight: 800;
-  }
-
-  .contact-card-info p {
-    color: var(--text-secondary);
-    font-size: 0.92rem;
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  .contact-card-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-
-  .btn-instagram-channel-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 20px;
-    background: linear-gradient(135deg, #E1306C 0%, #C13584 100%);
-    color: #FFFFFF;
-    font-family: var(--font-sans);
-    font-size: 0.92rem;
-    font-weight: 900;
-    border: 2px solid #000000;
-    border-radius: var(--radius-sm);
-    box-shadow: 3px 3px 0px #000000;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: transform var(--duration-sink) var(--ease-apple),
-                box-shadow var(--duration-sink) var(--ease-apple),
-                background var(--duration-hover) ease;
-  }
-
-  .btn-instagram-channel-cta:hover {
-    background: linear-gradient(135deg, #FD1D1D 0%, #E1306C 100%);
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px #000000;
-  }
-
-  .btn-whatsapp-channel-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 20px;
-    background: #25D366;
-    color: #000000;
-    font-family: var(--font-sans);
-    font-size: 0.92rem;
-    font-weight: 900;
-    border: 2px solid #000000;
-    border-radius: var(--radius-sm);
-    box-shadow: 3px 3px 0px #000000;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: transform var(--duration-sink) var(--ease-apple),
-                box-shadow var(--duration-sink) var(--ease-apple),
-                background-color var(--duration-hover) ease;
-  }
-
-  .btn-whatsapp-channel-cta:hover {
-    background: #2BF075;
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px #000000;
-  }
-
-  .btn-email-contact {
-    padding: 10px 18px;
-    font-size: 0.85rem;
-    white-space: nowrap;
-    justify-content: center;
-  }
-
-  @media (max-width: 820px) {
-    .faq-page {
-      padding: 90px 0 80px 0;
-    }
-
-    .faq-contact-card {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 22px 20px;
-      gap: 18px;
-    }
-
-    .contact-card-actions {
-      width: 100%;
-    }
-
-    .btn-whatsapp-channel-cta,
-    .btn-instagram-channel-cta,
-    .btn-email-contact {
-      width: 100%;
-    }
-
-    .faq-item-summary {
-      padding: 16px 18px;
-    }
-
-    .faq-item-question {
-      font-size: 1.05rem;
-    }
-
-    .faq-item-answer {
-      padding: 0 18px 18px 18px;
-    }
-  }
-</style>
+</body>
+</html>

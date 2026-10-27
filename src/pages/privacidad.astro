@@ -1,478 +1,346 @@
 ---
-// privacidad.astro - Política de privacidad y tratamiento de datos
-import BaseLayout from '../layouts/BaseLayout.astro';
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/inter';
 import { SITE } from '../config/site';
 
 const lastUpdate = '2 de octubre de 2026';
 const contactEmail = SITE.social.email;
 
-const sections = [
-  {
-    id: 'resumen',
-    title: 'En una frase',
-    body: [
-      'Pilas! no tiene servidores que guarden tus datos. Tus datos académicos y tu sesión viven únicamente en tu celular, y las conexiones van directo desde tu teléfono a los servidores oficiales de la ESPE.',
-    ],
-  },
-  {
-    id: 'aviso-legal',
-    title: 'Aviso Legal',
-    body: [
-      'Pilas! es un proyecto estudiantil independiente de código privado y propietario, desarrollado de forma 100% gratuita para la comunidad estudiantil de la Universidad de las Fuerzas Armadas ESPE. Pilas! no está afiliada, asociada, autorizada, respaldada ni de ninguna manera oficialmente conectada con la Universidad de las Fuerzas Armadas ESPE, Ellucian Company L.P., Banner, ni Moodle Pty Ltd. Los nombres, marcas y logotipos asociados son marcas registradas de sus respectivos propietarios. La aplicación y este sitio web funcionan bajo una arquitectura de Cero Servidores Intermedios (Zero-Backend): toda la autenticación y sincronización se realiza de forma directa y cifrada entre el dispositivo del usuario y los portales públicos de la institución. Para dudas, reportes técnicos o solicitud de baja: teo.hurtado.16@gmail.com.',
-    ],
-  },
-  {
-    id: 'avisos-comunidad-actualizaciones',
-    title: '📢 Avisos, Comunidad y Actualizaciones en la App Móvil',
-    ordered: true,
-    items: [
-      '<strong>Archivos Públicos y Estáticos:</strong> La aplicación móvil consulta periódicamente archivos estáticos en formato JSON alojados en <code>https://pilas-ec.vercel.app/api/v1/</code> (<code>manifest.json</code>, <code>avisos.json</code>, <code>negocios.json</code>, <code>enlaces.json</code>, <code>update.json</code>).',
-      '<strong>Cero Datos Personales:</strong> La aplicación <strong>no envía</strong> ningún dato del usuario, identificadores de dispositivo, cookies, credenciales institucionales de Moodle ni tokens de Banner. La cabecera HTTP enviada es transparente (<code>User-Agent: Pilas/&lt;versión&gt;</code>).',
-      '<strong>Dirección IP:</strong> Al tratarse de una conexión HTTPS estándar a través de CDN/Vercel, el servidor de alojamiento únicamente registra la dirección IP técnica de la conexión para la entrega del contenido estático, tal como ocurre al visitar cualquier página web en un navegador.',
-      '<strong>Control Total del Usuario:</strong> El estudiante puede desactivar estas consultas en cualquier momento desde <strong>Ajustes &gt; Comunidad y Avisos &gt; Novedades y comunidad</strong>. Al desactivarlo, la app suspende de forma inmediata y absoluta toda petición de red hacia el servidor de la comunidad.',
-    ],
-  },
-  {
-    id: 'negocios-directorio',
-    title: 'Directorio de negocios y postulaciones',
-    body: [
-      `Mostramos únicamente datos de contacto del negocio y con permiso de su dueño. Para pedir cambios o retirar un listado escribe a ${contactEmail}.`,
-    ],
-    items: [
-      '<strong>Formularios externos de postulación:</strong> si postulas un negocio a través de un formulario externo (como Google Forms o Tally), ese servicio de terceros procesa las respuestas conforme a su propia política de privacidad. En la postulación se solicitan exclusivamente datos públicos del negocio (nombre comercial, categoría, descripción, dirección, zona, teléfono o WhatsApp público, redes y horarios) y la confirmación del permiso del dueño para figurar en la app. No se piden contraseñas, datos bancarios ni datos personales sensibles.',
-      '<strong>Sin intermediación económica:</strong> Pilas! no gestiona compras, cobros ni entregas. Las relaciones comerciales se dan exclusivamente entre el estudiante y el negocio.',
-    ],
-  },
-  {
-    id: 'que-datos',
-    title: 'Qué datos maneja la app',
-    items: [
-      '<strong>Tu horario, tus notas, tus tareas y tu avance en la malla:</strong> se descargan directamente de los sistemas de la universidad y se guardan en una base de datos local (Drift SQLite), resguardada de forma nativa dentro del sandbox privado y aislado de la aplicación en el dispositivo (sin SQLCipher propio, protegida por el aislamiento estricto del sistema).',
-      '<strong>Las credenciales de tu sesión con la ESPE (tokens de Moodle y cookies de Banner):</strong> se almacenan cifradas mediante el almacenamiento seguro del sistema operativo (Android Keystore con cifrado por hardware AES y Keychain en iOS).',
-      '<strong>Tu carrera y tus preferencias:</strong> qué malla elegiste (entre las 23 carreras de grado oficiales de la ESPE), tus recordatorios y la frecuencia de sincronización de horario. Todo se queda en el dispositivo.',
-    ],
-  },
-  {
-    id: 'que-no-hacemos',
-    title: 'Lo que esta app NO hace',
-    items: [
-      '<strong>No tiene servidores intermediarios:</strong> no existe ninguna máquina nuestra de por medio capturando lo que consultas ni guardando tus datos.',
-      '<strong>Nunca conoce, intercepta, guarda ni transmite tu contraseña institucional (miESPE / Microsoft 365 / Banner):</strong> el inicio de sesión se realiza directamente en el navegador del sistema mediante el portal oficial de Microsoft 365 / miESPE. La app únicamente recibe y almacena las cookies de sesión temporal necesarias para consultar tu horario.',
-      '<strong>No pide ni guarda tu contraseña de Moodle:</strong> el acceso se realiza mediante el código QR oficial de Moodle (token de sesión), por lo que tu contraseña nunca pasa por la app.',
-      '<strong>No recopila estadísticas de uso ni telemetría:</strong> la app no reporta qué pantallas abres ni cuánto tiempo la usas.',
-      '<strong>No muestra publicidad invasiva</strong> ni comparte información con terceros con fines comerciales.',
-      '<strong>No vende ni cede tus datos</strong> a nadie, porque no los tenemos.',
-    ],
-  },
-  {
-    id: 'segundo-plano',
-    title: 'Consultas en segundo plano',
-    body: [
-      'Para mantener tus recordatorios y tareas al día sin agotar tu batería ni sobrecargar los sistemas de la universidad, Pilas! programa consultas automáticas con frecuencias diferenciadas:',
-    ],
-    items: [
-      '<strong>Mensajes en Moodle:</strong> la vigilancia de mensajes se ejecuta cada 15 minutos en segundo plano.',
-      '<strong>Tareas y notas pendientes:</strong> la verificación se realiza cada 6 horas (con límite mínimo de 1 hora entre consultas).',
-      '<strong>Horario y aulas de Banner:</strong> la sincronización periódica es configurable por el usuario (intervalos de 6h, 12h, 24h o apagado manual).',
-      '<strong>Gestión de red y reintentos:</strong> todos los servicios en segundo plano aplican suspensión y reintento exponencial (backoff) ante pérdidas de conectividad o errores de red.',
-    ],
-  },
-  {
-    id: 'terceros',
-    title: 'Servicios de terceros',
-    items: [
-      '<strong>Servidores de la ESPE:</strong> al sincronizar, tu teléfono se conecta directamente a los sistemas institucionales (miESPE y el Campus Virtual). Su tratamiento de datos se rige por las políticas de la universidad.',
-      '<strong>Deuna:</strong> si decides aportar al proyecto, el enlace y el código QR te llevan a la plataforma de Deuna. Ese pago lo procesa Deuna bajo sus propias condiciones; nosotros no vemos ni almacenamos datos de tu tarjeta o cuenta.',
-      '<strong>Formularios de comentarios y postulaciones:</strong> si reportas un error, envías una sugerencia o postulas un negocio, los datos que escribas se guardan en el proveedor del formulario que se indique en esa sección.',
-    ],
-  },
-  {
-    id: 'permisos',
-    title: 'Permisos que solicita la app',
-    items: [
-      '<strong>Cámara:</strong> solo se usa mientras escaneas un código QR (el de Moodle o el de un compañero). No graba ni transmite nada.',
-      '<strong>Notificaciones:</strong> para avisarte antes de cada clase y enviarte el resumen de la mañana. Puedes desactivarlas cuando quieras.',
-      '<strong>Internet:</strong> para sincronizar con la universidad y recibir avisos y novedades públicas. El resto de la app funciona sin conexión.',
-    ],
-  },
-  {
-    id: 'control',
-    title: 'Cómo borrar tus datos',
-    body: [
-      'Toda la información está en tu teléfono, así que tú tienes el control total:',
-    ],
-    items: [
-      'Dentro de la app puedes cerrar sesión y borrar los datos descargados.',
-      'Si desinstalas la aplicación, el sistema operativo elimina junto con ella la base de datos local y las credenciales cifradas del almacenamiento seguro.',
-    ],
-  },
-  {
-    id: 'menores',
-    title: 'Sobre el aviso de instalación de Android',
-    body: [
-      'Mientras juntamos el costo de la cuenta de desarrollador de Google Play, la app se distribuye directamente desde esta página. Por eso Android te pedirá autorizar la instalación desde esta fuente y puede mostrar un aviso de Google Play Protect. Es el comportamiento normal para cualquier aplicación descargada directamente y no significa que el archivo esté infectado. Si quieres comprobarlo, en la sección de descargas publicamos la huella digital (SHA-256) de cada archivo.',
-    ],
-  },
-  {
-    id: 'colaboradores',
-    title: 'Colaboradores',
-    body: [
-      'Si te postulas para colaborar en el proyecto, los datos que envíes por correo (tu nombre, tu dirección de correo y lo que me cuentes sobre tu experiencia) se usan únicamente para responderte y coordinar el trabajo. No se publican ni se comparten con nadie, y puedes pedir que los borre escribiendo al mismo correo.',
-    ],
-  },
-  {
-    id: 'cambios',
-    title: 'Cambios en esta política',
-    body: [
-      'Si en el futuro la app incorpora algún servicio que requiera enviar datos fuera del teléfono, se avisará aquí y dentro de la aplicación antes de activarlo. Si la app incorpora funciones que envíen información a los sistemas de la universidad (por ejemplo, entregar tareas), se avisará aquí y dentro de la app antes de activarlas. La fecha de la última revisión aparece al inicio de esta página.',
-    ],
-  },
-];
+const V = {
+  version: SITE.version,
+  apk: SITE.primaryApkPath,
+};
+const M = {
+  guard: '/logos/mascota_policia.svg',
+};
+const IG = 'https://www.instagram.com/pilas_ec.app/';
+const WA = 'https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
 ---
+<!doctype html>
+<html lang="es-EC" data-mode="espe">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Política de Privacidad | Pilas! para Android</title>
+<meta name="description" content="Política de privacidad de Pilas!: arquitectura Zero-Backend, cifrado AES de 256 bits en Android Keystore y cero servidores intermedios.">
+<meta name="theme-color" content="#101319">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<script is:inline>
+try {
+  var m = localStorage.pilasMode;
+  if (m === 'multi' || m === 'espe') document.documentElement.dataset.mode = m;
+} catch (e) {}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></symbol>
+</svg>
 
-<BaseLayout
-  title="Política de Privacidad"
-  description="Pilas! no tiene servidores que guarden tus datos: tus datos se guardan en el sandbox privado de tu celular y tu sesión cifrada en el almacenamiento seguro. Política de privacidad de la app."
-  keywords="privacidad Pilas!, datos app ESPE, seguridad malla curricular, política de privacidad"
-  includeAppSchema={false}
->
-  <section class="legal-page">
-    <div class="container legal-container">
-      <nav class="breadcrumb" aria-label="Ruta de navegación">
-        <a href="/">Inicio</a>
-        <span aria-hidden="true">/</span>
-        <span aria-current="page">Política de Privacidad</span>
-      </nav>
+<header class="top">
+  <div class="wrap">
+    <a class="nav-brand-logo-pill" href="/" aria-label="Pilas!, volver al inicio">
+      <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="128" height="42" />
+    </a>
+    <a class="btn btn-s btn-sm" href="/"><svg class="ico"><use href="#i-back"/></svg>Volver<span class="hide-xs"> al inicio</span></a>
+    <a class="btn btn-p btn-sm" href={V.apk}><svg class="ico"><use href="#i-down"/></svg><span class="hide-xs">Descargar </span>APK</a>
+  </div>
+</header>
 
-      <header class="legal-header reveal-init">
-        <span class="section-kicker">Transparencia</span>
+<main class="page-body">
+  <div class="wrap">
+    <div class="priv-hero">
+      <div>
+        <span class="badge b-info"><svg class="ico"><use href="#i-shield"/></svg>Zero-Backend · Privacidad Radical</span>
         <h1>Política de Privacidad</h1>
-        <p class="legal-lead">
-          Esta app nació para ayudarte con tus estudios, no para recoger información sobre ti. Aquí te explico en lenguaje claro qué pasa con tus datos.
-        </p>
-        <p class="legal-meta">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>
-          Última actualización: <strong>{lastUpdate}</strong>
-        </p>
-      </header>
-
-      <!-- Índice de contenidos -->
-      <nav class="legal-toc card-app reveal-init" aria-label="Índice de la política">
-        <span class="toc-title">En esta página</span>
-        <ol>
-          {sections.map((section) => (
-            <li><a href={`#${section.id}`}>{section.title}</a></li>
-          ))}
-        </ol>
-      </nav>
-
-      <div class="legal-body">
-        {sections.map((section) => (
-          <section id={section.id} class="legal-section reveal-init">
-            <h2>{section.title}</h2>
-            {section.body && section.body.map((paragraph) => <p>{paragraph}</p>)}
-            {section.items && (
-              section.ordered ? (
-                <ol class="legal-list legal-list-ordered">
-                  {section.items.map((item) => <li><Fragment set:html={item} /></li>)}
-                </ol>
-              ) : (
-                <ul class="legal-list">
-                  {section.items.map((item) => <li><Fragment set:html={item} /></li>)}
-                </ul>
-              )
-            )}
-          </section>
-        ))}
-
-        <section id="contacto" class="legal-section reveal-init">
-          <h2>¿Dudas o solicitudes?</h2>
-          <p>
-            Si tienes cualquier pregunta sobre esta política o quieres que revise algo relacionado con tus datos, escríbeme a
-            <a href={`mailto:${contactEmail}`}>{contactEmail}</a> o usa la
-            <a href="/#comentarios">sección de comentarios</a>.
-          </p>
-        </section>
+        <p class="lead">Pilas! no tiene servidores que guarden tus datos. Tu sesión, tus materias y tus notas viven únicamente en tu celular.</p>
+        <p class="fine" style="margin-top:8px">Última actualización: {lastUpdate}</p>
       </div>
+      <img class="guard-hero" src={M.guard} alt="Pilo con gorra y lentes oscuros, vigilando la privacidad" width="160" height="160">
+    </div>
 
-      <div class="legal-footer reveal-init">
-        <a href="/" class="btn-app btn-app-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          <span>Volver al inicio</span>
-        </a>
-        <a
-          href="#tally-open=Y5E4ZN&tally-overlay=1&tally-emoji-text=👋&tally-emoji-animation=wave&tally-auto-close=0"
-          data-tally-open="Y5E4ZN"
-          data-tally-overlay="1"
-          data-tally-emoji-text="👋"
-          data-tally-emoji-animation="wave"
-          data-tally-auto-close="0"
-          class="btn-app btn-app-surface"
-          aria-label="Reportar algo mediante el formulario emergente de Tally"
-        >
-          <span>Reportar algo</span>
-        </a>
+    <div class="priv-sections">
+      <!-- 1. En una frase -->
+      <section class="card">
+        <h2>En una frase</h2>
+        <p style="margin-top:10px">Pilas! funciona bajo una arquitectura <strong>Zero-Backend (Cero Servidores Intermedios)</strong>. La conexión viaja directamente cifrada desde tu teléfono hacia los portales institucionales de tu universidad. No almacenamos credenciales, notas, cédulas ni archivos en servidores externos.</p>
+      </section>
+
+      <!-- 2. Aviso Legal -->
+      <section class="card">
+        <h2>Aviso legal e independencia</h2>
+        <p style="margin-top:10px">Pilas! es un proyecto estudiantil independiente de código privado y propietario, desarrollado de forma gratuita para la comunidad estudiantil. <strong>Pilas! no está afiliada, asociada, respaldada ni de ninguna manera oficialmente conectada con la Universidad de las Fuerzas Armadas ESPE, otras universidades, Ellucian Company L.P., Banner, ni Moodle Pty Ltd.</strong> Los nombres, marcas y logotipos asociados pertenecen a sus respectivos propietarios.</p>
+      </section>
+
+      <!-- 3. Qué datos maneja la app -->
+      <section class="card">
+        <h2>Qué datos maneja la app</h2>
+        <dl class="rules one" style="margin-top:16px">
+          <div>
+            <dt>Horarios, notas y mallas</dt>
+            <dd>Se descargan directamente de la universidad y se guardan en la base de datos local SQLite de tu teléfono, protegida por el aislamiento estricto del sistema.</dd>
+          </div>
+          <div>
+            <dt>Credenciales y tokens de sesión</dt>
+            <dd>Se almacenan de forma segura en Android Keystore con <strong>cifrado AES de 256 bits</strong> por hardware. Si pierdes la contraseña o desinstalas la app, no se puede recuperar.</dd>
+          </div>
+          <div>
+            <dt>Firma visual</dt>
+            <dd>Se procesa localmente en pantalla para estamparla en tus documentos. Aclaramos que no tiene validez legal de firma electrónica.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- 4. Lo que NO hace la app -->
+      <section class="card">
+        <h2>Lo que esta app nunca hace</h2>
+        <dl class="rules one" style="margin-top:16px">
+          <div>
+            <dt>Cero servidores intermediarios</dt>
+            <dd>No existe ningún servidor propio capturando tus consultas ni almacenando tus contraseñas.</dd>
+          </div>
+          <div>
+            <dt>Moodle por código QR</dt>
+            <dd>La vinculación se realiza mediante el QR oficial de Moodle Mobile; nunca escribes tu contraseña en la app.</dd>
+          </div>
+          <div>
+            <dt>Sin telemetría ni publicidad</dt>
+            <dd>No rastreamos las pantallas que abres, no usamos analíticas invasivas ni compartimos datos con terceros.</dd>
+          </div>
+          <div>
+            <dt>Código privado, no es open source</dt>
+            <dd>El código se mantiene privado para proteger la estabilidad y seguridad de los mecanismos de conexión con las plataformas institucionales.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- 5. Permisos y control -->
+      <section class="card">
+        <h2>Permisos del dispositivo y borrado</h2>
+        <dl class="rules one" style="margin-top:16px">
+          <div>
+            <dt>Cámara</dt>
+            <dd>Únicamente activa mientras escaneas el QR de Moodle o el QR de un compañero. No graba ni transmite nada.</dd>
+          </div>
+          <div>
+            <dt>Notificaciones y alarmas</dt>
+            <dd>Para avisarte antes de cada clase y alertarte de entregas próximas a vencer. Puedes desactivarlas en cualquier momento.</dd>
+          </div>
+          <div>
+            <dt>Cómo borrar tus datos</dt>
+            <dd>Desinstalar la aplicación de tu teléfono elimina de forma inmediata e irrecuperable toda la base de datos local y las llaves del Keystore.</dd>
+          </div>
+        </dl>
+        <p class="fine" style="margin-top:20px">Para consultas sobre tratamiento de datos o soporte técnico: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="hub-footer">
+  <div class="wrap footer-wrap">
+    <div class="footer-brand-row">
+      <a class="footer-brand-logo-pill" href="/" aria-label="Pilas!, volver arriba">
+        <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="footer-lettering-img" width="132" height="42" />
+      </a>
+      <div class="footer-pill-edition">
+        <span class="sticker-pill" data-for="espe">⚡ COMUNIDAD UNIVERSITARIA ESPE</span>
+        <span class="sticker-pill coral" data-for="multi">⭐ RED MULTI-UNIVERSIDAD ECUADOR</span>
       </div>
     </div>
-  </section>
-</BaseLayout>
+    <nav aria-label="Enlaces del sitio" class="footer-nav">
+      <a href="/faq">Preguntas frecuentes</a>
+      <a href="/avisos">Avisos</a>
+      <a href="/negocios">Negocios</a>
+      <a href="/privacidad">Privacidad</a>
+      <a href={IG} target="_blank" rel="noopener noreferrer">Instagram (@pilas_ec.app)</a>
+      <a href={WA} target="_blank" rel="noopener noreferrer">Canal de WhatsApp</a>
+    </nav>
+    <div class="footer-legal">
+      <p>Pilas! es un proyecto estudiantil independiente. No está respaldado ni afiliado oficialmente a la Universidad de las Fuerzas Armadas ESPE, Ellucian, Banner ni Moodle. Las credenciales y datos viven únicamente en tu teléfono.</p>
+      <p class="footer-copy">© 2026 Pilas! · Hecho con orgullo estudiantil para el Ecuador.</p>
+    </div>
+  </div>
+</footer>
 
-<style>
-  .legal-page {
-    padding: 60px 0 100px 0;
-    border-top: 2px solid var(--border-app);
+<style is:global>
+:root{
+  color-scheme:dark;
+  --primary:#ff3fa4;--primary-hover:#e5147d;--primary-extrude:#7a0a45;--primary-shadow:#4a0026;--primary-coral:#ff3d5e;
+  --success:#00ff87;--success-shadow:#059669;--warning:#ffdb60;--critical:#ef4444;--info:#38bdf8;
+  --bg-base:#101319;--bg-subtle:#191d28;--bg-surface:#161a23;--bg-elevated:#1e2230;--bg-container:#242938;
+  --border:#2a3142;--border-control:#6b7894;--title:#faf7f7;--body:#e1e2eb;--muted:#8f9cae;
+  --f-d:"Outfit Variable",system-ui,sans-serif;--f-b:"Inter Variable",system-ui,sans-serif;
+  --accent:var(--primary);--bg:var(--bg-base);
+}
+html[data-mode=multi]{--accent:var(--primary-coral);--bg:var(--bg-subtle)}
+html{scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background-color:var(--bg);color:var(--body);font:400 1.0625rem/1.6 var(--f-b);padding-bottom:env(safe-area-inset-bottom,0px)}
+html[data-mode=espe] body{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px}
+html[data-mode=multi] body{background-image:radial-gradient(rgba(255,255,255,.09) 1.5px,transparent 1.5px);background-size:22px 22px}
+h1,h2,h3{font-family:var(--f-d);font-weight:800;color:var(--title);line-height:1.1;letter-spacing:-.02em;margin:0}
+p{margin:0}a{color:var(--info)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,32px)}
+.num{font-variant-numeric:tabular-nums}
+.ico{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border:2px solid;border-radius:12px;font:800 1rem var(--f-d);text-decoration:none;cursor:pointer;transition:transform 100ms,box-shadow 100ms,background 150ms}
+.btn:active{transform:translate(2px,2px);box-shadow:none!important}
+.btn-p{background:var(--primary);color:#000;border-color:#000;box-shadow:3px 3px 0 #000}
+.btn-p:hover,.btn-p:active{background:var(--primary-hover)}
+.btn-s{background:var(--bg-elevated);color:var(--title);border:2px solid var(--border-control);box-shadow:3px 3px 0 #000}
+.btn-sm{padding:0 16px;font-size:.95rem}
+.card{background:var(--bg-surface);border:2px solid var(--border);border-radius:14px;box-shadow:2px 2px 0 var(--border);padding:24px}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1.5px solid currentColor;border-radius:999px;padding:4px 12px 4px 8px;background:var(--bg-base);font:600 .875rem/1.3 var(--f-b)}
+.b-info{color:var(--info)}
+
+/* top con logo pill y glow */
+.top{position:sticky;top:0;z-index:20;background:rgba(16,19,25,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:2px solid #000;padding:10px 0}
+.top .wrap{display:flex;align-items:center;gap:12px;min-height:50px}
+
+.nav-brand-logo-pill,
+.footer-brand-logo-pill {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+  text-decoration:none;
+  margin-right:auto;
+}
+
+.nav-brand-logo,
+.footer-lettering-img {
+  display:block;
+  height:36px;
+  width:auto;
+  filter:drop-shadow(0 0 10px rgba(255,63,164,0.9))
+         drop-shadow(0 0 22px rgba(255,20,117,0.7))
+         drop-shadow(2px 3px 0 #000000)!important;
+  transition:filter 220ms ease, transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation:logoPinkGlowPulse 4s ease-in-out infinite;
+}
+.nav-brand-logo:hover,
+.footer-lettering-img:hover {
+  filter:drop-shadow(0 0 14px rgba(255,63,164,1))
+         drop-shadow(0 0 30px rgba(255,20,117,0.95))
+         drop-shadow(2px 3px 0 #000000)!important;
+  transform:translateY(-2px) scale(1.03);
+}
+
+@keyframes logoPinkGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 63, 164, 0.9))
+            drop-shadow(0 0 20px rgba(255, 20, 117, 0.7))
+            drop-shadow(2px 3px 0 #000000);
   }
-
-  .legal-container {
-    max-width: 860px;
+  50% {
+    filter: drop-shadow(0 0 13px rgba(255, 63, 164, 1))
+            drop-shadow(0 0 28px rgba(255, 20, 117, 0.88))
+            drop-shadow(2px 3px 0 #000000);
   }
+}
 
-  /* Ruta de navegación */
-  .breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    margin-bottom: 26px;
-  }
+.sticker-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1.5px solid #000;
+  border-radius: 9999px;
+  background: var(--primary);
+  color: #000;
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  box-shadow: 2px 2px 0 #000;
+}
+.sticker-pill.coral { background: var(--primary-coral); }
 
-  .breadcrumb a {
-    color: var(--accent-primary);
-    font-weight: 700;
-  }
+/* Footer Neo-Brutalista Oficial */
+.hub-footer {
+  padding: 48px 0 56px;
+  border-top: 2px solid #000;
+  background: #090b10;
+}
+.footer-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-pill-edition {
+  display: flex;
+  gap: 8px;
+}
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+}
+.footer-nav a {
+  color: var(--body);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color 150ms;
+}
+.footer-nav a:hover {
+  color: var(--primary);
+}
+.footer-legal {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
+}
+.footer-copy {
+  color: var(--title);
+  font-weight: 700;
+}
 
-  .breadcrumb a:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
+/* priv hero */
+.page-body{padding:clamp(36px,6vw,72px) 0 clamp(48px,7vw,96px)}
+.priv-hero{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.priv-hero>div{max-width:38em;display:grid;gap:12px}
+.priv-hero h1{font-size:clamp(2.2rem,5vw,3.6rem);margin-top:6px}
+.lead{font-size:1.15rem;color:var(--body)}
+.fine{color:var(--muted);font-size:.95rem}
+.guard-hero{width:160px;height:160px;object-fit:contain}
 
-  .legal-header {
-    margin-bottom: 34px;
-  }
+/* sections */
+.priv-sections{display:grid;gap:20px;margin-top:36px}
+.priv-sections h2{font-size:1.5rem}
 
-  .legal-header h1 {
-    font-size: clamp(2rem, 4vw, 2.9rem);
-    margin-bottom: 14px;
-  }
+.rules{display:grid;gap:0}
+.rules.one>div{padding:14px 0;border-top:1px solid var(--border)}
+.rules.one>div:first-of-type{border-top:none;padding-top:0}
+.rules dt{font:800 1.1rem var(--f-d);color:var(--title)}
+.rules dd{margin:4px 0 0;color:var(--body);line-height:1.6}
 
-  .legal-lead {
-    font-size: 1.08rem;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: 16px;
-  }
+footer{padding:40px 0 56px;border-top:2px solid #000;background:var(--bg);font-size:.95rem}
+footer .wrap{display:grid;gap:16px}footer nav{display:flex;flex-wrap:wrap;gap:0 22px}footer nav a{display:inline-flex;align-items:center;min-height:48px}footer p{color:var(--muted);max-width:60em}
 
-  .legal-meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-  }
-
-  .legal-meta svg {
-    color: var(--accent-primary);
-    flex-shrink: 0;
-  }
-
-  .legal-meta strong {
-    color: var(--text-secondary);
-  }
-
-  /* Índice */
-  .legal-toc {
-    background: var(--bg-surface-elevated);
-    padding: 22px 26px;
-    margin-bottom: 44px;
-  }
-
-  .toc-title {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent-primary);
-    margin-bottom: 12px;
-  }
-
-  .legal-toc ol {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px 24px;
-    counter-reset: toc;
-  }
-
-  .legal-toc li {
-    counter-increment: toc;
-  }
-
-  .legal-toc a {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 8px;
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    transition: color var(--duration-hover) ease;
-  }
-
-  .legal-toc a::before {
-    content: counter(toc, decimal-leading-zero);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 800;
-    color: var(--accent-primary);
-  }
-
-  .legal-toc a:hover {
-    color: var(--accent-primary);
-  }
-
-  /* Secciones */
-  .legal-section {
-    margin-bottom: 38px;
-    scroll-margin-top: 110px;
-  }
-
-  .legal-section h2 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-    padding-left: 14px;
-    border-left: 4px solid var(--accent-primary);
-    line-height: 1.25;
-  }
-
-  .legal-section p {
-    color: var(--text-secondary);
-    line-height: 1.7;
-    font-size: 1rem;
-    margin-bottom: 12px;
-  }
-
-  .legal-section p:last-child {
-    margin-bottom: 0;
-  }
-
-  .legal-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .legal-list li {
-    position: relative;
-    padding-left: 26px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    font-size: 1rem;
-  }
-
-  .legal-list li::before {
-    content: '';
-    position: absolute;
-    left: 4px;
-    top: 9px;
-    width: 8px;
-    height: 8px;
-    background: var(--accent-primary);
-    border-radius: 2px;
-  }
-
-  .legal-list-ordered {
-    counter-reset: legal-item;
-  }
-
-  .legal-list-ordered li {
-    padding-left: 38px;
-  }
-
-  .legal-list-ordered li::before {
-    content: counter(legal-item);
-    counter-increment: legal-item;
-    position: absolute;
-    left: 0;
-    top: 2px;
-    width: 24px;
-    height: 24px;
-    background: var(--bg-surface-elevated);
-    color: var(--accent-primary);
-    border: 1px solid var(--accent-primary);
-    border-radius: 6px;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-  }
-
-  .legal-section code,
-  .legal-list code {
-    font-family: var(--font-mono);
-    font-size: 0.88em;
-    background: var(--bg-surface-elevated, #1E2230);
-    color: var(--accent-primary);
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid var(--border-app, #2A3142);
-    word-break: break-all;
-  }
-
-  .legal-list li strong,
-  .legal-section p strong {
-    color: var(--text-primary);
-  }
-
-  .legal-list a,
-  .legal-section a {
-    color: var(--accent-primary);
-    font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .legal-footer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    padding-top: 30px;
-    border-top: 1.5px solid var(--border-app);
-  }
-
-  @media (max-width: 700px) {
-    .legal-toc ol {
-      grid-template-columns: 1fr;
-    }
-
-    .legal-toc {
-      padding: 18px 20px;
-    }
-
-    .legal-section h2 {
-      font-size: 1.22rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .legal-toc {
-      padding: 16px 14px;
-    }
-
-    .legal-section h2 {
-      font-size: 1.15rem;
-    }
-  }
+@media(max-width:540px){
+  .hide-xs{display:none!important}
+  .top .wrap{gap:8px}
+  .nav-brand-logo{height:28px}
+  .priv-hero{flex-direction:column;align-items:flex-start;gap:16px}
+  .guard-hero{width:110px;height:110px}
+}
 </style>
+</body>
+</html>

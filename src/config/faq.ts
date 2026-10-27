@@ -5,6 +5,8 @@
 // en la home, como el JSON-LD FAQPage que Google usa para los resultados enriquecidos.
 // ============================================================================
 
+import { RELEASE } from "../lib/release";
+
 export interface FaqEntry {
   id: string;
   category: string;
@@ -65,7 +67,7 @@ const raw: Array<Omit<FaqEntry, "plainAnswer">> = [
     question:
       "¿Por qué la app todavía no está publicada en la Google Play Store oficial?",
     answer:
-      "Porque la cuenta de desarrollador oficial de Google Play cuesta <strong>$25 dólares</strong> (pago único) y el proyecto es una iniciativa estudiantil financiada de nuestro propio bolsillo sin fondos universitarios. Estamos reuniendo ese monto mediante aportes voluntarios de la comunidad estudiantil. Mientras tanto, el APK se distribuye directamente desde esta web oficial de forma 100% gratuita.",
+      "Para publicar en la Google Play Store oficial, Google exige que la app pase por un período de prueba cerrada con <strong>al menos 20 evaluadores activos durante 14 días</strong>. <strong>¡Tú puedes ayudarnos a que pase!</strong> Inscríbete gratis a la beta cerrada con tu cuenta de Google en nuestro formulario oficial (<a href=\"https://forms.gle/svzBYKL2ZhWrS7M78\" target=\"_blank\" rel=\"noopener noreferrer\">forms.gle/svzBYKL2ZhWrS7M78</a>). Una vez cumplida esta fase de pruebas con la comunidad, la app estará disponible directamente en la Play Store.",
   },
   {
     id: "como-se-actualiza",
@@ -97,7 +99,19 @@ const raw: Array<Omit<FaqEntry, "plainAnswer">> = [
     question:
       "¿Es una aplicación oficial de la Universidad de las Fuerzas Armadas ESPE?",
     answer:
-      "<strong>No.</strong> Pilas! es un proyecto independiente desarrollado por y para estudiantes  . No es una app institucional ni cuenta con respaldo oficial de la universidad, pero está diseñada cumpliendo con los más altos estándares de privacidad.",
+      "<strong>No.</strong> Pilas! es un proyecto independiente desarrollado por y para estudiantes. No es una app institucional ni cuenta con respaldo oficial de la universidad, pero está diseñada cumpliendo con los más altos estándares de privacidad.",
+  },
+  {
+    id: "diferencia-espe-vs-multiu",
+    category: "general",
+    question:
+      "¿Qué diferencia hay entre la versión ESPE y la versión Multi-Universidad?",
+    answer:
+      "<strong>Pilas! ofrece dos experiencias adaptadas según tu campus:</strong>",
+    bullets: [
+      "<strong>Versión ESPE (/espe):</strong> Incluye el decodificador de aulas de Bloque A-H de Sangolquí y sedes, el cálculo automático del 14.01 con la regla oficial de 42/60 puntos, 23 mallas curriculares precargadas y carnet Espemático digital.",
+      "<strong>Versión Multi-Universidad (/multi-u):</strong> Es compatible con cualquier universidad de Ecuador que use Moodle (UCE, EPN, PUCE, ESPOL, UTPL, UDLA, etc.). Cuenta con sincronización por código QR en 1 segundo, compresor de PDF para el límite de 2MB-5MB y alarma inteligente anti-23:55.",
+    ],
   },
   {
     id: "servidores-credenciales",
@@ -248,6 +262,20 @@ const raw: Array<Omit<FaqEntry, "plainAnswer">> = [
       "¿Pilas! funciona para estudiantes de las sedes de Latacunga y Santo Domingo?",
     answer:
       "<strong>¡Sí, para todas las sedes y modalidades!</strong> Banner y Moodle (miCampus) comparten la misma infraestructura tecnológica para la Matriz Sangolquí, Sede Latacunga, Sede Santo Domingo y las carreras en modalidad En Línea y Distancia. Todos los estudiantes pueden usar Pilas! por igual.",
+  },
+  {
+    id: "modo-multi-universidad",
+    category: "general",
+    question: "¿Funciona Pilas! si estudio en otra universidad (UCE, EPN, PUCE, ESPOL)?",
+    answer:
+      `<strong>¡Sí! A partir de la versión v${RELEASE.version}, Pilas! cuenta con el Modo Universal Multi-Universidad.</strong> Puedes vincular tus materias escaneando el código QR oficial de Moodle Mobile (<code>moodlemobile://</code>) de cualquier universidad del país, calcular notas con escalas sobre 10, 20 o 100 puntos (con regímenes de 2 o 3 parciales), generar carátulas oficiales con el escudo de tu facultad y usar la suite completa de 13 herramientas offline.`,
+  },
+  {
+    id: "que-es-pilas-tools",
+    category: "general",
+    question: "¿Qué es Pilas Tools y qué herramientas incluye?",
+    answer:
+      "Pilas Tools es una suite integrada de <strong>13 utilidades académicas 100% offline</strong>: compresor de PDF para no superar el límite de subida de Moodle (baja de 25 MB a menos de 4 MB), CamScanner móvil sin marcas de agua, generador de carátulas universitarias oficiales, firma digital manuscrita transparente, unir y dividir PDFs, lector OCR extractor de texto de fotos de pizarras o diapositivas, empaquetador ZIP protegido con clave y limpiador de metadatos EXIF. Todo corre en tu teléfono sin subir archivos a servidores externos.",
   },
   {
     id: "version-iphone-ios",
