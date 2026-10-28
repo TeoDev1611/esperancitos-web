@@ -6,11 +6,23 @@ const LIM = 5;
 const MAX = 30;
 
 export function formatCompressorSize(mb: number): string {
-  return `${mb.toFixed(1)} MB`;
+  const rounded = Math.round(mb * 10) / 10;
+  return `${rounded.toFixed(1)} MB`;
 }
 
 export function isOverMoodleLimit(mb: number): boolean {
   return mb > LIM;
+}
+
+export function getCompressorFeedback(mb: number): { isOver: boolean; badgeClass: string; message: string } {
+  const isOver = isOverMoodleLimit(mb);
+  return {
+    isOver,
+    badgeClass: isOver ? 'b-crit' : 'b-ok',
+    message: isOver
+      ? 'Supera el límite de Moodle (5 MB)'
+      : `Reducido a ${formatCompressorSize(mb)} · Listo para entregar`,
+  };
 }
 
 export function initCompressorDemo(mascotImages?: Record<string, string>): void {

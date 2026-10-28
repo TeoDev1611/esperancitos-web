@@ -96,6 +96,10 @@ export const SITE = {
   /** Huellas SHA-256 de los APK publicados */
   apkChecksums: APK_CHECKSUMS,
 
+  /** Fecha de corte de mallas curriculares, distribución de aulas y reglas semestrales */
+  academicDataLastUpdated: "20 de marzo de 2026",
+  currentSemester: "2026-A",
+
   /** Páginas legales del sitio. */
   privacyPath: "/privacidad",
 

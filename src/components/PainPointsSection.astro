@@ -1,44 +1,99 @@
 ---
-// PainPointsSection.astro - Sección de Dolores del Estudiante ESPE con Mascota Variación 2
+// PainPointsSection.astro - Sección de Dolores con Selector Dual de Universidad (ESPE vs Multi-U)
+interface Props {
+  initialMood?: 'espe' | 'multi';
+  showSelector?: boolean;
+}
+
+const { initialMood = 'espe', showSelector = true } = Astro.props;
+const isEspe = initialMood === 'espe';
 ---
 
 <section class="pain-section scroll-reveal" id="problemas">
   <div id="dolores" style="position: absolute; top: -80px;"></div>
   <div class="container">
     <div class="section-header reveal-init">
-      <span class="sticker-pill" style="background: #FFDB79;">¿TE HA PASADO? · PROBLEMAS TÍPICOS DE LA U</span>
-      <h2>Los problemas de siempre en la ESPE, resueltos</h2>
-      <p>
-        Estudiar en la ESPE ya es bastante exigente como para perder tiempo con servidores lentos, cuentas al ojo o tareas olvidadas a medianoche.
+      <span class="sticker-pill" style="background: #FFDB79; color: #000; margin-bottom: 14px;">
+        {isEspe ? '¿TE HA PASADO EN LA ESPE? · DOLORES DEL SEMESTRE' : '¿TE HA PASADO? · DOLORES REALES DE LA U'}
+      </span>
+      <h2 id="pain-heading">
+        {isEspe ? 'Los problemas de siempre en la ESPE, resueltos' : 'Los dolores universitarios del Ecuador, resueltos'}
+      </h2>
+      <p id="pain-subheading">
+        {isEspe
+          ? 'Estudiar en la ESPE ya es bastante exigente como para perder tiempo con MiESPE caído a las 6:58 AM, notas a ciegas o aulas dudosas.'
+          : 'Estudiar ya es bastante exigente como para perder tiempo con servidores caídos a medianoche, PDFs rebotados por Moodle o notas a ciegas.'}
       </p>
+
+      {showSelector ? (
+        <div class="mood-selector-wrapper">
+          <span class="mood-label">ELIGE TU CAMPUS / UNIVERSIDAD:</span>
+          <div class="mood-toggle-container" role="tablist" aria-label="Elige tu universidad">
+            <button
+              type="button"
+              class:list={["mood-tab-btn", { active: isEspe }]}
+              data-mood="espe"
+              role="tab"
+              aria-selected={isEspe}
+              id="tab-mood-espe"
+            >
+              <span class="mood-tag espe">ESPE</span>
+              <span class="mood-name">Modo ESPE</span>
+              <span class="mood-campus-hint">Sangolquí · Latacunga · Sto. Domingo</span>
+            </button>
+            <button
+              type="button"
+              class:list={["mood-tab-btn", { active: !isEspe }]}
+              data-mood="multi"
+              role="tab"
+              aria-selected={!isEspe}
+              id="tab-mood-multi"
+            >
+              <span class="mood-tag multi">MULTI-U</span>
+              <span class="mood-name">Modo Multi-Universidad</span>
+              <span class="mood-campus-hint">UCE · EPN · PUCE · ESPOL · Moodle</span>
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div class="pain-campus-tagline">
+          {isEspe ? (
+            <span>🟢 Modo ESPE · Sangolquí · Latacunga · Santo Domingo · <a href="/multi-u">¿Estudias en otra U? Ver Multi-U →</a></span>
+          ) : (
+            <span>🟣 Modo Multi-Universidad · Moodle Universal Ecuador · <a href="/espe">¿Estudias en la ESPE? Ver versión ESPE →</a></span>
+          )}
+        </div>
+      )}
     </div>
 
-    <!-- Layout: Mascota Negación/Alerta + Grid Brutalista de 3 Dolores -->
+    <!-- Layout: Mascota con Speech Bubble Reactivo + Grid de Dolores -->
     <div class="pain-showcase-layout">
-      <!-- Columna Mascota (Variación 2: Negación / "Algo está mal") -->
+      <!-- Columna Mascota (Variación 2: Alerta / "Algo está mal") -->
       <div class="pain-mascot-col reveal-init">
         <div class="pain-mascot-frame">
           <img
             src="/logos/icono_var2_sin_fondo.svg"
-            alt="Mascota Pilas Alerta y Preocupación"
+            alt="Pilo en alerta y preocupación"
             class="mascot-img pain-mascot-img"
             width="280"
             height="280"
             loading="lazy"
           />
-          <div class="pain-speech-bubble">
-            <span class="speech-tag">¡CHUTA! 🤦‍♂️</span>
-            <p>¡Otra vez el sistema colgado justo antes de entrar al aula!</p>
+          <div class="pain-speech-bubble" id="pain-speech-bubble" style={isEspe ? "background: #FF3D5E;" : "background: #FF3FA4;"}>
+            <span class="speech-tag" id="speech-tag">{isEspe ? "¡CHUTA! 🤦‍♂️" : "¡NO PUEDE SER! 📑"}</span>
+            <p id="speech-text">
+              {isEspe ? "¡Otra vez MiESPE caído a las 6:58 AM en el Bloque G!" : "¡Moodle me rechazó el PDF por pesar más de 2MB y son las 23:57!"}
+            </p>
           </div>
         </div>
       </div>
 
-      <!-- Grid de 3 Tarjetas Brutalistas -->
-      <div class="pain-cards-grid">
-        <!-- Dolor 1: MiESPE Caído -->
-        <article class="pilas-card pain-card reveal-init">
+      <!-- Contenido 1: MODO ESPE -->
+      <div class:list={["pain-cards-grid", "mood-grid", { active: isEspe }]} id="grid-espe" style={isEspe ? "display: grid;" : "display: none;"}>
+        <!-- Dolor 1 ESPE: MiESPE Caído -->
+        <article class="pilas-card pain-card">
           <div class="pain-card-header">
-            <span class="pain-badge critical">PORTAL CAÍDO EN EL CAMPUS</span>
+            <span class="pain-badge critical">BLOQUE G · 6:58 AM</span>
             <div class="pain-icon-box">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
@@ -47,20 +102,36 @@
               </svg>
             </div>
           </div>
-          <h3>MiESPE caído justo cuando ibas a ver tu aula</h3>
+          <h3>MiESPE y Banner colgados cuando vas a ver tu aula</h3>
           <p>
-            Son las <strong>6:58 AM</strong>, no hay señal en el Bloque G y el portal no responde. No sabes si tu clase es en el Lab de Fluidos o en el G-201 (Bloque G). Con Pilas!, tu horario completo y ubicación de aulas están <strong>100% en tu teléfono</strong>.
+            Son las <strong>6:58 AM</strong>, no hay señal en el Bloque G y el portal web no responde. No sabes si tu clase es en el Lab de Fluidos o en el <code>G-201</code>. Con Pilas!, tu horario completo y traducción exacta de bloques están <strong>100% en tu teléfono sin internet</strong>.
           </p>
+
+          <!-- Micro-Tool 1: Decodificador Banner Interactivo en Vivo -->
+          <div class="interactive-micro-tool decoder-tool-box">
+            <span class="micro-tool-label">⚡ PRUÉBALO EN VIVO: TOCA UN CÓDIGO BANNER</span>
+            <div class="decoder-chips-row" role="group" aria-label="Ejemplos de códigos de aula">
+              <button type="button" class="btn-decoder-chip active" data-code="BLOQ G AUL 201" data-trans="🏢 Bloque G · Piso 2 · Aula 201 (Ingeniería Mecánica)">BLOQ G AUL 201</button>
+              <button type="button" class="btn-decoder-chip" data-code="BLOQ H LAB FLUID" data-trans="🏢 Bloque H · Planta Baja · Lab. Fluidos e Hidráulica">BLOQ H LAB FLUID</button>
+              <button type="button" class="btn-decoder-chip" data-code="BLOQ B AUL 304" data-trans="🏢 Bloque B · Piso 3 · Aula 304 (Sistemas y Software)">BLOQ B AUL 304</button>
+            </div>
+            <div class="decoder-live-display">
+              <span class="decoder-cursor">></span>
+              <span class="decoder-output" id="decoder-output-text">🏢 Bloque G · Piso 2 · Aula 201 (Ingeniería Mecánica)</span>
+              <span class="decoder-pill">100% OFFLINE</span>
+            </div>
+          </div>
+
           <div class="pain-solution-tag">
             <span class="check-dot">✓</span>
-            <span>Resuelto: Horario completo sin internet</span>
+            <span>Resuelto: Horario traducido con aulas exactas</span>
           </div>
         </article>
 
-        <!-- Dolor 2: Promedios a Ciegas -->
-        <article class="pilas-card pain-card reveal-init">
+        <!-- Dolor 2 ESPE: El 14.01 y los 42 puntos -->
+        <article class="pilas-card pain-card">
           <div class="pain-card-header">
-            <span class="pain-badge warning">CÁLCULO A CIEGAS · FÓRMULAS ROTAS</span>
+            <span class="pain-badge warning">REGLA 42/60 PTS · EL MÍTICO 14.01</span>
             <div class="pain-icon-box amber">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect width="16" height="20" x="4" y="2" rx="2"></rect>
@@ -76,20 +147,56 @@
               </svg>
             </div>
           </div>
-          <h3>No sabes si te da el promedio para aprobar</h3>
+          <h3>No sabes con cuánto pasas o si te quedas a suspensión</h3>
           <p>
-            Haciendo cuentas sufriendo con decimales dudosos sin saber si repites la materia o si la salvas. Nuestro simulador de notas de la ESPE te dice con exactitud cuánto necesitas para alcanzar los <strong>14.0 puntos</strong>.
+            Haciendo cuentas en servilletas con decimales dudosos sin saber si necesitas 14.01 o si repites la materia directo. Nuestro simulador oficial ESPE aplica la regla de <strong>42 puntos acumulados</strong> y predice exactamente tu nota final.
           </p>
+
+          <!-- Micro-Tool 2: Simulador 14.01 Interactivo en Vivo -->
+          <div class="interactive-micro-tool calc-1401-tool-box">
+            <span class="micro-tool-label">⚡ SIMULA TUS NOTAS EN TIEMPO REAL:</span>
+            <div class="calc-sliders-grid">
+              <div class="slider-field">
+                <div class="slider-header-row">
+                  <span>Parcial 1:</span>
+                  <strong class="slider-val-badge" id="lbl-p1">13.5</strong>
+                </div>
+                <input type="range" id="input-p1" min="0" max="20" step="0.5" value="13.5" class="custom-range-slider" aria-label="Nota Parcial 1" />
+              </div>
+              <div class="slider-field">
+                <div class="slider-header-row">
+                  <span>Parcial 2:</span>
+                  <strong class="slider-val-badge" id="lbl-p2">14.0</strong>
+                </div>
+                <input type="range" id="input-p2" min="0" max="20" step="0.5" value="14.0" class="custom-range-slider" aria-label="Nota Parcial 2" />
+              </div>
+            </div>
+
+            <div class="calc-dynamic-card">
+              <div class="calc-stat-line">
+                <span class="stat-lbl">Acumulado P1 + P2:</span>
+                <strong class="stat-num" id="stat-acumulado">27.5 / 60</strong>
+              </div>
+              <div class="calc-stat-line highlight">
+                <span class="stat-lbl">Necesitas en Parcial 3:</span>
+                <strong class="stat-num glow" id="stat-needed">14.50</strong>
+              </div>
+              <div class="calc-status-callout" id="calc-status-callout">
+                <span>🎯 Con 14.50 sumas 42.0 pts y salvas el semestre con 14.00</span>
+              </div>
+            </div>
+          </div>
+
           <div class="pain-solution-tag">
             <span class="check-dot">✓</span>
-            <span>Resuelto: Calculadora "¿Con cuánto paso?"</span>
+            <span>Resuelto: Simulador oficial "¿Con cuánto paso?"</span>
           </div>
         </article>
 
-        <!-- Dolor 3: Moodle no te avisó -->
-        <article class="pilas-card pain-card reveal-init">
+        <!-- Dolor 3 ESPE: miCampus Moodle 23:55 -->
+        <article class="pilas-card pain-card">
           <div class="pain-card-header">
-            <span class="pain-badge alert">SIN NOTIFICACIÓN · 23:59 PM</span>
+            <span class="pain-badge alert">ENTREGAS 23:55 PM</span>
             <div class="pain-icon-box coral">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
@@ -98,13 +205,140 @@
               </svg>
             </div>
           </div>
-          <h3>No te acordaste que la tarea vencía a las 23:59</h3>
+          <h3>miCampus se satura y la tarea se cierra en tu cara</h3>
           <p>
-            Si te olvidas y no te hacen acuerdo tus panas generalmente te enteras de la tarea cuando ya cerró la plataforma. Pilas! programa <strong>alarmas sonoras en tu teléfono</strong> que te despiertan y alertan antes de que sea tarde.
+            A las <strong>23:55</strong> todo el mundo intenta subir el laboratorio al mismo tiempo y la plataforma colapsa. Pilas! te despierta con una <strong>alarma sonora continua a pantalla completa</strong> para que entregues con tiempo y descargues tus diapositivas offline.
+          </p>
+
+          <!-- Micro-Tool 3: Simulador Alarma 23:55 en Vivo -->
+          <div class="interactive-micro-tool alarm-tool-box">
+            <span class="micro-tool-label">⚡ SIMULA LA ALARMA ANTI-DORMIRSE:</span>
+            <div class="alarm-clock-bar">
+              <div class="clock-display">
+                <span class="clock-icon">⏰</span>
+                <span class="clock-digits" id="clock-display-val">23:54:55</span>
+              </div>
+              <button type="button" class="btn-fire-alarm" id="btn-fire-alarm">
+                <span>¡Probar Alarma! 🔔</span>
+              </button>
+            </div>
+            <div class="alarm-live-toast" id="alarm-live-toast" style="display: none;">
+              <span class="alarm-toast-pill">🚨 ALARMA SONORA EN PANTALLA COMPLETA</span>
+              <p>¡Pilas! Faltan 5 minutos. Tu laboratorio está respaldado 100% offline.</p>
+            </div>
+          </div>
+
+          <div class="pain-solution-tag">
+            <span class="check-dot">✓</span>
+            <span>Resuelto: Alarma despertador anti-23:55</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Contenido 2: MODO MULTI-UNIVERSIDAD (Universal) -->
+      <div class:list={["pain-cards-grid", "mood-grid", { active: !isEspe }]} id="grid-multi" style={!isEspe ? "display: grid;" : "display: none;"}>
+        <!-- Dolor 1 Multi-U: PDF pesado rebotado por Moodle -->
+        <article class="pilas-card pain-card">
+          <div class="pain-card-header">
+            <span class="pain-badge critical">LÍMITE 2MB - 5MB · REBOTADO</span>
+            <div class="pain-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+              </svg>
+            </div>
+          </div>
+          <h3>Moodle te rechaza el deber por exceso de peso a las 23:57</h3>
+          <p>
+            Tomas fotos a tu informe, el PDF pesa 18 MB y el Moodle de tu universidad solo permite 2 MB o 5 MB. Vas a webs de compresión llenas de anuncios y virus. Pilas! incluye un <strong>Compresor PDF offline</strong> que reduce tu archivo a menos de 3 MB en 2 segundos en tu propio celular.
+          </p>
+
+          <!-- Micro-Tool 4: Simulador de Compresión PDF Moodle -->
+          <div class="interactive-micro-tool compress-tool-box">
+            <span class="micro-tool-label">⚡ PRUEBA LA COMPRESIÓN OFFLINE EN VIVO:</span>
+            <div class="compress-panel">
+              <div class="compress-file-row">
+                <span class="doc-icon">📑</span>
+                <span class="doc-name">informe_laboratorio.pdf</span>
+                <span class="doc-badge-orig" id="compress-file-orig">24.8 MB ❌</span>
+              </div>
+              <button type="button" class="btn-run-compress" id="btn-run-compress">
+                <span>Comprimir en 1 Clic</span>
+              </button>
+              <div class="compress-track" id="compress-track" style="display: none;">
+                <div class="compress-fill" id="compress-fill"></div>
+              </div>
+              <div class="compress-success-banner" id="compress-success-banner" style="display: none;">
+                <span class="compress-check">✓ REDUCIDO A 1.84 MB (-92%)</span>
+                <small>¡Listo para subir a Moodle sin error de peso!</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="pain-solution-tag">
+            <span class="check-dot">✓</span>
+            <span>Resuelto: Compresor PDF offline de 25MB a 2MB</span>
+          </div>
+        </article>
+
+        <!-- Dolor 2 Multi-U: Portales lentos y sin señal -->
+        <article class="pilas-card pain-card">
+          <div class="pain-card-header">
+            <span class="pain-badge warning">PORTALES LENTOS · SIN SEÑAL</span>
+            <div class="pain-icon-box amber">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+          </div>
+          <h3>Entrar a la intranet de tu facultad cada vez que buscas tu aula</h3>
+          <p>
+            Los sistemas universitarios son lentos, piden doble autenticación y en los pasillos no hay señal. Con Pilas!, vinculas tu Moodle mediante escáner QR (<code>moodlemobile://</code>) una sola vez y consultas tus horarios y tareas <strong>100% offline</strong>.
+          </p>
+
+          <!-- Micro-Tool 5: Token QR Moodle Mobile -->
+          <div class="interactive-micro-tool qr-tool-box">
+            <span class="micro-tool-label">⚡ CONEXIÓN DIRECTA POR QR (MOODLE MOBILE):</span>
+            <div class="qr-protocol-row">
+              <div class="qr-badge-preview">
+                <span class="qr-mini-icon">📱</span>
+                <code>moodlemobile://token=ec_auth_token</code>
+              </div>
+              <span class="qr-status-pill">CERO CONTRASEÑAS EN LA NUBE</span>
+            </div>
+          </div>
+
+          <div class="pain-solution-tag">
+            <span class="check-dot">✓</span>
+            <span>Resuelto: Vinculación QR instantánea y offline</span>
+          </div>
+        </article>
+
+        <!-- Dolor 3 Multi-U: Carátulas, firmas y horas huecas -->
+        <article class="pilas-card pain-card">
+          <div class="pain-card-header">
+            <span class="pain-badge alert">TRÁMITES & GRUPOS</span>
+            <div class="pain-icon-box coral">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+          </div>
+          <h3>Gastar en impresiones para firmar y horas huecas desaprovechadas</h3>
+          <p>
+            Corriendo a un ciber para imprimir un trámite solo por firmarlo, o sin saber cuándo tus amigos tienen tiempo libre para hacer un trabajo grupal. Pilas! te permite <strong>estampar tu firma transparente</strong> en PDFs y <strong>cruzar horarios por QR sin internet</strong>.
           </p>
           <div class="pain-solution-tag">
             <span class="check-dot">✓</span>
-            <span>Resuelto: Alarmas antes de la entrega</span>
+            <span>Resuelto: Firma digital manuscrita + Cruce P2P</span>
           </div>
         </article>
       </div>
@@ -112,10 +346,10 @@
 
     <!-- Banner Conector hacia las Características -->
     <div class="pain-bottom-banner reveal-init">
-      <div class="banner-sticker">⚡ TRANQUILO, ÑAÑO</div>
+      <div class="banner-sticker" id="banner-sticker-text">⚡ TRANQUILO, ÑAÑO</div>
       <div class="banner-text">
-        <h3>Con Pilas!, todo esto queda completamente resuelto</h3>
-        <p>Una app rápida, ligera y 100% gratuita diseñada para estudiantes de la ESPE.</p>
+        <h3 id="banner-h3">Con Pilas!, todo esto queda completamente resuelto</h3>
+        <p id="banner-p">Una app ultra rápida, privada y 100% gratuita que te da una ventaja injusta en el semestre.</p>
       </div>
       <a href="#funciones" class="btn-pilas-primary">
         <span>Ver todas las funciones</span>
@@ -127,6 +361,174 @@
   </div>
 </section>
 
+<script>
+  // Lógica interactiva para alternar entre el Modo ESPE y Modo Multi-Universidad
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.mood-tab-btn');
+  const gridEspe = document.getElementById('grid-espe');
+  const gridMulti = document.getElementById('grid-multi');
+  const speechBubble = document.getElementById('pain-speech-bubble');
+  const speechTag = document.getElementById('speech-tag');
+  const speechText = document.getElementById('speech-text');
+  const painHeading = document.getElementById('pain-heading');
+
+  function setMood(mood: 'espe' | 'multi') {
+    buttons.forEach((btn) => {
+      const isSelected = btn.dataset.mood === mood;
+      btn.classList.toggle('active', isSelected);
+      btn.setAttribute('aria-selected', String(isSelected));
+    });
+
+    if (mood === 'espe') {
+      if (gridEspe) gridEspe.style.display = 'grid';
+      if (gridMulti) gridMulti.style.display = 'none';
+      if (speechTag) speechTag.textContent = '¡CHUTA! 🤦‍♂️';
+      if (speechText) speechText.textContent = '¡Otra vez MiESPE caído a las 6:58 AM en el Bloque G!';
+      if (painHeading) painHeading.textContent = 'Los problemas de siempre en la ESPE, resueltos';
+      if (speechBubble) {
+        speechBubble.style.borderColor = '#000000';
+        speechBubble.style.background = '#FF3D5E';
+      }
+    } else {
+      if (gridEspe) gridEspe.style.display = 'none';
+      if (gridMulti) gridMulti.style.display = 'grid';
+      if (speechTag) speechTag.textContent = '¡NO PUEDE SER! 📑';
+      if (speechText) speechText.textContent = '¡Moodle me rechazó el PDF por pesar más de 2MB y son las 23:57!';
+      if (painHeading) painHeading.textContent = 'Los dolores universitarios del Ecuador, resueltos';
+      if (speechBubble) {
+        speechBubble.style.borderColor = '#000000';
+        speechBubble.style.background = '#FF3FA4';
+      }
+    }
+
+    // Guardar preferencia
+    try {
+      localStorage.setItem('pilas_user_mood', mood);
+    } catch {}
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const mood = (btn.dataset.mood ?? 'espe') as 'espe' | 'multi';
+      setMood(mood);
+    });
+  });
+
+  // Cargar preferencia guardada si existe
+  try {
+    const savedMood = localStorage.getItem('pilas_user_mood') as 'espe' | 'multi' | null;
+    if (savedMood === 'multi') {
+      setMood('multi');
+    }
+  } catch {}
+
+  // 1. Decodificador Banner Interactivo
+  const decoderChips = document.querySelectorAll<HTMLButtonElement>('.btn-decoder-chip');
+  const decoderOutput = document.getElementById('decoder-output-text');
+  decoderChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      decoderChips.forEach((c) => c.classList.remove('active'));
+      chip.classList.add('active');
+      if (decoderOutput) {
+        decoderOutput.textContent = chip.dataset.trans ?? '';
+      }
+    });
+  });
+
+  // 2. Simulador 14.01 Interactivo
+  const p1Input = document.getElementById('input-p1') as HTMLInputElement | null;
+  const p2Input = document.getElementById('input-p2') as HTMLInputElement | null;
+  const p1Lbl = document.getElementById('lbl-p1');
+  const p2Lbl = document.getElementById('lbl-p2');
+  const statAcum = document.getElementById('stat-acumulado');
+  const statNeed = document.getElementById('stat-needed');
+  const statCallout = document.getElementById('calc-status-callout');
+
+  function update1401() {
+    if (!p1Input || !p2Input) return;
+    const p1 = parseFloat(p1Input.value);
+    const p2 = parseFloat(p2Input.value);
+    if (p1Lbl) p1Lbl.textContent = p1.toFixed(1);
+    if (p2Lbl) p2Lbl.textContent = p2.toFixed(1);
+
+    const acum = p1 + p2;
+    const needed = Math.max(0, 42 - acum);
+
+    if (statAcum) statAcum.textContent = `${acum.toFixed(1)} / 60`;
+    if (statNeed) {
+      if (needed <= 0) {
+        statNeed.textContent = '0.00 (¡YA PASASTE!)';
+      } else if (needed > 20) {
+        statNeed.textContent = `${needed.toFixed(2)} (Suspensión)`;
+      } else {
+        statNeed.textContent = needed.toFixed(2);
+      }
+    }
+
+    if (statCallout) {
+      if (needed <= 0) {
+        statCallout.innerHTML = `<span>🎉 ¡Ya tienes ${acum.toFixed(1)} puntos acumulados! Materia aprobada.</span>`;
+        statCallout.style.background = 'rgba(0, 255, 135, 0.15)';
+      } else if (needed > 20) {
+        statCallout.innerHTML = `<span>⚠️ Requieres más de 20 en P3. Tendrías que ir a Examen de Suspensión.</span>`;
+        statCallout.style.background = 'rgba(255, 61, 94, 0.15)';
+      } else {
+        statCallout.innerHTML = `<span>🎯 Sacando ${needed.toFixed(2)} en P3 sumas 42.0 pts y salvas el semestre con 14.00</span>`;
+        statCallout.style.background = 'rgba(255, 219, 121, 0.15)';
+      }
+    }
+  }
+
+  p1Input?.addEventListener('input', update1401);
+  p2Input?.addEventListener('input', update1401);
+
+  // 3. Simulador Alarma 23:55
+  const btnFireAlarm = document.getElementById('btn-fire-alarm');
+  const alarmToast = document.getElementById('alarm-live-toast');
+  const clockVal = document.getElementById('clock-display-val');
+
+  btnFireAlarm?.addEventListener('click', () => {
+    if (alarmToast) {
+      alarmToast.style.display = 'block';
+    }
+    if (clockVal) {
+      clockVal.textContent = '23:55:00 🚨';
+      clockVal.style.color = '#FF3D5E';
+    }
+  });
+
+  // 4. Simulador Compresor PDF
+  const btnCompress = document.getElementById('btn-run-compress');
+  const track = document.getElementById('compress-track');
+  const fill = document.getElementById('compress-fill');
+  const successBanner = document.getElementById('compress-success-banner');
+  const origSizeBadge = document.getElementById('compress-file-orig');
+
+  btnCompress?.addEventListener('click', () => {
+    if (!track || !fill || !successBanner) return;
+    track.style.display = 'block';
+    fill.style.width = '0%';
+    successBanner.style.display = 'none';
+
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 25;
+      fill.style.width = `${progress}%`;
+      if (progress >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          track.style.display = 'none';
+          successBanner.style.display = 'block';
+          if (origSizeBadge) {
+            origSizeBadge.textContent = '1.84 MB ✅';
+            origSizeBadge.style.background = '#00FF87';
+            origSizeBadge.style.color = '#000000';
+          }
+        }, 300);
+      }
+    }, 100);
+  });
+</script>
+
 <style>
   .pain-section {
     padding: 90px 0 70px 0;
@@ -135,11 +537,100 @@
     background: #12151D;
   }
 
+  /* Selector de Universidad / Mood */
+  .mood-selector-wrapper {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mood-label {
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--text-tertiary);
+    letter-spacing: 0.08em;
+  }
+
+  .mood-toggle-container {
+    display: inline-flex;
+    background: #161A23;
+    border: 2px solid var(--color-border);
+    border-radius: 16px;
+    padding: 6px;
+    gap: 8px;
+    box-shadow: 4px 4px 0px #000000;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .mood-tab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    transition: all 180ms ease;
+    text-align: left;
+    color: var(--text-secondary);
+  }
+
+  .mood-tab-btn:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .mood-tab-btn.active {
+    background: #1F2432;
+    border-color: #00FF87;
+    box-shadow: 3px 3px 0px #000000;
+    color: #FFFFFF;
+  }
+
+  .mood-tab-btn[data-mood="multi"].active {
+    border-color: #FF3FA4;
+  }
+
+  .mood-tag {
+    font-size: 0.68rem;
+    font-weight: 900;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .mood-tag.espe {
+    background: #00FF87;
+    color: #000000;
+  }
+
+  .mood-tag.multi {
+    background: #FF3FA4;
+    color: #000000;
+  }
+
+  .mood-name {
+    font-size: 0.95rem;
+    font-weight: 800;
+  }
+
+  .mood-campus-hint {
+    font-size: 0.74rem;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+  }
+
   .pain-showcase-layout {
     display: grid;
-    grid-template-columns: 340px 1fr;
+    grid-template-columns: 320px 1fr;
     gap: 40px;
     align-items: center;
+    margin-top: 40px;
     margin-bottom: 50px;
   }
 
@@ -163,7 +654,7 @@
   }
 
   .pain-mascot-img {
-    max-width: 260px;
+    max-width: 250px;
     height: auto;
     filter: drop-shadow(6px 6px 0px #000000);
   }
@@ -173,11 +664,12 @@
     color: #FFFFFF;
     border: 2px solid #000000;
     border-radius: 12px;
-    padding: 10px 14px;
+    padding: 12px 16px;
     box-shadow: 4px 4px 0px #000000;
-    margin-top: 12px;
+    margin-top: 14px;
     text-align: left;
     max-width: 280px;
+    transition: background 250ms ease;
   }
 
   .speech-tag {
@@ -186,14 +678,14 @@
     color: #FFDB79;
     font-size: 0.72rem;
     font-weight: 900;
-    padding: 1px 6px;
+    padding: 2px 7px;
     border-radius: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     letter-spacing: 0.05em;
   }
 
   .pain-speech-bubble p {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     font-weight: 700;
     line-height: 1.35;
     color: #FFFFFF;
@@ -207,6 +699,21 @@
     gap: 20px;
   }
 
+  .mood-grid {
+    animation: cardPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes cardPop {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .pain-card {
     background: #161A23;
     border: 2px solid var(--color-border);
@@ -218,7 +725,11 @@
 
   .pain-card:hover {
     transform: translateY(-2px);
-    border-color: var(--color-primary);
+    border-color: #00FF87;
+  }
+
+  #grid-multi .pain-card:hover {
+    border-color: #FF3FA4;
   }
 
   .pain-card-header {
@@ -300,14 +811,20 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 63, 164, 0.12);
-    border: 1.5px solid var(--color-primary);
-    color: var(--color-primary);
+    background: rgba(0, 255, 135, 0.08);
+    border: 1.5px solid #00FF87;
+    color: #00FF87;
     font-family: var(--font-mono);
     font-size: 0.78rem;
     font-weight: 700;
     padding: 4px 12px;
     border-radius: 6px;
+  }
+
+  #grid-multi .pain-solution-tag {
+    background: rgba(255, 63, 164, 0.08);
+    border-color: #FF3FA4;
+    color: #FF3FA4;
   }
 
   .check-dot {
@@ -362,6 +879,14 @@
       padding: 60px 0 50px 0;
     }
 
+    .mood-toggle-container {
+      width: 100%;
+    }
+
+    .mood-tab-btn {
+      width: 100%;
+    }
+
     .pain-card {
       padding: 20px 16px;
     }
@@ -390,6 +915,371 @@
 
     .pain-mascot-img {
       max-width: 210px;
+    }
+  }
+
+  /* Interactive Micro-Tools CSS */
+  .interactive-micro-tool {
+    background: #0E121B;
+    border: 1.5px solid #252D3D;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 12px 0 16px 0;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  .micro-tool-label {
+    display: block;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.68rem;
+    font-weight: 900;
+    color: #FFDB79;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  /* 1. Decoder Chips & Output */
+  .decoder-chips-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .btn-decoder-chip {
+    background: #1A2130;
+    border: 1px solid #323E54;
+    color: #9DB0CC;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-decoder-chip:hover {
+    color: #FFFFFF;
+    border-color: #00FF87;
+    background: #1B2E24;
+  }
+
+  .btn-decoder-chip.active {
+    background: #00FF87;
+    color: #000000;
+    border-color: #00FF87;
+    font-weight: 900;
+  }
+
+  .decoder-live-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #07090E;
+    border: 1px solid #1E2636;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.8rem;
+    color: #00FF87;
+    flex-wrap: wrap;
+  }
+
+  .decoder-cursor {
+    color: #00FF87;
+    font-weight: 900;
+  }
+
+  .decoder-output {
+    color: #FAFAFA;
+    font-weight: 600;
+    flex-grow: 1;
+  }
+
+  .decoder-pill {
+    background: rgba(0, 255, 135, 0.15);
+    color: #00FF87;
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid #00FF87;
+  }
+
+  /* 2. 14.01 Calculator Tool */
+  .calc-sliders-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .slider-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .slider-header-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #9DB0CC;
+  }
+
+  .slider-val-badge {
+    color: #FFDB79;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.88rem;
+  }
+
+  .custom-range-slider {
+    width: 100%;
+    accent-color: #00FF87;
+    cursor: pointer;
+  }
+
+  .calc-dynamic-card {
+    background: #07090E;
+    border: 1px solid #202A3B;
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+
+  .calc-stat-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #9DB0CC;
+    margin-bottom: 4px;
+  }
+
+  .calc-stat-line.highlight {
+    font-size: 0.84rem;
+    font-weight: 800;
+    color: #FAFAFA;
+    border-top: 1px dashed #202A3B;
+    padding-top: 4px;
+    margin-top: 4px;
+  }
+
+  .stat-num.glow {
+    color: #00FF87;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.95rem;
+  }
+
+  .calc-status-callout {
+    margin-top: 6px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #FAFAFA;
+    background: rgba(255, 219, 121, 0.15);
+    border: 1px solid rgba(255, 219, 121, 0.3);
+  }
+
+  /* 3. Alarm 23:55 Tool */
+  .alarm-clock-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: #07090E;
+    border: 1px solid #202A3B;
+    border-radius: 6px;
+    padding: 8px 12px;
+  }
+
+  .clock-display {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .clock-digits {
+    font-family: var(--font-mono, monospace);
+    font-size: 1rem;
+    font-weight: 900;
+    color: #FFDB79;
+    letter-spacing: 0.05em;
+  }
+
+  .btn-fire-alarm {
+    background: #FF3D5E;
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #000;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #000;
+    transition: transform 0.1s ease;
+  }
+
+  .btn-fire-alarm:hover {
+    transform: translateY(-1px);
+    background: #FF5A75;
+  }
+
+  .alarm-live-toast {
+    margin-top: 8px;
+    background: #2A1116;
+    border: 1px solid #FF3D5E;
+    border-radius: 6px;
+    padding: 8px 10px;
+    animation: toastPop 0.3s ease;
+  }
+
+  .alarm-toast-pill {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: #FFB4AB;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .alarm-live-toast p {
+    font-size: 0.76rem !important;
+    color: #FAFAFA !important;
+    margin: 0 !important;
+  }
+
+  @keyframes toastPop {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 4. PDF Compressor Tool */
+  .compress-panel {
+    background: #07090E;
+    border: 1px solid #202A3B;
+    border-radius: 6px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .compress-file-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    flex-wrap: wrap;
+  }
+
+  .doc-name {
+    font-family: var(--font-mono, monospace);
+    color: #FAFAFA;
+    flex-grow: 1;
+  }
+
+  .doc-badge-orig {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.7rem;
+    font-weight: 900;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255, 61, 94, 0.2);
+    color: #FF5A75;
+    border: 1px solid #FF3D5E;
+  }
+
+  .btn-run-compress {
+    background: #FF3FA4;
+    color: #000000;
+    font-size: 0.76rem;
+    font-weight: 900;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #000;
+    align-self: flex-start;
+  }
+
+  .btn-run-compress:hover {
+    background: #FF66B8;
+  }
+
+  .compress-track {
+    width: 100%;
+    height: 6px;
+    background: #1A2130;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .compress-fill {
+    width: 0%;
+    height: 100%;
+    background: #00FF87;
+    transition: width 0.1s linear;
+  }
+
+  .compress-success-banner {
+    background: rgba(0, 255, 135, 0.1);
+    border: 1px solid #00FF87;
+    border-radius: 4px;
+    padding: 6px 8px;
+  }
+
+  .compress-check {
+    color: #00FF87;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.74rem;
+    font-weight: 900;
+    display: block;
+  }
+
+  .compress-success-banner small {
+    color: #9DB0CC;
+    font-size: 0.7rem;
+  }
+
+  /* 5. QR Moodle Tool */
+  .qr-preview-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #07090E;
+    border: 1px solid #202A3B;
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+
+  .qr-icon-token {
+    color: #FF3FA4;
+  }
+
+  .qr-token-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .qr-token-details code {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.74rem;
+    color: #00FF87;
+    background: #141A26;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .token-hint {
+    font-size: 0.7rem;
+    color: #9DB0CC;
+  }
+
+  @media (max-width: 600px) {
+    .calc-sliders-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

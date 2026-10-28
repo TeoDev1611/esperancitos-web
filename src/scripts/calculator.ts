@@ -1,80 +1,8 @@
-/**
- * Lógica pura e interactiva para el simulador de notas de la regla ESPE 42/60 puntos.
- */
+import { calculateRequiredP3, type GradeCalculationResult } from '../lib/grades';
 
-export interface GradeCalculationResult {
-  p1: number;
-  p2: number;
-  neededP3: number;
-  simP3: number;
-  total: number;
-  average: number;
-  status: 'approved' | 'save_partial' | 'supletorio';
-  verdictText: string;
-  badgeClass: string;
-  mascotStatus: string;
-  mascotQuote: string;
-  mascotMood: 'success' | 'scared' | 'error';
-}
+export type { GradeCalculationResult };
+export const calculateGrade = calculateRequiredP3;
 
-export function calculateGrade(p1: number, p2: number): GradeCalculationResult {
-  const cleanP1 = Math.min(20, Math.max(0, p1));
-  const cleanP2 = Math.min(20, Math.max(0, p2));
-  const sumParciales = cleanP1 + cleanP2;
-  const needed = Math.max(0, 42 - sumParciales);
-  const simP3 = Math.min(20, needed);
-  const total = sumParciales + simP3;
-  const average = total / 3;
-
-  if (needed <= 12) {
-    return {
-      p1: cleanP1,
-      p2: cleanP2,
-      neededP3: needed,
-      simP3,
-      total,
-      average,
-      status: 'approved',
-      verdictText: `✓ APROBADO (${average.toFixed(2)})`,
-      badgeClass: 'badge b-ok',
-      mascotStatus: '¡Tranqui, vas sobrado!',
-      mascotQuote: `Con ${needed.toFixed(2)} pts en el Parcial 3 pasas directo el semestre.`,
-      mascotMood: 'success',
-    };
-  }
-
-  if (needed <= 20) {
-    return {
-      p1: cleanP1,
-      p2: cleanP2,
-      neededP3: needed,
-      simP3,
-      total,
-      average,
-      status: 'save_partial',
-      verdictText: `⚠️ A SALVAR EL PARCIAL (${average.toFixed(2)})`,
-      badgeClass: 'badge b-warn',
-      mascotStatus: '¡Ponte pilas con el Parcial 3!',
-      mascotQuote: `Necesitas sacar mínimo ${needed.toFixed(2)} / 20 para evitar el supletorio.`,
-      mascotMood: 'scared',
-    };
-  }
-
-  return {
-    p1: cleanP1,
-    p2: cleanP2,
-    neededP3: needed,
-    simP3,
-    total,
-    average,
-    status: 'supletorio',
-    verdictText: '⚠️ SUPLETORIO',
-    badgeClass: 'badge b-crit',
-    mascotStatus: '¡Chuta! No alcanza a 42',
-    mascotQuote: 'La suma de los tres parciales no llega a 42. Toca preparar el supletorio.',
-    mascotMood: 'error',
-  };
-}
 
 export function initGradeCalculator(mascotImages?: Record<string, string>): void {
   const p1Slider = document.getElementById('site-p1-slider') as HTMLInputElement | null;
