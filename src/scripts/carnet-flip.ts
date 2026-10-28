@@ -1,6 +1,6 @@
 /**
  * Controlador de interactividad para el Carnet Estudiantil 3D.
- * Maneja el volteo entre carnet ESPE y Pasaporte Multi-U con física 3D en hover.
+ * Maneja el volteo entre carnet ESPE y Pasaporte Multi-U con física 3D en hover y accesibilidad completa.
  */
 import { setCampusMode } from './campus-mode';
 
@@ -10,6 +10,23 @@ export function initCarnetFlip(): void {
 
   const html = document.documentElement;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function updateCarnetAria(): void {
+    if (!carnetEl) return;
+    const isMulti = html.dataset.mode === 'multi';
+    carnetEl.setAttribute('aria-pressed', String(isMulti));
+    carnetEl.setAttribute(
+      'aria-label',
+      `Carnet estudiantil 3D interactivo. Cara visible: ${isMulti ? 'Pasaporte Multi-Universidad' : 'Pase ESPE'}. Presiona Enter o Espacio para voltear.`
+    );
+  }
+
+  // Inicializar estado ARIA
+  updateCarnetAria();
+
+  // Observar cambios de modo producidos por otros controles (ej. selector de campus)
+  const observer = new MutationObserver(() => updateCarnetAria());
+  observer.observe(html, { attributes: true, attributeFilter: ['data-mode'] });
 
   carnetEl.addEventListener('click', (e: MouseEvent) => {
     const nextMode = html.dataset.mode === 'multi' ? 'espe' : 'multi';

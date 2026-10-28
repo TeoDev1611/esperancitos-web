@@ -555,3 +555,7 @@ a { color: var(--info); }
     scroll-behavior: auto !important;
   }
 }
+
+body.page-hidden * {
+  animation-play-state: paused !important;
+}

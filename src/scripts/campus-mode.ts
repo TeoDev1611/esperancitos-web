@@ -2,6 +2,8 @@
  * Controlador de modo de campus: ESPE (/espe) vs Multi-Universidad (/multi-u)
  * Soporta View Transitions circulares en navegadores compatibles.
  */
+import { trackEvent } from '../lib/analytics';
+
 const html = document.documentElement;
 const reduce = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -17,6 +19,8 @@ export function paintCampusMode(mode: string): void {
 
 export function setCampusMode(mode: string, clientX?: number, clientY?: number): void {
   if (html.dataset.mode === mode) return;
+
+  trackEvent('cambio_campus', { campus: mode });
 
   const doc = document as any;
   if (!doc.startViewTransition || reduce || clientX === undefined || clientY === undefined) {
@@ -58,4 +62,14 @@ export function initCampusMode(): void {
       }
     });
   });
+
+  // Pausar animaciones intensivas cuando la pestaña esté oculta o en segundo plano
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      document.body.classList.add('page-hidden');
+    } else {
+      document.body.classList.remove('page-hidden');
+    }
+  });
 }
+

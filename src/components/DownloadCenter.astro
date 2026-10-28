@@ -43,7 +43,7 @@ const { V, M, PLAY, PLAY_STORE_BETA, PRIMARY_ARCH, ARCHITECTURES_LIST } = Astro.
           
           <div class="dl-badge-col">
             <div class="dl-mascot-stamp">
-              <img src={M.success} alt="Pilas aprueba la versión" class="dl-mascot-img" width="84" height="84" />
+              <img src={M.success} alt="Pilas aprueba la versión" class="dl-mascot-img" width="84" height="84" loading="lazy" />
               <div class="dl-stamp-text">
                 <b class="font-mono">COMPILACIÓN #{V.build}</b>
                 <small>Compilación firmada con SHA-256</small>
@@ -324,3 +324,20 @@ details[open] { padding-bottom: 16px; }
 }
 
 </style>
+
+<script>
+  import { trackEvent } from '../lib/analytics';
+
+  const mainBtn = document.querySelector('.dl-primary-btn');
+  if (mainBtn) {
+    mainBtn.addEventListener('click', () => {
+      trackEvent('descarga_click', { arch: 'primary' });
+    });
+  }
+
+  document.querySelectorAll('.dl-alt-list a').forEach((link) => {
+    link.addEventListener('click', () => {
+      trackEvent('descarga_click', { arch: (link as HTMLAnchorElement).download || 'alt' });
+    });
+  });
+</script>

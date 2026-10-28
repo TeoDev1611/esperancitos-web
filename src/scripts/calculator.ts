@@ -1,8 +1,8 @@
 import { calculateRequiredP3, type GradeCalculationResult } from '../lib/grades';
+import { trackEvent } from '../lib/analytics';
 
 export type { GradeCalculationResult };
 export const calculateGrade = calculateRequiredP3;
-
 
 export function initGradeCalculator(mascotImages?: Record<string, string>): void {
   const p1Slider = document.getElementById('site-p1-slider') as HTMLInputElement | null;
@@ -62,7 +62,16 @@ export function initGradeCalculator(mascotImages?: Record<string, string>): void
     }
   }
 
-  p1Slider.addEventListener('input', update);
-  p2Slider.addEventListener('input', update);
+  let trackTimeout: number = 0;
+  function onSliderInput(): void {
+    update();
+    clearTimeout(trackTimeout);
+    trackTimeout = window.setTimeout(() => {
+      trackEvent('calculadora_uso');
+    }, 500);
+  }
+
+  p1Slider.addEventListener('input', onSliderInput);
+  p2Slider.addEventListener('input', onSliderInput);
   update();
 }

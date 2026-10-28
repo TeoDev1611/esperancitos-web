@@ -1,0 +1,313 @@
+---
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/inter';
+import { SITE } from '../../config/site';
+import { RELEASE, PRIMARY_ARCH, PRIMARY_APK_SIZE } from '../../lib/release';
+import GradeCalculatorDemo from '../../components/GradeCalculatorDemo.astro';
+
+const V = {
+  version: RELEASE.version,
+  build: RELEASE.build,
+  size: PRIMARY_APK_SIZE,
+  apk: PRIMARY_ARCH.url,
+};
+
+const M = {
+  neutral: '/logos/mascota_neutro.svg',
+  error: '/logos/mascota_negacion.svg',
+  success: '/logos/mascota_aprobacion.svg',
+  scared: '/logos/mascota_asustado.svg',
+};
+
+const canonicalUrl = `${SITE.url}/herramientas/calculadora-notas-espe`;
+const pageTitle = "Calculadora de Notas ESPE (Regla 42/60 Puntos) | Pilas!";
+const pageDesc = "Calcula con cuánto puntaje pasas el semestre en la ESPE. Simula tus notas de Parcial 1 y 2 para saber la nota requerida en el Parcial 3 bajo la regla de 42 puntos.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Calculadora de Notas ESPE - Regla 42/60 Puntos",
+      "url": canonicalUrl,
+      "description": pageDesc,
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web, Android",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la nota mínima para aprobar una materia en la ESPE?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En la Universidad de las Fuerzas Armadas ESPE, la nota mínima de aprobación directa es 42 puntos sumados entre los tres parciales (sobre 60 puntos posibles), lo que equivale a un promedio ponderado mínimo de 14.00 sobre 20."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa si saco menos de 42 puntos en la suma de los parciales?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si no alcanzas los 42 puntos en la suma ordinaria pero cumples con el porcentaje mínimo reglamentario, tienes derecho a rendir un examen de recuperación (supletorio) sobre 20 puntos para reemplazar la nota más baja."
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+<!doctype html>
+<html lang="es-EC" data-mode="espe">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{pageTitle}</title>
+<meta name="description" content={pageDesc}>
+<link rel="canonical" href={canonicalUrl}>
+<meta name="theme-color" content="#101319">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<!-- Open Graph / Redes Sociales -->
+<meta property="og:type" content="website">
+<meta property="og:url" content={canonicalUrl}>
+<meta property="og:title" content={pageTitle}>
+<meta property="og:description" content={pageDesc}>
+<meta property="og:image" content={`${SITE.url}/logos/letras_estilo_fucsia.svg`}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={pageTitle}>
+<meta name="twitter:description" content={pageDesc}>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute;display:none" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 21h16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap top-wrap">
+    <a class="nav-brand-logo-pill" href="/" aria-label="Pilas!, volver al inicio">
+      <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="128" height="42" />
+    </a>
+    <div class="nav-actions">
+      <a class="btn btn-s btn-sm" href="/">
+        <svg class="ico"><use href="#i-back"/></svg>
+        <span>Volver al Hub</span>
+      </a>
+      <a class="btn btn-p btn-sm" href="/#descargar">
+        <svg class="ico"><use href="#i-down"/></svg>
+        <span>Descargar APK</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="page-main">
+  <div class="wrap">
+    <div class="tool-hero">
+      <div class="tool-tag-row">
+        <span class="sticker-pill green">⚖️ REGLAMENTO ACADÉMICO ESPE</span>
+        <span class="badge b-ok">42 / 60 PUNTOS</span>
+      </div>
+      <h1 class="tool-title">Calculadora de Notas ESPE</h1>
+      <p class="tool-lead">
+        Simula tus notas de los parciales y entérate de inmediato cuánto necesitas sacar en el Parcial 3 sobre 20 puntos para aprobar directo sin el estrés del supletorio.
+      </p>
+    </div>
+
+    <!-- Simulador Interactivo Reutilizado -->
+    <div class="calc-section-wrap">
+      <GradeCalculatorDemo M={M} />
+    </div>
+
+    <!-- Explicación Técnica de la Regla 42/60 -->
+    <section class="explanation-card card">
+      <h2>¿Cómo funciona la regla de 42/60 puntos en la ESPE?</h2>
+      <p>
+        El sistema de evaluación ordinario de la Universidad de las Fuerzas Armadas ESPE califica cada asignatura a través de <strong>tres parciales</strong> independientes de 20 puntos cada uno (P1, P2 y P3), acumulando un puntaje máximo de <strong>60 puntos</strong>.
+      </p>
+
+      <div class="formula-box font-mono">
+        <b>FÓRMULA OFICIAL:</b> Total = P1 + P2 + P3 ≥ 42.00 pts &nbsp;·&nbsp; Promedio = Total / 3 ≥ 14.00 / 20
+      </div>
+
+      <div class="scenarios-grid">
+        <div class="scenario-item ok">
+          <span class="badge b-ok">Zona Aprobada (Tranqui)</span>
+          <h3>P1 + P2 ≥ 30 puntos</h3>
+          <p>Necesitas 12.00 puntos o menos en el Parcial 3. Llegas con comodidad y pasas el semestre directo.</p>
+        </div>
+        <div class="scenario-item warn">
+          <span class="badge b-warn">A Salvar el Parcial</span>
+          <h3>22 ≤ P1 + P2 &lt; 30 puntos</h3>
+          <p>Necesitas entre 12.01 y 20.00 puntos en el Parcial 3. Aún es matemáticamente posible aprobar sin supletorio.</p>
+        </div>
+        <div class="scenario-item crit">
+          <span class="badge b-crit">Zona Supletorio</span>
+          <h3>P1 + P2 &lt; 22 puntos</h3>
+          <p>Incluso con 20/20 en el P3 no alcanzas los 42 puntos. Te toca preparar el examen de recuperación.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Rápida -->
+    <section class="faq-section card">
+      <h2>Preguntas Frecuentes sobre Notas en la ESPE</h2>
+      <div class="faq-item">
+        <h3>¿Existe redondeo de notas en Banner?</h3>
+        <p>El sistema Banner de la ESPE almacena las calificaciones con dos decimales exactos. Un promedio de 13.99 no redondea a 14.00; por ello cada décima en trabajos autónomos y laboratorios cuenta.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿La app móvil Pilas! calcula esto automáticamente?</h3>
+        <p>Sí. Al sincronizar con Banner o ingresar tus notas, Pilas! te muestra una barra de progreso por materia con tu acumulado en tiempo real, alertas de supletorio y cálculo de créditos, 100% offline.</p>
+      </div>
+    </section>
+
+    <!-- Banner CTA a la App -->
+    <section class="tool-cta-banner card">
+      <div class="cta-content">
+        <h2>Lleva tus notas y horarios en tu bolsillo</h2>
+        <p>Descarga la app Pilas! para Android. Gratis, sin publicidad, sin servidores intermedios y diseñada para la ESPE.</p>
+        <a class="btn btn-p btn-lg" href="/#descargar">
+          <svg class="ico"><use href="#i-down"/></svg>
+          <span>Descargar Pilas! APK ({V.size})</span>
+        </a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="tool-footer">
+  <div class="wrap">
+    <p>© 2026 Pilas! · Proyecto estudiantil independiente no afiliado a la ESPE.</p>
+  </div>
+</footer>
+
+<style is:global>
+  @import '../../styles/hub.css';
+
+  .page-main {
+    padding: 32px 0 64px;
+  }
+  .tool-hero {
+    margin-bottom: 28px;
+  }
+  .tool-tag-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .tool-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin: 0 0 10px;
+  }
+  .tool-lead {
+    font-size: 1.15rem;
+    color: var(--body);
+    max-width: 720px;
+    line-height: 1.5;
+  }
+  .calc-section-wrap {
+    margin-bottom: 32px;
+  }
+  .explanation-card {
+    margin-bottom: 32px;
+  }
+  .explanation-card h2 {
+    font-size: 1.45rem;
+    margin-bottom: 12px;
+  }
+  .formula-box {
+    margin: 16px 0;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    color: var(--warning);
+    font-size: 0.95rem;
+  }
+  .scenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .scenario-item {
+    background: var(--bg-elevated);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .scenario-item.ok { border-color: rgba(0, 255, 135, 0.4); }
+  .scenario-item.warn { border-color: rgba(255, 219, 96, 0.4); }
+  .scenario-item.crit { border-color: rgba(239, 68, 68, 0.4); }
+  .scenario-item h3 {
+    font-size: 1.1rem;
+    margin: 8px 0 6px;
+  }
+  .scenario-item p {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .faq-section {
+    margin-bottom: 32px;
+  }
+  .faq-section h2 {
+    font-size: 1.45rem;
+    margin-bottom: 16px;
+  }
+  .faq-item {
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+  }
+  .faq-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .faq-item h3 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .faq-item p {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .tool-cta-banner {
+    background: linear-gradient(135deg, rgba(255, 63, 164, 0.12), rgba(0, 255, 135, 0.08));
+    border: 2px solid var(--primary);
+    text-align: center;
+    padding: 36px 20px;
+  }
+  .tool-cta-banner h2 {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+  .tool-cta-banner p {
+    color: var(--body);
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+  .tool-footer {
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+</style>
+</body>
+</html>

@@ -1,0 +1,302 @@
+---
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/inter';
+import { SITE } from '../../config/site';
+import { RELEASE, PRIMARY_ARCH, PRIMARY_APK_SIZE } from '../../lib/release';
+import PdfCompressorDemo from '../../components/PdfCompressorDemo.astro';
+
+const V = {
+  version: RELEASE.version,
+  build: RELEASE.build,
+  size: PRIMARY_APK_SIZE,
+  apk: PRIMARY_ARCH.url,
+};
+
+const M = {
+  neutral: '/logos/mascota_neutro.svg',
+  error: '/logos/mascota_negacion.svg',
+  success: '/logos/mascota_aprobacion.svg',
+  scared: '/logos/mascota_asustado.svg',
+};
+
+const canonicalUrl = `${SITE.url}/herramientas/compresor-pdf-moodle`;
+const pageTitle = "Compresor de PDF para Moodle (Límite 5 MB) | Pilas!";
+const pageDesc = "Reduce tus informes y deberes en PDF a menos de 5 MB para subirlos a Moodle sin rebotes a las 23:59. Herramienta estudiantil para universidades del Ecuador.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Compresor de PDF para Moodle - Límite 5 MB",
+      "url": canonicalUrl,
+      "description": pageDesc,
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web, Android",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Por qué Moodle rechaza archivos mayores a 5 MB?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los servidores de Moodle en las universidades ecuatorianas (como micampus.espe.edu.ec o plataformas de la UCE y EPN) configuran límites estrictos de subida (generalmente 5 MB o 10 MB) para optimizar el almacenamiento del servidor institucional y el ancho de banda del campus."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo comprimir un PDF sin perder legibilidad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pilas! optimiza las imágenes y gráficos rasterizados incrustados en el PDF manteniendo el texto vectorizado 100% nítido, lo que reduce documentos de 25 MB a menos de 4 MB de manera inmediata."
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+<!doctype html>
+<html lang="es-EC" data-mode="espe">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{pageTitle}</title>
+<meta name="description" content={pageDesc}>
+<link rel="canonical" href={canonicalUrl}>
+<meta name="theme-color" content="#101319">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<!-- Open Graph / Redes Sociales -->
+<meta property="og:type" content="website">
+<meta property="og:url" content={canonicalUrl}>
+<meta property="og:title" content={pageTitle}>
+<meta property="og:description" content={pageDesc}>
+<meta property="og:image" content={`${SITE.url}/logos/letras_estilo_fucsia.svg`}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={pageTitle}>
+<meta name="twitter:description" content={pageDesc}>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute;display:none" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 21h16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap top-wrap">
+    <a class="nav-brand-logo-pill" href="/" aria-label="Pilas!, volver al inicio">
+      <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="128" height="42" />
+    </a>
+    <div class="nav-actions">
+      <a class="btn btn-s btn-sm" href="/">
+        <svg class="ico"><use href="#i-back"/></svg>
+        <span>Volver al Hub</span>
+      </a>
+      <a class="btn btn-p btn-sm" href="/#descargar">
+        <svg class="ico"><use href="#i-down"/></svg>
+        <span>Descargar APK</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="page-main">
+  <div class="wrap">
+    <div class="tool-hero">
+      <div class="tool-tag-row">
+        <span class="sticker-pill cyan">📄 HERRAMIENTAS ACADÉMICAS</span>
+        <span class="badge b-info">LÍMITE MOODLE: 5 MB</span>
+      </div>
+      <h1 class="tool-title">Compresor de PDF para Moodle</h1>
+      <p class="tool-lead">
+        ¿Tu informe de laboratorio pesa 20 MB y la tarea cierra en 10 minutos? Reduce el peso de tus archivos a menos de 5 MB sin perder nitidez y sin subir tus documentos a servidores de terceros.
+      </p>
+    </div>
+
+    <!-- Demo Interactiva Reutilizada -->
+    <div class="comp-section-wrap">
+      <PdfCompressorDemo M={M} />
+    </div>
+
+    <!-- Explicación del Límite de 5 MB -->
+    <section class="explanation-card card">
+      <h2>¿Por qué Moodle tiene un límite de 5 MB en Ecuador?</h2>
+      <p>
+        La mayoría de instancias de Moodle universitarias en el país (como <em>micampus.espe.edu.ec</em>, Moodle UCE, EPN y UNACH) fijan un tope máximo por archivo adjunto para evitar que los servidores colapsen cuando cientos de estudiantes suben tareas al mismo tiempo a las 23:59.
+      </p>
+
+      <div class="tips-grid">
+        <div class="tip-card">
+          <span class="tip-icon">📸</span>
+          <h3>Fotos de celular pesadas</h3>
+          <p>Una sola foto de cámara de 48 MP insertada en Word puede pesar 10 MB. Al exportar a PDF, el archivo final supera el límite.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-icon">📉</span>
+          <h3>Compresión inteligente</h3>
+          <p>Pilas! reduce la resolución de las fotos a 150 DPI (calidad perfecta para lectura) manteniendo el texto y las fórmulas intactas.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-icon">🔒</span>
+          <h3>100% Privado y Offline</h3>
+          <p>Tu tarea no se sube a internet para comprimirse: la app procesa el documento en la memoria de tu teléfono con WebAssembly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Rápida -->
+    <section class="faq-section card">
+      <h2>Preguntas Frecuentes sobre el Compresor</h2>
+      <div class="faq-item">
+        <h3>¿El profesor podrá leer las fórmulas y tablas?</h3>
+        <p>Sí. La compresión está calibrada específicamente para informes académicos: el texto vectorial no se altera y las figuras siguen siendo completamente nítidas en pantalla.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Necesito internet para comprimir en la app?</h3>
+        <p>No. En la app móvil Pilas!, la suite de compresión corre directamente en tu teléfono sin gastar megas ni depender de señal wifi en el aula.</p>
+      </div>
+    </section>
+
+    <!-- Banner CTA a la App -->
+    <section class="tool-cta-banner card">
+      <div class="cta-content">
+        <h2>Comprime tareas y genera carátulas en tu celular</h2>
+        <p>Descarga la app Pilas! para Android. Gratis, sin publicidad, sin servidores intermedios y con 13 herramientas offline.</p>
+        <a class="btn btn-p btn-lg" href="/#descargar">
+          <svg class="ico"><use href="#i-down"/></svg>
+          <span>Descargar Pilas! APK ({V.size})</span>
+        </a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="tool-footer">
+  <div class="wrap">
+    <p>© 2026 Pilas! · Proyecto estudiantil independiente para universidades del Ecuador.</p>
+  </div>
+</footer>
+
+<style is:global>
+  @import '../../styles/hub.css';
+
+  .page-main {
+    padding: 32px 0 64px;
+  }
+  .tool-hero {
+    margin-bottom: 28px;
+  }
+  .tool-tag-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .tool-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin: 0 0 10px;
+  }
+  .tool-lead {
+    font-size: 1.15rem;
+    color: var(--body);
+    max-width: 720px;
+    line-height: 1.5;
+  }
+  .comp-section-wrap {
+    margin-bottom: 32px;
+  }
+  .explanation-card {
+    margin-bottom: 32px;
+  }
+  .explanation-card h2 {
+    font-size: 1.45rem;
+    margin-bottom: 12px;
+  }
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .tip-card {
+    background: var(--bg-elevated);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .tip-icon {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .tip-card h3 {
+    font-size: 1.1rem;
+    margin: 0 0 6px;
+  }
+  .tip-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .faq-section {
+    margin-bottom: 32px;
+  }
+  .faq-section h2 {
+    font-size: 1.45rem;
+    margin-bottom: 16px;
+  }
+  .faq-item {
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+  }
+  .faq-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .faq-item h3 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .faq-item p {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .tool-cta-banner {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(255, 63, 164, 0.08));
+    border: 2px solid var(--info);
+    text-align: center;
+    padding: 36px 20px;
+  }
+  .tool-cta-banner h2 {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+  .tool-cta-banner p {
+    color: var(--body);
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+  .tool-footer {
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+</style>
+</body>
+</html>

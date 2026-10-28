@@ -27,7 +27,7 @@ const { M } = Astro.props;
             <button class="btn btn-p" id="gbtn" type="button">Probar compresión</button>
             <!-- Reacción interactiva de Pilo en el compresor -->
             <div class="gauge-mascot-reaction" id="gauge-mascot-box">
-              <img src={M.scared} alt="Pilo asustado porque el archivo supera el límite" class="gauge-mascot-img" id="gauge-mascot-img" width="48" height="48" />
+              <img src={M.scared} alt="Pilo asustado porque el archivo supera el límite" class="gauge-mascot-img" id="gauge-mascot-img" width="48" height="48" loading="lazy" />
               <div class="gauge-mascot-balloon">
                 <b class="gauge-mascot-status" id="gauge-mascot-status">¡Cuidado con la entrega!</b>
                 <span class="gauge-mascot-quote" id="gauge-mascot-quote">Moodle rechaza archivos mayores a 5 MB. Comprímelo en 1 toque.</span>
@@ -37,9 +37,6 @@ const { M } = Astro.props;
         </div>
 
 <style is:global>
-}
-.calc-target { font-size: 1.2rem; font-weight: 800; }
-
 .gauge-card {
   background: #11141e;
   border: 1.5px solid var(--border-control);
