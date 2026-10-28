@@ -488,11 +488,13 @@ export function initIntroPresentation(): void {
     const cntEl = document.getElementById('icount');
     if (cntEl) cntEl.textContent = `${n + 1} de ${activeSlides.length}`;
 
+    const iprev = document.getElementById('iprev');
     const inext = document.getElementById('inext');
     const ichoice = document.getElementById('ichoice');
     const ifinish = document.getElementById('ifinish');
     const iswitch = document.getElementById('iswitch');
     
+    if (iprev) iprev.hidden = (n === 0);
     if (inext) inext.hidden = (n === 1 || last);
     if (ichoice) ichoice.hidden = !last;
     if (last) {
@@ -558,6 +560,12 @@ export function initIntroPresentation(): void {
     const activeSlides = getActiveSlides();
     if (idx < activeSlides.length - 1) {
       show(idx + 1);
+    }
+  }
+
+  function prev() {
+    if (idx > 0) {
+      show(idx - 1);
     }
   }
 
@@ -660,11 +668,30 @@ export function initIntroPresentation(): void {
     });
   }
 
+  const iprev = document.getElementById('iprev');
+  if (iprev) iprev.addEventListener('click', prev);
+
   const inext = document.getElementById('inext');
   if (inext) inext.addEventListener('click', next);
 
   const iskip = document.getElementById('iskip');
   if (iskip) iskip.addEventListener('click', () => close(currentBranch, 'skip'));
+
+  const idl = document.getElementById('idl');
+  if (idl) {
+    idl.addEventListener('click', (e) => {
+      e.preventDefault();
+      close(currentBranch, 'finish');
+      setTimeout(() => {
+        const accesoEl = document.getElementById('acceso');
+        if (accesoEl) {
+          accesoEl.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          location.hash = '#acceso';
+        }
+      }, 120);
+    });
+  }
 
   const ifinish = document.getElementById('ifinish');
   if (ifinish) ifinish.addEventListener('click', () => close(currentBranch, 'finish'));
@@ -688,6 +715,7 @@ export function initIntroPresentation(): void {
     if (!html.classList.contains('intro-on')) return;
     if (e.key === 'Escape') close(currentBranch, 'skip');
     if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
   });
 
   // Botón para repetir la exposición desde el header

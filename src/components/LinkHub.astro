@@ -2,9 +2,14 @@
 interface Props {
   IG: string;
   WA: string;
+  WA_TESTERS?: string;
 }
 
-const { IG, WA } = Astro.props;
+const {
+  IG,
+  WA,
+  WA_TESTERS = 'https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc',
+} = Astro.props;
 ---
       <section class="hub-links-section">
         <h2 class="hub-section-title">Enlaces y herramientas importantes</h2>
@@ -74,7 +79,7 @@ const { IG, WA } = Astro.props;
             <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
           </a>
 
-          <!-- Link 6: WhatsApp -->
+          <!-- Link 6: WhatsApp Canal -->
           <a href={WA} target="_blank" rel="noopener noreferrer" class="link-card">
             <span class="link-icon">💬</span>
             <div class="link-content">
@@ -83,6 +88,19 @@ const { IG, WA } = Astro.props;
                 <span class="badge b-ok">Canal</span>
               </div>
               <p>Alertas académicas inmediatas, comunicados y recordatorios sin spam.</p>
+            </div>
+            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+          </a>
+
+          <!-- Link 6b: Grupo de WhatsApp Testers -->
+          <a href={WA_TESTERS} target="_blank" rel="noopener noreferrer" class="link-card highlight-card">
+            <span class="link-icon">🧪</span>
+            <div class="link-content">
+              <div class="link-head-row">
+                <b>Grupo WhatsApp de Testers</b>
+                <span class="badge b-warn font-mono">Multi-U</span>
+              </div>
+              <p>Verifica el funcionamiento de tu universidad (UTA, UCE, EPN, UNACH) y prueba betas.</p>
             </div>
             <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
           </a>
@@ -164,7 +182,24 @@ const { IG, WA } = Astro.props;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  flex-wrap: wrap;
   margin-bottom: 4px;
+}
+
+@media (max-width: 640px) {
+  .link-card {
+    padding: 14px 14px;
+    gap: 12px;
+  }
+  .link-icon {
+    font-size: 1.6rem;
+  }
+  .link-head-row b {
+    font-size: 1rem;
+  }
+  .link-content p {
+    font-size: 0.84rem;
+  }
 }
 .link-head-row b {
   font-family: var(--f-d);
@@ -188,5 +223,17 @@ const { IG, WA } = Astro.props;
   color: var(--primary);
   transform: translateX(3px);
 }
+.link-card.highlight-card {
+  border-color: #25D366;
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.08) 0%, var(--bg-surface) 100%);
+}
+.link-card.highlight-card:hover {
+  border-color: #2ee673;
+  box-shadow: 5px 5px 0 #25D366;
+}
+.link-card.highlight-card:hover .link-arrow {
+  color: #25D366;
+}
+
 
 </style>

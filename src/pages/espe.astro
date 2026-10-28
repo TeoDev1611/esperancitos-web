@@ -1,0 +1,21 @@
+---
+// Redirección con pre-selección de modo ESPE
+---
+<!doctype html>
+<html lang="es-EC">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pilas! ESPE</title>
+<meta name="description" content="Modo ESPE de Pilas!: horarios, mallas, 42 puntos y carnet garita para estudiantes de la Universidad de las Fuerzas Armadas ESPE.">
+<link rel="canonical" href="https://pilas-ec.vercel.app/?mode=espe">
+<script is:inline>
+try { localStorage.pilasMode = 'espe'; } catch (e) {}
+location.replace('/?mode=espe#modo');
+</script>
+<noscript><meta http-equiv="refresh" content="0;url=/?mode=espe#modo"></noscript>
+</head>
+<body style="background:#101319;color:#fff;font-family:sans-serif;padding:40px;text-align:center">
+<p>Cargando Pilas! en modo ESPE... <a href="/?mode=espe#modo" style="color:#ff3fa4">Haz clic aquí si no redirige automáticamente</a>.</p>
+</body>
+</html>

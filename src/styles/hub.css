@@ -377,12 +377,13 @@ a { color: var(--info); }
   }
   .pass {
     width: 100%;
-    max-width: 330px;
-    aspect-ratio: auto;
-    min-height: 420px;
+    max-width: 340px;
+    aspect-ratio: 3 / 4.4;
+    height: auto;
   }
   .pass-in {
-    min-height: 420px;
+    height: 100%;
+    width: 100%;
   }
   .pass-student-info h2 {
     font-size: 0.95rem;

@@ -1,0 +1,37 @@
+{
+  "id": "academico-unach",
+  "title": "Sistemas Académicos UNACH",
+  "institution": "unach",
+  "order": 6,
+  "items": [
+    {
+      "id": "sicoa-unach",
+      "title": "Sistema SICOA UNACH",
+      "url": "https://sicoaweb2.unach.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Control académico, matrículas, notas y malla curricular"
+    },
+    {
+      "id": "moodle-aulas-unach",
+      "title": "Aulas Virtuales Moodle UNACH",
+      "url": "https://moodle.unach.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Plataforma de cursos virtuales, entrega de deberes y evaluaciones"
+    },
+    {
+      "id": "portal-uvirtual-unach",
+      "title": "UNACH Virtual",
+      "url": "https://uvirtual.unach.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Portal centralizado de servicios estudiantiles y telemáticos"
+    },
+    {
+      "id": "biblioteca-virtual-unach",
+      "title": "Biblioteca y Catálogo UNACH",
+      "url": "https://biblioteca.unach.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Consulta de libros digitales, bases de datos y tesis de grado"
+    }
+  ],
+  "notas": "Portales institucionales de la Universidad Nacional de Chimborazo"
+}

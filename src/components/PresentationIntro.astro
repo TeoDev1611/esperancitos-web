@@ -27,8 +27,8 @@ const { V, M } = Astro.props;
         </span>
       </div>
       <div class="intro-actions">
-        <a class="btn btn-p btn-sm" id="idl" href={V.apk}>
-          <svg class="ico"><use href="#i-down"/></svg><span class="hide-xs">Descargar </span>APK
+        <a class="btn btn-p btn-sm" id="idl" href="#acceso">
+          <svg class="ico"><use href="#i-play"/></svg><span class="hide-xs">Pedir </span>Acceso
         </a>
         <button class="btn btn-s btn-sm" id="iskip" type="button">
           Saltar<span class="hide-xs"> al Hub</span> ➔
@@ -69,9 +69,14 @@ const { V, M } = Astro.props;
       </div>
       <div class="intro-ctls-right">
         <button class="btn btn-s btn-sm" id="icc" type="button" aria-pressed="true" title="Cambiar modo retro">
-          <span id="icc-ico">🎞️</span> <span id="icc-txt">Modo retro: Activo</span>
+          <span id="icc-ico">🎞️</span> <span id="icc-txt" class="hide-xs">Modo retro: Activo</span>
         </button>
-        <button class="btn btn-p btn-sm" id="inext" type="button">Siguiente ➔</button>
+        <button class="btn btn-s btn-sm" id="iprev" type="button" aria-label="Diapositiva anterior" hidden>
+          ⬅ <span class="hide-xs">Anterior</span>
+        </button>
+        <button class="btn btn-p btn-sm" id="inext" type="button">
+          <span>Siguiente</span> ➔
+        </button>
         <div id="ichoice" class="intro-choice-group" hidden>
           <button class="btn btn-ghost btn-sm" id="iswitch" type="button" title="Cambiar universidad"></button>
           <button class="btn btn-p btn-sm" id="ifinish" type="button">⚡ Entrar a Pilas ESPE ➔</button>

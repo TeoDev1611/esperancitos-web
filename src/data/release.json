@@ -1,19 +1,20 @@
 {
   "version": "1.2.0",
   "build": 8,
-  "apkVersion": "1.1-beta.2",
-  "releaseDate": "2026-10-19",
+  "apkVersion": "1.2.0",
+  "releaseDate": "2026-10-28",
   "minAndroid": "8.0",
-  "versionDiscrepancyNote": "El APK público distribuido actualmente corresponde a la versión estable v1.1-beta.2, mientras la versión v1.2.0 (Build 8) se encuentra en fase de beta cerrada en Google Play.",
+  "versionDiscrepancyNote": "Distribución oficial exclusiva mediante Google Play Store (Prueba Cerrada).",
   "downloads": {
     "showDownloadCount": true,
     "count": 100,
     "label": "estudiantes en la comunidad"
   },
   "playStoreBeta": {
-    "enabled": false,
-    "url": "https://forms.gle/svzBYKL2ZhWrS7M78",
-    "note": "Beta cerrada en Google Play Store para estudiantes registrados."
+    "enabled": true,
+    "url": "https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc",
+    "channelUrl": "https://www.whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g",
+    "note": "Prueba cerrada en Google Play Store: pide acceso con tu @gmail.com."
   },
   "architectures": {
     "arm64-v8a": {

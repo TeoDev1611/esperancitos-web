@@ -6,7 +6,7 @@
     "title": "Modo Multi-Universidad & Suite de Herramientas Web",
     "highlight": "Ampliación a universidades de todo el país y herramientas accesibles desde el navegador.",
     "changes": [
-      { "type": "feat", "text": "Lanzamiento del Modo Universal Multi-Universidad para campus con Moodle (UCE, EPN, PUCE, ESPOL, UNACH)." },
+      { "type": "feat", "text": "Lanzamiento del Modo Universal Multi-Universidad para campus con Moodle (UTA, UCE, EPN, UNACH confirmadas)." },
       { "type": "feat", "text": "Calculadora web interactiva de notas con regla oficial de 42/60 puntos y multiescala." },
       { "type": "feat", "text": "Compresor de PDF optimizado para el límite de 5 MB de las aulas virtuales Moodle." },
       { "type": "security", "text": "Centro de verificación criptográfica con hashes SHA-256 independientes por arquitectura de CPU." },

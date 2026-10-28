@@ -1,0 +1,510 @@
+---
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/inter';
+import '@fontsource/special-elite';
+
+const V = { version: '1.2.0', build: 8, size: '37.2 MB', apk: '/downloads/pilas-v1.2.0-arm64-v8a.apk' };
+// Guía §5.1: si ya renombraste a mascota_*.svg, cambia las rutas aquí.
+const M = {
+  neutral: '/logos/icono_var1_sin_fondo.svg',
+  error: '/logos/icono_var2_sin_fondo.svg',
+  success: '/logos/icono_var3_sin_fondo.svg',
+  scared: '/logos/asostado.svg',
+  sleeping: '/logos/dormido.svg',
+  guard: '/logos/policia.svg',
+};
+const PLAY = '#';
+const IG = 'https://www.instagram.com/pilas_ec.app/';
+const WA = 'https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
+---
+<!doctype html>
+<html lang="es-EC" data-mode="espe" class="intro-on retro-on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pilas! La app estudiantil para la ESPE y otras universidades del Ecuador</title>
+<meta name="description" content="Horario con aulas, Moodle por QR, carnet digital y 13 herramientas offline. Gratis, sin anuncios y sin servidores intermedios. Modo ESPE y modo Multi-Universidad.">
+<meta name="theme-color" content="#101319">
+<script is:inline>
+try{if(sessionStorage.pilas==='1'||matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.remove('intro-on');
+if(localStorage.pilasRetro==='0')document.documentElement.classList.remove('retro-on');var m=localStorage.pilasMode;if(m==='multi'||m==='espe')document.documentElement.dataset.mode=m}catch(e){}
+</script>
+<noscript><style>#intro{display:none!important}.intro-on body{overflow:auto!important}</style></noscript>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.01"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></symbol>
+  <symbol id="i-off" viewBox="0 0 24 24"><path d="M3 3l18 18M5 12a10 10 0 014-2M2 8.8a15 15 0 014-2.8M8.5 16a5 5 0 014-1.5M12 20v.01"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+</svg>
+
+<!-- ============ EXPOSICIÓN ============ -->
+<div id="intro" role="dialog" aria-label="Presentación de Pilas!" data-m={JSON.stringify(M)}>
+  <div class="beam" aria-hidden="true"></div>
+  <div class="top-r">
+    <a class="btn btn-p btn-sm" id="idl" href={V.apk}><svg class="ico"><use href="#i-down"/></svg>Descargar ahora</a>
+    <button class="btn btn-s btn-sm" id="iskip" type="button">Saltar<span class="hide-s">&nbsp;presentación</span></button>
+  </div>
+  <div class="screen" id="sl" aria-hidden="true"></div>
+  <div class="sr" id="sr" aria-live="polite"></div>
+  <div class="onstage">
+    <img id="mas" class="mas" src={M.scared} alt="" width="200" height="200">
+    <p class="bubble" id="say" aria-hidden="true"></p>
+  </div>
+  <p class="sub" id="sub" aria-hidden="true"><small id="cue"></small><span id="subt"></span></p>
+  <div class="film" aria-hidden="true"><i class="scr" style="left:23%"></i><i class="scr" style="left:71%;animation-delay:-1.1s"></i></div>
+  <div class="ctl">
+    <div class="bat" aria-hidden="true"><div class="bat-body" id="imeter"></div></div>
+    <span class="cnt num" id="icount"></span>
+    <button class="btn btn-s btn-sm" id="icc" type="button" aria-pressed="true"><svg class="ico"><use href="#i-check"/></svg>Subtítulos retro</button>
+    <button class="btn btn-s" id="inext" type="button">Siguiente</button>
+    <div id="ichoice" hidden>
+      <button class="btn btn-p" type="button" data-pick="espe">Soy de la ESPE</button>
+      <button class="btn btn-s" type="button" data-pick="multi">Soy de otra universidad</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SITIO ============ -->
+<div id="site">
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Pilas!, inicio">Pilas!</a>
+    <span class="badge b-info hide-s"><span data-for="espe">Modo ESPE</span><span data-for="multi">Modo Multi-Universidad</span></span>
+    <button class="btn btn-s btn-sm" id="replay" type="button"><svg class="ico"><use href="#i-play"/></svg><span class="hide-s">Ver la presentación</span><span class="sr">Ver la presentación</span></button>
+    <a class="btn btn-p btn-sm" href="#descargar"><svg class="ico"><use href="#i-down"/></svg>Descargar</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>
+        <span data-for="espe">Tu horario, tus tareas y tus notas, aunque MiESPE esté caído</span>
+        <span data-for="multi">Tu Moodle y tus trámites, desde cualquier universidad del Ecuador</span>
+      </h1>
+      <p class="lead">
+        <span data-for="espe">Horario con el aula de cada clase, Moodle con alarmas, calculadora de parciales y carnet para la garita. Todo guardado en tu teléfono.</span>
+        <span data-for="multi">Escaneas el QR de Moodle Mobile y listo: tareas, horario y herramientas sin internet, con la escala de notas de tu universidad. Sin contraseñas en la app.</span>
+      </p>
+      <div class="mode" role="group" aria-label="Elige tu modo">
+        <button type="button" data-mode-btn="espe" aria-pressed="true"><b>ESPE</b><small>Sangolquí, Latacunga y Santo Domingo</small></button>
+        <button type="button" data-mode-btn="multi" aria-pressed="false"><b>Multi-Universidad</b><small>UCE, EPN, PUCE, ESPOL, UNACH y más</small></button>
+      </div>
+      <div class="cta">
+        <a class="btn btn-p" href={V.apk}><svg class="ico"><use href="#i-down"/></svg>Descargar para Android</a>
+        <a class="btn btn-s" href="#modo">Ver qué cambia en mi modo</a>
+      </div>
+      <p class="fine">Gratis, {V.size}, Android 8.0 o superior. Sin anuncios y sin servidores intermedios.</p>
+    </div>
+    <div class="pass">
+      <div class="pass-in">
+        <div class="face front">
+          <header style="background:var(--primary)">Pase politécnico</header>
+          <div class="fb">
+            <h2>Universidad de las Fuerzas Armadas ESPE</h2>
+            <dl><div><dt>Aulas</dt><dd>Bloque G y H</dd></div><div><dt>Mallas</dt><dd class="num">23 carreras</dd></div><div><dt>Regla</dt><dd class="num">42 de 60 pts</dd></div><div><dt>Carnet</dt><dd>Con código de barras</dd></div></dl>
+            <span class="badge b-info"><svg class="ico"><use href="#i-off"/></svg>Funciona sin internet</span>
+          </div>
+        </div>
+        <div class="face back">
+          <header style="background:var(--primary-coral)">Pasaporte universal</header>
+          <div class="fb">
+            <h2>Multi-Universidad Ecuador</h2>
+            <dl><div><dt>Entrada</dt><dd>QR en 1 segundo</dd></div><div><dt>Moodle</dt><dd>Cualquier sede</dd></div><div><dt>Escala</dt><dd class="num">10, 20 o 100 pts</dd></div><div><dt>Carátulas</dt><dd>Con tu escudo</dd></div></dl>
+            <span class="badge b-info"><svg class="ico"><use href="#i-off"/></svg>Funciona sin internet</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modo" class="alt">
+  <div class="wrap">
+    <h2 class="sec-h"><span data-for="espe">Lo que Pilas hace por tu campus ESPE</span><span data-for="multi">Lo que Pilas hace con tu universidad</span></h2>
+    <dl class="rules" data-for="espe">
+      <div><dt>Traductor de aulas Banner</dt><dd>BLOQ G AUL 201 se lee Bloque G, Piso 2, Aula 201.</dd></div>
+      <div><dt>La regla de 42 de 60</dt><dd>La calculadora te dice cuánto necesitas en el Parcial 3 para aprobar.</dd></div>
+      <div><dt>23 mallas interactivas</dt><dd>Marcas una materia como aprobada y se desbloquean las siguientes, sin internet.</dd></div>
+      <div><dt>Carnet con código de barras</dt><dd>Listo para torniquetes, garita vehicular y préstamo en biblioteca.</dd></div>
+    </dl>
+    <dl class="rules" data-for="multi">
+      <div><dt>Entras con el QR de Moodle Mobile</dt><dd>Una sola lectura y no escribes contraseña en la app.</dd></div>
+      <div><dt>Calculadora multi-escala</dt><dd>Funciona sobre 10, 20 o 100 puntos, con 2 o 3 parciales.</dd></div>
+      <div><dt>Carátulas con tu escudo</dt><dd>UCE, EPN, PUCE, ESPOL o tu propio logo.</dd></div>
+      <div><dt>Carnet universal</dt><dd>Foto, carrera y credencial que tú configuras.</dd></div>
+    </dl>
+    <p class="fine" data-for="espe">Sedes: Matriz Sangolquí, Latacunga y Santo Domingo.</p>
+    <p class="fine" data-for="multi">Funciona con UCE, EPN, PUCE, ESPOL, UNACH y cualquier plataforma Moodle del país.</p>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap two-col">
+    <div>
+      <h2 class="sec-h">Tus archivos se procesan en tu teléfono</h2>
+      <p style="margin-top:14px;max-width:34em">Moodle rechaza entregas por peso a las 23:57. Prueba el compresor: el límite de la tarea está marcado en la barra.</p>
+      <div class="card gauge-card">
+        <b class="num">informe_laboratorio.pdf</b>
+        <div class="gauge" role="img" aria-label="Medidor de peso del archivo con el límite marcado en 5 MB"><i id="gfill"></i><span class="lim"></span></div>
+        <div class="gl"><span class="num" id="gnow">24.8 MB</span><span class="num">Límite de la tarea: 5 MB</span></div>
+        <span class="badge b-crit" id="gb"></span>
+        <button class="btn btn-p" id="gbtn" type="button">Comprimir</button>
+      </div>
+    </div>
+    <div>
+      <h3 class="h3">Ocho de las trece herramientas</h3>
+      <dl class="rules one">
+        <div><dt>Compresor de PDF</dt><dd>Baja entregas de 25 MB a menos de 4 MB sin perder legibilidad.</dd></div>
+        <div><dt>Escáner de apuntes</dt><dd>Recorte de bordes, blanco y negro, grises o color, sin marcas de agua.</dd></div>
+        <div><dt>Carátulas</dt><dd>Con membrete de tu facultad o tu propio logo.</dd></div>
+        <div><dt>Firma visual</dt><dd>Dibujas tu firma y la estampas en el PDF. No es firma electrónica con validez legal.</dd></div>
+        <div><dt>Unir y dividir PDF</dt><dd>Reordena, separa capítulos y elimina hojas en blanco.</dd></div>
+        <div><dt>Lector de texto sin internet</dt><dd>Copia el texto de fotos de pizarras, diapositivas o libros.</dd></div>
+        <div><dt>ZIP con contraseña</dt><dd>Cifrado AES de 256 bits. Si pierdes la contraseña, no se puede recuperar.</dd></div>
+        <div><dt>Limpiador de metadatos</dt><dd>Quita ubicación, modelo de cámara y fecha antes de entregar.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="privacidad">
+  <div class="wrap two-col">
+    <div>
+      <h2>Tu contraseña no pasa por Pilas</h2>
+      <p style="margin-top:14px;max-width:32em">Entre tu teléfono y la universidad no hay servidores nuestros. Lo que haces en la app se queda en tu celular.</p>
+      <img class="guard" src={M.guard} alt="Pilas con gorra y lentes oscuros, vigilando" width="140" height="140" loading="lazy">
+    </div>
+    <ul class="priv">
+      <li><svg class="ico"><use href="#i-shield"/></svg><div><b>Conexión directa</b>Tu teléfono habla con los portales oficiales. No existe un servidor intermedio.</div></li>
+      <li><svg class="ico"><use href="#i-shield"/></svg><div><b>Moodle por QR</b>Entras con el código de tu perfil y nunca escribes tu contraseña.</div></li>
+      <li><svg class="ico"><use href="#i-shield"/></svg><div><b>Sesiones cifradas</b>Se guardan en Android Keystore, con AES-256.</div></li>
+      <li><svg class="ico"><use href="#i-shield"/></svg><div><b>Sin rastreo ni anuncios</b>No usamos analíticas. No sabemos qué materias llevas.</div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="descargar" class="dl">
+  <div class="wrap two-col">
+    <div>
+      <h2>Descárgala directo, sin pasar por una tienda</h2>
+      <div class="card pack">
+        <span class="badge b-info"><svg class="ico"><use href="#i-info"/></svg>Versión {V.version}, Build {V.build}</span>
+        <p style="margin-top:12px">Funciona en casi cualquier Android del 2019 en adelante. Pesa {V.size} y pide Android 8.0 o superior.</p>
+        <a class="btn btn-p" href={V.apk}><svg class="ico"><use href="#i-down"/></svg>Descargar APK (ARM64)</a>
+        <a class="btn btn-s" href={PLAY}>Inscribirme a la beta de Play Store</a>
+        <p class="fine">Google exige 20 evaluadores activos durante 14 días para publicar en Play Store.</p>
+      </div>
+    </div>
+    <div>
+      <h3 class="h3">Instalarla toma menos de un minuto</h3>
+      <ol class="steps">
+        <li><div><b>Descarga el archivo</b>Se guarda en la carpeta Descargas.</div></li>
+        <li><div><b>Dale permiso</b>Android avisará que no viene de la tienda. Marca “Permitir desde esta fuente”.</div></li>
+        <li><div><b>Abre Pilas y elige tu modo</b>Conecta tu horario o escanea el QR de tu Moodle.</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav aria-label="Enlaces del sitio">
+      <a href="/faq">Preguntas frecuentes</a><a href="/horario">Convertidor de horarios</a><a href="/conectar">Vincular Moodle por QR</a>
+      <a href="/avisos">Avisos</a><a href="/negocios">Negocios</a><a href="/privacidad">Privacidad</a>
+      <a href={IG}>Instagram</a><a href={WA}>Canal de WhatsApp</a>
+    </nav>
+    <p>Pilas! es un proyecto estudiantil independiente. No está afiliado ni respaldado por la Universidad de las Fuerzas Armadas ESPE, otras universidades, Ellucian, Banner ni Moodle. Verifica siempre tu información académica en los portales oficiales.</p>
+    <p>© 2026 Pilas!</p>
+  </div>
+</footer>
+</div>
+
+<style is:global>
+:root{
+  color-scheme:dark;
+  --primary:#ff3fa4;--primary-hover:#e5147d;--primary-extrude:#7a0a45;--primary-shadow:#4a0026;--primary-coral:#ff3d5e;
+  --success:#00ff87;--success-shadow:#059669;--warning:#ffdb60;--critical:#ef4444;--info:#38bdf8;
+  --bg-base:#101319;--bg-subtle:#191d28;--bg-surface:#161a23;--bg-elevated:#1e2230;--bg-container:#242938;
+  --border:#2a3142;--border-control:#6b7894;--title:#faf7f7;--body:#e1e2eb;--muted:#8f9cae;
+  --f-d:"Outfit Variable",system-ui,sans-serif;--f-b:"Inter Variable",system-ui,sans-serif;
+  --accent:var(--primary);--bg:var(--bg-base);--sw:min(960px,92vw);
+}
+html[data-mode=multi]{--accent:var(--primary-coral);--bg:var(--bg-subtle)}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background-color:var(--bg);color:var(--body);font:400 1.0625rem/1.6 var(--f-b);padding-bottom:env(safe-area-inset-bottom,0px)}
+html[data-mode=espe] body{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px}
+html[data-mode=multi] body{background-image:radial-gradient(rgba(255,255,255,.09) 1.5px,transparent 1.5px);background-size:22px 22px}
+html[data-mode=espe] [data-for=multi],html[data-mode=multi] [data-for=espe]{display:none!important}
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+h1,h2,h3{font-family:var(--f-d);font-weight:800;color:var(--title);line-height:1.05;letter-spacing:-.02em;margin:0}
+p{margin:0}a{color:var(--info)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,32px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.num{font-variant-numeric:tabular-nums}
+.ico{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border:2px solid;border-radius:12px;font:800 1rem var(--f-d);text-decoration:none;cursor:pointer;transition:transform 100ms,box-shadow 100ms,background 150ms}
+.btn:active{transform:translate(2px,2px);box-shadow:none!important}
+.btn-p{background:var(--primary);color:#000;border-color:var(--primary-extrude);box-shadow:3px 3px 0 var(--primary-shadow)}
+.btn-p:hover,.btn-p:active{background:var(--primary-hover)}
+.btn-s{background:var(--bg-elevated);color:var(--title);border-color:#fff;box-shadow:3px 3px 0 var(--border)}
+.btn-sm{padding:0 16px;font-size:.95rem}
+.card{background:var(--bg-surface);border:2px solid var(--border);border-radius:14px;box-shadow:2px 2px 0 var(--border);padding:20px}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1.5px solid currentColor;border-radius:999px;padding:4px 12px 4px 8px;background:var(--bg-base);font:600 .875rem/1.3 var(--f-b)}
+.b-ok{color:var(--success)}.b-warn{color:var(--warning)}.b-crit{color:var(--critical)}.b-info{color:var(--info)}
+.bat{display:flex;align-items:center;flex:1;max-width:280px}
+.bat-body{flex:1;display:flex;gap:3px;height:24px;padding:3px;border:2px solid var(--border-control);border-radius:8px;background:#000}
+.bat-body i{flex:1;border-radius:3px;background:var(--bg-container)}.bat-body i.on{background:var(--primary)}
+.bat::after{content:"";width:6px;height:12px;background:var(--border-control);border-radius:0 3px 3px 0}
+
+/* intro */
+#intro{display:none;position:fixed;inset:0;z-index:100;background:#000;color:var(--title);overflow:hidden}
+.intro-on #intro{display:block}.intro-on body{overflow:hidden}
+.beam{position:absolute;inset:0;background:linear-gradient(to top,rgba(250,247,247,.2),rgba(250,247,247,.05));clip-path:polygon(47% 100%,53% 100%,calc(50% + var(--sw)/2) 6vh,calc(50% - var(--sw)/2) 6vh);animation:dust 3.2s steps(2,end) infinite}
+@keyframes dust{50%{opacity:.82}}
+.top-r{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;display:flex;gap:10px}
+.screen{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 68px);transform:translateX(-50%);width:var(--sw);height:44vh;border:2px solid #fff;border-radius:14px;background:var(--bg-surface);padding:clamp(16px,3vw,40px);display:flex;flex-direction:column;justify-content:center;gap:14px}
+.sl-t{font-size:clamp(1.8rem,5.4vw,3.6rem)}.sl-t.big{font-size:clamp(3.4rem,13vw,8rem);color:var(--primary);text-shadow:5px 5px 0 var(--primary-extrude);letter-spacing:-.04em}
+.sl-p{font-size:clamp(1rem,2vw,1.3rem);max-width:32em}
+.onstage{position:absolute;left:50%;transform:translateX(-50%);width:var(--sw);bottom:calc(env(safe-area-inset-bottom,0px) + 92px);display:flex;align-items:flex-end;gap:14px}
+.mas{width:clamp(96px,22vh,190px);height:clamp(96px,22vh,190px);object-fit:contain;flex:none}
+.bubble{position:relative;flex:1;max-width:34em;min-height:4.5em;background:#fff;color:#000;border:2px solid #000;border-radius:16px;box-shadow:4px 4px 0 var(--primary);padding:14px 18px;font:600 clamp(.95rem,2vw,1.15rem)/1.45 var(--f-b);margin-bottom:24px}
+.ctl{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);display:flex;align-items:center;gap:12px;padding-inline:clamp(12px,4vw,32px);max-width:calc(var(--sw) + 64px);margin:0 auto;flex-wrap:wrap}
+.cnt{color:var(--muted);font-size:.9rem}
+#ichoice{display:flex;gap:12px;flex-wrap:wrap;margin-left:auto}#ichoice[hidden],#inext[hidden]{display:none}
+#inext{margin-left:auto}
+
+/* subtítulos retro: acabado de dibujo animado antiguo, solo en la intro */
+.film{display:none;position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.retro-on .film{display:block}
+.film::before{content:"";position:absolute;inset:-50%;opacity:.25;animation:grain .45s steps(4) infinite;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -.45'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.film::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.8) 100%)}
+.scr{position:absolute;top:0;bottom:0;width:2px;background:rgba(244,236,214,.5);opacity:0;animation:scr 2.6s steps(1) infinite}
+@keyframes grain{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}}
+@keyframes scr{0%{opacity:0}6%{opacity:.9}12%{opacity:0}50%{opacity:0;transform:translateX(34px)}56%{opacity:.7;transform:translateX(34px)}60%{opacity:0}100%{opacity:0}}
+@keyframes flick{50%{opacity:.95}}
+.retro-on .screen{background:#0b0b0b;border:3px double #f4ecd6;filter:sepia(.35) contrast(1.1);animation:flick .16s steps(2) infinite}
+.retro-on .bubble{display:none}
+html:not(.retro-on) .sub{display:none}
+.sub{position:absolute;left:50%;transform:translateX(-50%);width:var(--sw);bottom:calc(env(safe-area-inset-bottom,0px) + 88px);z-index:1;min-height:5.2rem;margin:0;padding:10px 18px;background:#000;border:3px double #f4ecd6;color:#f4ecd6;font:400 clamp(1rem,2.4vw,1.45rem)/1.4 "Special Elite",ui-monospace,monospace;text-align:center;text-shadow:2px 2px 0 #3a3224}
+.sub small{display:block;font-size:.72em;color:#b9ad90;margin-bottom:2px}
+.retro-on .onstage{bottom:calc(env(safe-area-inset-bottom,0px) + 184px)}
+.ctl,.top-r{z-index:3}
+#icc .ico{display:none}#icc[aria-pressed=true] .ico{display:block}
+@media(max-width:860px){.retro-on .onstage{bottom:calc(env(safe-area-inset-bottom,0px) + 214px)}.sub{bottom:calc(env(safe-area-inset-bottom,0px) + 124px)}}
+
+/* sitio */
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:2px solid var(--border);padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;gap:12px;min-height:64px}
+.top .badge:first-of-type{margin-right:auto}.logo{font:800 1.9rem var(--f-d);color:var(--primary);text-shadow:3px 3px 0 var(--primary-extrude);text-decoration:none;letter-spacing:-.03em;margin-right:auto}
+.hero{padding:clamp(40px,7vw,88px) 0 clamp(56px,8vw,112px)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,72px);align-items:center}
+h1{font-size:clamp(2.4rem,5.6vw,4.4rem)}
+.lead{margin-top:20px;max-width:34em;font-size:1.15rem}
+.mode{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px;max-width:520px}
+.mode button{text-align:left;min-height:64px;padding:10px 14px;border:2px solid var(--border-control);border-radius:12px;background:var(--bg-elevated);color:var(--title);font:inherit;cursor:pointer;transition:transform 100ms,box-shadow 100ms}
+.mode b{display:block;font:800 1.1rem var(--f-d)}.mode small{display:block;color:var(--muted);line-height:1.3;margin-top:2px}
+.mode button[aria-pressed=true]{background:var(--accent);color:#000;border-color:#000;box-shadow:3px 3px 0 #000}
+.mode button[aria-pressed=true] small{color:#000}
+.mode button:active{transform:translate(2px,2px);box-shadow:none}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+.fine{margin-top:14px;color:var(--muted);font-size:.95rem;max-width:40em}
+.pass{perspective:1200px;width:min(100%,380px);aspect-ratio:3/4.1;justify-self:center}
+.pass-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.22,1,.36,1)}
+html[data-mode=multi] .pass-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:2px solid #000;border-radius:16px;box-shadow:6px 6px 0 #000;overflow:hidden;background:var(--bg-surface);display:flex;flex-direction:column}
+.face.back{transform:rotateY(180deg)}
+.face header{color:#000;padding:14px 18px;font:800 1.15rem var(--f-d)}
+.fb{padding:18px;display:flex;flex-direction:column;gap:16px;flex:1}.fb h2{font-size:1.5rem}
+.fb dl{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-content:start}
+.fb dt{color:var(--muted);font-size:.85rem}.fb dd{margin:0;color:var(--title);font-weight:600;line-height:1.3}
+.fb .badge{align-self:flex-start}
+section{padding:clamp(56px,8vw,104px) 0}
+.alt{background:var(--bg-surface);border-block:2px solid var(--border)}
+h2{font-size:clamp(1.9rem,4vw,3rem)}.sec-h{max-width:24ch}.h3{font-size:1.5rem;margin-bottom:8px}
+.rules{margin:36px 0 0;display:grid;grid-template-columns:1fr 1fr;column-gap:48px}.rules.one{grid-template-columns:1fr;margin-top:8px}
+.rules>div{padding:16px 0;border-top:2px solid var(--border)}
+.rules dt{font:800 1.15rem var(--f-d);color:var(--title)}.rules dd{margin:4px 0 0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.gauge-card{margin-top:24px;display:grid;gap:12px;background:var(--bg-elevated)}
+.gauge{position:relative;height:18px;border:2px solid var(--border-control);border-radius:999px;background:var(--bg-base);overflow:hidden}
+.gauge i{display:block;height:100%;width:100%;background:var(--critical)}
+.lim{position:absolute;top:-2px;bottom:-2px;left:16.67%;width:3px;background:#fff}
+.gl{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--title);font-weight:600}
+.priv{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.priv li{display:grid;grid-template-columns:32px 1fr;gap:12px;padding:16px;border:2px solid var(--border-control);border-radius:14px;background:var(--bg-elevated)}
+.priv .ico{width:28px;height:28px;color:var(--primary)}.priv b{display:block;color:var(--title);font:800 1.1rem var(--f-d)}
+.guard{display:block;margin-top:24px;width:140px;height:140px;object-fit:contain}
+.dl{background:var(--bg-container);border-top:2px solid #000}
+.pack{margin-top:24px;display:grid;gap:12px}.pack .btn{width:100%}
+.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:16px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:14px}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border:2px solid #000;border-radius:999px;background:var(--primary);color:#000;font:800 1.2rem var(--f-d)}
+.steps b{display:block;color:var(--title)}
+footer{padding:40px 0 56px;border-top:2px solid #000;background:var(--bg);font-size:.95rem}
+footer .wrap{display:grid;gap:16px}footer nav{display:flex;flex-wrap:wrap;gap:0 22px}footer nav a{display:inline-flex;align-items:center;min-height:48px}footer p{color:var(--muted);max-width:60em}
+
+@media(max-width:860px){
+  .hero .wrap,.two-col,.rules{grid-template-columns:1fr}
+  .hide-s{display:none!important}
+  .screen{height:40vh}.onstage{bottom:calc(env(safe-area-inset-bottom,0px) + 120px)}
+  #inext,#ichoice{margin-left:0}.bat{max-width:none;flex-basis:100%}
+}
+@media(max-width:480px){.mode{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:0s!important;scroll-behavior:auto!important}}
+</style>
+
+<script>
+import gsap from 'gsap';
+const $ = (s: string) => document.querySelector(s) as any;
+const $$ = (s: string) => [...document.querySelectorAll(s)] as any[];
+const html = document.documentElement;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MASC = JSON.parse($('#intro').dataset.m);
+const ALT: Record<string, string> = {
+  scared: 'Pilas, nervioso, con una gota de sudor', neutral: 'Pilas, sonriendo con el dedo arriba',
+  error: 'Pilas, con el ceño fruncido y el pulgar abajo', sleeping: 'Pilas, dormido con un gorro fucsia',
+  guard: 'Pilas con gorra y lentes oscuros', success: 'Pilas, feliz, con el pulgar arriba',
+};
+
+/* ---------- modo ---------- */
+function paint(m: string) {
+  html.dataset.mode = m;
+  $$('[data-mode-btn]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.modeBtn === m)));
+  try { localStorage.pilasMode = m; } catch {}
+}
+function setMode(m: string, x?: number, y?: number) {
+  if (html.dataset.mode === m) return;
+  const d = document as any;
+  if (!d.startViewTransition || reduce || x === undefined || y === undefined) return paint(m);
+  const r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+  d.startViewTransition(() => paint(m)).ready.then(() =>
+    html.animate(
+      { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${r}px at ${x}px ${y}px)`] },
+      { duration: 750, easing: 'cubic-bezier(.22,1,.36,1)', pseudoElement: '::view-transition-new(root)' },
+    ),
+  );
+}
+paint(html.dataset.mode || 'espe');
+$$('[data-mode-btn]').forEach((b) =>
+  b.addEventListener('click', () => { const r = b.getBoundingClientRect(); setMode(b.dataset.modeBtn, r.left + r.width / 2, r.top + r.height / 2); }),
+);
+
+/* ---------- exposición ---------- */
+const ico = (n: string) => `<svg class="ico"><use href="#i-${n}"/></svg>`;
+const slides = [
+  { m: 'scared', big: true, t: 'Pilas!', p: 'Presentación del proyecto', v: `<span class="badge b-info">${ico('info')}Versión 1.2.0</span>`,
+    say: 'H-hola… soy Pilas y hoy me toca exponer. ¿Se nota que estoy nervioso?' },
+  { m: 'neutral', t: 'Dos modos, una sola app', p: 'Nací para la ESPE. Desde la versión 1.2.0 también sirvo para otras universidades del Ecuador.',
+    say: '¡Ya, ya, respiro! Mi tema es: cómo te ahorro dolores de cabeza en la universidad.' },
+  { m: 'error', t: '6:58 AM. MiESPE no carga.', p: 'Sin señal en el Bloque G y no sabes en qué aula te toca.', v: `<span class="badge b-crit">${ico('alert')}Portal caído</span>`,
+    say: '¡Chuta! Justo ahora. Pero tranquilo, tu horario ya está guardado en tu teléfono.' },
+  { m: 'sleeping', t: 'Sin internet, sin problema', p: 'Horario, malla, carnet y herramientas funcionan sin conexión.', v: `<span class="badge b-info">${ico('off')}Sin conexión</span>`,
+    say: 'Zzz… perdón, me dormí. Sin señal casi ni gasto batería, ¿vieron?' },
+  { m: 'guard', t: 'Tu contraseña no pasa por mí', p: 'Entras con el QR de tu Moodle. No hay servidores en medio.', v: `<span class="badge b-info">${ico('shield')}Sin servidores intermedios</span>`,
+    say: 'Esta parte es seria: tus claves se quedan en tu celular. Yo solo vigilo.' },
+  { m: 'success', t: 'Gratis y sin anuncios', p: 'Última diapositiva. Elige tu modo y entra.', say: '¡Lo logré, no me temblaron las manos! Dime, ¿de dónde eres?' },
+];
+const intro = $('#intro'), sl = $('#sl'), say = $('#say'), mas = $('#mas'), meter = $('#imeter');
+const sub = $('#subt'), cue = $('#cue');
+const cues = ['(traga saliva)', '(respira hondo)', '(se agarra la cabeza)', '(bosteza)', '(se ajusta la gorra)', '(suspira aliviado)'];
+for (let k = 0; k < 10; k++) meter.appendChild(document.createElement('i'));
+let idx = -1, tl: any, typer: any;
+const fill = (p: number) => [...meter.children].forEach((c: any, k) => c.classList.toggle('on', k < Math.round(p * 10)));
+
+function show(n: number) {
+  idx = n;
+  const s = slides[n], last = n === slides.length - 1;
+  tl?.kill(); clearInterval(typer); gsap.killTweensOf(mas);
+  sl.innerHTML = `<h2 class="sl-t${s.big ? ' big' : ''}">${s.t}</h2><p class="sl-p">${s.p}</p>${s.v || ''}`;
+  mas.src = MASC[s.m]; mas.alt = ALT[s.m];
+  $('#sr').textContent = `${s.t}. ${s.say}`;
+  $('#icount').textContent = `${n + 1} de ${slides.length}`;
+  $('#inext').hidden = last; $('#ichoice').hidden = !last;
+  fill(0);
+  cue.textContent = cues[n] || '';
+  if (reduce) { say.textContent = sub.textContent = s.say; return; }
+  if (html.classList.contains('retro-on')) gsap.fromTo(sl, { clipPath: 'circle(0% at 50% 50%)' }, { clipPath: 'circle(80% at 50% 50%)', duration: .7, ease: 'power2.out', clearProps: 'clipPath' });
+  else gsap.to(sl, { keyframes: [{ opacity: 0, duration: 0 }, { opacity: 1, duration: .08 }, { opacity: .3, duration: .08 }, { opacity: 1, duration: .12 }] });
+  if (s.m === 'scared') gsap.to(mas, { x: 3, rotation: 2, duration: .07, repeat: -1, yoyo: true });
+  else if (s.m === 'sleeping') gsap.fromTo(mas, { y: 0 }, { y: -8, duration: 1.4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+  else gsap.fromTo(mas, { y: 14, scale: .95 }, { y: 0, scale: 1, duration: .5, ease: 'back.out(2)' });
+  let c = 0; say.textContent = '';
+  typer = setInterval(() => { say.textContent = sub.textContent = s.say.slice(0, ++c); if (c >= s.say.length) clearInterval(typer); }, 22);
+  if (!last) {
+    const o = { p: 0 };
+    tl = gsap.to(o, { p: 1, duration: Math.max(5, s.say.length * .07 + 2.5), ease: 'none', onUpdate: () => fill(o.p), onComplete: next });
+  }
+}
+function next() { if (idx < slides.length - 1) show(idx + 1); }
+function close(m?: string) {
+  tl?.kill(); clearInterval(typer); gsap.killTweensOf(mas);
+  try { sessionStorage.pilas = '1'; } catch {}
+  const done = () => {
+    html.classList.remove('intro-on'); $('#site').inert = false;
+    gsap.set([intro, sl], { clearProps: 'all' });
+    if (m) paint(m);
+    enter();
+  };
+  if (reduce) return done();
+  gsap.timeline({ onComplete: done })
+    .to(sl, { opacity: 0, duration: .12 })
+    .to(sl, { scaleY: .01, duration: .22, ease: 'power3.in' })
+    .to(intro, { opacity: 0, duration: .3 });
+}
+function enter() {
+  if (!reduce) gsap.from('.pass', { y: -80, rotation: -8, opacity: 0, duration: .9, ease: 'back.out(1.4)' });
+}
+function start() { $('#site').inert = true; show(0); $('#inext').focus(); }
+
+const cc = $('#icc');
+cc.setAttribute('aria-pressed', String(html.classList.contains('retro-on')));
+cc.addEventListener('click', () => {
+  const on = html.classList.toggle('retro-on');
+  cc.setAttribute('aria-pressed', String(on));
+  try { localStorage.pilasRetro = on ? '1' : '0'; } catch {}
+});
+$('#inext').addEventListener('click', next);
+$('#iskip').addEventListener('click', () => close());
+$$('[data-pick]').forEach((b) => b.addEventListener('click', () => close(b.dataset.pick)));
+addEventListener('keydown', (e) => {
+  if (!html.classList.contains('intro-on')) return;
+  if (e.key === 'Escape') close();
+  if (e.key === 'ArrowRight') next();
+});
+$('#replay').addEventListener('click', () => {
+  try { sessionStorage.removeItem('pilas'); } catch {}
+  scrollTo(0, 0); html.classList.add('intro-on'); start();
+});
+if (html.classList.contains('intro-on')) start(); else enter();
+
+/* ---------- compresor (medidor de peso, guía §13.2) ---------- */
+const LIM = 5, MAX = 30;
+const gb = $('#gb'), gf = $('#gfill'), gn = $('#gnow'), gbtn = $('#gbtn');
+function gauge(mb: number) {
+  gf.style.width = Math.max(2, (mb / MAX) * 100) + '%';
+  gn.textContent = mb.toFixed(1) + ' MB';
+  const k = mb > LIM ? ['b-crit', 'alert', 'Supera el límite: Moodle lo rechazaría'] : mb > LIM * .9 ? ['b-warn', 'alert', 'Casi en el límite'] : ['b-ok', 'check', `Cumple el límite, reducido ${Math.round((1 - mb / 24.8) * 100)} %`];
+  gf.style.background = mb > LIM ? 'var(--critical)' : mb > LIM * .9 ? 'var(--warning)' : 'var(--success)';
+  gb.className = 'badge ' + k[0]; gb.innerHTML = ico(k[1]) + k[2];
+}
+let comp = false;
+gauge(24.8);
+gbtn.addEventListener('click', () => {
+  const o = { v: comp ? 2.1 : 24.8 }, to = comp ? 24.8 : 2.1;
+  comp = !comp; gbtn.textContent = comp ? 'Probar de nuevo' : 'Comprimir';
+  if (reduce) return gauge(to);
+  gsap.to(o, { v: to, duration: 1.6, ease: 'power2.inOut', onUpdate: () => gauge(o.v) });
+});
+</script>
+</body>
+</html>

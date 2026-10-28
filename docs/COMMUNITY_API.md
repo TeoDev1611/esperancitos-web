@@ -148,20 +148,76 @@ Directorio de servicios y negocios cercanos a los campus universitarios.
 
 ### 2.5. `enlaces.json`
 
-Enlaces académicos y de servicios clasificados por grupos:
+Enlaces académicos y de servicios clasificados por grupos con soporte para filtrado **Multi-Universidad**.
+
+- **Campos opcionales de universidad:**
+  - `institution`: Sigla o identificador de la universidad objetivo (`"espe"`, `"epn"`, `"uce"`, `"all"`, `"general"`). Disponible a nivel de grupo (`groups[]`) y a nivel de ítem individual (`items[]`).
+  - `universities`: Lista de identificadores de universidad si el grupo o ítem aplica a varias universidades (ej. `["epn", "espol"]`).
+- **Lógica de filtrado en cliente móvil:**
+  1. Si un grupo o ítem coincide con la sigla de la institución activa del estudiante (ej. `epn`), se mostrará a los estudiantes de esa institución.
+  2. Si está etiquetado para `espe`, únicamente lo verán los estudiantes de la ESPE.
+  3. Si posee `"institution": "all"` (o `"general"`), o carece de etiquetas pero pertenece a Pilas! (WhatsApp, Instagram, etc.), se mostrará a todos los estudiantes de cualquier universidad.
 
 ```json
 {
   "groups": [
     {
-      "title": "Sistemas Académicos",
+      "title": "Sistemas Académicos ESPE",
+      "institution": "espe",
       "items": [
         {
           "id": "miespe-portal",
           "title": "Portal miESPE",
           "url": "https://miespe.espe.edu.ec",
-          "description": "Portal institucional para consultar horarios y notas",
-          "updatedAt": "2026-10-01T08:00:00-05:00"
+          "updatedAt": "2026-10-02T10:00:00-05:00",
+          "description": "Portal institucional para consultar horarios, notas y trámites"
+        },
+        {
+          "id": "campus-virtual-moodle-espe",
+          "title": "Campus Virtual Moodle",
+          "url": "https://micampus.espe.edu.ec",
+          "updatedAt": "2026-10-02T10:00:00-05:00",
+          "description": "Aulas virtuales de asignaturas presenciales"
+        }
+      ]
+    },
+    {
+      "title": "Sistemas Académicos EPN",
+      "institution": "epn",
+      "items": [
+        {
+          "id": "sae-epn",
+          "title": "Sistema SAE EPN",
+          "url": "https://saew.epn.edu.ec",
+          "updatedAt": "2026-10-26T10:00:00-05:00",
+          "description": "Sistema de Administración Estudiantil y notas"
+        },
+        {
+          "id": "campus-virtual-epn",
+          "title": "Aulas Virtuales EPN",
+          "url": "https://aulasvirtuales.epn.edu.ec",
+          "updatedAt": "2026-10-26T10:00:00-05:00",
+          "description": "Campus virtual y plataforma Moodle de la Politécnica Nacional"
+        }
+      ]
+    },
+    {
+      "title": "Emprendimientos y Comunidad Pilas!",
+      "institution": "all",
+      "items": [
+        {
+          "id": "canal-whatsapp-pilas",
+          "title": "Canal de WhatsApp Pilas!",
+          "url": "https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g",
+          "updatedAt": "2026-10-09T17:00:00-05:00",
+          "description": "Noticias, actualizaciones y comunicados para todas las universidades"
+        },
+        {
+          "id": "subir-negocio-gratis",
+          "title": "Subir mi negocio a Pilas!",
+          "url": "https://pilas-ec.vercel.app/negocios",
+          "updatedAt": "2026-10-02T10:00:00-05:00",
+          "description": "Directorio universitario abierto a emprendedores de todo el país"
         }
       ]
     }
@@ -237,7 +293,8 @@ npm run validate:content
 ### 3.3. Cómo agregar o editar enlaces
 
 1. Dirígete a `src/content/enlaces/` y edita el grupo correspondiente o crea un archivo nuevo.
-2. Cada grupo debe contener un `title` (<= 40 car.) y una lista de `items` con `url` sobre HTTPS y `updatedAt`.
+2. Cada grupo debe contener un `title` (<= 60 car.) y una lista de `items` con `url` sobre HTTPS y `updatedAt`.
+3. Opcionalmente se puede indicar `institution` (ej. `"espe"`, `"epn"`, `"all"`) o `universities` (ej. `["epn", "espol"]`) a nivel de grupo o de ítem individual para que la aplicación móvil filtre los portales según la universidad activa del estudiante.
 
 ### 3.4. Cómo marcar una versión nueva de la aplicación
 

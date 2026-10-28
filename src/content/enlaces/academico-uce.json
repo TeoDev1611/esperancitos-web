@@ -1,0 +1,37 @@
+{
+  "id": "academico-uce",
+  "title": "Sistemas Académicos UCE",
+  "institution": "uce",
+  "order": 3,
+  "items": [
+    {
+      "id": "siiu-portal-uce",
+      "title": "Sistema SIIU Académico",
+      "url": "https://siiu.uce.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Sistema de información universitaria, matrícula, horarios y notas"
+    },
+    {
+      "id": "campus-virtual-moodle-uce",
+      "title": "Aulas Virtuales Moodle UCE",
+      "url": "https://uvirtual.uce.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Campus virtual de asignaturas presenciales y tareas"
+    },
+    {
+      "id": "correo-institucional-uce",
+      "title": "Correo Institucional UCE",
+      "url": "https://mail.uce.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Bandeja de entrada oficial para comunicados docentes y trámites"
+    },
+    {
+      "id": "biblioteca-digital-uce",
+      "title": "Biblioteca Digital UCE",
+      "url": "https://bibliotecadigital.uce.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Repositorio de tesis, bases científicas y libros digitales"
+    }
+  ],
+  "notas": "Portales institucionales de la Universidad Central del Ecuador"
+}

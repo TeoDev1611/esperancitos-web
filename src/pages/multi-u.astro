@@ -1,0 +1,21 @@
+---
+// Redirección con pre-selección de modo Multi-Universidad
+---
+<!doctype html>
+<html lang="es-EC">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pilas! Multi-Universidad</title>
+<meta name="description" content="Modo universal de Pilas! para cualquier universidad con Moodle en Ecuador.">
+<link rel="canonical" href="https://pilas-ec.vercel.app/?mode=multi">
+<script is:inline>
+try { localStorage.pilasMode = 'multi'; } catch (e) {}
+location.replace('/?mode=multi#modo');
+</script>
+<noscript><meta http-equiv="refresh" content="0;url=/?mode=multi#modo"></noscript>
+</head>
+<body style="background:#191d28;color:#fff;font-family:sans-serif;padding:40px;text-align:center">
+<p>Cargando Pilas! en modo Multi-Universidad... <a href="/?mode=multi#modo" style="color:#ff3d5e">Haz clic aquí si no redirige automáticamente</a>.</p>
+</body>
+</html>

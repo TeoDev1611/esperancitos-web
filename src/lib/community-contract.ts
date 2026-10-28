@@ -319,6 +319,21 @@ export const enlaceItemSchema = z.object({
     .max(120, "La descripción no puede superar 120 caracteres")
     .refine(noHtml, "La descripción no puede contener código HTML")
     .optional(),
+  institution: z
+    .string()
+    .min(1, "La institución no puede estar vacía")
+    .max(40, "La institución no puede superar 40 caracteres")
+    .refine(noHtml, "La institución no puede contener código HTML")
+    .optional(),
+  universities: z
+    .array(
+      z
+        .string()
+        .min(1, "El identificador de universidad no puede estar vacío")
+        .max(40, "El identificador de universidad no puede superar 40 caracteres")
+        .refine(noHtml, "El identificador de universidad no puede contener código HTML"),
+    )
+    .optional(),
   updatedAt: z
     .string()
     .refine(isValidIsoDate, "updatedAt debe ser una fecha ISO 8601 con offset"),
@@ -331,8 +346,23 @@ export const enlaceGroupSchema = z.object({
   title: z
     .string()
     .min(1, "El título del grupo no puede estar vacío")
-    .max(40, "El título del grupo no puede superar 40 caracteres")
+    .max(60, "El título del grupo no puede superar 60 caracteres")
     .refine(noHtml, "El título del grupo no puede contener código HTML"),
+  institution: z
+    .string()
+    .min(1, "La institución no puede estar vacía")
+    .max(40, "La institución no puede superar 40 caracteres")
+    .refine(noHtml, "La institución no puede contener código HTML")
+    .optional(),
+  universities: z
+    .array(
+      z
+        .string()
+        .min(1, "El identificador de universidad no puede estar vacío")
+        .max(40, "El identificador de universidad no puede superar 40 caracteres")
+        .refine(noHtml, "El identificador de universidad no puede contener código HTML"),
+    )
+    .optional(),
   order: z.number().int().default(0).optional(),
   items: z
     .array(enlaceItemSchema)
@@ -348,11 +378,15 @@ export interface PublicEnlaceItem {
   title: string;
   url: string;
   description?: string;
+  institution?: string;
+  universities?: string[];
   updatedAt: string;
 }
 
 export interface PublicEnlaceGroup {
   title: string;
+  institution?: string;
+  universities?: string[];
   items: PublicEnlaceItem[];
 }
 
@@ -495,6 +529,10 @@ export function toPublicEnlaceGroup(
         id: it.id,
         title: it.title,
         url: it.url,
+        ...(it.institution ? { institution: it.institution } : {}),
+        ...(it.universities && it.universities.length > 0
+          ? { universities: it.universities }
+          : {}),
         updatedAt: it.updatedAt,
       };
       if (it.description) publicIt.description = it.description;
@@ -503,10 +541,16 @@ export function toPublicEnlaceGroup(
 
   if (items.length === 0) return null;
 
-  return {
+  const group: PublicEnlaceGroup = {
     title: raw.title,
+    ...(raw.institution ? { institution: raw.institution } : {}),
+    ...(raw.universities && raw.universities.length > 0
+      ? { universities: raw.universities }
+      : {}),
     items,
   };
+
+  return group;
 }
 
 export function toPublicUpdate(raw: UpdateInput): UpdateJsonResponse {

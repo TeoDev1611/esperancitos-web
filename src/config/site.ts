@@ -51,6 +51,8 @@ export const SITE = {
     "micampus.espe.edu.ec",
     "Moodle UCE",
     "Moodle EPN",
+    "Moodle UTA",
+    "Moodle UNACH",
     "Moodle PUCE",
     "Moodle ESPOL",
     "Moodle Ecuador",
@@ -113,6 +115,7 @@ export const SITE = {
     instagram: "https://www.instagram.com/pilas_ec.app/",
     email: "teo.hurtado.16@gmail.com",
     whatsappChannel: "https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g",
+    whatsappTestersGroup: "https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc",
   },
 
   /** Autor del proyecto (se usa en los datos estructurados). */

@@ -266,9 +266,9 @@ const raw: Array<Omit<FaqEntry, "plainAnswer">> = [
   {
     id: "modo-multi-universidad",
     category: "general",
-    question: "¿Funciona Pilas! si estudio en otra universidad (UCE, EPN, PUCE, ESPOL)?",
+    question: "¿Funciona Pilas! si estudio en otra universidad (UTA, UCE, EPN, UNACH)?",
     answer:
-      `<strong>¡Sí! A partir de la versión v${RELEASE.version}, Pilas! cuenta con el Modo Universal Multi-Universidad.</strong> Puedes vincular tus materias escaneando el código QR oficial de Moodle Mobile (<code>moodlemobile://</code>) de cualquier universidad del país, calcular notas con escalas sobre 10, 20 o 100 puntos (con regímenes de 2 o 3 parciales), generar carátulas oficiales con el escudo de tu facultad y usar la suite completa de 13 herramientas offline.`,
+      `<strong>¡Sí! A partir de la versión v${RELEASE.version}, Pilas! cuenta con funcionamiento confirmado en multi-universidades.</strong> Ya ha sido probado y verificado exitosamente en la <strong>UTA (Universidad Técnica de Ambato)</strong>, <strong>UCE (Universidad Central del Ecuador)</strong>, <strong>EPN (Escuela Politécnica Nacional)</strong> y <strong>UNACH (Universidad Nacional de Chimborazo)</strong>, además de la ESPE.<br><br>Puedes vincular tus materias escaneando el código QR oficial de Moodle Mobile (<code>moodlemobile://</code>), calcular notas con escalas sobre 10, 20 o 100 puntos y usar la suite de herramientas offline.<br><br>👉 <strong>¿Quieres verificar el funcionamiento de tu universidad o facultad?</strong> Únete a nuestro <a href="https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 700;">Grupo Oficial de WhatsApp de Testers</a> para hacer pruebas directas con el equipo.`,
   },
   {
     id: "que-es-pilas-tools",

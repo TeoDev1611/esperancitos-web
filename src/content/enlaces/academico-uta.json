@@ -1,0 +1,30 @@
+{
+  "id": "academico-uta",
+  "title": "Sistemas Académicos UTA",
+  "institution": "uta",
+  "order": 5,
+  "items": [
+    {
+      "id": "sistema-integrado-uta",
+      "title": "Sistema Integrado UTA",
+      "url": "https://servicios.uta.edu.ec/SistemaIntegrado/",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Gestión estudiantil, matrículas, horarios y registro de notas"
+    },
+    {
+      "id": "deadv-moodle-uta",
+      "title": "Plataformas Virtuales DEaDV",
+      "url": "https://deadv.uta.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Entorno virtual Moodle de pregrado y facultades de la UTA"
+    },
+    {
+      "id": "repositorio-digital-uta",
+      "title": "Repositorio Institucional UTA",
+      "url": "https://repositorio.uta.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Tesis, publicaciones científicas y catálogo de investigación"
+    }
+  ],
+  "notas": "Portales institucionales de la Universidad Técnica de Ambato"
+}

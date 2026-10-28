@@ -1,0 +1,30 @@
+{
+  "id": "academico-epn",
+  "title": "Sistemas Académicos EPN",
+  "institution": "epn",
+  "order": 2,
+  "items": [
+    {
+      "id": "sae-epn",
+      "title": "Sistema SAE EPN",
+      "url": "https://saew.epn.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Sistema de Administración Estudiantil, matrículas y notas"
+    },
+    {
+      "id": "campus-virtual-epn",
+      "title": "Aulas Virtuales EPN",
+      "url": "https://aulasvirtuales.epn.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Campus virtual y plataforma Moodle de la Politécnica Nacional"
+    },
+    {
+      "id": "biblioteca-virtual-epn",
+      "title": "Biblioteca Digital EPN",
+      "url": "https://bibdigital.epn.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Repositorio institucional, catálogo bibliográfico y tesis politécnicas"
+    }
+  ],
+  "notas": "Portales institucionales académicos oficiales de la Escuela Politécnica Nacional"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "academico-puce",
+  "title": "Sistemas Académicos PUCE",
+  "institution": "puce",
+  "order": 4,
+  "items": [
+    {
+      "id": "intranet-banner-puce",
+      "title": "Intranet y Banner Alumnos",
+      "url": "https://intranet.puce.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Portal de autoservicio Banner, automatrícula, notas y trámites"
+    },
+    {
+      "id": "eva-moodle-puce",
+      "title": "Aulas Virtuales EVA PUCE",
+      "url": "https://eva.puce.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Entorno Virtual de Aprendizaje Moodle para asignaturas y entregas"
+    },
+    {
+      "id": "repositorio-puce",
+      "title": "Repositorio y Biblioteca PUCE",
+      "url": "https://repositorio.puce.edu.ec",
+      "updatedAt": "2026-10-26T10:00:00-05:00",
+      "description": "Catálogo bibliográfico, bases científicas y tesis de grado"
+    }
+  ],
+  "notas": "Portales institucionales de la Pontificia Universidad Católica del Ecuador"
+}

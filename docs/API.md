@@ -503,7 +503,7 @@ Esperancitos incorpora una **API estática desacoplada de alto rendimiento** par
 | `/api/v1/update.json`   | `GET`  | Metadatos de la última versión (.apk): `latestVersion`, `latestBuild`, `minSupportedBuild`, `apkUrl`, notas de lanzamiento y hashes.                                             | Permite auto-actualización sin Google Play.                                          |
 | `/api/v1/avisos.json`   | `GET`  | Tablón de avisos comunitarios vigentes. Incluye `id`, `titulo`, `cuerpo`, `prioridad` (`alta`, `media`, `baja`), `publishedAt`, `expiresAt`, `url` y `tag`.                      | Filtrado automático en build: los avisos expirados (`expiresAt < now`) se descartan. |
 | `/api/v1/negocios.json` | `GET`  | Directorio de emprendimientos estudiantiles por campus. Incluye `nombre`, `descripcion`, `categoria`, `campus`, `contacto`, `validUntil`, `verificado`, `instagram` y `logoUrl`. | Todos los listados son 100% gratuitos para estudiantes de la ESPE.                   |
-| `/api/v1/enlaces.json`  | `GET`  | Catálogo de enlaces institucionales y de utilidad estudiantil (`id`, `titulo`, `descripcion`, `url`, `categoria`, `orden`).                                                      | Agrupados por categoría y ordenados numéricamente.                                   |
+| `/api/v1/enlaces.json`  | `GET`  | Catálogo de enlaces institucionales y de utilidad estudiantil con soporte Multi-Universidad (`institution`, `universities`, `title`, `description`, `url`). | Agrupados por categoría/institución y ordenados numéricamente.                                   |
 
 ### 4.3. Modelo de Integración en el Cliente Móvil
 

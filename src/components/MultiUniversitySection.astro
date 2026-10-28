@@ -101,15 +101,16 @@
 
         <!-- Universidades Compatibles -->
         <div class="uni-logos-badges">
-          <span class="uni-pill-name">UCE</span>
-          <span class="uni-pill-name">EPN</span>
+          <span class="uni-pill-name confirmed">UTA ✓</span>
+          <span class="uni-pill-name confirmed">UCE ✓</span>
+          <span class="uni-pill-name confirmed">EPN ✓</span>
+          <span class="uni-pill-name confirmed">UNACH ✓</span>
           <span class="uni-pill-name">PUCE</span>
           <span class="uni-pill-name">ESPOL</span>
-          <span class="uni-pill-name">UNACH</span>
           <span class="uni-pill-name">+ Moodle Standard</span>
         </div>
-        <p style="font-size: 0.8rem; color: var(--color-text-muted, #8E99AE); margin: 6px 0 12px; line-height: 1.4;">
-          * Integración verificada en campus: ESPE (Sangolquí y Sedes). Otras instituciones en proceso de homologación por protocolo estándar Moodle QR. <!-- TODO(owner): Actualizar lista con instancias verificadas formalmente -->
+        <p style="font-size: 0.82rem; color: var(--color-text-muted, #8E99AE); margin: 6px 0 12px; line-height: 1.45;">
+          * Funcionamiento confirmado en campus: <strong>ESPE, UTA, UCE, EPN y UNACH</strong>. ¿Quieres verificar tu universidad? <a href="https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 700; text-decoration: underline;">Únete al grupo de WhatsApp de testers</a>.
         </p>
 
         <ul class="uni-feature-list">
@@ -325,6 +326,13 @@
     border: 1px solid rgba(255, 63, 164, 0.35);
     padding: 6px 12px;
     border-radius: 20px;
+  }
+
+  .uni-pill-name.confirmed {
+    color: #000000;
+    background: #00FF87;
+    border-color: #00FF87;
+    font-weight: 800;
   }
 
   .uni-feature-list {

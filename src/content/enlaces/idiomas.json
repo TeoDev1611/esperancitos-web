@@ -1,7 +1,8 @@
 {
   "id": "centro-de-idiomas-espe",
   "title": "Centro de Idiomas (Inglés)",
-  "order": 2,
+  "institution": "espe",
+  "order": 7,
   "items": [
     {
       "id": "portal-idiomas-espe",

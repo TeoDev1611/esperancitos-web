@@ -1,5 +1,50 @@
 ---
 import { ACADEMIC_STATS } from '../lib/academic';
+
+const WA_TESTERS_URL = 'https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc';
+
+const VERIFIED_UNIVERSITIES = [
+  {
+    abbr: 'UTA',
+    name: 'Universidad Técnica de Ambato',
+    logoPng: '/logos/universidades/uta.png',
+    logoWebp: '/logos/universidades/uta.webp',
+    logoAlt: 'Logo oficial Universidad Técnica de Ambato (UTA)',
+    campus: 'Campus Huachi e Ingahurco',
+    width: 170,
+    height: 64,
+  },
+  {
+    abbr: 'UCE',
+    name: 'Universidad Central del Ecuador',
+    logoPng: '/logos/universidades/uce.png',
+    logoWebp: '/logos/universidades/uce.webp',
+    logoAlt: 'Escudo oficial Universidad Central del Ecuador (UCE)',
+    campus: 'Sede Central Quito · Moodle Activo',
+    width: 80,
+    height: 64,
+  },
+  {
+    abbr: 'EPN',
+    name: 'Escuela Politécnica Nacional',
+    logoPng: '/logos/universidades/epn.png',
+    logoWebp: '/logos/universidades/epn.webp',
+    logoAlt: 'Logo oficial Escuela Politécnica Nacional (EPN)',
+    campus: 'Campus Politécnico J.R.',
+    width: 135,
+    height: 64,
+  },
+  {
+    abbr: 'UNACH',
+    name: 'Universidad Nacional de Chimborazo',
+    logoPng: '/logos/universidades/unach.png',
+    logoWebp: '/logos/universidades/unach.webp',
+    logoAlt: 'Emblema oficial Universidad Nacional de Chimborazo (UNACH)',
+    campus: 'Campus La Dolorosa y Norte',
+    width: 70,
+    height: 64,
+  },
+];
 ---
       <section id="modo" class="hub-campus-features">
         <!-- Modo ESPE -->
@@ -39,6 +84,20 @@ import { ACADEMIC_STATS } from '../lib/academic';
               </div>
             </div>
           </div>
+
+          <!-- Mini-callout cruzado a modo Multi-U -->
+          <div class="campus-cross-invite-box">
+            <div class="cross-invite-content">
+              <span class="badge b-info font-mono">MULTI-UNIVERSIDAD</span>
+              <p>
+                ¿Tienes amigos en la <strong>UTA, UCE, EPN o UNACH</strong>? El funcionamiento de Pilas! ya está confirmado en sus campus.
+              </p>
+            </div>
+            <button type="button" class="btn-cross-switch" data-mode-btn="multi">
+              <span>Ver universidades confirmadas</span>
+              <span class="btn-arrow">➔</span>
+            </button>
+          </div>
         </div>
 
         <!-- Modo Multi-Universidad -->
@@ -46,7 +105,7 @@ import { ACADEMIC_STATS } from '../lib/academic';
           <div class="campus-sec-header">
             <span class="sticker-pill coral">⭐ INTEGRACIÓN UNIVERSITARIA NACIONAL</span>
             <h2 class="hub-section-title">Lo que Pilas! resuelve en tu universidad</h2>
-            <p class="campus-sec-sub">UCE, EPN, PUCE, ESPOL, UNACH, UTA, UTPL y cualquier campus con Moodle en Ecuador.</p>
+            <p class="campus-sec-sub">UTA, UCE, EPN, UNACH, PUCE, ESPOL y cualquier campus con Moodle en Ecuador.</p>
           </div>
           <div class="rules-neo-grid">
             <div class="rule-card coral">
@@ -79,17 +138,82 @@ import { ACADEMIC_STATS } from '../lib/academic';
             </div>
           </div>
 
-          <div class="campus-compatibility-note" style="margin-top: 24px; padding: 16px 20px; background: rgba(255, 101, 132, 0.08); border: 2px solid #FF6584; border-radius: 8px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-              <span class="badge b-warn font-mono">COMPATIBILIDAD MOODLE</span>
-              <strong style="font-size: 0.95rem; color: #fff;">¿Qué instancias universitarias han sido probadas?</strong>
+          <!-- Sección de Universidades con Funcionamiento Confirmado -->
+          <div class="campus-confirmed-section">
+            <div class="confirmed-header-card">
+              <div class="confirmed-title-row">
+                <span class="sticker-pill green font-mono">✅ FUNCIONAMIENTO CONFIRMADO</span>
+                <span class="badge b-ok font-mono">100% OPERATIVO</span>
+              </div>
+              <h3 class="confirmed-heading">Confirmado el funcionamiento en multi-universidades</h3>
+              <p class="confirmed-desc">
+                La vinculación por código QR de Moodle Mobile, el cálculo de materias y notas en cualquier escala, y la suite de herramientas offline están <strong>verificados y funcionando</strong> en las siguientes universidades del Ecuador:
+              </p>
             </div>
-            <p style="font-size: 0.88rem; color: var(--text); line-height: 1.5; margin: 0 0 8px;">
-              • <strong>Probadas y verificadas en campus:</strong> ESPE (Matriz Sangolquí, Latacunga y Santo Domingo con Banner/Moodle).<br>
-              • <strong>Compatibles por estándar abierto:</strong> Cualquier plataforma Moodle que admita vinculación oficial por código QR (<code>moodlemobile://</code>).<br>
-              • <strong>En proceso de homologación con estudiantes:</strong> UCE, EPN, PUCE, ESPOL, UNACH, UTA y UTPL. <!-- TODO(owner): Confirmar lista de instancias Moodle probadas con éxito por estudiantes en cada universidad antes de promocionarlas como homologadas al 100%. -->
-            </p>
-            <span style="font-size: 0.8rem; color: var(--muted);">¿Quieres certificar la compatibilidad de tu facultad? Contáctanos para sumarte como estudiante verificador.</span>
+
+            <!-- Grid de Logos Universitarios -->
+            <div class="uni-logos-grid" role="list" aria-label="Universidades con funcionamiento confirmado">
+              {VERIFIED_UNIVERSITIES.map((uni) => (
+                <div class="uni-logo-card" role="listitem">
+                  <div class="uni-logo-canvas">
+                    <picture>
+                      <source srcset={uni.logoWebp} type="image/webp" />
+                      <img
+                        src={uni.logoPng}
+                        alt={uni.logoAlt}
+                        width={uni.width}
+                        height={uni.height}
+                        loading="lazy"
+                        class="uni-logo-asset"
+                      />
+                    </picture>
+                  </div>
+                  <div class="uni-meta-body">
+                    <div class="uni-badge-verified">
+                      <span class="status-dot"></span>
+                      <span class="font-mono">CONFIRMADO</span>
+                    </div>
+                    <h4 class="uni-abbr">{uni.abbr}</h4>
+                    <p class="uni-full-name">{uni.name}</p>
+                    <span class="uni-campus-tag">{uni.campus}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <!-- Banner WhatsApp Testers -->
+            <div class="testers-card-banner">
+              <div class="testers-card-left">
+                <div class="testers-icon-badge">
+                  <span class="testers-bubble-emoji">🧪</span>
+                </div>
+                <div class="testers-info-text">
+                  <div class="testers-meta-tags">
+                    <span class="badge b-warn font-mono">TESTERS MULTI-U</span>
+                    <span class="testers-pill-live">COMUNIDAD ACTIVA</span>
+                  </div>
+                  <h4 class="testers-cta-title">¿Quieres verificar el funcionamiento de tu universidad?</h4>
+                  <p class="testers-cta-desc">
+                    Si estudias en otra universidad (PUCE, ESPOL, UTPL, UDLA o cualquier facultad con Moodle) o deseas certificar tu carrera, <strong>únete a nuestro grupo oficial de WhatsApp de testers</strong>. Te ayudamos a vincular tu cuenta, verificar tu campus y acceder a las nuevas versiones antes de cada lanzamiento.
+                  </p>
+                </div>
+              </div>
+              <div class="testers-card-right">
+                <a
+                  href={WA_TESTERS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-testers-whatsapp"
+                  aria-label="Unirse al grupo de WhatsApp de testers de Pilas!"
+                >
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" class="wa-ico">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.456h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.414z"/>
+                  </svg>
+                  <span>Unirme al Grupo de WhatsApp de Testers</span>
+                  <span class="btn-arrow" aria-hidden="true">➔</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -160,5 +284,356 @@ import { ACADEMIC_STATS } from '../lib/academic';
   line-height: 1.4;
   margin: 0;
 }
+
+/* Callout cruzado desde modo ESPE */
+.campus-cross-invite-box {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: rgba(0, 255, 135, 0.04);
+  border: 1.5px dashed rgba(0, 255, 135, 0.4);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.cross-invite-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 260px;
+}
+.cross-invite-content p {
+  font-size: 0.88rem;
+  color: var(--body);
+  line-height: 1.4;
+  margin: 0;
+}
+.cross-invite-content strong {
+  color: #FFFFFF;
+}
+.btn-cross-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary-coral, #FF6584);
+  color: #000000;
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 8px 14px;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 #000000;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+.btn-cross-switch:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000000;
+}
+.btn-cross-switch:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Universidades Confirmadas */
+.campus-confirmed-section {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.confirmed-header-card {
+  background: var(--bg-surface);
+  border: 2px solid var(--border-control);
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 3px 3px 0 #000;
+}
+.confirmed-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.confirmed-heading {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--title);
+  margin-bottom: 6px;
+}
+.confirmed-desc {
+  font-size: 0.94rem;
+  color: var(--body);
+  line-height: 1.5;
+  margin: 0;
+}
+.confirmed-desc strong {
+  color: #FFFFFF;
+}
+.uni-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 900px) {
+  .uni-logos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .uni-logos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.uni-logo-card {
+  background: var(--bg-surface);
+  border: 2px solid var(--border-control);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 3px 3px 0 #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 120ms ease, border-color 150ms ease, box-shadow 120ms ease;
+}
+.uni-logo-card:hover {
+  transform: translateY(-3px);
+  border-color: #FF6584;
+  box-shadow: 5px 5px 0 #000;
+}
+.uni-logo-canvas {
+  width: 100%;
+  height: 84px;
+  background: #FFFFFF;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  box-shadow: 2px 2px 0 #000;
+}
+.uni-logo-asset {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.uni-meta-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+.uni-badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #00FF87;
+  background: rgba(0, 255, 135, 0.1);
+  border: 1px solid rgba(0, 255, 135, 0.3);
+  padding: 2px 8px;
+  border-radius: 12px;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.uni-badge-verified .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00FF87;
+  box-shadow: 0 0 6px #00FF87;
+}
+.uni-abbr {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.uni-full-name {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.35;
+  min-height: 2.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.uni-campus-tag {
+  font-size: 0.72rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #FFD700;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+/* Banner de Testers WhatsApp */
+.testers-card-banner {
+  background: linear-gradient(135deg, rgba(255, 101, 132, 0.08) 0%, rgba(37, 211, 102, 0.08) 100%), var(--bg-surface);
+  border: 2px solid #25D366;
+  border-radius: 14px;
+  padding: 22px 24px;
+  box-shadow: 4px 4px 0 #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.testers-card-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1;
+  min-width: 280px;
+}
+.testers-icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(37, 211, 102, 0.15);
+  border: 2px solid #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 #000;
+  flex-shrink: 0;
+}
+.testers-bubble-emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.testers-info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.testers-meta-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.testers-pill-live {
+  font-size: 0.7rem;
+  font-weight: 800;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #25D366;
+  background: rgba(37, 211, 102, 0.12);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.testers-cta-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+}
+.testers-cta-desc {
+  font-size: 0.88rem;
+  color: var(--body);
+  line-height: 1.45;
+  margin: 0;
+}
+.testers-cta-desc strong {
+  color: #FFFFFF;
+}
+.testers-card-right {
+  flex-shrink: 0;
+}
+.btn-testers-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #000000;
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 12px 20px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 3px 3px 0 #000000;
+  transition: transform 100ms ease, box-shadow 100ms ease, background-color 150ms ease;
+  white-space: nowrap;
+}
+.btn-testers-whatsapp:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 #000000;
+  background: #2ee673;
+}
+.btn-testers-whatsapp:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+.btn-testers-whatsapp .wa-ico {
+  flex-shrink: 0;
+}
+.btn-testers-whatsapp .btn-arrow {
+  transition: transform 120ms ease;
+}
+.btn-testers-whatsapp:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 1040px) and (min-width: 641px) {
+  .rules-neo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .rules-neo-grid {
+    grid-template-columns: 1fr;
+  }
+  .campus-cross-invite-box {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+  .cross-invite-content {
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .btn-cross-switch {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .testers-card-banner {
+    padding: 16px;
+    gap: 16px;
+  }
+  .testers-card-left {
+    min-width: 0;
+    gap: 12px;
+  }
+  .testers-card-right {
+    width: 100%;
+  }
+  .btn-testers-whatsapp {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+    font-size: 0.88rem;
+    padding: 11px 14px;
+  }
+}
+
 
 </style>
