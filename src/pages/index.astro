@@ -54,7 +54,20 @@ try {
   var m = (modeParam === 'espe' || modeParam === 'multi') ? modeParam : localStorage.pilasMode;
   if (m === 'multi' || m === 'espe') document.documentElement.dataset.mode = m;
   if (modeParam) localStorage.pilasMode = m;
-  if (p.get('skip') === '1' || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+  var hasSeenIntro = false;
+  try {
+    hasSeenIntro = localStorage.getItem('pilasIntroSeen') === '1';
+  } catch (e) {}
+
+  var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  var isSlowConn = conn && (conn.saveData || conn.effectiveType === '2g' || conn.effectiveType === '3g' || conn.effectiveType === 'slow-2g');
+  var prefersReduced = false;
+  try {
+    prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (e) {}
+
+  if (hasSeenIntro || p.get('skip') === '1' || prefersReduced || isSlowConn) {
     document.documentElement.classList.remove('intro-on');
   }
   if (localStorage.pilasRetro === '0') {
@@ -114,7 +127,7 @@ try {
 
     <!-- Pantalla de Proyección Widescreen 16:9 Centrada -->
     <main class="intro-canvas-wrap">
-      <div class="screen" id="sl" aria-live="polite"></div>
+      <div class="screen" id="sl" aria-live="off"></div>
       <div class="sr" id="sr" aria-live="polite"></div>
     </main>
 
@@ -124,7 +137,7 @@ try {
         <img id="mas" class="mas" src={M.scared} alt="Pilo, mascota de Pilas!" width="110" height="110" />
         <span class="mascot-nameplate">PILO</span>
       </div>
-      <div class="speech-container">
+      <div class="speech-container" aria-live="off">
         <div class="sub" id="sub" aria-hidden="true">
           <div class="sub-top-line">
             <span class="sub-speaker-tag">🎙️ PRESENTADOR EN VIVO</span>
@@ -1161,6 +1174,19 @@ a { color: var(--info); }
 .intro-actions {
   display: flex;
   gap: 10px;
+  align-items: center;
+}
+.intro-actions .btn {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+#iskip {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
 }
 .retro-on #idl {
   background: #ffffff !important;
@@ -3504,6 +3530,7 @@ details[open] { padding-bottom: 16px; }
 <!-- SCRIPT CLIENTE: GSAP EXPOSICIÓN, SLIDES, MODO & WIDGETS        -->
 <!-- ============================================================== -->
 <script>
+import { trackEvent } from '../lib/analytics';
 
 const $ = (s: string) => document.querySelector(s) as any;
 const $$ = (s: string) => [...document.querySelectorAll(s)] as any[];
@@ -4217,22 +4244,37 @@ function next() {
   }
 }
 
-function close(pickMode?: string) {
+let lastFocusedElement: HTMLElement | null = null;
+
+function close(pickMode?: string, reason: 'skip' | 'finish' | 'close' = 'close') {
   if (timerAnimId) cancelAnimationFrame(timerAnimId);
   clearInterval(typer);
   if (masAnim) try { masAnim.cancel(); } catch {}
   try {
     sessionStorage.pilas = '1';
+    localStorage.setItem('pilasIntroSeen', '1');
   } catch {}
+
+  if (reason === 'skip') {
+    trackEvent('intro_saltada');
+  } else if (reason === 'finish') {
+    trackEvent('intro_completada');
+  }
 
   const targetMode = pickMode || currentBranch;
   const done = () => {
     html.classList.remove('intro-on');
+    document.body.style.overflow = '';
     if (introEl) introEl.style.opacity = '';
     const site = $('#site');
     if (site) site.inert = false;
     if (targetMode) {
       paint(targetMode);
+    }
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+      try {
+        lastFocusedElement.focus();
+      } catch {}
     }
   };
 
@@ -4250,12 +4292,39 @@ function close(pickMode?: string) {
 }
 
 function start() {
+  lastFocusedElement = document.activeElement as HTMLElement;
   const site = $('#site');
   if (site) site.inert = true;
+  document.body.style.overflow = 'hidden';
   currentBranch = html.dataset.mode === 'multi' ? 'multi' : 'espe';
   show(0);
+  trackEvent('intro_mostrada');
+  try {
+    localStorage.setItem('pilasIntroSeen', '1');
+  } catch {}
   const inext = $('#inext');
   if (inext) inext.focus();
+}
+
+// Focus trap accesible dentro de #intro
+if (introEl) {
+  introEl.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Tab' && html.classList.contains('intro-on')) {
+      const focusables = introEl.querySelectorAll<HTMLElement>(
+        'button:not([hidden]):not([disabled]), [href]:not([hidden]):not([disabled]), input:not([hidden]):not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        last.focus();
+        e.preventDefault();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        first.focus();
+        e.preventDefault();
+      }
+    }
+  });
 }
 
 // Controles de la presentación
@@ -4280,10 +4349,10 @@ const inext = $('#inext');
 if (inext) inext.addEventListener('click', next);
 
 const iskip = $('#iskip');
-if (iskip) iskip.addEventListener('click', () => close(currentBranch));
+if (iskip) iskip.addEventListener('click', () => close(currentBranch, 'skip'));
 
 const ifinish = $('#ifinish');
-if (ifinish) ifinish.addEventListener('click', () => close(currentBranch));
+if (ifinish) ifinish.addEventListener('click', () => close(currentBranch, 'finish'));
 
 const iswitch = $('#iswitch');
 if (iswitch) {
@@ -4296,11 +4365,11 @@ if (iswitch) {
   });
 }
 
-$$('[data-pick]').forEach((b) => b.addEventListener('click', () => close(b.dataset.pick)));
+$$('[data-pick]').forEach((b) => b.addEventListener('click', () => close(b.dataset.pick, 'finish')));
 
 addEventListener('keydown', (e) => {
   if (!html.classList.contains('intro-on')) return;
-  if (e.key === 'Escape') close();
+  if (e.key === 'Escape') close(currentBranch, 'skip');
   if (e.key === 'ArrowRight') next();
 });
 
@@ -4351,8 +4420,22 @@ if (carnetEl) {
   }
 }
 
-// Arranque inicial garantizado
-start();
+// Arranque condicional: solo abrir si intro-on está presente (primera visita y sin condiciones de bloqueo)
+if (html.classList.contains('intro-on')) {
+  start();
+} else {
+  const site = $('#site');
+  if (site) site.inert = false;
+  document.body.style.overflow = '';
+}
+
+// Medición agregada y privada de clics de descarga APK
+document.querySelectorAll<HTMLAnchorElement>('a[href*=".apk"]').forEach((a) => {
+  a.addEventListener('click', () => {
+    const arch = a.getAttribute('download') || a.href.split('/').pop() || 'apk';
+    trackEvent('descarga_click', { arch });
+  });
+});
 
 /* ---------- simulador interactivo de notas ESPE (Hub) ---------- */
 const p1Slider = $('#site-p1-slider');
