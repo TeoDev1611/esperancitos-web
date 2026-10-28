@@ -22,6 +22,11 @@ export interface ReleaseConfig {
     count: number;
     label: string;
   };
+  playStoreBeta?: {
+    enabled: boolean;
+    url: string;
+    note: string;
+  };
   architectures: {
     "arm64-v8a": ArchitectureInfo;
     "armeabi-v7a": ArchitectureInfo;
@@ -32,6 +37,12 @@ export interface ReleaseConfig {
 }
 
 export const RELEASE: ReleaseConfig = releaseData as ReleaseConfig;
+
+export const PLAY_STORE_BETA = RELEASE.playStoreBeta || {
+  enabled: false,
+  url: '',
+  note: ''
+};
 
 /**
  * Formatea bytes a megabytes legibles (ej: 38999344 -> "37.2 MB")

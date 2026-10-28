@@ -65,76 +65,119 @@ try {
     <div class="priv-sections">
       <!-- 1. En una frase -->
       <section class="card">
-        <h2>En una frase</h2>
-        <p style="margin-top:10px">Pilas! funciona bajo una arquitectura <strong>Zero-Backend (Cero Servidores Intermedios)</strong>. La conexión viaja directamente cifrada desde tu teléfono hacia los portales institucionales de tu universidad. No almacenamos credenciales, notas, cédulas ni archivos en servidores externos.</p>
+        <h2>En una frase: Arquitectura Zero-Backend real</h2>
+        <p style="margin-top:10px">La <strong>aplicación móvil Pilas!</strong> se comunica directa y exclusivamente entre tu dispositivo y los portales institucionales oficiales de tu universidad (Banner y Moodle). Pilas! <strong>no cuenta con servidores intermedios</strong> que intercepten, guarden ni procesen tus contraseñas, notas, cédula ni horarios.</p>
       </section>
 
-      <!-- 2. Aviso Legal -->
+      <!-- 2. Aviso Legal e Independencia -->
       <section class="card">
-        <h2>Aviso legal e independencia</h2>
-        <p style="margin-top:10px">Pilas! es un proyecto estudiantil independiente de código privado y propietario, desarrollado de forma gratuita para la comunidad estudiantil. <strong>Pilas! no está afiliada, asociada, respaldada ni de ninguna manera oficialmente conectada con la Universidad de las Fuerzas Armadas ESPE, otras universidades, Ellucian Company L.P., Banner, ni Moodle Pty Ltd.</strong> Los nombres, marcas y logotipos asociados pertenecen a sus respectivos propietarios.</p>
+        <h2>Aviso legal e independencia institucional</h2>
+        <p style="margin-top:10px">Pilas! es un proyecto estudiantil independiente de código privado y propietario, desarrollado de forma gratuita por y para estudiantes. <strong>Pilas! no está afiliada, asociada, patrocinada, respaldada ni conectada oficialmente con la Universidad de las Fuerzas Armadas ESPE, ninguna otra universidad del país, Ellucian Company L.P. (Banner), ni Moodle Pty Ltd.</strong></p>
+        <p style="margin-top:10px">Los nombres, siglas, marcas y logotipos de universidades (ESPE, UCE, EPN, PUCE, ESPOL, UNACH, UTA u otras) pertenecen con exclusividad a sus respectivos titulares y se mencionan únicamente con fines de compatibilidad técnica, contextualización académica e identificación de facultades por parte de la comunidad estudiantil.</p>
       </section>
 
-      <!-- 3. Qué datos maneja la app -->
+      <!-- 3. Tabla: Qué datos pasan por dónde -->
       <section class="card">
-        <h2>Qué datos maneja la app</h2>
+        <h2>¿Qué datos pasan por dónde?</h2>
+        <p style="margin-top:8px;color:var(--muted)">Transparencia total sobre los 5 canales y superficies que componen el ecosistema de Pilas!:</p>
+        
+        <div class="priv-table-wrap" style="margin-top:16px">
+          <table class="priv-table">
+            <thead>
+              <tr>
+                <th>Superficie / Canal</th>
+                <th>Datos involucrados</th>
+                <th>Destino y almacenamiento</th>
+                <th>¿Pasan por servidores de Pilas!?</th>
+                <th>Retención y eliminación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>(a) App Móvil (Android)</strong></td>
+                <td>Token QR de Moodle (wstoken), cookies de Banner, horario, materias, aulas, notas y firmas visuales.</td>
+                <td>Almacenamiento privado local de tu celular (SQLite Drift + Android Keystore con AES-256). Conexión directa HTTPS a tu universidad.</td>
+                <td><span class="badge b-ok">NO</span> Cero intermediación. Jamás tocan servidores nuestros.</td>
+                <td>Permanecen en el teléfono hasta cerrar sesión desde la app o desinstalarla.</td>
+              </tr>
+              <tr>
+                <td><strong>(b) Este Sitio Web (pilas-ec.vercel.app)</strong></td>
+                <td>Preferencias de visualización local (modo ESPE / Multi-U, modo retro, vista de intro).</td>
+                <td>Tu navegador web local (<code>localStorage</code>) y CDN estático de Vercel (archivos HTML/CSS/JS).</td>
+                <td><span class="badge b-ok">NO</span> No hay base de datos de usuarios ni cuentas web.</td>
+                <td>Hasta que limpies el historial/almacenamiento local de tu navegador.</td>
+              </tr>
+              <tr>
+                <td><strong>(c) Tablón de avisos y API comunitaria (/api/v1/)</strong></td>
+                <td>Avisos comunitarios, enlaces académicos públicos y directorio de comercios aprobados.</td>
+                <td>Archivos JSON estáticos públicos servidos en red de distribución de contenido (CDN). Solo lectura.</td>
+                <td>Son datos públicos del proyecto; la app los consulta en modo solo lectura sin enviar datos personales.</td>
+                <td>Permanente mientras el aviso o negocio figure en el repositorio público.</td>
+              </tr>
+              <tr>
+                <td><strong>(d) Formulario de postulación de negocios</strong></td>
+                <td>Nombre de contacto/propietario, nombre comercial, categoría, dirección/zona, teléfono/WhatsApp y redes sociales.</td>
+                <td>Buzón de correo electrónico y repositorio administrativo para revisión comunitaria.</td>
+                <td><span class="badge b-warn">SÍ</span> Se reciben para evaluar y publicar el local en el directorio gratuito.</td>
+                <td>Conservados mientras el local desee figurar. Se eliminan o rectifican en &lt;48h enviando un correo a <code>teo.hurtado.16@gmail.com</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>(e) Medición y analítica de descargas</strong></td>
+                <td>Eventos numéricos anónimos agregados (visita a la web, clic de descarga de APK por arquitectura). Cero cookies.</td>
+                <td>Capa de analítica ligera y respetuosa con la privacidad sin almacenar direcciones IP ni huella digital.</td>
+                <td>Solo métricas agregadas globales (conteos numéricos de clics).</td>
+                <td>Cifras estadísticas agregadas sin identificación de usuarios.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. Sección: Tus credenciales institucionales -->
+      <section class="card">
+        <h2>Tus credenciales institucionales: Seguridad y verificación</h2>
         <dl class="rules one" style="margin-top:16px">
           <div>
-            <dt>Horarios, notas y mallas</dt>
-            <dd>Se descargan directamente de la universidad y se guardan en la base de datos local SQLite de tu teléfono, protegida por el aislamiento estricto del sistema.</dd>
+            <dt>¿Qué se guarda en tu teléfono?</dt>
+            <dd>Solo el token de sesión de Moodle Mobile (<code>wstoken</code>) generado al escanear el código QR institucional y las cookies de sesión temporal de Banner/miESPE si consultas notas u horarios. La contraseña nunca se almacena en texto plano.</dd>
           </div>
           <div>
-            <dt>Credenciales y tokens de sesión</dt>
-            <dd>Se almacenan de forma segura en Android Keystore con <strong>cifrado AES de 256 bits</strong> por hardware. Si pierdes la contraseña o desinstalas la app, no se puede recuperar.</dd>
+            <dt>¿Dónde y cómo se protegen?</dt>
+            <dd>Credenciales cifradas con <strong>AES-256 mediante Android Keystore</strong> en el enclave seguro de hardware del dispositivo. La base de datos de horarios y notas vive en SQLite privado dentro del sandbox aislado del sistema operativo Android.</dd>
           </div>
           <div>
-            <dt>Firma visual</dt>
-            <dd>Se procesa localmente en pantalla para estamparla en tus documentos. Aclaramos que no tiene validez legal de firma electrónica.</dd>
+            <dt>¿Cómo borrar tus datos definitivamente?</dt>
+            <dd>Dentro de la app, ve a <strong>Ajustes ➔ Cerrar sesión</strong>: esto vacía de forma atómica la base de datos local SQLite, destruye las llaves del Keystore y cancela alarmas. También puedes desinstalar la app desde los Ajustes de Android para eliminar cualquier residuo.</dd>
+          </div>
+          <div>
+            <dt>¿Cómo verificar técnicamente que no hay servidores ocultos?</dt>
+            <dd>Cualquier estudiante o desarrollador puede conectar su celular a un proxy de depuración de red (como <em>HTTP Toolkit</em> o <em>mitmproxy</em> en Android) y auditar el tráfico: comprobarás que el 100% de las solicitudes con tus datos académicos viajan únicamente hacia <code>*.espe.edu.ec</code> o tu servidor Moodle institucional directo.</dd>
+          </div>
+          <div>
+            <dt>Transparencia y código fuente</dt>
+            <dd>
+              Actualmente el código de la app móvil es propietario y privado para salvaguardar la estabilidad de los conectores contra bloqueos institucionales. 
+              <!-- TODO(owner): Indicar si se publicarán conectores o se habilitará un programa de auditoría independiente de código para estudiantes. -->
+              <em>(Nota de transparencia: el equipo mantiene los conectores protegidos; TODO(owner): evaluar proceso de auditoría externa).</em>
+            </dd>
           </div>
         </dl>
       </section>
 
-      <!-- 4. Lo que NO hace la app -->
+      <!-- 5. Permisos del dispositivo -->
       <section class="card">
-        <h2>Lo que esta app nunca hace</h2>
-        <dl class="rules one" style="margin-top:16px">
-          <div>
-            <dt>Cero servidores intermediarios</dt>
-            <dd>No existe ningún servidor propio capturando tus consultas ni almacenando tus contraseñas.</dd>
-          </div>
-          <div>
-            <dt>Moodle por código QR</dt>
-            <dd>La vinculación se realiza mediante el QR oficial de Moodle Mobile; nunca escribes tu contraseña en la app.</dd>
-          </div>
-          <div>
-            <dt>Sin telemetría ni publicidad</dt>
-            <dd>No rastreamos las pantallas que abres, no usamos analíticas invasivas ni compartimos datos con terceros.</dd>
-          </div>
-          <div>
-            <dt>Código privado, no es open source</dt>
-            <dd>El código se mantiene privado para proteger la estabilidad y seguridad de los mecanismos de conexión con las plataformas institucionales.</dd>
-          </div>
-        </dl>
-      </section>
-
-      <!-- 5. Permisos y control -->
-      <section class="card">
-        <h2>Permisos del dispositivo y borrado</h2>
+        <h2>Permisos del dispositivo</h2>
         <dl class="rules one" style="margin-top:16px">
           <div>
             <dt>Cámara</dt>
-            <dd>Únicamente activa mientras escaneas el QR de Moodle o el QR de un compañero. No graba ni transmite nada.</dd>
+            <dd>Únicamente activa durante los segundos que escaneas el QR de Moodle o el QR de un compañero. No graba, no toma fotos ni transmite datos.</dd>
           </div>
           <div>
-            <dt>Notificaciones y alarmas</dt>
-            <dd>Para avisarte antes de cada clase y alertarte de entregas próximas a vencer. Puedes desactivarlas en cualquier momento.</dd>
-          </div>
-          <div>
-            <dt>Cómo borrar tus datos</dt>
-            <dd>Desinstalar la aplicación de tu teléfono elimina de forma inmediata e irrecuperable toda la base de datos local y las llaves del Keystore.</dd>
+            <dt>Notificaciones y alarmas exactas</dt>
+            <dd>Para alertarte antes del inicio de tus clases y recordarte tareas próximas a vencer. Puedes desactivarlas en cualquier momento desde los ajustes.</dd>
           </div>
         </dl>
-        <p class="fine" style="margin-top:20px">Para consultas sobre tratamiento de datos o soporte técnico: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p>
+        <p class="fine" style="margin-top:20px">Para consultas sobre tratamiento de datos, bajas de negocios o soporte: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p>
       </section>
     </div>
   </div>
@@ -161,6 +204,7 @@ try {
     </nav>
     <div class="footer-legal">
       <p>Pilas! es un proyecto estudiantil independiente. No está respaldado ni afiliado oficialmente a la Universidad de las Fuerzas Armadas ESPE, Ellucian, Banner ni Moodle. Las credenciales y datos viven únicamente en tu teléfono.</p>
+      <p>Los nombres, siglas y logotipos de universidades pertenecen con exclusividad a sus respectivos titulares y se usan únicamente para fines de contextualización estudiantil y compatibilidad técnica.</p>
       <p class="footer-copy">© 2026 Pilas! · Hecho con orgullo estudiantil para el Ecuador.</p>
     </div>
   </div>
@@ -324,6 +368,37 @@ p{margin:0}a{color:var(--info)}
 /* sections */
 .priv-sections{display:grid;gap:20px;margin-top:36px}
 .priv-sections h2{font-size:1.5rem}
+
+.priv-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  background: var(--bg-surface);
+}
+.priv-table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  text-align: left;
+}
+.priv-table th, .priv-table td {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.priv-table th {
+  background: var(--bg-elevated);
+  color: var(--title);
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 0.88rem;
+}
+.priv-table tbody tr:hover {
+  background: rgba(255, 63, 164, 0.04);
+}
 
 .rules{display:grid;gap:0}
 .rules.one>div{padding:14px 0;border-top:1px solid var(--border)}

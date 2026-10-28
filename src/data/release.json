@@ -8,7 +8,12 @@
   "downloads": {
     "showDownloadCount": true,
     "count": 100,
-    "label": "descargas comunitarias"
+    "label": "estudiantes en la comunidad"
+  },
+  "playStoreBeta": {
+    "enabled": false,
+    "url": "https://forms.gle/svzBYKL2ZhWrS7M78",
+    "note": "Beta cerrada en Google Play Store para estudiantes registrados."
   },
   "architectures": {
     "arm64-v8a": {

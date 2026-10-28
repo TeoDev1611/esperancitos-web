@@ -1,11 +1,10 @@
 ---
-// negocios.astro - Directorio comunitario de servicios y negocios estudiantiles
-import BaseLayout from '../layouts/BaseLayout.astro';
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/inter';
 import { buildApiPayloads } from '../lib/community-payloads.ts';
 import { NEGOCIO_CATEGORIES, type PublicNegocioItem } from '../lib/community-contract.ts';
 import { NEGOCIOS_FORM_URL, COMUNIDAD_REPORTE_EMAIL } from '../config/community.ts';
 
-// Cargar negocios vigentes desde el generador determinista
 const includeExamples =
   import.meta.env.DEV ||
   process.env.INCLUDE_EXAMPLES === 'true' ||
@@ -14,1324 +13,523 @@ const includeExamples =
 const payloads = buildApiPayloads({ includeExamples });
 const negocios: PublicNegocioItem[] = payloads.parsed.negocios.items;
 
-const categoryLabels: Record<string, { label: string; icon: string }> = {
-  todas: { label: 'Todas', icon: '✨' },
-  comida: { label: 'Comida', icon: '🍲' },
-  copias: { label: 'Copias e Impresión', icon: '🖨️' },
-  papeleria: { label: 'Papelería', icon: '📐' },
-  transporte: { label: 'Transporte', icon: '🚌' },
-  vivienda: { label: 'Vivienda', icon: '🏠' },
-  salud: { label: 'Salud', icon: '🩺' },
-  servicios: { label: 'Servicios', icon: '⚡' },
-  otros: { label: 'Otros', icon: '📦' },
+const categoryLabels: Record<string, string> = {
+  todas: 'Todas',
+  comida: 'Comida',
+  copias: 'Copias e Impresión',
+  papeleria: 'Papelería',
+  transporte: 'Transporte',
+  vivienda: 'Vivienda',
+  salud: 'Salud',
+  servicios: 'Servicios',
+  otros: 'Otros',
 };
 
 const hasFormUrl = NEGOCIOS_FORM_URL.trim().length > 0;
 const mailtoSubject = encodeURIComponent('Postulación de Negocio - Directorio Pilas!');
 const mailtoBody = encodeURIComponent(
-  '¡Hola equipo de Pilas!:\n\nQuisiera registrar mi local o emprendimiento en el directorio gratuito de Pilas!:\n\n• Nombre del negocio: \n• Categoría (comida, copias, papeleria, transporte, vivienda, salud, servicios, otros): \n• Descripción breve (qué ofreces): \n• Dirección y Zona (ej. Frente a Puerta 1 ESPE, Av. Gral. Rumiñahui): \n• Horarios de atención: \n• Teléfono / WhatsApp de contacto: \n• Instagram o enlace web (opcional): \n\n¡Gracias!'
+  '¡Hola equipo de Pilas!:\n\nQuisiera registrar mi local o emprendimiento en el directorio gratuito de Pilas!:\n\n• Nombre del negocio: \n• Categoría: \n• Descripción breve: \n• Dirección y Zona: \n• Horarios de atención: \n• Teléfono / WhatsApp: \n• Red social o web: \n\n¡Gracias!'
 );
 const postularUrl = hasFormUrl
   ? NEGOCIOS_FORM_URL
   : `mailto:${COMUNIDAD_REPORTE_EMAIL}?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+const IG = 'https://www.instagram.com/pilas_ec.app/';
+const WA = 'https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
 ---
+<!doctype html>
+<html lang="es-EC" data-mode="espe">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Directorio de Negocios y Servicios | Pilas!</title>
+<meta name="description" content="Directorio gratuito de fotocopias, comida, papelería y servicios locales para estudiantes universitarios.">
+<meta name="theme-color" content="#101319">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<script is:inline>
+try {
+  var m = localStorage.pilasMode;
+  if (m === 'multi' || m === 'espe') document.documentElement.dataset.mode = m;
+} catch (e) {}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></symbol>
+</svg>
 
-<BaseLayout
-  title="Directorio de Negocios y Servicios"
-  description="Directorio gratuito de negocios, fotocopias, comida y servicios locales para estudiantes de la ESPE."
-  keywords="negocios ESPE, copias sangolqui, comida cerca ESPE, papeleria espe, servicios estudiantes"
-  includeAppSchema={false}
->
-  <section class="community-page">
-    <div class="container community-container">
-      <nav class="breadcrumb" aria-label="Ruta de navegación">
-        <a href="/">Inicio</a>
-        <span aria-hidden="true">/</span>
-        <span aria-current="page">Negocios</span>
-      </nav>
+<header class="top">
+  <div class="wrap">
+    <a class="nav-brand-logo-pill" href="/" aria-label="Pilas!, volver al inicio">
+      <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="128" height="42" />
+    </a>
+    <a class="btn btn-s btn-sm" href="/"><svg class="ico"><use href="#i-back"/></svg>Volver<span class="hide-xs"> al inicio</span></a>
+    <a class="btn btn-p btn-sm" href="/#descargar"><svg class="ico"><use href="#i-down"/></svg>Descargar</a>
+  </div>
+</header>
 
-      <header class="page-header reveal-init">
-        <div class="header-split">
-          <div>
-            <div class="header-kicker-row">
-              <span class="section-kicker">Comunidad Pilas!</span>
-              <span class="badge-app green">✨ 100% Gratuito</span>
-            </div>
-            <h1>Directorio de Negocios y Servicios</h1>
-            <p class="page-lead">
-              Fotocopias, comida, papelerías, transporte y residencias estudiantiles recomendadas para toda la comunidad de la ESPE.
-            </p>
-          </div>
-
-          <div class="postular-cta-wrap">
-            <a
-              href={postularUrl}
-              target={hasFormUrl ? '_blank' : undefined}
-              rel={hasFormUrl ? 'noopener noreferrer' : undefined}
-              class="btn-app btn-app-primary btn-postular"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-              <span>¿Tienes un negocio? Postula Gratis</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- AVISO LEGAL OBLIGATORIO SEGÚN CONTRATO -->
-        <div class="notice-disclaimer-box card-app">
-          <div class="disclaimer-badge">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="8" x2="12" y2="12"></line>
-              <line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg>
-            <strong>Pilas! no respalda ni garantiza los negocios listados. Los listados son gratuitos y no hay pagos por posición.</strong>
-          </div>
-          <p class="disclaimer-text">
-            Este directorio es una iniciativa colaborativa para facilitar la vida universitaria. No cobramos comisiones ni tarifas a ningún negocio. Si encuentras datos erróneos o eres propietario y deseas actualizar o dar de baja un listado, escribe directamente a
-            <a href={`mailto:${COMUNIDAD_REPORTE_EMAIL}`} class="report-link">{COMUNIDAD_REPORTE_EMAIL}</a>.
-          </p>
-        </div>
-
-        {negocios.length > 0 && (
-          <div class="controls-wrapper card-app">
-            <div class="search-box">
-              <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input
-                type="search"
-                id="negocios-search"
-                placeholder="Buscar por nombre, zona o descripción..."
-                aria-label="Buscar negocios"
-                autocomplete="off"
-              />
-              <button type="button" id="clear-search-btn" class="clear-btn" aria-label="Limpiar búsqueda" style="display: none;">
-                ✕
-              </button>
-            </div>
-
-            <div class="categories-filter" role="tablist" aria-label="Filtrar por categoría">
-              <button
-                type="button"
-                class="cat-chip active"
-                data-cat="todas"
-                role="tab"
-                aria-selected="true"
-              >
-                <span>{categoryLabels.todas.icon}</span>
-                <span>{categoryLabels.todas.label}</span>
-              </button>
-              {NEGOCIO_CATEGORIES.map((cat) => {
-                const conf = categoryLabels[cat] || { label: cat, icon: '🏷️' };
-                return (
-                  <button
-                    type="button"
-                    class="cat-chip"
-                    data-cat={cat}
-                    role="tab"
-                    aria-selected="false"
-                  >
-                    <span>{conf.icon}</span>
-                    <span>{conf.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </header>
-
-      <!-- LISTADO DE NEGOCIOS O ESTADO VACÍO RICO -->
-      {negocios.length === 0 ? (
-        <div class="empty-state-hub card-app reveal-init">
-          <div class="empty-hero-section">
-            <div class="empty-icon-pill-wrap" aria-hidden="true">
-              <div class="empty-icon-circle">
-                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"></path>
-                  <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                  <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"></path>
-                  <path d="M2 7h20"></path>
-                </svg>
-              </div>
-            </div>
-
-            <div class="empty-hero-content">
-              <div class="sticker-pill empty-sticker">🚀 ¡SÉ EL PRIMERO EN APARECER!</div>
-              <h2 class="empty-hub-title">¡Ups! Aún no hay negocios registrados en el directorio</h2>
-              <p class="empty-hub-lead">
-                Estamos estrenando la <strong>versión oficial final v1.0.0</strong> de Pilas! y abrimos este directorio limpio para que los mejores locales de los alrededores de la ESPE y los emprendimientos   se den a conocer. <strong>¡El registro es y siempre será 100% gratuito!</strong>
-              </p>
-            </div>
-          </div>
-
-          <!-- VENTAJAS / POR QUÉ REGISTRARTE -->
-          <div class="hub-reasons-title-row">
-            <span class="hub-kicker">¿POR QUÉ FORMAR PARTE DEL DIRECTORIO PILAS?</span>
-            <h3>Ventajas exclusivas para tu negocio o emprendimiento</h3>
-          </div>
-
-          <div class="hub-benefits-grid">
-            <div class="hub-benefit-card">
-              <div class="hub-benefit-icon green">💸</div>
-              <div class="hub-benefit-body">
-                <h4>100% Gratuito de por vida</h4>
-                <p>Cero costos de inscripción y cero comisiones sobre lo que vendas. Una plataforma colaborativa para dinamizar la economía de la comunidad.</p>
-              </div>
-            </div>
-
-            <div class="hub-benefit-card">
-              <div class="hub-benefit-icon fuchsia">📱</div>
-              <div class="hub-benefit-body">
-                <h4>Visible en la App y en la Web</h4>
-                <p>Llega a miles de   en sus teléfonos (Android e iOS) cuando busquen dónde imprimir, almorzar o comprar materiales cerca del campus.</p>
-              </div>
-            </div>
-
-            <div class="hub-benefit-card">
-              <div class="hub-benefit-icon amber">⚡</div>
-              <div class="hub-benefit-body">
-                <h4>Contacto Directo sin Intermediarios</h4>
-                <p>Los estudiantes te contactarán directamente a tu WhatsApp, te llamarán o te seguirán en Instagram con un solo toque.</p>
-              </div>
-            </div>
-
-            <div class="hub-benefit-card">
-              <div class="hub-benefit-icon cyan">📍</div>
-              <div class="hub-benefit-body">
-                <h4>Ubicación Exacta por Zonas ESPE</h4>
-                <p>Frente a Puerta 1, Puerta 2, Santa Clara o sedes. Los estudiantes sabrán exactamente cómo llegar a tu local y tus horarios de atención.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- CATEGORÍAS ABIERTAS -->
-          <div class="hub-categories-box">
-            <div class="hub-cat-header">
-              <span class="cat-box-icon">🎯</span>
-              <strong>Buscamos todo tipo de negocios y servicios cerca de la ESPE:</strong>
-            </div>
-            <div class="hub-tags-cloud">
-              <span class="hub-tag">🖨️ Fotocopiadoras, Ploteo y Anillados</span>
-              <span class="hub-tag">🍲 Restaurantes, Almuerzos y Cafeterías</span>
-              <span class="hub-tag">📐 Papelerías y Artículos de Dibujo</span>
-              <span class="hub-tag">🚌 Rutas de Transporte Universitario</span>
-              <span class="hub-tag">🏠 Alquiler de Cuartos y Residencias</span>
-              <span class="hub-tag">🩺 Consultorios Médicos, Dentales y Ópticas</span>
-              <span class="hub-tag">⚡ Asesorías Académicas y Clases Particulares</span>
-              <span class="hub-tag">📦 Emprendimientos Estudiantiles</span>
-            </div>
-          </div>
-
-          <!-- PASOS PARA POSTULAR -->
-          <div class="hub-steps-container">
-            <span class="steps-title">¿Cómo postular? Solo 3 pasos rápidos:</span>
-            <div class="steps-row">
-              <div class="step-card">
-                <div class="step-badge">1</div>
-                <strong>Envía la Información</strong>
-                <p>Nombre del local, categoría, dirección o zona, horario y datos de contacto de tu negocio.</p>
-              </div>
-              <div class="step-card">
-                <div class="step-badge">2</div>
-                <strong>Revisión Comunitaria</strong>
-                <p>Validamos que los datos sean auténticos para proteger y guiar a los estudiantes de la ESPE.</p>
-              </div>
-              <div class="step-card">
-                <div class="step-badge">3</div>
-                <strong>¡Aparece en Pilas!</strong>
-                <p>Se publica en este directorio web y se sincroniza en la app de toda la comunidad politécnica.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- BOTONES DE ACCIÓN PRINCIPALES -->
-          <div class="hub-actions-bar">
-            <a
-              href={postularUrl}
-              target={hasFormUrl ? '_blank' : undefined}
-              rel={hasFormUrl ? 'noopener noreferrer' : undefined}
-              class="btn-app btn-app-primary btn-hub-cta"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-              <span>Postular mi Negocio o Emprendimiento Gratis</span>
-            </a>
-
-            <a
-              href={`mailto:${COMUNIDAD_REPORTE_EMAIL}?subject=${mailtoSubject}&body=${mailtoBody}`}
-              class="btn-app btn-app-surface btn-hub-email"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-              </svg>
-              <span>Enviar datos por Correo ({COMUNIDAD_REPORTE_EMAIL})</span>
-            </a>
-          </div>
-
-          <div class="hub-student-tip">
-            <span class="tip-spark">💡</span>
-            <span>
-              <strong>¿Eres estudiante   y tienes un emprendimiento?</strong> Si vendes postres, dulces, haces impresiones en tu depa o das clases de cálculo o física, ¡este directorio también es para ti!
-            </span>
-          </div>
-        </div>
-      ) : (
-        <>
-          <div class="results-meta" id="results-counter" aria-live="polite">
-            Mostrando <strong id="visible-count">{negocios.length}</strong> de <strong>{negocios.length}</strong> negocios registrados
-          </div>
-
-          <div class="negocios-grid" id="negocios-list">
-          {negocios.map((negocio) => {
-            const catInfo = categoryLabels[negocio.category] || { label: negocio.category, icon: '🏷️' };
-            const cleanWhatsapp = negocio.contact?.whatsapp?.replace(/[^0-9+]/g, '');
-            const waLink = cleanWhatsapp
-              ? `https://wa.me/${cleanWhatsapp.replace(/^\+/, '')}`
-              : null;
-
-            return (
-              <article
-                class="card-app negocio-card"
-                id={negocio.id}
-                data-category={negocio.category}
-                data-search={`${negocio.name} ${negocio.description} ${negocio.zone} ${negocio.address}`.toLowerCase()}
-              >
-                <div class="card-head">
-                  {negocio.logo ? (
-                    <img
-                      src={negocio.logo}
-                      alt={`Logo de ${negocio.name}`}
-                      width="54"
-                      height="54"
-                      class="negocio-logo"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div class="negocio-logo-placeholder" aria-hidden="true">
-                      <span>{catInfo.icon}</span>
-                    </div>
-                  )}
-
-                  <div class="card-title-group">
-                    <div class="badges-row">
-                      <span class="badge-cat">
-                        <span>{catInfo.icon}</span>
-                        <span>{catInfo.label}</span>
-                      </span>
-
-                      {negocio.verifiedAt && (
-                        <span class="badge-verified" title="Negocio verificado por moderación">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                          <span>Verificado</span>
-                        </span>
-                      )}
-                    </div>
-                    <h2 class="negocio-name">{negocio.name}</h2>
-                  </div>
-                </div>
-
-                <p class="negocio-desc">{negocio.description}</p>
-
-                <div class="negocio-info-rows">
-                  <div class="info-row">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    <span>
-                      <strong>{negocio.zone}:</strong> {negocio.address}
-                    </span>
-                  </div>
-
-                  {negocio.hours && (
-                    <div class="info-row">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
-                      <span>{negocio.hours}</span>
-                    </div>
-                  )}
-                </div>
-
-                {negocio.contact && Object.keys(negocio.contact).length > 0 && (
-                  <div class="contact-actions">
-                    {waLink && (
-                      <a
-                        href={waLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="contact-btn contact-wa"
-                        aria-label={`Escribir por WhatsApp a ${negocio.name}`}
-                      >
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                        </svg>
-                        <span>WhatsApp</span>
-                      </a>
-                    )}
-
-                    {negocio.contact.phone && (
-                      <a href={`tel:${negocio.contact.phone}`} class="contact-btn">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                        <span>Llamar</span>
-                      </a>
-                    )}
-
-                    {negocio.contact.instagram && (
-                      <a
-                        href={negocio.contact.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="contact-btn"
-                        aria-label={`Ver Instagram de ${negocio.name}`}
-                      >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                        <span>Instagram</span>
-                      </a>
-                    )}
-
-                    {negocio.contact.web && (
-                      <a
-                        href={negocio.contact.web}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="contact-btn"
-                        aria-label={`Visitar sitio web de ${negocio.name}`}
-                      >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <circle cx="12" cy="12" r="10"></circle>
-                          <line x1="2" y1="12" x2="22" y2="12"></line>
-                          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                        <span>Sitio Web</span>
-                      </a>
-                    )}
-                  </div>
-                )}
-              </article>
-            );
-          })}
-        </div>
-      </>
-    )}
-
-      <!-- Estado vacío para búsquedas sin resultados -->
-      <div id="no-search-results" class="empty-state card-app" style="display: none;">
-        <h3>No se encontraron negocios</h3>
-        <p>No hay resultados que coincidan con los filtros seleccionados. Prueba otra búsqueda o categoría.</p>
-        <button type="button" id="reset-filters-btn" class="btn-app btn-app-surface">
-          <span>Restablecer filtros</span>
-        </button>
+<main class="page-body">
+  <div class="wrap">
+    <div class="header-split">
+      <div class="page-head">
+        <span class="badge b-info"><svg class="ico"><use href="#i-info"/></svg>Directorio Comunitario</span>
+        <h1>Negocios y Servicios</h1>
+        <p class="lead">Comida, fotocopias, papelerías, residencias y servicios recomendados para el campus.</p>
       </div>
+      <a class="btn btn-p" href={postularUrl} target={hasFormUrl ? '_blank' : undefined} rel={hasFormUrl ? 'noopener noreferrer' : undefined}>
+        Postular mi negocio gratis
+      </a>
+    </div>
 
-      <div class="community-page-footer reveal-init">
-        <a href="/" class="btn-app btn-app-surface">
-          <span>← Volver al inicio</span>
-        </a>
-        <a href="/avisos" class="btn-app btn-app-primary">
-          <span>Ver Avisos de la Comunidad →</span>
-        </a>
+    <!-- Aviso Legal Obligatorio -->
+    <div class="card notice-box" style="margin-top:24px">
+      <b>Iniciativa colaborativa estudiantil. No cobramos comisiones ni tarifas a los locales.</b>
+      <p style="margin-top:4px">Pilas! no intermedia transacciones financieras ni garantiza los servicios listados. Si eres propietario y deseas actualizar datos o dar de baja tu local, escribe a <a href={`mailto:${COMUNIDAD_REPORTE_EMAIL}`}>{COMUNIDAD_REPORTE_EMAIL}</a>.</p>
+    </div>
+
+    <!-- Buscador y Filtros -->
+    <div class="search-wrap">
+      <div class="search-box">
+        <svg class="ico"><use href="#i-search"/></svg>
+        <input
+          type="search"
+          id="negocio-search"
+          placeholder="Buscar por nombre, zona o producto (ej. copias, menú, Rumiñahui)..."
+          aria-label="Buscar en el directorio de negocios"
+        />
+        <button type="button" id="negocio-clear" class="btn-clear" aria-label="Limpiar búsqueda" hidden>×</button>
       </div>
     </div>
-  </section>
-</BaseLayout>
+
+    <div class="cat-bar" role="tablist" aria-label="Categorías de negocios">
+      <button type="button" class="cat-btn active" data-cat-id="todas" role="tab" aria-selected="true">Todas</button>
+      {NEGOCIO_CATEGORIES.map((cat) => (
+        <button type="button" class="cat-btn" data-cat-id={cat} role="tab" aria-selected="false">
+          {categoryLabels[cat] || cat}
+        </button>
+      ))}
+    </div>
+
+    <p class="count-line" id="negocio-count" aria-live="polite">Mostrando <b class="num">{negocios.length}</b> negocios</p>
+
+    <!-- Lista de Negocios -->
+    <div class="negocios-grid" id="negocios-list" style="margin-top:20px">
+      {negocios.map((n) => (
+        <article class="card negocio-card" data-category={n.category} data-negocio-text={`${n.name} ${n.description} ${n.address || ''} ${n.zone || ''} ${categoryLabels[n.category] || ''}`}>
+          <div class="negocio-top">
+            <span class="badge b-info">{categoryLabels[n.category] || n.category}</span>
+            {n.zone && <span class="badge b-warn">{n.zone}</span>}
+          </div>
+          <h2 class="negocio-name">{n.name}</h2>
+          <p class="negocio-desc">{n.description}</p>
+          <dl class="negocio-details">
+            {n.address && <div><dt>Ubicación</dt><dd>{n.address}</dd></div>}
+            {n.hours && <div><dt>Horario</dt><dd>{n.hours}</dd></div>}
+          </dl>
+          <div class="negocio-actions">
+            {n.contact?.whatsapp && (
+              <a class="btn btn-p btn-sm" href={`https://wa.me/${n.contact.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">
+                WhatsApp
+              </a>
+            )}
+            {n.contact?.instagram && (
+              <a class="btn btn-s btn-sm" href={n.contact.instagram.startsWith('http') ? n.contact.instagram : `https://instagram.com/${n.contact.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer">
+                Instagram
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Estado Vacío -->
+    <div class="empty card" id="negocio-empty" hidden>
+      <img src="/logos/mascota_negacion.svg" alt="Pilo, la mascota de Pilas!, indicando con el pulgar abajo que no se encontraron negocios" width="120" height="120">
+      <h3>No encontramos negocios para ese filtro</h3>
+      <p>Prueba con otra palabra o revisa en la categoría "Todas".</p>
+      <button type="button" class="btn btn-p btn-sm" id="btn-reset-negocios">Ver todos los negocios</button>
+    </div>
+  </div>
+</main>
+
+<footer class="hub-footer">
+  <div class="wrap footer-wrap">
+    <div class="footer-brand-row">
+      <a class="footer-brand-logo-pill" href="/" aria-label="Pilas!, volver arriba">
+        <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="footer-lettering-img" width="132" height="42" />
+      </a>
+      <div class="footer-pill-edition">
+        <span class="sticker-pill" data-for="espe">⚡ COMUNIDAD UNIVERSITARIA ESPE</span>
+        <span class="sticker-pill coral" data-for="multi">⭐ RED MULTI-UNIVERSIDAD ECUADOR</span>
+      </div>
+    </div>
+    <nav aria-label="Enlaces del sitio" class="footer-nav">
+      <a href="/faq">Preguntas frecuentes</a>
+      <a href="/avisos">Avisos</a>
+      <a href="/negocios">Negocios</a>
+      <a href="/privacidad">Privacidad</a>
+      <a href={IG} target="_blank" rel="noopener noreferrer">Instagram (@pilas_ec.app)</a>
+      <a href={WA} target="_blank" rel="noopener noreferrer">Canal de WhatsApp</a>
+    </nav>
+    <div class="footer-legal">
+      <p>Pilas! es un proyecto estudiantil independiente. No está respaldado ni afiliado oficialmente a la Universidad de las Fuerzas Armadas ESPE, Ellucian, Banner ni Moodle. Las credenciales y datos viven únicamente en tu teléfono.</p>
+      <p>Los nombres, siglas y logotipos de universidades pertenecen con exclusividad a sus respectivos titulares y se usan únicamente para fines de contextualización estudiantil y compatibilidad técnica.</p>
+      <p class="footer-copy">© 2026 Pilas! · Hecho con orgullo estudiantil para el Ecuador.</p>
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+:root{
+  color-scheme:dark;
+  --primary:#ff3fa4;--primary-hover:#e5147d;--primary-extrude:#7a0a45;--primary-shadow:#4a0026;--primary-coral:#ff3d5e;
+  --success:#00ff87;--success-shadow:#059669;--warning:#ffdb60;--critical:#ef4444;--info:#38bdf8;
+  --bg-base:#101319;--bg-subtle:#191d28;--bg-surface:#161a23;--bg-elevated:#1e2230;--bg-container:#242938;
+  --border:#2a3142;--border-control:#6b7894;--title:#faf7f7;--body:#e1e2eb;--muted:#8f9cae;
+  --f-d:"Outfit Variable",system-ui,sans-serif;--f-b:"Inter Variable",system-ui,sans-serif;
+  --accent:var(--primary);--bg:var(--bg-base);
+}
+html[data-mode=multi]{--accent:var(--primary-coral);--bg:var(--bg-subtle)}
+html{scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background-color:var(--bg);color:var(--body);font:400 1.0625rem/1.6 var(--f-b);padding-bottom:env(safe-area-inset-bottom,0px)}
+html[data-mode=espe] body{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px}
+html[data-mode=multi] body{background-image:radial-gradient(rgba(255,255,255,.09) 1.5px,transparent 1.5px);background-size:22px 22px}
+h1,h2,h3{font-family:var(--f-d);font-weight:800;color:var(--title);line-height:1.1;letter-spacing:-.02em;margin:0}
+p{margin:0}a{color:var(--info)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,32px)}
+.num{font-variant-numeric:tabular-nums}
+.ico{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border:2px solid;border-radius:12px;font:800 1rem var(--f-d);text-decoration:none;cursor:pointer;transition:transform 100ms,box-shadow 100ms,background 150ms}
+.btn:active{transform:translate(2px,2px);box-shadow:none!important}
+.btn-p{background:var(--primary);color:#000;border-color:#000;box-shadow:3px 3px 0 #000}
+.btn-p:hover,.btn-p:active{background:var(--primary-hover)}
+.btn-s{background:var(--bg-elevated);color:var(--title);border:2px solid var(--border-control);box-shadow:3px 3px 0 #000}
+.btn-sm{padding:0 16px;font-size:.95rem}
+.card{background:var(--bg-surface);border:2px solid var(--border);border-radius:14px;box-shadow:2px 2px 0 var(--border);padding:24px}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1.5px solid currentColor;border-radius:999px;padding:4px 12px 4px 8px;background:var(--bg-base);font:600 .875rem/1.3 var(--f-b)}
+.b-warn{color:var(--warning)}.b-info{color:var(--info)}
+
+/* top con logo pill y glow */
+.top{position:sticky;top:0;z-index:20;background:rgba(16,19,25,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:2px solid #000;padding:10px 0}
+.top .wrap{display:flex;align-items:center;gap:12px;min-height:50px}
+
+.nav-brand-logo-pill,
+.footer-brand-logo-pill {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+  text-decoration:none;
+  margin-right:auto;
+}
+
+.nav-brand-logo,
+.footer-lettering-img {
+  display:block;
+  height:36px;
+  width:auto;
+  filter:drop-shadow(0 0 10px rgba(255,63,164,0.9))
+         drop-shadow(0 0 22px rgba(255,20,117,0.7))
+         drop-shadow(2px 3px 0 #000000)!important;
+  transition:filter 220ms ease, transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation:logoPinkGlowPulse 4s ease-in-out infinite;
+}
+.nav-brand-logo:hover,
+.footer-lettering-img:hover {
+  filter:drop-shadow(0 0 14px rgba(255,63,164,1))
+         drop-shadow(0 0 30px rgba(255,20,117,0.95))
+         drop-shadow(2px 3px 0 #000000)!important;
+  transform:translateY(-2px) scale(1.03);
+}
+
+@keyframes logoPinkGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 63, 164, 0.9))
+            drop-shadow(0 0 20px rgba(255, 20, 117, 0.7))
+            drop-shadow(2px 3px 0 #000000);
+  }
+  50% {
+    filter: drop-shadow(0 0 13px rgba(255, 63, 164, 1))
+            drop-shadow(0 0 28px rgba(255, 20, 117, 0.88))
+            drop-shadow(2px 3px 0 #000000);
+  }
+}
+
+.sticker-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1.5px solid #000;
+  border-radius: 9999px;
+  background: var(--primary);
+  color: #000;
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  box-shadow: 2px 2px 0 #000;
+}
+.sticker-pill.coral { background: var(--primary-coral); }
+
+/* Footer Neo-Brutalista Oficial */
+.hub-footer {
+  padding: 48px 0 56px;
+  border-top: 2px solid #000;
+  background: #090b10;
+}
+.footer-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-pill-edition {
+  display: flex;
+  gap: 8px;
+}
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+}
+.footer-nav a {
+  color: var(--body);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color 150ms;
+}
+.footer-nav a:hover {
+  color: var(--primary);
+}
+.footer-legal {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
+}
+.footer-copy {
+  color: var(--title);
+  font-weight: 700;
+}
+
+/* page content */
+.page-body{padding:clamp(36px,6vw,72px) 0 clamp(48px,7vw,96px)}
+.header-split{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.page-head{display:grid;gap:12px;max-width:44em}
+.page-head h1{font-size:clamp(2.2rem,5vw,3.6rem);margin-top:6px}
+.lead{font-size:1.15rem;color:var(--body)}
+
+.notice-box{border-color:var(--border-control);background:var(--bg-elevated)}
+.notice-box b{color:var(--title);display:block}
+
+/* search */
+.search-wrap{margin-top:28px}
+.search-box{display:flex;align-items:center;gap:12px;min-height:56px;padding:0 16px;border:2px solid var(--border-control);border-radius:12px;background:var(--bg-elevated)}
+.search-box:focus-within{border-color:var(--primary);outline:2px solid var(--primary);outline-offset:2px}
+.search-box input{flex:1;background:transparent;border:none;color:var(--title);font:500 1.05rem var(--f-b);outline:none}
+.search-box input::placeholder{color:var(--muted)}
+.btn-clear{background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;padding:4px 8px}
+
+/* categories */
+.cat-bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.cat-btn{min-height:48px;padding:0 18px;border:2px solid var(--border-control);border-radius:12px;background:var(--bg-elevated);color:var(--title);font:700 .95rem var(--f-d);cursor:pointer;transition:background 120ms,color 120ms}
+.cat-btn.active{background:var(--primary);color:#000;border-color:#000;box-shadow:3px 3px 0 #000}
+.cat-btn:active{transform:translate(2px,2px);box-shadow:none}
+
+.count-line{margin-top:24px;color:var(--muted);font-size:.95rem}
+
+/* negocios grid */
+.negocios-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:20px}
+.negocio-card{display:flex;flex-direction:column;gap:12px;border:2px solid var(--border-control);background:var(--bg-surface)}
+.negocio-top{display:flex;gap:8px;flex-wrap:wrap}
+.negocio-name{font-size:1.35rem;color:var(--title)}
+.negocio-desc{color:var(--body);line-height:1.55;flex:1}
+.negocio-details{margin:0;display:grid;gap:6px;border-top:1px solid var(--border);padding-top:10px;font-size:.9rem}
+.negocio-details dt{color:var(--muted);font-weight:600}
+.negocio-details dd{margin:0;color:var(--title);font-weight:500}
+.negocio-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+
+.empty{text-align:center;display:grid;place-items:center;gap:12px;padding:48px 24px;margin-top:32px}
+
+footer{padding:40px 0 56px;border-top:2px solid #000;background:var(--bg);font-size:.95rem}
+footer .wrap{display:grid;gap:16px}footer nav{display:flex;flex-wrap:wrap;gap:0 22px}footer nav a{display:inline-flex;align-items:center;min-height:48px}footer p{color:var(--muted);max-width:60em}
+
+@media(max-width:540px){
+  .hide-xs{display:none!important}
+  .top .wrap{gap:8px}
+  .nav-brand-logo{height:28px}
+}
+</style>
 
 <script>
-  // Filtrado instantáneo y ligero de negocios por texto y categoría (Vanilla JS)
-  const searchInput = document.getElementById('negocios-search') as HTMLInputElement | null;
-  const clearBtn = document.getElementById('clear-search-btn');
-  const catButtons = document.querySelectorAll<HTMLButtonElement>('.cat-chip');
-  const cards = document.querySelectorAll<HTMLElement>('.negocio-card');
-  const counterEl = document.getElementById('visible-count');
-  const noResultsEl = document.getElementById('no-search-results');
-  const resetBtn = document.getElementById('reset-filters-btn');
+const input = document.getElementById('negocio-search') as HTMLInputElement;
+const clearBtn = document.getElementById('negocio-clear') as HTMLButtonElement;
+const catBtns = document.querySelectorAll('.cat-btn') as NodeListOf<HTMLButtonElement>;
+const cards = document.querySelectorAll('.negocio-card') as NodeListOf<HTMLElement>;
+const countEl = document.getElementById('negocio-count') as HTMLElement;
+const emptyBox = document.getElementById('negocio-empty') as HTMLElement;
+const resetBtn = document.getElementById('btn-reset-negocios') as HTMLButtonElement;
 
-  let activeCategory = 'todas';
-  let searchTerm = '';
+let currentCat = 'todas';
+let currentQuery = '';
 
-  function applyFilters() {
-    let visible = 0;
+/**
+ * Normaliza texto eliminando acentos, diacríticos (incluyendo tilde de ñ para búsqueda insensible),
+ * signos de puntuación y espacios extras.
+ */
+function normalizeText(str: string): string {
+  return str
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
-    cards.forEach((card) => {
-      const cardCat = card.getAttribute('data-category') || '';
-      const cardSearch = card.getAttribute('data-search') || '';
+// Pre-indexar el texto normalizado de cada tarjeta para búsquedas instantáneas
+const cardData = Array.from(cards).map((card) => {
+  const cat = card.dataset.category || '';
+  const rawText = card.dataset.negocioText || card.textContent || '';
+  return {
+    el: card,
+    category: cat,
+    normText: normalizeText(rawText),
+  };
+});
 
-      const matchesCat = activeCategory === 'todas' || cardCat === activeCategory;
-      const matchesSearch = !searchTerm || cardSearch.includes(searchTerm);
-
-      if (matchesCat && matchesSearch) {
-        card.style.display = '';
-        visible++;
-      } else {
-        card.style.display = 'none';
-      }
-    });
-
-    if (counterEl) counterEl.textContent = String(visible);
-
-    if (noResultsEl) {
-      noResultsEl.style.display = visible === 0 && cards.length > 0 ? 'block' : 'none';
+function matchToken(token: string, text: string): boolean {
+  if (text.includes(token)) return true;
+  if (token.length > 3 && token.endsWith('s')) {
+    if (text.includes(token.slice(0, -1))) return true;
+    if (token.length > 4 && token.endsWith('es')) {
+      if (text.includes(token.slice(0, -2))) return true;
     }
-
-    if (clearBtn && searchInput) {
-      clearBtn.style.display = searchInput.value ? 'inline-block' : 'none';
-    }
   }
+  return false;
+}
 
-  // Evento de búsqueda
-  if (searchInput) {
-    searchInput.addEventListener('input', () => {
-      searchTerm = searchInput.value.trim().toLowerCase();
-      applyFilters();
-    });
-  }
+function filter() {
+  let visible = 0;
+  const normQ = normalizeText(currentQuery);
+  const tokens = normQ.split(' ').filter(Boolean);
 
-  if (clearBtn && searchInput) {
-    clearBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      searchTerm = '';
-      applyFilters();
-      searchInput.focus();
-    });
-  }
+  cardData.forEach(({ el, category, normText }) => {
+    const matchCat = currentCat === 'todas' || category === currentCat;
+    // Búsqueda multi-término (AND): cada token ingresado debe encontrarse en los datos del local
+    const matchQuery = tokens.length === 0 || tokens.every((token) => matchToken(token, normText));
 
-  // Eventos de botones de categoría
-  catButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      catButtons.forEach((b) => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      activeCategory = btn.getAttribute('data-cat') || 'todas';
-      applyFilters();
-    });
+    const show = matchCat && matchQuery;
+    el.hidden = !show;
+    if (show) visible++;
   });
 
-  if (resetBtn && searchInput) {
-    resetBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      searchTerm = '';
-      activeCategory = 'todas';
-      catButtons.forEach((b) => {
-        const isAll = b.getAttribute('data-cat') === 'todas';
-        b.classList.toggle('active', isAll);
-        b.setAttribute('aria-selected', String(isAll));
-      });
-      applyFilters();
-    });
+  if (countEl) {
+    countEl.innerHTML = `Mostrando <b class="num">${visible}</b> ${visible === 1 ? 'negocio' : 'negocios'}`;
   }
+  if (emptyBox) {
+    emptyBox.hidden = visible > 0;
+  }
+}
+
+function setCategory(catId: string) {
+  currentCat = catId;
+  catBtns.forEach((btn) => {
+    const isSelected = (btn.dataset.catId || 'todas') === catId;
+    btn.classList.toggle('active', isSelected);
+    btn.setAttribute('aria-selected', String(isSelected));
+  });
+  filter();
+}
+
+input?.addEventListener('input', () => {
+  currentQuery = input.value;
+  clearBtn.hidden = !currentQuery.trim();
+  filter();
+});
+
+input?.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    e.preventDefault();
+    input.value = '';
+    currentQuery = '';
+    clearBtn.hidden = true;
+    filter();
+  }
+});
+
+clearBtn?.addEventListener('click', () => {
+  input.value = '';
+  currentQuery = '';
+  clearBtn.hidden = true;
+  filter();
+  input.focus();
+});
+
+catBtns.forEach((btn, idx) => {
+  btn.addEventListener('click', () => {
+    setCategory(btn.dataset.catId || 'todas');
+  });
+
+  // Navegación accesible por teclado entre pestañas (W3C WAI-ARIA)
+  btn.addEventListener('keydown', (e) => {
+    let nextIdx = -1;
+    if (e.key === 'ArrowRight') nextIdx = (idx + 1) % catBtns.length;
+    else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + catBtns.length) % catBtns.length;
+    else if (e.key === 'Home') nextIdx = 0;
+    else if (e.key === 'End') nextIdx = catBtns.length - 1;
+
+    if (nextIdx >= 0) {
+      e.preventDefault();
+      const target = catBtns[nextIdx];
+      target.focus();
+      target.click();
+    }
+  });
+});
+
+resetBtn?.addEventListener('click', () => {
+  input.value = '';
+  currentQuery = '';
+  clearBtn.hidden = true;
+  setCategory('todas');
+  input.focus();
+});
+
+// Soporte de enlace profundo por URL (ej. /negocios?q=copias o /negocios#comida)
+try {
+  const urlParams = new URLSearchParams(window.location.search);
+  const qParam = urlParams.get('q');
+  const catHash = window.location.hash.replace('#', '');
+
+  if (qParam && input) {
+    input.value = qParam;
+    currentQuery = qParam;
+    clearBtn.hidden = false;
+  }
+  if (catHash && Array.from(catBtns).some((b) => b.dataset.catId === catHash)) {
+    setCategory(catHash);
+  } else {
+    filter();
+  }
+} catch {}
 </script>
-
-<style>
-  .community-page {
-    padding: 50px 0 90px 0;
-    border-top: 2px solid var(--border-app);
-  }
-
-  .community-container {
-    max-width: 1040px;
-  }
-
-  .breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.84rem;
-    color: var(--text-muted);
-    margin-bottom: 24px;
-  }
-
-  .breadcrumb a {
-    color: var(--accent-primary);
-    font-weight: 700;
-  }
-
-  .breadcrumb a:hover {
-    text-decoration: underline;
-  }
-
-  .page-header {
-    margin-bottom: 30px;
-  }
-
-  .header-split {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 18px;
-  }
-
-  .header-kicker-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-
-  .page-header h1 {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    margin-bottom: 12px;
-  }
-
-  .page-lead {
-    font-size: 1.08rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    max-width: 720px;
-  }
-
-  .btn-postular {
-    padding: 10px 18px;
-    font-size: 0.86rem;
-    white-space: nowrap;
-  }
-
-  /* Aviso de no responsabilidad */
-  .notice-disclaimer-box {
-    background: rgba(255, 219, 121, 0.08);
-    border-color: var(--accent-amber);
-    padding: 16px 20px;
-    margin-bottom: 24px;
-  }
-
-  .disclaimer-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--accent-amber);
-    font-size: 0.95rem;
-    font-weight: 800;
-    margin-bottom: 6px;
-  }
-
-  .disclaimer-badge svg {
-    flex-shrink: 0;
-  }
-
-  .disclaimer-text {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  .report-link {
-    color: var(--accent-primary);
-    font-weight: 700;
-    text-decoration: underline;
-  }
-
-  /* Controles de búsqueda y filtros */
-  .controls-wrapper {
-    background: var(--bg-surface-elevated);
-    padding: 20px 24px;
-    margin-bottom: 24px;
-  }
-
-  .search-box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-
-  .search-icon {
-    position: absolute;
-    left: 14px;
-    color: var(--text-muted);
-    pointer-events: none;
-  }
-
-  .search-box input {
-    width: 100%;
-    padding: 12px 40px 12px 42px;
-    background: var(--bg-primary);
-    border: 2px solid var(--border-app);
-    border-radius: var(--radius-md);
-    color: var(--text-primary);
-    font-family: var(--font-sans);
-    font-size: 0.96rem;
-    outline: none;
-    transition: border-color var(--duration-hover) ease;
-  }
-
-  .search-box input:focus {
-    border-color: var(--accent-primary);
-  }
-
-  .clear-btn {
-    position: absolute;
-    right: 12px;
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    font-size: 1rem;
-    padding: 4px;
-  }
-
-  .clear-btn:hover {
-    color: var(--text-primary);
-  }
-
-  .categories-filter {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .cat-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    background: var(--bg-primary);
-    border: 1.5px solid var(--border-app);
-    border-radius: var(--radius-pill);
-    color: var(--text-secondary);
-    font-family: var(--font-sans);
-    font-size: 0.84rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all var(--duration-hover) var(--ease-apple);
-  }
-
-  .cat-chip:hover {
-    border-color: var(--accent-primary);
-    color: var(--text-primary);
-    transform: translateY(-2px);
-  }
-
-  .cat-chip.active {
-    background: var(--accent-primary);
-    color: var(--on-primary);
-    border-color: #000000;
-    box-shadow: 2px 2px 0px #000000;
-  }
-
-  .results-meta {
-    font-size: 0.86rem;
-    color: var(--text-muted);
-    margin-bottom: 22px;
-    padding-left: 4px;
-  }
-
-  /* Grid de tarjetas de negocios */
-  .negocios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    gap: 22px;
-    margin-bottom: 44px;
-  }
-
-  .negocio-card {
-    display: flex;
-    flex-direction: column;
-    padding: 22px;
-    transition: transform var(--duration-hover) var(--ease-spring),
-                box-shadow var(--duration-hover) var(--ease-apple),
-                border-color var(--duration-hover) ease;
-  }
-
-  .negocio-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 6px 6px 0px #000000, 0 8px 24px rgba(0, 0, 0, 0.35);
-    border-color: rgba(0, 255, 135, 0.4);
-  }
-
-  .card-head {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 12px;
-  }
-
-  .negocio-logo {
-    width: 52px;
-    height: 52px;
-    border-radius: var(--radius-md);
-    border: 1.5px solid #000;
-    box-shadow: 2px 2px 0px var(--accent-primary);
-    object-fit: cover;
-    flex-shrink: 0;
-    background: #000;
-    transition: transform 240ms var(--ease-spring);
-  }
-
-  .negocio-card:hover .negocio-logo {
-    transform: scale(1.08) rotate(-2deg);
-  }
-
-  .negocio-logo-placeholder {
-    width: 52px;
-    height: 52px;
-    border-radius: var(--radius-md);
-    background: var(--bg-surface-elevated);
-    border: 1.5px solid var(--border-app);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    flex-shrink: 0;
-  }
-
-  .card-title-group {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .badges-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-bottom: 4px;
-  }
-
-  .badge-cat {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .badge-verified {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 2px 6px;
-    border-radius: var(--radius-sm);
-    background: rgba(0, 255, 135, 0.12);
-    color: var(--accent-primary);
-    border: 1px solid var(--accent-primary);
-  }
-
-  .negocio-name {
-    font-size: 1.18rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    line-height: 1.25;
-    word-break: break-word;
-  }
-
-  .negocio-desc {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    margin-bottom: 14px;
-  }
-
-  .negocio-info-rows {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 0.84rem;
-    color: var(--text-muted);
-    margin-bottom: 18px;
-    border-top: 1px solid var(--border-subtle);
-    padding-top: 12px;
-  }
-
-  .info-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    line-height: 1.45;
-  }
-
-  .info-row svg {
-    flex-shrink: 0;
-    color: var(--accent-primary);
-    margin-top: 2px;
-  }
-
-  .info-row strong {
-    color: var(--text-secondary);
-  }
-
-  .contact-actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: auto;
-    border-top: 1.5px solid var(--border-subtle);
-    padding-top: 14px;
-  }
-
-  .contact-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    background: var(--bg-surface-elevated);
-    border: 1.5px solid var(--border-app);
-    border-radius: var(--radius-sm);
-    color: var(--text-secondary);
-    font-size: 0.78rem;
-    font-weight: 700;
-    transition: all var(--duration-hover) var(--ease-spring);
-    text-decoration: none;
-  }
-
-  .contact-btn:hover {
-    border-color: var(--accent-primary);
-    color: var(--text-primary);
-    transform: translateY(-2px);
-    box-shadow: 2px 2px 0px #000;
-  }
-
-  .contact-btn.contact-wa {
-    background: rgba(37, 211, 102, 0.12);
-    border-color: rgba(37, 211, 102, 0.4);
-    color: #25D366;
-  }
-
-  .contact-btn.contact-wa:hover {
-    background: #25D366;
-    color: #000000;
-    border-color: #000000;
-  }
-
-  /* ==========================================================================
-     ESTADO VACÍO RICO: CONVOCATORIA Y RECLUTAMIENTO DE NEGOCIOS (v1.0.0)
-     ========================================================================== */
-  .empty-state-hub {
-    background: var(--bg-surface-elevated);
-    border: 2px solid var(--border-app);
-    border-radius: var(--radius-lg);
-    box-shadow: 6px 6px 0px #000000, 0 10px 30px rgba(0, 0, 0, 0.4);
-    padding: 38px 32px;
-    margin-bottom: 44px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .empty-state-hub::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-success), var(--accent-cyan));
-  }
-
-  .empty-hero-section {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 34px;
-    padding-bottom: 28px;
-    border-bottom: 1.5px solid var(--border-subtle);
-  }
-
-  .empty-icon-pill-wrap {
-    flex-shrink: 0;
-  }
-
-  .empty-icon-circle {
-    width: 76px;
-    height: 76px;
-    border-radius: 50%;
-    background: rgba(0, 255, 135, 0.1);
-    border: 2px solid var(--color-success);
-    color: var(--color-success);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 4px 4px 0px #000000;
-  }
-
-  .empty-hero-content {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .empty-sticker {
-    background: var(--color-primary);
-    color: #000000;
-    display: inline-block;
-    margin-bottom: 10px;
-    font-weight: 800;
-  }
-
-  .empty-hub-title {
-    font-size: clamp(1.4rem, 3.2vw, 2rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    line-height: 1.25;
-    margin-bottom: 12px;
-  }
-
-  .empty-hub-lead {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .empty-hub-lead strong {
-    color: var(--text-primary);
-  }
-
-  /* Razón de ser / Beneficios */
-  .hub-reasons-title-row {
-    margin-bottom: 18px;
-  }
-
-  .hub-kicker {
-    display: block;
-    font-size: 0.76rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    color: var(--accent-cyan);
-    margin-bottom: 4px;
-  }
-
-  .hub-reasons-title-row h3 {
-    font-size: 1.25rem;
-    color: var(--text-primary);
-    margin: 0;
-  }
-
-  .hub-benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-
-  .hub-benefit-card {
-    background: var(--bg-primary);
-    border: 1.5px solid var(--border-app);
-    border-radius: var(--radius-md);
-    padding: 18px;
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    transition: transform var(--duration-hover) ease, border-color var(--duration-hover) ease;
-  }
-
-  .hub-benefit-card:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-  }
-
-  .hub-benefit-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    flex-shrink: 0;
-    border: 1.5px solid #000000;
-    box-shadow: 2px 2px 0px #000000;
-  }
-
-  .hub-benefit-icon.green {
-    background: var(--color-success);
-  }
-
-  .hub-benefit-icon.fuchsia {
-    background: var(--color-primary);
-  }
-
-  .hub-benefit-icon.amber {
-    background: var(--color-warning);
-  }
-
-  .hub-benefit-icon.cyan {
-    background: var(--accent-cyan);
-  }
-
-  .hub-benefit-body h4 {
-    font-size: 0.98rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 6px;
-  }
-
-  .hub-benefit-body p {
-    font-size: 0.86rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  /* Categorías Buscadas */
-  .hub-categories-box {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1.5px dashed var(--border-app);
-    border-radius: var(--radius-md);
-    padding: 20px 22px;
-    margin-bottom: 32px;
-  }
-
-  .hub-cat-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.94rem;
-    color: var(--text-primary);
-    margin-bottom: 12px;
-  }
-
-  .hub-tags-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .hub-tag {
-    display: inline-flex;
-    align-items: center;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-app);
-    border-radius: var(--radius-pill);
-    padding: 6px 14px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--text-secondary);
-    transition: all var(--duration-hover) ease;
-  }
-
-  .hub-tag:hover {
-    border-color: var(--color-primary);
-    color: var(--text-primary);
-    transform: translateY(-1px);
-  }
-
-  /* Pasos de Postulación */
-  .hub-steps-container {
-    margin-bottom: 34px;
-  }
-
-  .steps-title {
-    display: block;
-    font-size: 0.94rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 14px;
-  }
-
-  .steps-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-  }
-
-  .step-card {
-    background: var(--bg-surface);
-    border: 1.5px solid var(--border-app);
-    border-radius: var(--radius-md);
-    padding: 20px 18px;
-  }
-
-  .step-badge {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    color: #000000;
-    font-weight: 900;
-    font-size: 0.88rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    border: 1.5px solid #000000;
-    box-shadow: 2px 2px 0px #000000;
-  }
-
-  .step-card strong {
-    display: block;
-    font-size: 0.96rem;
-    color: var(--text-primary);
-    margin-bottom: 6px;
-  }
-
-  .step-card p {
-    font-size: 0.84rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  /* Acciones de Postulación */
-  .hub-actions-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-
-  .btn-hub-cta {
-    padding: 14px 28px;
-    font-size: 1rem;
-    font-weight: 800;
-    background: var(--color-success);
-    color: #000000;
-    border: 2px solid #000000;
-    box-shadow: 4px 4px 0px #000000;
-  }
-
-  .btn-hub-cta:hover {
-    background: var(--accent-green-hover);
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px #000000;
-  }
-
-  .btn-hub-email {
-    padding: 14px 22px;
-    font-size: 0.92rem;
-    font-weight: 700;
-  }
-
-  .hub-student-tip {
-    background: rgba(255, 63, 164, 0.08);
-    border: 1.5px solid rgba(255, 63, 164, 0.25);
-    border-radius: var(--radius-md);
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-  }
-
-  .tip-spark {
-    font-size: 1.3rem;
-    flex-shrink: 0;
-  }
-
-  /* Estado vacío general para búsquedas */
-  .empty-state {
-    text-align: center;
-    padding: 50px 24px;
-    margin-bottom: 40px;
-  }
-
-  .empty-state h3 {
-    font-size: 1.35rem;
-    margin-bottom: 10px;
-  }
-
-  .empty-state p {
-    color: var(--text-secondary);
-    max-width: 520px;
-    margin: 0 auto 24px auto;
-    font-size: 0.96rem;
-  }
-
-  @media (max-width: 768px) {
-    .empty-state-hub {
-      padding: 26px 20px;
-    }
-
-    .empty-hero-section {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 18px;
-    }
-
-    .hub-actions-bar {
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .btn-hub-cta,
-    .btn-hub-email {
-      width: 100%;
-      justify-content: center;
-      text-align: center;
-    }
-  }
-
-  .community-page-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 14px;
-    border-top: 1.5px solid var(--border-app);
-    padding-top: 28px;
-  }
-
-  @media (max-width: 640px) {
-    .community-page {
-      padding: 30px 0 60px 0;
-    }
-
-    .header-split {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 14px;
-    }
-
-    .btn-postular {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .controls-wrapper {
-      padding: 16px 14px;
-    }
-
-    .negocios-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .negocio-card {
-      padding: 18px 16px;
-    }
-
-    .contact-actions {
-      flex-direction: column;
-    }
-
-    .contact-btn {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .community-page-footer {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-    }
-  }
-</style>
+</body>
+</html>
