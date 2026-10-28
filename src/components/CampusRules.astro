@@ -1,0 +1,150 @@
+---
+---
+      <section id="modo" class="hub-campus-features">
+        <!-- Modo ESPE -->
+        <div data-for="espe" class="campus-feature-block">
+          <div class="campus-sec-header">
+            <span class="sticker-pill">⚡ EXCLUSIVO PARA LA VIDA ESTUDIANTIL ESPE</span>
+            <h2 class="hub-section-title">Lo que Pilas! resuelve en la ESPE</h2>
+            <p class="campus-sec-sub">Sedes Sangolquí, Latacunga, Santo Domingo y San Roque · Diseñado para la rutina universitaria real.</p>
+          </div>
+          <div class="rules-neo-grid">
+            <div class="rule-card">
+              <span class="rule-badge-num font-mono">01</span>
+              <div class="rule-body">
+                <h3>Traductor de aulas Banner</h3>
+                <p>Convierte códigos crípticos como “B-302” o “H-Auditorio” en bloque, piso y referencia visual para no perderte.</p>
+              </div>
+            </div>
+            <div class="rule-card">
+              <span class="rule-badge-num font-mono">02</span>
+              <div class="rule-body">
+                <h3>23 mallas curriculares</h3>
+                <p>Mallas oficiales actualizadas con materias aprobadas, créditos acumulados y prerrequisitos en cadena interactiva.</p>
+              </div>
+            </div>
+            <div class="rule-card">
+              <span class="rule-badge-num font-mono">03</span>
+              <div class="rule-body">
+                <h3>Regla de 42/60 puntos</h3>
+                <p>Calcula automáticamente cuánto puntaje necesitas en el Parcial 3 sobre 20 sin sorpresas de supletorio.</p>
+              </div>
+            </div>
+            <div class="rule-card">
+              <span class="rule-badge-num font-mono">04</span>
+              <div class="rule-body">
+                <h3>Pase de garita offline</h3>
+                <p>Muestra tu carnet estudiantil con código de barras de tu ID Banner listo para garita militar sin internet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modo Multi-Universidad -->
+        <div data-for="multi" class="campus-feature-block">
+          <div class="campus-sec-header">
+            <span class="sticker-pill coral">⭐ INTEGRACIÓN UNIVERSITARIA NACIONAL</span>
+            <h2 class="hub-section-title">Lo que Pilas! resuelve en tu universidad</h2>
+            <p class="campus-sec-sub">UCE, EPN, PUCE, ESPOL, UNACH, UTA, UTPL y cualquier campus con Moodle en Ecuador.</p>
+          </div>
+          <div class="rules-neo-grid">
+            <div class="rule-card coral">
+              <span class="rule-badge-num font-mono">01</span>
+              <div class="rule-body">
+                <h3>Conexión por código QR</h3>
+                <p>Abre Moodle en tu computadora, escanea el QR de la app móvil y sincroniza tu semestre sin ingresar contraseñas.</p>
+              </div>
+            </div>
+            <div class="rule-card coral">
+              <span class="rule-badge-num font-mono">02</span>
+              <div class="rule-body">
+                <h3>Calificador multi-escala</h3>
+                <p>Configura materias sobre 10, 20 o 100 puntos según el reglamento de tu facultad con redondeo académico exacto.</p>
+              </div>
+            </div>
+            <div class="rule-card coral">
+              <span class="rule-badge-num font-mono">03</span>
+              <div class="rule-body">
+                <h3>Detector de tareas y entregas</h3>
+                <p>Ordena tus deberes pendientes por fecha de entrega y te avisa antes de que la plataforma se cierre a las 23:59.</p>
+              </div>
+            </div>
+            <div class="rule-card coral">
+              <span class="rule-badge-num font-mono">04</span>
+              <div class="rule-body">
+                <h3>Carátulas con tu escudo oficial</h3>
+                <p>Genera carátulas listas en formato PDF con la tipografía, logotipo y datos oficiales de tu universidad.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<style is:global>
+/* Sección Modo */
+.hub-campus-features {
+  padding: 8px 0;
+}
+.campus-sec-header {
+  margin-bottom: 20px;
+}
+.campus-sec-sub {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-top: 6px;
+  max-width: 48em;
+}
+.rules-neo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.rule-card {
+  background: var(--bg-surface);
+  border: 2px solid var(--border-control);
+  border-radius: 14px;
+  padding: 18px 16px;
+  box-shadow: 3px 3px 0 #000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 100ms, border-color 150ms, box-shadow 100ms;
+}
+.rule-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 5px 5px 0 #000;
+}
+.rule-card.coral:hover {
+  border-color: var(--primary-coral);
+}
+.rule-badge-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+.rule-card.coral .rule-badge-num {
+  border-color: var(--primary-coral);
+  color: var(--primary-coral);
+}
+.rule-body h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  color: var(--title);
+}
+.rule-body p {
+  font-size: 0.88rem;
+  color: var(--body);
+  line-height: 1.4;
+  margin: 0;
+}
+
+</style>

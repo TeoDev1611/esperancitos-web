@@ -1,0 +1,102 @@
+---
+interface Props {
+  IG: string;
+  WA: string;
+}
+
+const { IG, WA } = Astro.props;
+---
+  <footer class="hub-footer">
+    <div class="wrap footer-wrap">
+      <div class="footer-brand-row">
+        <a class="footer-logo footer-brand-logo-pill" href="#" aria-label="Pilas!, volver arriba">
+          <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="footer-lettering-img" width="132" height="42" />
+        </a>
+        <div class="footer-pill-edition">
+          <span class="sticker-pill" data-for="espe">⚡ COMUNIDAD UNIVERSITARIA ESPE</span>
+          <span class="sticker-pill coral" data-for="multi">⭐ RED MULTI-UNIVERSIDAD ECUADOR</span>
+        </div>
+      </div>
+      <nav aria-label="Enlaces secundarios" class="footer-nav">
+        <a href="/faq">Preguntas frecuentes</a>
+        <a href="/avisos">Avisos</a>
+        <a href="/negocios">Negocios</a>
+        <a href="/privacidad">Privacidad</a>
+        <a href={IG} target="_blank" rel="noopener noreferrer">Instagram (@pilas_ec.app)</a>
+        <a href={WA} target="_blank" rel="noopener noreferrer">Canal de WhatsApp</a>
+      </nav>
+      <div class="footer-legal">
+        <p>Pilas! es un proyecto estudiantil independiente. No está respaldado ni afiliado oficialmente a la Universidad de las Fuerzas Armadas ESPE, Ellucian, Banner ni Moodle. Las credenciales y datos viven únicamente en tu teléfono.</p>
+        <p>Los nombres, siglas y logotipos de universidades pertenecen con exclusividad a sus respectivos titulares y se usan únicamente para fines de contextualización estudiantil y compatibilidad técnica.</p>
+        <p class="footer-copy">© 2026 Pilas! · Hecho con orgullo estudiantil para el Ecuador.</p>
+      </div>
+    </div>
+  </footer>
+
+<style is:global>
+/* Footer */
+.hub-footer {
+  padding: 48px 0 60px;
+  border-top: 2px solid #000;
+  background: var(--bg);
+  font-size: 0.95rem;
+}
+.footer-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.footer-lettering-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+}
+.footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--title);
+  font-weight: 700;
+  text-decoration: none;
+}
+.footer-nav a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+.footer-legal {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+.footer-legal p {
+  color: var(--muted);
+  max-width: 65em;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  margin: 0;
+}
+.footer-copy {
+  font-weight: 700;
+  color: var(--title);
+}
+
+</style>

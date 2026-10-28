@@ -1,0 +1,112 @@
+---
+interface Props {
+  M: any;
+}
+
+const { M } = Astro.props;
+---
+<span id="site-comp-data" hidden>{JSON.stringify(M)}</span>
+        <!-- DEMO 2: Compresor PDF para Moodle -->
+        <div class="card demo-card">
+          <div class="demo-card-hdr">
+            <span class="sticker-pill cyan">📄 COMPRESOR OFFLINE</span>
+            <span class="badge b-info">Límite 5 MB</span>
+          </div>
+          <h3>Reduce entregas pesadas para Moodle</h3>
+          <p class="fine">Comprime informes de 25 MB a menos de 4 MB sin salir de tu teléfono.</p>
+          <div class="gauge-card">
+            <div class="gauge-hdr">
+              <b class="num">informe_laboratorio.pdf</b>
+              <span class="num" id="gnow">24.8 MB</span>
+            </div>
+            <div class="gauge" role="img" aria-label="Medidor de compresión">
+              <i id="gfill"></i>
+              <span class="lim"></span>
+            </div>
+            <span class="badge b-crit" id="gb">Supera el límite: Moodle lo rechazaría</span>
+            <button class="btn btn-p" id="gbtn" type="button">Probar compresión</button>
+            <!-- Reacción interactiva de Pilo en el compresor -->
+            <div class="gauge-mascot-reaction" id="gauge-mascot-box">
+              <img src={M.scared} alt="Pilo asustado porque el archivo supera el límite" class="gauge-mascot-img" id="gauge-mascot-img" width="48" height="48" />
+              <div class="gauge-mascot-balloon">
+                <b class="gauge-mascot-status" id="gauge-mascot-status">¡Cuidado con la entrega!</b>
+                <span class="gauge-mascot-quote" id="gauge-mascot-quote">Moodle rechaza archivos mayores a 5 MB. Comprímelo en 1 toque.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<style is:global>
+}
+.calc-target { font-size: 1.2rem; font-weight: 800; }
+
+.gauge-card {
+  background: #11141e;
+  border: 1.5px solid var(--border-control);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+.gauge-hdr { display: flex; justify-content: space-between; align-items: center; }
+.gauge {
+  position: relative;
+  height: 16px;
+  border: 2px solid var(--border-control);
+  border-radius: 9999px;
+  background: var(--bg-base);
+  overflow: hidden;
+}
+.gauge i { display: block; height: 100%; width: 100%; background: var(--critical); }
+.lim { position: absolute; top: -2px; bottom: -2px; left: 16.67%; width: 3px; background: #fff; }
+
+.calc-mascot-reaction,
+.gauge-mascot-reaction {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-control);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-top: 10px;
+}
+.calc-mascot-img,
+.gauge-mascot-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(2px 2px 0 #000);
+}
+.calc-mascot-balloon,
+.gauge-mascot-balloon {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.calc-mascot-status,
+.gauge-mascot-status {
+  font-family: var(--f-d);
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--title);
+}
+.calc-mascot-quote,
+.gauge-mascot-quote {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+</style>
+
+<script>
+  import { initCompressorDemo } from '../scripts/compressor-demo';
+  const dataEl = document.getElementById('site-comp-data');
+  const masc = JSON.parse(dataEl?.textContent || '{}');
+  initCompressorDemo(masc);
+</script>

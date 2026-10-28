@@ -1,0 +1,98 @@
+---
+---
+  <header class="top">
+    <div class="wrap top-wrap">
+      <a class="nav-brand nav-brand-logo-pill" href="#" aria-label="Pilas!, volver al inicio">
+        <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="128" height="42" />
+      </a>
+      <div class="nav-status-badge">
+        <span class="live-pulse"></span>
+        <span class="nav-mode-txt" data-for="espe">ESPE Sangolquí</span>
+        <span class="nav-mode-txt" data-for="multi">Multi-Universidad</span>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-s btn-sm" id="replay" type="button" title="Ver exposición de Pilas">
+          <svg class="ico"><use href="#i-play"/></svg>
+          <span class="hide-s">Ver exposición</span>
+        </button>
+        <a class="btn btn-p btn-sm nav-dl-btn" href="#descargar">
+          <svg class="ico"><use href="#i-down"/></svg>
+          <span>Descargar</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+<style is:global>
+/* ============================================================== */
+/* 2. ESTILOS DEL HUB ESTUDIANTIL (LINKTREE BRUTALISTA)          */
+/* ============================================================== */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(16, 19, 25, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 2px solid #000;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+html[data-mode="multi"] .top {
+  background: rgba(25, 29, 40, 0.94);
+}
+.top-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+}
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-brand-logo {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+.nav-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-control);
+  border-radius: 9999px;
+  font: 800 0.8rem var(--f-d);
+  letter-spacing: 0.02em;
+  color: var(--title);
+  box-shadow: 2px 2px 0 #000;
+}
+.live-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 8px var(--success);
+  display: inline-block;
+  flex-shrink: 0;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hub-main {
+  padding: 36px 0 80px;
+}
+.hub-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+</style>

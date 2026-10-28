@@ -1,0 +1,116 @@
+---
+interface Props {
+  M: any;
+}
+
+const { M } = Astro.props;
+---
+<span id="site-calc-data" hidden>{JSON.stringify(M)}</span>
+        <!-- DEMO 1: Calculadora 42 Puntos ESPE -->
+        <div class="card demo-card">
+          <div class="demo-card-hdr">
+            <span class="sticker-pill green">⚖️ CALCULADORA 42/60 PTS</span>
+            <span class="badge b-ok" id="site-calc-verdict">✓ APROBADO (14.00)</span>
+          </div>
+          <h3>Simula con cuánto pasas tu semestre</h3>
+          <p class="fine">Mueve los controles para ver la nota que necesitas en el Parcial 3.</p>
+          <div class="mockup-calc">
+            <div class="calc-sliders-grid">
+              <div class="slider-box">
+                <div class="slider-lbl"><span>PARCIAL 1</span><span class="font-mono text-fuchsia" id="site-p1-val">15.50 / 20</span></div>
+                <input type="range" min="0" max="20" step="0.25" value="15.5" id="site-p1-slider" class="range-input">
+              </div>
+              <div class="slider-box">
+                <div class="slider-lbl"><span>PARCIAL 2</span><span class="font-mono text-fuchsia" id="site-p2-val">14.50 / 20</span></div>
+                <input type="range" min="0" max="20" step="0.25" value="14.5" id="site-p2-slider" class="range-input">
+              </div>
+            </div>
+            <div class="calc-result-banner">
+              <span>🎯 <strong>Nota requerida en Parcial 3:</strong></span>
+              <span class="calc-target font-mono text-amber" id="site-p3-req">12.00 / 20</span>
+            </div>
+            <!-- Reacción interactiva de Pilo según tu nota -->
+            <div class="calc-mascot-reaction" id="calc-mascot-box">
+              <img src={M.success} alt="Pilo celebrando que apruebas la materia con comodidad" class="calc-mascot-img" id="calc-mascot-img" width="48" height="48" />
+              <div class="calc-mascot-balloon">
+                <b class="calc-mascot-status" id="calc-mascot-status">¡Tranqui, vas sobrado!</b>
+                <span class="calc-mascot-quote" id="calc-mascot-quote">Con 12.00 o menos en el Parcial 3 ya pasas el semestre directo.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<style is:global>
+/* Demos Interactivas */
+.hub-demos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.demo-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.demo-card-hdr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.demo-card h3 {
+  font-size: 1.35rem;
+}
+.fine {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.mockup-calc {
+  background: #11141e;
+  border: 1.5px solid var(--border-control);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 6px;
+}
+.calc-sliders-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.slider-box {
+  background: #191d29;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.slider-lbl {
+  display: flex;
+  justify-content: space-between;
+  font: 800 0.8rem var(--f-d);
+  margin-bottom: 4px;
+}
+.range-input {
+  width: 100%;
+  accent-color: var(--primary);
+  cursor: pointer;
+  height: 6px;
+}
+.calc-result-banner {
+  background: rgba(255, 219, 96, 0.12);
+  border: 1px solid var(--warning);
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+</style>
+
+<script>
+  import { initGradeCalculator } from '../scripts/calculator';
+  const dataEl = document.getElementById('site-calc-data');
+  const masc = JSON.parse(dataEl?.textContent || '{}');
+  initGradeCalculator(masc);
+</script>

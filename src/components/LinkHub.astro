@@ -1,0 +1,166 @@
+---
+interface Props {
+  IG: string;
+  WA: string;
+}
+
+const { IG, WA } = Astro.props;
+---
+      <section class="hub-links-section">
+        <h2 class="hub-section-title">Enlaces y herramientas importantes</h2>
+        <div class="linktree-grid">
+          <!-- Link 1: FAQ -->
+          <a href="/faq" class="link-card">
+            <span class="link-icon">❓</span>
+            <div class="link-content">
+              <div class="link-head-row">
+                <b>Preguntas Frecuentes</b>
+                <span class="badge b-info">Centro de ayuda</span>
+              </div>
+              <p>Respuestas sobre contraseñas, instalación del APK, Moodle por QR y notas.</p>
+            </div>
+            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+          </a>
+
+          <!-- Link 2: Avisos -->
+          <a href="/avisos" class="link-card">
+            <span class="link-icon">📢</span>
+            <div class="link-content">
+              <div class="link-head-row">
+                <b>Tablón de Avisos de la Comunidad</b>
+                <span class="badge b-ok">En vivo</span>
+              </div>
+              <p>Novedades académicas, convocatorias estudiantiles y comunicados oficiales.</p>
+            </div>
+            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+          </a>
+
+          <!-- Link 3: Negocios -->
+          <a href="/negocios" class="link-card">
+            <span class="link-icon">🏪</span>
+            <div class="link-content">
+              <div class="link-head-row">
+                <b>Directorio de Negocios y Servicios</b>
+                <span class="badge b-warn">Gratis</span>
+              </div>
+              <p>Fotocopias, impresiones, almuerzos y papelerías alrededor de tu campus.</p>
+            </div>
+            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+          </a>
+
+          <!-- Link 4: Privacidad -->
+          <a href="/privacidad" class="link-card">
+            <span class="link-icon">🛡️</span>
+            <div class="link-content">
+              <div class="link-head-row">
+                <b>Privacidad & Arquitectura Zero-Backend</b>
+                <span class="badge b-info">AES-256</span>
+              </div>
+              <p>Tus claves nunca pasan por nosotros: cero servidores intermediarios.</p>
+            </div>
+            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+          </a>
+
+          <!-- Link 5: Instagram -->
+          <a href={IG} target="_blank" rel="noopener noreferrer" class="link-card">
+            <span class="link-icon">📸</span>
+            <div class="link-content">
+              <div class="link-head-row">
+                <b>Instagram Oficial</b>
+                <span class="badge b-ok">@pilas_ec.app</span>
+              </div>
+              <p>Noticias de nuevas versiones, historias de la comunidad y actualizaciones.</p>
+            </div>
+            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+          </a>
+
+          <!-- Link 6: WhatsApp -->
+          <a href={WA} target="_blank" rel="noopener noreferrer" class="link-card">
+            <span class="link-icon">💬</span>
+            <div class="link-content">
+              <div class="link-head-row">
+                <b>Canal Oficial de WhatsApp</b>
+                <span class="badge b-ok">Canal</span>
+              </div>
+              <p>Alertas académicas inmediatas, comunicados y recordatorios sin spam.</p>
+            </div>
+            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+          </a>
+        </div>
+      </section>
+
+<style is:global>
+/* Linktree de Enlaces */
+.hub-links-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.hub-section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+.linktree-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--bg-surface);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  text-decoration: none;
+  box-shadow: 3px 3px 0 #000;
+  transition: transform 100ms, border-color 150ms, box-shadow 100ms;
+}
+.link-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 #000;
+}
+.link-card:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+.link-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+.link-content {
+  flex: 1;
+  min-width: 0;
+}
+.link-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.link-head-row b {
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--title);
+}
+.link-content p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+.link-arrow {
+  color: var(--muted);
+  width: 1.2em;
+  height: 1.2em;
+  flex-shrink: 0;
+  transition: transform 150ms;
+}
+.link-card:hover .link-arrow {
+  color: var(--primary);
+  transform: translateX(3px);
+}
+
+</style>

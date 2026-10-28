@@ -1,0 +1,326 @@
+---
+import { SITE } from '../config/site';
+
+interface Props {
+  V: any;
+  M: any;
+  PLAY: string;
+  PLAY_STORE_BETA: any;
+  PRIMARY_ARCH: any;
+  ARCHITECTURES_LIST: any[];
+}
+
+const { V, M, PLAY, PLAY_STORE_BETA, PRIMARY_ARCH, ARCHITECTURES_LIST } = Astro.props;
+---
+      <section id="descargar" class="hub-download-card card">
+        <div class="dl-header-row">
+          <div class="dl-info-col">
+            <div class="pack-badge-row">
+              <span class="badge b-info"><svg class="ico"><use href="#i-info"/></svg>Versión {V.version} (Build {V.build})</span>
+              <span class="badge b-ok">✓ Sin anuncios ni rastreadores</span>
+              {V.downloads.show && (
+                <span class="badge b-warn">{V.downloads.fullText}</span>
+              )}
+            </div>
+            <h2 class="dl-title">Descarga Pilas! para Android</h2>
+            {V.version !== V.apkVersion && (
+              <p class="dl-apk-version-note" style="margin: 6px 0 10px; font-size: 0.88rem; color: var(--warning, #ffdb60);">
+                📌 <strong>Última versión del APK: v{V.apkVersion}</strong> ({V.note})
+              </p>
+            )}
+            <p class="dl-subtitle">Sin tiendas obligatorias, sin pagos ni publicidad. Pesa {V.size} y funciona en cualquier Android 8.0 en adelante.</p>
+            
+            <div class="dl-cta-row">
+              <a class="btn btn-p btn-lg dl-primary-btn" href={V.apk}>
+                <svg class="ico"><use href="#i-down"/></svg>
+                <span>Descargar APK ({V.size})</span>
+              </a>
+              <a class="btn btn-s btn-sm" href={PLAY} target="_blank" rel="noopener noreferrer">
+                Inscribirme en la Beta de Play Store
+              </a>
+            </div>
+          </div>
+          
+          <div class="dl-badge-col">
+            <div class="dl-mascot-stamp">
+              <img src={M.success} alt="Pilas aprueba la versión" class="dl-mascot-img" width="84" height="84" />
+              <div class="dl-stamp-text">
+                <b class="font-mono">COMPILACIÓN #{V.build}</b>
+                <small>Compilación firmada con SHA-256</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guía en 3 Pasos Anti-Susto -->
+        <div class="hub-steps-grid">
+          <div class="step-card">
+            <span class="step-num">1</span>
+            <div class="step-text">
+              <b>Descarga el archivo APK</b>
+              <small>El archivo se guardará en la carpeta Descargas de tu teléfono.</small>
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-num">2</span>
+            <div class="step-text">
+              <b>Permite la instalación</b>
+              <small>Si Android te pregunta, activa “Permitir desde esta fuente” en Chrome o Archivos.</small>
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-num">3</span>
+            <div class="step-text">
+              <b>Abre y elige tu campus</b>
+              <small>Inicia sesión en MiESPE o escanea el QR de Moodle Mobile en tu pantalla.</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloque: ¿Cómo verifico que es auténtico? -->
+        <div class="apk-verify-box">
+          <div class="apk-verify-header">
+            <span class="badge b-info">🔍 VERIFICACIÓN CRIPTOGRÁFICA</span>
+            <h3 style="margin: 8px 0 4px; font-size: 1.15rem;">¿Cómo verifico que este APK es auténtico?</h3>
+            <p style="font-size: 0.9rem; color: var(--muted); margin: 0 0 12px;">
+              Compara la huella digital SHA-256 del archivo descargado con la lista oficial. Si coincide carácter por carácter, tienes la certeza matemática de que nadie modificó el archivo.
+            </p>
+          </div>
+
+          <div class="terminal-snippets-grid">
+            <div class="terminal-snippet">
+              <span class="terminal-os">🪟 Windows (PowerShell)</span>
+              <code>Get-FileHash .\pilas-v{V.apkVersion}-{PRIMARY_ARCH.id}.apk -Algorithm SHA256</code>
+            </div>
+            <div class="terminal-snippet">
+              <span class="terminal-os">🐧 Linux</span>
+              <code>sha256sum pilas-v{V.apkVersion}-{PRIMARY_ARCH.id}.apk</code>
+            </div>
+            <div class="terminal-snippet">
+              <span class="terminal-os">🍎 macOS</span>
+              <code>shasum -a 256 pilas-v{V.apkVersion}-{PRIMARY_ARCH.id}.apk</code>
+            </div>
+            <div class="terminal-snippet">
+              <span class="terminal-os">🤖 Android</span>
+              <code>sha256sum pilas-v{V.apkVersion}-*.apk</code>
+            </div>
+          </div>
+
+          <!-- Video tutorial placeholder -->
+          <div class="install-video-box" style="margin-top: 14px; padding: 10px 14px; border: 1.5px dashed var(--border); border-radius: 8px; font-size: 0.88rem; display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.02);">
+            <span class="badge b-warn">📹 VIDEO TUTORIAL</span>
+            <span>¿Primera vez instalando un APK? <!-- TODO(owner): Grabar y enlazar video tutorial corto (30s) de instalación sin sustos --> Video tutorial paso a paso en preparación por el equipo.</span>
+          </div>
+
+          {PLAY_STORE_BETA.enabled ? (
+            <div class="play-beta-box" style="margin-top: 12px; padding: 12px 16px; background: rgba(0, 255, 135, 0.08); border: 1.5px solid var(--success); border-radius: 8px;">
+              <b>🟢 Beta en Google Play Store disponible:</b>
+              <p style="margin: 4px 0 8px; font-size: 0.9rem;">{PLAY_STORE_BETA.note}</p>
+              <a href={PLAY_STORE_BETA.url} target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-p">
+                Instalar desde Google Play (Beta Cerrada) ➔
+              </a>
+            </div>
+          ) : (
+            <div class="play-beta-box" style="margin-top: 12px; padding: 10px 14px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 8px; font-size: 0.86rem; color: var(--muted);">
+              <span>¿Prefieres instalar desde Google Play Store? <a href={SITE.playStoreBetaUrl} target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: 700;">Inscríbete en el grupo de prueba cerrada aquí ➔</a></span>
+            </div>
+          )}
+        </div>
+
+        <!-- Desplegable con otras arquitecturas -->
+        <details class="more-downloads">
+          <summary>Ver otras arquitecturas de celular y huellas SHA-256</summary>
+          <div class="dl-alt-list">
+            {ARCHITECTURES_LIST.map((arch) => (
+              <div>
+                <b>{arch.name} ({arch.description} · {arch.formattedSize})</b>
+                <a href={arch.url} download={`pilas-v${V.apkVersion}-${arch.name}.apk`}>Descargar APK {arch.name}</a>
+                <small class="num font-mono">SHA-256: {arch.sha256}</small>
+              </div>
+            ))}
+          </div>
+        </details>
+      </section>
+
+<style is:global>
+/* Tarjeta de Descarga */
+.hub-download-card {
+  background: var(--bg-elevated);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: clamp(20px, 3.5vw, 36px);
+  box-shadow: 4px 4px 0 #000;
+}
+.dl-header-row {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 24px;
+  align-items: center;
+}
+.dl-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.dl-title {
+  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+  margin: 6px 0;
+}
+.dl-subtitle {
+  color: var(--body);
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+.dl-cta-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.dl-badge-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dl-mascot-stamp {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-surface);
+  border: 2px dashed var(--success);
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 3px 3px 0 #000;
+}
+.dl-mascot-img {
+  width: 74px;
+  height: 74px;
+  object-fit: contain;
+}
+.dl-stamp-text b {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--success);
+}
+.dl-stamp-text small {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.pack-badge-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hub-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--bg-surface);
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-control);
+}
+.step-num {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #000;
+  font: 800 1rem var(--f-d);
+  flex-shrink: 0;
+}
+html[data-mode="multi"] .step-num {
+  background: var(--primary-coral);
+}
+.step-text b {
+  display: block;
+  color: var(--title);
+  font-size: 0.95rem;
+}
+.step-text small {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.25;
+  margin-top: 2px;
+  display: block;
+}
+
+details.more-downloads {
+  border: 1.5px solid var(--border-control);
+  border-radius: 12px;
+  background: var(--bg-surface);
+  padding: 6px 16px;
+}
+details summary {
+  font: 800 0.95rem var(--f-d);
+  color: var(--title);
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::after { content: "+"; margin-left: auto; font-size: 1.3rem; color: var(--muted); }
+details[open] summary::after { content: "−"; }
+details[open] { padding-bottom: 16px; }
+.dl-alt-list { display: grid; gap: 12px; margin-top: 10px; font-size: 0.9rem; }
+.dl-alt-list > div { display: grid; gap: 4px; padding: 8px 0; border-top: 1px solid var(--border); }
+.dl-alt-list > div:first-of-type { border-top: none; }
+.dl-alt-list a { font-weight: 700; }
+.dl-alt-list small { color: var(--muted); font-size: 0.8rem; word-break: break-all; }
+
+/* Verificación Criptográfica de APK */
+.apk-verify-box {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-control);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-top: 20px;
+}
+.terminal-snippets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.terminal-snippet {
+  background: #090b10;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 2px 2px 0 #000;
+}
+.terminal-os {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--title);
+  letter-spacing: 0.03em;
+}
+.terminal-snippet code {
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: #00ff87;
+  word-break: break-all;
+  user-select: all;
+  background: transparent;
+  padding: 0;
+}
+
+</style>
