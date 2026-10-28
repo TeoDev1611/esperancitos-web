@@ -1,4 +1,6 @@
 ---
+import { ACADEMIC_STATS } from '../lib/academic';
+
 interface Props {
   M: any;
 }
@@ -39,7 +41,7 @@ const { M } = Astro.props;
 
                   <dl class="pass-data-grid">
                     <div><dt>Aulas</dt><dd>Bloques A al H</dd></div>
-                    <div><dt>Mallas</dt><dd class="num">23 carreras</dd></div>
+                    <div><dt>Mallas</dt><dd class="num">{ACADEMIC_STATS.mallasCount} carreras</dd></div>
                     <div><dt>Regla</dt><dd class="num">42 / 60 pts</dd></div>
                     <div><dt>Cifrado</dt><dd>AES-256 local</dd></div>
                   </dl>

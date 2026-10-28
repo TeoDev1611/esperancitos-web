@@ -1,0 +1,42 @@
+{
+  "mallas": [
+    { "id": "software", "name": "Ingeniería de Software", "faculty": "Sistemas", "semesters": 9 },
+    { "id": "ti", "name": "Tecnologías de la Información", "faculty": "Sistemas", "semesters": 9 },
+    { "id": "computacion", "name": "Ciencias de la Computación", "faculty": "Sistemas", "semesters": 9 },
+    { "id": "mecatronica", "name": "Ingeniería Mecatrónica", "faculty": "Mecánica y Mecatrónica", "semesters": 9 },
+    { "id": "electronica", "name": "Electrónica y Automatización", "faculty": "Eléctrica y Electrónica", "semesters": 9 },
+    { "id": "telecomunicaciones", "name": "Telecomunicaciones", "faculty": "Eléctrica y Electrónica", "semesters": 9 },
+    { "id": "biotecnologia", "name": "Biotecnología", "faculty": "Ciencias de la Vida", "semesters": 9 },
+    { "id": "civil", "name": "Ingeniería Civil", "faculty": "Civil", "semesters": 9 },
+    { "id": "mecanica", "name": "Ingeniería Mecánica", "faculty": "Mecánica", "semesters": 9 },
+    { "id": "automotriz", "name": "Ingeniería Automotriz", "faculty": "Mecánica", "semesters": 9 },
+    { "id": "petroleos", "name": "Ingeniería en Petróleos", "faculty": "Geología y Petróleos", "semesters": 9 },
+    { "id": "geologia", "name": "Geología", "faculty": "Geología y Petróleos", "semesters": 9 },
+    { "id": "industrial", "name": "Ingeniería Industrial", "faculty": "Mecánica", "semesters": 9 },
+    { "id": "agropecuaria", "name": "Ingeniería Agropecuaria", "faculty": "Ciencias de la Vida", "semesters": 9 },
+    { "id": "seguridad-salud", "name": "Seguridad y Salud Ocupacional", "faculty": "Seguridad", "semesters": 9 },
+    { "id": "administracion", "name": "Administración de Empresas", "faculty": "Ciencias Económicas", "semesters": 9 },
+    { "id": "contabilidad", "name": "Contabilidad y Auditoría", "faculty": "Ciencias Económicas", "semesters": 9 },
+    { "id": "comercio-exterior", "name": "Comercio Exterior", "faculty": "Ciencias Económicas", "semesters": 9 },
+    { "id": "economia", "name": "Economía", "faculty": "Ciencias Económicas", "semesters": 9 },
+    { "id": "turismo", "name": "Turismo", "faculty": "Ciencias Humanas", "semesters": 9 },
+    { "id": "idiomas", "name": "Pedagogía de los Idiomas Nacionales y Extranjeros", "faculty": "Ciencias Humanas", "semesters": 9 },
+    { "id": "educacion-inicial", "name": "Educación Inicial", "faculty": "Ciencias Humanas", "semesters": 9 },
+    { "id": "educacion-basica", "name": "Educación Básica", "faculty": "Ciencias Humanas", "semesters": 9 }
+  ],
+  "tools": [
+    { "id": "pdf-compressor", "name": "Compresor de PDF para Moodle", "tag": "MOODLE READY", "icon": "📄", "desc": "Baja tus entregas de 25 MB a menos de 4 MB para no rebotar en Moodle" },
+    { "id": "grade-calculator", "name": "Calculadora de Notas 42/60 pts y Multiescala", "tag": "SIMULADOR", "icon": "⚖️", "desc": "Cálculo oficial con regla de 42 puntos para la ESPE y escalas sobre 10, 20 y 100" },
+    { "id": "covers-generator", "name": "Generador de Carátulas Universitarias Oficiales", "tag": "FORMATOS OFICIALES", "icon": "📐", "desc": "Formatos institucionales con sellos de facultades en segundos" },
+    { "id": "cam-scanner", "name": "Escáner Móvil Nítido", "tag": "ALTA NITIDEZ", "icon": "📷", "desc": "Digitaliza apuntes en blanco y negro puro sin marcas de agua" },
+    { "id": "digital-signature", "name": "Firma Digital Manuscrita", "tag": "TRANSPARENTE", "icon": "✍️", "desc": "Estampa tu firma transparente sobre informes y solicitudes en PDF" },
+    { "id": "pdf-merge-split", "name": "Unir y Dividir Documentos PDF", "tag": "ORGANIZADOR", "icon": "📑", "desc": "Combina reportes, separa capítulos y reorganiza hojas sin internet" },
+    { "id": "ocr-reader", "name": "Lector OCR Offline (Pizarras y Libros)", "tag": "EXTRACTOR", "icon": "🔍", "desc": "Extrae texto editable de fotografías de pizarras y libros al portapapeles" },
+    { "id": "zip-encrypt", "name": "Empaquetador ZIP & Cifrado Local", "tag": "SEGURIDAD", "icon": "📦", "desc": "Comprime código y proyectos con contraseña local" },
+    { "id": "exif-cleaner", "name": "Limpiador de Metadatos EXIF", "tag": "PRIVACIDAD", "icon": "🛡️", "desc": "Remueve GPS, modelo de cámara y fecha antes de subir fotos a la nube" },
+    { "id": "classroom-decoder", "name": "Decodificador de Aulas y Bloques", "tag": "CAMPUS EXACTO", "icon": "📍", "desc": "Traductor de códigos de horario a bloques y pisos físicos" },
+    { "id": "moodle-qr", "name": "Lector QR Moodle Mobile Instantáneo", "tag": "INSTANTÁNEO", "icon": "⚡", "desc": "Sincroniza materias y horarios en 1 segundo escaneando el QR oficial" },
+    { "id": "digital-id", "name": "Carnet Digital Estudiantil / Pase Garita", "tag": "OFFLINE", "icon": "🪪", "desc": "Pase de torniquetes y garita con código de barras 100% offline" },
+    { "id": "curriculum-trees", "name": "Árbol Interactivo de Mallas Curriculares", "tag": "PRERREQUISITOS", "icon": "📚", "desc": "Malla interactiva con cálculo de materias desbloqueadas y créditos" }
+  ]
+}

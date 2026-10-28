@@ -1,0 +1,344 @@
+---
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/inter';
+import { SITE } from '../config/site';
+import changelog from '../data/changelog.json';
+
+const title = `Historial de Cambios y Versiones | ${SITE.name}`;
+const description = `Consulta todas las novedades, mejoras de rendimiento, parches de seguridad y lanzamientos oficiales de Pilas! para Android.`;
+const canonicalUrl = `${SITE.url}/cambios`;
+---
+<!doctype html>
+<html lang="es-EC" data-mode="espe">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{title}</title>
+<meta name="description" content={description}>
+<link rel="canonical" href={canonicalUrl}>
+<meta name="theme-color" content="#101319">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<script is:inline>
+try {
+  var m = localStorage.pilasMode;
+  if (m === 'multi' || m === 'espe') document.documentElement.dataset.mode = m;
+} catch (e) {}
+</script>
+<style>
+  :root {
+    --bg: #101319;
+    --card: #161A23;
+    --card-hover: #1E2330;
+    --border: #232938;
+    --border-strong: #000;
+    --text: #F1F4F9;
+    --muted: #8E99AE;
+    --accent: #FF3FA4;
+    --accent-green: #00FF87;
+    --accent-coral: #FF6584;
+    --accent-amber: #FFB800;
+    --accent-cyan: #00E5FF;
+    --shadow-hard: 4px 4px 0 #000;
+    --shadow-hard-sm: 2px 2px 0 #000;
+    --radius: 8px;
+    --font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Outfit Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    padding: 0 16px 80px;
+    min-height: 100vh;
+  }
+
+  .nav-strip {
+    max-width: 900px;
+    margin: 20px auto 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    background: var(--card);
+    border: 2px solid var(--border-strong);
+    box-shadow: var(--shadow-hard);
+    border-radius: var(--radius);
+  }
+
+  .brand-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .brand-back:hover { color: var(--accent); }
+
+  .nav-tag {
+    font-size: 0.75rem;
+    font-family: monospace;
+    background: var(--accent);
+    color: #000;
+    padding: 3px 8px;
+    font-weight: 800;
+    border: 1px solid #000;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .header-box {
+    margin-bottom: 40px;
+  }
+
+  .badge-tag {
+    display: inline-block;
+    background: var(--accent-green);
+    color: #000;
+    font-weight: 900;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border: 2px solid #000;
+    box-shadow: var(--shadow-hard-sm);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .header-desc {
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 700px;
+  }
+
+  .discrepancy-card {
+    background: #1B1E28;
+    border: 2px solid var(--accent-amber);
+    box-shadow: var(--shadow-hard);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 24px 0 36px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .discrepancy-icon { font-size: 1.5rem; }
+  .discrepancy-card strong { color: var(--accent-amber); }
+  .discrepancy-card p { font-size: 0.9rem; color: var(--text); }
+
+  /* Lista de Versiones */
+  .version-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .version-card {
+    background: var(--card);
+    border: 2px solid var(--border-strong);
+    box-shadow: var(--shadow-hard);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: transform 0.15s ease;
+  }
+
+  .version-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 12px;
+  }
+
+  .version-identity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .version-number {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--accent);
+  }
+
+  .build-pill {
+    font-family: monospace;
+    font-size: 0.75rem;
+    background: #232938;
+    color: var(--text);
+    padding: 2px 8px;
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+  }
+
+  .version-date {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .version-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 10px 0 6px;
+  }
+
+  .version-highlight {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+  }
+
+  .changes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .change-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.95rem;
+  }
+
+  .change-tag {
+    font-family: monospace;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .tag-feat { background: var(--accent-green); color: #000; }
+  .tag-fix { background: var(--accent-coral); color: #000; }
+  .tag-security { background: var(--accent-cyan); color: #000; }
+  .tag-perf { background: var(--accent-amber); color: #000; }
+
+  /* Footer CTA */
+  .changelog-cta {
+    margin-top: 48px;
+    text-align: center;
+    background: var(--card);
+    border: 2px solid var(--border-strong);
+    box-shadow: var(--shadow-hard);
+    border-radius: var(--radius);
+    padding: 32px 20px;
+  }
+
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 900;
+    font-size: 1rem;
+    padding: 14px 28px;
+    border: 2px solid #000;
+    box-shadow: var(--shadow-hard);
+    text-decoration: none;
+    border-radius: var(--radius);
+    margin-top: 16px;
+  }
+  .btn-download:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #000; }
+</style>
+</head>
+<body>
+
+<header class="nav-strip" role="banner">
+  <a href="/" class="brand-back" title="Volver al Hub de Pilas!">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <span>← Volver al Hub</span>
+  </a>
+  <span class="nav-tag font-mono">REGISTRO DE CAMBIOS</span>
+</header>
+
+<main class="container">
+  <div class="header-box">
+    <span class="badge-tag">RELEASES & VERSIONES</span>
+    <h1>Historial de Cambios</h1>
+    <p class="header-desc">
+      Transparencia total en cada actualización. Revisa aquí todas las características implementadas, parches de seguridad y mejoras de rendimiento.
+    </p>
+
+    {SITE.versionDiscrepancyNote && (
+      <div class="discrepancy-card" role="note">
+        <span class="discrepancy-icon" aria-hidden="true">💡</span>
+        <div>
+          <strong>Estado de versiones de Pilas!:</strong>
+          <p>
+            La versión del producto actual es <strong>v{SITE.version}</strong> (build {SITE.build}), mientras que el paquete de instalación móvil distribuido en APK corresponde a <strong>v{SITE.apkVersion}</strong>. {SITE.versionDiscrepancyNote}
+          </p>
+        </div>
+      </div>
+    )}
+  </div>
+
+  <section class="version-timeline" aria-label="Línea de tiempo de versiones">
+    {changelog.map((entry) => (
+      <article class="version-card">
+        <div class="version-header">
+          <div class="version-identity">
+            <span class="version-number">v{entry.version}</span>
+            <span class="build-pill">build {entry.build}</span>
+          </div>
+          <time class="version-date" datetime={entry.date}>
+            {entry.date}
+          </time>
+        </div>
+
+        <h2 class="version-title">{entry.title}</h2>
+        <p class="version-highlight">{entry.highlight}</p>
+
+        <ul class="changes-list">
+          {entry.changes.map((change) => (
+            <li class="change-item">
+              <span class={`change-tag tag-${change.type}`}>
+                {change.type === 'feat' ? 'Nuevo' : change.type === 'fix' ? 'Arreglo' : change.type === 'security' ? 'Seguridad' : 'Rendimiento'}
+              </span>
+              <span>{change.text}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </section>
+
+  <section class="changelog-cta">
+    <h2>¿Listo para probar la última versión?</h2>
+    <p style="color: var(--muted); margin-top: 6px;">Instala Pilas! en tu teléfono Android y mantén tu semestre al día sin depender de internet.</p>
+    <a href="/#descargar" class="btn-download">
+      <span>Descargar APK v{SITE.apkVersion}</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    </a>
+  </section>
+</main>
+
+</body>
+</html>

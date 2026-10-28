@@ -1,6 +1,7 @@
 ---
 import CampusSelector from './CampusSelector.astro';
 import Carnet3D from './Carnet3D.astro';
+import { ACADEMIC_STATS } from '../lib/academic';
 
 interface Props {
   V: any;
@@ -31,7 +32,7 @@ const { V, M } = Astro.props;
           </h1>
 
           <p class="hub-desc">
-            <span data-for="espe">Aulas decodificadas a pisos reales, 23 mallas con prerrequisitos interactivos, simulador de 42 puntos y carnet garita. 100% offline y en tu bolsillo.</span>
+            <span data-for="espe">Aulas decodificadas a pisos reales, {ACADEMIC_STATS.mallasCount} mallas con prerrequisitos interactivos, simulador de 42 puntos y carnet garita. 100% offline y en tu bolsillo.</span>
             <span data-for="multi">Vinculación por QR de Moodle Mobile en 1 segundo, notas en cualquier escala (10, 20 o 100) y carnet estudiantil universal. Sin intermediarios.</span>
           </p>
 

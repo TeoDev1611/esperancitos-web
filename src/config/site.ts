@@ -15,6 +15,7 @@ import {
   APK_CHECKSUMS,
   DOWNLOAD_STATS,
 } from "../lib/release";
+import { ACADEMIC_STATS } from "../lib/academic";
 
 export const SITE = {
   /** URL canónica de producción, sin barra final. */
@@ -27,7 +28,7 @@ export const SITE = {
   title:
     `Pilas! v${RELEASE.version} • La app universitaria definitiva para Android (ESPE & Multi-Universidad)`,
   description:
-    "Pilas! conecta tu Moodle, tus horarios con aulas exactas, tu carnet digital y una suite de 13 herramientas offline en una app ultra rápida, privada y sin publicidad. Diseñada para la ESPE y lista para cualquier campus universitario con Moodle.",
+    `Pilas! conecta tu Moodle, tus horarios con aulas exactas, tu carnet digital y una suite de ${ACADEMIC_STATS.toolsCount} herramientas offline en una app ultra rápida, privada y sin publicidad. Diseñada para la ESPE y lista para cualquier campus universitario con Moodle.`,
 
   /** Enlace a formulario de inscripción a la beta cerrada de Google Play */
   playStoreBetaUrl: "https://forms.gle/svzBYKL2ZhWrS7M78",
@@ -95,6 +96,9 @@ export const SITE = {
 
   /** Huellas SHA-256 de los APK publicados */
   apkChecksums: APK_CHECKSUMS,
+
+  /** Estadísticas dinámicas de mallas y herramientas offline */
+  academicStats: ACADEMIC_STATS,
 
   /** Fecha de corte de mallas curriculares, distribución de aulas y reglas semestrales */
   academicDataLastUpdated: "20 de marzo de 2026",

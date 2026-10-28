@@ -11,6 +11,7 @@ import {
   DOWNLOAD_STATS,
   PLAY_STORE_BETA,
 } from '../lib/release';
+import { SITE } from '../config/site';
 import PresentationIntro from '../components/PresentationIntro.astro';
 import HubHeader from '../components/HubHeader.astro';
 import HubHero from '../components/HubHero.astro';
@@ -20,6 +21,7 @@ import DownloadCenter from '../components/DownloadCenter.astro';
 import LinkHub from '../components/LinkHub.astro';
 import GradeCalculatorDemo from '../components/GradeCalculatorDemo.astro';
 import PdfCompressorDemo from '../components/PdfCompressorDemo.astro';
+import SocialProofSection from '../components/SocialProofSection.astro';
 import HubFooter from '../components/HubFooter.astro';
 
 // Datos centrales del producto (única fuente de verdad)
@@ -54,7 +56,7 @@ const WA = 'https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pilas! La app estudiantil para la ESPE y otras universidades del Ecuador</title>
-<meta name="description" content="Horario con aulas exactas, Moodle por QR, carnet digital y 13 herramientas offline. Gratis, sin anuncios y sin servidores intermedios.">
+<meta name="description" content={SITE.description}>
 <meta name="theme-color" content="#101319">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -128,6 +130,8 @@ try {
         <GradeCalculatorDemo M={M} />
         <PdfCompressorDemo M={M} />
       </section>
+
+      <SocialProofSection />
     </div>
   </main>
 

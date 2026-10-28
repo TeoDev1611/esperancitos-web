@@ -1,0 +1,389 @@
+---
+// MultiUniversitySection.astro - Expansión ESPE Multi-Sedes y Universidades de Ecuador
+---
+
+<section class="uni-section scroll-reveal" id="universidades">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <div class="sticker-pill" style="background: #FF3FA4; color: #000; margin-bottom: 14px;">
+        🏛️ ESPE & MODO MULTI-UNIVERSIDAD ECUADOR
+      </div>
+      <h2>Nacida en la ESPE, lista para todas las universidades</h2>
+      <p>
+        Comenzamos resolviendo el caos de aulas y notas en los tres campus de la ESPE. Ahora, cualquier estudiante universitario del Ecuador con Moodle puede sumarse en 1 segundo con su código QR.
+      </p>
+    </div>
+
+    <!-- Layout Dual: ESPE Nativo vs Modo Universal -->
+    <div class="uni-dual-grid">
+      <!-- Columna 1: Integración Nativa ESPE -->
+      <article class="uni-column-card card-app espe-card reveal-init">
+        <div class="uni-card-header">
+          <div class="uni-badge-group">
+            <span class="badge-app green">ESPE OFICIAL</span>
+            <span class="campus-pills-row">3 CAMPUS</span>
+          </div>
+          <h3>Modo Nativo ESPE</h3>
+          <p class="uni-desc">
+            Integración completa y profunda con la infraestructura académica de la <strong>Universidad de las Fuerzas Armadas ESPE</strong>.
+          </p>
+        </div>
+
+        <div class="campus-tags-cluster">
+          <div class="campus-tag">
+            <span class="dot-live"></span>
+            <strong>Matriz Sangolquí</strong>
+            <small>Bloques A - H · Labs</small>
+          </div>
+          <div class="campus-tag">
+            <span class="dot-live"></span>
+            <strong>Sede Latacunga</strong>
+            <small>Centro & Belisario Quevedo</small>
+          </div>
+          <div class="campus-tag">
+            <span class="dot-live"></span>
+            <strong>Sede Sto. Domingo</strong>
+            <small>Hacienda Zoila Luz</small>
+          </div>
+        </div>
+
+        <ul class="uni-feature-list">
+          <li>
+            <span class="bullet-check">✓</span>
+            <div>
+              <strong>Traductor inteligente de aulas Banner</strong>
+              <p>Traduce <code>BLOQ G AUL 201</code> a <em>Bloque G · Piso 2 · Aula 201</em> sin confusiones.</p>
+            </div>
+          </li>
+          <li>
+            <span class="bullet-check">✓</span>
+            <div>
+              <strong>Regla oficial 42/60 y el mítico 14.01</strong>
+              <p>Cálculo exacto del promedio y el examen final según el estatuto académico de la ESPE.</p>
+            </div>
+          </li>
+          <li>
+            <span class="bullet-check">✓</span>
+            <div>
+              <strong>23 Mallas curriculares interactivas</strong>
+              <p>Todas las carreras de ingeniería, ciencias y licenciaturas precargadas 100% offline.</p>
+            </div>
+          </li>
+          <li>
+            <span class="bullet-check">✓</span>
+            <div>
+              <strong>Carnet Espemático con código de barras</strong>
+              <p>Pase rápido en torniquetes, garita vehicular y préstamo de biblioteca.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="uni-card-action">
+          <a href="/espe" class="btn-uni-cta espe">
+            <span>Ver versión completa ESPE</span>
+            <span class="cta-arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Columna 2: Modo Universal Multi-Universidad -->
+      <article class="uni-column-card card-app universal-card reveal-init">
+        <div class="uni-card-header">
+          <div class="uni-badge-group">
+            <span class="badge-app fuchsia">UNIVERSAL</span>
+            <span class="campus-pills-row">ECUADOR</span>
+          </div>
+          <h3>Modo Universal Multi-Universidad</h3>
+          <p class="uni-desc">
+            Conexión instantánea a cualquier plataforma académica Moodle del país sin configuración manual ni contraseñas en servidores.
+          </p>
+        </div>
+
+        <!-- Universidades Compatibles -->
+        <div class="uni-logos-badges">
+          <span class="uni-pill-name">UCE</span>
+          <span class="uni-pill-name">EPN</span>
+          <span class="uni-pill-name">PUCE</span>
+          <span class="uni-pill-name">ESPOL</span>
+          <span class="uni-pill-name">UNACH</span>
+          <span class="uni-pill-name">+ Moodle Standard</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--color-text-muted, #8E99AE); margin: 6px 0 12px; line-height: 1.4;">
+          * Integración verificada en campus: ESPE (Sangolquí y Sedes). Otras instituciones en proceso de homologación por protocolo estándar Moodle QR. <!-- TODO(owner): Actualizar lista con instancias verificadas formalmente -->
+        </p>
+
+        <ul class="uni-feature-list">
+          <li>
+            <span class="bullet-check fuchsia">✓</span>
+            <div>
+              <strong>Escaneo QR de Moodle Mobile (<code>moodlemobile://</code>)</strong>
+              <p>Apunta tu cámara al código QR de tu perfil institucional y tus materias se descargan al instante.</p>
+            </div>
+          </li>
+          <li>
+            <span class="bullet-check fuchsia">✓</span>
+            <div>
+              <strong>Calculadora multi-escala flexible</strong>
+              <p>Compatible con escalas sobre <strong>10, 20 o 100 puntos</strong> y regímenes de 2 parciales (50/50) o 3 parciales.</p>
+            </div>
+          </li>
+          <li>
+            <span class="bullet-check fuchsia">✓</span>
+            <div>
+              <strong>Carátulas con escudos de tu facultad</strong>
+              <p>Genera portadas con los sellos oficiales de las principales universidades o carga tu propio logo.</p>
+            </div>
+          </li>
+          <li>
+            <span class="bullet-check fuchsia">✓</span>
+            <div>
+              <strong>Carnet digital universal configurable</strong>
+              <p>Muestra tu foto, carrera y credencial institucional con holograma tornasol anti-esperas.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="uni-card-action">
+          <a href="/multi-u" class="btn-uni-cta multi">
+            <span>Ver versión Multi-Universidad</span>
+            <span class="cta-arrow">→</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .uni-card-action {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.12);
+  }
+
+  .btn-uni-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-decoration: none;
+    border: 2px solid #000000;
+    box-shadow: 3px 3px 0px #000000;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .btn-uni-cta.espe {
+    background: #00ff87;
+    color: #000000;
+  }
+
+  .btn-uni-cta.multi {
+    background: #ff3fa4;
+    color: #000000;
+  }
+
+  .btn-uni-cta:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px #000000;
+  }
+
+  .btn-uni-cta .cta-arrow {
+    transition: transform 0.15s ease;
+  }
+
+  .btn-uni-cta:hover .cta-arrow {
+    transform: translateX(3px);
+  }
+
+  .uni-section {
+    padding: 90px 0;
+    position: relative;
+    background: #12151E;
+    border-top: 2px solid var(--color-border);
+  }
+
+  .uni-dual-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 900px) {
+    .uni-dual-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .uni-column-card {
+    background: #161A23;
+    border: 2px solid var(--color-border);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 6px 6px 0px #000000;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .uni-column-card.espe-card {
+    border-top: 5px solid #00FF87;
+  }
+
+  .uni-column-card.universal-card {
+    border-top: 5px solid #FF3FA4;
+  }
+
+  .uni-badge-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .campus-pills-row {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--text-tertiary);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .uni-column-card h3 {
+    font-size: 1.45rem;
+    font-weight: 900;
+    color: #FFFFFF;
+    margin: 0 0 10px 0;
+  }
+
+  .uni-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+  }
+
+  .campus-tags-cluster {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 500px) {
+    .campus-tags-cluster {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .campus-tag {
+    background: rgba(0, 255, 135, 0.05);
+    border: 1px solid rgba(0, 255, 135, 0.25);
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .campus-tag .dot-live {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00FF87;
+    margin-bottom: 4px;
+  }
+
+  .campus-tag strong {
+    font-size: 0.82rem;
+    color: #FFFFFF;
+  }
+
+  .campus-tag small {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+  }
+
+  .uni-logos-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .uni-pill-name {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: rgba(255, 63, 164, 0.1);
+    border: 1px solid rgba(255, 63, 164, 0.35);
+    padding: 6px 12px;
+    border-radius: 20px;
+  }
+
+  .uni-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .uni-feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .bullet-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: rgba(0, 255, 135, 0.15);
+    color: #00FF87;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 900;
+    flex-shrink: 0;
+    margin-top: 2px;
+    border: 1px solid rgba(0, 255, 135, 0.4);
+  }
+
+  .bullet-check.fuchsia {
+    background: rgba(255, 63, 164, 0.15);
+    color: #FF3FA4;
+    border-color: rgba(255, 63, 164, 0.4);
+  }
+
+  .uni-feature-list li strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #FFFFFF;
+    margin-bottom: 2px;
+  }
+
+  .uni-feature-list li p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  .uni-feature-list li code {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: #FFD700;
+    font-family: monospace;
+    font-size: 0.82rem;
+  }
+</style>

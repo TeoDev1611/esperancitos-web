@@ -1,4 +1,5 @@
 ---
+import { ACADEMIC_STATS } from '../lib/academic';
 ---
       <section id="modo" class="hub-campus-features">
         <!-- Modo ESPE -->
@@ -19,7 +20,7 @@
             <div class="rule-card">
               <span class="rule-badge-num font-mono">02</span>
               <div class="rule-body">
-                <h3>23 mallas curriculares</h3>
+                <h3>{ACADEMIC_STATS.mallasCount} mallas curriculares</h3>
                 <p>Mallas oficiales actualizadas con materias aprobadas, créditos acumulados y prerrequisitos en cadena interactiva.</p>
               </div>
             </div>
@@ -76,6 +77,19 @@
                 <p>Genera carátulas listas en formato PDF con la tipografía, logotipo y datos oficiales de tu universidad.</p>
               </div>
             </div>
+          </div>
+
+          <div class="campus-compatibility-note" style="margin-top: 24px; padding: 16px 20px; background: rgba(255, 101, 132, 0.08); border: 2px solid #FF6584; border-radius: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+              <span class="badge b-warn font-mono">COMPATIBILIDAD MOODLE</span>
+              <strong style="font-size: 0.95rem; color: #fff;">¿Qué instancias universitarias han sido probadas?</strong>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text); line-height: 1.5; margin: 0 0 8px;">
+              • <strong>Probadas y verificadas en campus:</strong> ESPE (Matriz Sangolquí, Latacunga y Santo Domingo con Banner/Moodle).<br>
+              • <strong>Compatibles por estándar abierto:</strong> Cualquier plataforma Moodle que admita vinculación oficial por código QR (<code>moodlemobile://</code>).<br>
+              • <strong>En proceso de homologación con estudiantes:</strong> UCE, EPN, PUCE, ESPOL, UNACH, UTA y UTPL. <!-- TODO(owner): Confirmar lista de instancias Moodle probadas con éxito por estudiantes en cada universidad antes de promocionarlas como homologadas al 100%. -->
+            </p>
+            <span style="font-size: 0.8rem; color: var(--muted);">¿Quieres certificar la compatibilidad de tu facultad? Contáctanos para sumarte como estudiante verificador.</span>
           </div>
         </div>
       </section>

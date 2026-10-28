@@ -4,6 +4,7 @@
  */
 import { trackEvent } from '../lib/analytics';
 import { paintCampusMode } from './campus-mode';
+import { ACADEMIC_STATS } from '../lib/academic';
 
 interface Slide {
   m: string;
@@ -96,7 +97,7 @@ export function initIntroPresentation(): void {
           <button type="button" class="choice-card espe" data-expo-pick="espe">
             <div class="choice-badge">MODO ESPE</div>
             <h3>Universidad de las Fuerzas Armadas ESPE</h3>
-            <p>Aulas de Sangolquí y sedes, cálculo de 42/60 puntos y 23 mallas curriculares precargadas.</p>
+            <p>Aulas de Sangolquí y sedes, cálculo de 42/60 puntos y ${ACADEMIC_STATS.mallasCount} mallas curriculares precargadas.</p>
             <span class="choice-action">Elegir ESPE y continuar ➔</span>
           </button>
           <button type="button" class="choice-card multi" data-expo-pick="multi">
@@ -213,7 +214,7 @@ export function initIntroPresentation(): void {
         <div class="sl-slide-inner">
           <div class="sl-hdr">
             <span class="sl-hdr-tag ok">🎉 DIAPOSITIVA 06 // LA SUITE COMPLETA</span>
-            <span class="sl-hdr-topic">13 HERRAMIENTAS OFFLINE EN TU BOLSILLO</span>
+            <span class="sl-hdr-topic">${ACADEMIC_STATS.toolsCount} HERRAMIENTAS OFFLINE EN TU BOLSILLO</span>
           </div>
           <div class="sl-tools-grid-6">
             <div class="tool-card"><span class="tool-ico">📄</span><b>Compresor PDF</b><small>Para el límite de Moodle</small></div>
@@ -221,14 +222,14 @@ export function initIntroPresentation(): void {
             <div class="tool-card"><span class="tool-ico">📐</span><b>Carátulas ESPE</b><small>Formatos con membrete</small></div>
             <div class="tool-card"><span class="tool-ico">📷</span><b>Escáner nítido</b><small>Filtro b/n para deberes</small></div>
             <div class="tool-card"><span class="tool-ico">✍️</span><b>Firma visual</b><small>Firma PNG en pantalla</small></div>
-            <div class="tool-card"><span class="tool-ico">📚</span><b>23 Mallas ESPE</b><small>Malla interactiva offline</small></div>
+            <div class="tool-card"><span class="tool-ico">📚</span><b>${ACADEMIC_STATS.mallasCount} Mallas ESPE</b><small>Malla interactiva offline</small></div>
           </div>
           <div class="sl-ftr-row">
             <span class="sl-ftr-pill">⚡ ¡Exposición terminada! Pulsa abajo para entrar al Hub de la ESPE:</span>
           </div>
         </div>
       `,
-      sr: 'Suite completa con 13 herramientas offline gratuitas. Entra al Hub estudiantil.',
+      sr: `Suite completa con ${ACADEMIC_STATS.toolsCount} herramientas offline gratuitas. Entra al Hub estudiantil.`,
       say: '¡Terminé la exposición! Ahora entra al Hub y descarga la app para tener todo esto en tu celular.',
     },
   ];
@@ -331,7 +332,7 @@ export function initIntroPresentation(): void {
       html: `
         <div class="sl-slide-inner">
           <div class="sl-hdr">
-            <span class="sl-hdr-tag ok">🚀 DIAPOSITIVA 06 // CARNET UNIVERSAL & 13 HERRAMIENTAS</span>
+            <span class="sl-hdr-tag ok">🚀 DIAPOSITIVA 06 // CARNET UNIVERSAL & ${ACADEMIC_STATS.toolsCount} HERRAMIENTAS</span>
             <span class="sl-hdr-topic">SUITE COMPLETA ESTUDIANTIL EN 37 MB</span>
           </div>
           <div class="sl-pass-hero multi">
@@ -354,8 +355,8 @@ export function initIntroPresentation(): void {
           </div>
         </div>
       `,
-      sr: 'Carnet digital universal y 13 herramientas listas. Entra al Hub Multi-Universidad.',
-      say: '¡Lo logré! Carnet digital universal y 13 herramientas listas. ¡Bienvenido a Pilas!',
+      sr: `Carnet digital universal y ${ACADEMIC_STATS.toolsCount} herramientas listas. Entra al Hub Multi-Universidad.`,
+      say: `¡Lo logré! Carnet digital universal y ${ACADEMIC_STATS.toolsCount} herramientas listas. ¡Bienvenido a Pilas!`,
     },
   ];
 

@@ -1,0 +1,53 @@
+[
+  {
+    "version": "1.2.0",
+    "build": 8,
+    "date": "2026-10-10",
+    "title": "Modo Multi-Universidad & Suite de Herramientas Web",
+    "highlight": "Ampliación a universidades de todo el país y herramientas accesibles desde el navegador.",
+    "changes": [
+      { "type": "feat", "text": "Lanzamiento del Modo Universal Multi-Universidad para campus con Moodle (UCE, EPN, PUCE, ESPOL, UNACH)." },
+      { "type": "feat", "text": "Calculadora web interactiva de notas con regla oficial de 42/60 puntos y multiescala." },
+      { "type": "feat", "text": "Compresor de PDF optimizado para el límite de 5 MB de las aulas virtuales Moodle." },
+      { "type": "security", "text": "Centro de verificación criptográfica con hashes SHA-256 independientes por arquitectura de CPU." },
+      { "type": "perf", "text": "Reducción radical de peso web y accesibilidad WCAG AAA en navegación por teclado." }
+    ]
+  },
+  {
+    "version": "1.1-beta.2",
+    "build": 7,
+    "date": "2026-09-18",
+    "title": "Estabilidad Móvil & Optimización de Rendimiento Android",
+    "highlight": "Compilación modular en 4 arquitecturas nativas (arm64-v8a, armeabi-v7a, x86_64 y universal).",
+    "changes": [
+      { "type": "feat", "text": "Descargas de APK optimizadas por CPU para reducir el uso de megas en móviles de gama media/baja." },
+      { "type": "security", "text": "Cifrado de credenciales en reposo mediante Android Keystore (AES-256-GCM)." },
+      { "type": "fix", "text": "Corrección en el parser de cookies de Banner MiESPE ante redirecciones inesperadas." },
+      { "type": "perf", "text": "Base de datos local Drift/SQLite configurada en modo WAL con arranque concurrente ultrarrápido." }
+    ]
+  },
+  {
+    "version": "1.1-beta.1",
+    "build": 6,
+    "date": "2026-08-25",
+    "title": "Onboarding Seguro & Visor de Tareas Moodle",
+    "highlight": "Gestión transparente de permisos y soporte de Scoped Storage.",
+    "changes": [
+      { "type": "feat", "text": "Pantallas de onboarding interactivo con permisos transparentes y justificados." },
+      { "type": "feat", "text": "Visor de diapositivas y tareas sin necesidad de otorgar permisos de almacenamiento amplio." },
+      { "type": "feat", "text": "Carnet Espemático con código de barras de ID Banner legible por lectores ópticos de garita." }
+    ]
+  },
+  {
+    "version": "1.0.0",
+    "build": 1,
+    "date": "2026-05-12",
+    "title": "Lanzamiento Inicial Pilas! para la ESPE",
+    "highlight": "El primer cliente estudiantil 100% offline y Zero-Backend para la comunidad politécnica.",
+    "changes": [
+      { "type": "feat", "text": "Decodificador de horarios y aulas de los bloques A, B, C, D, E, F, G y H de la Matriz Sangolquí." },
+      { "type": "feat", "text": "Conexión directa Banner y Moodle sin servidores intermediarios propios." },
+      { "type": "feat", "text": "Simulador de notas con cálculo del 14.01 para evitar el supletorio." }
+    ]
+  }
+]

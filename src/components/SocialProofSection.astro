@@ -1,0 +1,286 @@
+---
+/**
+ * SocialProofSection.astro
+ * Sección de prueba social honesta:
+ * 1. Espacio para capturas reales de la app móvil.
+ * 2. Componente de testimonios que se oculta automáticamente si no hay datos verificados.
+ */
+import testimonialsData from '../data/testimonials.json';
+
+interface Testimonial {
+  author: string;
+  university: string;
+  career: string;
+  quote: string;
+  verified: boolean;
+}
+
+const testimonials: Testimonial[] = (testimonialsData.items as Testimonial[]).filter(t => t.verified);
+const hasTestimonials = testimonials.length > 0;
+---
+
+<section id="comunidad" class="hub-social-proof">
+  <div class="container">
+    <div class="proof-header">
+      <span class="sticker-pill" style="background: var(--accent-green); color: #000;">📱 EXPERIENCIA REAL EN CAMPUS</span>
+      <h2 class="hub-section-title">Construida con y para estudiantes</h2>
+      <p class="proof-subtitle">
+        Cero humo comercial. Diseñada escuchando los problemas cotidianos en los pasillos, laboratorios y garitas universitarias.
+      </p>
+    </div>
+
+    <!-- Espacio para capturas reales de la app -->
+    <div class="screenshots-showcase-box">
+      <div class="showcase-top-bar">
+        <span class="badge b-info">📸 CAPTURAS OFICIALES DE LA APP</span>
+        <span class="font-mono text-muted" style="font-size: 0.8rem;">Android 11 - 15+</span>
+      </div>
+
+      <div class="screenshots-grid">
+        <div class="mockup-slot">
+          <div class="mockup-header">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="mockup-title">Horario & Aulas</span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-placeholder">
+              <span class="mockup-icon">🗓️</span>
+              <b>Horario sin conexión</b>
+              <small>Aulas exactas con bloque y piso decodificado</small>
+              <!-- TODO(owner): Reemplazar con captura real de pantalla (public/screenshots/horario.webp) -->
+            </div>
+          </div>
+        </div>
+
+        <div class="mockup-slot">
+          <div class="mockup-header">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="mockup-title">Calculadora 42 pts</span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-placeholder">
+              <span class="mockup-icon">⚖️</span>
+              <b>Simulador de notas</b>
+              <small>Cálculo en vivo de cuánto necesitas en el Parcial 3</small>
+              <!-- TODO(owner): Reemplazar con captura real de pantalla (public/screenshots/notas.webp) -->
+            </div>
+          </div>
+        </div>
+
+        <div class="mockup-slot">
+          <div class="mockup-header">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="mockup-title">Carnet Garita</span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-placeholder">
+              <span class="mockup-icon">🪪</span>
+              <b>Carnet digital</b>
+              <small>Código de barras legible por torniquetes militares</small>
+              <!-- TODO(owner): Reemplazar con captura real de pantalla (public/screenshots/carnet.webp) -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="owner-notice-box">
+        <span class="badge b-warn">TODO(owner)</span>
+        <p>
+          Espacio reservado para montar capturas de pantalla reales en alta resolución (1080×2400) directamente tomadas desde un teléfono Android en el campus.
+        </p>
+      </div>
+    </div>
+
+    <!-- Componente de testimonios: se oculta automáticamente si no hay datos verificados -->
+    {hasTestimonials ? (
+      <div class="testimonials-block">
+        <h3 class="testimonials-heading">Lo que dice la comunidad estudiantil</h3>
+        <div class="testimonials-grid">
+          {testimonials.map((t) => (
+            <article class="testimonial-card">
+              <p class="testimonial-quote">“{t.quote}”</p>
+              <footer class="testimonial-author">
+                <b>{t.author}</b>
+                <span class="testimonial-meta">{t.career} · {t.university}</span>
+              </footer>
+            </article>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <div class="testimonials-empty-callout">
+        <div class="empty-callout-inner">
+          <span class="callout-icon">💬</span>
+          <div class="callout-text">
+            <b>¿Estás usando Pilas! en tu facultad?</b>
+            <p>
+              Queremos escuchar tu experiencia real. Escríbenos por Instagram o correo para que tu opinión aparezca aquí.
+            </p>
+          </div>
+          <a href="https://www.instagram.com/pilas_ec.app/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-p">
+            Enviar testimonio ➔
+          </a>
+        </div>
+        <!-- TODO(owner): Entregar testimonios reales con nombre, carrera y consentimiento explícito por escrito para publicarlos. -->
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .hub-social-proof {
+    padding: 60px 0;
+    border-top: 2px solid var(--border);
+    background: #12151D;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .proof-header {
+    margin-bottom: 32px;
+  }
+  .proof-subtitle {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 650px;
+    margin-top: 8px;
+  }
+  .screenshots-showcase-box {
+    background: var(--card);
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0 #000;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .showcase-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .screenshots-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .mockup-slot {
+    background: #0B0E14;
+    border: 2px solid #000;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .mockup-header {
+    background: #1B202D;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid #000;
+  }
+  .mockup-header .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+  }
+  .mockup-title {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--text);
+    margin-left: 6px;
+  }
+  .mockup-body {
+    padding: 30px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+  }
+  .mockup-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+  .mockup-icon { font-size: 2.2rem; }
+  .mockup-placeholder b { font-size: 1rem; color: var(--text); }
+  .mockup-placeholder small { color: var(--muted); font-size: 0.82rem; }
+  .owner-notice-box {
+    margin-top: 18px;
+    padding: 10px 14px;
+    background: rgba(255, 184, 0, 0.08);
+    border: 1.5px dashed var(--accent-amber);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+  }
+  .owner-notice-box p { color: var(--text); margin: 0; }
+
+  /* Testimonials Callout */
+  .testimonials-empty-callout {
+    background: var(--card);
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0 #000;
+    border-radius: 8px;
+    padding: 20px 24px;
+  }
+  .empty-callout-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .callout-icon { font-size: 1.8rem; }
+  .callout-text { flex: 1; min-width: 260px; }
+  .callout-text b { font-size: 1rem; color: var(--text); display: block; margin-bottom: 4px; }
+  .callout-text p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+
+  /* Testimonials Grid (cuando haya datos) */
+  .testimonials-block {
+    margin-top: 36px;
+  }
+  .testimonials-heading {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .testimonial-card {
+    background: var(--card);
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0 #000;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  .testimonial-quote {
+    font-style: italic;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .testimonial-author b {
+    display: block;
+    color: var(--accent);
+  }
+  .testimonial-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+</style>
