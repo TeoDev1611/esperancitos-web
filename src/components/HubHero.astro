@@ -12,54 +12,76 @@ const { V, M } = Astro.props;
 ---
 <section class="hub-hero">
   <div class="hub-hero-header">
-          <!-- Marquee / Brand Lockup con Logo de Letras Oficial -->
-          <div class="hero-brand-marquee">
-            <div class="hero-brand-top">
-              <div class="hero-brand-logo-pill" title="Pilas! Software Estudiantil">
-                <img src="/logos/letras_estilo_transparente.svg" alt="Pilas! Software Estudiantil" class="hero-lettering-img" width="220" height="74" />
-              </div>
-              <div class="hero-meta-badges">
-                <span class="sticker-pill" data-for="espe">⚡ EDICIÓN ESPE</span>
-                <span class="sticker-pill coral" data-for="multi">⭐ EDICIÓN MULTI-UNIVERSIDAD</span>
-                <span class="badge b-ok num">v{V.version}</span>
-              </div>
-            </div>
-          </div>
+    <!-- Marquee / Brand Lockup con Logo de Letras Oficial -->
+    <div class="hero-brand-marquee">
+      <div class="hero-brand-top">
+        <div class="hero-brand-logo-pill" title="Pilas! Software Estudiantil">
+          <img src="/logos/letras_estilo_transparente.svg" alt="Pilas! Software Estudiantil" class="hero-lettering-img" width="220" height="74" />
+        </div>
+        <div class="hero-meta-badges">
+          <span class="sticker-pill" data-for="espe">⚡ EDICIÓN ESPE</span>
+          <span class="sticker-pill coral" data-for="multi">⭐ EDICIÓN MULTI-UNIVERSIDAD</span>
+          <span class="badge b-ok num">v{V.version}</span>
+        </div>
+      </div>
+    </div>
 
-          <h1 class="hub-title">
-            <span data-for="espe">Tu semestre bajo control, aunque MiESPE esté caído</span>
-            <span data-for="multi">Tu Moodle y tus notas, desde cualquier campus del país</span>
-          </h1>
+    <h1 class="hub-title">
+      <span data-for="espe">Tu semestre bajo control, aunque MiESPE esté caído</span>
+      <span data-for="multi">Tu Moodle y tus notas, desde cualquier campus del país</span>
+    </h1>
 
-          <p class="hub-desc">
-            <span data-for="espe">Aulas decodificadas a pisos reales, {ACADEMIC_STATS.mallasCount} mallas con prerrequisitos interactivos, simulador de 42 puntos y carnet garita. 100% offline y en tu bolsillo.</span>
-            <span data-for="multi">Vinculación por QR de Moodle Mobile en 1 segundo, notas en cualquier escala (10, 20 o 100) y carnet estudiantil universal. Sin intermediarios.</span>
-          </p>
+    <p class="hub-desc">
+      <span data-for="espe">Aulas decodificadas a pisos reales, {ACADEMIC_STATS.mallasCount} mallas con prerrequisitos interactivos, simulador de 42 puntos y carnet garita. 100% offline y en tu bolsillo.</span>
+      <span data-for="multi">Vinculación por QR de Moodle Mobile en 1 segundo, notas en cualquier escala (10, 20 o 100) y carnet estudiantil universal. Sin intermediarios.</span>
+    </p>
 
-          <!-- Tarjeta de Diálogo de Pilo (Voz y Personalidad de la Mascota) -->
-          <div class="hero-dialogue-card">
-            <div class="dialogue-mascot-box">
-              <img src={M.neutral} alt="Pilo, mascota de Pilas!" class="dialogue-mascot-img" width="56" height="56" />
-              <span class="dialogue-mascot-name font-mono">PILO</span>
-            </div>
-            <div class="dialogue-bubble">
-              <b class="dialogue-quote" data-for="espe">“¡Qué fue! Ya no le ruegues a MiESPE a las 11:59 ni te pierdas buscando el bloque G. Aquí tienes tus herramientas listas.”</b>
-              <b class="dialogue-quote" data-for="multi">“¡Pilas con ese semestre! Escanea el QR de tu Moodle en la compu y olvídate de claves. Tus notas y carnet van directo a tu celular.”</b>
-              <span class="dialogue-sub fine">Software estudiantil independiente · Desarrollado en Ecuador</span>
-            </div>
-          </div>
+    <!-- Tarjeta de Diálogo de Pilo (Voz y Personalidad de la Mascota) -->
+    <div class="hero-dialogue-card">
+      <div class="dialogue-mascot-box">
+        <img src={M.neutral} alt="Pilo, mascota de Pilas!" class="dialogue-mascot-img" width="56" height="56" />
+        <span class="dialogue-mascot-name font-mono">PILO</span>
+      </div>
+      <div class="dialogue-bubble">
+        <b class="dialogue-quote" data-for="espe">“¡Qué fue! Ya no le ruegues a MiESPE a las 11:59 ni te pierdas buscando el bloque G. Aquí tienes tus herramientas listas.”</b>
+        <b class="dialogue-quote" data-for="multi">“¡Pilas con ese semestre! Escanea el QR de tu Moodle en la compu y olvídate de claves. Tus notas y carnet van directo a tu celular.”</b>
+        <span class="dialogue-sub fine">Software estudiantil independiente · Desarrollado en Ecuador</span>
+      </div>
+    </div>
+
+    <!-- Selector de Campus -->
     <CampusSelector />
+
+    <!-- Acciones directas del Hero -->
+    <div class="hero-actions-row">
+      <a href="#acceso" class="btn btn-p btn-lg hero-cta-btn">
+        <span>Pedir acceso en Play Store</span>
+        <span class="btn-arrow" aria-hidden="true">➔</span>
+      </a>
+      <a href="#modo" class="btn btn-s btn-lg">
+        <span>Explorar funciones</span>
+      </a>
+    </div>
   </div>
+
+  <!-- Carnet Holográfico 3D Overdrive -->
   <Carnet3D M={M} />
 </section>
 
 <style is:global>
-/* Hub Hero */
+/* Hub Hero Moderno Dark Glass */
 .hub-hero {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: clamp(24px, 4vw, 56px);
   align-items: center;
+  padding: clamp(16px, 3vw, 32px) 0 clamp(24px, 4vw, 48px);
+}
+@media (max-width: 900px) {
+  .hub-hero {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
 }
 .hero-brand-marquee {
   display: flex;
@@ -74,9 +96,10 @@ const { V, M } = Astro.props;
   flex-wrap: wrap;
 }
 .hero-lettering-img {
-  height: clamp(54px, 5.8vw, 70px);
+  height: clamp(52px, 5.5vw, 68px);
   width: auto;
   object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(255, 51, 133, 0.2));
 }
 .hero-meta-badges {
   display: flex;
@@ -85,33 +108,45 @@ const { V, M } = Astro.props;
   flex-wrap: wrap;
 }
 .hub-title {
-  font-size: clamp(1.85rem, 4.5vw, 3.4rem);
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
   line-height: 1.1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   margin: 10px 0 16px;
   overflow-wrap: break-word;
   word-break: break-word;
+  color: #ffffff;
 }
 .hub-desc {
   font-size: 1.08rem;
   color: var(--body);
   max-width: 36em;
-  line-height: 1.5;
-  margin-bottom: 20px;
+  line-height: 1.55;
+  margin-bottom: 22px;
 }
 
-/* Tarjeta de Diálogo de Pilas */
+/* Tarjeta de Diálogo de Pilo - Glassmorphism */
 .hero-dialogue-card {
   display: flex;
   align-items: center;
-  gap: 14px;
-  background: var(--bg-surface);
-  border: 2px solid var(--border-control);
-  border-radius: 14px;
-  padding: 12px 16px;
-  box-shadow: 3px 3px 0 #000;
+  gap: 16px;
+  background: rgba(17, 23, 35, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 14px 18px;
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   margin-bottom: 24px;
   position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.hero-dialogue-card:hover {
+  border-color: rgba(255, 51, 133, 0.4);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
+}
+html[data-mode="multi"] .hero-dialogue-card:hover {
+  border-color: rgba(255, 71, 102, 0.4);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
 }
 .dialogue-mascot-box {
   display: flex;
@@ -119,21 +154,22 @@ const { V, M } = Astro.props;
   align-items: center;
   gap: 4px;
   flex-shrink: 0;
-  background: #0b0e14;
-  padding: 6px;
-  border-radius: 10px;
-  border: 1.5px solid var(--border);
+  background: rgba(8, 11, 17, 0.8);
+  padding: 8px;
+  border-radius: 12px;
+  border: none;
 }
 .dialogue-mascot-img {
-  width: 52px;
-  height: 52px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
 }
 .dialogue-mascot-name {
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   font-weight: 800;
   color: var(--primary);
-  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 html[data-mode="multi"] .dialogue-mascot-name {
   color: var(--primary-coral);
@@ -147,7 +183,7 @@ html[data-mode="multi"] .dialogue-mascot-name {
   font-family: var(--f-d);
   font-size: 0.94rem;
   color: var(--title);
-  line-height: 1.35;
+  line-height: 1.4;
   font-weight: 700;
 }
 .dialogue-sub {
@@ -157,4 +193,27 @@ html[data-mode="multi"] .dialogue-mascot-name {
   margin-top: 4px;
 }
 
+/* Botones de Acción del Hero */
+.hero-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.hero-cta-btn .btn-arrow {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-cta-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+@media (max-width: 640px) {
+  .hero-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-actions-row .btn {
+    width: 100%;
+  }
+}
 </style>

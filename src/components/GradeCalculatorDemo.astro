@@ -6,75 +6,79 @@ interface Props {
 const { M } = Astro.props;
 ---
 <span id="site-calc-data" hidden>{JSON.stringify(M)}</span>
-        <!-- DEMO 1: Calculadora 42 Puntos ESPE -->
-        <div class="card demo-card">
-          <div class="demo-card-hdr">
-            <span class="sticker-pill green">⚖️ CALCULADORA 42/60 PTS</span>
-            <span class="badge b-ok" id="site-calc-verdict">✓ APROBADO (14.00)</span>
-          </div>
-          <h3>Simula con cuánto pasas tu semestre</h3>
-          <p class="fine">Mueve los controles para ver la nota que necesitas en el Parcial 3.</p>
-          <div class="mockup-calc">
-            <div class="calc-sliders-grid">
-              <div class="slider-box">
-                <div class="slider-lbl"><span>PARCIAL 1</span><span class="font-mono text-fuchsia" id="site-p1-val">15.50 / 20</span></div>
-                <input type="range" min="0" max="20" step="0.25" value="15.5" id="site-p1-slider" class="range-input">
-              </div>
-              <div class="slider-box">
-                <div class="slider-lbl"><span>PARCIAL 2</span><span class="font-mono text-fuchsia" id="site-p2-val">14.50 / 20</span></div>
-                <input type="range" min="0" max="20" step="0.25" value="14.5" id="site-p2-slider" class="range-input">
-              </div>
-            </div>
-            <div class="calc-result-banner">
-              <span>🎯 <strong>Nota requerida en Parcial 3:</strong></span>
-              <span class="calc-target font-mono text-amber" id="site-p3-req">12.00 / 20</span>
-            </div>
-            <!-- Reacción interactiva de Pilo según tu nota -->
-            <div class="calc-mascot-reaction" id="calc-mascot-box">
-              <img src={M.success} alt="Pilo celebrando que apruebas la materia con comodidad" class="calc-mascot-img" id="calc-mascot-img" width="48" height="48" loading="lazy" />
-              <div class="calc-mascot-balloon">
-                <b class="calc-mascot-status" id="calc-mascot-status">¡Tranqui, vas sobrado!</b>
-                <span class="calc-mascot-quote" id="calc-mascot-quote">Con 12.00 o menos en el Parcial 3 ya pasas el semestre directo.</span>
-              </div>
-            </div>
-          </div>
-        </div>
+<!-- DEMO 1: Calculadora 42 Puntos ESPE -->
+<div class="demo-card">
+  <div class="demo-card-hdr">
+    <span class="sticker-pill green font-mono">⚖️ CALCULADORA 42/60 PTS</span>
+    <span class="badge b-ok font-mono" id="site-calc-verdict">✓ APROBADO (14.00)</span>
+  </div>
+  <h2>Simula con cuánto pasas tu semestre</h2>
+  <p class="fine">Mueve los controles para ver la nota que necesitas en el Parcial 3.</p>
+  <div class="mockup-calc">
+    <div class="calc-sliders-grid">
+      <div class="slider-box">
+        <div class="slider-lbl"><span>PARCIAL 1</span><span class="font-mono text-fuchsia" id="site-p1-val">15.50 / 20</span></div>
+        <input type="range" min="0" max="20" step="0.25" value="15.5" id="site-p1-slider" class="range-input">
+      </div>
+      <div class="slider-box">
+        <div class="slider-lbl"><span>PARCIAL 2</span><span class="font-mono text-fuchsia" id="site-p2-val">14.50 / 20</span></div>
+        <input type="range" min="0" max="20" step="0.25" value="14.5" id="site-p2-slider" class="range-input">
+      </div>
+    </div>
+    <div class="calc-result-banner">
+      <span>🎯 <strong>Nota requerida en Parcial 3:</strong></span>
+      <span class="calc-target font-mono text-amber" id="site-p3-req">12.00 / 20</span>
+    </div>
+    <!-- Reacción interactiva de Pilo según tu nota -->
+    <div class="calc-mascot-reaction" id="calc-mascot-box">
+      <img src={M.success} alt="Pilo celebrando que apruebas la materia con comodidad" class="calc-mascot-img" id="calc-mascot-img" width="48" height="48" loading="lazy" />
+      <div class="calc-mascot-balloon">
+        <b class="calc-mascot-status" id="calc-mascot-status">¡Tranqui, vas sobrado!</b>
+        <span class="calc-mascot-quote" id="calc-mascot-quote">Con 12.00 o menos en el Parcial 3 ya pasas el semestre directo.</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style is:global>
-/* Demos Interactivas */
+/* Demos Interactivas - Dark Glass Precision */
 .hub-demos-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  padding: 16px 0;
 }
 .demo-card {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 .demo-card-hdr {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
-.demo-card h3 {
+.demo-card h2 {
   font-size: 1.35rem;
+  letter-spacing: -0.015em;
 }
 .fine {
   color: var(--muted);
   font-size: 0.88rem;
+  line-height: 1.4;
 }
 .mockup-calc {
-  background: #11141e;
-  border: 1.5px solid var(--border-control);
-  border-radius: 12px;
-  padding: 14px;
+  background: rgba(11, 16, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   margin-top: 6px;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
 }
 .calc-sliders-grid {
   display: grid;
@@ -82,16 +86,16 @@ const { M } = Astro.props;
   gap: 12px;
 }
 .slider-box {
-  background: #191d29;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
 }
 .slider-lbl {
   display: flex;
   justify-content: space-between;
   font: 800 0.8rem var(--f-d);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .range-input {
   width: 100%;
@@ -100,10 +104,10 @@ const { M } = Astro.props;
   height: 6px;
 }
 .calc-result-banner {
-  background: rgba(255, 219, 96, 0.12);
-  border: 1px solid var(--warning);
-  padding: 8px 12px;
-  border-radius: 8px;
+  background: rgba(255, 190, 59, 0.08);
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -111,24 +115,24 @@ const { M } = Astro.props;
   gap: 6px;
   font-size: 0.95rem;
 }
-.calc-target { font-size: 1.2rem; font-weight: 800; }
+.calc-target { font-size: 1.2rem; font-weight: 800; color: #ffbe3b; }
 
 .calc-mascot-reaction {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--bg-surface);
-  border: 1.5px solid var(--border-control);
-  border-radius: 12px;
-  padding: 10px 14px;
-  margin-top: 10px;
+  background: rgba(17, 23, 35, 0.7);
+  border: none;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-top: 4px;
 }
 .calc-mascot-img {
   width: 48px;
   height: 48px;
   object-fit: contain;
   flex-shrink: 0;
-  filter: drop-shadow(2px 2px 0 #000);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
 }
 .calc-mascot-balloon {
   display: flex;
@@ -145,7 +149,7 @@ const { M } = Astro.props;
 .calc-mascot-quote {
   font-size: 0.84rem;
   color: var(--muted);
-  line-height: 1.3;
+  line-height: 1.35;
 }
 </style>
 

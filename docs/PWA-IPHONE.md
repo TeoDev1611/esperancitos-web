@@ -16,7 +16,7 @@ Adicionalmente, publicar la app completa en el Apple App Store implicaría:
 2. Enfrentar revisiones estrictas de Apple sobre marcas registradas, nombres de universidades ("ESPE") y enlaces institucionales.
 3. Riego de rechazo por considerar la conexión con Banner o Moodle como web scraping o servicios no oficiales.
 
-### La Solución Propuesta: Progressive Web App (PWA) Instalable
+### La Solución Propuesta: Progressive Web App  (PWA) Instalable
 Convertir las herramientas estudiantiles clave que **no dependen de hardware nativo de Android** (como la calculadora de notas y el generador de carátulas) en una **PWA instalable desde Safari en iOS** ("Añadir a pantalla de inicio").
 
 ---

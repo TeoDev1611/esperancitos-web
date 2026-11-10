@@ -46,191 +46,192 @@ const VERIFIED_UNIVERSITIES = [
   },
 ];
 ---
-      <section id="modo" class="hub-campus-features">
-        <!-- Modo ESPE -->
-        <div data-for="espe" class="campus-feature-block">
-          <div class="campus-sec-header">
-            <span class="sticker-pill">⚡ EXCLUSIVO PARA LA VIDA ESTUDIANTIL ESPE</span>
-            <h2 class="hub-section-title">Lo que Pilas! resuelve en la ESPE</h2>
-            <p class="campus-sec-sub">Sedes Sangolquí, Latacunga, Santo Domingo y San Roque · Diseñado para la rutina universitaria real.</p>
-          </div>
-          <div class="rules-neo-grid">
-            <div class="rule-card">
-              <span class="rule-badge-num font-mono">01</span>
-              <div class="rule-body">
-                <h3>Traductor de aulas Banner</h3>
-                <p>Convierte códigos crípticos como “B-302” o “H-Auditorio” en bloque, piso y referencia visual para no perderte.</p>
-              </div>
-            </div>
-            <div class="rule-card">
-              <span class="rule-badge-num font-mono">02</span>
-              <div class="rule-body">
-                <h3>{ACADEMIC_STATS.mallasCount} mallas curriculares</h3>
-                <p>Mallas oficiales actualizadas con materias aprobadas, créditos acumulados y prerrequisitos en cadena interactiva.</p>
-              </div>
-            </div>
-            <div class="rule-card">
-              <span class="rule-badge-num font-mono">03</span>
-              <div class="rule-body">
-                <h3>Regla de 42/60 puntos</h3>
-                <p>Calcula automáticamente cuánto puntaje necesitas en el Parcial 3 sobre 20 sin sorpresas de supletorio.</p>
-              </div>
-            </div>
-            <div class="rule-card">
-              <span class="rule-badge-num font-mono">04</span>
-              <div class="rule-body">
-                <h3>Pase de garita offline</h3>
-                <p>Muestra tu carnet estudiantil con código de barras de tu ID Banner listo para garita militar sin internet.</p>
-              </div>
-            </div>
-          </div>
+<section id="modo" class="hub-campus-features">
+  <!-- Modo ESPE -->
+  <div data-for="espe" class="campus-feature-block">
+    <div class="campus-sec-header">
+      <span class="sticker-pill">⚡ EXCLUSIVO PARA LA VIDA ESTUDIANTIL ESPE</span>
+      <h2 class="hub-section-title">Lo que Pilas! resuelve en la ESPE</h2>
+      <p class="campus-sec-sub">Sedes Sangolquí, Latacunga, Santo Domingo y San Roque · Diseñado para la rutina universitaria real.</p>
+    </div>
+    <div class="rules-neo-grid">
+      <div class="rule-card">
+        <span class="rule-badge-num font-mono">01</span>
+        <div class="rule-body">
+          <h3>Traductor de aulas Banner</h3>
+          <p>Convierte códigos crípticos como “B-302” o “H-Auditorio” en bloque, piso y referencia visual para no perderte.</p>
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-badge-num font-mono">02</span>
+        <div class="rule-body">
+          <h3>{ACADEMIC_STATS.mallasCount} mallas curriculares</h3>
+          <p>Mallas oficiales actualizadas con materias aprobadas, créditos acumulados y prerrequisitos en cadena interactiva.</p>
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-badge-num font-mono">03</span>
+        <div class="rule-body">
+          <h3>Regla de 42/60 puntos</h3>
+          <p>Calcula automáticamente cuánto puntaje necesitas en el Parcial 3 sobre 20 sin sorpresas de supletorio.</p>
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-badge-num font-mono">04</span>
+        <div class="rule-body">
+          <h3>Pase de garita offline</h3>
+          <p>Muestra tu carnet estudiantil con código de barras de tu ID Banner listo para garita militar sin internet.</p>
+        </div>
+      </div>
+    </div>
 
-          <!-- Mini-callout cruzado a modo Multi-U -->
-          <div class="campus-cross-invite-box">
-            <div class="cross-invite-content">
-              <span class="badge b-info font-mono">MULTI-UNIVERSIDAD</span>
-              <p>
-                ¿Tienes amigos en la <strong>UTA, UCE, EPN o UNACH</strong>? El funcionamiento de Pilas! ya está confirmado en sus campus.
-              </p>
+    <!-- Mini-callout cruzado a modo Multi-U -->
+    <div class="campus-cross-invite-box">
+      <div class="cross-invite-content">
+        <span class="badge b-info font-mono">MULTI-UNIVERSIDAD</span>
+        <p>
+          ¿Tienes amigos en la <strong>UTA, UCE, EPN o UNACH</strong>? El funcionamiento de Pilas! ya está confirmado en sus campus.
+        </p>
+      </div>
+      <button type="button" class="btn-cross-switch" data-mode-btn="multi">
+        <span>Ver universidades confirmadas</span>
+        <span class="btn-arrow" aria-hidden="true">➔</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Modo Multi-Universidad -->
+  <div data-for="multi" class="campus-feature-block">
+    <div class="campus-sec-header">
+      <span class="sticker-pill coral">⭐ INTEGRACIÓN UNIVERSITARIA NACIONAL</span>
+      <h2 class="hub-section-title">Lo que Pilas! resuelve en tu universidad</h2>
+      <p class="campus-sec-sub">UTA, UCE, EPN, UNACH, PUCE, ESPOL y cualquier campus con Moodle en Ecuador.</p>
+    </div>
+    <div class="rules-neo-grid">
+      <div class="rule-card coral">
+        <span class="rule-badge-num font-mono">01</span>
+        <div class="rule-body">
+          <h3>Conexión por código QR</h3>
+          <p>Abre Moodle en tu computadora, escanea el QR de la app móvil y sincroniza tu semestre sin ingresar contraseñas.</p>
+        </div>
+      </div>
+      <div class="rule-card coral">
+        <span class="rule-badge-num font-mono">02</span>
+        <div class="rule-body">
+          <h3>Calificador multi-escala</h3>
+          <p>Configura materias sobre 10, 20 o 100 puntos según el reglamento de tu facultad con redondeo académico exacto.</p>
+        </div>
+      </div>
+      <div class="rule-card coral">
+        <span class="rule-badge-num font-mono">03</span>
+        <div class="rule-body">
+          <h3>Detector de tareas y entregas</h3>
+          <p>Ordena tus deberes pendientes por fecha de entrega y te avisa antes de que la plataforma se cierre a las 23:59.</p>
+        </div>
+      </div>
+      <div class="rule-card coral">
+        <span class="rule-badge-num font-mono">04</span>
+        <div class="rule-body">
+          <h3>Carátulas con tu escudo oficial</h3>
+          <p>Genera carátulas listas en formato PDF con la tipografía, logotipo y datos oficiales de tu universidad.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Universidades con Funcionamiento Confirmado -->
+    <div id="universidades" class="campus-confirmed-section">
+      <div class="confirmed-header-card">
+        <div class="confirmed-title-row">
+          <span class="sticker-pill green font-mono">✅ FUNCIONAMIENTO CONFIRMADO</span>
+          <span class="badge b-ok font-mono">100% OPERATIVO</span>
+        </div>
+        <h3 class="confirmed-heading">Confirmado el funcionamiento en multi-universidades</h3>
+        <p class="confirmed-desc">
+          La vinculación por código QR de Moodle Mobile, el cálculo de materias y notas en cualquier escala, y la suite de herramientas offline están <strong>verificados y funcionando</strong> en las siguientes universidades del Ecuador:
+        </p>
+      </div>
+
+      <!-- Grid de Logos Universitarios -->
+      <div class="uni-logos-grid" role="list" aria-label="Universidades con funcionamiento confirmado">
+        {VERIFIED_UNIVERSITIES.map((uni) => (
+          <div class="uni-logo-card" role="listitem">
+            <div class="uni-logo-canvas">
+              <picture>
+                <source srcset={uni.logoWebp} type="image/webp" />
+                <img
+                  src={uni.logoPng}
+                  alt={uni.logoAlt}
+                  width={uni.width}
+                  height={uni.height}
+                  loading="lazy"
+                  class="uni-logo-asset"
+                />
+              </picture>
             </div>
-            <button type="button" class="btn-cross-switch" data-mode-btn="multi">
-              <span>Ver universidades confirmadas</span>
-              <span class="btn-arrow">➔</span>
-            </button>
+            <div class="uni-meta-body">
+              <span class="uni-badge-verified">
+                <span class="status-dot"></span>
+                <span class="font-mono">CONFIRMADO</span>
+              </span>
+              <h4 class="uni-abbr">{uni.abbr}</h4>
+              <p class="uni-full-name">{uni.name}</p>
+              <span class="uni-campus-tag">{uni.campus}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Banner WhatsApp Testers -->
+      <div class="testers-card-banner">
+        <div class="testers-card-left">
+          <div class="testers-icon-badge">
+            <span class="testers-bubble-emoji">🧪</span>
+          </div>
+          <div class="testers-info-text">
+            <div class="testers-meta-tags">
+              <span class="badge b-warn font-mono">TESTERS MULTI-U</span>
+              <span class="testers-pill-live">COMUNIDAD ACTIVA</span>
+            </div>
+            <h4 class="testers-cta-title">¿Quieres verificar el funcionamiento de tu universidad?</h4>
+            <p class="testers-cta-desc">
+              Si estudias en otra universidad (PUCE, ESPOL, UTPL, UDLA o cualquier facultad con Moodle) o deseas certificar tu carrera, <strong>únete a nuestro grupo oficial de WhatsApp de testers</strong>. Te ayudamos a vincular tu cuenta, verificar tu campus y acceder a las nuevas versiones antes de cada lanzamiento.
+            </p>
           </div>
         </div>
-
-        <!-- Modo Multi-Universidad -->
-        <div data-for="multi" class="campus-feature-block">
-          <div class="campus-sec-header">
-            <span class="sticker-pill coral">⭐ INTEGRACIÓN UNIVERSITARIA NACIONAL</span>
-            <h2 class="hub-section-title">Lo que Pilas! resuelve en tu universidad</h2>
-            <p class="campus-sec-sub">UTA, UCE, EPN, UNACH, PUCE, ESPOL y cualquier campus con Moodle en Ecuador.</p>
-          </div>
-          <div class="rules-neo-grid">
-            <div class="rule-card coral">
-              <span class="rule-badge-num font-mono">01</span>
-              <div class="rule-body">
-                <h3>Conexión por código QR</h3>
-                <p>Abre Moodle en tu computadora, escanea el QR de la app móvil y sincroniza tu semestre sin ingresar contraseñas.</p>
-              </div>
-            </div>
-            <div class="rule-card coral">
-              <span class="rule-badge-num font-mono">02</span>
-              <div class="rule-body">
-                <h3>Calificador multi-escala</h3>
-                <p>Configura materias sobre 10, 20 o 100 puntos según el reglamento de tu facultad con redondeo académico exacto.</p>
-              </div>
-            </div>
-            <div class="rule-card coral">
-              <span class="rule-badge-num font-mono">03</span>
-              <div class="rule-body">
-                <h3>Detector de tareas y entregas</h3>
-                <p>Ordena tus deberes pendientes por fecha de entrega y te avisa antes de que la plataforma se cierre a las 23:59.</p>
-              </div>
-            </div>
-            <div class="rule-card coral">
-              <span class="rule-badge-num font-mono">04</span>
-              <div class="rule-body">
-                <h3>Carátulas con tu escudo oficial</h3>
-                <p>Genera carátulas listas en formato PDF con la tipografía, logotipo y datos oficiales de tu universidad.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sección de Universidades con Funcionamiento Confirmado -->
-          <div class="campus-confirmed-section">
-            <div class="confirmed-header-card">
-              <div class="confirmed-title-row">
-                <span class="sticker-pill green font-mono">✅ FUNCIONAMIENTO CONFIRMADO</span>
-                <span class="badge b-ok font-mono">100% OPERATIVO</span>
-              </div>
-              <h3 class="confirmed-heading">Confirmado el funcionamiento en multi-universidades</h3>
-              <p class="confirmed-desc">
-                La vinculación por código QR de Moodle Mobile, el cálculo de materias y notas en cualquier escala, y la suite de herramientas offline están <strong>verificados y funcionando</strong> en las siguientes universidades del Ecuador:
-              </p>
-            </div>
-
-            <!-- Grid de Logos Universitarios -->
-            <div class="uni-logos-grid" role="list" aria-label="Universidades con funcionamiento confirmado">
-              {VERIFIED_UNIVERSITIES.map((uni) => (
-                <div class="uni-logo-card" role="listitem">
-                  <div class="uni-logo-canvas">
-                    <picture>
-                      <source srcset={uni.logoWebp} type="image/webp" />
-                      <img
-                        src={uni.logoPng}
-                        alt={uni.logoAlt}
-                        width={uni.width}
-                        height={uni.height}
-                        loading="lazy"
-                        class="uni-logo-asset"
-                      />
-                    </picture>
-                  </div>
-                  <div class="uni-meta-body">
-                    <div class="uni-badge-verified">
-                      <span class="status-dot"></span>
-                      <span class="font-mono">CONFIRMADO</span>
-                    </div>
-                    <h4 class="uni-abbr">{uni.abbr}</h4>
-                    <p class="uni-full-name">{uni.name}</p>
-                    <span class="uni-campus-tag">{uni.campus}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <!-- Banner WhatsApp Testers -->
-            <div class="testers-card-banner">
-              <div class="testers-card-left">
-                <div class="testers-icon-badge">
-                  <span class="testers-bubble-emoji">🧪</span>
-                </div>
-                <div class="testers-info-text">
-                  <div class="testers-meta-tags">
-                    <span class="badge b-warn font-mono">TESTERS MULTI-U</span>
-                    <span class="testers-pill-live">COMUNIDAD ACTIVA</span>
-                  </div>
-                  <h4 class="testers-cta-title">¿Quieres verificar el funcionamiento de tu universidad?</h4>
-                  <p class="testers-cta-desc">
-                    Si estudias en otra universidad (PUCE, ESPOL, UTPL, UDLA o cualquier facultad con Moodle) o deseas certificar tu carrera, <strong>únete a nuestro grupo oficial de WhatsApp de testers</strong>. Te ayudamos a vincular tu cuenta, verificar tu campus y acceder a las nuevas versiones antes de cada lanzamiento.
-                  </p>
-                </div>
-              </div>
-              <div class="testers-card-right">
-                <a
-                  href={WA_TESTERS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-testers-whatsapp"
-                  aria-label="Unirse al grupo de WhatsApp de testers de Pilas!"
-                >
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" class="wa-ico">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.456h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.414z"/>
-                  </svg>
-                  <span>Unirme al Grupo de WhatsApp de Testers</span>
-                  <span class="btn-arrow" aria-hidden="true">➔</span>
-                </a>
-              </div>
-            </div>
-          </div>
+        <div class="testers-card-right">
+          <a
+            href={WA_TESTERS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-testers-whatsapp"
+            aria-label="Unirse al grupo de WhatsApp de testers de Pilas!"
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" class="wa-ico">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.456h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.414z"/>
+            </svg>
+            <span>Unirme al Grupo de WhatsApp de Testers</span>
+            <span class="btn-arrow" aria-hidden="true">➔</span>
+          </a>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
 <style is:global>
-/* Sección Modo */
+/* Sección Modo - Dark Glass Bento Grid */
 .hub-campus-features {
-  padding: 8px 0;
+  padding: 24px 0 16px;
 }
 .campus-sec-header {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 .campus-sec-sub {
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 1.02rem;
   margin-top: 6px;
   max-width: 48em;
+  line-height: 1.5;
 }
 .rules-neo-grid {
   display: grid;
@@ -238,65 +239,77 @@ const VERIFIED_UNIVERSITIES = [
   gap: 16px;
 }
 .rule-card {
-  background: var(--bg-surface);
-  border: 2px solid var(--border-control);
-  border-radius: 14px;
-  padding: 18px 16px;
-  box-shadow: 3px 3px 0 #000;
+  background: rgba(17, 23, 35, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 22px 20px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transition: transform 100ms, border-color 150ms, box-shadow 100ms;
+  gap: 12px;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 200ms ease,
+              box-shadow 200ms ease;
 }
 .rule-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--primary);
-  box-shadow: 5px 5px 0 #000;
+  transform: translateY(-4px);
+  border-color: rgba(255, 51, 133, 0.4);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 .rule-card.coral:hover {
-  border-color: var(--primary-coral);
+  border-color: rgba(255, 71, 102, 0.4);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 .rule-badge-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background: var(--bg-elevated);
-  border: 1.5px solid var(--primary);
-  color: var(--primary);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 51, 133, 0.12);
+  border: 1px solid rgba(255, 51, 133, 0.4);
+  color: #ffa1cc;
   font-size: 0.95rem;
   font-weight: 800;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .rule-card.coral .rule-badge-num {
-  border-color: var(--primary-coral);
-  color: var(--primary-coral);
+  background: rgba(255, 71, 102, 0.12);
+  border-color: rgba(255, 71, 102, 0.4);
+  color: #ff9cb0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .rule-body h3 {
   font-size: 1.05rem;
   margin-bottom: 6px;
   color: var(--title);
+  letter-spacing: -0.015em;
 }
 .rule-body p {
   font-size: 0.88rem;
   color: var(--body);
-  line-height: 1.4;
+  line-height: 1.45;
   margin: 0;
 }
 
 /* Callout cruzado desde modo ESPE */
 .campus-cross-invite-box {
-  margin-top: 20px;
-  padding: 14px 18px;
-  background: rgba(0, 255, 135, 0.04);
-  border: 1.5px dashed rgba(0, 255, 135, 0.4);
-  border-radius: 12px;
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: rgba(0, 240, 255, 0.04);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
+  box-shadow: 0 8px 24px -6px rgba(0, 240, 255, 0.08);
 }
 .cross-invite-content {
   display: flex;
@@ -306,52 +319,54 @@ const VERIFIED_UNIVERSITIES = [
   min-width: 260px;
 }
 .cross-invite-content p {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--body);
   line-height: 1.4;
   margin: 0;
 }
 .cross-invite-content strong {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .btn-cross-switch {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: var(--primary-coral, #FF6584);
+  gap: 8px;
+  background: var(--primary-coral);
   color: #000000;
   font-weight: 800;
-  font-size: 0.82rem;
-  padding: 8px 14px;
-  border: 2px solid #000000;
-  border-radius: 8px;
-  box-shadow: 2px 2px 0 #000000;
+  font-size: 0.85rem;
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   cursor: pointer;
   font-family: inherit;
-  transition: transform 100ms ease, box-shadow 100ms ease;
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 160ms ease, background-color 160ms ease;
 }
 .btn-cross-switch:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000000;
+  background: #ff5e7a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
 }
 .btn-cross-switch:active {
-  transform: translate(2px, 2px);
-  box-shadow: none;
+  transform: scale(0.97);
 }
 
 /* Universidades Confirmadas */
 .campus-confirmed-section {
-  margin-top: 28px;
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 .confirmed-header-card {
-  background: var(--bg-surface);
-  border: 2px solid var(--border-control);
-  border-radius: 14px;
-  padding: 20px 22px;
-  box-shadow: 3px 3px 0 #000;
+  background: rgba(17, 23, 35, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px 26px;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.5);
 }
 .confirmed-title-row {
   display: flex;
@@ -373,7 +388,7 @@ const VERIFIED_UNIVERSITIES = [
   margin: 0;
 }
 .confirmed-desc strong {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .uni-logos-grid {
   display: grid;
@@ -391,34 +406,36 @@ const VERIFIED_UNIVERSITIES = [
   }
 }
 .uni-logo-card {
-  background: var(--bg-surface);
-  border: 2px solid var(--border-control);
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: 3px 3px 0 #000;
+  background: rgba(17, 23, 35, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 18px 16px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: transform 120ms ease, border-color 150ms ease, box-shadow 120ms ease;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), border-color 180ms ease, box-shadow 180ms ease;
 }
 .uni-logo-card:hover {
-  transform: translateY(-3px);
-  border-color: #FF6584;
-  box-shadow: 5px 5px 0 #000;
+  transform: translateY(-4px);
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
 }
 .uni-logo-canvas {
   width: 100%;
-  height: 84px;
-  background: #FFFFFF;
-  border: 2px solid #000000;
-  border-radius: 10px;
+  height: 86px;
+  background: rgba(255, 255, 255, 0.96);
+  border: none;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 12px;
-  margin-bottom: 12px;
-  box-shadow: 2px 2px 0 #000;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 .uni-logo-asset {
   max-width: 100%;
@@ -437,27 +454,25 @@ const VERIFIED_UNIVERSITIES = [
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 800;
-  color: #00FF87;
+  color: #00ff87;
   background: rgba(0, 255, 135, 0.1);
-  border: 1px solid rgba(0, 255, 135, 0.3);
-  padding: 2px 8px;
-  border-radius: 12px;
-  letter-spacing: 0.05em;
+  border: none;
+  padding: 3px 10px;
+  border-radius: 9999px;
   margin-bottom: 4px;
 }
 .uni-badge-verified .status-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #00FF87;
-  box-shadow: 0 0 6px #00FF87;
+  background: #00ff87;
 }
 .uni-abbr {
   font-size: 1.25rem;
   font-weight: 900;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0;
   letter-spacing: -0.01em;
 }
@@ -471,23 +486,25 @@ const VERIFIED_UNIVERSITIES = [
   justify-content: center;
 }
 .uni-campus-tag {
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  color: #FFD700;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  padding: 2px 8px;
-  border-radius: 6px;
-  margin-top: 4px;
+  color: #ffbe3b;
+  background: rgba(255, 190, 59, 0.1);
+  border: none;
+  padding: 3px 10px;
+  border-radius: 8px;
+  margin-top: 6px;
 }
 
-/* Banner de Testers WhatsApp */
+/* Banner de Testers WhatsApp - Emerald Glass */
 .testers-card-banner {
-  background: linear-gradient(135deg, rgba(255, 101, 132, 0.08) 0%, rgba(37, 211, 102, 0.08) 100%), var(--bg-surface);
-  border: 2px solid #25D366;
-  border-radius: 14px;
-  padding: 22px 24px;
-  box-shadow: 4px 4px 0 #000;
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.08) 0%, rgba(13, 22, 19, 0.85) 100%);
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  border-radius: 20px;
+  padding: 26px 28px;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -502,15 +519,15 @@ const VERIFIED_UNIVERSITIES = [
   min-width: 280px;
 }
 .testers-icon-badge {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   background: rgba(37, 211, 102, 0.15);
-  border: 2px solid #25D366;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 2px 2px 0 #000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   flex-shrink: 0;
 }
 .testers-bubble-emoji {
@@ -528,28 +545,29 @@ const VERIFIED_UNIVERSITIES = [
   gap: 8px;
 }
 .testers-pill-live {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 800;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  color: #25D366;
+  color: #25d366;
   background: rgba(37, 211, 102, 0.12);
-  padding: 2px 8px;
+  padding: 3px 8px;
   border-radius: 6px;
 }
 .testers-cta-title {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 800;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0;
+  letter-spacing: -0.015em;
 }
 .testers-cta-desc {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--body);
   line-height: 1.45;
   margin: 0;
 }
 .testers-cta-desc strong {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .testers-card-right {
   flex-shrink: 0;
@@ -558,35 +576,34 @@ const VERIFIED_UNIVERSITIES = [
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: #25D366;
-  color: #000000;
+  background: #25d366;
+  color: #05140b;
   font-size: 0.95rem;
   font-weight: 800;
-  padding: 12px 20px;
-  border: 2px solid #000000;
-  border-radius: 10px;
+  padding: 13px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
   text-decoration: none;
-  box-shadow: 3px 3px 0 #000000;
-  transition: transform 100ms ease, box-shadow 100ms ease, background-color 150ms ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 160ms ease, background-color 160ms ease;
   white-space: nowrap;
 }
 .btn-testers-whatsapp:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
   background: #2ee673;
 }
 .btn-testers-whatsapp:active {
-  transform: translate(2px, 2px);
-  box-shadow: none;
+  transform: scale(0.97);
 }
 .btn-testers-whatsapp .wa-ico {
   flex-shrink: 0;
 }
 .btn-testers-whatsapp .btn-arrow {
-  transition: transform 120ms ease;
+  transition: transform 140ms ease;
 }
 .btn-testers-whatsapp:hover .btn-arrow {
-  transform: translateX(3px);
+  transform: translateX(4px);
 }
 
 @media (max-width: 1040px) and (min-width: 641px) {
@@ -600,7 +617,7 @@ const VERIFIED_UNIVERSITIES = [
     grid-template-columns: 1fr;
   }
   .campus-cross-invite-box {
-    padding: 12px 14px;
+    padding: 14px 16px;
     gap: 12px;
   }
   .cross-invite-content {
@@ -615,8 +632,8 @@ const VERIFIED_UNIVERSITIES = [
     text-align: center;
   }
   .testers-card-banner {
-    padding: 16px;
-    gap: 16px;
+    padding: 18px 16px;
+    gap: 18px;
   }
   .testers-card-left {
     min-width: 0;
@@ -630,10 +647,8 @@ const VERIFIED_UNIVERSITIES = [
     white-space: normal;
     text-align: center;
     justify-content: center;
-    font-size: 0.88rem;
-    padding: 11px 14px;
+    font-size: 0.9rem;
+    padding: 12px 16px;
   }
 }
-
-
 </style>

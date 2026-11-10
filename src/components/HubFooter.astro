@@ -40,17 +40,20 @@ const { IG, WA } = Astro.props;
   </footer>
 
 <style is:global>
-/* Footer */
+/* Footer - Dark Glass Precision */
 .hub-footer {
-  padding: 48px 0 60px;
-  border-top: 2px solid #000;
-  background: var(--bg);
+  padding: 56px 0 64px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 11, 17, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   font-size: 0.95rem;
+  margin-top: 48px;
 }
 .footer-wrap {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 24px;
 }
 .footer-brand-row {
   display: flex;
@@ -68,41 +71,40 @@ const { IG, WA } = Astro.props;
   height: 38px;
   width: auto;
   object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(255, 51, 133, 0.2));
 }
 .footer-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 24px;
+  gap: 12px 28px;
 }
 .footer-nav a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  color: var(--title);
-  font-weight: 700;
+  color: var(--body);
+  font-weight: 600;
+  font-size: 0.92rem;
   text-decoration: none;
+  transition: color 150ms ease;
 }
 .footer-nav a:hover {
   color: var(--primary);
-  text-decoration: underline;
 }
 .footer-legal {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border-top: 1px solid var(--border);
-  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 20px;
 }
 .footer-legal p {
   color: var(--muted);
   max-width: 65em;
   font-size: 0.86rem;
-  line-height: 1.45;
-  margin: 0;
+  line-height: 1.5;
 }
-.footer-copy {
-  font-weight: 700;
+.footer-legal strong {
   color: var(--title);
 }
-
 </style>

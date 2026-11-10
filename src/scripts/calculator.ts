@@ -50,7 +50,7 @@ export function initGradeCalculator(mascotImages?: Record<string, string>): void
         if (res.status === 'approved') {
           calcVerdict.animate(
             [{ transform: 'scale(1.12)' }, { transform: 'scale(1)' }],
-            { duration: 250, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }
+            { duration: 250, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' }
           );
         } else if (res.status === 'supletorio') {
           calcVerdict.animate(

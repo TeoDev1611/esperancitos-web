@@ -17,40 +17,11 @@ export function paintCampusMode(mode: string): void {
   } catch {}
 }
 
-export function setCampusMode(mode: string, clientX?: number, clientY?: number): void {
+export function setCampusMode(mode: string): void {
   if (html.dataset.mode === mode) return;
 
   trackEvent('cambio_campus', { campus: mode });
-
-  const doc = document as any;
-  if (!doc.startViewTransition || reduce || clientX === undefined || clientY === undefined) {
-    paintCampusMode(mode);
-    return;
-  }
-
-  const radius = Math.hypot(
-    Math.max(clientX, window.innerWidth - clientX),
-    Math.max(clientY, window.innerHeight - clientY)
-  );
-
-  doc.documentElement.style.setProperty('--cx', `${clientX}px`);
-  doc.documentElement.style.setProperty('--cy', `${clientY}px`);
-  doc.documentElement.style.setProperty('--cr', `${radius}px`);
-
-  const transition = doc.startViewTransition(() => paintCampusMode(mode));
-  transition.ready.then(() => {
-    doc.documentElement.animate(
-      [
-        { clipPath: 'circle(0px at var(--cx) var(--cy))' },
-        { clipPath: 'circle(var(--cr) at var(--cx) var(--cy))' }
-      ],
-      {
-        duration: 380,
-        easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-        pseudoElement: '::view-transition-new(root)'
-      }
-    );
-  });
+  paintCampusMode(mode);
 }
 
 export function initCampusMode(): void {

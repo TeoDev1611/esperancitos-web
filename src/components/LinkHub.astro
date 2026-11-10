@@ -11,137 +11,141 @@ const {
   WA_TESTERS = 'https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc',
 } = Astro.props;
 ---
-      <section class="hub-links-section">
-        <h2 class="hub-section-title">Enlaces y herramientas importantes</h2>
-        <div class="linktree-grid">
-          <!-- Link 1: FAQ -->
-          <a href="/faq" class="link-card">
-            <span class="link-icon">❓</span>
-            <div class="link-content">
-              <div class="link-head-row">
-                <b>Preguntas Frecuentes</b>
-                <span class="badge b-info">Centro de ayuda</span>
-              </div>
-              <p>Respuestas sobre contraseñas, instalación del APK, Moodle por QR y notas.</p>
-            </div>
-            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
-          </a>
-
-          <!-- Link 2: Avisos -->
-          <a href="/avisos" class="link-card">
-            <span class="link-icon">📢</span>
-            <div class="link-content">
-              <div class="link-head-row">
-                <b>Tablón de Avisos de la Comunidad</b>
-                <span class="badge b-ok">En vivo</span>
-              </div>
-              <p>Novedades académicas, convocatorias estudiantiles y comunicados oficiales.</p>
-            </div>
-            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
-          </a>
-
-          <!-- Link 3: Negocios -->
-          <a href="/negocios" class="link-card">
-            <span class="link-icon">🏪</span>
-            <div class="link-content">
-              <div class="link-head-row">
-                <b>Directorio de Negocios y Servicios</b>
-                <span class="badge b-warn">Gratis</span>
-              </div>
-              <p>Fotocopias, impresiones, almuerzos y papelerías alrededor de tu campus.</p>
-            </div>
-            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
-          </a>
-
-          <!-- Link 4: Privacidad -->
-          <a href="/privacidad" class="link-card">
-            <span class="link-icon">🛡️</span>
-            <div class="link-content">
-              <div class="link-head-row">
-                <b>Privacidad & Arquitectura Zero-Backend</b>
-                <span class="badge b-info">AES-256</span>
-              </div>
-              <p>Tus claves nunca pasan por nosotros: cero servidores intermediarios.</p>
-            </div>
-            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
-          </a>
-
-          <!-- Link 5: Instagram -->
-          <a href={IG} target="_blank" rel="noopener noreferrer" class="link-card">
-            <span class="link-icon">📸</span>
-            <div class="link-content">
-              <div class="link-head-row">
-                <b>Instagram Oficial</b>
-                <span class="badge b-ok">@pilas_ec.app</span>
-              </div>
-              <p>Noticias de nuevas versiones, historias de la comunidad y actualizaciones.</p>
-            </div>
-            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
-          </a>
-
-          <!-- Link 6: WhatsApp Canal -->
-          <a href={WA} target="_blank" rel="noopener noreferrer" class="link-card">
-            <span class="link-icon">💬</span>
-            <div class="link-content">
-              <div class="link-head-row">
-                <b>Canal Oficial de WhatsApp</b>
-                <span class="badge b-ok">Canal</span>
-              </div>
-              <p>Alertas académicas inmediatas, comunicados y recordatorios sin spam.</p>
-            </div>
-            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
-          </a>
-
-          <!-- Link 6b: Grupo de WhatsApp Testers -->
-          <a href={WA_TESTERS} target="_blank" rel="noopener noreferrer" class="link-card highlight-card">
-            <span class="link-icon">🧪</span>
-            <div class="link-content">
-              <div class="link-head-row">
-                <b>Grupo WhatsApp de Testers</b>
-                <span class="badge b-warn font-mono">Multi-U</span>
-              </div>
-              <p>Verifica el funcionamiento de tu universidad (UTA, UCE, EPN, UNACH) y prueba betas.</p>
-            </div>
-            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
-          </a>
-
-          <!-- Link 7: Calculadora ESPE -->
-          <a href="/herramientas/calculadora-notas-espe" class="link-card">
-            <span class="link-icon">⚖️</span>
-            <div class="link-content">
-              <div class="link-head-row">
-                <b>Calculadora de Notas ESPE</b>
-                <span class="badge b-ok">Web & App</span>
-              </div>
-              <p>Simulador de regla 42/60 puntos: averigua cuánto necesitas en el Parcial 3.</p>
-            </div>
-            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
-          </a>
-
-          <!-- Link 8: Compresor PDF Moodle -->
-          <a href="/herramientas/compresor-pdf-moodle" class="link-card">
-            <span class="link-icon">📄</span>
-            <div class="link-content">
-              <div class="link-head-row">
-                <b>Compresor PDF para Moodle</b>
-                <span class="badge b-info">Límite 5 MB</span>
-              </div>
-              <p>Reduce informes y deberes para que Moodle no los rechace a las 23:59.</p>
-            </div>
-            <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
-          </a>
+<section id="herramientas" class="hub-links-section">
+  <h2 class="hub-section-title">Enlaces y herramientas importantes</h2>
+  <div class="linktree-grid">
+    <!-- Link 1: FAQ -->
+    <a href="/faq" class="link-card">
+      <span class="link-icon">❓</span>
+      <div class="link-content">
+        <div class="link-head-row">
+          <b>Preguntas Frecuentes</b>
+          <span class="badge b-info">Centro de ayuda</span>
         </div>
-      </section>
+        <p>Respuestas sobre acceso a la preview cerrada de Google Play, Moodle por QR y notas.</p>
+      </div>
+      <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+    </a>
+
+    <!-- Link 2: Avisos -->
+    <a href="/avisos" class="link-card">
+      <span class="link-icon">📢</span>
+      <div class="link-content">
+        <div class="link-head-row">
+          <b>Tablón de Avisos de la Comunidad</b>
+          <span class="badge b-ok">En vivo</span>
+        </div>
+        <p>Novedades académicas, convocatorias estudiantiles y comunicados oficiales.</p>
+      </div>
+      <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+    </a>
+
+    <!-- Link 3: Negocios -->
+    <a href="/negocios" class="link-card">
+      <span class="link-icon">🏪</span>
+      <div class="link-content">
+        <div class="link-head-row">
+          <b>Directorio de Negocios y Servicios</b>
+          <span class="badge b-warn">Gratis</span>
+        </div>
+        <p>Fotocopias, impresiones, almuerzos y papelerías alrededor de tu campus.</p>
+      </div>
+      <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+    </a>
+
+    <!-- Link 4: Privacidad -->
+    <a href="/privacidad" class="link-card">
+      <span class="link-icon">🛡️</span>
+      <div class="link-content">
+        <div class="link-head-row">
+          <b>Privacidad & Arquitectura Zero-Backend</b>
+          <span class="badge b-info">AES-256</span>
+        </div>
+        <p>Tus claves nunca pasan por nosotros: cero servidores intermediarios.</p>
+      </div>
+      <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+    </a>
+
+    <!-- Link 5: Instagram -->
+    <a href={IG} target="_blank" rel="noopener noreferrer" class="link-card">
+      <span class="link-icon">📸</span>
+      <div class="link-content">
+        <div class="link-head-row">
+          <b>Instagram Oficial</b>
+          <span class="badge b-ok">@pilas_ec.app</span>
+        </div>
+        <p>Noticias de nuevas versiones, historias de la comunidad y actualizaciones.</p>
+      </div>
+      <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+    </a>
+
+    <!-- Link 6: WhatsApp Canal -->
+    <a href={WA} target="_blank" rel="noopener noreferrer" class="link-card">
+      <span class="link-icon">💬</span>
+      <div class="link-content">
+        <div class="link-head-row">
+          <b>Canal Oficial de WhatsApp</b>
+          <span class="badge b-ok">Canal</span>
+        </div>
+        <p>Alertas académicas inmediatas, comunicados y recordatorios sin spam.</p>
+      </div>
+      <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+    </a>
+
+    <!-- Link 6b: Grupo de WhatsApp Testers -->
+    <a href={WA_TESTERS} target="_blank" rel="noopener noreferrer" class="link-card highlight-card">
+      <span class="link-icon">🧪</span>
+      <div class="link-content">
+        <div class="link-head-row">
+          <b>Grupo WhatsApp de Testers</b>
+          <span class="badge b-warn font-mono">Multi-U</span>
+        </div>
+        <p>Verifica el funcionamiento de tu universidad (UTA, UCE, EPN, UNACH) y prueba betas.</p>
+      </div>
+      <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+    </a>
+
+    <!-- Link 7: Calculadora ESPE -->
+    <a href="/herramientas/calculadora-notas-espe" class="link-card">
+      <span class="link-icon">⚖️</span>
+      <div class="link-content">
+        <div class="link-head-row">
+          <b>Calculadora de Notas ESPE</b>
+          <span class="badge b-ok">Web & App</span>
+        </div>
+        <p>Simulador de regla 42/60 puntos: averigua cuánto necesitas en el Parcial 3.</p>
+      </div>
+      <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+    </a>
+
+    <!-- Link 8: Compresor PDF Moodle -->
+    <a href="/herramientas/compresor-pdf-moodle" class="link-card">
+      <span class="link-icon">📄</span>
+      <div class="link-content">
+        <div class="link-head-row">
+          <b>Compresor PDF para Moodle</b>
+          <span class="badge b-info">Límite 5 MB</span>
+        </div>
+        <p>Reduce informes y deberes para que Moodle no los rechace a las 23:59.</p>
+      </div>
+      <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
+    </a>
+  </div>
+</section>
 
 <style is:global>
-/* Linktree de Enlaces */
+/* Linktree de Enlaces - Dark Glass Precision */
 .hub-links-section {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
+  padding: 32px 0 16px;
 }
 .hub-section-title {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--title);
 }
 .linktree-grid {
   display: grid;
@@ -152,25 +156,34 @@ const {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px 20px;
-  background: var(--bg-surface);
-  border: 2px solid var(--border);
-  border-radius: 16px;
+  padding: 20px 22px;
+  background: rgba(17, 23, 35, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
   text-decoration: none;
-  box-shadow: 3px 3px 0 #000;
-  transition: transform 100ms, border-color 150ms, box-shadow 100ms;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), border-color 180ms ease, box-shadow 180ms ease;
 }
 .link-card:hover {
-  border-color: var(--primary);
-  transform: translateY(-2px);
-  box-shadow: 5px 5px 0 #000;
+  border-color: rgba(255, 51, 133, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
 }
 .link-card:active {
-  transform: translate(2px, 2px);
-  box-shadow: none;
+  transform: scale(0.98);
 }
 .link-icon {
-  font-size: 2rem;
+  font-size: 1.6rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 .link-content {
@@ -185,55 +198,63 @@ const {
   flex-wrap: wrap;
   margin-bottom: 4px;
 }
-
-@media (max-width: 640px) {
-  .link-card {
-    padding: 14px 14px;
-    gap: 12px;
-  }
-  .link-icon {
-    font-size: 1.6rem;
-  }
-  .link-head-row b {
-    font-size: 1rem;
-  }
-  .link-content p {
-    font-size: 0.84rem;
-  }
-}
 .link-head-row b {
   font-family: var(--f-d);
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--title);
+  letter-spacing: -0.015em;
 }
 .link-content p {
   color: var(--muted);
   font-size: 0.88rem;
-  line-height: 1.35;
+  line-height: 1.4;
+  margin: 0;
 }
 .link-arrow {
   color: var(--muted);
   width: 1.2em;
   height: 1.2em;
   flex-shrink: 0;
-  transition: transform 150ms;
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms ease;
 }
 .link-card:hover .link-arrow {
   color: var(--primary);
-  transform: translateX(3px);
+  transform: translateX(4px);
 }
 .link-card.highlight-card {
-  border-color: #25D366;
-  background: linear-gradient(135deg, rgba(37, 211, 102, 0.08) 0%, var(--bg-surface) 100%);
+  border-color: rgba(37, 211, 102, 0.35);
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.08) 0%, rgba(17, 23, 35, 0.75) 100%);
 }
 .link-card.highlight-card:hover {
-  border-color: #2ee673;
-  box-shadow: 5px 5px 0 #25D366;
+  border-color: rgba(37, 211, 102, 0.6);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
 }
 .link-card.highlight-card:hover .link-arrow {
-  color: #25D366;
+  color: #25d366;
 }
 
+@media (max-width: 900px) {
+  .linktree-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
+@media (max-width: 640px) {
+  .link-card {
+    padding: 16px;
+    gap: 12px;
+  }
+  .link-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.4rem;
+  }
+  .link-head-row b {
+    font-size: 0.98rem;
+  }
+  .link-content p {
+    font-size: 0.84rem;
+  }
+}
 </style>

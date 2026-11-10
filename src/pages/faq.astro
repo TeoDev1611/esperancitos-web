@@ -95,6 +95,7 @@ try {
 
     <p class="count-line" id="faq-count" aria-live="polite">Mostrando <b class="num">{FAQ_ENTRIES.length}</b> preguntas</p>
 
+    <h2 class="sr">Listado de preguntas y respuestas</h2>
     <!-- Lista de acordeones -->
     <div class="faq-list" id="faq-list">
       {FAQ_ENTRIES.map((entry) => (
@@ -120,7 +121,7 @@ try {
     <!-- Estado vacío -->
     <div class="empty card" id="faq-empty" hidden>
       <img src="/logos/mascota_negacion.svg" alt="Pilo con ceño fruncido indicando que no se encontraron respuestas" width="120" height="120">
-      <h3>No encontramos respuestas para esa búsqueda</h3>
+      <h2 class="empty-title">No encontramos respuestas para esa búsqueda</h2>
       <p>Prueba con términos más generales como <em>Moodle</em>, <em>contraseña</em>, <em>APK</em> o <em>horario</em>.</p>
       <button type="button" class="btn btn-p btn-sm" id="btn-reset">Ver todas las preguntas</button>
     </div>
@@ -128,7 +129,7 @@ try {
     <!-- Tarjeta de contacto -->
     <div class="card support-card">
       <div>
-        <h3>¿Tienes otra duda o encontraste un problema?</h3>
+        <h2>¿Tienes otra duda o encontraste un problema?</h2>
         <p style="margin-top:6px">Escríbenos directamente a través de nuestros canales comunitarios oficiales.</p>
       </div>
       <div class="support-btns">

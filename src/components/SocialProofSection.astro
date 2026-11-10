@@ -22,7 +22,7 @@ const hasTestimonials = testimonials.length > 0;
 <section id="comunidad" class="hub-social-proof">
   <div class="container">
     <div class="proof-header">
-      <span class="sticker-pill" style="background: var(--accent-green); color: #000;">📱 EXPERIENCIA REAL EN CAMPUS</span>
+      <span class="sticker-pill green font-mono">📱 EXPERIENCIA REAL EN CAMPUS</span>
       <h2 class="hub-section-title">Construida con y para estudiantes</h2>
       <p class="proof-subtitle">
         Cero humo comercial. Diseñada escuchando los problemas cotidianos en los pasillos, laboratorios y garitas universitarias.
@@ -32,7 +32,7 @@ const hasTestimonials = testimonials.length > 0;
     <!-- Espacio para capturas reales de la app -->
     <div class="screenshots-showcase-box">
       <div class="showcase-top-bar">
-        <span class="badge b-info">📸 CAPTURAS OFICIALES DE LA APP</span>
+        <span class="badge b-info font-mono">📸 CAPTURAS OFICIALES DE LA APP</span>
         <span class="font-mono text-muted" style="font-size: 0.8rem;">Android 11 - 15+</span>
       </div>
 
@@ -40,14 +40,13 @@ const hasTestimonials = testimonials.length > 0;
         <div class="mockup-slot">
           <div class="mockup-header">
             <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="mockup-title">Horario & Aulas</span>
+            <span class="mockup-title font-mono">Horario & Aulas</span>
           </div>
           <div class="mockup-body">
             <div class="mockup-placeholder">
               <span class="mockup-icon">🗓️</span>
               <b>Horario sin conexión</b>
               <small>Aulas exactas con bloque y piso decodificado</small>
-              <!-- TODO(owner): Reemplazar con captura real de pantalla (public/screenshots/horario.webp) -->
             </div>
           </div>
         </div>
@@ -55,14 +54,13 @@ const hasTestimonials = testimonials.length > 0;
         <div class="mockup-slot">
           <div class="mockup-header">
             <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="mockup-title">Calculadora 42 pts</span>
+            <span class="mockup-title font-mono">Calculadora 42 pts</span>
           </div>
           <div class="mockup-body">
             <div class="mockup-placeholder">
               <span class="mockup-icon">⚖️</span>
               <b>Simulador de notas</b>
               <small>Cálculo en vivo de cuánto necesitas en el Parcial 3</small>
-              <!-- TODO(owner): Reemplazar con captura real de pantalla (public/screenshots/notas.webp) -->
             </div>
           </div>
         </div>
@@ -70,21 +68,20 @@ const hasTestimonials = testimonials.length > 0;
         <div class="mockup-slot">
           <div class="mockup-header">
             <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="mockup-title">Carnet Garita</span>
+            <span class="mockup-title font-mono">Carnet Garita</span>
           </div>
           <div class="mockup-body">
             <div class="mockup-placeholder">
               <span class="mockup-icon">🪪</span>
               <b>Carnet digital</b>
               <small>Código de barras legible por torniquetes militares</small>
-              <!-- TODO(owner): Reemplazar con captura real de pantalla (public/screenshots/carnet.webp) -->
             </div>
           </div>
         </div>
       </div>
 
       <div class="owner-notice-box">
-        <span class="badge b-warn">TODO(owner)</span>
+        <span class="badge b-warn font-mono">TODO(owner)</span>
         <p>
           Espacio reservado para montar capturas de pantalla reales en alta resolución (1080×2400) directamente tomadas desde un teléfono Android en el campus.
         </p>
@@ -118,10 +115,10 @@ const hasTestimonials = testimonials.length > 0;
             </p>
           </div>
           <a href="https://www.instagram.com/pilas_ec.app/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-p">
-            Enviar testimonio ➔
+            <span>Enviar testimonio</span>
+            <span class="btn-arrow">➔</span>
           </a>
         </div>
-        <!-- TODO(owner): Entregar testimonios reales con nombre, carrera y consentimiento explícito por escrito para publicarlos. -->
       </div>
     )}
   </div>
@@ -130,8 +127,7 @@ const hasTestimonials = testimonials.length > 0;
 <style>
   .hub-social-proof {
     padding: 60px 0;
-    border-top: 2px solid var(--border);
-    background: #12151D;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
   .container {
     max-width: 1100px;
@@ -146,13 +142,13 @@ const hasTestimonials = testimonials.length > 0;
     font-size: 1.05rem;
     max-width: 650px;
     margin-top: 8px;
+    line-height: 1.5;
   }
   .screenshots-showcase-box {
-    background: var(--card);
-    border: 2px solid #000;
-    box-shadow: 4px 4px 0 #000;
-    border-radius: 8px;
-    padding: 24px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
     margin-bottom: 32px;
   }
   .showcase-top-bar {
@@ -172,35 +168,42 @@ const hasTestimonials = testimonials.length > 0;
     }
   }
   .mockup-slot {
-    background: #0B0E14;
-    border: 2px solid #000;
-    border-radius: 8px;
+    background: rgba(11, 16, 26, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .mockup-slot:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
   }
   .mockup-header {
-    background: #1B202D;
-    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 10px 14px;
     display: flex;
     align-items: center;
     gap: 6px;
-    border-bottom: 1px solid #000;
+    border: none;
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.06);
   }
   .mockup-header .dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: var(--muted);
+    opacity: 0.5;
   }
   .mockup-title {
-    font-family: monospace;
-    font-size: 0.75rem;
-    color: var(--text);
+    font-size: 0.76rem;
+    color: var(--body);
     margin-left: 6px;
   }
   .mockup-body {
-    padding: 30px 16px;
+    padding: 34px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -214,28 +217,30 @@ const hasTestimonials = testimonials.length > 0;
     gap: 8px;
   }
   .mockup-icon { font-size: 2.2rem; }
-  .mockup-placeholder b { font-size: 1rem; color: var(--text); }
+  .mockup-placeholder b { font-size: 1rem; color: var(--title); }
   .mockup-placeholder small { color: var(--muted); font-size: 0.82rem; }
   .owner-notice-box {
-    margin-top: 18px;
-    padding: 10px 14px;
-    background: rgba(255, 184, 0, 0.08);
-    border: 1.5px dashed var(--accent-amber);
-    border-radius: 6px;
+    margin-top: 20px;
+    padding: 12px 16px;
+    background: rgba(255, 190, 59, 0.06);
+    border: 1px solid rgba(255, 190, 59, 0.25);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     gap: 12px;
     font-size: 0.85rem;
   }
-  .owner-notice-box p { color: var(--text); margin: 0; }
+  .owner-notice-box p { color: var(--body); margin: 0; }
 
   /* Testimonials Callout */
   .testimonials-empty-callout {
-    background: var(--card);
-    border: 2px solid #000;
-    box-shadow: 4px 4px 0 #000;
-    border-radius: 8px;
-    padding: 20px 24px;
+    background: rgba(17, 23, 35, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    border-radius: 18px;
+    padding: 22px 26px;
   }
   .empty-callout-inner {
     display: flex;
@@ -246,8 +251,8 @@ const hasTestimonials = testimonials.length > 0;
   }
   .callout-icon { font-size: 1.8rem; }
   .callout-text { flex: 1; min-width: min(100%, 260px); }
-  .callout-text b { font-size: 1rem; color: var(--text); display: block; margin-bottom: 4px; }
-  .callout-text p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+  .callout-text b { font-size: 1.05rem; color: var(--title); display: block; margin-bottom: 4px; }
+  .callout-text p { font-size: 0.9rem; color: var(--muted); margin: 0; line-height: 1.45; }
 
   /* Testimonials Grid (cuando haya datos) */
   .testimonials-block {
@@ -257,6 +262,7 @@ const hasTestimonials = testimonials.length > 0;
     font-size: 1.4rem;
     font-weight: 800;
     margin-bottom: 20px;
+    color: var(--title);
   }
   .testimonials-grid {
     display: grid;
@@ -264,20 +270,22 @@ const hasTestimonials = testimonials.length > 0;
     gap: 20px;
   }
   .testimonial-card {
-    background: var(--card);
-    border: 2px solid #000;
-    box-shadow: 4px 4px 0 #000;
-    padding: 20px;
-    border-radius: 8px;
+    background: rgba(17, 23, 35, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    padding: 22px;
+    border-radius: 16px;
   }
   .testimonial-quote {
     font-style: italic;
-    color: var(--text);
+    color: var(--body);
     margin-bottom: 12px;
+    line-height: 1.5;
   }
   .testimonial-author b {
     display: block;
-    color: var(--accent);
+    color: var(--primary);
   }
   .testimonial-meta {
     font-size: 0.8rem;

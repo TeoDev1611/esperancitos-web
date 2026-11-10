@@ -1,52 +1,65 @@
 ---
 ---
-  <header class="top">
-    <div class="wrap top-wrap">
-      <a class="nav-brand nav-brand-logo-pill" href="#" aria-label="Pilas!, volver al inicio">
-        <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="128" height="42" />
-      </a>
-      <div class="nav-status-badge">
+<header class="top">
+  <div class="top-wrap">
+    <a class="nav-brand nav-brand-logo-pill" href="#" aria-label="Pilas!, volver al inicio">
+      <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="112" height="36" />
+    </a>
+
+    <!-- Links de navegación rápida -->
+    <nav class="nav-links hide-s" aria-label="Navegación principal">
+      <a href="#modo" class="nav-link-item">Funciones</a>
+      <a href="#universidades" class="nav-link-item">Universidades</a>
+      <a href="#acceso" class="nav-link-item">Prueba Play Store</a>
+      <a href="#herramientas" class="nav-link-item">Herramientas</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div class="nav-status-badge hide-xs">
         <span class="live-pulse"></span>
-        <span class="nav-mode-txt" data-for="espe">ESPE Sangolquí</span>
-        <span class="nav-mode-txt" data-for="multi">Multi-Universidad</span>
+        <span class="nav-mode-txt" data-for="espe">ESPE</span>
+        <span class="nav-mode-txt" data-for="multi">Multi-U</span>
       </div>
-      <div class="nav-actions">
-        <button class="btn btn-s btn-sm" id="replay" type="button" title="Ver exposición de Pilas">
-          <svg class="ico"><use href="#i-play"/></svg>
-          <span class="hide-s">Ver exposición</span>
-        </button>
-        <a class="btn btn-p btn-sm nav-dl-btn" href="#acceso">
-          <svg class="ico"><use href="#i-play"/></svg>
-          <span>Pedir acceso</span>
-        </a>
-      </div>
+      <a class="btn btn-p btn-sm nav-dl-btn" href="#acceso">
+        <svg class="ico"><use href="#i-play"/></svg>
+        <span>Pedir acceso</span>
+      </a>
     </div>
-  </header>
+  </div>
+</header>
 
 <style is:global>
 /* ============================================================== */
-/* 2. ESTILOS DEL HUB ESTUDIANTIL (LINKTREE BRUTALISTA)          */
+/* NAVBAR FLOTANTE GLASSMORPHIC MODERNA                           */
 /* ============================================================== */
 .top {
   position: sticky;
-  top: 0;
+  top: 14px;
   z-index: 50;
-  background: rgba(16, 19, 25, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 2px solid #000;
-  padding-top: env(safe-area-inset-top, 0px);
-}
-html[data-mode="multi"] .top {
-  background: rgba(25, 29, 40, 0.94);
+  max-width: 1080px;
+  margin: 0 auto 20px;
+  padding: 0 16px;
 }
 .top-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  min-height: 64px;
+  min-height: 56px;
+  background: rgba(13, 18, 28, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 6px 16px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
 }
+.top-wrap:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.6);
+}
+
 .nav-brand {
   display: inline-flex;
   align-items: center;
@@ -54,45 +67,59 @@ html[data-mode="multi"] .top {
   flex-shrink: 0;
 }
 .nav-brand-logo {
-  height: 38px;
+  height: 32px;
   width: auto;
   object-fit: contain;
 }
-.nav-status-badge {
-  display: inline-flex;
+
+.nav-links {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  background: var(--bg-surface);
-  border: 1.5px solid var(--border-control);
-  border-radius: 9999px;
-  font: 800 0.8rem var(--f-d);
-  letter-spacing: 0.02em;
-  color: var(--title);
-  box-shadow: 2px 2px 0 #000;
+  gap: 20px;
 }
-.live-pulse {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 8px var(--success);
-  display: inline-block;
-  flex-shrink: 0;
+.nav-link-item {
+  color: var(--muted);
+  font-family: var(--f-d);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: color 150ms ease;
 }
+.nav-link-item:hover {
+  color: #ffffff;
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+.nav-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  border-radius: 9999px;
+  font: 700 0.8rem var(--f-d);
+  color: var(--title);
+}
+.live-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  display: inline-block;
+  flex-shrink: 0;
+}
 
 .hub-main {
-  padding: 36px 0 80px;
+  padding: 10px 0 80px;
 }
 .hub-wrap {
   display: flex;
   flex-direction: column;
   gap: 48px;
 }
-
 </style>
