@@ -4,6 +4,7 @@ import '@fontsource-variable/inter';
 import { SITE } from '../../config/site';
 import { RELEASE, PRIMARY_ARCH, PRIMARY_APK_SIZE } from '../../lib/release';
 import GradeCalculatorDemo from '../../components/GradeCalculatorDemo.astro';
+import AtelierCredits from '../../components/AtelierCredits.astro';
 
 const V = {
   version: RELEASE.version,
@@ -188,8 +189,9 @@ const jsonLd = {
 </main>
 
 <footer class="tool-footer">
-  <div class="wrap">
+  <div class="wrap tool-footer-wrap">
     <p>© 2026 Pilas! · Proyecto estudiantil independiente no afiliado a la ESPE.</p>
+    <AtelierCredits compact />
   </div>
 </footer>
 
@@ -302,11 +304,16 @@ const jsonLd = {
     margin-inline: auto;
   }
   .tool-footer {
-    padding: 24px 0;
+    padding: 36px 0 48px;
     border-top: 1px solid var(--border);
-    text-align: center;
+    text-align: left;
     color: var(--muted);
     font-size: 0.85rem;
+  }
+  .tool-footer-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 </style>
 </body>

@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../config/site';
+import AtelierCredits from './AtelierCredits.astro';
 
 interface Props {
   IG: string;
@@ -36,6 +37,7 @@ const { IG, WA } = Astro.props;
         <p class="footer-copy">© 2026 Pilas! · Hecho con orgullo estudiantil para el Ecuador.</p>
         <p class="footer-data-sync font-mono" style="margin-top: 8px; font-size: 0.8rem; color: var(--muted);">📅 Datos de mallas y aulas actualizados el: <strong>{SITE.academicDataLastUpdated}</strong> (Semestre {SITE.currentSemester})</p>
       </div>
+      <AtelierCredits />
     </div>
   </footer>
 

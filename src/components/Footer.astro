@@ -2,6 +2,7 @@
 // Footer.astro - Pie de página limpio con llamado a apoyar y aviso de independencia
 import { SITE } from '../config/site';
 import { SHOW_DONATIONS } from '../config/donation';
+import AtelierCredits from './AtelierCredits.astro';
 ---
 
 <footer class="site-footer">
@@ -157,6 +158,7 @@ import { SHOW_DONATIONS } from '../config/donation';
           <span>↑ Arriba</span>
         </a>
       </div>
+      <AtelierCredits />
     </div>
 
   </div>
@@ -459,6 +461,7 @@ import { SHOW_DONATIONS } from '../config/donation';
     align-items: center;
     font-size: 0.82rem;
     color: var(--text-muted);
+    margin-bottom: 24px;
   }
 
   .btn-back-top {

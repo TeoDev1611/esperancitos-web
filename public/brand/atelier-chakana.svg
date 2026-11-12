@@ -1,0 +1,17 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width="240"
+  height="240"
+  fill="none"
+  role="img"
+  aria-label="Chakana andina escalonada de Atelier"
+>
+  <title>Chakana andina escalonada de Atelier</title>
+  <path
+    d="M8 0H16V4H20V8H24V16H20V20H16V24H8V20H4V16H0V8H4V4H8V0ZM10 10V14H14V10H10Z"
+    fill="#CB582B"
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+  />
+</svg>

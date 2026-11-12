@@ -1,0 +1,288 @@
+---
+interface Props {
+  /** En pies compactos muestra logotipo + chakana sin el sello circular. */
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+const ATELIER_URL = 'https://atelier-ec.vercel.app/';
+---
+
+<section
+  class:list={['atelier-credits', { 'is-compact': compact }]}
+  aria-label="Créditos del software y de Atelier"
+>
+  <div class="atelier-divider" aria-hidden="true">
+    <img
+      src="/brand/atelier-chakana.svg"
+      alt=""
+      width="24"
+      height="24"
+      class="atelier-chakana"
+      loading="lazy"
+      decoding="async"
+    />
+    <span class="atelier-divider-rule"></span>
+  </div>
+
+  <div class="atelier-colophon">
+    <div class="atelier-info">
+      <dl class="atelier-authors">
+        <div class="atelier-author-row">
+          <dt>Software:</dt>
+          <dd>Pilas!</dd>
+        </div>
+        <div class="atelier-author-row">
+          <dt>Autores:</dt>
+          <dd>Atelier — Diseño, ingeniería y desarrollo</dd>
+        </div>
+      </dl>
+
+      <div class="atelier-signature">
+        <a
+          href={ATELIER_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="atelier-brand-link"
+        >
+          <img
+            src="/brand/atelier-logo-claro.svg"
+            alt="Atelier — Software hecho a mano"
+            width="434"
+            height="115"
+            class="atelier-logo"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <p class="atelier-tagline">Diseñado y programado en Ecuador · Un producto de Atelier</p>
+        <p class="atelier-studio">
+          Atelier · Software hecho a mano · Ecuador (Est. 2026) ·{' '}
+          <a
+            href={ATELIER_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="atelier-text-link"
+          >
+            atelier-ec.vercel.app
+          </a>
+        </p>
+      </div>
+    </div>
+
+    {!compact && (
+      <div class="atelier-seal-wrap">
+        <img
+          src="/brand/atelier-sello-claro.svg"
+          alt="Atelier — Software hecho a mano · Ecuador · Est. 2026"
+          width="200"
+          height="200"
+          class="atelier-seal"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .atelier-credits {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    font-family: var(--f-b, var(--font-sans, "Inter Variable", system-ui, sans-serif));
+  }
+
+  .atelier-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 20px;
+  }
+
+  .atelier-chakana {
+    display: block;
+    width: 14px;
+    height: 14px;
+    flex: none;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    filter: none;
+  }
+
+  .atelier-divider-rule {
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: rgba(246, 237, 227, 0.12);
+  }
+
+  .atelier-colophon {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px 32px;
+    flex-wrap: wrap;
+  }
+
+  .atelier-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .atelier-authors {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .atelier-author-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 8px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .atelier-authors dt {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--muted, var(--text-muted, #94a3b8));
+  }
+
+  .atelier-authors dd {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #f6ede3;
+  }
+
+  .atelier-signature {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .atelier-brand-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 6px 0;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: opacity 160ms ease;
+  }
+
+  .atelier-brand-link:hover {
+    opacity: 0.86;
+  }
+
+  .atelier-brand-link:focus-visible,
+  .atelier-text-link:focus-visible {
+    outline: 2px solid #cb582b;
+    outline-offset: 3px;
+  }
+
+  .atelier-logo {
+    display: block;
+    height: 28px;
+    width: auto;
+    max-width: 100%;
+    aspect-ratio: 434.27 / 115.46;
+    object-fit: contain;
+    margin: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    filter: none;
+  }
+
+  .is-compact .atelier-logo {
+    height: 24px;
+  }
+
+  .atelier-tagline {
+    margin: 0;
+    max-width: none;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #d6dde6;
+  }
+
+  .atelier-studio {
+    margin: 0;
+    max-width: none;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--muted, var(--text-muted, #94a3b8));
+  }
+
+  .atelier-text-link {
+    color: #f6ede3;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(203, 88, 43, 0.85);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+    border-radius: 2px;
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+  }
+
+  .atelier-text-link:hover {
+    color: #ffffff;
+    text-decoration-color: #cb582b;
+  }
+
+  .atelier-seal-wrap {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .atelier-seal {
+    display: block;
+    width: 76px;
+    height: 76px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    filter: none;
+  }
+
+  @media (max-width: 560px) {
+    .atelier-colophon {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .atelier-seal {
+      width: 68px;
+      height: 68px;
+    }
+  }
+</style>
+

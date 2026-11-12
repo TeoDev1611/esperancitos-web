@@ -3,6 +3,7 @@ import '@fontsource-variable/outfit';
 import '@fontsource-variable/inter';
 import { buildApiPayloads } from '../lib/community-payloads.ts';
 import type { PublicAvisoItem } from '../lib/community-contract.ts';
+import AtelierCredits from '../components/AtelierCredits.astro';
 
 const includeExamples =
   import.meta.env.DEV ||
@@ -153,6 +154,7 @@ try {
       <p>Los nombres, siglas y logotipos de universidades pertenecen con exclusividad a sus respectivos titulares y se usan únicamente para fines de contextualización estudiantil y compatibilidad técnica.</p>
       <p class="footer-copy">© 2026 Pilas! · Hecho con orgullo estudiantil para el Ecuador.</p>
     </div>
+    <AtelierCredits />
   </div>
 </footer>
 

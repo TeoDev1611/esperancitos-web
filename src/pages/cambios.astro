@@ -3,6 +3,7 @@ import '@fontsource-variable/outfit';
 import '@fontsource-variable/inter';
 import { SITE } from '../config/site';
 import changelog from '../data/changelog.json';
+import AtelierCredits from '../components/AtelierCredits.astro';
 
 const title = `Historial de Cambios y Versiones | ${SITE.name}`;
 const description = `Consulta todas las novedades, mejoras de rendimiento, parches de seguridad y lanzamientos oficiales de Pilas! para Android.`;
@@ -267,6 +268,22 @@ try {
     margin-top: 16px;
   }
   .btn-download:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #000; }
+
+  .changelog-footer {
+    max-width: 900px;
+    margin: 56px auto 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .changelog-footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .changelog-footer-copy {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
 </style>
 </head>
 <body>
@@ -339,6 +356,13 @@ try {
     </a>
   </section>
 </main>
+
+<footer class="changelog-footer">
+  <div class="container changelog-footer-inner">
+    <p class="changelog-footer-copy">© 2026 Pilas! · Proyecto estudiantil independiente para el Ecuador.</p>
+    <AtelierCredits />
+  </div>
+</footer>
 
 </body>
 </html>
