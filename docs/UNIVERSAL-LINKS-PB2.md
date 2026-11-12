@@ -118,3 +118,4 @@ Ejecutar con `npm test` (`vitest run`):
 - `tests/og-endpoint.test.ts`: renderizado PNG `1200x630` para las 7 variantes (`/api/og/{amigo,a,tarea,tareas,materiales,curso,junta}`), sufijo `.png`, fallback y 404.
 - `tests/ics-and-sanitize.test.ts`: validez RFC 5545, privacidad en `.ics`, alarmas, saneamiento de URLs y OG privado.
 - `tests/schedule-compare.test.ts`: fusión de intervalos, cálculo de huecos libres comunes (`≥ 30 min` en ventana `07:00–20:00`), detección de materias coincidentes respetando privacidad y formato para WhatsApp.
+

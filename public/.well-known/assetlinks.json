@@ -1,13 +1,14 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "dev.teodev.pilas",
       "sha256_cert_fingerprints": [
-        "<PEGAR_SHA256_KEYSTORE_RELEASE>"
+        "34:74:DD:7F:9F:49:B9:BC:9E:EF:DA:77:C0:26:34:95:8C:11:3F:45:14:99:3D:09:D9:7B:82:A5:94:05:F7:C2"
       ]
     }
   }
 ]
-
