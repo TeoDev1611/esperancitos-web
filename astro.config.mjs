@@ -1,13 +1,41 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
+
+const DYNAMIC_UNIVERSAL_PREFIXES = [
+  '/amigo',
+  '/a',
+  '/tarea',
+  '/tareas',
+  '/materiales',
+  '/curso',
+  '/junta',
+  '/api/og',
+];
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://pilas-ec.vercel.app',
-  integrations: [sitemap()],
+  output: 'static',
+  adapter: vercel({
+    imageService: false,
+  }),
+  integrations: [
+    sitemap({
+      filter: (page) => {
+        try {
+          const { pathname } = new URL(page);
+          return !DYNAMIC_UNIVERSAL_PREFIXES.some((prefix) =>
+            pathname === prefix || pathname.startsWith(`${prefix}/`),
+          );
+        } catch {
+          return true;
+        }
+      },
+    }),
+  ],
 
-  // El sitio es una sola página; se mantiene estático sin integraciones extra.
   build: {
     // Genera las etiquetas <link> de los estilos por página
     inlineStylesheets: 'auto',
@@ -23,8 +51,11 @@ export default defineConfig({
     '/convertidor': '/#descargar',
   },
 
-  // Configuración de Vite para evitar bloqueos de archivos en Windows (ej. PDFs de screencapture)
+  // Configuración de Vite para Windows y dependencias SSR con assets WASM/TTF (@vercel/og)
   vite: {
+    ssr: {
+      external: ['@vercel/og'],
+    },
     server: {
       watch: {
         ignored: ['**/ejemplo-pilas-web-design/**', '**/*.pdf'],

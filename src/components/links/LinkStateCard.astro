@@ -1,0 +1,144 @@
+---
+import type { DecodeErrorCode, PayloadKind } from '../../lib/pilasCodec';
+
+interface Props {
+  kind: PayloadKind;
+  mode: 'empty' | 'error';
+  errorCode?: DecodeErrorCode;
+  errorMessage?: string;
+  detectedKind?: PayloadKind;
+  rawD?: string | null;
+  demoParam?: string | null;
+  titleEmpty: string;
+  descriptionEmpty: string;
+}
+
+const {
+  kind,
+  mode,
+  errorCode,
+  errorMessage,
+  detectedKind,
+  rawD,
+  demoParam,
+  titleEmpty,
+  descriptionEmpty,
+} = Astro.props;
+
+const routePaths: Record<PayloadKind, string> = {
+  amigo: '/amigo',
+  tarea: '/tarea',
+  tareas: '/tareas',
+  materiales: '/materiales',
+  curso: '/curso',
+  junta: '/junta',
+};
+
+const routeLabels: Record<PayloadKind, string> = {
+  amigo: 'Horario de amigo (/amigo)',
+  tarea: 'Ficha de tarea (/tarea)',
+  tareas: 'Checklist grupal (/tareas)',
+  materiales: 'Lista de materiales (/materiales)',
+  curso: 'Kit del paralelo (/curso)',
+  junta: 'Invitación a junta (/junta)',
+};
+
+const isRedirectableWrongKind =
+  mode === 'error' &&
+  errorCode === 'UNEXPECTED_KIND' &&
+  detectedKind &&
+  detectedKind !== kind &&
+  rawD;
+
+const redirectHref = isRedirectableWrongKind
+  ? `${routePaths[detectedKind]}?d=${encodeURIComponent(rawD)}`
+  : null;
+
+const demoHref = demoParam
+  ? `${routePaths[kind]}?d=${encodeURIComponent(demoParam)}`
+  : null;
+---
+
+<section
+  class:list={[
+    'ul-card',
+    mode === 'error' ? 'is-critical' : 'is-elevated',
+  ]}
+  aria-labelledby="ul-state-title"
+>
+  <div class="ul-route-hero">
+    <div class="ul-route-hero-copy">
+      <div class="ul-badge-row">
+        {mode === 'empty' ? (
+          <span class="ul-badge is-info">
+            <svg class="ul-ico" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
+            </svg>
+            Sin datos en la URL
+          </span>
+        ) : (
+          <span class="ul-badge is-critical">
+            <svg class="ul-ico" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            No se pudo leer este enlace
+          </span>
+        )}
+      </div>
+
+      <h1 id="ul-state-title">
+        {mode === 'empty'
+          ? titleEmpty
+          : redirectHref
+            ? 'Este enlace corresponde a otra vista'
+            : 'El enlace está incompleto o dañado'}
+      </h1>
+
+      <p>
+        {mode === 'empty'
+          ? descriptionEmpty
+          : errorMessage ||
+            'Parece que el enlace se cortó al copiarlo por WhatsApp o no pertenece a Pilas!.'}
+      </p>
+
+      <div class="ul-btn-row" style="margin-top: 6px;">
+        {redirectHref && detectedKind ? (
+          <a href={redirectHref} class="ul-btn ul-btn-primary">
+            Abrir en {routeLabels[detectedKind]}
+          </a>
+        ) : demoHref ? (
+          <a href={demoHref} class="ul-btn ul-btn-primary">
+            Ver ejemplo interactivo
+          </a>
+        ) : null}
+
+        <a href="/#descargar" class="ul-btn ul-btn-secondary">
+          Ir al inicio de Pilas!
+        </a>
+      </div>
+    </div>
+
+    <div class="ul-mascot-box">
+      <img
+        src={
+          mode === 'error'
+            ? '/logos/mascota_negacion.svg'
+            : '/logos/mascota_dormido.svg'
+        }
+        alt={
+          mode === 'error'
+            ? 'Pilo indicando que no se pudo leer el enlace'
+            : 'Pilo descansando esperando un enlace compartido'
+        }
+        width="96"
+        height="96"
+        class="ul-mascot-img"
+      />
+    </div>
+  </div>
+</section>
+

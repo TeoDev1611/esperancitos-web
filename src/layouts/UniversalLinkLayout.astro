@@ -1,0 +1,103 @@
+---
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/inter';
+import '../styles/universal-links.css';
+import AtelierCredits from '../components/AtelierCredits.astro';
+import type { PublicOgMeta } from '../lib/pilasLinks/og-meta';
+
+interface Props {
+  meta: PublicOgMeta;
+  pageUrl: string;
+}
+
+const { meta, pageUrl } = Astro.props;
+const pageTitle = `${meta.title} | Pilas!`;
+---
+
+<!doctype html>
+<html lang="es-EC">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="theme-color" content="#101319" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={meta.description} />
+
+    <!-- Iconos y soporte Web App (iOS Safari "Agregar a pantalla de inicio" + Android) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Pilas!" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph dinámico (solo metadatos públicos de ?d=) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pilas!" />
+    <meta property="og:locale" content="es_EC" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:image" content={meta.ogImageUrl} />
+    <meta property="og:image:secure_url" content={meta.ogImageUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={meta.title} />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.title} />
+    <meta name="twitter:description" content={meta.description} />
+    <meta name="twitter:image" content={meta.ogImageUrl} />
+    <meta name="twitter:image:alt" content={meta.title} />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link visually-hidden">
+      Saltar al contenido principal
+    </a>
+
+    <header class="ul-header">
+      <div class="ul-wrap ul-header-inner">
+        <a href="/" class="ul-brand" aria-label="Pilas! Inicio">
+          <img
+            src="/logos/letras_estilo_fucsia.svg"
+            alt="Pilas!"
+            class="ul-brand-logo"
+            width="112"
+            height="32"
+          />
+          <span class="ul-brand-sub">Enlace Universal · Zero-Backend</span>
+        </a>
+
+        <div class="ul-header-links">
+          <a href="/#descargar" class="ul-header-pill">
+            <span>Conocer Pilas!</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" tabindex="-1" class="ul-main">
+      <div class="ul-wrap ul-stack">
+        <slot />
+      </div>
+    </main>
+
+    <footer class="ul-footer">
+      <div class="ul-wrap">
+        <p class="ul-footer-note">
+          Pilas! · Un producto de Atelier · Procesamiento 100% en tu navegador, sin servidores ni bases de datos (tu información nunca se guarda ni se registra).
+        </p>
+        <AtelierCredits compact />
+      </div>
+    </footer>
+  </body>
+</html>
+

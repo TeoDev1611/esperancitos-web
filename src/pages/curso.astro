@@ -1,0 +1,264 @@
+---
+import LinkStateCard from '../components/links/LinkStateCard.astro';
+import PlatformActions from '../components/links/PlatformActions.astro';
+import UniversalLinkLayout from '../layouts/UniversalLinkLayout.astro';
+import { decodePilasParam, type CursoPayload } from '../lib/pilasCodec';
+import { buildPublicOgMeta } from '../lib/pilasLinks/og-meta';
+import { getSampleEncodedParam } from '../lib/pilasLinks/sample-payloads';
+import {
+  applyUniversalLinkResponseHeaders,
+  extractRawDFromUrl,
+} from '../lib/pilasLinks/ssr-helpers';
+
+export const prerender = false;
+
+const rawD = extractRawDFromUrl(Astro.url);
+const siteOrigin = Astro.url.origin || 'https://pilas-ec.vercel.app';
+const pageUrl = new URL('/curso', siteOrigin);
+if (rawD) pageUrl.searchParams.set('d', rawD);
+
+const decoded = rawD ? await decodePilasParam(rawD, 'curso') : null;
+const isOk = Boolean(decoded && decoded.ok);
+const demoParam = !isOk ? await getSampleEncodedParam('curso') : null;
+
+applyUniversalLinkResponseHeaders(Astro.response.headers, !rawD || isOk);
+const meta = buildPublicOgMeta('curso', decoded, siteOrigin, rawD);
+
+const payload: CursoPayload | null = decoded && decoded.ok ? decoded.payload : null;
+
+interface QuickLinkEntry {
+  key: string;
+  badge: string;
+  label: string;
+  url: string;
+}
+
+const quickLinks: QuickLinkEntry[] = [];
+if (payload) {
+  if (payload.whatsappUrl) {
+    quickLinks.push({
+      key: 'wa',
+      badge: 'WhatsApp',
+      label: 'Grupo de WhatsApp',
+      url: payload.whatsappUrl,
+    });
+  }
+  if (payload.driveUrl) {
+    quickLinks.push({
+      key: 'drive',
+      badge: 'Google Drive',
+      label: 'Carpeta Drive',
+      url: payload.driveUrl,
+    });
+  }
+  if (payload.meetingUrl) {
+    quickLinks.push({
+      key: 'meet',
+      badge: 'Clase Virtual',
+      label: 'Sala Virtual (Meet / Zoom)',
+      url: payload.meetingUrl,
+    });
+  }
+  if (payload.customUrl) {
+    quickLinks.push({
+      key: 'custom',
+      badge: 'Enlace Extra',
+      label: 'Enlace compartido del paralelo',
+      url: payload.customUrl,
+    });
+  }
+}
+
+function getHostnameLabel(safeUrl: string): string {
+  try {
+    return new URL(safeUrl).hostname;
+  } catch {
+    return '';
+  }
+}
+---
+
+<UniversalLinkLayout meta={meta} pageUrl={pageUrl.toString()}>
+  {!rawD ? (
+    <div class="ul-grid-two">
+      <LinkStateCard
+        kind="curso"
+        mode="empty"
+        demoParam={demoParam}
+        titleEmpty="Kit de bienvenida del paralelo Pilas!"
+        descriptionEmpty="Abre un enlace /curso?d=... para ver NRC, docente, horario resumen y accesos rápidos compartidos por compañeros (WhatsApp, Drive, Meet/Zoom)."
+      />
+      <PlatformActions
+        deepPath="curso"
+        routePath="/curso"
+        rawD={rawD}
+        openAppLabel="Importar Kit del Curso en Pilas!"
+      />
+    </div>
+  ) : !payload ? (
+    <LinkStateCard
+      kind="curso"
+      mode="error"
+      errorCode={decoded && !decoded.ok ? decoded.code : 'INVALID_PAYLOAD'}
+      errorMessage={decoded && !decoded.ok ? decoded.message : undefined}
+      detectedKind={decoded && !decoded.ok ? decoded.detectedKind : undefined}
+      rawD={rawD}
+      demoParam={demoParam}
+      titleEmpty=""
+      descriptionEmpty=""
+    />
+  ) : (
+    <>
+      <section class="ul-card is-primary" aria-labelledby="curso-heading">
+        <div class="ul-route-hero">
+          <div class="ul-route-hero-copy">
+            <div class="ul-badge-row">
+              <span class="ul-badge is-primary">Kit del paralelo</span>
+              {payload.nrc && (
+                <span class="ul-badge is-success ul-tabular">NRC {payload.nrc}</span>
+              )}
+              {payload.university && (
+                <span class="ul-badge is-info">{payload.university}</span>
+              )}
+              {payload.campus && <span class="ul-badge">{payload.campus}</span>}
+              {payload.author && <span class="ul-badge">De {payload.author}</span>}
+            </div>
+
+            <h1 id="curso-heading">{payload.courseName}</h1>
+
+            <p class="ul-hint">
+              {[
+                payload.teacher ? `Docente: ${payload.teacher}` : '',
+                payload.scheduleSummary ? `Horario: ${payload.scheduleSummary}` : '',
+              ]
+                .filter(Boolean)
+                .join(' · ') ||
+                'Kit de bienvenida del paralelo con enlaces útiles curados por estudiantes.'}
+            </p>
+          </div>
+
+          <div class="ul-mascot-box">
+            <img
+              src="/logos/mascota_neutro.svg"
+              alt="Pilo presentando el kit de bienvenida del paralelo"
+              width="96"
+              height="96"
+              class="ul-mascot-img"
+            />
+          </div>
+        </div>
+      </section>
+
+      <div class="ul-grid-two">
+        <div class="ul-stack">
+          <section class="ul-card ul-stack" aria-labelledby="curso-meta-heading">
+            <h2 id="curso-meta-heading">Datos del paralelo</h2>
+            <dl style="display: grid; gap: 10px; margin: 0;">
+              {payload.nrc && (
+                <div class="ul-item-row">
+                  <dt class="ul-label">NRC</dt>
+                  <dd style="margin: 0; font-weight: 700;" class="ul-tabular">
+                    {payload.nrc}
+                  </dd>
+                </div>
+              )}
+              {payload.teacher && (
+                <div class="ul-item-row">
+                  <dt class="ul-label">Docente</dt>
+                  <dd style="margin: 0; font-weight: 600;">{payload.teacher}</dd>
+                </div>
+              )}
+              {payload.scheduleSummary && (
+                <div class="ul-item-row">
+                  <dt class="ul-label">Horario</dt>
+                  <dd style="margin: 0; font-weight: 600;" class="ul-tabular">
+                    {payload.scheduleSummary}
+                  </dd>
+                </div>
+              )}
+              {(payload.university || payload.campus) && (
+                <div class="ul-item-row">
+                  <dt class="ul-label">Sede</dt>
+                  <dd style="margin: 0; font-weight: 600;">
+                    {[payload.university, payload.campus].filter(Boolean).join(' · ')}
+                  </dd>
+                </div>
+              )}
+            </dl>
+          </section>
+
+          <section class="ul-card ul-stack" aria-labelledby="curso-links-heading">
+            <h2 id="curso-links-heading">Accesos rápidos del paralelo</h2>
+
+            <div class="ul-banner is-warning">
+              <svg
+                class="ul-ico"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                style="color: var(--color-warning); margin-top: 2px;"
+              >
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <div>
+                <div class="ul-banner-title">
+                  Verifica el destino antes de unirte a grupos externos
+                </div>
+                <p class="ul-hint">
+                  Los accesos fueron compartidos por estudiantes del paralelo (solo esquemas <code>http:</code>/<code>https:</code>). Revisa el dominio antes de ingresar.
+                  {payload.blockedUrlCount && payload.blockedUrlCount > 0
+                    ? ` Se bloqueó ${payload.blockedUrlCount} enlace(s) inseguro(s).`
+                    : ''}
+                </p>
+              </div>
+            </div>
+
+            {quickLinks.length === 0 ? (
+              <p class="ul-hint">
+                Este kit no incluye enlaces externos en este momento.
+              </p>
+            ) : (
+              <ul
+                class="ul-list-stack"
+                role="list"
+                style="list-style: none; padding: 0; margin: 0;"
+              >
+                {quickLinks.map((item) => (
+                  <li class="ul-item-row">
+                    <div style="min-width: 0;">
+                      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;">
+                        <span class="ul-badge is-info">{item.badge}</span>
+                        <span class="ul-hint">{getHostnameLabel(item.url)}</span>
+                      </div>
+                      <div class="schedule-block-title">{item.label}</div>
+                    </div>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      referrerpolicy="no-referrer"
+                      class="ul-btn ul-btn-secondary"
+                      style="flex-shrink: 0;"
+                    >
+                      Abrir enlace
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        </div>
+
+        <PlatformActions
+          deepPath="curso"
+          routePath="/curso"
+          rawD={rawD}
+          openAppLabel="Importar Kit del Curso en Pilas!"
+          actionLead="Guarda este paralelo con su NRC, horario y enlaces rápidos directamente en Pilas!."
+          highlightQr={false}
+        />
+      </div>
+    </>
+  )}
+</UniversalLinkLayout>

@@ -1,0 +1,208 @@
+---
+import LinkStateCard from '../components/links/LinkStateCard.astro';
+import PlatformActions from '../components/links/PlatformActions.astro';
+import UniversalLinkLayout from '../layouts/UniversalLinkLayout.astro';
+import {
+  decodePilasParam,
+  safeJsonScriptContent,
+  type TareasPayload,
+} from '../lib/pilasCodec';
+import { buildPublicOgMeta } from '../lib/pilasLinks/og-meta';
+import { getSampleEncodedParam } from '../lib/pilasLinks/sample-payloads';
+import {
+  applyUniversalLinkResponseHeaders,
+  extractRawDFromUrl,
+} from '../lib/pilasLinks/ssr-helpers';
+
+export const prerender = false;
+
+const rawD = extractRawDFromUrl(Astro.url);
+const siteOrigin = Astro.url.origin || 'https://pilas-ec.vercel.app';
+const pageUrl = new URL('/tareas', siteOrigin);
+if (rawD) pageUrl.searchParams.set('d', rawD);
+
+const decoded = rawD ? await decodePilasParam(rawD, 'tareas') : null;
+const isOk = Boolean(decoded && decoded.ok);
+const demoParam = !isOk ? await getSampleEncodedParam('tareas') : null;
+
+applyUniversalLinkResponseHeaders(Astro.response.headers, !rawD || isOk);
+const meta = buildPublicOgMeta('tareas', decoded, siteOrigin, rawD);
+
+const payload: TareasPayload | null = decoded && decoded.ok ? decoded.payload : null;
+const initialTotal = payload ? payload.items.length : 0;
+
+function formatItemDueEcuador(iso: string | null): string | null {
+  if (!iso) return null;
+  const ms = Date.parse(iso);
+  if (Number.isNaN(ms)) return null;
+  return new Intl.DateTimeFormat('es-EC', {
+    timeZone: 'America/Guayaquil',
+    day: '2-digit',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(new Date(ms));
+}
+---
+
+<UniversalLinkLayout meta={meta} pageUrl={pageUrl.toString()}>
+  {!rawD ? (
+    <div class="ul-grid-two">
+      <LinkStateCard
+        kind="tareas"
+        mode="empty"
+        demoParam={demoParam}
+        titleEmpty="Checklist grupal de tareas Pilas!"
+        descriptionEmpty="Abre una lista /tareas?d=... para ir marcando tareas en tu dispositivo sin cuentas ni servidores, o prueba ahora mismo con un proyecto de ejemplo."
+      />
+      <PlatformActions
+        deepPath="tareas"
+        routePath="/tareas"
+        rawD={rawD}
+        openAppLabel="Importar checklist a mi agenda en Pilas!"
+      />
+    </div>
+  ) : !payload ? (
+    <LinkStateCard
+      kind="tareas"
+      mode="error"
+      errorCode={decoded && !decoded.ok ? decoded.code : 'INVALID_PAYLOAD'}
+      errorMessage={decoded && !decoded.ok ? decoded.message : undefined}
+      detectedKind={decoded && !decoded.ok ? decoded.detectedKind : undefined}
+      rawD={rawD}
+      demoParam={demoParam}
+      titleEmpty=""
+      descriptionEmpty=""
+    />
+  ) : (
+    <>
+      <section class="ul-card is-live" aria-labelledby="tareas-heading">
+        <div class="ul-route-hero">
+          <div class="ul-route-hero-copy">
+            <div class="ul-badge-row">
+              <span class="ul-badge is-success">Checklist compartida</span>
+              {payload.subject && (
+                <span class="ul-badge is-primary">{payload.subject}</span>
+              )}
+              {payload.author && (
+                <span class="ul-badge">De {payload.author}</span>
+              )}
+              <span class="ul-badge ul-tabular">{initialTotal} ítems</span>
+            </div>
+
+            <h1 id="tareas-heading">{payload.title}</h1>
+
+            <p class="ul-hint">
+              Marca las actividades completadas. Tu progreso se guarda únicamente en este dispositivo (<code>localStorage</code>) y nunca se envía a servidores.
+            </p>
+          </div>
+
+          <div class="ul-mascot-box">
+            <img
+              id="tasks-mascot-img"
+              src="/logos/mascota_neutro.svg"
+              alt="Pilo acompañando el avance de tu lista de tareas"
+              width="96"
+              height="96"
+              class="ul-mascot-img"
+            />
+          </div>
+        </div>
+      </section>
+
+      <div class="ul-grid-two">
+        <section class="ul-card ul-stack" aria-labelledby="checklist-heading">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <h2 id="checklist-heading">Lista de actividades</h2>
+            <span id="tasks-progress-text" class="ul-badge is-success ul-tabular">
+              0 de {initialTotal} completadas (0%)
+            </span>
+          </div>
+
+          <progress
+            id="tasks-progress-bar"
+            class="ul-progress"
+            max={Math.max(1, initialTotal)}
+            value={0}
+            aria-label="Progreso de la checklist"
+          ></progress>
+
+          {/* Sin <ul>/<li> para checkboxes: <div role="group"> según guía accessibility */}
+          <div
+            role="group"
+            aria-labelledby="checklist-heading"
+            class="ul-checklist-group"
+          >
+            {payload.items.map((item, idx) => {
+              const inputId = `pilas-check-item-${idx}`;
+              const formattedDue = formatItemDueEcuador(item.dueDate);
+              return (
+                <div class="ul-check-row" data-check-row>
+                  <input
+                    id={inputId}
+                    type="checkbox"
+                    class="ul-check-input"
+                    data-task-checkbox
+                    data-item-id={`item-${idx}`}
+                    data-is-priority={item.isPriority ? 'true' : 'false'}
+                  />
+                  <label for={inputId} class="ul-check-label">
+                    <span style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                      <span class="ul-check-title">{item.title}</span>
+                      {item.isPriority && (
+                        <span class="ul-badge is-warning">Prioritaria</span>
+                      )}
+                    </span>
+                    {formattedDue && (
+                      <span class="ul-hint ul-tabular">
+                        Vence: {formattedDue} (ECT)
+                      </span>
+                    )}
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+
+          <div class="ul-btn-row">
+            <button type="button" id="btn-tasks-copy-wa" class="ul-btn ul-btn-secondary">
+              Copiar avance para WhatsApp
+            </button>
+            <button type="button" id="btn-tasks-reset" class="ul-btn ul-btn-outline">
+              Reiniciar checks
+            </button>
+            <button
+              type="button"
+              id="btn-tasks-clear-storage"
+              class="ul-btn ul-btn-outline"
+            >
+              Borrar progreso local
+            </button>
+          </div>
+
+          <p id="tasks-local-status" class="ul-hint" role="status" aria-live="polite"></p>
+        </section>
+
+        <PlatformActions
+          deepPath="tareas"
+          routePath="/tareas"
+          rawD={rawD}
+          openAppLabel="Importar checklist a mi agenda en Pilas!"
+          actionLead="Importa esta checklist completa directo en tu agenda Pilas!."
+          highlightQr={false}
+        />
+      </div>
+
+      <script
+        type="application/json"
+        id="pilas-tasks-data"
+        set:html={safeJsonScriptContent({
+          payload,
+          storageSuffix: rawD ?? `${payload.title}|${payload.subject}|${payload.createdAt}`,
+        })}
+      />
+      <script src="../scripts/tareas-page.ts"></script>
+    </>
+  )}
+</UniversalLinkLayout>

@@ -1,0 +1,221 @@
+---
+import LinkStateCard from '../components/links/LinkStateCard.astro';
+import PlatformActions from '../components/links/PlatformActions.astro';
+import UniversalLinkLayout from '../layouts/UniversalLinkLayout.astro';
+import {
+  decodePilasParam,
+  formatFileSize,
+  isMoodleProtectedUrl,
+  type MaterialesPayload,
+} from '../lib/pilasCodec';
+import { buildPublicOgMeta } from '../lib/pilasLinks/og-meta';
+import { getSampleEncodedParam } from '../lib/pilasLinks/sample-payloads';
+import {
+  applyUniversalLinkResponseHeaders,
+  extractRawDFromUrl,
+} from '../lib/pilasLinks/ssr-helpers';
+
+export const prerender = false;
+
+const rawD = extractRawDFromUrl(Astro.url);
+const siteOrigin = Astro.url.origin || 'https://pilas-ec.vercel.app';
+const pageUrl = new URL('/materiales', siteOrigin);
+if (rawD) pageUrl.searchParams.set('d', rawD);
+
+const decoded = rawD ? await decodePilasParam(rawD, 'materiales') : null;
+const isOk = Boolean(decoded && decoded.ok);
+const demoParam = !isOk ? await getSampleEncodedParam('materiales') : null;
+
+applyUniversalLinkResponseHeaders(Astro.response.headers, !rawD || isOk);
+const meta = buildPublicOgMeta('materiales', decoded, siteOrigin, rawD);
+
+const payload: MaterialesPayload | null = decoded && decoded.ok ? decoded.payload : null;
+const fileCount = payload ? payload.files.length : 0;
+const totalBytes = payload
+  ? payload.files.reduce((sum, f) => sum + (f.filesize ?? 0), 0)
+  : 0;
+const scopeLabel = payload?.sectionName || 'Materia completa';
+const strippedCount = payload?.strippedTokenCount ?? 0;
+const hasMoodleProtected = Boolean(
+  payload?.hasProtectedMoodleLinks ||
+    payload?.files.some((f) => isMoodleProtectedUrl(f.fileurl)),
+);
+const openBatchLabel =
+  fileCount > 0
+    ? `Descarga los ${fileCount} archivos offline en Pilas!`
+    : 'Abrir / Descargar Pilas!';
+
+function getFileExtensionBadge(filename: string, mimetype: string | null): string {
+  const dot = filename.lastIndexOf('.');
+  if (dot > 0 && dot < filename.length - 1) {
+    const ext = filename.slice(dot + 1).toUpperCase();
+    if (ext.length <= 6) return ext;
+  }
+  if (mimetype) {
+    const slash = mimetype.indexOf('/');
+    const sub = slash >= 0 ? mimetype.slice(slash + 1).toUpperCase() : mimetype.toUpperCase();
+    return sub.slice(0, 10);
+  }
+  return 'ARCHIVO';
+}
+---
+
+<UniversalLinkLayout meta={meta} pageUrl={pageUrl.toString()}>
+  {!rawD ? (
+    <div class="ul-grid-two">
+      <LinkStateCard
+        kind="materiales"
+        mode="empty"
+        demoParam={demoParam}
+        titleEmpty="Índice de lote de materiales Pilas!"
+        descriptionEmpty="Abre un link /materiales?d=... para revisar la lista, tamaños y tipos de archivo compartidos por un compañero, sin exponer sesiones de Moodle."
+      />
+      <PlatformActions
+        deepPath="materiales"
+        routePath="/materiales"
+        rawD={rawD}
+        openAppLabel="Abrir / Descargar Pilas!"
+      />
+    </div>
+  ) : !payload ? (
+    <LinkStateCard
+      kind="materiales"
+      mode="error"
+      errorCode={decoded && !decoded.ok ? decoded.code : 'INVALID_PAYLOAD'}
+      errorMessage={decoded && !decoded.ok ? decoded.message : undefined}
+      detectedKind={decoded && !decoded.ok ? decoded.detectedKind : undefined}
+      rawD={rawD}
+      demoParam={demoParam}
+      titleEmpty=""
+      descriptionEmpty=""
+    />
+  ) : (
+    <>
+      <section class="ul-card is-primary" aria-labelledby="materiales-heading">
+        <div class="ul-route-hero">
+          <div class="ul-route-hero-copy">
+            <div class="ul-badge-row">
+              <span class="ul-badge is-info">Lote de materiales</span>
+              <span class="ul-badge is-primary">{scopeLabel}</span>
+              <span class="ul-badge ul-tabular">
+                {fileCount} {fileCount === 1 ? 'archivo' : 'archivos'}
+                {totalBytes > 0 ? ` · ${formatFileSize(totalBytes)}` : ''}
+              </span>
+            </div>
+
+            <h1 id="materiales-heading">{payload.courseName}</h1>
+
+            <p class="ul-hint">
+              Alcance: <strong style="color: var(--color-text-title);">{scopeLabel}</strong> · Vista previa segura del lote compartido para descargar offline en Pilas!.
+            </p>
+          </div>
+
+          <div class="ul-mascot-box">
+            <img
+              src="/logos/mascota_policia.svg"
+              alt="Pilo guardián verificando que no haya tokens privados de Moodle en el enlace"
+              width="96"
+              height="96"
+              class="ul-mascot-img"
+            />
+          </div>
+        </div>
+
+        <div class="ul-banner is-info" style="margin-top: 16px;">
+          <svg
+            class="ul-ico"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            style="color: var(--color-info); margin-top: 2px;"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          <div>
+            <div class="ul-banner-title">
+              {hasMoodleProtected
+                ? 'Aviso de seguridad · Requiere sesión Moodle en la app'
+                : 'Nota de seguridad · Cero tokens de sesión Moodle'}
+            </div>
+            <p class="ul-hint">
+              Los enlaces compartidos nunca incluyen credenciales privadas (<code>token</code>, <code>wstoken</code>, <code>privatetoken</code>, <code>sesskey</code>, <code>password</code>, <code>key</code>).
+              {hasMoodleProtected
+                ? ' Los archivos del aula virtual requieren sesión Moodle en la app para descargarse directo.'
+                : ''}
+              {strippedCount > 0
+                ? ` Eliminamos parámetros sensibles en ${strippedCount} enlace(s) directamente en tu navegador.`
+                : ''}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="ul-grid-two">
+        <section class="ul-card ul-stack" aria-labelledby="files-list-heading">
+          <h2 id="files-list-heading">
+            Archivos del lote ({fileCount} · {formatFileSize(totalBytes)})
+          </h2>
+
+          {fileCount === 0 ? (
+            <p class="ul-hint">Este índice no contiene archivos en la lista.</p>
+          ) : (
+            <ul
+              class="ul-list-stack"
+              role="list"
+              style="list-style: none; padding: 0; margin: 0;"
+            >
+              {payload.files.map((file) => {
+                const extBadge = getFileExtensionBadge(file.filename, file.mimetype);
+                const isMoodle = isMoodleProtectedUrl(file.fileurl);
+                return (
+                  <li class="ul-item-row">
+                    <div style="min-width: 0;">
+                      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;">
+                        <span class="ul-badge is-info">{extBadge}</span>
+                        {isMoodle && (
+                          <span class="ul-badge is-warning">
+                            Requiere sesión Moodle en la app
+                          </span>
+                        )}
+                      </div>
+                      <div class="schedule-block-title" style="word-break: break-word;">
+                        {file.filename}
+                      </div>
+                      <div class="ul-hint">
+                        {file.mimetype || 'Archivo compartido'}
+                      </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+                      <span class="ul-badge ul-tabular">
+                        {formatFileSize(file.filesize)}
+                      </span>
+                      {file.fileurl && (
+                        <a
+                          href={file.fileurl}
+                          target="_blank"
+                          rel="noopener noreferrer external"
+                          referrerpolicy="no-referrer"
+                          class="ul-header-pill"
+                        >
+                          Abrir
+                        </a>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+
+        <PlatformActions
+          deepPath="materiales"
+          routePath="/materiales"
+          rawD={rawD}
+          openAppLabel={openBatchLabel}
+          actionLead={`Descarga los ${fileCount} archivos offline en Pilas! usando tu sesión local sin exponer credenciales.`}
+          highlightQr={false}
+        />
+      </div>
+    </>
+  )}
+</UniversalLinkLayout>

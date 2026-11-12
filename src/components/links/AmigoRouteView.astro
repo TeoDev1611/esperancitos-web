@@ -1,0 +1,416 @@
+---
+import LinkStateCard from './LinkStateCard.astro';
+import PlatformActions from './PlatformActions.astro';
+import UniversalLinkLayout from '../../layouts/UniversalLinkLayout.astro';
+import {
+  formatMinutesHHMM,
+  modalityLabel,
+  safeJsonScriptContent,
+  type AmigoClassBlock,
+  type AmigoPayload,
+  type DecodeResult,
+} from '../../lib/pilasCodec';
+import type { PublicOgMeta } from '../../lib/pilasLinks/og-meta';
+import {
+  ANONYMIZED_SUBJECT_RE,
+  DAY_NAMES_ES,
+  DAY_SHORT_ES,
+  isSubjectHidden,
+} from '../../lib/pilasLinks/schedule-compare';
+
+interface Props {
+  rawD: string | null;
+  decoded: DecodeResult<AmigoPayload> | null;
+  demoParam: string | null;
+  meta: PublicOgMeta;
+  pageUrl: string;
+}
+
+const { rawD, decoded, demoParam, meta, pageUrl } = Astro.props;
+const payload: AmigoPayload | null = decoded && decoded.ok ? decoded.payload : null;
+
+const visibleDays: Array<1 | 2 | 3 | 4 | 5 | 6 | 7> = payload
+  ? [
+      1,
+      2,
+      3,
+      4,
+      5,
+      ...(payload.classes.some((b) => b.d === 6) ? ([6] as const) : []),
+      ...(payload.classes.some((b) => b.d === 7) ? ([7] as const) : []),
+    ]
+  : [1, 2, 3, 4, 5];
+
+interface TimeBand {
+  key: string;
+  startMin: number;
+  endMin: number;
+  label: string;
+}
+
+const timeBands: TimeBand[] = [];
+if (payload && payload.classes.length > 0) {
+  const seen = new Map<string, TimeBand>();
+  for (const b of payload.classes) {
+    const end = b.f > b.i ? b.f : b.i + 60;
+    const key = `${b.i}-${end}`;
+    if (!seen.has(key)) {
+      seen.set(key, {
+        key,
+        startMin: b.i,
+        endMin: end,
+        label: `${formatMinutesHHMM(b.i)} – ${formatMinutesHHMM(end)}`,
+      });
+    }
+  }
+  timeBands.push(
+    ...Array.from(seen.values()).sort(
+      (a, b) => a.startMin - b.startMin || a.endMin - b.endMin,
+    ),
+  );
+}
+
+function getBlocksInCell(
+  classes: AmigoClassBlock[],
+  day: number,
+  startMin: number,
+  endMin: number,
+): AmigoClassBlock[] {
+  return classes.filter(
+    (b) => b.d === day && b.i === startMin && (b.f > b.i ? b.f : b.i + 60) === endMin,
+  );
+}
+
+function isBlockSubjectHidden(blk: AmigoClassBlock): boolean {
+  if (payload?.isPrivateMode) return true;
+  const clean = blk.s.trim();
+  return !clean || ANONYMIZED_SUBJECT_RE.test(clean);
+}
+
+const subjectsHidden = payload ? isSubjectHidden(payload) : false;
+const hasNoRoomOrTeacher = payload
+  ? payload.isPrivateMode || payload.classes.every((c) => !c.r && !c.t && !c.n)
+  : false;
+
+const tableCssVars = visibleDays
+  .map((dayIdx, colOffset) => `--label-${colOffset + 2}: "${DAY_NAMES_ES[dayIdx]}"`)
+  .join('; ');
+---
+
+<UniversalLinkLayout meta={meta} pageUrl={pageUrl}>
+  {!rawD ? (
+    <div class="ul-grid-two">
+      <LinkStateCard
+        kind="amigo"
+        mode="empty"
+        demoParam={demoParam}
+        titleEmpty="Visor y comparador de horarios Pilas!"
+        descriptionEmpty="Pide a un compañero su enlace compartido desde Pilas! para ver su horario aquí, comparar horas huecas en común o probar ahora mismo con un horario de ejemplo."
+      />
+      <PlatformActions
+        deepPath="friend"
+        routePath="/amigo"
+        rawD={rawD}
+        openAppLabel="Abrir Pilas!"
+        highlightQr={true}
+      />
+    </div>
+  ) : !payload ? (
+    <LinkStateCard
+      kind="amigo"
+      mode="error"
+      errorCode={decoded && !decoded.ok ? decoded.code : 'INVALID_PAYLOAD'}
+      errorMessage={decoded && !decoded.ok ? decoded.message : undefined}
+      detectedKind={decoded && !decoded.ok ? decoded.detectedKind : undefined}
+      rawD={rawD}
+      demoParam={demoParam}
+      titleEmpty=""
+      descriptionEmpty=""
+    />
+  ) : (
+    <>
+      <section class="ul-card is-primary" aria-labelledby="amigo-heading">
+        <div class="ul-route-hero">
+          <div class="ul-route-hero-copy">
+            <div class="ul-badge-row">
+              <span class="ul-badge is-primary">
+                <svg class="ul-ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                {payload.isPrivateMode ? 'Horario · Modo Privado' : 'Horario compartido'}
+              </span>
+              {payload.university && (
+                <span class="ul-badge is-info">{payload.university}</span>
+              )}
+              {payload.period && <span class="ul-badge ul-tabular">{payload.period}</span>}
+              {payload.level !== null && (
+                <span class="ul-badge ul-tabular">Nivel {payload.level}</span>
+              )}
+              <span class="ul-badge ul-tabular">{payload.classes.length} bloques</span>
+            </div>
+
+            <h1 id="amigo-heading">
+              {payload.friendName
+                ? `Horario de ${payload.friendName}`
+                : 'Horario semanal compartido'}
+            </h1>
+
+            <p>
+              {[payload.campus, payload.career, payload.statusNote]
+                .filter(Boolean)
+                .join(' · ') ||
+                'Compara tus horas huecas en común directamente en tu navegador o expórtalo a tu calendario (.ics).'}
+            </p>
+          </div>
+
+          <div class="ul-mascot-box">
+            <img
+              src="/logos/mascota_neutro.svg"
+              alt="Pilo sonriendo junto al horario compartido"
+              width="96"
+              height="96"
+              class="ul-mascot-img"
+            />
+          </div>
+        </div>
+
+        {(payload.isPrivateMode || hasNoRoomOrTeacher) && (
+          <div class="ul-banner is-info" style="margin-top: 16px;">
+            <svg
+              class="ul-ico"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              style="color: var(--color-info); margin-top: 2px;"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <div>
+              <div class="ul-banner-title">Privacidad respetada</div>
+              <p class="ul-hint">
+                {subjectsHidden
+                  ? 'Quien compartió este enlace activó Modo Privado ocultando materias, aulas y docentes. Solo ves disponibilidad limpia.'
+                  : 'Este enlace no incluye aulas ni docentes por privacidad: se muestra únicamente la modalidad de cada bloque.'}
+              </p>
+            </div>
+          </div>
+        )}
+      </section>
+
+      <div class="ul-grid-two">
+        <div class="ul-stack">
+          <section class="ul-card ul-stack" aria-labelledby="weekly-schedule-heading">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+              <h2 id="weekly-schedule-heading">Horario semanal legible</h2>
+              <div class="ul-filter-row" role="group" aria-label="Filtrar por día de la semana">
+                <button
+                  type="button"
+                  class="ul-chip-btn"
+                  data-day-filter="all"
+                  aria-pressed="true"
+                >
+                  Toda la semana
+                </button>
+                {visibleDays.map((d) => (
+                  <button
+                    type="button"
+                    class="ul-chip-btn"
+                    data-day-filter={String(d)}
+                    aria-pressed="false"
+                  >
+                    {DAY_SHORT_ES[d]}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {timeBands.length === 0 ? (
+              <p class="ul-hint">
+                Este horario no registra clases activas esta semana. Toda la franja está libre para coordinar una junta.
+              </p>
+            ) : (
+              <div
+                tabindex="0"
+                role="region"
+                aria-labelledby="schedule-table-caption"
+                class="schedule-table-wrap"
+              >
+                <table class="schedule-table" style={tableCssVars}>
+                  <caption id="schedule-table-caption">
+                    Bloques semanales de clase (desliza horizontalmente si ves todos los días en pantalla pequeña)
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Franja</th>
+                      {visibleDays.map((d) => (
+                        <th scope="col" data-schedule-day={String(d)}>
+                          {DAY_NAMES_ES[d]}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {timeBands.map((band) => (
+                      <tr data-schedule-row>
+                        <th scope="row">{band.label}</th>
+                        {visibleDays.map((d) => {
+                          const cellBlocks = getBlocksInCell(
+                            payload.classes,
+                            d,
+                            band.startMin,
+                            band.endMin,
+                          );
+                          const isEmpty = cellBlocks.length === 0;
+                          return (
+                            <td
+                              data-schedule-day={String(d)}
+                              data-empty={isEmpty ? 'true' : 'false'}
+                              class={isEmpty ? 'is-empty-cell' : ''}
+                            >
+                              {isEmpty ? (
+                                <span>Libre</span>
+                              ) : (
+                                <div class="schedule-cell-stack">
+                                  {cellBlocks.map((blk) => {
+                                    const modText = modalityLabel(blk.m);
+                                    const isPriv = Boolean(payload.isPrivateMode);
+                                    const onlyModality = isPriv || (!blk.r && !blk.t && !blk.n);
+                                    const anon = isBlockSubjectHidden(blk);
+                                    return (
+                                      <div
+                                        class:list={[
+                                          'schedule-block-chip',
+                                          blk.m === 2 && 'is-virtual',
+                                          blk.m === 3 && 'is-hibrida',
+                                          anon && 'is-anon',
+                                        ]}
+                                      >
+                                        <span class="schedule-block-title">
+                                          {anon ? 'Bloque ocupado' : blk.s}
+                                        </span>
+                                        <span class="schedule-block-meta">
+                                          {modText}
+                                          {!onlyModality && blk.r ? ` · ${blk.r}` : ''}
+                                        </span>
+                                        {!isPriv && blk.t && (
+                                          <span class="schedule-block-meta">{blk.t}</span>
+                                        )}
+                                        {!isPriv && blk.n && (
+                                          <span class="schedule-block-meta">NRC {blk.n}</span>
+                                        )}
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            <p class="ul-hint" id="schedule-ics-status" role="status" aria-live="polite"></p>
+          </section>
+
+          <section class="ul-card ul-stack" aria-labelledby="compare-heading">
+            <div>
+              <span class="ul-badge is-success" style="margin-bottom: 8px;">
+                100% en navegador · Zero-Backend
+              </span>
+              <h2 id="compare-heading">Comparar con mi horario</h2>
+              <p class="ul-hint" style="margin-top: 6px;">
+                Pega tu propio enlace <code>/amigo?d=...</code> (o <code>/a?d=...</code>) para ver huecos libres en común y materias coincidentes sin enviar datos a ningún servidor.
+              </p>
+            </div>
+
+            <form id="compare-form" class="ul-stack" style="gap: 12px;" novalidate>
+              <div class="ul-field">
+                <label for="my-schedule-input" class="ul-label">
+                  Tu enlace o código de horario Pilas!
+                </label>
+                <span id="my-schedule-hint" class="ul-hint">
+                  Acepta URLs completas (<code>https://pilas-ec.vercel.app/amigo?d=...</code>), links <code>pilas://friend?d=...</code> o solo el código.
+                </span>
+                <textarea
+                  id="my-schedule-input"
+                  rows="3"
+                  class="ul-textarea"
+                  aria-describedby="my-schedule-hint"
+                  placeholder="https://pilas-ec.vercel.app/amigo?d=2..."
+                ></textarea>
+              </div>
+
+              <div class="ul-btn-row">
+                <button type="submit" class="ul-btn ul-btn-primary">
+                  <svg class="ul-ico" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                  <span>Comparar con mi horario</span>
+                </button>
+                <button type="button" id="btn-compare-demo" class="ul-btn ul-btn-secondary">
+                  Probar con horario demo
+                </button>
+              </div>
+
+              <p id="compare-status" class="ul-hint" role="status" aria-live="polite"></p>
+            </form>
+
+            <div id="compare-results" class="ul-stack" style="gap: 14px;" hidden>
+              <div class="ul-banner is-success" style="flex-direction: column; gap: 6px;">
+                <div class="ul-banner-title">Resultado de cruce horario (07:00 – 20:00)</div>
+                <p id="compare-summary" class="ul-tabular"></p>
+              </div>
+
+              <div>
+                <h3 style="margin-bottom: 10px;">Huecos libres en común (30+ min)</h3>
+                <div id="compare-gaps-list" class="ul-list-stack"></div>
+              </div>
+
+              <div id="compare-subjects-section" hidden>
+                <h3 style="margin-bottom: 10px;">Materias coincidentes</h3>
+                <div id="compare-subjects-list" class="ul-list-stack"></div>
+              </div>
+
+              <div class="ul-btn-row">
+                <button type="button" id="btn-copy-wa-gaps" class="ul-btn ul-btn-success">
+                  <svg class="ul-ico" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                  </svg>
+                  <span>Copiar horas libres para WhatsApp</span>
+                </button>
+              </div>
+              <p id="copy-wa-status" class="ul-hint" role="status" aria-live="polite"></p>
+            </div>
+          </section>
+        </div>
+
+        <PlatformActions
+          deepPath="friend"
+          routePath="/amigo"
+          rawD={rawD}
+          openAppLabel="Abrir en Pilas!"
+          icsButtonId="btn-export-schedule-ics"
+          icsButtonLabel="Exportar horario a Calendario (.ics)"
+          icsVariant="secondary"
+          highlightQr={true}
+          actionLead="En PC o iPhone escanea el QR con Pilas! desde otro celular, descárgalo como .ics o compara tus huecos aquí mismo."
+        />
+      </div>
+
+      <script
+        type="application/json"
+        id="pilas-friend-data"
+        set:html={safeJsonScriptContent(payload)}
+      />
+      <script src="../../scripts/amigo-page.ts"></script>
+    </>
+  )}
+</UniversalLinkLayout>

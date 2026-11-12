@@ -1,0 +1,195 @@
+---
+interface Props {
+  deepPath: 'friend' | 'tarea' | 'tareas' | 'materiales' | 'curso' | 'junta';
+  routePath: string;
+  rawD?: string | null;
+  openAppLabel?: string;
+  actionLead?: string;
+  icsButtonId?: string;
+  icsButtonLabel?: string;
+  icsVariant?: 'primary' | 'secondary' | 'success';
+  highlightQr?: boolean;
+  showQr?: boolean;
+  openAppVariant?: 'primary' | 'secondary' | 'success';
+}
+
+const {
+  deepPath,
+  routePath,
+  rawD = '',
+  openAppLabel = 'Abrir en Pilas!',
+  actionLead = 'Abre este enlace directo en la app móvil o usa las acciones en tu navegador.',
+  icsButtonId,
+  icsButtonLabel = 'Exportar al Calendario (.ics)',
+  icsVariant = 'secondary',
+  highlightQr = false,
+  showQr = true,
+  openAppVariant = 'primary',
+} = Astro.props;
+
+const headingId = `ul-actions-heading-${deepPath}`;
+const openBtnClass =
+  openAppVariant === 'secondary'
+    ? 'ul-btn ul-btn-secondary ul-btn-block'
+    : openAppVariant === 'success'
+      ? 'ul-btn ul-btn-success ul-btn-block'
+      : 'ul-btn ul-btn-primary ul-btn-block';
+
+const icsBtnClass =
+  icsVariant === 'primary'
+    ? 'ul-btn ul-btn-primary ul-btn-block'
+    : icsVariant === 'success'
+      ? 'ul-btn ul-btn-success ul-btn-block'
+      : 'ul-btn ul-btn-secondary ul-btn-block';
+---
+
+<aside
+  class="ul-card is-elevated ul-stack"
+  aria-labelledby={headingId}
+  data-platform-actions
+  data-deep-path={deepPath}
+  data-route-path={routePath}
+  data-raw-d={rawD ?? ''}
+>
+  <div>
+    <div class="ul-badge-row" style="margin-bottom: 8px;">
+      <span class="ul-badge is-info" data-android-badge hidden>
+        Android App Link
+      </span>
+      <span class="ul-badge is-primary" data-ios-badge hidden>
+        iPhone / iPad · PWA Web
+      </span>
+      <span class="ul-badge is-success" data-desktop-badge hidden>
+        Escritorio · QR + Calendario
+      </span>
+    </div>
+    <h2 id={headingId}>Acciones rápidas</h2>
+    <p class="ul-hint" style="margin-top: 6px;">{actionLead}</p>
+  </div>
+
+  {/* En rutas como /junta el botón .ics puede mostrarse antes como protagonista */}
+  {icsButtonId && icsVariant === 'primary' && (
+    <button type="button" id={icsButtonId} class={icsBtnClass}>
+      <svg class="ul-ico" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="18" rx="2" />
+        <line x1="16" y1="2" x2="16" y2="6" />
+        <line x1="8" y1="2" x2="8" y2="6" />
+        <line x1="3" y1="10" x2="21" y2="10" />
+      </svg>
+      <span>{icsButtonLabel}</span>
+    </button>
+  )}
+
+  {/* Bloque Android / Desktop para abrir pilas:// */}
+  <div class="ul-stack" style="gap: 10px;" data-block-android>
+    <button type="button" class={openBtnClass} data-open-app-btn>
+      <svg class="ul-ico" viewBox="0 0 24 24" aria-hidden="true">
+        <polygon points="13 2 4 14 11 14 10 22 20 10 13 10 13 2" />
+      </svg>
+      <span>{openAppLabel}</span>
+    </button>
+
+    <p class="ul-hint" data-open-status role="status" aria-live="polite"></p>
+
+    <button
+      type="button"
+      class="ul-btn ul-btn-outline ul-btn-block"
+      data-toggle-android-fallback
+      aria-expanded="false"
+    >
+      ¿No se abrió Pilas!? Ver descarga Android
+    </button>
+
+    <div
+      class="ul-banner is-info"
+      style="flex-direction: column; gap: 10px;"
+      data-android-fallback
+      hidden
+    >
+      <div>
+        <div class="ul-banner-title" data-update-version>
+          Descarga oficial para Android
+        </div>
+        <p class="ul-hint" data-update-note>
+          Cargando información desde /api/v1/update.json…
+        </p>
+      </div>
+      <div class="ul-btn-row" style="width: 100%;">
+        <a
+          href="/#descargar"
+          class="ul-btn ul-btn-success ul-btn-block"
+          data-android-download-link
+          rel="noopener noreferrer"
+        >
+          Ir a descarga Android
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {/* Bloque iPhone / iPad — NUNCA muestra botón de APK */}
+  <div class="ul-stack" style="gap: 10px;" data-block-ios hidden>
+    <button type="button" class="ul-btn ul-btn-primary ul-btn-block" data-pwa-open-btn>
+      <svg class="ul-ico" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="6" y="2" width="12" height="20" rx="2" />
+        <line x1="12" y1="18" x2="12.01" y2="18" />
+      </svg>
+      <span>Abrir en Pilas! Web (PWA)</span>
+    </button>
+
+    <div class="ul-banner is-info" style="flex-direction: column; gap: 8px;" data-ios-pwa-guide>
+      <div class="ul-banner-title" tabindex="-1" data-ios-guide-title>
+        Cómo agregar a tu iPhone / iPad
+      </div>
+      <ol style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 0.88rem;">
+        <li>Toca <strong>Compartir</strong> (cuadro con flecha hacia arriba) en Safari.</li>
+        <li>Elige <strong>Agregar a pantalla de inicio</strong> y confirma el nombre <strong>Pilas!</strong>.</li>
+        <li>No necesitas APK ni servidor: usa esta web y descarga tus eventos en Apple Calendar (.ics).</li>
+      </ol>
+    </div>
+  </div>
+
+  {/* Botón .ics secundario cuando no fue protagonista arriba */}
+  {icsButtonId && icsVariant !== 'primary' && (
+    <button type="button" id={icsButtonId} class={icsBtnClass}>
+      <svg class="ul-ico" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="18" rx="2" />
+        <line x1="16" y1="2" x2="16" y2="6" />
+        <line x1="8" y1="2" x2="8" y2="6" />
+        <line x1="3" y1="10" x2="21" y2="10" />
+      </svg>
+      <span>{icsButtonLabel}</span>
+    </button>
+  )}
+
+  {showQr && (
+    <div class="ul-qr-panel" data-qr-section data-highlighted={highlightQr ? 'true' : 'false'}>
+      <div class="ul-qr-canvas-box">
+        <canvas
+          data-qr-canvas
+          width="200"
+          height="200"
+          role="img"
+          aria-label="Código QR para escanear este enlace con Pilas! desde otro celular"
+        ></canvas>
+      </div>
+      <div>
+        <h3 style="margin-bottom: 4px;">Escanea desde Pilas!</h3>
+        <p class="ul-hint">
+          Útil si abriste este link en computadora o iPhone y quieres pasarlo a otro teléfono al instante.
+        </p>
+      </div>
+      <button type="button" class="ul-btn ul-btn-secondary ul-btn-block" data-copy-link-btn>
+        <svg class="ul-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="9" y="9" width="13" height="13" rx="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+        <span>Copiar enlace para WhatsApp</span>
+      </button>
+      <p class="ul-hint" data-copy-status role="status" aria-live="polite"></p>
+    </div>
+  )}
+</aside>
+
+<script src="../../scripts/universal-link-actions.ts"></script>
+

@@ -1,0 +1,265 @@
+---
+import LinkStateCard from '../components/links/LinkStateCard.astro';
+import PlatformActions from '../components/links/PlatformActions.astro';
+import UniversalLinkLayout from '../layouts/UniversalLinkLayout.astro';
+import {
+  decodePilasParam,
+  safeJsonScriptContent,
+  type TareaPayload,
+} from '../lib/pilasCodec';
+import { buildPublicOgMeta } from '../lib/pilasLinks/og-meta';
+import { getSampleEncodedParam } from '../lib/pilasLinks/sample-payloads';
+import {
+  applyUniversalLinkResponseHeaders,
+  extractRawDFromUrl,
+} from '../lib/pilasLinks/ssr-helpers';
+
+export const prerender = false;
+
+const rawD = extractRawDFromUrl(Astro.url);
+const siteOrigin = Astro.url.origin || 'https://pilas-ec.vercel.app';
+const pageUrl = new URL('/tarea', siteOrigin);
+if (rawD) pageUrl.searchParams.set('d', rawD);
+
+const decoded = rawD ? await decodePilasParam(rawD, 'tarea') : null;
+const isOk = Boolean(decoded && decoded.ok);
+const demoParam = !isOk ? await getSampleEncodedParam('tarea') : null;
+
+applyUniversalLinkResponseHeaders(Astro.response.headers, !rawD || isOk);
+const meta = buildPublicOgMeta('tarea', decoded, siteOrigin, rawD);
+
+const payload: TareaPayload | null = decoded && decoded.ok ? decoded.payload : null;
+
+function formatEcuadorDateFull(iso: string): string {
+  const ms = Date.parse(iso);
+  if (Number.isNaN(ms)) return iso;
+  return new Intl.DateTimeFormat('es-EC', {
+    timeZone: 'America/Guayaquil',
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(new Date(ms));
+}
+
+function getInitialStatus(dueIso: string) {
+  const dueMs = Date.parse(dueIso);
+  const diffMin = Number.isNaN(dueMs)
+    ? 0
+    : Math.round((dueMs - Date.now()) / 60_000);
+  if (diffMin <= 0) {
+    const absH = Math.floor(Math.abs(diffMin) / 60);
+    const absM = Math.abs(diffMin) % 60;
+    return {
+      mode: 'critical' as const,
+      badge: 'Atrasada · Plazo vencido',
+      headline: `Cerró hace ${absH > 0 ? `${absH}h ` : ''}${absM}m`,
+      mascot: '/logos/mascota_negacion.svg',
+      mascotAlt: 'Pilo indicando que el plazo de entrega ya venció',
+    };
+  }
+  const urgent = diffMin <= 24 * 60;
+  const d = Math.floor(diffMin / (24 * 60));
+  const h = Math.floor((diffMin % (24 * 60)) / 60);
+  const m = diffMin % 60;
+  const label = [d > 0 ? `${d}d` : '', h > 0 ? `${h}h` : '', `${m}m`]
+    .filter(Boolean)
+    .join(' ');
+  return {
+    mode: urgent ? ('warning' as const) : ('primary' as const),
+    badge: urgent ? 'Por vencer (< 24 h)' : 'Pendiente',
+    headline: `Vence en ${label}`,
+    mascot: urgent ? '/logos/mascota_asustado.svg' : '/logos/mascota_neutro.svg',
+    mascotAlt: urgent
+      ? 'Pilo preocupado porque la entrega vence en menos de 24 horas'
+      : 'Pilo acompañando la ficha de tarea',
+  };
+}
+
+const initialState = payload ? getInitialStatus(payload.dueDate) : null;
+---
+
+<UniversalLinkLayout meta={meta} pageUrl={pageUrl.toString()}>
+  {!rawD ? (
+    <div class="ul-grid-two">
+      <LinkStateCard
+        kind="tarea"
+        mode="empty"
+        demoParam={demoParam}
+        titleEmpty="Ficha de tarea compartida Pilas!"
+        descriptionEmpty="Abre un enlace /tarea?d=... compartido por un compañero para ver la fecha límite exacta, la cuenta regresiva en vivo y guardarla en tu calendario (.ics)."
+      />
+      <PlatformActions
+        deepPath="tarea"
+        routePath="/tarea"
+        rawD={rawD}
+        openAppLabel="Recibe alertas antes que cierre Moodle → Abrir en Pilas!"
+      />
+    </div>
+  ) : !payload || !initialState ? (
+    <LinkStateCard
+      kind="tarea"
+      mode="error"
+      errorCode={decoded && !decoded.ok ? decoded.code : 'INVALID_PAYLOAD'}
+      errorMessage={decoded && !decoded.ok ? decoded.message : undefined}
+      detectedKind={decoded && !decoded.ok ? decoded.detectedKind : undefined}
+      rawD={rawD}
+      demoParam={demoParam}
+      titleEmpty=""
+      descriptionEmpty=""
+    />
+  ) : (
+    <>
+      <section
+        id="task-hero-card"
+        class:list={[
+          'ul-card',
+          initialState.mode === 'critical'
+            ? 'is-critical'
+            : initialState.mode === 'warning'
+              ? 'is-warning'
+              : 'is-primary',
+        ]}
+        aria-labelledby="tarea-heading"
+      >
+        <div class="ul-route-hero">
+          <div class="ul-route-hero-copy">
+            <div class="ul-badge-row">
+              <span
+                id="task-urgency-badge"
+                class:list={[
+                  'ul-badge',
+                  initialState.mode === 'critical'
+                    ? 'is-critical'
+                    : initialState.mode === 'warning'
+                      ? 'is-warning'
+                      : 'is-info',
+                ]}
+              >
+                {initialState.badge}
+              </span>
+              {payload.subject && (
+                <span class="ul-badge is-primary">{payload.subject}</span>
+              )}
+              {payload.university && (
+                <span class="ul-badge">{payload.university}</span>
+              )}
+              {payload.author && (
+                <span class="ul-badge">Por {payload.author}</span>
+              )}
+            </div>
+
+            <h1 id="tarea-heading">{payload.title}</h1>
+
+            <p class="ul-hint">
+              Fecha límite oficial:{' '}
+              <strong style="color: var(--color-text-title); text-transform: capitalize;">
+                {formatEcuadorDateFull(payload.dueDate)} (Ecuador ECT)
+              </strong>
+            </p>
+          </div>
+
+          <div class="ul-mascot-box">
+            <img
+              id="task-mascot-img"
+              src={initialState.mascot}
+              alt={initialState.mascotAlt}
+              width="96"
+              height="96"
+              class="ul-mascot-img"
+            />
+          </div>
+        </div>
+      </section>
+
+      <div class="ul-grid-two">
+        <div class="ul-stack">
+          <section class="ul-card ul-stack" aria-labelledby="task-countdown-heading">
+            <h2 id="task-countdown-heading">Cuenta regresiva en vivo</h2>
+
+            <div class="ul-countdown-box">
+              <div id="task-countdown-value" class="ul-countdown-value">
+                {initialState.headline}
+              </div>
+              <p id="task-countdown-sub" class="ul-hint">
+                Tiempo restante calculado en zona horaria America/Guayaquil (UTC-05).
+              </p>
+            </div>
+
+            {payload.description && (
+              <div>
+                <h3 style="margin-bottom: 6px;">Indicaciones</h3>
+                <p style="white-space: pre-line;">{payload.description}</p>
+              </div>
+            )}
+
+            <div class="ul-btn-row">
+              <button
+                type="button"
+                id="btn-export-task-ics"
+                class="ul-btn ul-btn-success"
+              >
+                <svg class="ul-ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                <span>Exportar .ics al Calendario</span>
+              </button>
+
+              {payload.sourceUrl && (
+                <a
+                  href={payload.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer external"
+                  referrerpolicy="no-referrer"
+                  class="ul-btn ul-btn-secondary"
+                >
+                  Abrir enlace de entrega
+                </a>
+              )}
+            </div>
+
+            <p id="task-ics-status" class="ul-hint" role="status" aria-live="polite"></p>
+
+            {payload.hadStrippedToken && (
+              <div class="ul-banner is-info">
+                <svg
+                  class="ul-ico"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  style="color: var(--color-info);"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                <p class="ul-hint">
+                  Por seguridad eliminamos automáticamente parámetros de sesión Moodle del enlace original.
+                </p>
+              </div>
+            )}
+          </section>
+        </div>
+
+        <PlatformActions
+          deepPath="tarea"
+          routePath="/tarea"
+          rawD={rawD}
+          openAppLabel="Recibe alertas antes que cierre Moodle → Abrir en Pilas!"
+          actionLead="Recibe alertas antes que cierre Moodle abriendo esta entrega directamente en Pilas!."
+          highlightQr={false}
+        />
+      </div>
+
+      <script
+        type="application/json"
+        id="pilas-task-data"
+        set:html={safeJsonScriptContent(payload)}
+      />
+      <script src="../scripts/tarea-page.ts"></script>
+    </>
+  )}
+</UniversalLinkLayout>

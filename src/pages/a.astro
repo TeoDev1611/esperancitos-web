@@ -1,0 +1,33 @@
+---
+import AmigoRouteView from '../components/links/AmigoRouteView.astro';
+import { decodePilasParam } from '../lib/pilasCodec';
+import { buildPublicOgMeta } from '../lib/pilasLinks/og-meta';
+import { getSampleEncodedParam } from '../lib/pilasLinks/sample-payloads';
+import {
+  applyUniversalLinkResponseHeaders,
+  extractRawDFromUrl,
+} from '../lib/pilasLinks/ssr-helpers';
+
+export const prerender = false;
+
+const rawD = extractRawDFromUrl(Astro.url);
+const siteOrigin = Astro.url.origin || 'https://pilas-ec.vercel.app';
+const pageUrl = new URL('/a', siteOrigin);
+if (rawD) pageUrl.searchParams.set('d', rawD);
+
+const decoded = rawD ? await decodePilasParam(rawD, 'amigo') : null;
+const isOk = Boolean(decoded && decoded.ok);
+const demoParam = !isOk ? await getSampleEncodedParam('amigo') : null;
+
+applyUniversalLinkResponseHeaders(Astro.response.headers, !rawD || isOk);
+const meta = buildPublicOgMeta('amigo', decoded, siteOrigin, rawD);
+---
+
+<AmigoRouteView
+  rawD={rawD}
+  decoded={decoded}
+  demoParam={demoParam}
+  meta={meta}
+  pageUrl={pageUrl.toString()}
+/>
+
