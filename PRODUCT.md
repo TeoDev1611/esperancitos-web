@@ -32,7 +32,7 @@ Estudiantes en campus físicos con señal celular intermitente, consultando el t
 - Autonomía: Proyecto independiente desarrollado por estudiantes, no afiliado institucionalmente a ninguna universidad.
 
 ## Evidence on Hand
-- Ficha de aplicación aprobada en Google Play Store: "Pilas! Horario y Moodle (acceso anticipado)" por Teo Apps Ec.
+- Ficha de aplicación aprobada en Google Play Store: "Pilas! Horario y Moodle (acceso anticipado)" por Atelier EC.
 - Comunidad inicial de más de 100 estudiantes testers.
 - Enlaces y canales activos:
   - Canal de WhatsApp de accesos: https://www.whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g
