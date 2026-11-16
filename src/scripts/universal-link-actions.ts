@@ -261,13 +261,18 @@ export function initPlatformActions() {
       });
     }
 
-    // iPhone / iPad PWA helper
-    if (pwaOpenBtn && iosGuideBox) {
-      pwaOpenBtn.addEventListener('click', () => {
-        iosGuideBox.hidden = false;
-        iosGuideBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        const stepTitle = iosGuideBox.querySelector<HTMLElement>('[data-ios-guide-title]');
-        stepTitle?.focus();
+    // iPhone / iPad: iOS no abre la PWA instalada desde un enlace. Se copia el
+    // enlace y se pega dentro de Pilas (escáner QR → Pegar enlace).
+    if (pwaOpenBtn) {
+      const pwaStatus = root.querySelector<HTMLElement>('[data-pwa-copy-status]');
+      pwaOpenBtn.addEventListener('click', async () => {
+        const ok = await copyTextToClipboard(getShareUrl());
+        if (pwaStatus) {
+          pwaStatus.textContent = ok
+            ? 'Copiado. Abre Pilas! y toca el escáner QR → Pegar enlace.'
+            : 'No se pudo copiar: mantén presionada la dirección de arriba y cópiala.';
+        }
+        iosGuideBox?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     }
 
