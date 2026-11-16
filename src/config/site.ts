@@ -108,6 +108,7 @@ export const SITE = {
 
   /** Páginas legales del sitio. */
   privacyPath: "/privacidad",
+  termsPath: "/terminos",
 
   /** Perfiles oficiales. Deja vacío ('') para omitir la etiqueta. */
   social: {

@@ -1,0 +1,423 @@
+---
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/inter';
+import { SITE } from '../config/site';
+import AtelierCredits from '../components/AtelierCredits.astro';
+
+const lastUpdate = '15 de noviembre de 2026';
+const contactEmail = SITE.social.email;
+
+const M = {
+  ok: '/logos/mascota_aprobacion.svg',
+};
+const IG = SITE.social.instagram;
+const WA = SITE.social.whatsappChannel;
+
+const toc = [
+  { id: 'aceptacion', label: 'Aceptación' },
+  { id: 'servicio', label: 'Qué es Pilas!' },
+  { id: 'independencia', label: 'Independencia institucional' },
+  { id: 'requisitos', label: 'Quién puede usarla' },
+  { id: 'acceso-anticipado', label: 'Acceso anticipado' },
+  { id: 'cuenta', label: 'Tu cuenta institucional' },
+  { id: 'datos-academicos', label: 'Datos académicos' },
+  { id: 'uso-aceptable', label: 'Uso aceptable' },
+  { id: 'enlaces', label: 'Pilas! Links' },
+  { id: 'comunidad', label: 'Avisos y negocios' },
+  { id: 'herramientas', label: 'Herramientas web' },
+  { id: 'propiedad', label: 'Propiedad intelectual' },
+  { id: 'gratuidad', label: 'Gratuidad y aportes' },
+  { id: 'responsabilidad', label: 'Garantías y responsabilidad' },
+  { id: 'terminacion', label: 'Suspensión y baja' },
+  { id: 'cambios', label: 'Cambios a estos términos' },
+  { id: 'ley', label: 'Ley aplicable' },
+  { id: 'contacto', label: 'Contacto' },
+];
+---
+<!doctype html>
+<html lang="es-EC" data-mode="espe">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Condiciones del Servicio | Pilas! para Android</title>
+<meta name="description" content="Condiciones del servicio de Pilas!: reglas de uso de la app universitaria, Pilas! Links, herramientas web, avisos y directorio de negocios.">
+<link rel="canonical" href={`${SITE.url}/terminos`}>
+<meta name="theme-color" content="#101319">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<script is:inline>
+try {
+  var m = localStorage.pilasMode;
+  if (m === 'multi' || m === 'espe') document.documentElement.dataset.mode = m;
+} catch (e) {}
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="nav-brand-logo-pill" href="/" aria-label="Pilas!, volver al inicio">
+      <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="128" height="42" />
+    </a>
+    <a class="btn btn-s btn-sm" href="/"><svg class="ico"><use href="#i-back"/></svg>Volver<span class="hide-xs"> al inicio</span></a>
+    <a class="btn btn-p btn-sm" href="/#acceso"><svg class="ico"><use href="#i-play"/></svg><span class="hide-xs">Pedir </span>Acceso</a>
+  </div>
+</header>
+
+<main class="page-body">
+  <div class="wrap">
+    <div class="priv-hero">
+      <div>
+        <span class="badge b-info"><svg class="ico"><use href="#i-doc"/></svg>Reglas claras · Sin letra chiquita</span>
+        <h1>Condiciones del Servicio</h1>
+        <p class="lead">Las reglas del juego para usar Pilas!: la app, este sitio web, Pilas! Links y las herramientas. Escritas para que se entiendan, ñaño.</p>
+        <p class="fine" style="margin-top:8px">Última actualización: {lastUpdate}</p>
+      </div>
+      <img class="guard-hero" src={M.ok} alt="Pilo, la mascota de Pilas!, dando su aprobación" width="160" height="160">
+    </div>
+
+    <!-- Resumen rápido -->
+    <section class="card tldr" aria-labelledby="tldr-title">
+      <h2 id="tldr-title">En corto</h2>
+      <div class="tldr-grid">
+        <ul class="tldr-list yes">
+          <li><svg class="ico"><use href="#i-check"/></svg>Pilas! es gratis, sin publicidad y no vende tus datos.</li>
+          <li><svg class="ico"><use href="#i-check"/></svg>Tus credenciales y notas viven solo en tu celular.</li>
+          <li><svg class="ico"><use href="#i-check"/></svg>Puedes dejar de usarla cuando quieras: cierra sesión o desinstala.</li>
+        </ul>
+        <ul class="tldr-list no">
+          <li><svg class="ico"><use href="#i-x"/></svg>No somos la universidad: la información oficial está en tu portal institucional.</li>
+          <li><svg class="ico"><use href="#i-x"/></svg>No uses Pilas! para atacar, saturar o burlar los sistemas de tu universidad.</li>
+          <li><svg class="ico"><use href="#i-x"/></svg>La app está en acceso anticipado: puede fallar; verifica fechas y notas importantes.</li>
+        </ul>
+      </div>
+      <p class="fine" style="margin-top:16px">Este resumen ayuda, pero lo que vale es el texto completo de abajo.</p>
+    </section>
+
+    <div class="terms-layout">
+      <nav class="toc card" aria-label="Índice de las condiciones">
+        <p class="toc-title">Índice</p>
+        <ol>
+          {toc.map((item) => <li><a href={`#${item.id}`}>{item.label}</a></li>)}
+        </ol>
+      </nav>
+
+      <div class="priv-sections terms-sections">
+        <section class="card" id="aceptacion">
+          <h2><span class="sec-n">1</span>Aceptación de estas condiciones</h2>
+          <p>Estas Condiciones del Servicio (las «Condiciones») regulan el uso de la aplicación móvil <strong>Pilas!</strong>, del sitio web <code>{SITE.url.replace('https://', '')}</code> y de los servicios asociados descritos más abajo (en conjunto, el «Servicio»). El Servicio es desarrollado y mantenido por el equipo de Pilas!, un proyecto estudiantil independiente publicado bajo el sello Atelier EC (en adelante, «nosotros»).</p>
+          <p>Al instalar la app, iniciar sesión o usar el sitio web, aceptas estas Condiciones y nuestra <a href="/privacidad">Política de Privacidad</a>, que forma parte de ellas. Si no estás de acuerdo, no uses el Servicio.</p>
+        </section>
+
+        <section class="card" id="servicio">
+          <h2><span class="sec-n">2</span>Qué es Pilas!</h2>
+          <p>Pilas! es una herramienta de organización académica para estudiantes universitarios del Ecuador. Incluye:</p>
+          <ul class="bullets">
+            <li><strong>App móvil (Android):</strong> horario con aulas, tareas y notificaciones de Moodle, notas, carnet digital y herramientas que funcionan sin conexión.</li>
+            <li><strong>Pilas! Links:</strong> enlaces y códigos QR para compartir horarios, tareas, materiales, kits de curso y juntas de estudio.</li>
+            <li><strong>Herramientas web:</strong> calculadora de notas y compresor de PDF para Moodle, entre otras.</li>
+            <li><strong>Contenido comunitario:</strong> tablón de avisos, enlaces académicos y directorio de negocios cercanos a los campus, servidos también mediante una API pública de solo lectura.</li>
+          </ul>
+          <p>La app se conecta <strong>directamente</strong> desde tu teléfono a los portales oficiales de tu universidad (por ejemplo, Moodle o Banner). No tenemos servidores que reciban o guarden tus credenciales, horarios ni notas.</p>
+        </section>
+
+        <section class="card" id="independencia">
+          <h2><span class="sec-n">3</span>Independencia institucional</h2>
+          <p>Pilas! <strong>no está afiliada, asociada, patrocinada ni respaldada</strong> por la Universidad de las Fuerzas Armadas ESPE, por ninguna otra universidad, ni por Ellucian Company L.P. (Banner) o Moodle Pty Ltd. No somos un canal oficial de ninguna institución.</p>
+          <p>Los nombres, siglas y logotipos de universidades pertenecen a sus titulares y se mencionan solo para indicar compatibilidad técnica. Ante cualquier trámite, reclamo o duda oficial (matrícula, notas, asistencia, recalificaciones), debes acudir a tu universidad.</p>
+        </section>
+
+        <section class="card" id="requisitos">
+          <h2><span class="sec-n">4</span>Quién puede usar Pilas!</h2>
+          <ul class="bullets">
+            <li>Estudiantes y docentes que tengan una cuenta institucional válida en una universidad con Moodle (y, cuando aplique, Banner) habilitado para apps móviles.</li>
+            <li>Si tienes menos de 18 años, debes contar con la autorización de tu madre, padre o representante legal para usar el Servicio.</li>
+            <li>Un teléfono con Android {SITE.minAndroid} o superior. Las herramientas web funcionan en cualquier navegador moderno.</li>
+          </ul>
+          <p>Las funciones disponibles dependen de lo que cada universidad tenga habilitado en sus plataformas. No podemos garantizar compatibilidad con todas las instituciones ni que una institución mantenga habilitado el acceso móvil.</p>
+        </section>
+
+        <section class="card" id="acceso-anticipado">
+          <h2><span class="sec-n">5</span>Acceso anticipado y distribución</h2>
+          <p>Pilas! se encuentra en <strong>acceso anticipado</strong> (prueba cerrada de Google Play). Eso significa que puede contener errores, que algunas funciones pueden cambiar o desaparecer y que el Servicio puede interrumpirse temporalmente sin previo aviso.</p>
+          <p>Los únicos canales oficiales para obtener la app son <strong>Google Play</strong> y <strong>este sitio web</strong>. No nos responsabilizamos por copias, versiones modificadas o archivos obtenidos de terceros: pueden estar alterados y poner en riesgo tu cuenta.</p>
+          <p>Como tester, tus comentarios y reportes de errores nos ayudan muchísimo. Al enviarlos, nos autorizas a usarlos libremente para mejorar Pilas!, sin obligación de compensación.</p>
+        </section>
+
+        <section class="card" id="cuenta">
+          <h2><span class="sec-n">6</span>Tu cuenta institucional</h2>
+          <dl class="rules one">
+            <div>
+              <dt>Es tuya y es tu responsabilidad</dt>
+              <dd>Inicia sesión únicamente con <strong>tu propia</strong> cuenta institucional. No uses credenciales de otra persona ni compartas las tuyas. Eres responsable de la seguridad de tu teléfono (bloqueo de pantalla, no prestarlo con la sesión abierta, etc.).</dd>
+            </div>
+            <div>
+              <dt>Cumple las reglas de tu universidad</dt>
+              <dd>Al usar Pilas! sigues sujeto a los reglamentos y políticas de uso tecnológico de tu institución. Si tu universidad restringe el acceso de apps de terceros, es tu decisión y responsabilidad seguir usándola.</dd>
+            </div>
+            <div>
+              <dt>Si algo raro pasa</dt>
+              <dd>Si crees que tu cuenta institucional fue comprometida, cambia tu contraseña en el portal oficial y cierra sesión en Pilas! desde <strong>Ajustes ➔ Cerrar sesión</strong>. Escríbenos si sospechas que el problema viene de la app.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="card" id="datos-academicos">
+          <h2><span class="sec-n">7</span>Exactitud de la información académica</h2>
+          <p>Pilas! muestra la información que obtiene de los sistemas de tu universidad y datos públicos (mallas, aulas, calendarios) recopilados por la comunidad. Hacemos lo posible para que sea correcta, pero:</p>
+          <ul class="bullets">
+            <li><strong>La fuente oficial siempre es tu universidad.</strong> Si hay diferencias entre Pilas! y el portal institucional, vale el portal.</li>
+            <li>Los recordatorios y notificaciones son una ayuda. Pueden retrasarse o no llegar (por ejemplo, por el ahorro de batería de Android o cambios en Moodle). <strong>Revisa siempre las fechas de entrega importantes</strong> en la plataforma oficial.</li>
+            <li>Los promedios y cálculos de notas son <strong>referenciales</strong> y pueden no reflejar reglas especiales de tu carrera o docente.</li>
+          </ul>
+          <p>No somos responsables por entregas tardías, inasistencias, calificaciones ni decisiones académicas tomadas solo con base en la información mostrada por Pilas!.</p>
+        </section>
+
+        <section class="card" id="uso-aceptable">
+          <h2><span class="sec-n">8</span>Uso aceptable</h2>
+          <p>Para que Pilas! siga existiendo para todos, te comprometes a <strong>no</strong>:</p>
+          <ul class="bullets no-list">
+            <li>Usar el Servicio para acceder sin autorización, saturar, atacar o vulnerar los sistemas de cualquier universidad o de Pilas!.</li>
+            <li>Automatizar solicitudes masivas, hacer scraping abusivo o usar Pilas! para extraer datos de otras personas.</li>
+            <li>Descompilar, modificar, redistribuir o revender la app o sus conectores, salvo lo que la ley expresamente permita.</li>
+            <li>Suplantar a otra persona, a una universidad o al equipo de Pilas!.</li>
+            <li>Compartir mediante Pilas! contenido ilegal, engañoso, acosador, discriminatorio o que infrinja derechos de terceros.</li>
+            <li>Usar Pilas! para cometer fraude académico (por ejemplo, alterar capturas de notas o carnets para hacerlas pasar por documentos oficiales).</li>
+          </ul>
+          <p>El carnet digital de Pilas! es una <strong>vista de conveniencia</strong> y no reemplaza la credencial oficial emitida por tu universidad.</p>
+        </section>
+
+        <section class="card" id="enlaces">
+          <h2><span class="sec-n">9</span>Pilas! Links y contenido que compartes</h2>
+          <p>Los Pilas! Links guardan la información <strong>dentro del propio enlace</strong> (o del código QR). No la almacenamos en ninguna base de datos. Por eso:</p>
+          <ul class="bullets">
+            <li><strong>Cualquier persona que tenga el enlace puede ver su contenido.</strong> Compártelo solo con quien quieras.</li>
+            <li>Una vez enviado, no podemos «borrarlo» ni revocarlo: el contenido vive en el enlace mismo.</li>
+            <li>Eres responsable de lo que compartes. No incluyas datos personales de otras personas (nombres, teléfonos, horarios) sin su consentimiento.</li>
+          </ul>
+          <p>Nuestro servidor solo decodifica el enlace en memoria para mostrarte la vista previa y no lo registra. Más detalles en la <a href="/privacidad">Política de Privacidad</a>.</p>
+        </section>
+
+        <section class="card" id="comunidad">
+          <h2><span class="sec-n">10</span>Tablón de avisos y directorio de negocios</h2>
+          <dl class="rules one">
+            <div>
+              <dt>Contenido de terceros</dt>
+              <dd>Los avisos, enlaces y negocios del directorio provienen de la comunidad y de los propios comercios. No verificamos ni garantizamos sus precios, horarios, calidad, disponibilidad ni promociones. Cualquier trato es directamente entre tú y el negocio.</dd>
+            </div>
+            <div>
+              <dt>Si postulas un negocio</dt>
+              <dd>Declaras que tienes derecho a representarlo y que la información que envías es veraz. Nos autorizas a publicarla (nombre, categoría, zona, contacto y redes) en el sitio, en la app y en la API pública. Puedes pedir su corrección o retiro en cualquier momento escribiendo a <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</dd>
+            </div>
+            <div>
+              <dt>Moderación</dt>
+              <dd>Podemos rechazar, editar o retirar cualquier aviso o negocio que incumpla estas Condiciones, resulte engañoso o reciba reportes fundados de la comunidad.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="card" id="herramientas">
+          <h2><span class="sec-n">11</span>Herramientas web</h2>
+          <p>La calculadora de notas, el compresor de PDF y demás herramientas del sitio procesan tus archivos y datos <strong>en tu propio navegador</strong>; no los subimos a ningún servidor. Los resultados se entregan tal cual: antes de subir un archivo comprimido a Moodle, revisa que se vea bien y que cumpla los requisitos de tu docente. Conserva siempre una copia del original.</p>
+        </section>
+
+        <section class="card" id="propiedad">
+          <h2><span class="sec-n">12</span>Propiedad intelectual</h2>
+          <p>La app, su código, el nombre <strong>Pilas!</strong>, la mascota, los logotipos, ilustraciones y el diseño del sitio nos pertenecen o los usamos con autorización. Te damos una licencia personal, gratuita, no exclusiva, intransferible y revocable para usar el Servicio con fines académicos personales, conforme a estas Condiciones.</p>
+          <p>Tus datos académicos y el contenido que creas (notas, tareas, listas) son tuyos. Las marcas de universidades, Moodle, Banner, Google Play y Android pertenecen a sus respectivos titulares.</p>
+        </section>
+
+        <section class="card" id="gratuidad">
+          <h2><span class="sec-n">13</span>Gratuidad, publicidad y aportes</h2>
+          <p>Pilas! es <strong>gratuita</strong>, sin anuncios y no vende tus datos. Si en algún momento habilitamos aportes voluntarios, estos serán donaciones para cubrir costos del proyecto (cuenta de desarrollador, dominio, infraestructura) y no te otorgan derechos adicionales sobre el Servicio.</p>
+          <p>Si en el futuro ofrecemos funciones opcionales de pago, lo anunciaremos con anticipación, actualizaremos estas Condiciones con sus términos específicos y las funciones esenciales (horario, aulas, tareas y notas) seguirán siendo gratuitas.</p>
+        </section>
+
+        <section class="card" id="responsabilidad">
+          <h2><span class="sec-n">14</span>Garantías y limitación de responsabilidad</h2>
+          <p>El Servicio se ofrece <strong>«tal cual» y «según disponibilidad»</strong>, sin garantías de ningún tipo, expresas o implícitas, incluidas las de funcionamiento ininterrumpido, ausencia de errores o idoneidad para un propósito concreto. Pilas! depende de plataformas de terceros (universidades, Moodle, Banner, Google, Vercel) que pueden cambiar o dejar de funcionar en cualquier momento.</p>
+          <p>En la máxima medida permitida por la legislación ecuatoriana, no seremos responsables por daños indirectos, pérdida de datos, perjuicios académicos ni por fallas de servicios de terceros. Nada de lo aquí dispuesto limita los derechos que la ley te reconozca de forma irrenunciable.</p>
+        </section>
+
+        <section class="card" id="terminacion">
+          <h2><span class="sec-n">15</span>Suspensión y baja</h2>
+          <p>Puedes dejar de usar Pilas! en cualquier momento: cierra sesión desde <strong>Ajustes ➔ Cerrar sesión</strong> (borra tus datos locales) o desinstala la app. Como no tienes una cuenta en nuestros servidores, no hay nada más que eliminar.</p>
+          <p>Podemos suspender, modificar o descontinuar total o parcialmente el Servicio, por ejemplo si una universidad lo solicita, si cambian sus plataformas o si detectamos un uso que incumpla estas Condiciones.</p>
+        </section>
+
+        <section class="card" id="cambios">
+          <h2><span class="sec-n">16</span>Cambios a estas condiciones</h2>
+          <p>Podemos actualizar estas Condiciones a medida que Pilas! evolucione. Publicaremos la nueva versión en esta página con su fecha de actualización y, si el cambio es importante, lo anunciaremos en la app o en nuestros canales oficiales (<a href={IG} target="_blank" rel="noopener noreferrer">Instagram</a> y <a href={WA} target="_blank" rel="noopener noreferrer">canal de WhatsApp</a>). Si sigues usando el Servicio después del cambio, se entiende que aceptas la nueva versión.</p>
+        </section>
+
+        <section class="card" id="ley">
+          <h2><span class="sec-n">17</span>Ley aplicable</h2>
+          <p>Estas Condiciones se rigen por las leyes de la República del Ecuador, incluida la Ley Orgánica de Protección de Datos Personales. Antes de cualquier reclamo formal, te pedimos escribirnos para intentar resolverlo de buena fe. Si no llegamos a un acuerdo, la controversia se someterá a los jueces competentes del Ecuador.</p>
+          <p>Si alguna cláusula se considera inválida, el resto de las Condiciones sigue vigente.</p>
+        </section>
+
+        <section class="card" id="contacto">
+          <h2><span class="sec-n">18</span>Contacto</h2>
+          <p>¿Dudas sobre estas Condiciones, reportes de abuso o solicitudes sobre el directorio? Escríbenos a <a href={`mailto:${contactEmail}`}>{contactEmail}</a>. Respondemos lo antes posible.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="hub-footer">
+  <div class="wrap footer-wrap">
+    <div class="footer-brand-row">
+      <a class="footer-brand-logo-pill" href="/" aria-label="Pilas!, volver arriba">
+        <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="footer-lettering-img" width="132" height="42" />
+      </a>
+      <div class="footer-pill-edition">
+        <span class="sticker-pill" data-for="espe">⚡ COMUNIDAD UNIVERSITARIA ESPE</span>
+        <span class="sticker-pill coral" data-for="multi">⭐ RED MULTI-UNIVERSIDAD ECUADOR</span>
+      </div>
+    </div>
+    <nav aria-label="Enlaces del sitio" class="footer-nav">
+      <a href="/faq">Preguntas frecuentes</a>
+      <a href="/avisos">Avisos</a>
+      <a href="/negocios">Negocios</a>
+      <a href="/privacidad">Privacidad</a>
+      <a href="/terminos" aria-current="page">Términos</a>
+      <a href={IG} target="_blank" rel="noopener noreferrer">Instagram (@pilas_ec.app)</a>
+      <a href={WA} target="_blank" rel="noopener noreferrer">Canal de WhatsApp</a>
+    </nav>
+    <div class="footer-legal">
+      <p>Pilas! es un proyecto estudiantil independiente. No está respaldado ni afiliado oficialmente a la Universidad de las Fuerzas Armadas ESPE, Ellucian, Banner ni Moodle. Las credenciales y datos viven únicamente en tu teléfono.</p>
+      <p>Los nombres, siglas y logotipos de universidades pertenecen con exclusividad a sus respectivos titulares y se usan únicamente para fines de contextualización estudiantil y compatibilidad técnica.</p>
+      <p class="footer-copy">© 2026 Pilas! · Hecho con orgullo estudiantil para el Ecuador.</p>
+    </div>
+    <AtelierCredits />
+  </div>
+</footer>
+
+<style is:global>
+:root{
+  color-scheme:dark;
+  --primary:#ff3fa4;--primary-hover:#e5147d;--primary-extrude:#7a0a45;--primary-shadow:#4a0026;--primary-coral:#ff3d5e;
+  --success:#00ff87;--success-shadow:#059669;--warning:#ffdb60;--critical:#ef4444;--info:#38bdf8;
+  --bg-base:#101319;--bg-subtle:#191d28;--bg-surface:#161a23;--bg-elevated:#1e2230;--bg-container:#242938;
+  --border:#2a3142;--border-control:#6b7894;--title:#faf7f7;--body:#e1e2eb;--muted:#8f9cae;
+  --f-d:"Outfit Variable",system-ui,sans-serif;--f-b:"Inter Variable",system-ui,sans-serif;
+  --accent:var(--primary);--bg:var(--bg-base);
+}
+html[data-mode=multi]{--accent:var(--primary-coral);--bg:var(--bg-subtle)}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background-color:var(--bg);color:var(--body);font:400 1.0625rem/1.6 var(--f-b);padding-bottom:env(safe-area-inset-bottom,0px)}
+html[data-mode=espe] body{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px}
+html[data-mode=multi] body{background-image:radial-gradient(rgba(255,255,255,.09) 1.5px,transparent 1.5px);background-size:22px 22px}
+h1,h2,h3{font-family:var(--f-d);font-weight:800;color:var(--title);line-height:1.1;letter-spacing:-.02em;margin:0}
+p{margin:0}a{color:var(--info)}
+code{font-size:.9em;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;padding:1px 6px;overflow-wrap:anywhere}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,32px)}
+.ico{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border:2px solid;border-radius:12px;font:800 1rem var(--f-d);text-decoration:none;cursor:pointer;transition:transform 100ms,box-shadow 100ms,background 150ms}
+.btn:active{transform:translate(2px,2px);box-shadow:none!important}
+.btn-p{background:var(--primary);color:#000;border-color:#000;box-shadow:3px 3px 0 #000}
+.btn-p:hover,.btn-p:active{background:var(--primary-hover)}
+.btn-s{background:var(--bg-elevated);color:var(--title);border:2px solid var(--border-control);box-shadow:3px 3px 0 #000}
+.btn-sm{padding:0 16px;font-size:.95rem}
+.card{background:var(--bg-surface);border:2px solid var(--border);border-radius:14px;box-shadow:2px 2px 0 var(--border);padding:24px}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1.5px solid currentColor;border-radius:999px;padding:4px 12px 4px 8px;background:var(--bg-base);font:600 .875rem/1.3 var(--f-b);width:fit-content}
+.b-info{color:var(--info)}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(16,19,25,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:2px solid #000;padding:10px 0}
+.top .wrap{display:flex;align-items:center;gap:12px;min-height:50px}
+.nav-brand-logo-pill,.footer-brand-logo-pill{display:inline-flex;align-items:center;justify-content:center;background:transparent!important;border:none!important;box-shadow:none!important;text-decoration:none;margin-right:auto}
+.nav-brand-logo,.footer-lettering-img{display:block;height:36px;width:auto;filter:drop-shadow(0 0 10px rgba(255,63,164,0.9)) drop-shadow(0 0 22px rgba(255,20,117,0.7)) drop-shadow(2px 3px 0 #000)!important;transition:filter 220ms ease,transform 220ms cubic-bezier(0.34,1.56,0.64,1);animation:logoPinkGlowPulse 4s ease-in-out infinite}
+.nav-brand-logo:hover,.footer-lettering-img:hover{filter:drop-shadow(0 0 14px rgba(255,63,164,1)) drop-shadow(0 0 30px rgba(255,20,117,0.95)) drop-shadow(2px 3px 0 #000)!important;transform:translateY(-2px) scale(1.03)}
+@keyframes logoPinkGlowPulse{
+  0%,100%{filter:drop-shadow(0 0 8px rgba(255,63,164,0.9)) drop-shadow(0 0 20px rgba(255,20,117,0.7)) drop-shadow(2px 3px 0 #000)}
+  50%{filter:drop-shadow(0 0 13px rgba(255,63,164,1)) drop-shadow(0 0 28px rgba(255,20,117,0.88)) drop-shadow(2px 3px 0 #000)}
+}
+@media(prefers-reduced-motion:reduce){.nav-brand-logo,.footer-lettering-img{animation:none}}
+
+.sticker-pill{display:inline-block;padding:4px 12px;border:1.5px solid #000;border-radius:9999px;background:var(--primary);color:#000;font-family:var(--f-d);font-weight:800;font-size:.75rem;letter-spacing:.04em;box-shadow:2px 2px 0 #000}
+.sticker-pill.coral{background:var(--primary-coral)}
+
+/* Footer */
+.hub-footer{padding:48px 0 56px;border-top:2px solid #000;background:#090b10;font-size:.95rem}
+.footer-wrap{display:flex;flex-direction:column;gap:24px}
+.footer-brand-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-pill-edition{display:flex;gap:8px;flex-wrap:wrap}
+.footer-nav{display:flex;flex-wrap:wrap;gap:14px 24px}
+.footer-nav a{color:var(--body);text-decoration:none;font-size:.95rem;font-weight:600;transition:color 150ms}
+.footer-nav a:hover,.footer-nav a[aria-current=page]{color:var(--primary)}
+.footer-legal{display:flex;flex-direction:column;gap:8px;font-size:.82rem;color:var(--muted);border-top:1px dashed rgba(255,255,255,.1);padding-top:16px}
+.footer-legal p{max-width:60em}
+.footer-copy{color:var(--title);font-weight:700}
+
+/* hero */
+.page-body{padding:clamp(36px,6vw,72px) 0 clamp(48px,7vw,96px)}
+.priv-hero{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.priv-hero>div{max-width:38em;display:grid;gap:12px}
+.priv-hero h1{font-size:clamp(2.2rem,5vw,3.6rem);margin-top:6px}
+.lead{font-size:1.15rem;color:var(--body)}
+.fine{color:var(--muted);font-size:.95rem}
+.guard-hero{width:160px;height:160px;object-fit:contain}
+
+/* resumen */
+.tldr{margin-top:36px;border-color:#000;box-shadow:4px 4px 0 var(--primary)}
+.tldr h2{font-size:1.5rem}
+.tldr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 28px;margin-top:16px}
+.tldr-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.tldr-list li{display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+.tldr-list .ico{margin-top:.2em;width:1.25em;height:1.25em}
+.tldr-list.yes .ico{color:var(--success)}
+.tldr-list.no .ico{color:var(--warning)}
+
+/* layout con índice */
+.terms-layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:24px;align-items:start;margin-top:24px}
+.toc{position:sticky;top:96px;padding:18px 18px 14px;max-height:calc(100vh - 120px);overflow-y:auto}
+.toc-title{font:800 .8rem var(--f-d);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{margin:0;padding-left:1.4em;display:grid;gap:2px;font-size:.92rem}
+.toc li::marker{color:var(--muted);font-variant-numeric:tabular-nums}
+.toc a{color:var(--body);text-decoration:none;display:inline-block;padding:3px 0}
+.toc a:hover{color:var(--primary)}
+
+.priv-sections{display:grid;gap:20px}
+.terms-sections{margin-top:0}
+.priv-sections h2{font-size:1.4rem;display:flex;align-items:center;gap:12px}
+.terms-sections .card>p,.terms-sections .card>.bullets,.terms-sections .card>.rules{margin-top:12px}
+.sec-n{display:inline-grid;place-items:center;flex:none;min-width:34px;height:34px;padding:0 6px;border:2px solid #000;border-radius:10px;background:var(--accent);color:#000;font:800 1rem var(--f-d);box-shadow:2px 2px 0 #000;font-variant-numeric:tabular-nums}
+.bullets{margin:0;padding-left:1.25em;display:grid;gap:8px}
+.bullets li::marker{color:var(--accent)}
+.bullets.no-list li::marker{color:var(--warning)}
+
+.rules{display:grid;gap:0;margin:0}
+.rules.one>div{padding:14px 0;border-top:1px solid var(--border)}
+.rules.one>div:first-of-type{border-top:none;padding-top:0}
+.rules dt{font:800 1.1rem var(--f-d);color:var(--title)}
+.rules dd{margin:4px 0 0;color:var(--body);line-height:1.6}
+
+@media(max-width:900px){
+  .terms-layout{grid-template-columns:1fr}
+  .toc{position:static;max-height:none}
+  .toc ol{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));column-gap:24px}
+}
+@media(max-width:540px){
+  .hide-xs{display:none!important}
+  .top .wrap{gap:8px}
+  .nav-brand-logo{height:28px}
+  .priv-hero{flex-direction:column;align-items:flex-start;gap:16px}
+  .guard-hero{width:110px;height:110px}
+  .card{padding:20px 18px}
+  .priv-sections h2{font-size:1.25rem}
+}
+</style>
+</body>
+</html>
