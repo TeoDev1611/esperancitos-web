@@ -21,8 +21,8 @@ const M = {
 };
 
 const canonicalUrl = `${SITE.url}/herramientas/compresor-pdf-moodle`;
-const pageTitle = "Compresor de PDF para Moodle (Límite 5 MB) | Pilas!";
-const pageDesc = "Reduce tus informes y deberes en PDF a menos de 5 MB para subirlos a Moodle sin rebotes a las 23:59. Herramienta estudiantil para universidades del Ecuador.";
+const pageTitle = "Compresor de PDF para Moodle, gratis y sin subir archivos | Pilas!";
+const pageDesc = "Reduce el peso de tus informes y deberes en PDF para que Moodle los acepte antes de las 23:59. Gratis, sin anuncios y sin subir tus archivos a ningún servidor.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -107,7 +107,7 @@ const jsonLd = {
       </a>
       <a class="btn btn-p btn-sm" href="/#acceso">
         <svg class="ico"><use href="#i-down"/></svg>
-        <span>Pedir Acceso</span>
+        <span>Descargar</span>
       </a>
     </div>
   </div>
@@ -174,11 +174,16 @@ const jsonLd = {
     <section class="tool-cta-banner card">
       <div class="cta-content">
         <h2>Comprime tareas y genera carátulas en tu celular</h2>
-        <p>Descarga la app Pilas! para Android. Gratis, sin publicidad, sin servidores intermedios y con 13 herramientas offline.</p>
-        <a class="btn btn-p btn-lg" href="/#acceso">
-          <svg class="ico"><use href="#i-down"/></svg>
-          <span>Pedir acceso en Google Play</span>
-        </a>
+        <p>En la app tienes más: unir, dividir, firmar, convertir, escanear y armar la carátula con el logo de tu U. Gratis, en Android y iPhone, sin subir tus archivos a ningún servidor.</p>
+        <div class="cta-store-row">
+          <a class="btn btn-p btn-lg" href={SITE.playStoreUrl} target="_blank" rel="noopener noreferrer">
+            <svg class="ico"><use href="#i-down"/></svg>
+            <span>Descargar en Google Play</span>
+          </a>
+          <a class="btn btn-s btn-lg" href="/#acceso">
+            <span>Instalar en iPhone</span>
+          </a>
+        </div>
       </div>
     </section>
   </div>
@@ -281,6 +286,15 @@ const jsonLd = {
     border: 2px solid var(--info);
     text-align: center;
     padding: 36px 20px;
+  }
+  .cta-store-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  @media (max-width: 520px) {
+    .cta-store-row .btn { width: 100%; }
   }
   .tool-cta-banner h2 {
     font-size: 1.6rem;

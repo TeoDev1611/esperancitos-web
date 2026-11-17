@@ -97,14 +97,14 @@ function populateAndroidFallback(
   if (versionEl) {
     versionEl.textContent = updateInfo?.latestVersion
       ? `Última versión disponible: v${safeText(updateInfo.latestVersion, 24)}`
-      : 'Descarga oficial desde Pilas!';
+      : 'Pilas! en Google Play';
   }
 
   if (noteEl) {
     const firstNote = Array.isArray(updateInfo?.notes) ? updateInfo.notes[0] : undefined;
     noteEl.textContent = firstNote
       ? safeText(firstNote, 180)
-      : 'Abre el centro de descargas oficial para instalar Pilas! en Android.';
+      : 'Instala Pilas! gratis desde Google Play y vuelve a abrir este enlace.';
   }
 
   if (primaryLinkEl) {
@@ -124,11 +124,11 @@ function populateAndroidFallback(
       primaryLinkEl.setAttribute('download', '');
     } else if (pageHref) {
       primaryLinkEl.href = pageHref;
-      primaryLinkEl.textContent = 'Ir a descarga / Beta Android';
+      primaryLinkEl.textContent = 'Instalar desde Google Play';
       primaryLinkEl.removeAttribute('download');
     } else {
-      primaryLinkEl.href = '/#descargar';
-      primaryLinkEl.textContent = 'Ir a descargas de Pilas!';
+      primaryLinkEl.href = 'https://play.google.com/store/apps/details?id=dev.teodev.pilas';
+      primaryLinkEl.textContent = 'Instalar desde Google Play';
       primaryLinkEl.removeAttribute('download');
     }
   }

@@ -4,7 +4,7 @@ import '@fontsource-variable/inter';
 import { SITE } from '../config/site';
 import AtelierCredits from '../components/AtelierCredits.astro';
 
-const lastUpdate = '2 de octubre de 2026';
+const lastUpdate = '16 de noviembre de 2026';
 const contactEmail = SITE.social.email;
 
 const V = {
@@ -22,8 +22,8 @@ const WA = 'https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Política de Privacidad | Pilas! para Android</title>
-<meta name="description" content="Política de privacidad de Pilas!: arquitectura Zero-Backend, cifrado AES de 256 bits en Android Keystore y cero servidores intermedios.">
+<title>Política de Privacidad | Pilas! para Android y iPhone</title>
+<meta name="description" content="Política de privacidad de Pilas!: sin servidores que guarden tus datos, sin anuncios, sin analítica y sin cuentas. Tus datos viven en tu teléfono, en Android y en iPhone.">
 <meta name="theme-color" content="#101319">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -47,7 +47,7 @@ try {
       <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="128" height="42" />
     </a>
     <a class="btn btn-s btn-sm" href="/"><svg class="ico"><use href="#i-back"/></svg>Volver<span class="hide-xs"> al inicio</span></a>
-    <a class="btn btn-p btn-sm" href="/#acceso"><svg class="ico"><use href="#i-play"/></svg><span class="hide-xs">Pedir </span>Acceso</a>
+    <a class="btn btn-p btn-sm" href="/#acceso"><svg class="ico"><use href="#i-play"/></svg>Descargar</a>
   </div>
 </header>
 
@@ -95,9 +95,9 @@ try {
             </thead>
             <tbody>
               <tr>
-                <td><strong>(a) App Móvil (Android)</strong></td>
+                <td><strong>(a) App Móvil (Android y iPhone)</strong></td>
                 <td>Token QR de Moodle (wstoken), cookies de Banner, horario, materias, aulas, notas y firmas visuales.</td>
-                <td>Almacenamiento privado local de tu celular (SQLite Drift + Android Keystore con AES-256). Conexión directa HTTPS a tu universidad.</td>
+                <td>Almacenamiento privado local de tu celular, con el acceso a Moodle cifrado (en Android, Keystore; en iPhone, el almacenamiento privado de la app en Safari). Conexión directa HTTPS a tu universidad.</td>
                 <td><span class="badge b-ok">NO</span> Cero intermediación. Jamás tocan servidores nuestros.</td>
                 <td>Permanecen en el teléfono hasta cerrar sesión desde la app o desinstalarla.</td>
               </tr>
@@ -124,7 +124,7 @@ try {
               </tr>
               <tr>
                 <td><strong>(e) Medición y analítica de descargas</strong></td>
-                <td>Eventos numéricos anónimos agregados (visita a la web, clic de descarga de APK por arquitectura). Cero cookies.</td>
+                <td>Eventos numéricos anónimos agregados (visita a la web, clic en los botones de descarga). Cero cookies.</td>
                 <td>Capa de analítica ligera y respetuosa con la privacidad sin almacenar direcciones IP ni huella digital.</td>
                 <td>Solo métricas agregadas globales (conteos numéricos de clics).</td>
                 <td>Cifras estadísticas agregadas sin identificación de usuarios.</td>
@@ -140,7 +140,7 @@ try {
         <dl class="rules one" style="margin-top:16px">
           <div>
             <dt>¿Qué se guarda en tu teléfono?</dt>
-            <dd>Solo el token de sesión de Moodle Mobile (<code>wstoken</code>) generado al escanear el código QR institucional y las cookies de sesión temporal de Banner/miESPE si consultas notas u horarios. La contraseña nunca se almacena en texto plano.</dd>
+            <dd>Solo el token de sesión de Moodle Mobile (<code>wstoken</code>) generado al iniciar sesión (usuario, código QR o Puente Pilas) y las cookies de sesión temporal de Banner/miESPE si consultas notas u horarios. La contraseña nunca se almacena en texto plano.</dd>
           </div>
           <div>
             <dt>¿Dónde y cómo se protegen?</dt>
@@ -158,8 +158,6 @@ try {
             <dt>Transparencia y código fuente</dt>
             <dd>
               Actualmente el código de la app móvil es propietario y privado para salvaguardar la estabilidad de los conectores contra bloqueos institucionales. 
-              <!-- TODO(owner): Indicar si se publicarán conectores o se habilitará un programa de auditoría independiente de código para estudiantes. -->
-              <em>(Nota de transparencia: el equipo mantiene los conectores protegidos; TODO(owner): evaluar proceso de auditoría externa).</em>
             </dd>
           </div>
         </dl>
@@ -370,6 +368,7 @@ p{margin:0}a{color:var(--info)}
 
 /* sections */
 .priv-sections{display:grid;gap:20px;margin-top:36px}
+.priv-sections > *{min-width:0}
 .priv-sections h2{font-size:1.5rem}
 
 .priv-table-wrap {

@@ -4,7 +4,7 @@ import '@fontsource-variable/inter';
 import { SITE } from '../config/site';
 import AtelierCredits from '../components/AtelierCredits.astro';
 
-const lastUpdate = '15 de noviembre de 2026';
+const lastUpdate = '16 de noviembre de 2026';
 const contactEmail = SITE.social.email;
 
 const M = {
@@ -18,7 +18,7 @@ const toc = [
   { id: 'servicio', label: 'Qué es Pilas!' },
   { id: 'independencia', label: 'Independencia institucional' },
   { id: 'requisitos', label: 'Quién puede usarla' },
-  { id: 'acceso-anticipado', label: 'Acceso anticipado' },
+  { id: 'acceso-anticipado', label: 'Desarrollo y distribución' },
   { id: 'cuenta', label: 'Tu cuenta institucional' },
   { id: 'datos-academicos', label: 'Datos académicos' },
   { id: 'uso-aceptable', label: 'Uso aceptable' },
@@ -39,7 +39,7 @@ const toc = [
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Condiciones del Servicio | Pilas! para Android</title>
+<title>Condiciones del Servicio | Pilas! para Android y iPhone</title>
 <meta name="description" content="Condiciones del servicio de Pilas!: reglas de uso de la app universitaria, Pilas! Links, herramientas web, avisos y directorio de negocios.">
 <link rel="canonical" href={`${SITE.url}/terminos`}>
 <meta name="theme-color" content="#101319">
@@ -67,7 +67,7 @@ try {
       <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="128" height="42" />
     </a>
     <a class="btn btn-s btn-sm" href="/"><svg class="ico"><use href="#i-back"/></svg>Volver<span class="hide-xs"> al inicio</span></a>
-    <a class="btn btn-p btn-sm" href="/#acceso"><svg class="ico"><use href="#i-play"/></svg><span class="hide-xs">Pedir </span>Acceso</a>
+    <a class="btn btn-p btn-sm" href="/#acceso"><svg class="ico"><use href="#i-play"/></svg>Descargar</a>
   </div>
 </header>
 
@@ -93,9 +93,9 @@ try {
           <li><svg class="ico"><use href="#i-check"/></svg>Puedes dejar de usarla cuando quieras: cierra sesión o desinstala.</li>
         </ul>
         <ul class="tldr-list no">
-          <li><svg class="ico"><use href="#i-x"/></svg>No somos la universidad: la información oficial está en tu portal institucional.</li>
+          <li><svg class="ico"><use href="#i-x"/></svg>Para trámites y datos oficiales, lo que vale es el portal de tu universidad.</li>
           <li><svg class="ico"><use href="#i-x"/></svg>No uses Pilas! para atacar, saturar o burlar los sistemas de tu universidad.</li>
-          <li><svg class="ico"><use href="#i-x"/></svg>La app está en acceso anticipado: puede fallar; verifica fechas y notas importantes.</li>
+          <li><svg class="ico"><use href="#i-x"/></svg>La app está en desarrollo activo: puede fallar; verifica fechas y notas importantes.</li>
         </ul>
       </div>
       <p class="fine" style="margin-top:16px">Este resumen ayuda, pero lo que vale es el texto completo de abajo.</p>
@@ -120,7 +120,7 @@ try {
           <h2><span class="sec-n">2</span>Qué es Pilas!</h2>
           <p>Pilas! es una herramienta de organización académica para estudiantes universitarios del Ecuador. Incluye:</p>
           <ul class="bullets">
-            <li><strong>App móvil (Android):</strong> horario con aulas, tareas y notificaciones de Moodle, notas, carnet digital y herramientas que funcionan sin conexión.</li>
+            <li><strong>App móvil (Android e iPhone):</strong> horario con aulas, tareas y notificaciones de Moodle, notas, carnet digital y herramientas que funcionan sin conexión. En iPhone se instala desde Safari como app web.</li>
             <li><strong>Pilas! Links:</strong> enlaces y códigos QR para compartir horarios, tareas, materiales, kits de curso y juntas de estudio.</li>
             <li><strong>Herramientas web:</strong> calculadora de notas y compresor de PDF para Moodle, entre otras.</li>
             <li><strong>Contenido comunitario:</strong> tablón de avisos, enlaces académicos y directorio de negocios cercanos a los campus, servidos también mediante una API pública de solo lectura.</li>
@@ -130,7 +130,7 @@ try {
 
         <section class="card" id="independencia">
           <h2><span class="sec-n">3</span>Independencia institucional</h2>
-          <p>Pilas! <strong>no está afiliada, asociada, patrocinada ni respaldada</strong> por la Universidad de las Fuerzas Armadas ESPE, por ninguna otra universidad, ni por Ellucian Company L.P. (Banner) o Moodle Pty Ltd. No somos un canal oficial de ninguna institución.</p>
+          <p>Pilas! <strong>no está afiliada, asociada, patrocinada ni respaldada</strong> por la Universidad de las Fuerzas Armadas ESPE, por ninguna otra universidad, ni por Ellucian Company L.P. (Banner) o Moodle Pty Ltd., y tampoco es un canal oficial de ninguna institución.</p>
           <p>Los nombres, siglas y logotipos de universidades pertenecen a sus titulares y se mencionan solo para indicar compatibilidad técnica. Ante cualquier trámite, reclamo o duda oficial (matrícula, notas, asistencia, recalificaciones), debes acudir a tu universidad.</p>
         </section>
 
@@ -139,16 +139,16 @@ try {
           <ul class="bullets">
             <li>Estudiantes y docentes que tengan una cuenta institucional válida en una universidad con Moodle (y, cuando aplique, Banner) habilitado para apps móviles.</li>
             <li>Si tienes menos de 18 años, debes contar con la autorización de tu madre, padre o representante legal para usar el Servicio.</li>
-            <li>Un teléfono con Android {SITE.minAndroid} o superior. Las herramientas web funcionan en cualquier navegador moderno.</li>
+            <li>Un teléfono con Android {SITE.minAndroid} o superior, o un iPhone con Safari. Las herramientas web funcionan en cualquier navegador moderno.</li>
           </ul>
           <p>Las funciones disponibles dependen de lo que cada universidad tenga habilitado en sus plataformas. No podemos garantizar compatibilidad con todas las instituciones ni que una institución mantenga habilitado el acceso móvil.</p>
         </section>
 
         <section class="card" id="acceso-anticipado">
-          <h2><span class="sec-n">5</span>Acceso anticipado y distribución</h2>
-          <p>Pilas! se encuentra en <strong>acceso anticipado</strong> (prueba cerrada de Google Play). Eso significa que puede contener errores, que algunas funciones pueden cambiar o desaparecer y que el Servicio puede interrumpirse temporalmente sin previo aviso.</p>
-          <p>Los únicos canales oficiales para obtener la app son <strong>Google Play</strong> y <strong>este sitio web</strong>. No nos responsabilizamos por copias, versiones modificadas o archivos obtenidos de terceros: pueden estar alterados y poner en riesgo tu cuenta.</p>
-          <p>Como tester, tus comentarios y reportes de errores nos ayudan muchísimo. Al enviarlos, nos autorizas a usarlos libremente para mejorar Pilas!, sin obligación de compensación.</p>
+          <h2><span class="sec-n">5</span>Desarrollo activo y distribución</h2>
+          <p>Pilas! está en desarrollo activo. Puede contener errores, algunas funciones pueden cambiar o desaparecer y el Servicio puede interrumpirse temporalmente sin previo aviso. Algunas funciones solo existen en Android (por ejemplo, la alarma de entregas con el teléfono bloqueado, los widgets y el OCR).</p>
+          <p>Los únicos canales oficiales para obtener la app son <strong>Google Play</strong> (Android), <strong>pilas-pwa.vercel.app</strong> (iPhone) y <strong>este sitio web</strong>. No nos responsabilizamos por copias, versiones modificadas o archivos obtenidos de terceros: pueden estar alterados y poner en riesgo tu cuenta.</p>
+          <p>Tus comentarios y reportes de errores nos ayudan muchísimo. Al enviarlos, nos autorizas a usarlos libremente para mejorar Pilas!, sin obligación de compensación.</p>
         </section>
 
         <section class="card" id="cuenta">
@@ -156,7 +156,7 @@ try {
           <dl class="rules one">
             <div>
               <dt>Es tuya y es tu responsabilidad</dt>
-              <dd>Inicia sesión únicamente con <strong>tu propia</strong> cuenta institucional. No uses credenciales de otra persona ni compartas las tuyas. Eres responsable de la seguridad de tu teléfono (bloqueo de pantalla, no prestarlo con la sesión abierta, etc.).</dd>
+              <dd>Inicia sesión únicamente con <strong>tu propia</strong> cuenta institucional; usa solo tus propias credenciales y guárdalas para ti. Eres responsable de la seguridad de tu teléfono (bloqueo de pantalla, no prestarlo con la sesión abierta, etc.).</dd>
             </div>
             <div>
               <dt>Cumple las reglas de tu universidad</dt>
@@ -196,7 +196,7 @@ try {
 
         <section class="card" id="enlaces">
           <h2><span class="sec-n">9</span>Pilas! Links y contenido que compartes</h2>
-          <p>Los Pilas! Links guardan la información <strong>dentro del propio enlace</strong> (o del código QR). No la almacenamos en ninguna base de datos. Por eso:</p>
+          <p>Los Pilas! Links guardan la información <strong>dentro del propio enlace</strong> (o del código QR), sin guardarla en ninguna base de datos nuestra. Por eso:</p>
           <ul class="bullets">
             <li><strong>Cualquier persona que tenga el enlace puede ver su contenido.</strong> Compártelo solo con quien quieras.</li>
             <li>Una vez enviado, no podemos «borrarlo» ni revocarlo: el contenido vive en el enlace mismo.</li>

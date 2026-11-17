@@ -1,7 +1,6 @@
 ---
 import CampusSelector from './CampusSelector.astro';
 import Carnet3D from './Carnet3D.astro';
-import { ACADEMIC_STATS } from '../lib/academic';
 
 interface Props {
   V: any;
@@ -9,211 +8,184 @@ interface Props {
 }
 
 const { V, M } = Astro.props;
+
+// Gancho: las preguntas de siempre en el grupo del paralelo, respondidas por Pilas!.
+// Son ejemplos (se rotulan como tales); las funciones que muestran existen en la app.
+const CHAT = {
+  espe: [
+    { q: '¿Alguien sabe en qué aula es Estadística?', a: 'B-112, bloque B. Empieza en 12 min.' },
+    { q: '¿Hasta qué hora es el deber de Física?', a: 'Hoy a las 23:58. Te aviso 3 h antes.' },
+    { q: '¿Cuánto necesito en el tercer parcial?', a: '12.00 / 20 y pasas directo.' },
+    { q: '¿A qué hora estamos libres todos?', a: 'De 10:00 a 12:00, los tres.' },
+  ],
+  multi: [
+    { q: '¿Ya subieron la tarea en Moodle?', a: 'Sí: Informe 3, cierra el viernes 23:58.' },
+    { q: '¿Alguien tiene para unir los PDF?', a: 'Únelos y comprímelos aquí, sin páginas raras.' },
+    { q: '¿Ya salió la nota de Cálculo?', a: 'Sí, y la ves sin entrar a Moodle.' },
+    { q: '¿Funciona con el Moodle de nuestra U?', a: 'Si tu U usa Moodle, sí.' },
+  ],
+};
 ---
 <section class="hub-hero">
   <div class="hub-hero-header">
-    <!-- Marquee / Brand Lockup con Logo de Letras Oficial -->
-    <div class="hero-brand-marquee">
-      <div class="hero-brand-top">
-        <div class="hero-brand-logo-pill" title="Pilas! Software Estudiantil">
-          <img src="/logos/letras_estilo_transparente.svg" alt="Pilas! Software Estudiantil" class="hero-lettering-img" width="220" height="74" />
-        </div>
-        <div class="hero-meta-badges">
-          <span class="sticker-pill" data-for="espe">⚡ EDICIÓN ESPE</span>
-          <span class="sticker-pill coral" data-for="multi">⭐ EDICIÓN MULTI-UNIVERSIDAD</span>
-          <span class="badge b-ok num">v{V.version}</span>
-        </div>
-      </div>
+    <div class="hero-brand-top">
+      <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="hero-lettering-img" width="220" height="74" />
+      <span class="hero-edition" aria-live="polite">
+        <span data-for="espe">Edición ESPE</span>
+        <span data-for="multi">Edición Multi-U</span>
+      </span>
     </div>
 
     <h1 class="hub-title">
-      <span data-for="espe">Tu semestre bajo control, aunque MiESPE esté caído</span>
-      <span data-for="multi">Tu Moodle y tus notas, desde cualquier campus del país</span>
+      Deja de preguntar <span class="hub-title-accent">en el grupo.</span>
     </h1>
 
     <p class="hub-desc">
-      <span data-for="espe">Aulas decodificadas a pisos reales, {ACADEMIC_STATS.mallasCount} mallas con prerrequisitos interactivos, simulador de 42 puntos y carnet garita. 100% offline y en tu bolsillo.</span>
-      <span data-for="multi">Vinculación por QR de Moodle Mobile en 1 segundo, notas en cualquier escala (10, 20 o 100) y carnet estudiantil universal. Sin intermediarios.</span>
+      <span data-for="espe">Aula, horario de Banner, notas y entregas de Moodle: Pilas! ya lo sabe y te avisa antes de que se te pase algo. Gratis, sin anuncios y sin internet.</span>
+      <span data-for="multi">Tareas, notas y entregas de tu Moodle en una sola app, en cualquier U que lo use. Pilas! te avisa antes de que se te pase algo. Gratis y sin anuncios.</span>
     </p>
 
-    <!-- Tarjeta de Diálogo de Pilo (Voz y Personalidad de la Mascota) -->
-    <div class="hero-dialogue-card">
-      <div class="dialogue-mascot-box">
-        <img src={M.neutral} alt="Pilo, mascota de Pilas!" class="dialogue-mascot-img" width="56" height="56" />
-        <span class="dialogue-mascot-name font-mono">PILO</span>
-      </div>
-      <div class="dialogue-bubble">
-        <b class="dialogue-quote" data-for="espe">“¡Qué fue! Ya no le ruegues a MiESPE a las 11:59 ni te pierdas buscando el bloque G. Aquí tienes tus herramientas listas.”</b>
-        <b class="dialogue-quote" data-for="multi">“¡Pilas con ese semestre! Escanea el QR de tu Moodle en la compu y olvídate de claves. Tus notas y carnet van directo a tu celular.”</b>
-        <span class="dialogue-sub fine">Software estudiantil independiente · Desarrollado en Ecuador</span>
-      </div>
-    </div>
+    <!-- Gancho: chat del grupo del paralelo -->
+    <figure class="hero-chat" aria-label="Ejemplos de preguntas del grupo que Pilas! responde">
+      <figcaption class="hero-chat-top">
+        <span class="hero-chat-dot" aria-hidden="true"></span>
+        <b data-for="espe">Paralelo B · Estadística</b>
+        <b data-for="multi">Curso · Cálculo I</b>
+        <span class="hero-chat-tag">Ejemplos</span>
+      </figcaption>
+      {(['espe', 'multi'] as const).map((mode) => (
+        <ol class="hero-chat-list" data-for={mode} data-chat>
+          {CHAT[mode].map((m, i) => (
+            <li class:list={['hero-chat-pair', { 'is-current': i === 0 }]}>
+              <p class="bubble bubble-q"><span class="bubble-who">Compañero</span>{m.q}</p>
+              <p class="bubble bubble-a">
+                <img src={M.neutral} alt="" width="28" height="22" />
+                <span><span class="bubble-who">Pilas!</span>{m.a}</span>
+              </p>
+            </li>
+          ))}
+        </ol>
+      ))}
+    </figure>
 
-    <!-- Selector de Campus -->
     <CampusSelector />
 
-    <!-- Acciones directas del Hero -->
     <div class="hero-actions-row">
-      <a href="#acceso" class="btn btn-p btn-lg hero-cta-btn">
-        <span>Pedir acceso en Play Store</span>
-        <span class="btn-arrow" aria-hidden="true">➔</span>
+      <a href={V.playUrl} target="_blank" rel="noopener noreferrer" class="btn btn-p btn-lg hero-cta-btn">
+        <svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>
+        <span>Descargar en Google Play</span>
       </a>
-      <a href="#modo" class="btn btn-s btn-lg">
-        <span>Explorar funciones</span>
+      <a href="#acceso" class="btn btn-s btn-lg hero-cta-btn">
+        <span>Instalar en iPhone</span>
+        <svg class="ico btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
       </a>
     </div>
+    <p class="hero-platform-note"><span class="num">v{V.version}</span> · Android en Google Play · iPhone desde Safari en <a href={V.iosUrl} target="_blank" rel="noopener noreferrer">pilas-pwa.vercel.app</a> · Hecha por estudiantes, no es una app oficial de ninguna universidad</p>
   </div>
 
-  <!-- Carnet Holográfico 3D Overdrive -->
   <Carnet3D M={M} />
 </section>
 
 <style is:global>
-/* Hub Hero Moderno Dark Glass */
 .hub-hero {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: clamp(24px, 4vw, 56px);
-  align-items: center;
-  padding: clamp(16px, 3vw, 32px) 0 clamp(24px, 4vw, 48px);
-}
-@media (max-width: 900px) {
-  .hub-hero {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-}
-.hero-brand-marquee {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-.hero-brand-top {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.hero-lettering-img {
-  height: clamp(52px, 5.5vw, 68px);
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(255, 51, 133, 0.2));
-}
-.hero-meta-badges {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.hub-title {
-  font-size: clamp(2rem, 4.6vw, 3.4rem);
-  line-height: 1.1;
-  letter-spacing: -0.035em;
-  margin: 10px 0 16px;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  color: #ffffff;
-}
-.hub-desc {
-  font-size: 1.08rem;
-  color: var(--body);
-  max-width: 36em;
-  line-height: 1.55;
-  margin-bottom: 22px;
-}
-
-/* Tarjeta de Diálogo de Pilo - Glassmorphism */
-.hero-dialogue-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: rgba(17, 23, 35, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 14px 18px;
-  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  margin-bottom: 24px;
   position: relative;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.hero-dialogue-card:hover {
-  border-color: rgba(255, 51, 133, 0.4);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
-}
-html[data-mode="multi"] .hero-dialogue-card:hover {
-  border-color: rgba(255, 71, 102, 0.4);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
-}
-.dialogue-mascot-box {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: clamp(28px, 4vw, 64px);
   align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-  background: rgba(8, 11, 17, 0.8);
-  padding: 8px;
-  border-radius: 12px;
-  border: none;
+  padding: clamp(20px, 3vw, 40px) 0 clamp(24px, 4vw, 48px);
 }
-.dialogue-mascot-img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
+/* Halo de color que sigue al modo: el cambio de U se nota en toda la portada */
+.hub-hero::before {
+  content: ""; position: absolute; z-index: -1; inset: -160px -30vw auto; height: 720px; pointer-events: none;
+  background:
+    radial-gradient(520px 320px at 18% 30%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+    radial-gradient(420px 300px at 82% 40%, rgba(0, 240, 255, 0.08), transparent 70%);
+  transition: background 600ms;
 }
-.dialogue-mascot-name {
-  font-size: 0.8rem;
-  font-weight: 800;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-html[data-mode="multi"] .dialogue-mascot-name {
-  color: var(--primary-coral);
-}
-.dialogue-bubble {
-  flex: 1;
-  min-width: 0;
-}
-.dialogue-quote {
-  display: block;
-  font-family: var(--f-d);
-  font-size: 0.94rem;
-  color: var(--title);
-  line-height: 1.4;
-  font-weight: 700;
-}
-.dialogue-sub {
-  display: block;
-  font-size: 0.76rem;
-  color: var(--muted);
-  margin-top: 4px;
+@media (max-width: 900px) { .hub-hero { grid-template-columns: minmax(0, 1fr); gap: 40px; } }
+
+.hub-hero-header { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.hero-brand-top { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.hero-lettering-img { height: clamp(44px, 5vw, 60px); width: auto; filter: drop-shadow(0 4px 12px rgba(255, 51, 133, 0.25)); }
+.hero-edition {
+  display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 16%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  color: #fff; font: 800 0.78rem var(--f-d); letter-spacing: 0.06em; text-transform: uppercase;
 }
 
-/* Botones de Acción del Hero */
-.hero-actions-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 24px;
-  flex-wrap: wrap;
+.hub-title {
+  font-size: clamp(2.6rem, 6.2vw, 4.9rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: #fff;
+  text-wrap: balance;
 }
-.hero-cta-btn .btn-arrow {
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+.hub-title-accent { color: var(--accent); transition: color 400ms; }
+.hub-desc { font-size: clamp(1.05rem, 1.5vw, 1.18rem); color: var(--body); max-width: 34em; line-height: 1.55; }
+
+/* ------------------------------------------------------------------ */
+/* Chat del grupo                                                     */
+/* ------------------------------------------------------------------ */
+.hero-chat {
+  margin: 0; max-width: 560px; padding: 14px 16px 16px; border-radius: 20px;
+  background: rgba(13, 18, 28, 0.72); border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.7);
 }
-.hero-cta-btn:hover .btn-arrow {
-  transform: translateX(4px);
+.hero-chat-top { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 0.82rem; color: var(--muted); }
+.hero-chat-top b { color: #fff; font: 700 0.86rem var(--f-d); }
+.hero-chat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 0 4px rgba(0, 255, 135, 0.14); }
+.hero-chat-tag { margin-left: auto; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.hero-chat-list { list-style: none; margin: 0; padding: 0; display: grid; min-height: 132px; }
+.hero-chat-pair { grid-area: 1 / 1; display: grid; gap: 8px; align-content: start; visibility: hidden; }
+.hero-chat-pair.is-current { visibility: visible; }
+.bubble { margin: 0; max-width: 88%; padding: 9px 13px; border-radius: 16px; font-size: 0.97rem; line-height: 1.4; }
+.bubble-who { display: block; font: 800 0.7rem var(--f-d); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 2px; }
+.bubble-q { justify-self: start; background: rgba(255, 255, 255, 0.07); color: var(--title); border-bottom-left-radius: 4px; }
+.bubble-q .bubble-who { color: var(--muted); }
+.bubble-a {
+  justify-self: end; display: flex; align-items: flex-end; gap: 8px;
+  background: var(--accent); color: #0a0d14; font-weight: 600; border-bottom-right-radius: 4px;
+  transition: background-color 400ms;
 }
+.bubble-a img { width: 28px; height: auto; flex-shrink: 0; }
+.bubble-a .bubble-who { color: rgba(10, 13, 20, 0.7); }
+/* Entrada escalonada: primero la pregunta, luego la respuesta */
+.hero-chat-pair.is-current .bubble-q { animation: bubble-in 420ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.hero-chat-pair.is-current .bubble-a { animation: bubble-in 420ms cubic-bezier(0.16, 1, 0.3, 1) 650ms both; }
+@keyframes bubble-in { from { opacity: 0; transform: translateY(10px) scale(0.96); } to { opacity: 1; transform: none; } }
+
+/* Botones */
+.hero-actions-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.hero-cta-btn .btn-arrow { transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.hero-cta-btn:hover .btn-arrow { transform: translateX(4px); }
+.hero-platform-note { margin-top: -6px; font-size: 0.86rem; color: var(--muted); line-height: 1.5; }
+.hero-platform-note a { color: #8cffff; font-weight: 600; }
 @media (max-width: 640px) {
-  .hero-actions-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .hero-actions-row .btn {
-    width: 100%;
-  }
+  .hero-actions-row { flex-direction: column; align-items: stretch; }
+  .hero-actions-row .btn { width: 100%; }
+  .bubble { max-width: 94%; font-size: 0.93rem; }
 }
 </style>
+
+<script>
+  // Rota las conversaciones del chat. Se pausa al pasar el mouse o enfocar,
+  // y con movimiento reducido se queda en la primera.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const chat = document.querySelector<HTMLElement>('.hero-chat');
+  if (chat && !reduce) {
+    let paused = false;
+    chat.addEventListener('mouseenter', () => (paused = true));
+    chat.addEventListener('mouseleave', () => (paused = false));
+    window.setInterval(() => {
+      if (paused || document.hidden) return;
+      chat.querySelectorAll<HTMLElement>('[data-chat]').forEach((list) => {
+        const pairs = list.querySelectorAll<HTMLElement>('.hero-chat-pair');
+        const i = Array.from(pairs).findIndex((p) => p.classList.contains('is-current'));
+        pairs[i]?.classList.remove('is-current');
+        pairs[(i + 1) % pairs.length]?.classList.add('is-current');
+      });
+    }, 4800);
+  }
+</script>

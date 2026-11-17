@@ -22,70 +22,27 @@ const hasTestimonials = testimonials.length > 0;
 <section id="comunidad" class="hub-social-proof">
   <div class="container">
     <div class="proof-header">
-      <span class="sticker-pill green font-mono">📱 EXPERIENCIA REAL EN CAMPUS</span>
-      <h2 class="hub-section-title">Construida con y para estudiantes</h2>
+      <span class="sticker-pill green font-mono">CAPTURAS REALES</span>
+      <h2 class="hub-section-title">Así se ve Pilas! por dentro</h2>
       <p class="proof-subtitle">
-        Cero humo comercial. Diseñada escuchando los problemas cotidianos en los pasillos, laboratorios y garitas universitarias.
+        Hecha escuchando los problemas de todos los días en pasillos, laboratorios y buses. Esto es lo que ves al abrirla, en Android y en iPhone.
       </p>
     </div>
 
     <!-- Espacio para capturas reales de la app -->
     <div class="screenshots-showcase-box">
-      <div class="showcase-top-bar">
-        <span class="badge b-info font-mono">📸 CAPTURAS OFICIALES DE LA APP</span>
-        <span class="font-mono text-muted" style="font-size: 0.8rem;">Android 11 - 15+</span>
+
+      <div class="screenshots-grid screenshots-real">
+        <figure class="real-shot">
+          <img src="/images/mockup-horario.webp" alt="Captura real de Pilas!: Mi horario del viernes con Estadística en el aula B-112 y Dibujo en la G-201" width="640" height="1459" loading="lazy" />
+          <figcaption><b>Tu día de un vistazo</b><span>Clases con hora, aula y bloque</span></figcaption>
+        </figure>
+        <figure class="real-shot">
+          <img src="/images/mockup-malla.webp" alt="Captura real de Pilas!: malla curricular de Mecánica con créditos, materias y niveles" width="640" height="1459" loading="lazy" />
+          <figcaption><b>Tu malla, offline</b><span>Créditos, niveles y prerrequisitos</span></figcaption>
+        </figure>
       </div>
-
-      <div class="screenshots-grid">
-        <div class="mockup-slot">
-          <div class="mockup-header">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="mockup-title font-mono">Horario & Aulas</span>
-          </div>
-          <div class="mockup-body">
-            <div class="mockup-placeholder">
-              <span class="mockup-icon">🗓️</span>
-              <b>Horario sin conexión</b>
-              <small>Aulas exactas con bloque y piso decodificado</small>
-            </div>
-          </div>
-        </div>
-
-        <div class="mockup-slot">
-          <div class="mockup-header">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="mockup-title font-mono">Calculadora 42 pts</span>
-          </div>
-          <div class="mockup-body">
-            <div class="mockup-placeholder">
-              <span class="mockup-icon">⚖️</span>
-              <b>Simulador de notas</b>
-              <small>Cálculo en vivo de cuánto necesitas en el Parcial 3</small>
-            </div>
-          </div>
-        </div>
-
-        <div class="mockup-slot">
-          <div class="mockup-header">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="mockup-title font-mono">Carnet Garita</span>
-          </div>
-          <div class="mockup-body">
-            <div class="mockup-placeholder">
-              <span class="mockup-icon">🪪</span>
-              <b>Carnet digital</b>
-              <small>Código de barras legible por torniquetes militares</small>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="owner-notice-box">
-        <span class="badge b-warn font-mono">TODO(owner)</span>
-        <p>
-          Espacio reservado para montar capturas de pantalla reales en alta resolución (1080×2400) directamente tomadas desde un teléfono Android en el campus.
-        </p>
-      </div>
+      
     </div>
 
     <!-- Componente de testimonios: se oculta automáticamente si no hay datos verificados -->
@@ -291,4 +248,16 @@ const hasTestimonials = testimonials.length > 0;
     font-size: 0.8rem;
     color: var(--muted);
   }
+
+  .screenshots-real { grid-template-columns: repeat(2, minmax(0, 260px)); justify-content: center; gap: 28px; }
+  .real-shot { margin: 0; display: grid; gap: 12px; }
+  .real-shot img {
+    display: block; width: 100%; height: auto; aspect-ratio: 640 / 1300; object-fit: cover; object-position: top;
+    border-radius: 26px; border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 50px -18px rgba(0, 0, 0, 0.8), 0 0 0 6px rgba(13, 18, 28, 0.9);
+  }
+  .real-shot figcaption { display: grid; gap: 2px; text-align: center; }
+  .real-shot figcaption b { font-family: var(--f-d); color: #fff; }
+  .real-shot figcaption span { font-size: 0.86rem; color: var(--muted); }
+  @media (max-width: 560px) { .screenshots-real { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } .real-shot img { border-radius: 18px; } }
 </style>

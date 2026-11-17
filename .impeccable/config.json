@@ -1,4 +1,27 @@
 {
-  "buildPath": "code"
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "permanent marker",
+        "files": [
+          ".impeccable/mocks/decision/challenger-zine.html"
+        ],
+        "createdAt": "2026-11-17T01:24:40.183Z",
+        "reason": "assistant decided: unchosen decision-round sketch (Fanzine de Pilo), not shipped site code"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "marker",
+        "files": [
+          ".impeccable/mocks/decision/challenger-zine.html"
+        ],
+        "createdAt": "2026-11-17T01:24:40.327Z",
+        "reason": "assistant decided: unchosen decision-round sketch (Fanzine de Pilo), not shipped site code"
+      }
+    ]
+  }
 }
-

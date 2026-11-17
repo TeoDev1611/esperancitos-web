@@ -1,110 +1,100 @@
 ---
+/**
+ * Selector de campus: ESPE (experiencia completa) vs cualquier U con Moodle.
+ * Cada opción lleva los logos reales; un indicador se desliza entre ambas.
+ * El cambio de modo lo pinta scripts/campus-mode.ts (con transición circular).
+ */
+const OTHERS = [
+  { abbr: 'UTA', webp: '/logos/universidades/uta.webp', png: '/logos/universidades/uta.png', w: 170, h: 64 },
+  { abbr: 'UCE', webp: '/logos/universidades/uce.webp', png: '/logos/universidades/uce.png', w: 80, h: 64 },
+  { abbr: 'EPN', webp: '/logos/universidades/epn.webp', png: '/logos/universidades/epn.png', w: 135, h: 64 },
+  { abbr: 'UNACH', webp: '/logos/universidades/unach.webp', png: '/logos/universidades/unach.png', w: 70, h: 64 },
+];
 ---
 <div class="mode-switch-wrapper">
-  <span class="mode-switch-legend font-mono">SELECCIONA TU CAMPUS:</span>
-  <div class="mode-switch-group" role="group" aria-label="Elige tu universidad">
+  <span class="mode-switch-legend" id="mode-legend">¿Dónde estudias?</span>
+  <div class="mode-switch-group" role="group" aria-labelledby="mode-legend">
+    <span class="mode-switch-thumb" aria-hidden="true"></span>
+
     <button type="button" data-mode-btn="espe" aria-pressed="true">
-      <div class="mode-btn-row">
-        <span class="mode-icon">⚡</span>
-        <b>Modo ESPE</b>
-      </div>
-      <small>Sangolquí, Latacunga y Santo Domingo</small>
+      <span class="mode-logo-plate mode-logo-espe">
+        <picture>
+          <source srcset="/logos/universidades/espe.webp" type="image/webp" />
+          <img src="/logos/universidades/espe.png" alt="" width="500" height="138" />
+        </picture>
+      </span>
+      <span class="mode-btn-copy">
+        <b>ESPE</b>
+        <small>Banner, Mi Campus y Moodle</small>
+      </span>
     </button>
+
     <button type="button" data-mode-btn="multi" aria-pressed="false">
-      <div class="mode-btn-row">
-        <span class="mode-icon">⭐</span>
-        <b>Multi-Universidad</b>
-      </div>
-      <small>UTA, UCE, EPN, UNACH confirmadas y más</small>
+      <span class="mode-logo-plate mode-logo-stack">
+        {OTHERS.map((u) => (
+          <picture>
+            <source srcset={u.webp} type="image/webp" />
+            <img src={u.png} alt="" width={u.w} height={u.h} />
+          </picture>
+        ))}
+      </span>
+      <span class="mode-btn-copy">
+        <b>Otra U con Moodle</b>
+        <small>UTA, UCE, EPN, UNACH y más</small>
+      </span>
     </button>
   </div>
 </div>
 
 <style is:global>
-/* Selector de Modo - Dark Glass Segmented Switch */
-.mode-switch-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+.mode-switch-wrapper { display: flex; flex-direction: column; gap: 10px; }
 .mode-switch-legend {
-  font-size: 0.8rem;
-  color: var(--muted);
-  font-weight: 700;
+  font: 800 0.78rem var(--f-d); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
 }
 .mode-switch-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  max-width: 520px;
-  background: rgba(13, 18, 28, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 6px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; max-width: 560px;
+  padding: 6px; border-radius: 18px;
+  background: rgba(13, 18, 28, 0.7); border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
+/* Indicador que se desliza entre las dos opciones */
+.mode-switch-thumb {
+  position: absolute; top: 6px; bottom: 6px; left: 6px; width: calc(50% - 9px);
+  border-radius: 13px; background: color-mix(in srgb, var(--accent) 16%, rgba(24, 32, 49, 0.95));
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  box-shadow: 0 10px 28px -10px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), background-color 300ms, border-color 300ms;
+}
+html[data-mode="multi"] .mode-switch-thumb { transform: translateX(calc(100% + 6px)); }
+
 .mode-switch-group button {
-  text-align: left;
-  min-height: 62px;
-  padding: 10px 14px;
-  border: 1px solid transparent;
-  border-radius: 12px;
-  background: transparent;
-  color: var(--body);
-  font: inherit;
-  cursor: pointer;
-  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
+  position: relative; z-index: 1; display: grid; gap: 8px; align-content: start; text-align: left;
+  min-height: 92px; padding: 12px 14px; border: 0; border-radius: 13px;
+  background: transparent; color: var(--body); font: inherit; cursor: pointer;
+  transition: color 200ms;
 }
-.mode-btn-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.mode-switch-group button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mode-btn-copy { display: grid; gap: 2px; }
+.mode-btn-copy b { font: 800 1.02rem/1.2 var(--f-d); color: var(--muted); transition: color 200ms; }
+.mode-btn-copy small { font-size: 0.8rem; line-height: 1.35; color: var(--muted); }
+.mode-switch-group button[aria-pressed="true"] .mode-btn-copy b { color: #fff; }
+.mode-switch-group button[aria-pressed="true"] .mode-btn-copy small { color: var(--body); }
+
+/* Placa blanca: los logos oficiales están hechos para fondo claro */
+.mode-logo-plate {
+  display: flex; align-items: center; justify-content: center; gap: 6px; height: 30px; max-width: 150px; padding: 4px 8px;
+  background: #fff; border-radius: 10px; filter: grayscale(1) opacity(0.55);
+  transition: filter 300ms;
 }
-.mode-icon {
-  font-size: 1.15rem;
-  line-height: 1;
-}
-.mode-btn-row b {
-  font: 800 1.05rem var(--f-d);
-  color: var(--title);
-  letter-spacing: -0.01em;
-}
-.mode-switch-group small {
-  display: block;
-  color: var(--muted);
-  line-height: 1.3;
-  margin-top: 3px;
-  font-size: 0.78rem;
-  transition: color 180ms ease;
-}
-.mode-switch-group button:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-.mode-switch-group button[aria-pressed="true"] {
-  background: linear-gradient(135deg, rgba(255, 51, 133, 0.16) 0%, rgba(255, 51, 133, 0.05) 100%);
-  border-color: rgba(255, 51, 133, 0.45);
-  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-.mode-switch-group button[data-mode-btn="multi"][aria-pressed="true"] {
-  background: linear-gradient(135deg, rgba(255, 71, 102, 0.16) 0%, rgba(255, 71, 102, 0.05) 100%);
-  border-color: rgba(255, 71, 102, 0.45);
-  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-.mode-switch-group button[aria-pressed="true"] b {
-  color: #ffffff;
-}
-.mode-switch-group button[aria-pressed="true"] small {
-  color: #e2e8f0;
-}
-.mode-switch-group button:active {
-  transform: scale(0.98);
-}
-@media (max-width: 500px) {
-  .mode-switch-group {
-    grid-template-columns: 1fr;
-  }
+.mode-switch-group button[aria-pressed="true"] .mode-logo-plate { filter: none; }
+.mode-switch-group button:hover .mode-logo-plate { filter: grayscale(0.3) opacity(0.85); }
+.mode-logo-plate img { display: block; height: 100%; width: 100%; object-fit: contain; }
+.mode-logo-plate picture { display: flex; justify-content: center; height: 100%; width: 100%; min-width: 0; }
+.mode-logo-stack picture { flex: 1 1 0; }
+
+@media (max-width: 480px) {
+  .mode-switch-group button { min-height: 88px; padding: 10px; }
+  .mode-logo-plate { height: 26px; padding: 3px 6px; gap: 3px; }
+  .mode-btn-copy b { font-size: 0.95rem; }
 }
 </style>

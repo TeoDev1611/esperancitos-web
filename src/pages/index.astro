@@ -2,35 +2,23 @@
 import '@fontsource-variable/outfit';
 import '@fontsource-variable/inter';
 
-import {
-  RELEASE,
-  PRIMARY_ARCH,
-  PRIMARY_APK_SIZE,
-  ARCHITECTURES_LIST,
-  DOWNLOAD_STATS,
-  PLAY_STORE_BETA,
-} from '../lib/release';
+import { RELEASE } from '../lib/release';
 import { SITE } from '../config/site';
 import HubHeader from '../components/HubHeader.astro';
 import HubHero from '../components/HubHero.astro';
 import CampusRules from '../components/CampusRules.astro';
 import ZeroBackendVault from '../components/ZeroBackendVault.astro';
 import DownloadCenter from '../components/DownloadCenter.astro';
+import FeatureCatalog from '../components/FeatureCatalog.astro';
 import LinkHub from '../components/LinkHub.astro';
-import GradeCalculatorDemo from '../components/GradeCalculatorDemo.astro';
-import PdfCompressorDemo from '../components/PdfCompressorDemo.astro';
 import SocialProofSection from '../components/SocialProofSection.astro';
 import HubFooter from '../components/HubFooter.astro';
 
 // Datos centrales del producto (única fuente de verdad)
 const V = {
   version: RELEASE.version,
-  build: RELEASE.build,
-  apkVersion: RELEASE.apkVersion,
-  size: PRIMARY_APK_SIZE,
-  apk: PRIMARY_ARCH.url,
-  note: RELEASE.versionDiscrepancyNote,
-  downloads: DOWNLOAD_STATS,
+  playUrl: SITE.playStoreUrl,
+  iosUrl: SITE.iosPwaUrl,
 };
 
 // Rutas de mascotas oficiales
@@ -44,18 +32,26 @@ const M = {
 };
 
 // Enlaces oficiales
-const PLAY = 'https://forms.gle/svzBYKL2ZhWrS7M78';
-const IG = 'https://www.instagram.com/pilas_ec.app/';
-const WA = 'https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
-const WA_TESTERS = 'https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc';
+const IG = SITE.social.instagram;
+const WA = SITE.social.whatsappChannel;
+const WA_GROUP = SITE.social.whatsappTestersGroup;
 ---
 <!doctype html>
 <html lang="es-EC" data-mode="espe">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pilas! • La app estudiantil definitiva para Android (ESPE y Ecuador)</title>
+<title>{SITE.title}</title>
 <meta name="description" content={SITE.description}>
+<link rel="canonical" href={SITE.url + '/'}>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pilas!">
+<meta property="og:locale" content="es_EC">
+<meta property="og:url" content={SITE.url + '/'}>
+<meta property="og:title" content="Pilas! ya está en Android y iPhone">
+<meta property="og:description" content={SITE.description}>
+<meta name="twitter:card" content="summary">
+<meta name="google-play-app" content="app-id=dev.teodev.pilas">
 <meta name="theme-color" content="#080b11">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -92,38 +88,28 @@ try {
       <!-- Hero de Alto Impacto con Pase Holográfico Overdrive -->
       <HubHero V={V} M={M} />
 
-      <!-- Bento Grid de Funciones Académicas & Multi-Universidad -->
-      <CampusRules />
+      <!-- 1. Lo esencial según tu universidad (ESPE o Multi-U) -->
+      <CampusRules WA_GROUP={WA_GROUP} />
 
-      <!-- Arquitectura Zero-Backend y Privacidad -->
+      <!-- 2. Capturas reales de la app -->
+      <SocialProofSection />
+
+      <!-- 3. Todo lo que hace Pilas! (catálogo v1.4) -->
+      <FeatureCatalog />
+
+      <!-- 4. Privacidad -->
       <ZeroBackendVault M={M} />
 
-      <!-- Onboarding Oficial de Prueba Cerrada en Google Play Store -->
-      <DownloadCenter
-        V={V}
-        M={M}
-        PLAY={PLAY}
-        PLAY_STORE_BETA={PLAY_STORE_BETA}
-        PRIMARY_ARCH={PRIMARY_ARCH}
-        ARCHITECTURES_LIST={ARCHITECTURES_LIST}
-      />
+      <!-- 5. Descarga: Google Play (Android) + Safari (iPhone) -->
+      <DownloadCenter M={M} />
 
-      <!-- Enlaces Rápidos y Herramientas -->
-      <LinkHub IG={IG} WA={WA} WA_TESTERS={WA_TESTERS} />
-      
-      <!-- Demos Interactivas -->
-      <section class="hub-demos-grid">
-        <GradeCalculatorDemo M={M} />
-        <PdfCompressorDemo M={M} />
-      </section>
-
-      <!-- Comunidad y Reseñas de Estudiantes -->
-      <SocialProofSection />
+      <!-- 6. Ayuda, comunidad y herramientas web -->
+      <LinkHub IG={IG} WA={WA} WA_GROUP={WA_GROUP} />
     </div>
   </main>
 
   <!-- Footer Moderno -->
-  <HubFooter IG={IG} WA={WA} />
+  <HubFooter IG={IG} WA={WA} PLAY={V.playUrl} IOS={V.iosUrl} />
 </div>
 
 <style is:global>

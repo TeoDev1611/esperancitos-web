@@ -5,9 +5,11 @@ import AtelierCredits from './AtelierCredits.astro';
 interface Props {
   IG: string;
   WA: string;
+  PLAY?: string;
+  IOS?: string;
 }
 
-const { IG, WA } = Astro.props;
+const { IG, WA, PLAY = SITE.playStoreUrl, IOS = SITE.iosPwaUrl } = Astro.props;
 ---
   <footer class="hub-footer">
     <div class="wrap footer-wrap">
@@ -20,17 +22,24 @@ const { IG, WA } = Astro.props;
           <span class="sticker-pill coral" data-for="multi">⭐ RED MULTI-UNIVERSIDAD ECUADOR</span>
         </div>
       </div>
-      <nav aria-label="Enlaces secundarios" class="footer-nav">
-        <a href="/faq">Preguntas frecuentes</a>
-        <a href="/cambios">Historial de cambios</a>
-        <a href="/herramientas/calculadora-notas-espe">Calculadora ESPE</a>
-        <a href="/herramientas/compresor-pdf-moodle">Compresor Moodle</a>
-        <a href="/avisos">Avisos</a>
-        <a href="/negocios">Negocios</a>
-        <a href="/privacidad">Privacidad</a>
-        <a href="/terminos">Términos</a>
-        <a href={IG} target="_blank" rel="noopener noreferrer">Instagram (@pilas_ec.app)</a>
-        <a href={WA} target="_blank" rel="noopener noreferrer">Canal de WhatsApp</a>
+      <nav aria-label="Enlaces del pie" class="footer-nav footer-nav-groups">
+        <div class="footer-col">
+          <h2>Descarga</h2>
+          <a href={PLAY} target="_blank" rel="noopener noreferrer">Google Play (Android)</a>
+          <a href={IOS} target="_blank" rel="noopener noreferrer">iPhone desde Safari</a>
+          <a href="/cambios">Historial de cambios</a>
+        </div>
+        <div class="footer-col">
+          <h2>Ayuda y legal</h2>
+          <a href="/faq">Preguntas frecuentes</a>
+          <a href="/privacidad">Privacidad</a>
+          <a href="/terminos">Términos</a>
+        </div>
+        <div class="footer-col">
+          <h2>Síguenos</h2>
+          <a href={IG} target="_blank" rel="noopener noreferrer">Instagram @pilas_ec.app</a>
+          <a href={WA} target="_blank" rel="noopener noreferrer">Canal de WhatsApp</a>
+        </div>
       </nav>
       <div class="footer-legal">
         <p>Pilas! es un proyecto estudiantil independiente. No está respaldado ni afiliado oficialmente a la Universidad de las Fuerzas Armadas ESPE, Ellucian, Banner ni Moodle. Las credenciales y datos viven únicamente en tu teléfono.</p>
@@ -110,4 +119,10 @@ const { IG, WA } = Astro.props;
 .footer-legal strong {
   color: var(--title);
 }
+
+.footer-nav.footer-nav-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: 760px; }
+.footer-col { display: grid; gap: 4px; align-content: start; }
+.footer-col h2 { font: 800 0.78rem var(--f-d); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.footer-col a { display: inline-flex; align-items: center; min-height: 36px; }
+@media (max-width: 560px) { .footer-nav.footer-nav-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>

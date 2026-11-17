@@ -21,7 +21,7 @@ const M = {
 };
 
 const canonicalUrl = `${SITE.url}/herramientas/calculadora-notas-espe`;
-const pageTitle = "Calculadora de Notas ESPE (Regla 42/60 Puntos) | Pilas!";
+const pageTitle = "Calculadora de notas ESPE: ¿cuánto necesito en el tercer parcial? | Pilas!";
 const pageDesc = "Calcula con cuánto puntaje pasas el semestre en la ESPE. Simula tus notas de Parcial 1 y 2 para saber la nota requerida en el Parcial 3 bajo la regla de 42 puntos.";
 
 const jsonLd = {
@@ -107,7 +107,7 @@ const jsonLd = {
       </a>
       <a class="btn btn-p btn-sm" href="/#acceso">
         <svg class="ico"><use href="#i-down"/></svg>
-        <span>Pedir Acceso</span>
+        <span>Descargar</span>
       </a>
     </div>
   </div>
@@ -170,7 +170,7 @@ const jsonLd = {
       </div>
       <div class="faq-item">
         <h3>¿La app móvil Pilas! calcula esto automáticamente?</h3>
-        <p>Sí. Al sincronizar con Banner o ingresar tus notas, Pilas! te muestra una barra de progreso por materia con tu acumulado en tiempo real, alertas de supletorio y cálculo de créditos, 100% offline.</p>
+        <p>Sí. Al sincronizar con Banner o ingresar tus notas, Pilas! te muestra una barra de progreso por materia con tu acumulado en tiempo real, y te dice cuánto necesitas en el siguiente parcial, incluso sin internet.</p>
       </div>
     </section>
 
@@ -178,11 +178,16 @@ const jsonLd = {
     <section class="tool-cta-banner card">
       <div class="cta-content">
         <h2>Lleva tus notas y horarios en tu bolsillo</h2>
-        <p>Descarga la app Pilas! para Android. Gratis, sin publicidad, sin servidores intermedios y diseñada para la ESPE.</p>
-        <a class="btn btn-p btn-lg" href="/#acceso">
-          <svg class="ico"><use href="#i-down"/></svg>
-          <span>Pedir acceso en Google Play</span>
-        </a>
+        <p>Descarga Pilas! en Android o iPhone. Gratis, sin anuncios, con tu horario de Banner, tus notas de Moodle y alarma de entregas.</p>
+        <div class="cta-store-row">
+          <a class="btn btn-p btn-lg" href={SITE.playStoreUrl} target="_blank" rel="noopener noreferrer">
+            <svg class="ico"><use href="#i-down"/></svg>
+            <span>Descargar en Google Play</span>
+          </a>
+          <a class="btn btn-s btn-lg" href="/#acceso">
+            <span>Instalar en iPhone</span>
+          </a>
+        </div>
       </div>
     </section>
   </div>
@@ -292,6 +297,15 @@ const jsonLd = {
     border: 2px solid var(--primary);
     text-align: center;
     padding: 36px 20px;
+  }
+  .cta-store-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  @media (max-width: 520px) {
+    .cta-store-row .btn { width: 100%; }
   }
   .tool-cta-banner h2 {
     font-size: 1.6rem;

@@ -1,13 +1,13 @@
 {
   "id": "current",
-  "latestVersion": "1.2.0",
+  "latestVersion": "1.4.0",
   "latestBuild": 8,
   "minSupportedBuild": 1,
-  "publishedAt": "2026-10-28T12:00:00Z",
+  "publishedAt": "2026-11-16T12:00:00Z",
   "notes": [
-    "🚀 Pilas! ya está en Google Play Store en fase de prueba cerrada.",
-    "📲 Las actualizaciones ahora se entregan de forma oficial y directa mediante Google Play Store.",
-    "🧪 Para ingresar a la preview cerrada, solicita tu acceso con tu @gmail.com en el canal o grupo de WhatsApp."
+    "🚀 Pilas! ya está abierta para todos en Google Play.",
+    "📲 Las actualizaciones llegan directo desde Google Play.",
+    "🍎 En iPhone se instala desde Safari en pilas-pwa.vercel.app."
   ],
-  "downloadPage": "https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc"
+  "downloadPage": "https://play.google.com/store/apps/details?id=dev.teodev.pilas"
 }

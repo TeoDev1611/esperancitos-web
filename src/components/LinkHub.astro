@@ -1,18 +1,21 @@
 ---
+import { SITE } from '../config/site';
+
 interface Props {
   IG: string;
   WA: string;
-  WA_TESTERS?: string;
+  WA_GROUP?: string;
 }
 
 const {
   IG,
   WA,
-  WA_TESTERS = 'https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc',
+  WA_GROUP = SITE.social.whatsappTestersGroup,
 } = Astro.props;
 ---
-<section id="herramientas" class="hub-links-section">
-  <h2 class="hub-section-title">Enlaces y herramientas importantes</h2>
+<section id="ayuda" class="hub-links-section">
+  <span id="herramientas" aria-hidden="true"></span>
+  <h2 class="hub-section-title">Ayuda, comunidad y herramientas web</h2>
   <div class="linktree-grid">
     <!-- Link 1: FAQ -->
     <a href="/faq" class="link-card">
@@ -22,7 +25,7 @@ const {
           <b>Preguntas Frecuentes</b>
           <span class="badge b-info">Centro de ayuda</span>
         </div>
-        <p>Respuestas sobre acceso a la preview cerrada de Google Play, Moodle por QR y notas.</p>
+        <p>Cómo instalar en Android y iPhone, conectar tu Moodle, privacidad y notas.</p>
       </div>
       <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
     </a>
@@ -58,10 +61,10 @@ const {
       <span class="link-icon">🛡️</span>
       <div class="link-content">
         <div class="link-head-row">
-          <b>Privacidad & Arquitectura Zero-Backend</b>
-          <span class="badge b-info">AES-256</span>
+          <b>Privacidad</b>
+          <span class="badge b-info">Sin servidores</span>
         </div>
-        <p>Tus claves nunca pasan por nosotros: cero servidores intermediarios.</p>
+        <p>Tus datos viven en tu teléfono: sin anuncios, sin analítica y sin cuentas.</p>
       </div>
       <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
     </a>
@@ -87,20 +90,20 @@ const {
           <b>Canal Oficial de WhatsApp</b>
           <span class="badge b-ok">Canal</span>
         </div>
-        <p>Alertas académicas inmediatas, comunicados y recordatorios sin spam.</p>
+        <p>Novedades de cada versión, comunicados y recordatorios, sin spam.</p>
       </div>
       <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
     </a>
 
-    <!-- Link 6b: Grupo de WhatsApp Testers -->
-    <a href={WA_TESTERS} target="_blank" rel="noopener noreferrer" class="link-card highlight-card">
-      <span class="link-icon">🧪</span>
+    <!-- Link 6b: Grupo de WhatsApp (soporte y reportes) -->
+    <a href={WA_GROUP} target="_blank" rel="noopener noreferrer" class="link-card highlight-card">
+      <span class="link-icon">🛟</span>
       <div class="link-content">
         <div class="link-head-row">
-          <b>Grupo WhatsApp de Testers</b>
-          <span class="badge b-warn font-mono">Multi-U</span>
+          <b>Soporte por WhatsApp</b>
+          <span class="badge b-warn font-mono">Grupo</span>
         </div>
-        <p>Verifica el funcionamiento de tu universidad (UTA, UCE, EPN, UNACH) y prueba betas.</p>
+        <p>¿Algo no funciona con tu Moodle? Reporta errores y pide ayuda directo.</p>
       </div>
       <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
     </a>
@@ -124,9 +127,9 @@ const {
       <div class="link-content">
         <div class="link-head-row">
           <b>Compresor PDF para Moodle</b>
-          <span class="badge b-info">Límite 5 MB</span>
+          <span class="badge b-info">Para Moodle</span>
         </div>
-        <p>Reduce informes y deberes para que Moodle no los rechace a las 23:59.</p>
+        <p>Reduce informes y deberes para que Moodle no los rechace a las 23:58.</p>
       </div>
       <svg class="ico link-arrow"><use href="#i-arrow"/></svg>
     </a>

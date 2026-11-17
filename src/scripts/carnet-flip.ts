@@ -16,7 +16,6 @@ interface UniData {
   avatar: string;
   color: string;
   ctaText: string;
-  waText: string;
 }
 
 const UNIVERSITIES: Record<string, UniData> = {
@@ -28,11 +27,10 @@ const UNIVERSITIES: Record<string, UniData> = {
     mallas: '23 carreras',
     regla: '42 / 60 pts',
     barcode: 'ID BANNER · L00412890',
-    badge: 'TESTER AUTORIZADO',
+    badge: 'ESTUDIANTE PILAS!',
     avatar: '/logos/mascota_neutro.svg',
-    color: '#ff3fa4',
-    ctaText: 'Pedir Acceso ESPE con mi @gmail.com',
-    waText: 'Hola! Quiero acceso a la prueba cerrada de Pilas! en Google Play Store para la ESPE con mi correo @gmail.com',
+    color: '#ff3385',
+    ctaText: 'Descargar Pilas! para la ESPE',
   },
   uta: {
     crest: 'MODO UTA AMBATO',
@@ -42,11 +40,10 @@ const UNIVERSITIES: Record<string, UniData> = {
     mallas: 'Moodle UTA',
     regla: 'Escala 10 / 10',
     barcode: 'MATRÍCULA UTA · VERIFICADO',
-    badge: 'TESTER CONFIRMADO',
+    badge: 'MOODLE COMPATIBLE',
     avatar: '/logos/universidades/uta.png',
     color: '#d97706',
-    ctaText: 'Pedir Acceso UTA con mi @gmail.com',
-    waText: 'Hola! Quiero acceso a la prueba cerrada de Pilas! para la Universidad Técnica de Ambato (UTA) con mi correo @gmail.com',
+    ctaText: 'Descargar Pilas! para la UTA',
   },
   uce: {
     crest: 'MODO CENTRAL QUITO',
@@ -56,11 +53,10 @@ const UNIVERSITIES: Record<string, UniData> = {
     mallas: 'Moodle UCE',
     regla: 'Escala 20 / 20',
     barcode: 'MATRÍCULA UCE · VERIFICADO',
-    badge: 'TESTER CONFIRMADO',
+    badge: 'MOODLE COMPATIBLE',
     avatar: '/logos/universidades/uce.png',
     color: '#38bdf8',
-    ctaText: 'Pedir Acceso UCE con mi @gmail.com',
-    waText: 'Hola! Quiero acceso a la prueba cerrada de Pilas! para la Universidad Central del Ecuador (UCE) con mi correo @gmail.com',
+    ctaText: 'Descargar Pilas! para la UCE',
   },
   epn: {
     crest: 'MODO POLI QUITO',
@@ -70,11 +66,10 @@ const UNIVERSITIES: Record<string, UniData> = {
     mallas: 'Moodle EPN',
     regla: 'Escala 20 / 20',
     barcode: 'MATRÍCULA EPN · VERIFICADO',
-    badge: 'TESTER CONFIRMADO',
+    badge: 'MOODLE COMPATIBLE',
     avatar: '/logos/universidades/epn.png',
     color: '#00ff87',
-    ctaText: 'Pedir Acceso EPN con mi @gmail.com',
-    waText: 'Hola! Quiero acceso a la prueba cerrada de Pilas! para la Escuela Politécnica Nacional (EPN) con mi correo @gmail.com',
+    ctaText: 'Descargar Pilas! para la EPN',
   },
   unach: {
     crest: 'MODO UNACH RIOBAMBA',
@@ -84,21 +79,21 @@ const UNIVERSITIES: Record<string, UniData> = {
     mallas: 'Moodle UNACH',
     regla: 'Escala 10 / 10',
     barcode: 'MATRÍCULA UNACH · VERIFICADO',
-    badge: 'TESTER CONFIRMADO',
+    badge: 'MOODLE COMPATIBLE',
     avatar: '/logos/universidades/unach.png',
     color: '#f43f5e',
-    ctaText: 'Pedir Acceso UNACH con mi @gmail.com',
-    waText: 'Hola! Quiero acceso a la prueba cerrada de Pilas! para la UNACH con mi correo @gmail.com',
+    ctaText: 'Descargar Pilas! para la UNACH',
   },
 };
 
-const WA_TESTERS_GROUP = 'https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc';
+const DOWNLOAD_ANCHOR = '#acceso';
 
 export function initCarnetFlip(): void {
   const carnetEl = document.getElementById('hub-carnet');
   const tiltBox = document.getElementById('pass-tilt-box');
   const container = document.getElementById('pass-interactive-wrap');
   if (!carnetEl || !container) return;
+  const box: HTMLElement = container;
 
   const html = document.documentElement;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -122,9 +117,21 @@ export function initCarnetFlip(): void {
 
   let currentUni = 'espe';
 
-  function applyUniversity(uniKey: string): void {
+  let flipped = false;
+
+  function applyUniversity(uniKey: string, syncMode = true): void {
     const data = UNIVERSITIES[uniKey] || UNIVERSITIES.espe;
+    const changed = uniKey !== currentUni;
     currentUni = uniKey;
+
+    // Si estaba volteado, vuelve al frente para que se vea la nueva U
+    if (flipped) setFlipped(false);
+    // "Reparte" un carnet nuevo: el cambio de universidad se nota
+    if (changed && carnetEl && !reduce) {
+      carnetEl.classList.remove('is-dealing');
+      void carnetEl.offsetWidth;
+      carnetEl.classList.add('is-dealing');
+    }
 
     if (crestSub) crestSub.textContent = data.crest;
     if (uniTitle) uniTitle.textContent = data.title;
@@ -153,17 +160,17 @@ export function initCarnetFlip(): void {
       avatarTag.textContent = uniKey.toUpperCase();
     }
     if (holoText) {
-      holoText.textContent = `${uniKey.toUpperCase()} · PLAY STORE VERIFIED`;
+      holoText.textContent = `${uniKey.toUpperCase()} · ANDROID + IPHONE`;
     }
     if (btnText) {
       btnText.textContent = data.ctaText;
     }
     if (ctaBtn) {
-      ctaBtn.href = WA_TESTERS_GROUP;
+      ctaBtn.href = DOWNLOAD_ANCHOR;
     }
 
     // Actualizar tabs activas
-    container.querySelectorAll('.pass-tab-btn').forEach((btn: Element) => {
+    box.querySelectorAll('.pass-tab-btn').forEach((btn: Element) => {
       const b = btn as HTMLButtonElement;
       const isSelected = b.dataset.passUni === uniKey;
       b.classList.toggle('is-active', isSelected);
@@ -178,10 +185,15 @@ export function initCarnetFlip(): void {
     });
 
     // Si elige una universidad distinta a ESPE, asegurar que el modo general acompañe
+    if (!syncMode) return;
+    const tab = box.querySelector<HTMLElement>(`[data-pass-uni="${uniKey}"]`);
+    const r = tab?.getBoundingClientRect();
+    const x = r ? r.left + r.width / 2 : undefined;
+    const y = r ? r.top + r.height / 2 : undefined;
     if (uniKey !== 'espe' && html.dataset.mode !== 'multi') {
-      setCampusMode('multi');
+      setCampusMode('multi', x, y);
     } else if (uniKey === 'espe' && html.dataset.mode !== 'espe') {
-      setCampusMode('espe');
+      setCampusMode('espe', x, y);
     }
   }
 
@@ -195,9 +207,15 @@ export function initCarnetFlip(): void {
     });
   });
 
+  function setFlipped(next: boolean): void {
+    flipped = next;
+    carnetEl?.classList.toggle('is-flipped', flipped);
+    updateCarnetAria();
+  }
+
   function updateCarnetAria(): void {
     if (!carnetEl) return;
-    const isMulti = html.dataset.mode === 'multi';
+    const isMulti = flipped;
     carnetEl.setAttribute('aria-pressed', String(isMulti));
     carnetEl.setAttribute(
       'aria-label',
@@ -209,21 +227,24 @@ export function initCarnetFlip(): void {
 
   updateCarnetAria();
 
-  const observer = new MutationObserver(() => updateCarnetAria());
+  // El selector principal de campus también cambia el carnet
+  const observer = new MutationObserver(() => {
+    const mode = html.dataset.mode;
+    if (mode === 'multi' && currentUni === 'espe') applyUniversity('uta', false);
+    else if (mode === 'espe' && currentUni !== 'espe') applyUniversity('espe', false);
+    updateCarnetAria();
+  });
   observer.observe(html, { attributes: true, attributeFilter: ['data-mode'] });
 
   // Voltear carnet al hacer clic
-  carnetEl.addEventListener('click', () => {
-    const nextMode = html.dataset.mode === 'multi' ? 'espe' : 'multi';
-    setCampusMode(nextMode);
-  });
+  carnetEl.addEventListener('click', () => setFlipped(!flipped));
+  if (html.dataset.mode === 'multi') applyUniversity('uta', false);
 
   // Soporte de accesibilidad con teclado (Enter y Espacio)
   carnetEl.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      const nextMode = html.dataset.mode === 'multi' ? 'espe' : 'multi';
-      setCampusMode(nextMode);
+      setFlipped(!flipped);
     }
   });
 
@@ -247,8 +268,7 @@ export function initCarnetFlip(): void {
       const rotateX = ((y - centerY) / centerY) * -5;
       const rotateY = ((x - centerX) / centerX) * 5;
 
-      const isMulti = html.dataset.mode === 'multi';
-      const baseFlip = isMulti ? 180 : 0;
+      const baseFlip = flipped ? 180 : 0;
 
       if (passIn) {
         passIn.style.transition = 'none';

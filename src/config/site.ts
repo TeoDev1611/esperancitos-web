@@ -26,12 +26,16 @@ export const SITE = {
 
   /** Título y descripción por defecto de la home (se indexan tal cual). */
   title:
-    `Pilas! v${RELEASE.version} • La app universitaria definitiva para Android (ESPE & Multi-Universidad)`,
+    "Pilas! • Horario, Moodle y notas en una app. Android y iPhone",
   description:
-    `Pilas! conecta tu Moodle, tus horarios con aulas exactas, tu carnet digital y una suite de ${ACADEMIC_STATS.toolsCount} herramientas offline en una app ultra rápida, privada y sin publicidad. Diseñada para la ESPE y lista para cualquier campus universitario con Moodle.`,
+    "La app que junta todo lo de la U en un solo lugar: horario, tareas, notas, Moodle y herramientas, y te avisa antes de que se te pase algo. Gratis, sin anuncios y sin cuentas. En Google Play y en iPhone desde Safari.",
 
-  /** Enlace a formulario de inscripción a la beta cerrada de Google Play */
-  playStoreBetaUrl: "https://forms.gle/svzBYKL2ZhWrS7M78",
+  /** Ficha pública de Pilas! en Google Play (Android). */
+  playStoreUrl: "https://play.google.com/store/apps/details?id=dev.teodev.pilas",
+
+  /** App de iPhone: se instala desde Safari con "Agregar a pantalla de inicio". */
+  iosPwaUrl: "https://pilas-pwa.vercel.app",
+  iosPwaLabel: "pilas-pwa.vercel.app",
 
   /** Palabras clave orientadas a búsquedas de estudiantes de la ESPE y Multi-Universidad. */
   keywords: [
@@ -76,7 +80,7 @@ export const SITE = {
     path: "/logos/icono_logo2.svg",
     width: 1200,
     height: 630,
-    alt: "Pilas!: La app universitaria definitiva. ESPE y Multi-Universidad",
+    alt: "Pilas!: horario, Moodle y notas en una sola app, para Android y iPhone",
   },
 
   /** Versión del producto y del APK distribuido */

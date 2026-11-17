@@ -1,0 +1,358 @@
+---
+/**
+ * FeatureCatalog.astro
+ * "Todo lo que hace Pilas!": los grupos de funciones de la v1.4.
+ * Fuente: docs/marketing/CATALOGO_FUNCIONES_APP_MARKETING.md (sección 3).
+ * Regla: solo lo que el catálogo marca como disponible; lo exclusivo de una
+ * plataforma se etiqueta como tal.
+ */
+
+type Tag = { label: string; tone: 'android' | 'ios' | 'espe' | 'new' };
+
+interface Group {
+  icon: string;
+  title: string;
+  pain: string;
+  items: string[];
+  tags?: Tag[];
+  wide?: boolean;
+}
+
+const GROUPS: Group[] = [
+  {
+    icon: '🏠',
+    title: 'Tu día de un vistazo',
+    pain: '“¿A qué hora es la clase y en qué aula?” a las 6:50 a. m.',
+    items: [
+      'Próxima clase con cuenta regresiva, aula y bloque',
+      'Tareas urgentes primero, como un semáforo',
+      'Resumen del día en cápsulas compactas, sin saturar la pantalla',
+      'Agenda y recordatorios propios, además de lo de Moodle',
+      'Funciona sin internet y se actualiza sola al abrir',
+    ],
+  },
+  {
+    icon: '⏰',
+    title: 'Que no se te pase nada',
+    pain: 'Las 23:58, cuando cierran las tareas de Moodle.',
+    items: [
+      'Android: alarma real antes de cada entrega, aunque el teléfono esté bloqueado',
+      'iPhone: tus entregas van al Calendario y te avisan con la app cerrada',
+      'Recordatorios a 7 días, 3 días, 24 h y 3 h, con modo No molestar',
+    ],
+    tags: [{ label: 'Android + iPhone', tone: 'new' }],
+  },
+  {
+    icon: '👥',
+    title: 'Amigos y parches',
+    pain: '“¿A qué hora salimos todos?” y 40 mensajes en el grupo.',
+    items: [
+      'Comparte tu horario por QR o WhatsApp y elige qué mostrar',
+      'Compara con hasta 3 amigos y mira las horas huecas en común',
+      'Invitaciones a juntas por WhatsApp que se guardan en el calendario',
+      'Mira si tu amigo está en clase, libre o en qué aula',
+    ],
+    tags: [{ label: 'Android ↔ iPhone', tone: 'new' }],
+    wide: true,
+  },
+  {
+    icon: '📚',
+    title: 'Moodle sin dolor',
+    pain: 'La web de Moodle en el celular.',
+    items: [
+      'Entrega tareas desde el teléfono: archivos o texto',
+      'Notas en árbol, cuestionarios con temporizador y autoguardado, foros y mensajes',
+      'Materiales descargados para verlos sin internet',
+      'Comparte una tarea, un checklist o el kit del paralelo con un enlace',
+    ],
+    wide: true,
+  },
+  {
+    icon: '🗓️',
+    title: 'Horario',
+    pain: 'Capturas borrosas del horario en la galería.',
+    items: [
+      'Semanal y diario con aula, bloque y piso',
+      'Exporta al calendario (.ics) o como imagen para compartir',
+      'En la ESPE se importa de Banner, con tu historial académico',
+    ],
+    tags: [{ label: 'Banner: ESPE', tone: 'espe' }],
+  },
+  {
+    icon: '📈',
+    title: 'Notas y avance',
+    pain: '“¿Cuánto necesito para pasar?”',
+    items: [
+      'Calculadora con la escala ESPE (14/20 o 42/60) y escalas propias',
+      'Malla interactiva con aprobadas, pendientes y prerrequisitos',
+      'Modo privacidad: oculta tus notas con “•••”',
+    ],
+  },
+  {
+    icon: '🧰',
+    title: 'Herramientas',
+    pain: 'Páginas de PDF llenas de anuncios.',
+    items: [
+      'PDF: comprimir para Moodle, unir, dividir, firmar y convertir',
+      'Escáner con filtros, carátula con los logos ESPE o el de tu U, y ZIP',
+      'Diagnóstico: ¿se cayó Moodle o es tu internet?',
+    ],
+    tags: [{ label: 'OCR solo Android', tone: 'android' }],
+    wide: true,
+  },
+  {
+    icon: '🔑',
+    title: 'Entrar en segundos',
+    pain: 'Apps universitarias lentas, con mil logins.',
+    items: [
+      'ESPE: tu cuenta miESPE (o el Puente Pilas en iPhone)',
+      'Otras U: usuario de Moodle, el QR de tu aula virtual o el Puente',
+      'Varias cuentas de Moodle a la vez',
+    ],
+  },
+  {
+    icon: '🎉',
+    title: 'Pilas! Wrapped y vida U',
+    pain: 'El semestre se va volando.',
+    items: [
+      'Wrapped: el resumen de tu semestre con tu arquetipo',
+      'Comunidad: avisos, negocios estudiantiles y enlaces útiles',
+      'Temas festivos automáticos: Carnaval, Difuntos, Fiestas de Quito, Navidad…',
+      'Una mascota con micro-interacciones y easter eggs',
+    ],
+  },
+  {
+    icon: '🪪',
+    title: 'Carnet a un toque',
+    pain: 'Buscar la captura de tu credencial en la galería.',
+    items: [
+      'Guarda la captura de tu credencial en Pilas!',
+      'Velo a pantalla completa con efecto holográfico',
+    ],
+  },
+  {
+    icon: '🌙',
+    title: 'Bienestar',
+    pain: 'Apps que dan más ansiedad.',
+    items: [
+      'Modo migraña y filtro cálido para la noche',
+      'Una cosa a la vez: tareas en acordeones, sin saturar',
+      'Cápsulas de bienestar en el Inicio',
+    ],
+  },
+  {
+    icon: '🔒',
+    title: 'Privada de verdad',
+    pain: 'Tus notas en servidores ajenos.',
+    items: [
+      'Sin anuncios, sin analítica y sin cuenta de Pilas',
+      'Tus datos viven en tu teléfono; al cerrar sesión se borra todo',
+      'Soporte y reporte de errores directo por WhatsApp',
+    ],
+    tags: [{ label: 'PIN o huella: Android', tone: 'android' }],
+  },
+];
+---
+
+<section id="funciones" class="fc-section" aria-labelledby="fc-title">
+  <header class="fc-head">
+    <span class="sticker-pill cyan font-mono">VERSIÓN 1.4</span>
+    <h2 id="fc-title" class="hub-section-title fc-title">Todo lo que hace Pilas!</h2>
+    <p class="fc-lead">Horario, tareas, notas, Moodle y herramientas. Y te avisa antes de que se te pase algo. Funciona sin internet una vez cargados tus datos.</p>
+  </header>
+
+  <div class="fc-grid">
+    {GROUPS.map((g) => (
+      <article class:list={['fc-card', { 'fc-wide': g.wide }]}>
+        <div class="fc-card-head">
+          <span class="fc-icon" aria-hidden="true">{g.icon}</span>
+          <h3 class="fc-card-title">{g.title}</h3>
+        </div>
+        <p class="fc-pain">{g.pain}</p>
+        <details class="fc-more" open>
+          <summary class="fc-more-btn">Ver qué incluye</summary>
+          <ul class="fc-items">
+            {g.items.map((it) => <li>{it}</li>)}
+          </ul>
+        </details>
+        {g.tags && (
+          <div class="fc-tags">
+            {g.tags.map((t) => <span class={`fc-tag fc-tag-${t.tone}`}>{t.label}</span>)}
+          </div>
+        )}
+      </article>
+    ))}
+  </div>
+
+  <div class="fc-cta">
+    <p><b>Gratis, hecha por estudiantes</b> para estudiantes del Ecuador.</p>
+    <a href="#acceso" class="btn btn-p">
+      <span>Descargar Pilas!</span>
+      <svg class="ico btn-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+    </a>
+  </div>
+</section>
+
+<style is:global>
+.fc-section {
+  scroll-margin-top: 100px;
+}
+.fc-head {
+  max-width: 46em;
+  margin-bottom: 24px;
+}
+.fc-title {
+  font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+}
+.fc-lead {
+  margin-top: 10px;
+  color: var(--body);
+  font-size: 1.04rem;
+  line-height: 1.55;
+}
+.fc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-flow: row dense;
+  gap: 14px;
+}
+@media (max-width: 960px) {
+  .fc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .fc-grid { grid-template-columns: 1fr; }
+}
+.fc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(17, 23, 35, 0.7);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  min-width: 0;
+  transition: border-color 200ms ease, transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fc-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  transform: translateY(-3px);
+}
+@media (min-width: 961px) {
+  .fc-wide { grid-column: span 2; }
+}
+.fc-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.fc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-control);
+}
+.fc-card-title {
+  font-size: 1.12rem;
+  letter-spacing: -0.015em;
+}
+.fc-pain {
+  font-size: 0.86rem;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.4;
+}
+.fc-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 7px;
+}
+.fc-items li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--body);
+}
+.fc-items li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.fc-tags {
+  margin-top: auto;
+  padding-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.fc-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: var(--f-d);
+  font-weight: 700;
+  font-size: 0.76rem;
+  border: 1px solid currentColor;
+}
+.fc-tag-android { color: var(--success); background: rgba(0, 255, 135, 0.07); }
+.fc-tag-ios { color: var(--cyan); background: rgba(0, 240, 255, 0.07); }
+.fc-tag-espe { color: #ffa1cc; background: rgba(255, 51, 133, 0.08); }
+.fc-tag-new { color: var(--warning); background: rgba(255, 190, 59, 0.07); }
+
+.fc-cta {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+}
+.fc-cta p { color: var(--body); }
+.fc-cta b { color: var(--title); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-card { transition: none; }
+  .fc-card:hover { transform: none; }
+}
+@media (max-width: 640px) {
+  .fc-cta .btn { width: 100%; }
+}
+
+/* Celular: cada tarjeta muestra título y gancho; la lista se abre al tocar */
+.fc-more > summary { display: none; }
+@media (max-width: 640px) {
+  .fc-more > summary {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; min-height: 40px;
+    font: 700 0.9rem var(--f-d); color: var(--accent); cursor: pointer; list-style: none;
+  }
+  .fc-more > summary::-webkit-details-marker { display: none; }
+  .fc-more > summary::after { content: "+"; font-size: 1.1rem; line-height: 1; }
+  .fc-more[open] > summary::after { content: "−"; }
+  .fc-more[open] > summary { margin-bottom: 6px; }
+}
+</style>
+<script>
+  // En celular se cierran al cargar para que la sección no sea eterna; sin JS quedan abiertas.
+  if (window.matchMedia("(max-width: 640px)").matches) {
+    document.querySelectorAll<HTMLDetailsElement>(".fc-more").forEach((d) => (d.open = false));
+  }
+</script>

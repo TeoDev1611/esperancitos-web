@@ -6,12 +6,12 @@ import { FAQ_ENTRIES, FAQ_CATEGORIES } from '../config/faq';
 import AtelierCredits from '../components/AtelierCredits.astro';
 
 const categoryMap: Record<string, string> = {
-  instalacion: 'Instalación & APK',
+  instalacion: 'Instalación: Android y iPhone',
   seguridad: 'Seguridad & Cuentas',
   moodle: 'Moodle & Tareas',
-  horarios: 'Horario, Aulas & Notas',
-  malla: 'Malla & Modo Offline',
-  general: 'General, Sedes & iPhone',
+  horarios: 'Horario, Amigos & Notas',
+  malla: 'Malla, Sin internet & Bienestar',
+  general: 'General & Herramientas',
 };
 
 const V = {
@@ -26,8 +26,8 @@ const WA = 'https://whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Preguntas Frecuentes | Pilas! para Android</title>
-<meta name="description" content="Respuestas sobre la app Pilas!: instalación de APK, seguridad y privacidad de contraseñas, Moodle por QR, horarios sin internet y cálculo de notas.">
+<title>Preguntas Frecuentes | Pilas! para Android y iPhone</title>
+<meta name="description" content="Respuestas sobre Pilas!: cómo instalarla en Android (Google Play) y en iPhone (Safari), privacidad, Moodle, horario sin internet y cálculo de notas.">
 <meta name="theme-color" content="#101319">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -53,7 +53,7 @@ try {
       <img src="/logos/letras_estilo_transparente.svg" alt="Pilas!" class="nav-brand-logo" width="128" height="42" />
     </a>
     <a class="btn btn-s btn-sm" href="/"><svg class="ico"><use href="#i-back"/></svg>Volver<span class="hide-xs"> al inicio</span></a>
-    <a class="btn btn-p btn-sm" href="/#acceso"><svg class="ico"><use href="#i-play"/></svg><span class="hide-xs">Pedir </span>Acceso</a>
+    <a class="btn btn-p btn-sm" href="/#acceso"><svg class="ico"><use href="#i-play"/></svg>Descargar</a>
   </div>
 </header>
 
@@ -72,7 +72,7 @@ try {
         <input
           type="search"
           id="faq-search"
-          placeholder="Buscar por palabra clave (ej. contraseña, APK, Play Protect, QR)..."
+          placeholder="Buscar por palabra clave (ej. iPhone, contraseña, alarma, QR)..."
           aria-label="Buscar preguntas frecuentes"
         />
         <button type="button" id="faq-clear" class="btn-clear" aria-label="Limpiar búsqueda" hidden>×</button>
@@ -123,7 +123,7 @@ try {
     <div class="empty card" id="faq-empty" hidden>
       <img src="/logos/mascota_negacion.svg" alt="Pilo con ceño fruncido indicando que no se encontraron respuestas" width="120" height="120">
       <h2 class="empty-title">No encontramos respuestas para esa búsqueda</h2>
-      <p>Prueba con términos más generales como <em>Moodle</em>, <em>contraseña</em>, <em>APK</em> o <em>horario</em>.</p>
+      <p>Prueba con términos más generales como <em>Moodle</em>, <em>contraseña</em>, <em>iPhone</em> o <em>horario</em>.</p>
       <button type="button" class="btn btn-p btn-sm" id="btn-reset">Ver todas las preguntas</button>
     </div>
 
@@ -363,8 +363,10 @@ footer{padding:40px 0 56px;border-top:2px solid #000;background:var(--bg);font-s
 footer .wrap{display:grid;gap:16px}footer nav{display:flex;flex-wrap:wrap;gap:0 22px}footer nav a{display:inline-flex;align-items:center;min-height:48px}footer p{color:var(--muted);max-width:60em}
 
 @media(max-width:720px){
-  .faq-item summary{align-items:flex-start;padding-top:12px}
-  .faq-item summary::after{margin-top:-4px}
+  .faq-item summary{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:8px 12px;padding:12px 0}
+  .faq-item summary .badge{grid-column:1;justify-self:start}
+  .faq-item summary .faq-q{grid-column:1}
+  .faq-item summary::after{grid-column:2;grid-row:1 / span 2;align-self:center;margin:0}
   .support-card{flex-direction:column;align-items:stretch}
 }
 @media(max-width:540px){

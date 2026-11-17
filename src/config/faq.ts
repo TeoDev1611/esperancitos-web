@@ -5,8 +5,6 @@
 // en la home, como el JSON-LD FAQPage que Google usa para los resultados enriquecidos.
 // ============================================================================
 
-import { RELEASE } from "../lib/release";
-
 export interface FaqEntry {
   id: string;
   category: string;
@@ -27,12 +25,12 @@ export interface FaqCategory {
 
 export const FAQ_CATEGORIES: FaqCategory[] = [
   { id: "todos", name: "Todas las preguntas", icon: "✨" },
-  { id: "instalacion", name: "Instalación & APK", icon: "📱" },
+  { id: "instalacion", name: "Instalación: Android y iPhone", icon: "📱" },
   { id: "seguridad", name: "Seguridad & Cuentas", icon: "🛡️" },
   { id: "moodle", name: "Moodle & Tareas", icon: "📚" },
-  { id: "horarios", name: "Horario, Aulas & Notas", icon: "⏰" },
-  { id: "malla", name: "Malla & Modo Offline", icon: "📊" },
-  { id: "general", name: "General, Sedes & iPhone", icon: "💬" },
+  { id: "horarios", name: "Horario, Amigos & Notas", icon: "⏰" },
+  { id: "malla", name: "Malla, Sin internet & Bienestar", icon: "📊" },
+  { id: "general", name: "General & Herramientas", icon: "💬" },
 ];
 
 function toPlain(answer: string, bullets: string[] = []): string {
@@ -44,51 +42,67 @@ function toPlain(answer: string, bullets: string[] = []): string {
   return [strip(answer), ...bullets.map(strip)].join(" ");
 }
 
+const PLAY_URL = "https://play.google.com/store/apps/details?id=dev.teodev.pilas";
+const IOS_URL = "https://pilas-pwa.vercel.app";
+const WA_GROUP = "https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc";
+const IG_LINK = '<a href="https://www.instagram.com/pilas_ec.app/" target="_blank" rel="noopener noreferrer">@pilas_ec.app</a>';
+const WA_LINK = `<a href="${WA_GROUP}" target="_blank" rel="noopener noreferrer">grupo de WhatsApp</a>`;
+
 const raw: Array<Omit<FaqEntry, "plainAnswer">> = [
-  // --- 1. INSTALACIÓN & APK ---
+  // --- 1. INSTALACIÓN: ANDROID Y IPHONE ---
   {
-    id: "play-protect-peligroso",
+    id: "como-instalar-android",
     category: "instalacion",
-    question:
-      '¿Por qué Android dice "Archivo potencialmente dañino" o aviso de Play Protect al descargar el APK?',
-    answer:
-      '<strong>Es totalmente normal y preventivo.</strong> Android muestra esa advertencia para <strong>cualquier aplicación</strong> que se instale directamente mediante archivo APK fuera de la Google Play Store oficial. Android no conoce a los desarrolladores independientes que no pagan la licencia anual de distribución. Pilas! es 100% segura, libre de virus, no tiene anuncios ni malware, y puedes verificar la huella criptográfica SHA-256 oficial en la sección de descargas. Solo debes presionar <em>"Descargar de todos modos"</em> y marcar <em>"Permitir desde esta fuente"</em> al instalar.',
+    question: "¿Cómo instalo Pilas! en Android?",
+    answer: `Desde <strong>Google Play</strong>, como cualquier app: busca <em>Pilas!</em> o entra directo a <a href="${PLAY_URL}" target="_blank" rel="noopener noreferrer">la ficha de Pilas! en Google Play</a> y toca <em>Instalar</em>. Es gratis y funciona desde <strong>Android 8.0</strong>. Ya no necesitas formularios, correos ni APK.`,
   },
   {
-    id: "requisitos-android",
+    id: "como-instalar-iphone",
     category: "instalacion",
-    question: "¿En qué versiones de Android funciona y qué celular necesito?",
-    answer:
-      "Pilas! funciona en <strong>casi cualquier celular Android del 2019 en adelante</strong>. Solo necesitas <strong>Android 8.0 (Oreo) o superior</strong>. La versión recomendada (`ARM64-v8a`) pesa apenas 37 MB. Si tienes un teléfono de gama de entrada con más de 5 años, también ofrecemos la variante `ARMeabi-v7a` de 33 MB, o la versión `x86_64` para emuladores en PC.",
+    question: "¿Hay Pilas! para iPhone? ¿Cómo la instalo?",
+    answer: "<strong>Sí.</strong> En iPhone se instala desde Safari, no desde el App Store:",
+    bullets: [
+      `Abre <a href="${IOS_URL}" target="_blank" rel="noopener noreferrer"><strong>pilas-pwa.vercel.app</strong></a> en <strong>Safari</strong>.`,
+      "Toca <strong>Compartir</strong> y luego <strong>Agregar a pantalla de inicio</strong>.",
+      "Abre Pilas! desde el ícono que aparece en tu pantalla de inicio, como cualquier otra app.",
+    ],
   },
   {
-    id: "por-que-no-play-store",
+    id: "diferencias-iphone",
     category: "instalacion",
-    question:
-      "¿Por qué la app todavía no está publicada en la Google Play Store oficial?",
+    question: "¿Qué cambia entre la versión de Android y la de iPhone?",
     answer:
-      "Para publicar en la Google Play Store oficial, Google exige que la app pase por un período de prueba cerrada con <strong>al menos 20 evaluadores activos durante 14 días</strong>. <strong>¡Tú puedes ayudarnos a que pase!</strong> Inscríbete gratis a la beta cerrada con tu cuenta de Google en nuestro formulario oficial (<a href=\"https://forms.gle/svzBYKL2ZhWrS7M78\" target=\"_blank\" rel=\"noopener noreferrer\">forms.gle/svzBYKL2ZhWrS7M78</a>). Una vez cumplida esta fase de pruebas con la comunidad, la app estará disponible directamente en la Play Store.",
+      "Casi todo es igual: Moodle (tareas, notas, entregas, foros, cuestionarios y mensajes), horario, amigos, Wrapped, malla, calculadora, carnet y herramientas PDF. Las diferencias:",
+    bullets: [
+      "<strong>Alarma de entregas:</strong> en Android suena con el teléfono bloqueado. En iPhone tus entregas se exportan al <strong>Calendario de iPhone</strong>, que te avisa aunque Pilas esté cerrada.",
+      "<strong>Avisos de notas, tareas y mensajes:</strong> en Android llegan en segundo plano. En iPhone aparecen al abrir Pilas, y el ícono muestra el número de pendientes.",
+      "<strong>Widgets:</strong> en Android hay widgets de Pilas. En iPhone usas los widgets del Calendario, que muestran tus entregas.",
+      "<strong>OCR (texto desde una foto)</strong> y <strong>bloqueo con PIN o huella:</strong> por ahora solo en Android.",
+    ],
+  },
+  {
+    id: "puente-pilas",
+    category: "instalacion",
+    question: "¿Qué es el Puente Pilas?",
+    answer:
+      "Es un <strong>favorito de Safari</strong> que conecta Mi Campus y Banner con Pilas! en iPhone. Lo usas para traer tu horario y tu historial de la ESPE, y también sirve para entrar a cualquier Moodle. En Android no lo necesitas: inicias sesión dentro de la app.",
   },
   {
     id: "como-se-actualiza",
     category: "instalacion",
-    question:
-      "¿Cómo se actualiza la app cuando sale una nueva versión con mejoras?",
-    answer:
-      "La app incluye un verificador estático ultra-ligero que consulta <code>update.json</code>. Cuando hay una nueva actualización, recibirás un aviso dentro de la app con el botón para descargar el nuevo APK. <strong>No perderás tus notas, materias ni horario al actualizar</strong>: Android instala la nueva versión encima de la anterior conservando tu base de datos local intacta. También anunciamos cada actualización en nuestro Canal oficial de WhatsApp y en nuestro Instagram oficial (<a href=\"https://www.instagram.com/pilas_ec.app/\" target=\"_blank\" rel=\"noopener noreferrer\">@pilas_ec.app</a>).",
+    question: "¿Cómo se actualiza la app?",
+    answer: `En Android, <strong>Google Play</strong> la actualiza como cualquier otra app. En iPhone, la app se actualiza sola al abrirla con internet. Tus datos se conservan. Anunciamos cada versión en nuestro Canal de WhatsApp y en Instagram (${IG_LINK}).`,
   },
   {
     id: "permisos-solicitados",
     category: "instalacion",
-    question:
-      "¿Qué permisos solicita la aplicación en Android y para qué sirve cada uno?",
-    answer:
-      "Pilas! solo pide los permisos estrictamente necesarios para su funcionamiento:",
+    question: "¿Qué permisos pide la app en Android y para qué?",
+    answer: "Solo los necesarios:",
     bullets: [
-      "<strong>Notificaciones:</strong> Para avisarte de tareas de Moodle próximas a vencer y recordatorios de tus clases.",
-      "<strong>Alarmas exactas:</strong> Para que las alertas de tareas suenen en el minuto programado incluso con el teléfono en reposo.",
-      "<strong>Cámara (Opcional):</strong> Únicamente para escanear el código QR de sincronización de Moodle o compartir archivos con compañeros.",
-      "<strong>Almacenamiento (Scoped Storage):</strong> Para guardar diapositivas y PDFs de Moodle en tu carpeta de Descargas sin tocar tus fotos ni archivos personales.",
+      "<strong>Notificaciones:</strong> para avisarte de notas, tareas y mensajes nuevos.",
+      "<strong>Alarmas exactas:</strong> para que la alarma de entregas suene a la hora que elegiste, incluso con el teléfono bloqueado.",
+      "<strong>Cámara (opcional):</strong> para escanear códigos QR y documentos.",
+      "<strong>Archivos:</strong> para guardar materiales de Moodle y los PDF que generas con las herramientas.",
     ],
   },
 
@@ -96,208 +110,214 @@ const raw: Array<Omit<FaqEntry, "plainAnswer">> = [
   {
     id: "es-oficial-espe",
     category: "seguridad",
-    question:
-      "¿Es una aplicación oficial de la Universidad de las Fuerzas Armadas ESPE?",
+    question: "¿Es una aplicación oficial de la ESPE o de mi universidad?",
     answer:
-      "<strong>No.</strong> Pilas! es un proyecto independiente desarrollado por y para estudiantes. No es una app institucional ni cuenta con respaldo oficial de la universidad, pero está diseñada cumpliendo con los más altos estándares de privacidad.",
-  },
-  {
-    id: "diferencia-espe-vs-multiu",
-    category: "general",
-    question:
-      "¿Qué diferencia hay entre la versión ESPE y la versión Multi-Universidad?",
-    answer:
-      "<strong>Pilas! ofrece dos experiencias adaptadas según tu campus:</strong>",
-    bullets: [
-      "<strong>Versión ESPE (/espe):</strong> Incluye el decodificador de aulas de Bloque A-H de Sangolquí y sedes, el cálculo automático del 14.01 con la regla oficial de 42/60 puntos, 23 mallas curriculares precargadas y carnet Espemático digital.",
-      "<strong>Versión Multi-Universidad (/multi-u):</strong> Es compatible con cualquier universidad de Ecuador que use Moodle (UCE, EPN, PUCE, ESPOL, UTPL, UDLA, etc.). Cuenta con sincronización por código QR en 1 segundo, compresor de PDF para el límite de 2MB-5MB y alarma inteligente anti-23:55.",
-    ],
+      "<strong>No.</strong> Pilas! es un proyecto independiente, hecho por estudiantes para estudiantes. No es una app institucional ni tiene respaldo oficial de ninguna universidad.",
   },
   {
     id: "servidores-credenciales",
     category: "seguridad",
-    question:
-      "¿Se guardan mis credenciales o contraseñas en algún servidor externo o en la nube?",
+    question: "¿Se guardan mis datos o contraseñas en algún servidor?",
     answer:
-      "<strong>No, jamás.</strong> Pilas! opera bajo una estricta arquitectura <strong>Zero-Backend (Cero Servidores Intermedios)</strong>. No tenemos servidores que almacenen tus contraseñas, correos, notas ni cédula. La conexión viaja directamente cifrada desde tu celular hacia los portales institucionales de la ESPE. Tus credenciales de sesión se guardan cifradas por hardware en el enclave seguro de tu teléfono (Android Keystore con AES-256).",
+      "<strong>No.</strong> Pilas! no tiene servidores que guarden tus notas, tus contraseñas ni tu horario: ni siquiera nosotros los vemos. La app habla directo con Moodle y Banner desde tu teléfono. Tus datos se guardan en tu teléfono, con el acceso a Moodle cifrado. No hay anuncios, ni analítica, ni cuentas de Pilas.",
   },
   {
-    id: "donde-escribo-contrasena",
+    id: "cerrar-sesion",
     category: "seguridad",
-    question: "¿Dónde y cómo escribo mi contraseña institucional?",
+    question: "¿Qué pasa con mis datos si cierro sesión?",
     answer:
-      "<strong>Para Moodle no escribes contraseña:</strong> se conecta en 1 segundo escaneando el código QR oficial de tu perfil en miCampus o con miESPE. Para Banner (horario y notas), la autenticación se realiza directamente en la pasarela oficial de Microsoft 365 / miESPE en el navegador web seguro del sistema. La app nunca intercepta ni almacena tu contraseña en texto plano.",
+      "Al cerrar sesión <strong>se borra todo</strong> lo que Pilas! guardó en tu teléfono. Si quieres, puedes conservar tu agenda y tu malla. En Android también puedes bloquear la app con <strong>PIN o huella</strong>.",
   },
   {
     id: "responsabilidad-cuenta",
     category: "seguridad",
     question: "¿Quién es responsable de las acciones realizadas con mi cuenta?",
     answer:
-      "Tú eres el único responsable del uso de tu cuenta institucional. Pilas! es una herramienta cliente que interactúa con tus portales tal como lo harías desde Chrome o Firefox. Siempre debes verificar notas y trámites en los portales oficiales de miESPE y Moodle.",
+      "Tú eres responsable del uso de tu cuenta institucional. Pilas! es una herramienta que usa tus portales igual que lo harías desde el navegador. Verifica siempre las notas y los trámites importantes en los portales oficiales de tu universidad.",
   },
   {
     id: "cambios-sistemas-espe",
     category: "seguridad",
-    question:
-      "¿Qué sucede si la universidad cambia, restringe o actualiza sus plataformas?",
+    question: "¿Qué pasa si la universidad cambia sus plataformas?",
     answer:
-      "Al ser un cliente independiente, cambios drásticos en la infraestructura de Banner o Moodle pueden requerir un parche de actualización. Sin embargo, tus datos académicos descargados permanecerán guardados en tu teléfono y disponibles sin internet.",
+      "Al ser una app independiente, un cambio grande en Banner o Moodle puede requerir una actualización. Mientras tanto, los datos que ya cargaste siguen guardados en tu teléfono y disponibles sin internet.",
   },
   {
     id: "codigo-abierto-privado",
     category: "seguridad",
-    question: "¿Pilas! es de código abierto (Open Source)?",
+    question: "¿Pilas! es de código abierto?",
     answer:
-      "<strong>No.</strong> Pilas! es de <strong>código privado y propietario</strong>, pero es <strong>100% gratuita para todos los estudiantes de la ESPE</strong>. El código se mantiene privado para proteger la integridad, estabilidad y seguridad de los endpoints y mecanismos de conexión con las plataformas institucionales.",
+      "<strong>No.</strong> El código es privado, pero la app es <strong>gratis</strong> para todos los estudiantes.",
   },
 
   // --- 3. MOODLE & TAREAS ---
   {
-    id: "conectar-moodle-qr",
+    id: "conectar-moodle",
     category: "moodle",
-    question:
-      "¿Cómo conecto mi Moodle sin escribir mi contraseña institucional?",
+    question: "¿Cómo conecto mi Moodle?",
+    answer: "Tienes varias formas:",
+    bullets: [
+      "<strong>ESPE:</strong> inicias sesión con tu cuenta miESPE dentro de la app (Android) o con el Puente Pilas desde Safari (iPhone).",
+      "<strong>Otras universidades:</strong> con tu usuario y contraseña de Moodle, con el <strong>código QR</strong> de tu aula virtual (Perfil → Código QR para la app móvil) o con el Puente Pilas.",
+      "Puedes tener <strong>varias cuentas de Moodle</strong> a la vez, por ejemplo si estudias en dos instituciones.",
+    ],
+  },
+  {
+    id: "moodle-compatible",
+    category: "moodle",
+    question: "¿Funciona con cualquier Moodle?",
+    answer: `Funciona con los Moodle que tienen habilitada la <strong>app móvil oficial</strong> por parte de la universidad. Si tu Moodle no conecta, escríbenos al ${WA_LINK} y lo revisamos.`,
+  },
+  {
+    id: "entregar-tareas",
+    category: "moodle",
+    question: "¿Puedo entregar tareas desde el teléfono?",
     answer:
-      'Se utiliza el protocolo de vinculación móvil oficial de Moodle: ingresas a <code>micampus.espe.edu.ec</code> desde tu computadora, abres tu <strong>Perfil de Usuario</strong> y haces clic en <em>"Código QR para la app móvil"</em>. En Pilas!, pulsas <em>"Escanear QR de Moodle"</em>, apuntas la cámara y tu sesión quedará sincronizada al instante de forma segura.',
+      "<strong>Sí.</strong> Puedes subir archivos o texto a tus tareas de Moodle. También ver tus notas en árbol (igual al libro de calificaciones de Moodle), resolver cuestionarios con temporizador y autoguardado, responder en los foros y escribir mensajes tipo chat.",
   },
   {
     id: "descargar-archivos-moodle",
     category: "moodle",
-    question:
-      "¿Puedo descargar diapositivas, PDFs y tareas de Moodle a mi teléfono?",
+    question: "¿Puedo descargar los materiales de Moodle para verlos sin internet?",
     answer:
-      "<strong>Sí.</strong> En la pestaña de Moodle puedes explorar todas tus materias, tareas, guías de práctica y recursos. Con solo pulsar un archivo se descargará en el almacenamiento seguro de tu dispositivo para abrirlo cuando quieras, incluso en el aula o laboratorio sin señal.",
+      "<strong>Sí.</strong> Los materiales del curso se descargan a tu teléfono con un gestor de descargas, para abrirlos cuando quieras, aunque estés sin señal. También puedes compartir una tarea, un checklist, materiales o el \"kit del paralelo\" con un enlace.",
   },
   {
-    id: "compartir-qr-archivos",
+    id: "alarma-entregas",
     category: "moodle",
-    question:
-      "¿Cómo funciona la opción de compartir archivos mediante Código QR?",
+    question: "¿Cómo me avisa Pilas! antes de una entrega?",
     answer:
-      'En la versión v1.1 incorporamos un generador de QR instantáneo. Si descargaste una guía o documento de Moodle y tu compañero no tiene señal o megas, tocas <em>"Compartir por QR"</em> para que tu compañero lo escanee y lo abra en su teléfono de inmediato sin cables ni WhatsApp.',
-  },
-  {
-    id: "notificaciones-segundo-plano",
-    category: "moodle",
-    question:
-      "¿Cómo y cada cuánto consulta la app las tareas y mensajes en segundo plano?",
-    answer:
-      "La vigilancia de mensajes en Moodle se realiza de forma ligera cada 15 minutos; la comprobación de tareas pendientes y notas se ejecuta cada 6 horas. Todos los servicios en segundo plano aplican suspensión inteligente y ahorro de batería cuando no estás conectado a internet.",
+      "Recibes recordatorios escalonados (7 días, 3 días, 24 h y 3 h) y puedes activar <strong>No molestar</strong> en tus horas de descanso.",
+    bullets: [
+      "<strong>Android:</strong> una alarma real antes de cada entrega, que suena con el teléfono bloqueado. Eliges la anticipación, las materias o solo las urgentes.",
+      "<strong>iPhone:</strong> exportas tus entregas al Calendario de iPhone, que te avisa a la hora que elijas y un día antes, aunque Pilas esté cerrada.",
+    ],
   },
 
-  // --- 4. HORARIO, AULAS & NOTAS ---
+  // --- 4. HORARIO, AMIGOS & NOTAS ---
   {
     id: "sincronizar-horario-banner",
     category: "horarios",
-    question: "¿Cómo sincronizo mi horario de clases y mis notas desde Banner?",
+    question: "¿Cómo traigo mi horario desde Banner (ESPE)?",
     answer:
-      'Entras en Pilas!, seleccionas <em>"Sincronizar Banner"</em>, inicias sesión con tu usuario en el portal oficial de miESPE, y la app leerá automáticamente tus NRCs, asignaturas, días, horas, docentes y aulas, guardándolos en tu base de datos local para que los veas siempre sin internet.',
+      "En Android inicias sesión con miESPE dentro de la app; en iPhone usas el Puente Pilas desde Safari. Pilas! importa tus materias con aula, bloque y piso, y tu historial académico de periodos anteriores. Luego puedes exportar el horario al calendario del teléfono (.ics) o como imagen.",
   },
   {
-    id: "resolucion-aulas-bloques",
+    id: "horario-otras-u",
     category: "horarios",
-    question:
-      "¿Cómo descifro las aulas y bloques del campus (Sangolquí y Sedes)?",
+    question: "No estudio en la ESPE, ¿cómo pongo mi horario?",
     answer:
-      'Pilas! integra un decodificador de aulas que traduce códigos crudos de Banner (como "BLOQUE G AULA 201" o "G-201") en información clara: <strong>Bloque, Piso y Aula exacta</strong>. En Ajustes puedes elegir el formato que prefieras: Conciso (G-201), Descriptivo (Bloque G, Piso 2) o Híbrido.',
+      "Lo agregas a mano en pocos minutos, o un amigo de tu paralelo te lo comparte por QR o enlace de WhatsApp y lo importas.",
+  },
+  {
+    id: "amigos-horarios",
+    category: "horarios",
+    question: "¿Cómo funciona lo de comparar horarios con amigos?",
+    answer:
+      "Compartes tu horario por <strong>QR o enlace de WhatsApp</strong> y eliges qué mostrar (aulas, docentes o solo ocupado/libre). Puedes comparar hasta 3 amigos encima del tuyo, ver las <strong>horas huecas en común</strong> en un mapa de calor, guardar grupos (\"parches\"), enviar invitaciones a juntas y ver si un amigo está en clase o libre ahora. Funciona entre Android e iPhone.",
   },
   {
     id: "calculadora-notas-ponderadas",
     category: "horarios",
-    question:
-      "¿Cómo funciona la calculadora de notas parciales y con cuánto paso el semestre?",
+    question: "¿Cómo funciona la calculadora de notas?",
     answer:
-      "La calculadora aplica la fórmula oficial del reglamento de evaluación de la ESPE: <strong>33.34% en el Primer Parcial, 33.33% en el Segundo Parcial y 33.33% en el Tercer Parcial</strong> (mínimo 14.00 acumulados sobre 20.00 para aprobar). Con solo ingresar tus notas del 1.° y 2.° parcial, la app calcula con precisión matemática cuántos puntos necesitas en el tercer parcial o si requieres examen de recuperación.",
+      "Con la escala ESPE, apruebas con <strong>14 sobre 20</strong>, o <strong>42 de 60</strong> sumando los 3 parciales. Ingresas tus notas y Pilas! te dice cuánto necesitas en el siguiente parcial. Si estudias en otra universidad, puedes configurar una escala personalizada. También hay un <strong>modo privacidad</strong> que oculta tus notas con \"•••\".",
   },
   {
     id: "materia-no-aparece",
     category: "horarios",
-    question:
-      "¿Qué hago si una materia recién matriculada no aparece en mi horario o Moodle?",
+    question: "¿Qué hago si una materia recién matriculada no aparece?",
     answer:
-      "Si acabas de matricularte o hiciste un cambio de NRC, los servidores de Banner y Moodle pueden demorar de 24 a 48 horas hábiles en reflejar el cambio. Para actualizar en Pilas!, desliza hacia abajo la pantalla de tu horario (gesto pull-to-refresh) para volver a consultar los servidores oficiales.",
+      "Banner y Moodle pueden demorar en reflejar una matrícula o un cambio de NRC. Espera un poco y vuelve a actualizar desde Pilas!. Si sigue sin aparecer, escríbenos al grupo de WhatsApp.",
   },
 
-  // --- 5. MALLA & MODO OFFLINE ---
+  // --- 5. MALLA, SIN INTERNET & BIENESTAR ---
   {
     id: "funciona-sin-internet-offline",
     category: "malla",
-    question: "¿La app funciona 100% sin conexión a internet?",
+    question: "¿La app funciona sin internet?",
     answer:
-      "<strong>Sí, absolutamente.</strong> Tu horario, tus materias de la malla, el carnet digital, tus tareas y tus notas se almacenan en una base de datos SQLite local dentro de tu celular. Puedes consultar tu horario en el aula subterránea, en el laboratorio sin señal o en modo avión. Solo necesitas internet cuando desees sincronizar datos nuevos.",
+      "<strong>Sí</strong>, una vez cargados tus datos: horario, tareas, notas, malla y materiales descargados se guardan en tu teléfono. Solo necesitas internet para traer datos nuevos.",
   },
   {
-    id: "calculo-graduacion-malla",
+    id: "malla-interactiva",
     category: "malla",
-    question:
-      "¿Cómo calcula la Malla Interactiva el año estimado de graduación?",
+    question: "¿Qué muestra la malla curricular?",
     answer:
-      "La app calcula la cantidad de créditos aprobados frente al total exigido por tu malla curricular, evalúa el promedio de materias aprobadas por período y con base en eso proyecta el semestre y año aproximado en que concluirás tu carrera (por ejemplo, 2028 o 2029).",
+      "Una malla interactiva con tus materias aprobadas y pendientes, y los prerrequisitos de cada una, para que sepas qué puedes tomar el próximo semestre.",
   },
   {
-    id: "malla-recortada-pantalla",
+    id: "bienestar",
     category: "malla",
-    question:
-      "¿Qué hago si la pantalla de la Malla se ve recortada en mi celular?",
+    question: "¿Tiene algo para no cansar la vista o no agobiarme?",
     answer:
-      "La vista de malla cuenta con dos herramientas ergonómicas en la barra superior:",
-    bullets: [
-      "<strong>Minimizar resumen:</strong> Presiona la flecha superior para encoger el panel de créditos y dejar libre toda la pantalla para las asignaturas.",
-      "<strong>Modo Pantalla Completa:</strong> Toca el icono de pantalla completa para ocultar la cabecera y navegar libremente en horizontal y vertical por los 8 o 9 niveles.",
-    ],
-  },
-  {
-    id: "consumo-bateria-datos",
-    category: "malla",
-    question: "¿La aplicación consume mucha batería o datos móviles (megas)?",
-    answer:
-      "<strong>Cero consumo excesivo.</strong> Al funcionar de manera local y sin servidores intermedios pesados, la app no descarga publicidad ni scripts de seguimiento. Consume menos del 1% de batería diario y prácticamente cero datos móviles fuera de las sincronizaciones puntuales.",
+      "Sí. Hay un <strong>modo migraña</strong> (menos brillo, contraste y animaciones), un <strong>filtro cálido</strong> para leer de noche y la opción <strong>una cosa a la vez</strong>, que muestra tus tareas en acordeones para no saturarte.",
   },
 
-  // --- 6. GENERAL, SEDES & IPHONE ---
+  // --- 6. GENERAL & HERRAMIENTAS ---
   {
-    id: "sedes-latacunga-santo-domingo",
+    id: "diferencia-espe-vs-multiu",
     category: "general",
-    question:
-      "¿Pilas! funciona para estudiantes de las sedes de Latacunga y Santo Domingo?",
-    answer:
-      "<strong>¡Sí, para todas las sedes y modalidades!</strong> Banner y Moodle (miCampus) comparten la misma infraestructura tecnológica para la Matriz Sangolquí, Sede Latacunga, Sede Santo Domingo y las carreras en modalidad En Línea y Distancia. Todos los estudiantes pueden usar Pilas! por igual.",
+    question: "¿Qué diferencia hay entre usar Pilas! en la ESPE y en otra universidad?",
+    answer: "<strong>Pilas! se adapta a tu universidad:</strong>",
+    bullets: [
+      "<strong>ESPE (Sangolquí, Latacunga, Santo Domingo):</strong> la experiencia completa, con Mi Campus y Banner. Tu horario y tu historial se importan solos, y la calculadora usa la escala ESPE (14 sobre 20, o 42 de 60 sumando los 3 parciales).",
+      "<strong>Otras universidades con Moodle (UCE, UNL y más):</strong> todo lo de Moodle y las herramientas. El horario lo agregas a mano o te lo comparte un amigo, y la calculadora admite escalas personalizadas.",
+    ],
   },
   {
     id: "modo-multi-universidad",
     category: "general",
-    question: "¿Funciona Pilas! si estudio en otra universidad (UTA, UCE, EPN, UNACH)?",
-    answer:
-      `<strong>¡Sí! A partir de la versión v${RELEASE.version}, Pilas! cuenta con funcionamiento confirmado en multi-universidades.</strong> Ya ha sido probado y verificado exitosamente en la <strong>UTA (Universidad Técnica de Ambato)</strong>, <strong>UCE (Universidad Central del Ecuador)</strong>, <strong>EPN (Escuela Politécnica Nacional)</strong> y <strong>UNACH (Universidad Nacional de Chimborazo)</strong>, además de la ESPE.<br><br>Puedes vincular tus materias escaneando el código QR oficial de Moodle Mobile (<code>moodlemobile://</code>), calcular notas con escalas sobre 10, 20 o 100 puntos y usar la suite de herramientas offline.<br><br>👉 <strong>¿Quieres verificar el funcionamiento de tu universidad o facultad?</strong> Únete a nuestro <a href="https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 700;">Grupo Oficial de WhatsApp de Testers</a> para hacer pruebas directas con el equipo.`,
+    question: "¿Funciona si estudio en otra universidad?",
+    answer: `<strong>Sí, si tu universidad usa Moodle.</strong> Ya la usan estudiantes de la UTA, UCE, EPN y UNACH, además de la ESPE. Tienes todo lo de Moodle y las herramientas; el horario lo agregas a mano o te lo comparte un amigo.<br><br>¿Tu Moodle no conecta? Escríbenos al ${WA_LINK}.`,
   },
   {
     id: "que-es-pilas-tools",
     category: "general",
-    question: "¿Qué es Pilas Tools y qué herramientas incluye?",
+    question: "¿Qué herramientas incluye?",
     answer:
-      "Pilas Tools es una suite integrada de <strong>13 utilidades académicas 100% offline</strong>: compresor de PDF para no superar el límite de subida de Moodle (baja de 25 MB a menos de 4 MB), CamScanner móvil sin marcas de agua, generador de carátulas universitarias oficiales, firma digital manuscrita transparente, unir y dividir PDFs, lector OCR extractor de texto de fotos de pizarras o diapositivas, empaquetador ZIP protegido con clave y limpiador de metadatos EXIF. Todo corre en tu teléfono sin subir archivos a servidores externos.",
+      "Una navaja suiza para tus deberes. Todo funciona en tu teléfono, sin subir tus archivos a ningún servidor:",
+    bullets: [
+      "<strong>PDF:</strong> comprimir para Moodle, unir, dividir, organizar y rotar, proteger o desbloquear, numerar con marca de agua y limpiar metadatos.",
+      "<strong>Convertir:</strong> Word, fotos y tablas a PDF, y PDF a Word, PowerPoint o imágenes.",
+      "<strong>Escáner de documentos</strong> con la cámara, <strong>firma</strong> dibujada y <strong>ZIP</strong>.",
+      "<strong>Carátula universitaria</strong> con los logos ESPE o el logo de tu universidad, unida a tu deber.",
+      "<strong>Diagnóstico de Moodle y de la red:</strong> te dice si se cayó Moodle o es tu internet.",
+      "<strong>OCR</strong> (texto desde una foto): solo en Android.",
+    ],
   },
   {
-    id: "version-iphone-ios",
+    id: "carnet-digital",
     category: "general",
-    question: "¿Hay o habrá versión de Pilas! para iPhone (iOS)?",
+    question: "¿Cómo funciona el carnet digital?",
     answer:
-      "Por ahora está disponible únicamente para Android. La app fue programada en Flutter (por lo que su código es compatible con iOS), pero publicar en la App Store requiere una computadora Mac y pagar la suscripción de $99/año a Apple. Si eres estudiante, programas en iOS o tienes una Mac y deseas ayudar a compilar, revisa la sección <em>Colaboradores</em> o escríbenos a nuestro correo de contacto.",
+      "Guardas en Pilas! la captura de tu credencial (en la ESPE, desde espematico.espe.edu.ec) y la ves a pantalla completa con un efecto holográfico. Es una forma rápida de tenerla a la mano; <strong>no reemplaza a tu carnet físico</strong>.",
+  },
+  {
+    id: "wrapped",
+    category: "general",
+    question: "¿Qué es Pilas! Wrapped?",
+    answer:
+      "El resumen de tu semestre con un arquetipo de estudiante, calculado en tu teléfono. Listo para compartir en historias.",
+  },
+  {
+    id: "sedes-latacunga-santo-domingo",
+    category: "general",
+    question: "¿Funciona para las sedes de Latacunga y Santo Domingo?",
+    answer:
+      "<strong>Sí.</strong> La experiencia completa con Mi Campus y Banner funciona en Sangolquí, Latacunga y Santo Domingo.",
   },
   {
     id: "gratuita-siempre",
     category: "general",
-    question: "¿La aplicación seguirá siendo 100% gratuita en el futuro?",
-    answer:
-      "<strong>Sí, siempre.</strong> Pilas! nació como un proyecto solidario de un estudiante para sus compañeros.",
+    question: "¿Pilas! es gratis?",
+    answer: "<strong>Sí.</strong> Es gratis y sin anuncios, en Android y en iPhone.",
   },
   {
     id: "como-reportar-error",
     category: "general",
-    question:
-      "¿Cómo reporto un error, propongo una nueva función o contacto al desarrollador?",
-    answer:
-      "Puedes usar el formulario directo de comentarios en esta web, unirte al <strong>Canal oficial de WhatsApp de Pilas!</strong>, seguirnos en nuestro <strong>Instagram oficial (<a href=\"https://www.instagram.com/pilas_ec.app/\" target=\"_blank\" rel=\"noopener noreferrer\">@pilas_ec.app</a>)</strong> donde subimos noticias y comunicados, o escribir directamente por correo electrónico a <code>teo.hurtado.16@gmail.com</code>. Todos los mensajes se leen y se toman en cuenta para las siguientes versiones.",
+    question: "¿Cómo reporto un error o propongo una función?",
+    answer: `Escríbenos al ${WA_LINK}, donde damos soporte directo, o a nuestro Instagram (${IG_LINK}). También puedes escribir por correo a <code>teo.hurtado.16@gmail.com</code>.`,
   },
 ];
 

@@ -6,7 +6,7 @@ import changelog from '../data/changelog.json';
 import AtelierCredits from '../components/AtelierCredits.astro';
 
 const title = `Historial de Cambios y Versiones | ${SITE.name}`;
-const description = `Consulta todas las novedades, mejoras de rendimiento, parches de seguridad y lanzamientos oficiales de Pilas! para Android.`;
+const description = `Consulta todas las novedades, mejoras de rendimiento, parches de seguridad y lanzamientos oficiales de Pilas! para Android y iPhone.`;
 const canonicalUrl = `${SITE.url}/cambios`;
 ---
 <!doctype html>
@@ -308,9 +308,9 @@ try {
       <div class="discrepancy-card" role="note">
         <span class="discrepancy-icon" aria-hidden="true">💡</span>
         <div>
-          <strong>Estado de versiones de Pilas!:</strong>
+          <strong>Versión actual: v{SITE.version}</strong>
           <p>
-            La versión del producto actual es <strong>v{SITE.version}</strong> (build {SITE.build}), mientras que el paquete de instalación móvil distribuido en APK corresponde a <strong>v{SITE.apkVersion}</strong>. {SITE.versionDiscrepancyNote}
+            {SITE.versionDiscrepancyNote}
           </p>
         </div>
       </div>
@@ -323,7 +323,7 @@ try {
         <div class="version-header">
           <div class="version-identity">
             <span class="version-number">v{entry.version}</span>
-            <span class="build-pill">build {entry.build}</span>
+            {entry.build && <span class="build-pill">build {entry.build}</span>}
           </div>
           <time class="version-date" datetime={entry.date}>
             {entry.date}
@@ -348,10 +348,10 @@ try {
   </section>
 
   <section class="changelog-cta">
-    <h2>¿Listo para probar la última versión?</h2>
-    <p style="color: var(--muted); margin-top: 6px;">Únete a la prueba cerrada en Google Play Store y mantén tu semestre al día sin depender de internet.</p>
+    <h2>¿Listo para la última versión?</h2>
+    <p style="color: var(--muted); margin-top: 6px;">Pilas! ya está para todos: en Google Play para Android y desde Safari en iPhone.</p>
     <a href="/#acceso" class="btn-download">
-      <span>Pedir acceso en Google Play</span>
+      <span>Descargar Pilas!</span>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </section>

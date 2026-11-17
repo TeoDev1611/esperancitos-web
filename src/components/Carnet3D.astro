@@ -6,15 +6,14 @@ interface Props {
 }
 
 const { M } = Astro.props;
-const WA_TESTERS = 'https://chat.whatsapp.com/FAwkWyYVK2x3sEtGuoLVzc';
-const WA_CHANNEL = 'https://www.whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
+const DOWNLOAD_ANCHOR = '#acceso';
 ---
 
 <div class="pass-container" id="pass-interactive-wrap">
   <!-- Selector Rápido de Universidad para el Carnet -->
   <div class="pass-uni-tabs" role="tablist" aria-label="Selecciona tu universidad para personalizar el carnet">
     <button type="button" class="pass-tab-btn is-active" data-pass-uni="espe" role="tab" aria-selected="true">
-      ⚡ ESPE
+      ESPE
     </button>
     <button type="button" class="pass-tab-btn" data-pass-uni="uta" role="tab" aria-selected="false">
       UTA
@@ -58,7 +57,7 @@ const WA_CHANNEL = 'https://www.whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
               <div class="pass-avatar-wrap" id="pass-avatar-box">
                 <img
                   src={M.neutral}
-                  alt="Avatar estudiante Pilas!"
+                  alt="Pilo, la mascota de Pilas!"
                   class="pass-avatar-img"
                   id="pass-avatar-img"
                   width="54"
@@ -69,7 +68,7 @@ const WA_CHANNEL = 'https://www.whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
               <div class="pass-student-info">
                 <h2 id="pass-uni-title">Universidad de las Fuerzas Armadas ESPE</h2>
                 <span class="campus-sub" id="pass-uni-sub">SEDE MATRIZ SANGOLQUÍ · PREGRADO</span>
-                <span class="pass-badge-active" id="pass-badge-status">TESTER AUTORIZADO</span>
+                <span class="pass-badge-active" id="pass-badge-status">ESTUDIANTE PILAS!</span>
               </div>
             </div>
 
@@ -83,7 +82,7 @@ const WA_CHANNEL = 'https://www.whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
             <!-- Holograma de Seguridad Refractivo -->
             <div class="hologram-strip">
               <span class="holo-symbol">⬡</span>
-              <span class="holo-text font-mono" id="pass-holo-text">CHIP GARITA · OFFLINE VERIFIED</span>
+              <span class="holo-text font-mono" id="pass-holo-text">ESPE · ANDROID + IPHONE</span>
             </div>
 
             <!-- Código de Barras Dinámico -->
@@ -93,8 +92,8 @@ const WA_CHANNEL = 'https://www.whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
             </div>
 
             <div class="pass-footer">
-              <span class="badge b-info"><svg class="ico"><use href="#i-off"/></svg>100% Offline</span>
-              <span class="badge b-ok">✓ Google Play Beta</span>
+              <span class="badge b-info"><svg class="ico"><use href="#i-off"/></svg>Sin internet</span>
+              <span class="badge b-ok">✓ Google Play</span>
             </div>
           </div>
         </div>
@@ -108,7 +107,7 @@ const WA_CHANNEL = 'https://www.whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
               <span class="crest-stars">★ ★ ★</span>
               <span class="crest-sub">RED UNIVERSITARIA</span>
             </div>
-            <span class="pass-title">Acceso Preview</span>
+            <span class="pass-title">Pase Multi-U</span>
           </header>
 
           <div class="fb">
@@ -126,9 +125,9 @@ const WA_CHANNEL = 'https://www.whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
 
             <dl class="pass-data-grid">
               <div><dt>Protocolo</dt><dd>Moodle Mobile</dd></div>
-              <div><dt>Tiempo</dt><dd>1 seg por QR</dd></div>
+              <div><dt>Acceso</dt><dd>Usuario o QR</dd></div>
               <div><dt>Escala</dt><dd class="num">10, 20 o 100</dd></div>
-              <div><dt>Compatibilidad</dt><dd>Android 8.0+</dd></div>
+              <div><dt>Teléfonos</dt><dd>Android + iPhone</dd></div>
             </dl>
 
             <!-- Holograma Multi-U -->
@@ -138,13 +137,13 @@ const WA_CHANNEL = 'https://www.whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
             </div>
 
             <div class="qr-pass-box">
-              <span class="qr-pill-tag">PASAPORTE DE TESTER PLAY STORE</span>
-              <span class="qr-sub">Requiere cuenta @gmail.com registrada</span>
+              <span class="qr-pill-tag">GRATIS EN ANDROID Y IPHONE</span>
+              <span class="qr-sub">Google Play · Safari en iPhone</span>
             </div>
 
             <div class="pass-footer">
               <span class="badge b-info"><svg class="ico"><use href="#i-off"/></svg>Privado</span>
-              <span class="badge b-ok">✓ 14 Días Activos</span>
+              <span class="badge b-ok">✓ Sin anuncios</span>
             </div>
           </div>
         </div>
@@ -155,26 +154,19 @@ const WA_CHANNEL = 'https://www.whatsapp.com/channel/0029VbDorHS4SpkCdv49bM3g';
   <!-- Botón Táctil de Acción Directa 1-Tap (Overdrive) -->
   <div class="pass-action-cluster">
     <a
-      href={WA_TESTERS}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={DOWNLOAD_ANCHOR}
       class="btn-pass-vip-action"
       id="pass-whatsapp-btn"
-      aria-label="Pedir acceso a la prueba cerrada de Pilas! en WhatsApp"
+      aria-label="Ir a la descarga de Pilas! para Android y iPhone"
     >
-      <span class="btn-vip-sparkle">🎟️</span>
-      <span class="btn-vip-text" id="pass-btn-text">Pedir Acceso con mi @gmail.com</span>
-      <span class="btn-vip-arrow">➔</span>
+      <span class="btn-vip-text" id="pass-btn-text">Descargar Pilas! gratis</span>
+      <svg class="ico btn-vip-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
     </a>
     <span class="pass-flip-hint font-mono hide-xs">
-      💡 Toca el carnet para voltearlo
+      Toca el carnet para voltearlo
     </span>
   </div>
 
-  <div class="pass-disclaimer font-mono">
-    <span class="badge b-info" style="font-size:0.75rem">PROYECTO INDEPENDIENTE</span>
-    <span>Desarrollado por estudiantes para la comunidad universitaria de Ecuador.</span>
-  </div>
 </div>
 
 <style is:global>
@@ -242,7 +234,6 @@ html[data-mode="multi"] .pass-tab-btn.is-active {
 /* Botón de volteo del carnet */
 .pass {
   width: 100%;
-  aspect-ratio: 3 / 4.45;
   background: transparent;
   border: none;
   padding: 0;
@@ -259,20 +250,30 @@ html[data-mode="multi"] .pass-tab-btn.is-active {
 }
 .pass-in {
   position: relative;
+  display: grid;
   width: 100%;
-  height: 100%;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-html[data-mode="multi"] .pass-in {
+/* Nuevo carnet repartido al cambiar de universidad */
+.pass.is-dealing { animation: pass-deal 560ms cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes pass-deal {
+  0% { transform: translateX(36px) rotate(5deg) scale(0.92); opacity: 0.15; }
+  100% { transform: none; opacity: 1; }
+}
+.pass-avatar-img { object-fit: contain; background: #fff; border-radius: 8px; padding: 3px; }
+
+/* Se voltea solo al tocar el carnet; el modo ya no lo voltea */
+.pass.is-flipped .pass-in {
   transform: rotateY(180deg);
 }
 
 /* Caras del carnet */
 .face {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  grid-area: 1 / 1;
+  text-align: left;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
